@@ -1,0 +1,18 @@
+menu "Example Configuration"
+  
+    choice KALUGA_VERSION
+        prompt "Kaluga version"
+        default ESP32_S2_KALUGA_V1_2
+        config ESP32_S2_KALUGA_V1_2
+            bool "ESP32-S2-KALUGA_V1.2"
+        config ESP32_S2_KALUGA_V1_1
+            bool "ESP32-S2-KALUGA_V1.1"
+         
+        help
+            Set Kaluga version
+    endchoice
+
+    config  CAMERA_JPEG_MODE
+        bool "jpeg mode"
+        
+endmenu
