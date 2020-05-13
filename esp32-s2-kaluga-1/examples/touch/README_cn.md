@@ -30,13 +30,13 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
 
 <div align="left"><img src="../../docs/_static/kaluga_examples_touch_3.jpg" width = "650" alt="image 1-3" align=center /></div> </br></br>
 
-* ESP32_S2_Kaluga-1_v1.2 Camera 管脚分配
+* ESP32_S2_Kaluga-1_v1.2 Touch 管脚分配
 
 PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN | GUARD | SHIELD
  ---|---|---|---|---|---|---|---|
  GPIO2 | GPIO6 | GPIO11 | GPIO5 | GPIO1 | GPIO3 |GPIO4 | GPIO14
  
-* ESP32_S2_kaluga-1_v1.1 Camera 管脚分配
+* ESP32_S2_kaluga-1_v1.1 Touch 管脚分配
 
 PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN | GUARD | SHIELD
  ---|---|---|---|---|---|---|---|
