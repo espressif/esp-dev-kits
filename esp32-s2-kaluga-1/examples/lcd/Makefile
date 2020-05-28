@@ -3,7 +3,7 @@
 # project subdirectory.
 #
 
-PROJECT_NAME := lcd
+PROJECT_NAME := esp32-s2-hmi
 
 include $(IDF_PATH)/make/project.mk
 
