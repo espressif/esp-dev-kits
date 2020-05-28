@@ -27,12 +27,12 @@ GPATH
 **/examples/**/build
 
 # Doc build artifacts
-docs/_build/
-docs/doxygen_sqlite3.db
+**/docs/_build/
+**/docs/doxygen_sqlite3.db
 
 # Downloaded font files
-docs/_static/DejaVuSans.ttf
-docs/_static/NotoSansSC-Regular.otf
+**/docs/_static/DejaVuSans.ttf
+**/docs/_static/NotoSansSC-Regular.otf
 
 # Unit test app files
 tools/unit-test-app/sdkconfig
