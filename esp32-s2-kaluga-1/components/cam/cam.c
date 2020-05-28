@@ -95,7 +95,7 @@ void IRAM_ATTR cam_vsync_isr(void *arg)
     }
 }
 
-static void cam_config(cam_config_t *config)
+static void cam_config(const cam_config_t *config)
 {
      /*!<Enable I2S periph */
     periph_module_enable(PERIPH_I2S0_MODULE);
@@ -165,7 +165,7 @@ static void cam_config(cam_config_t *config)
     esp_intr_alloc(ETS_I2S0_INTR_SOURCE, 0, cam_isr, NULL, NULL);
 }
 
-static void cam_set_pin(cam_config_t *config)
+static void cam_set_pin(const cam_config_t *config)
 {
     gpio_config_t io_conf;
     io_conf.intr_type = GPIO_PIN_INTR_NEGEDGE;
@@ -407,7 +407,7 @@ void cam_give(uint8_t *buffer)
     }
 }
 
-void cam_dma_config(cam_config_t *config) 
+void cam_dma_config(const cam_config_t *config) 
 {
     int cnt = 0;
     if (config->mode.jpeg) {
