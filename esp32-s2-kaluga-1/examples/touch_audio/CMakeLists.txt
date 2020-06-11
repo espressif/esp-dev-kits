@@ -12,4 +12,5 @@ set(EXTRA_COMPONENT_DIRS "../../components/board"
 )
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+add_compile_options(-fdiagnostics-color=always)
 project(esp32-s2-hmi)
