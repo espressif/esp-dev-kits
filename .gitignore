@@ -22,9 +22,9 @@ GPATH
 .DS_Store
 
 # Example project files
-examples/**/sdkconfig
-examples/**/sdkconfig.old
-examples/**/build
+**/examples/**/sdkconfig
+**/examples/**/sdkconfig.old
+**/examples/**/build
 
 # Doc build artifacts
 docs/_build/
