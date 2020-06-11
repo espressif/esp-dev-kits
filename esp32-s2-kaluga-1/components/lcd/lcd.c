@@ -46,35 +46,34 @@ typedef struct {
 
 static lcd_obj_t *lcd_obj = NULL;
 
-void inline lcd_set_rst(uint8_t state)
+void static lcd_set_rst(uint8_t state)
 {
     gpio_set_level(lcd_obj->pin_rst, state);
 }
 
-void inline lcd_set_dc(uint8_t state)
+void static lcd_set_dc(uint8_t state)
 {
     gpio_set_level(lcd_obj->pin_dc, state);
 }
 
-void inline lcd_set_cs(uint8_t state)
+void static lcd_set_cs(uint8_t state)
 {
     gpio_set_level(lcd_obj->pin_cs, state);
 }
 
-void inline lcd_set_blk(uint8_t state)
+void static lcd_set_blk(uint8_t state)
 {
     gpio_set_level(lcd_obj->pin_bk, state);
 }
 
 static void IRAM_ATTR lcd_isr(void *arg)
 {
-    int event;
     BaseType_t HPTaskAwoken = pdFALSE;
     typeof(GPSPI3.dma_int_st) int_st = GPSPI3.dma_int_st;
     GPSPI3.dma_int_clr.val = int_st.val;
 
     if (int_st.out_eof) {
-        xQueueSendFromISR(lcd_obj->event_queue, &int_st.val, &HPTaskAwoken);
+        xQueueSendFromISR(lcd_obj->event_queue, (void *)&int_st.val, &HPTaskAwoken);
     }
 
     if (HPTaskAwoken == pdTRUE) {
@@ -95,18 +94,18 @@ static void spi_write_data(uint8_t *data, size_t len)
         lcd_obj->dma[x].length = lcd_obj->dma_size;
         lcd_obj->dma[x].buf = (lcd_obj->buffer + lcd_obj->dma_size * x);
         lcd_obj->dma[x].eof = !((x + 1) % lcd_obj->half_node_cnt);
-        lcd_obj->dma[x].empty = &lcd_obj->dma[(x + 1) % lcd_obj->node_cnt];
+        lcd_obj->dma[x].empty = (uint32_t)&lcd_obj->dma[(x + 1) % lcd_obj->node_cnt];
     }
 
-    lcd_obj->dma[lcd_obj->half_node_cnt - 1].empty = NULL;
-    lcd_obj->dma[lcd_obj->node_cnt - 1].empty = NULL;
+    lcd_obj->dma[lcd_obj->half_node_cnt - 1].empty = 0;
+    lcd_obj->dma[lcd_obj->node_cnt - 1].empty = 0;
     cnt = len / lcd_obj->half_buffer_size;
     /*!< Start the signal */
     xQueueSend(lcd_obj->event_queue, &event, 0);
 
     /*!< Processing a complete piece of data, ping-pong operation */
     for (x = 0; x < cnt; x++) {
-        memcpy(lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf, data, lcd_obj->half_buffer_size);
+        memcpy((uint8_t *)lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf, data, lcd_obj->half_buffer_size);
         data += lcd_obj->half_buffer_size;
         xQueueReceive(lcd_obj->event_queue, (void *)&event, portMAX_DELAY);
         GPSPI3.mosi_dlen.usr_mosi_bit_len = lcd_obj->half_buffer_size * 8 - 1;
@@ -120,7 +119,7 @@ static void spi_write_data(uint8_t *data, size_t len)
 
     /*!< Processing remaining incomplete segment data */
     if (cnt) {
-        memcpy(lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf, data, cnt);
+        memcpy((uint8_t *)lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf, data, cnt);
 
         /*!< Handle the case where the data length is an integer multiple of lcd_obj->dma_size */
         if (cnt % lcd_obj->dma_size) {
@@ -135,7 +134,7 @@ static void spi_write_data(uint8_t *data, size_t len)
         lcd_obj->dma[end_pos].size = size;
         lcd_obj->dma[end_pos].length = size;
         lcd_obj->dma[end_pos].eof = 1;
-        lcd_obj->dma[end_pos].empty = NULL;
+        lcd_obj->dma[end_pos].empty = 0;
         xQueueReceive(lcd_obj->event_queue, (void *)&event, portMAX_DELAY);
         GPSPI3.mosi_dlen.usr_mosi_bit_len = cnt * 8 - 1;
         GPSPI3.dma_out_link.addr = ((uint32_t)&lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt]) & 0xfffff;
@@ -181,6 +180,8 @@ void lcd_rst()
     lcd_set_rst(1);
     lcd_delay_ms(100);
 }
+
+#ifdef CONFIG_LCD_ILI9341
 static void lcd_ili9341_config(lcd_config_t *config)
 {
     /* Power contorl B, power control = 0, DC_ENA = 1 */
@@ -344,6 +345,9 @@ static void lcd_ili9341_config(lcd_config_t *config)
     vTaskDelay(100 / portTICK_RATE_MS);
 
 }
+#endif
+
+#ifdef CONFIG_LCD_ST7789
 static void lcd_st7789_config(lcd_config_t *config)
 {
     lcd_set_cs(0);
@@ -450,6 +454,7 @@ static void lcd_st7789_config(lcd_config_t *config)
 
     lcd_write_cmd(0x29); /*!< DISPON (29h): Display On */
 }
+#endif 
 
 static void lcd_config(lcd_config_t *config)
 {
@@ -604,8 +609,8 @@ int lcd_init(lcd_config_t *config)
     ESP_LOGI(TAG, "ST7789 init...\n");
     lcd_st7789_config(config);
 #endif
-#ifdef  CONFIG_LCD_ILI9341
-    pESP_LOGI(TAG, "ILI19341 init...\n");
+#ifdef CONFIG_LCD_ILI9341
+    ESP_LOGI(TAG, "ILI19341 init...\n");
     lcd_ili9341_config(config);
 #endif
 
