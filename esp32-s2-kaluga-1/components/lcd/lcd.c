@@ -68,7 +68,6 @@ void inline lcd_set_blk(uint8_t state)
 
 static void IRAM_ATTR lcd_isr(void *arg)
 {
-    int event;
     BaseType_t HPTaskAwoken = pdFALSE;
     typeof(GPSPI3.dma_int_st) int_st = GPSPI3.dma_int_st;
     GPSPI3.dma_int_clr.val = int_st.val;
@@ -605,7 +604,7 @@ int lcd_init(lcd_config_t *config)
     lcd_st7789_config(config);
 #endif
 #ifdef  CONFIG_LCD_ILI9341
-    pESP_LOGI(TAG, "ILI19341 init...\n");
+    ESP_LOGI(TAG, "ILI19341 init...\n");
     lcd_ili9341_config(config);
 #endif
 

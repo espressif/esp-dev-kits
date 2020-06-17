@@ -223,7 +223,7 @@ static void touch_pad_read_task(void *pvParameter)
                         value = blue;
                     }
 
-                    ESP_LOGI(TAG, "vol_up   -> make the light brighter:%d", ret);
+                    ESP_LOGI(TAG, "vol_up   -> make the light brighter:%d", value);
                     ESP_ERROR_CHECK(strip->refresh(strip, 0));
                 }
 
