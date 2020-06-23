@@ -144,7 +144,7 @@ Check the `README.md` of each example for more detailed information.
 
 ## 3.2 Data Sheet
 
-* [ESP32-S2 English datasheet](docs/datasheet/esp32-s2_datasheet_en.pdf)
+* [ESP32-S2 datasheet](docs/datasheet/esp32-s2_datasheet_en.pdf)
 * [LCD ST7789](docs/datasheet/LCD_ST7789.pdf)
 * [Camera OV2640](docs/datasheet/Camera_OV2640.pdf)
 * [Audio ES8311](docs/datasheet/Audio_ES8311.pdf)
