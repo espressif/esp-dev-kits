@@ -74,7 +74,11 @@ build_demo_cmake:
     - idf.py set-target esp32s2 
     - idf.py build
     - cd ../../
-
+    - cd examples/adc_button
+    - idf.py fullclean
+    - idf.py set-target esp32s2 
+    - idf.py build
+    - cd ../../
 
 push_master_to_github:
   stage: deploy
