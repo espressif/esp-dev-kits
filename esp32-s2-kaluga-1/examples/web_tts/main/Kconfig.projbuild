@@ -1,0 +1,56 @@
+
+menu "Example Configuration"
+
+    choice AUDIO_PAD_TYPE
+       prompt "audio pad type"
+        default AUDIO_PAD_ESP32_S2_KALUGA_V1_2
+        config AUDIO_PAD_ESP32_S2_KALUGA_V1_3
+            bool "ESP32-S2-KALUGA_V1.3"
+        config AUDIO_PAD_ESP32_S2_KALUGA_V1_2
+            bool "ESP32-S2-KALUGA_V1.2"
+        config AUDIO_PAD_ESP32_S2_KALUGA_V1_1
+            bool "ESP32-S2-KALUGA_V1.1"
+        help
+            Set the GPIO number used for transmitting the RMT signal.
+    endchoice
+    
+menu "WiFi Settings"
+config ESP_WIFI_SSID
+    string "WiFi STA SSID"
+    default ""
+    help
+    WiFi SSID (network name) to connect to or empty for Off.
+
+config ESP_WIFI_PASSWORD
+    string "WiFi STA Password"
+    default ""
+    help
+    WiFi Password if WEP/WPA/WPA2 or empty if Open.
+    
+config ESP_WIFI_AP_SSID
+    string "WiFi AP SSID"
+    default "ESP32-Camera"
+    help
+	AP SSID (network name) to create or empty for Off.
+
+config ESP_WIFI_AP_PASSWORD
+    string "WiFi AP Password"
+    default ""
+    help
+	AP password for WPA2 or empty for Open.
+
+config SERVER_IP
+    string "WiFi AP IP Address"
+    default "192.168.4.1"
+    help
+        IP address that the ESP will assign to it's AP interface. You can use this IP to connect to the camera after flashing.
+
+config ESP_MAXIMUM_RETRY
+    int "Maximum retry"
+    default 5
+    help
+    Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+endmenu
+
+
+endmenu
