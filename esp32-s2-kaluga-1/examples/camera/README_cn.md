@@ -1,6 +1,6 @@
 # _Camera 示例程序_
 
-此工程展示了 Camera 采集图像数据后，将其图像数据显示在显示屏上,目前支持 ST7789 和 ILI9341 屏.
+此工程展示了 Camera 采集图像数据后，将其图像数据显示在显示屏上。（目前支持 OV3660 和 OV2640 ）
 
 ## 1 快速入门
 
@@ -16,10 +16,10 @@
 
 ## 1.2 硬件连接
 
-1. 将 SW3 和 SW4 的拨码开关全部打开（ ON ），即主板左下角两组拨码开关，如下图：
-* 高级：如果想使用部分触摸板  管脚，只需将触摸板相关拨码开关关闭OFF，详情请参阅主板和触摸板原理图。
+1. 将 SW3 和 SW4 的拨码开关**全部打开（ ON ）**，即主板左下角两组拨码开关，如下图：
+* 高级：如果想使用部分触摸板  管脚，只需将触摸板相关拨码开关关闭( OFF )，详情请参阅主板和触摸板原理图。
 
-<div align="left"><img src="../../docs/_static/kaluga_examples_touch_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../docs/_static/kaluga_examples_camera_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
 
 2. 将显示屏插入主板双排排针的内侧一排（注意：不要在显示屏和主板之间接入音频板），如下图:
 
@@ -27,7 +27,7 @@
 
 3. 将摄像头插入主板，如下图:
 
-<div align="left"><img src="../../docs/_static/kaluga_examples_camera_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../docs/_static/kaluga_examples_camera_2.jpg" width = "450" alt="image 1-2" align=center /></div>  
 
 * ESP32_S2_Kaluga-1 LCD 管脚分配
 
@@ -47,6 +47,12 @@ CAMERA PIN|XCLK|PCLK|VSYNC|HSYNC|D2|D3|D4|D5|D6|D7|D8|D9|
 ---|---| ---|---| ---|---| ---|---|---|---|---|---|---|
 **GPIO** |1|33|2|3|46|45|41|42|39|40|21|38
 
+* ESP32_S2_kaluga-1_v1.3 Camera 管脚分配
+
+CAMERA PIN|XCLK|PCLK|VSYNC|HSYNC|D2|D3|D4|D5|D6|D7|D8|D9|
+---|---| ---|---| ---|---| ---|---|---|---|---|---|---|
+**GPIO** |1|33|2|3|36|37|41|42|39|40|21|38
+
 ### 1.3 配置工程
 
 ```
@@ -54,8 +60,10 @@ idf.py set-target esp32s2 menuconfig
 ```
 
 * 在`Serial flasher config` 下配置串口相关信息。
-* 在`Example Configuration` -> `kaluga version`: 选择 kaluga 主板版本。
-* 在`Example Configuration` -> `jpeg mode`: 选择是否需要启动jpeg解码。
+* 在`Example Configuration` -> `kaluga version`: 选择 Kaluga 主板版本。
+* 在`Example Configuration` -> `Camera version`: 选择 Camera 的版本。（目前支持 OV3660 和 OV2640 ）
+* 在`Example Configuration` -> `LCD version`: 选择 Camera 的版本。（目前支持 ST7789 和 ILI9341 ）
+* 在`Example Configuration` -> `jpeg mode`: 选择是否需要启动 jpeg 解码。
 * 在`Component config` -> `ESP32S2-specific` -> `Support for external, SPI-connected RAM`: 此工程需要打开 SPIRAM,确认是否打开了.
 
 ## 1.4 构建和烧录
@@ -153,9 +161,10 @@ I (1015) main: camera init done
   * 下载的波特率太高：降低 `menuconfig` 菜单中的波特率，然后重试。
 * 无法显示或者显示不正常
   * 拨码开关没有正确打开（ ON ）。
+  * 检测屏幕的驱动是 ST7789 还是 ILI9341.
   * 摄像头或者显示屏是否接触不良。
   * 在`menuconfig`中是否打开了 SPIRAM.
-  * 不要在显示屏和主板中间接入音频板。
+  * 不要在显示屏和主板中间接入音频板,否则会影响自动识别 Camera 型号的功能。
 
 ## 2 附录
 

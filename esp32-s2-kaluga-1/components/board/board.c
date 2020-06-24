@@ -21,6 +21,10 @@ esp_err_t kaluga_board_verison(void)
 {
     bool ret = false;
     /*!< main PAD */
+#ifdef CONFIG_ESP32_S2_KALUGA_V1_3
+    ESP_LOGI(TAG, "main pad:v1.3");
+    ret = true;
+#endif
 #ifdef CONFIG_ESP32_S2_KALUGA_V1_2
     ESP_LOGI(TAG, "main pad:v1.2");
     ret = true;
@@ -31,6 +35,10 @@ esp_err_t kaluga_board_verison(void)
 #endif
 
     /*!< aduio PAD */
+#ifdef CONFIG_AUDIO_PAD_ESP32_S2_KALUGA_V1_3
+    ESP_LOGI(TAG, "audio pad:v1.3");
+    ret = true;
+#endif
 #ifdef CONFIG_AUDIO_PAD_ESP32_S2_KALUGA_V1_2
     ESP_LOGI(TAG, "audio pad:v1.2");
     ret = true;
@@ -41,6 +49,10 @@ esp_err_t kaluga_board_verison(void)
 #endif
 
     /*!< touch PAD */
+#ifdef CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_3
+    ESP_LOGI(TAG, "touch pad:v1.3");
+    ret = true;
+#endif
 #ifdef CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_2
     ESP_LOGI(TAG, "touch pad:v1.2");
     ret = true;
@@ -51,16 +63,24 @@ esp_err_t kaluga_board_verison(void)
 #endif
 
     /*!< camera PAD */
+#ifdef CONFIG_CAMERA_PAD_ESP32_S2_KALUGA_V1_3
+    ESP_LOGI(TAG, "camera pad:v1.3");
+    ret = true;
+#endif
 #ifdef CONFIG_CAMERA_PAD_ESP32_S2_KALUGA_V1_2
-    ESP_LOGI(TAG, "touch pad:v1.2");
+    ESP_LOGI(TAG, "camera pad:v1.2");
     ret = true;
 #endif
 #ifdef CONFIG_CAMERA_PAD_ESP32_S2_KALUGA_V1_1
-    ESP_LOGI(TAG, "touch pad:v1.1");
+    ESP_LOGI(TAG, "camera pad:v1.1");
     ret = true;
 #endif
 
     /*!< LED PAD */
+#ifdef CONFIG_LED_PAD_ESP32_S2_KALUGA_V1_2
+    ESP_LOGI(TAG, "LED pad:v1.3");
+    ret = true;
+#endif
 #ifdef CONFIG_LED_PAD_ESP32_S2_KALUGA_V1_2
     ESP_LOGI(TAG, "LED pad:v1.2");
     ret = true;

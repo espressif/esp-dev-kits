@@ -60,14 +60,16 @@ extern "C" {
 #define CAM_PCLK  GPIO_NUM_0
 #define CAM_VSYNC GPIO_NUM_2
 #define CAM_HSYNC GPIO_NUM_3
-#define CAM_D0    GPIO_NUM_46
-#define CAM_D1    GPIO_NUM_45
-#define CAM_D2    GPIO_NUM_41
-#define CAM_D3    GPIO_NUM_42
-#define CAM_D4    GPIO_NUM_39
-#define CAM_D5    GPIO_NUM_40
-#define CAM_D6    GPIO_NUM_21
-#define CAM_D7    GPIO_NUM_38
+#define CAM_D0    GPIO_NUM_46  /*!< hardware pins: D2 */
+#define CAM_D1    GPIO_NUM_45  /*!< hardware pins: D3 */
+#define CAM_D2    GPIO_NUM_41  /*!< hardware pins: D4 */
+#define CAM_D3    GPIO_NUM_42  /*!< hardware pins: D5 */
+#define CAM_D4    GPIO_NUM_39  /*!< hardware pins: D6 */
+#define CAM_D5    GPIO_NUM_40  /*!< hardware pins: D7 */
+#define CAM_D6    GPIO_NUM_21  /*!< hardware pins: D8 */
+#define CAM_D7    GPIO_NUM_38  /*!< hardware pins: D9 */
+#define CAM_SCL   GPIO_NUM_7
+#define CAM_SDA   GPIO_NUM_8
 #endif
 
 /*!< LCD PAD */

@@ -31,6 +31,8 @@ typedef struct {
         uint32_t val;
     } pin;                    /*!< Pin of camera */
     uint8_t pin_data[16];     /*!< Data pin of camera*/
+    uint8_t vsync_invert;
+    uint8_t hsync_invert;
     union {
         struct {
             uint32_t width:   16;
@@ -51,8 +53,14 @@ typedef struct {
     uint8_t *frame2_buffer; /*!< PingPang buffers , cache the image*/
 } cam_config_t;
 
+/**
+ * @brief enable camera
+ */
 void cam_start(void);
 
+/**
+ * @brief disable camera
+ */
 void cam_stop(void);
 
 /**
@@ -69,7 +77,6 @@ size_t cam_take(uint8_t **buffer_p);
  *
  * @param buffer The address of the frame buffer pointer
  * 
- * @return - len of buffer
  */
 void cam_give(uint8_t *buffer);
 
@@ -86,10 +93,10 @@ esp_err_t cam_init(const cam_config_t *config);
 /**
  * @brief  delete the camera
  *
- * @param config Parameter configuration, including pin, buffer, output image size, and so on.
- * @return - ESP_OK :Initialize success
+ * @return - ESP_OK :Delete success
+ *           ESP_FAIL: Delete fails
  */
-esp_err_t cam_deinit(cam_config_t *config);
+esp_err_t cam_deinit(void);
 
 #ifdef __cplusplus
 }

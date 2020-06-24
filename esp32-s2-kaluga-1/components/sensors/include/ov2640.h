@@ -25,7 +25,7 @@ extern "C"
 #endif
 
 #define OV2640_MID 0X7FA2
-#define OV2640_PID 0X2642
+// #define OV2640_PID 0X2642
 
 /* When the DSP address (0XFF=0X00) is selected, the DSP register address map table for OV2640 */
 #define OV2640_DSP_R_BYPASS 0x05
@@ -118,8 +118,8 @@ extern "C"
  *             1: Initialize OV2640 with UXGA resolution (1600*1200) 
  * @param fre_double_en 0: disable double frequency
  *                      1: enable double frequency
- * @return - ESP_FAIL cant read data from reg
- *         - ESP_OK on succesful decode
+ * @return - ESP_FAIL Initialization failure
+ *         - ESP_OK on Successful initialization
  */
 esp_err_t OV2640_Init(uint8_t mode, uint8_t fre_double_en);
 

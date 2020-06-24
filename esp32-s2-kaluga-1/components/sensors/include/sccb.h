@@ -11,8 +11,8 @@
 // WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 // See the License for the specific language governing permissions and
 // limitations under the License.
-
 #pragma once
+
 #include <stdio.h>
 #include <stdint.h>
 
@@ -20,46 +20,64 @@
 extern "C" {
 #endif
 
-#define SCCB_ID   			0X60  			/*!< OV2640 ID */
+/**
+ * @brief Initializes the GPIO port of the SCCB 
+ */
+int SCCB_Init(int pin_sda, int pin_scl);
 
 /**
- * @brief Initialize SCCB
+ * @brief Gets the slave address
+ * @return sensor address (slv_addr) ov2640: 0x30
+ *                                   ov3660: 0x3c
  */
-void SCCB_Init(void);
+uint8_t SCCB_Probe();
 
-/**
- * @brief delete SCCB
- */
-void SCCB_Deinit(void);
 /**
  * @brief Write the register
- *
+ * 
+ * @param slv_addr slave address
  * @param dat register
- * @param dat write data
+ * @param data write data
  * 
  * @return - 0 success
  *         - 1 fail
  */
-uint8_t SCCB_WR_Reg(uint8_t reg, uint8_t data);
-
+uint8_t SCCB_Write(uint8_t slv_addr, uint8_t reg, uint8_t data);
 /**
  * @brief read the register
  *
+ * @param slv_addr slave address
  * @param reg register
  * 
- * @return - data
+ * @return - Read the data
  */
-uint8_t SCCB_RD_Reg(uint8_t reg);
+uint8_t SCCB_Read(uint8_t slv_addr, uint8_t reg);
+
+/**
+ * @brief read the 16-bit register
+ *
+ * @param slv_addr slave address
+ * @param reg register
+ * 
+ * @return - Read the data
+ */
+uint8_t SCCB_Read16(uint8_t slv_addr, uint16_t reg);
+
+/**
+ * @brief write the 16-bit register
+ *
+ * @param slv_addr slave address
+ * @param reg register
+ * @param data write data
+ * 
+ * @return - 0 success
+ *          -1 fail
+ */
+uint8_t SCCB_Write16(uint8_t slv_addr, uint16_t reg, uint8_t data);
 
 #ifdef __cplusplus
 }
 #endif
-
-
-
-
-
-
 
 
 
