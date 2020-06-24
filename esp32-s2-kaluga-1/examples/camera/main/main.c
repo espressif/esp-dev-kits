@@ -55,10 +55,10 @@ static void cam_task(void *arg)
     lcd_init(&lcd_config);
 
     cam_config_t cam_config = {
+<<<<<<< HEAD
         .bit_width    = 8,
 #ifdef CONFIG_CAMERA_JPEG_MODE
         .mode.jpeg    = 1,
-#else
         .mode.jpeg    = 0,
 #endif
         .xclk_fre     = 16 * 1000 * 1000,
@@ -71,10 +71,10 @@ static void cam_task(void *arg)
         .pin_data     = {CAM_D0, CAM_D1, CAM_D2, CAM_D3, CAM_D4, CAM_D5, CAM_D6, CAM_D7},
         .vsync_invert = true,
         .hsync_invert = false,
-        .size = {
-            .width    = CAM_WIDTH,
-            .high     = CAM_HIGH,
-        },
+=======
+        .bit_width = 8,
+#ifdef CONFIG_CAMERA_JPEG_MODE
+        .mode.jpeg = 1,
         .max_buffer_size = 8 * 1024,
         .task_stack      = 1024,
         .task_pri        = configMAX_PRIORITIES
@@ -85,6 +85,14 @@ static void cam_task(void *arg)
     cam_config.frame2_buffer = (uint8_t *)heap_caps_malloc(CAM_WIDTH * CAM_HIGH * 2 * sizeof(uint8_t), MALLOC_CAP_SPIRAM);
 
     cam_init(&cam_config);
+<<<<<<< HEAD
+=======
+
+    if (OV2640_Init(0, 1) != ESP_OK) {
+        vTaskDelete(NULL);
+        return;
+    }
+>>>>>>> feature/touch_audio
 
     sensor_t sensor;
     int camera_version = 0;      /*!<If the camera version is determined, it can be set to manual mode */
@@ -145,7 +153,13 @@ static void cam_task(void *arg)
         goto fail;
     }
 
+<<<<<<< HEAD
 
+=======
+    OV2640_ImageSize_Set(800, 600);
+    OV2640_ImageWin_Set(0, 0, 800, 600);
+    OV2640_OutSize_Set(CAM_WIDTH, CAM_HIGH);
+>>>>>>> feature/touch_audio
     ESP_LOGI(TAG, "camera init done\n");
     cam_start();
 
@@ -174,11 +188,14 @@ static void cam_task(void *arg)
         gpio_set_level(LCD_BK, 0);
     }
 
+<<<<<<< HEAD
 
 fail:
     free(cam_config.frame1_buffer);
     free(cam_config.frame2_buffer);
     cam_deinit();
+=======
+>>>>>>> feature/touch_audio
     vTaskDelete(NULL);
 }
 

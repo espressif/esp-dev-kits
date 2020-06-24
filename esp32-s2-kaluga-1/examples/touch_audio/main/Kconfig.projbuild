@@ -1,0 +1,49 @@
+menu "Example Configuration"
+
+config KALUGA_WIFI
+    bool "WIFI config"
+
+    config WIFI_SSID
+        string "WiFi SSID"
+        default "myssid"
+        help
+            SSID (network name) for the example to connect to.
+ depends on KALUGA_WIFI
+    config WIFI_PASSWORD
+        string "WiFi Password"
+        default "mypassword"
+        help
+            WiFi password (WPA or WPA2) for the example to use.
+
+    depends on KALUGA_WIFI
+    config EXAMPLE_RMT_TX_GPIO
+        int "WS2812 GPIO"
+        default 45
+        help
+            Set the GPIO number used for transmitting the RMT signal.
+
+    config EXAMPLE_STRIP_LED_NUMBER
+        int "Number of LEDS in a strip"
+        default 1
+        help
+            A single RGB strip contains several LEDs.
+    choice TOUCH_PAD_TYPE
+        prompt "touch pad type"
+        default TOUCH_PAD_ESP32_S2_KALUGA_V1_2
+        config TOUCH_PAD_ESP32_S2_KALUGA_V1_2
+            bool "ESP32-S2-KALUGA_V1.2"
+        config TOUCH_PAD_ESP32_S2_KALUGA_V1_1
+            bool "ESP32-S2-KALUGA_V1.1"
+    endchoice
+    
+    choice AUDIO_PAD_TYPE
+       prompt "audio pad type"
+        default AUDIO_PAD_ESP32_S2_KALUGA_V1_2
+        config AUDIO_PAD_ESP32_S2_KALUGA_V1_2
+            bool "ESP32-S2-KALUGA_V1.2"
+        config AUDIO_PAD_ESP32_S2_KALUGA_V1_1
+            bool "ESP32-S2-KALUGA_V1.1"
+        help
+            Set the GPIO number used for transmitting the RMT signal.
+    endchoice
+endmenu

@@ -411,7 +411,7 @@ void cam_give(uint8_t *buffer)
     }
 }
 
-void cam_dma_config(const cam_config_t *config)
+void cam_dma_config(const cam_config_t *config) 
 {
     int cnt = 0;
 
