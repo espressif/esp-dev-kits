@@ -12,16 +12,18 @@ ESP32-S2-kaluga-1 是乐鑫发布的一款针对人机交互产品的开发套�
 **Audio 音频播放**
 
 *  连接音箱可播放音频
-*  通过和 Touch 面板的共用，可进行音频播放开关、调整声音大小
+*  通过和 Touch 面板的共用，可进行音频播放开关、调整声音大小。
 
 **LCD 图像显示**
 
 *  支持 LCD 接口（8-bit 并口 RGB、8080、6800 接口）
-*  主板上搭载 MPU6050（3轴陀螺仪+3轴加速度传感器芯片），将数据实时显示在 LCD 屏上
+*  支持 ST7789 和 ILI9341 驱动的显示屏
+*  支持将摄像头数据实时显示在 LCD 屏上
  
 **Camera 图像采集**
 
 *  支持 8/16 bit DVP 图像传感器接口
+*  支持 OV3660 和 OV2640 驱动的摄像头
 *  最高时钟频率支持到 40 MHz
 *  DMA 传输带宽优化，高分辨率图像传输更轻松
  
@@ -48,8 +50,8 @@ ESP32-S2-kaluga-1 是乐鑫发布的一款针对人机交互产品的开发套�
 │   ├── lcd
 │   ├── touch
 │   ├── camera
-│   ├── audio
-│   ├── touch_audio_music
+│   ├── web_tts
+│   ├── touch_audio
 │   ├── README.md
 │   └── ...
 └── README_cn.md
@@ -61,11 +63,13 @@ ESP32-S2-kaluga-1 是乐鑫发布的一款针对人机交互产品的开发套�
   * schematic ：各硬件的原理图
   * _static : 工程内各 `README.md` 调用的图片
 * **examples**:各种 ESP32-S2-Kaluga 相关示例程序
-    * [lcd](examples/lcd) : LCD 屏显示固定图像。
+    * [lcd](examples/lcd) : LCD 屏显示本地图片和 RGB 三色。
     * [touch](examples/touch) : 触摸板控制 LED 灯显示不同颜色。
     * [camera](examples/camera) : 摄像头捕获图像后显示在 LCD 屏上。
-    * [audio](examples/audio) : 通过 audio 子版上的按键控制 LED 灯，同时可以进行录音放音操作。
-    * [touch_audio_music](examples/touch_audio_music) :通过触摸板来控制音频播放音乐。
+    * [adc_button](examples/adc_button) : 通过 Audio 子版上的按键控制 LED 灯。
+    * [touch_audio](examples/touch_audio) : 通过触摸板来控制音频播放音乐。
+    * [web_tts](example/web_tts) : 通过 Web 给 kaluga 发送中文句子，Kaluga 将会通过本地合成语音进行播放。
+    * [Audio_passthru](https://github.com/espressif/esp-adf/tree/master/examples/audio_processing/pipeline_passthru) : 实现录音放音的功能。（ESP-ADF）
   
 
 # 2. ESP32-S2-Kaluga 快速入门
@@ -75,7 +79,7 @@ ESP32-S2-kaluga-1 是乐鑫发布的一款针对人机交互产品的开发套�
 <table>
     <tr>
         <td ><img src="docs/_static/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
-        <td ><img src="docs/_static/ESP-LyraP-TOUCHA_V1.0.png" width="300"><p align=center>ESP-LyraT-8311A 音频板</p></td>
+        <td ><img src="docs/_static/ESP-LyraT-8311A-V1.0.png" width="300"><p align=center>ESP-LyraT-8311A 音频板</p></td>
         <td ><img src="docs/_static/ESP-LyraP-LCD32_V1.0.png" width="300"><p align=center>EESP-LyraP-LCD32 显示屏</p></td>
         <td ><img src="docs/_static/ESP-LyraP-TOUCHA_V1.0.png" width="300"><p align=center>ESP-LyraP-TOUCHA 触摸板</p></td>
         <td ><img src="docs/_static/ESP-LyraP-CAM_V1.0.png" width="300"><p align=center>ESP-LyraP-CAM 摄像头</p></td>
