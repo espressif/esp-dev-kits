@@ -19,17 +19,6 @@
 #include "freertos/semphr.h"
 #include "board.h"
 
-
-#define I2S_SCLK          (GPIO_NUM_18)
-#define I2S_MCLK          (GPIO_NUM_35)
-#define I2S_LCLK          (GPIO_NUM_17)
-#define I2S_DOUT          (GPIO_NUM_12) 
-#define I2S_DSIN          (GPIO_NUM_46)
-#define GPIO_PA_EN        (GPIO_NUM_10)
-#define I2C_SCL           (GPIO_NUM_7)
-#define I2C_SDA           (GPIO_NUM_8)
-
-
 SemaphoreHandle_t i2c_bus_mux = NULL;
 
 esp_err_t i2c_bus_write_reg(uint8_t slave_addr, uint8_t reg_addr, uint8_t data)

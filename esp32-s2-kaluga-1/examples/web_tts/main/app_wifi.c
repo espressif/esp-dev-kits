@@ -61,7 +61,7 @@ static esp_err_t event_handler(void *ctx, system_event_t *event)
         break;
     case SYSTEM_EVENT_STA_GOT_IP:
         ESP_LOGI(TAG, "got ip:%s",
-                 ip4addr_ntoa(&event->event_info.got_ip.ip_info.ip));
+                 ip4addr_ntoa((const ip4_addr_t *)&event->event_info.got_ip.ip_info.ip));
         s_retry_num = 0;
         break;
     case SYSTEM_EVENT_STA_DISCONNECTED:

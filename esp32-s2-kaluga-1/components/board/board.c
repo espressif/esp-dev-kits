@@ -49,13 +49,19 @@ esp_err_t kaluga_board_verison(void)
 #endif
 
     /*!< touch PAD */
-<<<<<<< HEAD
 #ifdef CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_3
     ESP_LOGI(TAG, "touch pad:v1.3");
->>>>>>> feature/touch_audio
-#ifdef CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_2
-#endif
     ret = true;
+#endif
+#ifdef CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_2
+    ESP_LOGI(TAG, "touch pad:v1.2");
+    ret = true;
+#endif
+#ifdef CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_2
+    ESP_LOGI(TAG, "touch pad:v1.1");
+    ret = true;
+#endif
+
     /*!< camera PAD */
 #ifdef CONFIG_CAMERA_PAD_ESP32_S2_KALUGA_V1_3
     ESP_LOGI(TAG, "camera pad:v1.3");
@@ -70,6 +76,24 @@ esp_err_t kaluga_board_verison(void)
     ret = true;
 #endif
 
-    /*!< LED PAD */
+    /*!< LCD PAD */
+#ifdef CONFIG_LCD_PAD_ESP32_S2_KALUGA_V1_3
+    ESP_LOGI(TAG, "LED pad:v1.3");
+    ret = true;
+#endif
+#ifdef CONFIG_LCD_PAD_ESP32_S2_KALUGA_V1_2
     ESP_LOGI(TAG, "LED pad:v1.2");
+    ret = true;
+#endif
+#ifdef CONFIG_LCD_PAD_ESP32_S2_KALUGA_V1_1
+    ESP_LOGI(TAG, "LED pad:v1.1");
+    ret = true;
+#endif
+
+    if (ret == false) {
         ESP_LOGE(TAG, "No board is defined");
+        return ESP_FAIL;
+    } else {
+        return ESP_OK;
+    }
+}

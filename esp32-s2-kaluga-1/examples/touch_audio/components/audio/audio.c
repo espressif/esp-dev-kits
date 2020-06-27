@@ -240,8 +240,9 @@ static void audio_task(void *arg)
 
 
 
-static void audio_control_task(led_strip_t *strip)
+static void audio_control_task(void *arg)
 {
+    led_strip_t *strip = (led_strip_t *)arg;
     ESP_LOGI(TAG, "%p\n", strip);
     bool flag = 0;
     uint32_t touch_num = 0;
