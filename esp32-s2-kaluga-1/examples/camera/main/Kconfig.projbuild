@@ -23,6 +23,20 @@ menu "Example Configuration"
             bool "ESP32-S2-KALUGA_V1.1"
     endchoice
 
+choice CAMERA_VERSION
+
+        prompt "Camera version"
+        default CAMERA_OV2640
+        config CAMERA_OV2640
+            bool "OV2640"
+        config CAMERA_OV3660
+            bool "OV3660"
+        config CAMERA_AUTO
+            bool "Auto (If you choose this mode, Dont insert the Audio board!)"
+        help
+            Set camera version
+    endchoice
+
     choice LCD_VERSION
 
         prompt "LCD version"
@@ -34,6 +48,7 @@ menu "Example Configuration"
         help
             Set LCD version
     endchoice
+    
     config  CAMERA_JPEG_MODE
         bool "jpeg mode"
         

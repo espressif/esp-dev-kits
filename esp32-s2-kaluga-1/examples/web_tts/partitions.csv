@@ -1,0 +1,5 @@
+# Espressif ESP32S2 Partition Table
+# Name,   Type, SubType,  Offset,   Size,  Flags
+factory, app,  factory, 0x010000, 3000k
+nvs,     data, nvs,     , 16K
+wav,     40,   40,      , 128K

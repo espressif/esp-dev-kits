@@ -454,7 +454,7 @@ static void lcd_st7789_config(lcd_config_t *config)
 
     lcd_write_cmd(0x29); /*!< DISPON (29h): Display On */
 }
-#endif 
+#endif
 
 static void lcd_config(lcd_config_t *config)
 {

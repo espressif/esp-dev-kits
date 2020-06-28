@@ -6,8 +6,9 @@ set(EXTRA_COMPONENT_DIRS "../../components/board"
                          "../../components/cam"
                          "../../components/lcd"
                          "../../components/jpeg"
-                         "../../components/OV2640"
+                         "../../components/sensors"
 )
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+add_compile_options(-fdiagnostics-color=always)
 project(esp32-s2-hmi)

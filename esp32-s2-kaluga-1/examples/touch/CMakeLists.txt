@@ -2,7 +2,9 @@
 # in this exact order for cmake to work correctly
 cmake_minimum_required(VERSION 3.5)
 
-set(EXTRA_COMPONENT_DIRS "../../components")
+set(EXTRA_COMPONENT_DIRS "../../components/board"
+                         "../../components/led_strip")
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
+add_compile_options(-fdiagnostics-color=always)
 project(touch)
