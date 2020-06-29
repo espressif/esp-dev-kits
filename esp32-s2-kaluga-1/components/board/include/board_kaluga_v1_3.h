@@ -20,10 +20,12 @@ extern "C" {
 /*
  *
  * 
- *  ESP32-S2-Kaluga-1  v1.3 (reserved)
+ *  ESP32-S2-Kaluga-1  v1.3 
  * 
  *  
  */
+
+/*!< Touch PAD */
 #ifdef CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_3
 #define TOUCH_BUTTON_PLAY     TOUCH_PAD_NUM2
 #define TOUCH_BUTTON_PHOTO    TOUCH_PAD_NUM6

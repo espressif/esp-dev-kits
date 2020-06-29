@@ -16,34 +16,19 @@
 #include "soc/sens_periph.h"
 #include "driver/rmt.h"
 #include "led_strip.h"
+#include "board.h"
 
-#define TOUCH_BUTTON_WATERPROOF_ENABLE 1
-#define TOUCH_BUTTON_DENOISE_ENABLE    1
+#define TOUCH_BUTTON_WATERPROOF_ENABLE 1    /*!< Waterproof function 1:enable 2:disable */
+#define TOUCH_BUTTON_DENOISE_ENABLE    1    /*!< Denoise function 1:enable 2:disable */
 #define TOUCH_CHANGE_CONFIG            0
+#define PAD_DEINIT_TEXT                0    /*!< Just for testing deinit, 1:enable 2:disable */
 #define TOUCH_BUTTON_NUM    7
-
-#ifdef CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_2
-#define TOUCH_BUTTON_PLAY     TOUCH_PAD_NUM2
-#define TOUCH_BUTTON_PHOTO    TOUCH_PAD_NUM6
-#define TOUCH_BUTTON_NETWORK  TOUCH_PAD_NUM11
-#define TOUCH_BUTTON_RECORD   TOUCH_PAD_NUM5
-#define TOUCH_BUTTON_VOLUP    TOUCH_PAD_NUM1
-#define TOUCH_BUTTON_VOLDOWN  TOUCH_PAD_NUM3
-#define TOUCH_BUTTON_GUARD    TOUCH_PAD_NUM4
-
-#elif defined (CONFIG_TOUCH_PAD_ESP32_S2_KALUGA_V1_1)
-#define TOUCH_BUTTON_PLAY     TOUCH_PAD_NUM3
-#define TOUCH_BUTTON_PHOTO    TOUCH_PAD_NUM8
-#define TOUCH_BUTTON_NETWORK  TOUCH_PAD_NUM11
-#define TOUCH_BUTTON_RECORD   TOUCH_PAD_NUM13
-#define TOUCH_BUTTON_VOLUP    TOUCH_PAD_NUM2
-#define TOUCH_BUTTON_VOLDOWN  TOUCH_PAD_NUM9
-#define TOUCH_BUTTON_GUARD    TOUCH_PAD_NUM4
-#endif
 
 #define RMT_TX_CHANNEL RMT_CHANNEL_0
 #define LEDC_COLOR 200        /*!< Initializes the led light value （0～255）*/
 #define LEDC_RANGE 10         /*!< Light adjustment amplitude */
+
+#define PAD_DEINIT 404
 
 static const char *TAG = "Touch pad";
 
@@ -146,121 +131,6 @@ static void touchsensor_filter_set(touch_filter_mode_t mode)
     touch_pad_filter_set_config(&filter_info);
     touch_pad_filter_enable();
     ESP_LOGI(TAG, "touch pad filter init");
-}
-
-static void touch_pad_read_task(void *pvParameter)
-{
-    touch_event_t evt = {0};
-    uint8_t red   = 0;
-    uint8_t green = 0;
-    uint8_t blue  = 0;
-    type_lcd_t flag  = LED_NOOE;
-
-    /*!< Wait touch sensor init done */
-    vTaskDelay(100 / portTICK_RATE_MS);
-    tp_example_set_thresholds();
-
-    while (1) {
-        int ret = xQueueReceive(que_touch, &evt, (portTickType)portMAX_DELAY);
-
-        if (ret != pdTRUE || (evt.intr_mask & TOUCH_PAD_INTR_MASK_ACTIVE) == false) {
-            continue;
-        }
-
-        /*!< if guard pad be touched, other pads no response. */
-        switch (evt.pad_num) {
-            case TOUCH_BUTTON_PHOTO:
-                ESP_LOGI(TAG, "photo    -> set the red light");
-                ESP_ERROR_CHECK(strip->set_pixel(strip, 0, LEDC_COLOR, 0, 0));
-                flag  = LED_RED;
-                red   = LEDC_COLOR;
-                green = 0;
-                blue  = 0;
-                ESP_ERROR_CHECK(strip->refresh(strip, 0));
-                break;
-
-            case TOUCH_BUTTON_PLAY:
-                ESP_LOGI(TAG, "play     -> set the green light");
-                ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, LEDC_COLOR, 0));
-                flag  = LED_GREEN;
-                red   = 0;
-                green = LEDC_COLOR;
-                blue  = 0;
-                ESP_ERROR_CHECK(strip->refresh(strip, 0));
-                break;
-
-            case TOUCH_BUTTON_NETWORK:
-                ESP_LOGI(TAG, "network  -> set the blue light");
-                ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, 0, LEDC_COLOR));
-                flag  = LED_BLUE;
-                red   = 0;
-                green = 0;
-                blue  = LEDC_COLOR;
-                ESP_ERROR_CHECK(strip->refresh(strip, 0));
-                break;
-
-            case TOUCH_BUTTON_RECORD:
-                ESP_LOGI(TAG, "record   -> shut down the light");
-                strip->clear(strip, 0);
-                flag = LED_NOOE;
-                break;
-
-            case TOUCH_BUTTON_VOLUP:
-                if (flag) {
-                    int value = 0;
-
-                    if (flag == LED_RED) {
-                        red = (red + LEDC_RANGE > 255) ? 255 : red + LEDC_RANGE;
-                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, red, 0, 0));
-                        value = red;
-                    } else if (flag == LED_GREEN) {
-                        green = (green + LEDC_RANGE > 255) ? 255 : green + LEDC_RANGE;
-                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, green, 0));
-                        value = green;
-                    } else if (flag == LED_BLUE) {
-                        blue = (blue + LEDC_RANGE > 255) ? 255 : blue + LEDC_RANGE;
-                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, 0, blue));
-                        value = blue;
-                    }
-
-                    ESP_LOGI(TAG, "vol_up   -> make the light brighter:%d", value);
-                    ESP_ERROR_CHECK(strip->refresh(strip, 0));
-                }
-
-                break;
-
-            case TOUCH_BUTTON_VOLDOWN:
-                if (flag) {
-                    int value = 0;
-
-                    if (flag == LED_RED) {
-                        red = (red - LEDC_RANGE < 0) ? 0 : red - LEDC_RANGE;
-                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, red, 0, 0));
-                        value = red;
-                    } else if (flag == LED_GREEN) {
-                        green = (green - LEDC_RANGE < 0) ? 0 : green - LEDC_RANGE;
-                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, green, 0));
-                        value = green;
-                    } else if (flag == LED_BLUE) {
-                        blue = (blue - LEDC_RANGE < 0) ? 0 : blue - LEDC_RANGE;
-                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, 0, blue));
-                        value = blue;
-                    }
-
-                    ESP_LOGI(TAG, "vol_down -> make the light darker:%d", value);
-                    ESP_ERROR_CHECK(strip->refresh(strip, 0));
-                }
-
-                break;
-
-            default:
-                ESP_LOGI(TAG, "ERROR\n");
-                break;
-        }
-
-    }
-
-    vTaskDelete(NULL);
 }
 
 /**
@@ -372,13 +242,160 @@ esp_err_t example_touch_init(void)
     return ESP_OK;
 }
 
+esp_err_t example_touch_deinit(void)
+{
+    ESP_LOGI(TAG, "touch pad deinit start...");
+
+    touch_pad_isr_deregister(touchsensor_interrupt_cb, NULL);
+    touch_pad_deinit();
+    vQueueDelete(que_touch);
+    que_touch = NULL;
+    ESP_LOGI(TAG, "touch pad deinit seccess...");
+    return ESP_OK;
+}
+
+static void touch_pad_read_task(void *pvParameter)
+{
+    touch_event_t evt = {0};
+    uint8_t red   = 0;
+    uint8_t green = 0;
+    uint8_t blue  = 0;
+    type_lcd_t flag  = LED_NOOE;
+
+    /*!< Wait touch sensor init done */
+    vTaskDelay(100 / portTICK_RATE_MS);
+    tp_example_set_thresholds();
+
+    while (1) {
+        int ret = xQueueReceive(que_touch, &evt, (portTickType)portMAX_DELAY);
+        if (evt.pad_num == PAD_DEINIT)
+        {
+            break;
+        }
+
+        if (ret != pdTRUE || (evt.intr_mask & TOUCH_PAD_INTR_MASK_ACTIVE) == false) {
+            continue;
+        }
+
+        /*!< if guard pad be touched, other pads no response. */
+        switch (evt.pad_num) {
+            case TOUCH_BUTTON_PHOTO:
+                ESP_LOGI(TAG, "photo    -> set the red light");
+                ESP_ERROR_CHECK(strip->set_pixel(strip, 0, LEDC_COLOR, 0, 0));
+                flag  = LED_RED;
+                red   = LEDC_COLOR;
+                green = 0;
+                blue  = 0;
+                ESP_ERROR_CHECK(strip->refresh(strip, 0));
+                break;
+
+            case TOUCH_BUTTON_PLAY:
+                ESP_LOGI(TAG, "play     -> set the green light");
+                ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, LEDC_COLOR, 0));
+                flag  = LED_GREEN;
+                red   = 0;
+                green = LEDC_COLOR;
+                blue  = 0;
+                ESP_ERROR_CHECK(strip->refresh(strip, 0));
+                break;
+
+            case TOUCH_BUTTON_NETWORK:
+                ESP_LOGI(TAG, "network  -> set the blue light");
+                ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, 0, LEDC_COLOR));
+                flag  = LED_BLUE;
+                red   = 0;
+                green = 0;
+                blue  = LEDC_COLOR;
+                ESP_ERROR_CHECK(strip->refresh(strip, 0));
+                break;
+
+            case TOUCH_BUTTON_RECORD:
+                ESP_LOGI(TAG, "record   -> shut down the light");
+                strip->clear(strip, 0);
+                flag = LED_NOOE;
+                break;
+
+            case TOUCH_BUTTON_VOLUP:
+                if (flag) {
+                    int value = 0;
+
+                    if (flag == LED_RED) {
+                        red = (red + LEDC_RANGE > 255) ? 255 : red + LEDC_RANGE;
+                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, red, 0, 0));
+                        value = red;
+                    } else if (flag == LED_GREEN) {
+                        green = (green + LEDC_RANGE > 255) ? 255 : green + LEDC_RANGE;
+                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, green, 0));
+                        value = green;
+                    } else if (flag == LED_BLUE) {
+                        blue = (blue + LEDC_RANGE > 255) ? 255 : blue + LEDC_RANGE;
+                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, 0, blue));
+                        value = blue;
+                    }
+
+                    ESP_LOGI(TAG, "vol_up   -> make the light brighter:%d", value);
+                    ESP_ERROR_CHECK(strip->refresh(strip, 0));
+                }
+
+                break;
+
+            case TOUCH_BUTTON_VOLDOWN:
+                if (flag) {
+                    int value = 0;
+
+                    if (flag == LED_RED) {
+                        red = (red - LEDC_RANGE < 0) ? 0 : red - LEDC_RANGE;
+                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, red, 0, 0));
+                        value = red;
+                    } else if (flag == LED_GREEN) {
+                        green = (green - LEDC_RANGE < 0) ? 0 : green - LEDC_RANGE;
+                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, green, 0));
+                        value = green;
+                    } else if (flag == LED_BLUE) {
+                        blue = (blue - LEDC_RANGE < 0) ? 0 : blue - LEDC_RANGE;
+                        ESP_ERROR_CHECK(strip->set_pixel(strip, 0, 0, 0, blue));
+                        value = blue;
+                    }
+
+                    ESP_LOGI(TAG, "vol_down -> make the light darker:%d", value);
+                    ESP_ERROR_CHECK(strip->refresh(strip, 0));
+                }
+
+                break;
+
+            default:
+                ESP_LOGI(TAG, "ERROR\n");
+                break;
+        }
+
+
+    }
+    ESP_LOGI(TAG, "touch_pad_read_task:exit the task\n");
+    example_touch_deinit();
+    vTaskDelete(NULL);
+}
+
 void app_main(void)
 {
     /*!< Initialize the WS2812 */
     ESP_ERROR_CHECK(example_rmt_init(CONFIG_EXAMPLE_RMT_TX_GPIO, CONFIG_EXAMPLE_STRIP_LED_NUMBER, RMT_CHANNEL_0));
     /*!< Initialize the touch pad */
     ESP_ERROR_CHECK(example_touch_init());
-
     /*!< Start a task to show what pads have been touched */
     xTaskCreate(&touch_pad_read_task, "touch_pad_read_task", 2048, NULL, 5, NULL);
+
+#if PAD_DEINIT_TEXT
+
+    int task_awoken = pdFALSE;
+    touch_event_t evt;
+    vTaskDelay(5000/portTICK_PERIOD_MS);
+    evt.pad_num = PAD_DEINIT;
+    xQueueSendFromISR(que_touch, &evt, &task_awoken);
+    vTaskDelay(5000/portTICK_PERIOD_MS);
+
+    ESP_ERROR_CHECK(example_touch_init());
+    /*!< Start a task to show what pads have been touched */
+    xTaskCreate(&touch_pad_read_task, "touch_pad_read_task", 2048, NULL, 5, NULL);
+
+#endif 
 }
