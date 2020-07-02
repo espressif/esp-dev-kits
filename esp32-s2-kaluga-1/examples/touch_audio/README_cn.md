@@ -14,16 +14,16 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
     <tr>
         <td ><img src="../../docs/_static/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
         <td ><img src="../../docs/_static/ESP-LyraP-TOUCHA_V1.0.png" width="300"><p align=center>ESP-LyraP-TOUCHA 触摸板</p></td>
-        <td ><img src="../../docs/_static/ESP-LyraT-8311A-V1.0.png" width="300"><p align=center>ESP-LyraP-TOUCHA 触摸板</p></td>
+        <td ><img src="../../docs/_static/ESP-LyraT-8311A-V1.0.png" width="300"><p align=center>ESP-LyraT-8311A 音频板</p></td>
     </tr>
 </table>
 
 ### 1.2 硬件连接
 
-#### 1.2.1 ESP32_S2_Kaluga-1_v1.2 硬件连接
+#### 1.2.1 ESP32_S2_Kaluga-1_v1.2  硬件连接
 
-1. 将 SW3（ 8 ） 和 SW4（ 2、4、6、8 ） 的拨码开关打开（ ON ），即主板左下角两组拨码开关，如下图：
-
+1. 将 SW3[ 8 ] 和 SW4[ 2、4、6、8 ] 的拨码开关打开（ ON ），即主板左下角两组拨码开关，如下图：
+* **ESP32_S2_Kaluga-1_v1.3**: 将拨码开关的 T7、T8、T10、T12、T14打开（ ON ）。
 <div align="left"><img src="../../docs/_static/kaluga_examples_touch_audio_1.jpg" width = "650" alt="image 1-1" align=center /></div>  
 
 2. 将 GPIO45 上预留的两个管脚短接，如下图：
@@ -47,14 +47,13 @@ GPIO | 35 | 18 | 17 | 12 | 46 | 10 | 7 | 8
 
 #### 1.2.2 ESP32_S2_Kaluga-1_v1.1 硬件连接
 
-1. 将 SW3（ 8 ） 和 SW4（ 4、6 ） 的拨码开关打开（ ON ），即主板左下角两组拨码开关.
+1. 将 SW3[ 8 ] 和 SW4[ 4、6 ] 的拨码开关打开（ ON ），即主板左下角两组拨码开关.
 
 
 2. 将 GPIO45 上预留的两个管脚短接，如下图：
 <div align="left"><img src="../../docs/_static/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>  
 
 3. 将触摸板和音频板接入主板中。并将 audio 板子的 1SDO 接至 GPIO36, SDA 接至 GPIO37。
-
 
 * ESP32_S2_kaluga-1_v1.1 Touch 管脚分配
 
@@ -184,7 +183,7 @@ I (633) AUDIO: 0x3ffc68b8
 
 I (633) DRV8311: SET: volume:127
 ```
-  
+
 ### 1.6 故障排除
 
 * 烧录失败
@@ -196,6 +195,7 @@ I (633) DRV8311: SET: volume:127
 * 音频没有声音：
   * 未插入 `audio` 板子和喇叭。
   * 分区表未设置或设置错误。
+  * 音频相关的拨码开关没有正确打开（ ON ）。
   
 ## 2 附录
 
