@@ -18,7 +18,7 @@
 1. 将 SW3 和 SW4 的拨码开关全部打开（ ON ），即主板左下角两组拨码开关，如下图：
 * 高级：如果想使用部分触摸板 GPIO 管脚，只需将触摸板相关拨码开关关闭OFF，详情请参阅主板和触摸板原理图。
   
-<div align="left"><img src="../../docs/_static/kaluga_examples_touch_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../docs/_static/kaluga_examples_camera_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
 
 2. 将显示屏插入主板双排排针的内侧一排，如下图:
 

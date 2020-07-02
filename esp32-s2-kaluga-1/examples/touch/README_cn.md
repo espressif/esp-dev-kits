@@ -19,8 +19,8 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
 
 ### 1.2 硬件连接
 
-1. 将 SW3 和 SW4 的拨码开关全部关闭（ OFF ），即主板左下角两组拨码开关，如下图：
-* 高级：如果想使用其他管脚，只需将 touch 相关拨码开关关闭( OFF )，详情请参阅主板和触摸板原理图。
+1. 将 SW3 和 SW4 的拨码开关全部关闭（ OFF ）,即主板左下角两组拨码开关，如下图.
+  *  或者将 SW3[2 3 4 6 7] 和 SW4[5 8] (kaluga 1.3: T1, T2, T3, T5, T6，T11, T14)关闭（ OFF ）.
 <div align="left"><img src="../../docs/_static/kaluga_examples_touch_1.jpg" width = "650" alt="image 1-1" align=center /></div>  
 
 2. 将 GPIO45 上预留的两个管脚短接，如下图：
@@ -30,7 +30,7 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
 
 <div align="left"><img src="../../docs/_static/kaluga_examples_touch_3.jpg" width = "650" alt="image 1-3" align=center /></div> </br></br>
 
-* ESP32_S2_Kaluga-1_v1.2 Touch 管脚分配
+* ESP32_S2_Kaluga-1_v1.2 & ESP32_S2_Kaluga-1_v1.3 Touch 管脚分配
 
 PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN | GUARD | SHIELD
  ---|---|---|---|---|---|---|---|
