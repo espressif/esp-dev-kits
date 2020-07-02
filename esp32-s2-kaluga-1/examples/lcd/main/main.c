@@ -32,8 +32,8 @@ static const char *TAG = "main";
  * @brief rgb -> rgb565
  *
  * @param r red   (0~31)
- * @param r green (0~31)
- * @param r red   (0~31)
+ * @param g green (0~63)
+ * @param b red   (0~31)
  *
  * @return data about color565
  */
