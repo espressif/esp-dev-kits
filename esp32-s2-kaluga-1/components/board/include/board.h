@@ -29,7 +29,7 @@ extern "C" {
  * @return - ESP_OK :Print the board version successfully
  *           ESP_FAIL: No board is defined
  */
-esp_err_t kaluga_board_verison(void);
+esp_err_t kaluga_board_version(void);
 
 #ifdef __cplusplus
 }
