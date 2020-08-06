@@ -15,9 +15,9 @@
 #include "esp_log.h"
 #include "esp_err.h"
 
-static const char *TAG = "board_verison";
+static const char *TAG = "board_version";
 
-esp_err_t kaluga_board_verison(void)
+esp_err_t kaluga_board_version(void)
 {
     bool ret = false;
     /*!< main PAD */
@@ -34,7 +34,7 @@ esp_err_t kaluga_board_verison(void)
     ret = true;
 #endif
 
-    /*!< aduio PAD */
+    /*!< audio PAD */
 #ifdef CONFIG_AUDIO_PAD_ESP32_S2_KALUGA_V1_3
     ESP_LOGI(TAG, "audio pad:v1.3");
     ret = true;
@@ -44,7 +44,7 @@ esp_err_t kaluga_board_verison(void)
     ret = true;
 #endif
 #ifdef CONFIG_AUDIO_PAD_ESP32_S2_KALUGA_V1_1
-    ESP_LOGI(TAG, "aduio pad:v1.1");
+    ESP_LOGI(TAG, "audio pad:v1.1");
     ret = true;
 #endif
 
@@ -78,15 +78,15 @@ esp_err_t kaluga_board_verison(void)
 
     /*!< LCD PAD */
 #ifdef CONFIG_LCD_PAD_ESP32_S2_KALUGA_V1_3
-    ESP_LOGI(TAG, "LED pad:v1.3");
+    ESP_LOGI(TAG, "LCD pad:v1.3");
     ret = true;
 #endif
 #ifdef CONFIG_LCD_PAD_ESP32_S2_KALUGA_V1_2
-    ESP_LOGI(TAG, "LED pad:v1.2");
+    ESP_LOGI(TAG, "LCD pad:v1.2");
     ret = true;
 #endif
 #ifdef CONFIG_LCD_PAD_ESP32_S2_KALUGA_V1_1
-    ESP_LOGI(TAG, "LED pad:v1.1");
+    ESP_LOGI(TAG, "LCD pad:v1.1");
     ret = true;
 #endif
 
