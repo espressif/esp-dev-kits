@@ -66,7 +66,7 @@ void SCCB_Deinit(void)
     i2c_driver_delete(SCCB_I2C_PORT);
 }
 
-uint8_t SCCB_Probe()
+uint8_t SCCB_Probe(void)
 {
     uint8_t slave_addr = 0x0;
     while(slave_addr < 0x7f) {

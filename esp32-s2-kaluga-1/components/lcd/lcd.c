@@ -173,7 +173,7 @@ void lcd_write_data(uint8_t *data, size_t len)
     spi_write_data(data, len);
 }
 
-void lcd_rst()
+void lcd_rst(void)
 {
     lcd_set_rst(0);
     lcd_delay_ms(100);

@@ -36,7 +36,7 @@ typedef struct {
 /**
  * @brief  lcd restart
  */
-void lcd_rst();
+void lcd_rst(void);
 
 /**
  * @brief write data in LCD

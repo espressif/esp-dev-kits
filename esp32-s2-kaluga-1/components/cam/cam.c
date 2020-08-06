@@ -461,7 +461,7 @@ void cam_dma_config(const cam_config_t *config)
     I2S0.rx_eof_num = cam_obj->half_buffer_size; /*!< Ping-pong operation */
 }
 
-esp_err_t cam_deinit()
+esp_err_t cam_deinit(void)
 {
     if (!cam_obj) {
         return ESP_FAIL;

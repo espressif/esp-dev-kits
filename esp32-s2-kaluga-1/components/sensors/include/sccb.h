@@ -30,7 +30,7 @@ int SCCB_Init(int pin_sda, int pin_scl);
  * @return sensor address (slv_addr) ov2640: 0x30
  *                                   ov3660: 0x3c
  */
-uint8_t SCCB_Probe();
+uint8_t SCCB_Probe(void);
 
 /**
  * @brief Write the register

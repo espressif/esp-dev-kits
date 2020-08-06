@@ -80,7 +80,7 @@ esp_err_t i2c_bus_read_data(uint8_t slave_addr, uint8_t *pdata, int size)
     return res ? ESP_FAIL: ESP_OK;
 }
 
-esp_err_t i2c_bus_init()
+esp_err_t i2c_bus_init(void)
 {
     int res;
     int i2c_master_port = I2C_NUM_0;
