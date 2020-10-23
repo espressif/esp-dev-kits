@@ -1,0 +1,26 @@
+menu "LCD Configuration"
+  
+    choice LCD_PAD_TYPE
+       prompt "LCD pad type"
+        default LCD_PAD_ESP32_S2_KALUGA_V1_3
+        config LCD_PAD_ESP32_S2_KALUGA_V1_3
+            bool "ESP32-S2-KALUGA_V1.3"
+        config LCD_PAD_ESP32_S2_KALUGA_V1_2
+            bool "ESP32-S2-KALUGA_V1.2"
+        config LCD_PAD_ESP32_S2_KALUGA_V1_1
+            bool "ESP32-S2-KALUGA_V1.1"
+    endchoice
+
+    choice LCD_VERSION
+
+        prompt "LCD version"
+        default LCD_ST7789
+        config LCD_ST7789
+            bool "ST7789"
+        config LCD_ILI9341
+            bool "ILI9341"
+        help
+            Set LCD version
+    endchoice
+        
+endmenu
