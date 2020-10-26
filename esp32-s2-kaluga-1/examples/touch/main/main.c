@@ -91,12 +91,7 @@ static void touchsensor_interrupt_cb(void *arg)
     evt.pad_status = touch_pad_get_status();
     evt.pad_num = touch_pad_get_current_meas_channel();
 
-    if (evt.intr_mask & TOUCH_PAD_INTR_MASK_DONE) {
-        touch_pad_filter_read_baseline(evt.pad_num, &evt.pad_val);
-    }
-
     xQueueSendFromISR(que_touch, &evt, &task_awoken);
-
     if (task_awoken == pdTRUE) {
         portYIELD_FROM_ISR();
     }
@@ -105,28 +100,24 @@ static void touchsensor_interrupt_cb(void *arg)
 static void tp_example_set_thresholds(void)
 {
     uint32_t touch_value;
-
     for (int i = 0; i < TOUCH_BUTTON_NUM; i++) {
-        /*!< read baseline value */
-        touch_pad_filter_read_baseline(button[i], &touch_value);
+        /*!< read benchmark value */
+        touch_pad_read_benchmark(button[i], &touch_value);
         /*!< set interrupt threshold. */
         touch_pad_set_thresh(button[i], touch_value * button_threshold[i]);
         ESP_LOGI(TAG, "touch pad [%d] base %d, thresh %d", \
                  button[i], touch_value, (uint32_t)(touch_value * button_threshold[i]));
     }
 }
-
 static void touchsensor_filter_set(touch_filter_mode_t mode)
 {
     /*!< Filter function */
     touch_filter_config_t filter_info = {
         .mode = mode,           /*!< Test jitter and filter 1/4. */
         .debounce_cnt = 1,      /*!< 1 time count. */
-        .hysteresis_thr = 3,    /*!< 3% */
         .noise_thr = 0,         /*!< 50% */
-        .noise_neg_thr = 0,     /*!< 50% */
-        .neg_noise_limit = 10,  /*!< 10 time count. */
         .jitter_step = 4,       /*!< use for jitter mode. */
+        .smh_lvl = TOUCH_PAD_SMOOTH_IIR_2,
     };
     touch_pad_filter_set_config(&filter_info);
     touch_pad_filter_enable();
@@ -197,12 +188,10 @@ esp_err_t example_touch_init(void)
     /*!< If you want change the touch sensor default setting, please write here(after initialize). There are examples: */
     touch_pad_set_meas_time(TOUCH_PAD_SLEEP_CYCLE_DEFAULT, TOUCH_PAD_SLEEP_CYCLE_DEFAULT);
     touch_pad_set_voltage(TOUCH_PAD_HIGH_VOLTAGE_THRESHOLD, TOUCH_PAD_LOW_VOLTAGE_THRESHOLD, TOUCH_PAD_ATTEN_VOLTAGE_THRESHOLD);
-    touch_pad_set_inactive_connect(TOUCH_PAD_INACTIVE_CONNECT_DEFAULT);
-
+    touch_pad_set_idle_channel_connect(TOUCH_PAD_IDLE_CH_CONNECT_DEFAULT);
     for (int i = 0; i < TOUCH_BUTTON_NUM; i++) {
         touch_pad_set_cnt_mode(i, TOUCH_PAD_SLOPE_DEFAULT, TOUCH_PAD_TIE_OPT_DEFAULT);
     }
-
 #endif
 
 #if TOUCH_BUTTON_DENOISE_ENABLE
@@ -222,7 +211,7 @@ esp_err_t example_touch_init(void)
     touch_pad_waterproof_t waterproof = {
         .guard_ring_pad = TOUCH_BUTTON_GUARD,       /*!< If no ring pad, set 0; */
         /*!< It depends on the number of the parasitic capacitance of the shield pad. */
-        .shield_driver  = TOUCH_PAD_SHIELD_DRV_L0,  /*!< 40pf */
+        .shield_driver  = TOUCH_PAD_SHIELD_DRV_L2,  /*!< 40pf */
     };
     touch_pad_waterproof_set_config(&waterproof);
     touch_pad_waterproof_enable();
@@ -230,10 +219,11 @@ esp_err_t example_touch_init(void)
 #endif
 
     /*!< Filter setting */
-    touchsensor_filter_set(TOUCH_PAD_FILTER_IIR_8);
+    touchsensor_filter_set(TOUCH_PAD_FILTER_IIR_16);
+    touch_pad_timeout_set(true, SOC_TOUCH_PAD_THRESHOLD_MAX);
     /*!< Register touch interrupt ISR, enable intr type. */
     touch_pad_isr_register(touchsensor_interrupt_cb, NULL, TOUCH_PAD_INTR_MASK_ALL);
-    touch_pad_intr_enable(TOUCH_PAD_INTR_MASK_ACTIVE | TOUCH_PAD_INTR_MASK_INACTIVE);
+    touch_pad_intr_enable(TOUCH_PAD_INTR_MASK_ACTIVE | TOUCH_PAD_INTR_MASK_INACTIVE | TOUCH_PAD_INTR_MASK_TIMEOUT);
 
     /*!< Enable touch sensor clock. Work mode is "timer trigger". */
     touch_pad_set_fsm_mode(TOUCH_FSM_MODE_TIMER);
