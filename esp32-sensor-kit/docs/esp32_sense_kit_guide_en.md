@@ -15,16 +15,15 @@ The following image shows the whole ESP32-Sense development kit.
 
 - **Set up Software Environment**  
     - [ESP-IDF](https://github.com/espressif/esp-idf) is the SDK for ESP32. You can refer to [Get Started](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html) for how to set up the ESP32 software environment.
-    - [ESP-Prog](./ESP-Prog_guide_en.md) is the debugger for ESP32 that features download and debugging functions.
+    - [ESP-Prog](../../esp-prog/docs/ESP-Prog_guide_en.md) is the debugger for ESP32 that features download and debugging functions.
 
 - **ESP32 IoT Solution**  
-    - [ESP32 IoT Solution](../../README.md) project is based on ESP-IDF and contains multiple projects. Please refer to [Build system and dependency](../../README.md#build-system-and-dependency) for how to set up and compile the programs.
-    - [ESP32-Sense Project](../../examples/touch_pad_evb) contains the programs for ESP32-Sense Kit that can be downloaded to the development board to enable touch sensor function.
+    - [ESP32 IoT Solution](https://github.com/espressif/esp-iot-solution/tree/release/v1.1) project is based on ESP-IDF and contains multiple projects. 
+    - [ESP32-Sense Project](https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb) contains the programs for ESP32-Sense Kit that can be downloaded to the development board to enable touch sensor function.
 
 - **Hardware Manuals**  
     - Please refer to [Espressif website](http://espressif.com/en/support/download/documents?keys=Reference+Design) for the hardware resources including schematics, PCB reference design, BOM and other files.
-    - Please refer to [ESP-Prog](./ESP-Prog_guide_en.md) for the introduction to the debugger.
-
+    
 - **Related Resources**  
     - [Espressif website](https://espressif.com)
     - [ESP32 programming guide](https://docs.espressif.com/projects/esp-idf/en/stable/index.html): It hosts extensive documentation for ESP-IDF ranging from hardware guides to API reference.   
@@ -99,11 +98,11 @@ The divided resistance on the motherboard is 10 KΩ. The table below lists the d
 |Linear slider|4.7|805|1305|
 |Matrix button|10|1400|1900|
 |Duplex slider|19.1|1916|2416|
-|Wheel slider|47|2471|2971|  
+|Wheel slider|47|2471|2971|
 
 ## 5. Application Programs
 
-[ESP32-Sense Project](../../examples/touch_pad_evb) within ESP32 IoT Solution repository contains the application programs for ESP32-Sense Kit. The directory structure is shown below:  
+[ESP32-Sense Project](https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb) within ESP32 IoT Solution repository contains the application programs for ESP32-Sense Kit. The directory structure is shown below:  
 
 ```
 .
@@ -126,7 +125,7 @@ The divided resistance on the motherboard is 10 KΩ. The table below lists the d
 
 ### 5.1. Configure Settings
 When using overlays of different thicknesses or materials, users need to reset the change rate of touch readings on each channel, that is, the sensitivity. This parameter is calculated from the pulse count value. The calculation formula is: (Non-touch value - Touch value) / Non-touch value, where "Non-touch value" refers to the pulse count value when there is no touch event, and "Touch value" refers to the pulse count value when a touch event occurs. Users need to take a measurement and obtain these two values.    
-When the system is initialized, the touch threshold is automatically calculated from the change rate of touch readings. The touch threshold is directly proportional to the change rate. When the change rate is set, users can write it into [evb.h](../../examples/touch_pad_evb/main/evb.h) file.  
+When the system is initialized, the touch threshold is automatically calculated from the change rate of touch readings. The touch threshold is directly proportional to the change rate. When the change rate is set, users can write it into `evb.h` file.  
 
 ### 5.2. Demo
 
@@ -136,4 +135,4 @@ When the system is initialized, the touch threshold is automatically calculated 
 |<div align="center"><img src="./_static/touch_slide.jpg" width = "300" alt="touch_slide" align="center" /></div>|<div align="center"><img src="./_static/touch_diplexed_slide.jpg" width = "300" alt="touch_diplexed_slide" align="center" /></div>|
 |<div align="center">Linear Slider</div>|<div align="center">Duplex Slider</div> |
 |<div align="center"><img src="./_static/touch_wheel.jpg" width = "300" alt="touch_wheel" align="center" /></div>|
-|<div align="center">Wheel Slider</div>|  
+|<div align="center">Wheel Slider</div>|

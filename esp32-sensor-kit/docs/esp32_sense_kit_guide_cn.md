@@ -12,16 +12,15 @@ ESP32-Sense 开发套件用于评估和开发 ESP32 触摸传感器功能。评�
 
 - **开发环境**  
     - [ESP-IDF](https://github.com/espressif/esp-idf) 是 ESP32 平台的软件开发包。文档 [Get Started](https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html) 介绍编译环境的搭建和软件开发包的使用说明。
-    - [ESP-Prog](./ESP-Prog_guide_cn.md) 是 ESP32 调试工具，有下载和 Jtag 调试功能。
+    - [ESP-Prog](../../esp-prog/docs/ESP-Prog_guide_cn.md) 是 ESP32 调试工具，有下载和 Jtag 调试功能。
 
 - **ESP32 IoT 应用方案**  
-    - [ESP32 IoT Solution](../../README.md) 基于 ESP-IDF 开发，包含多种应用解决方案。文档 [build-system-and-dependency](../../README.md#build-system-and-dependency) 介绍了如何编译解决方案。
-    - [ESP32-Sense 项目工程](../../examples/touch_pad_evb) 是 ESP32-Sense 开发套件对应的软件工程文件。下载程序到主板即可使用触摸功能。
+    - [ESP32 IoT Solution](https://github.com/espressif/esp-iot-solution/tree/release/v1.1) 基于 ESP-IDF 开发，包含多种应用解决方案。文档 [build-system-and-dependency](../../README.md#build-system-and-dependency) 介绍了如何编译解决方案。
+    - [ESP32-Sense 项目工程](https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb) 是 ESP32-Sense 开发套件对应的软件工程文件。下载程序到主板即可使用触摸功能。
 
 - **硬件手册**  
     - ESP32-Sense 开发套件的硬件原理图，PCB 文件，BOM 等文件参考 [乐鑫官网](http://espressif.com/zh-hans/support/download/documents?keys=参考设计)。
-    - ESP-Prog 的介绍请参考文档 [ESP-Prog 介绍](./ESP-Prog_guide_cn.md)。
-
+    
 - **其他参考资料**  
     - [Espressif 官网](http://www.espressif.com)
     - [ESP32 编程指南](https://docs.espressif.com/projects/esp-idf/en/stable/index.html) : ESP32 相关开发文档的汇总平台，包含硬件手册，软件 API 介绍等。
@@ -53,7 +52,7 @@ ESP-Prog 起到下载程序和供电作用。调试器上有两组跳针，IO0 �
 <div align="center"><img src="./_static/board_pgm_connection.jpg" width = "700" alt="board_pgm_connection" align=center /></div>  
 
 - **编译下载**  
-配置 [ESP32-Sense 项目工程](https://github.com/espressif/esp-iot-solution/tree/master/examples/touch_pad_evb) 的 config 参数，执行命令 `make menuconfig` 配置参数，如下图所示。执行命令 `make flash`，程序会自动下载到开发板中。  
+配置 [ESP32-Sense 项目工程](https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb) 的 config 参数，执行命令 `make menuconfig` 配置参数，如下图所示。执行命令 `make flash`，程序会自动下载到开发板中。  
 <div align="center"><img src="./_static/menuconfig-1.png" width = "500" alt="menuconfig-1" align=center /></div>  
 <div align="center"><img src="./_static/menuconfig-2.png" width = "500" alt="menuconfig-2" align=center /></div>  
 
@@ -101,7 +100,7 @@ ESP32-Sense 开发套件的主板上有显示单元，可直观地反馈触摸�
 
 ## 5. 应用程序介绍
 
-ESP32 IoT Solution 工程下的 [ESP32-Sense 项目](../../examples/touch_pad_evb) 是 ESP32-Sense 开发套件对应的应用程序。目录结构如下图所示：  
+ESP32 IoT Solution 工程下的 [ESP32-Sense 项目](https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb) 是 ESP32-Sense 开发套件对应的应用程序。目录结构如下图所示：  
 
 ```
 ├── main
@@ -123,7 +122,7 @@ ESP32 IoT Solution 工程下的 [ESP32-Sense 项目](../../examples/touch_pad_ev
 
 ### 5.1. 参数配置
 当使用不同厚度或不同材质的盖板时，需要重新设置各通道触摸变化率参数，即灵敏度。各通道触摸变化率是由脉冲计数值计算得到。计算公式为：(Non-touch value - Touch value) / Non-touch value。“Non-touch value” 是指不触摸时通道的脉冲计数值。“Touch value” 是指正常触摸时通道的脉冲计数值。这两个参数需要用户测量得出。系统初始化时，由触摸变化率自动计算出触摸阈值，触摸阈值与触摸变化率成正比关系。  
-触摸变化率确定后，填写到 ESP32-Sense 工程中的 [evb.h](../../examples/touch_pad_evb/main/evb.h) 文件。  
+触摸变化率确定后，填写到 ESP32-Sense 工程中的 `evb.h` 文件。  
 
 ### 5.2. 效果展示
 
@@ -134,4 +133,4 @@ ESP32 IoT Solution 工程下的 [ESP32-Sense 项目](../../examples/touch_pad_ev
 |<div align="center"><img src="./_static/touch_slide.jpg" width = "300" alt="touch_slide" align="center" /></div>|<div align="center"><img src="./_static/touch_diplexed_slide.jpg" width = "300" alt="touch_diplexed_slide" align="center" /></div>|
 |<div align="center">Linear Slider</div>|<div align="center">Duplex Slider</div> |
 |<div align="center"><img src="./_static/touch_wheel.jpg" width = "300" alt="touch_wheel" align="center" /></div>|
-|<div align="center">Wheel Slider</div>|  
+|<div align="center">Wheel Slider</div>|
