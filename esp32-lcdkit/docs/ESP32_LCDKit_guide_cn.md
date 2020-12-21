@@ -8,7 +8,7 @@
 
 ESP32-LCDKit 是一款以乐鑫 ESP32-DevKitC（需另采购） 为核心的 HMI（人机交互）开发板，可外接屏幕，并且集成了 SD-Card、DAC-Audio 等外设，主要用于 HMI 相关开发与评估。开发板预留屏幕接口类型：SPI 串行接口、8 位并行接口、16 位并行接口。
 
-[HMI Example](../../examples/hmi/) 这里提供的一些 HMI 示例可在 ESP32-LCDKit 开发板上运行。
+[HMI Example](https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/hmi) 这里提供的一些 HMI 示例可在 ESP32-LCDKit 开发板上运行。
 
 关于 ESP32 详细信息，请参考文档[《ESP32 系列芯片技术规格书》](https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_cn.pdf)。 
 
@@ -43,6 +43,10 @@ DAC-Audio 模块 | 连接喇叭播放音频，包含音频功率放大器
 # 3. 硬件模块
 
 本章主要介绍各个功能模块（接口）的硬件实现，以及对这些模块的描述。
+
+[原理图](hw/SCH_ESP32-LCDKit_V1.1_20190218.pdf)
+
+[PCB Layout](hw/PCB_ESP32-LCDKit_V1.1_20190218.pdf)
 
 ## 3.1 ESP32 DevKitC 开发板连接模块
 

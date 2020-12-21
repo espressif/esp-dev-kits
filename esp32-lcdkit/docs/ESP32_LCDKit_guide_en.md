@@ -8,7 +8,7 @@
 
 ESP32-LCDKit is an HMI (Human Machine Interface) development board with the ESP32-DevKitC at its core. ESP32-LCDKit is integrated with such peripherals as SD-Card, DAC-Audio, and can be connected to an external display. The board is mainly used for HMI-related development and evaluation.Development board reserved screen interface type: SPI serial interface, 8-bit parallel interface, 16-bit parallel interface.
 
-You may find HMI-related examples running with ESP32-LCDKit in [HMI Example](../../examples/hmi/).
+You may find HMI-related examples running with ESP32-LCDKit in [HMI Example](https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/hmi).
 
 <img src="./_static/esp32_lcdkit.jpg" width = "800">
 
@@ -41,6 +41,10 @@ DAC-Audio module | Features an audio power amplifier and two output ports for ex
 # 3. Functional Modules
 
 This section introduces the functional modules (interfaces) of ESP32-LCDKit and their hardware schematics.
+
+[Schematic](hw/SCH_ESP32-LCDKit_V1.1_20190218.pdf)
+
+[PCB Layout](hw/PCB_ESP32-LCDKit_V1.1_20190218.pdf)
 
 ## 3.1 ESP32 DevKitC Connection Module
 
