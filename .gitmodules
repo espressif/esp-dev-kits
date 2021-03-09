@@ -1,0 +1,12 @@
+[submodule "esp32-s2-hmi-devkit-1/components/lvgl/lv_examples"]
+	path = esp32-s2-hmi-devkit-1/components/lvgl/lv_examples
+	url = https://github.com/lvgl/lv_examples.git
+[submodule "esp32-s2-hmi-devkit-1/components/lvgl/lvgl"]
+	path = esp32-s2-hmi-devkit-1/components/lvgl/lvgl
+	url = https://github.com/lvgl/lvgl.git
+[submodule "esp32-s2-hmi-devkit-1/tools/lvgl/lv_font_conv"]
+	path = esp32-s2-hmi-devkit-1/tools/lvgl/lv_font_conv
+	url = https://github.com/lvgl/lv_font_conv.git
+[submodule "esp32-s2-hmi-devkit-1/tools/lvgl/lv_utils"]
+	path = esp32-s2-hmi-devkit-1/tools/lvgl/lv_utils
+	url = https://github.com/lvgl/lv_utils.git

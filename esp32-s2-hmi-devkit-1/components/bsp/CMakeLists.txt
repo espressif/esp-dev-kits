@@ -1,0 +1,12 @@
+idf_component_register(
+    SRC_DIRS
+        "." 
+    INCLUDE_DIRS
+        "include"
+    REQUIRES
+        fatfs
+        i2c_bus
+        i2s_bus
+        screen
+        spi_bus
+        spiffs)
