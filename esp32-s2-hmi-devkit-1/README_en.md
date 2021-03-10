@@ -11,7 +11,7 @@ The board uses the ESP32-S2-WROVER module, which has 4MB flash and 2MB PSRAM bui
 
 The board is equipped with inertial sensors with three-axis accelerometers and three-axis gyroscopes, ambient light sensors, temperature and humidity sensors, IO extenders, programmable RGB LED lights, dual-wire, audio amplifiers, SD card interfaces and more.
 
-The board provides a number of extended interfaces for secondary development, including 5 V and 3.3 V power interfaces, program download/UART interfaces, I2C interfaces, SPI interfaces, USB interfaces (USB OTG support), TWAI (compatible WITH CAN 2.0) interfaces, and more.
+The board provides a number of extended interfaces for secondary development, including 5 V and 3.3 V power interfaces, program download/UART interfaces, I2C interfaces, SPI interfaces, USB interfaces (USB OTG support), TWAI (compatible WITH CAN 2.0) interfaces and more.
 
 The board is equipped with a single-cell lithium-ion battery of 1950 mAh and a charging IC to charge the battery.
 
