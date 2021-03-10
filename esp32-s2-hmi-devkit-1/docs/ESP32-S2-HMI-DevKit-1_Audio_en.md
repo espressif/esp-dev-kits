@@ -37,7 +37,6 @@ The ADC of esp32-S2 is highly repetitive despite the lack of a reference and the
 We use USB to power the ESP32-S2-HMI-DevKit-1, using 13-bit resolution, attenuation of 11 dB, and range voltage of 2.6 V. After ADC1_CH8 4096 uncalibrated original values of the AD584T reference were converted to voltage via a ADC1_CH8-wheel acquisition of the 2.5 V voltage output of the AD584T reference, we obtained the following figure data:
 
 ![ADC](_static/ADC.png)
-![image](https://user-images.githubusercontent.com/16070445/110633932-ab665a80-81a9-11eb-97d3-2d640c2045f3.png)
 
 
 As you can see, under uncalibrated data, the error of the data is within ±0.005 V, and its standard deviation σ is only 3.339 LSB (0.00106 V). These errors come mainly from absolute accuracy, i.e. bias. Therefore, for ADC-sampled audio, its distortion and noise can be controlled at a high level.
