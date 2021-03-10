@@ -84,7 +84,7 @@ esp_err_t i2c_bus_init()
 {
     int res;
     int i2c_master_port = I2C_NUM_0;
-    i2c_config_t conf;
+    static i2c_config_t conf;
     conf.mode = I2C_MODE_MASTER;
     conf.sda_io_num = I2C_SDA;         
     conf.sda_pullup_en = 1;
