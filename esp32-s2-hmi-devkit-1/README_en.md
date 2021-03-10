@@ -9,7 +9,7 @@ The board is an ESP32-S2-based HMI board. On-board resources are shown in the fo
 
 The board uses the ESP32-S2-WROVER module, which has 4MB flash and 2MB PSRAM built in. The board features a 4.3-inch TFT-LCD with a 16-bit 8080 and a resolution of 480×800 with a 256-stage hardware DC backlight adjustment circuit. It is equipped with a capacitive touch panel that communicates using the I2C interface.
 
-The board is equipped with inertial sensors with three-axis accelerometers and three-axis gyroscopes, ambient light sensors, temperature and humidity sensors, IO extenders, programmable RGB LED lights, dual-wire, audio amplifiers, SD card interfaces, and more.
+The board is equipped with inertial sensors with three-axis accelerometers and three-axis gyroscopes, ambient light sensors, temperature and humidity sensors, IO extenders, programmable RGB LED lights, dual-wire, audio amplifiers, SD card interfaces and more.
 
 The board provides a number of extended interfaces for secondary development, including 5 V and 3.3 V power interfaces, program download/UART interfaces, I2C interfaces, SPI interfaces, USB interfaces (USB OTG support), TWAI (compatible WITH CAN 2.0) interfaces, and more.
 
