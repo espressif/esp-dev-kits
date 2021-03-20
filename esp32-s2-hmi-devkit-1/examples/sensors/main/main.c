@@ -29,7 +29,7 @@ void app_main(void)
 {
     ESP_ERROR_CHECK(sensor_init());
     ESP_ERROR_CHECK(bsp_lcd_init());
-    ESP_ERROR_CHECK(lvgl_init(800 * 480 / 8, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
     /* Initialize UI */
     ui_sensor_init();

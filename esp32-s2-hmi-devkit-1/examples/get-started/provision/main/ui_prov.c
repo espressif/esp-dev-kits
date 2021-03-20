@@ -56,6 +56,8 @@ static void btn_pwd_mode_cb(lv_obj_t *obj, lv_event_t event);
 
 void ui_prov_init(void)
 {
+    lv_port_sem_take();
+
     page_wifi = lv_page_create(lv_scr_act(), NULL);
     lv_obj_set_click(page_wifi, false);
     lv_obj_set_size(page_wifi, 750, 400);
@@ -113,7 +115,8 @@ void ui_prov_init(void)
 
     /* Initiaize done, show Wi-Fi list */
     lv_obj_set_hidden(page_wifi, false);
-    lv_obj_invalidate(page_wifi);
+
+    lv_port_sem_give();
 }
 
 static void ui_show_pswd_textarea(void)

@@ -20,8 +20,11 @@
  */
 
 #include "app_music.h"
+#include "math.h"
+#include "esp_timer.h"
 
 #define REPEAT_PLAY     (1)
+#define SAMPLE_RATE     (44100)
 
 static const char *TAG = "app_music";
 
@@ -56,7 +59,7 @@ static void app_music_task(void *pvParam)
     const size_t file_buffer_size = 64 * 1024;
 
     audio_hal_config_t audio_hal_config = {
-        .audio_freq = 44100,
+        .audio_freq = SAMPLE_RATE,
         .buffer_size = 8192,
         .malloc_caps = MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT
     };

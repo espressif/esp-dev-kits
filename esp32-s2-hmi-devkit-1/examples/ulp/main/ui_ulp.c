@@ -67,25 +67,25 @@ static void slider_event_cb(lv_obj_t *obj, lv_event_t event)
 
 void ui_ulp_init(void)
 {
+    lv_port_sem_take();
+
     slider_r = lv_slider_create(lv_scr_act(), NULL);
     lv_slider_set_range(slider_r, 0, 255);
 
     slider_g = lv_slider_create(lv_scr_act(), slider_r);
     slider_b = lv_slider_create(lv_scr_act(), slider_r);
 
-    lv_obj_align(slider_r, NULL, LV_ALIGN_CENTER, 0, -30);
-    lv_obj_align(slider_g, NULL, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_align(slider_b, NULL, LV_ALIGN_CENTER, 0, 30);
+    lv_obj_align(slider_r, NULL, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_align(slider_g, NULL, LV_ALIGN_CENTER, 0, 60);
+    lv_obj_align(slider_b, NULL, LV_ALIGN_CENTER, 0, 120);
     lv_obj_set_event_cb(slider_r, slider_event_cb);
     lv_obj_set_event_cb(slider_g, slider_event_cb);
     lv_obj_set_event_cb(slider_b, slider_event_cb);
-    
 
     btn_sleep = lv_btn_create(lv_scr_act(), NULL);
     lv_obj_set_style_local_value_str(btn_sleep, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, "Sleep");
     lv_obj_align(btn_sleep, NULL, LV_ALIGN_CENTER, 0, -100);
     lv_obj_set_event_cb(btn_sleep, btn_deep_sleep_event_cb);
-
     
     gpio_num_t gpio_num = GPIO_NUM_0;
     rtc_gpio_init(gpio_num);
@@ -94,4 +94,5 @@ void ui_ulp_init(void)
     rtc_gpio_pullup_en(gpio_num);
     rtc_gpio_hold_en(gpio_num);
     
+    lv_port_sem_give();
 }

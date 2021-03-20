@@ -39,11 +39,21 @@ void ui_record(void)
     lv_obj_align(btn, NULL, LV_ALIGN_CENTER, 0, -100);
     lv_obj_set_event_cb(btn, btn_cb);
 
+    lv_obj_t *label = lv_label_create(lv_scr_act(), NULL);
+    lv_label_set_text_static(label, "Press to record, release to play.");
+    lv_obj_set_style_local_text_font(label, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_28);
+    lv_obj_align(label, btn, LV_ALIGN_OUT_BOTTOM_MID, 0, 30);
+
     lv_obj_t *volume_slider = lv_slider_create(lv_scr_act(), NULL);
+    lv_obj_set_width(volume_slider, 250);
     lv_slider_set_range(volume_slider, 0, 100);
-    lv_slider_set_value(volume_slider, 80, LV_ANIM_ON);
+    lv_slider_set_value(volume_slider, 30, LV_ANIM_ON);
     lv_obj_align(volume_slider, NULL, LV_ALIGN_CENTER, 0, 100);
     lv_obj_set_event_cb(volume_slider, slider_volume_cb);
+
+    lv_obj_set_style_local_value_font(volume_slider, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, &font_en_24);
+    lv_obj_set_style_local_value_str(volume_slider, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, "Volume : 30");
+    lv_obj_set_style_local_value_ofs_y(volume_slider, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, 30);
 
     lv_port_sem_give();
 }
@@ -59,7 +69,12 @@ static void btn_cb(lv_obj_t *obj, lv_event_t event)
 
 static void slider_volume_cb(lv_obj_t *obj, lv_event_t event)
 {
+    static char fmt_text[16];
+
     if (LV_EVENT_VALUE_CHANGED == event) {
-        tpl0401_set_resistance(lv_slider_get_value(obj));
+        int16_t value = lv_slider_get_value(obj);
+        tpl0401_set_resistance(value * 255 / 100);
+        sprintf(fmt_text, "Volume : %d", value);
+        lv_obj_set_style_local_value_str(obj, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, fmt_text);
     }
 }

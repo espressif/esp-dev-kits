@@ -62,7 +62,7 @@ typedef struct {
         .tp_int = 1,                    \
         .audio_pa = 1,                  \
         .vdd_off = 0,                   \
-        .boost_en = 1,                  \
+        .boost_en = 0,                  \
         .rmt_ctrl = 1,                  \
         .lcd_light = 1,                 \
     }

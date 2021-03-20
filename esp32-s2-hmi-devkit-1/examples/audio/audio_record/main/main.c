@@ -161,7 +161,7 @@ void app_main(void)
 
     /* Volume digital potentiometer */
     ESP_ERROR_CHECK(tpl0401_init());
-    ESP_ERROR_CHECK(tpl0401_set_resistance(80));
+    ESP_ERROR_CHECK(tpl0401_set_resistance(30 * 255 / 100));
 
     /* LCD touch IC init */
     ESP_ERROR_CHECK(ft5x06_init());
@@ -170,11 +170,11 @@ void app_main(void)
     ESP_ERROR_CHECK(bsp_lcd_init());
 
     /* Initialize LVGL */
-    ESP_ERROR_CHECK(lvgl_init(800 * 480 / 8, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
     /* Config ADC */
     adc1_config_width(ADC_WIDTH_BIT_13);
-    adc1_config_channel_atten(ADC_CHANNEL_8, ADC_ATTEN_DB_11);
+    adc1_config_channel_atten(ADC_CHANNEL_8, ADC_ATTEN_DB_6);
 
 #if CONFIG_AUDIO_DAC_OUTPUT
     dac_output_enable(DAC_CHANNEL_2);

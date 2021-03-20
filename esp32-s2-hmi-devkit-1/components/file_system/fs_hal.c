@@ -55,39 +55,27 @@ esp_err_t fs_hal_init(void)
     fs_mutex = xSemaphoreCreateMutex();
 #endif
 
-    // FS_SEM_TAKE();
-    
-    // FS_SEM_GIVE();
-
     return ESP_OK;
 }
 
 esp_err_t fs_open_file(fs_file_t *fp, const char *name)
 {
-    // FS_SEM_TAKE();
-
     *fp = fopen(name, "rb");
 
-    // FS_SEM_GIVE();
+    if (NULL == *fp) {
+        return ESP_FAIL;
+    }
 
     return ESP_OK;
 }
 
 esp_err_t fs_close_file(fs_file_t *fp)
 {
-    // FS_SEM_TAKE();
-
-    fclose(*fp);
-
-    // FS_SEM_GIVE();
-
-    return ESP_OK;
+    return fclose(*fp);
 }
 
 esp_err_t fs_open_dir(fs_dir_t *dir, const char *path)
 {
-    // FS_SEM_TAKE();
-
     *dir = opendir(path);
 
     if (NULL != *dir) {
@@ -99,12 +87,6 @@ esp_err_t fs_open_dir(fs_dir_t *dir, const char *path)
 
 esp_err_t fs_close_dir(fs_dir_t *dir)
 {
-    // FS_SEM_TAKE();
-
-    
-
-    // FS_SEM_GIVE();
-
     return closedir(*dir);
 }
 

@@ -61,13 +61,12 @@ void app_main(void)
     ESP_ERROR_CHECK(bsp_lcd_init());
 
     /* Initialize LVGL */
-    ESP_ERROR_CHECK(lvgl_init(800 * 480 / 8, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
-    /*!< Initialize provision UI */
-    lv_port_sem_take();
+    /* Initialize provision UI */
+    
     ui_prov_init();
-    lv_port_sem_give();
 
-    /*!< Start provisioning app */
+    /* Start provisioning app */
     ESP_ERROR_CHECK(app_prov_start());
 }

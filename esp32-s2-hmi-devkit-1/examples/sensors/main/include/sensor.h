@@ -36,7 +36,6 @@
 #include "hdc1080.h"
 #include "mpu6050.h"
 #include "tca9554.h"
-#include "ws2812.h"
 
 #ifdef __cplusplus
 extern "C" {
