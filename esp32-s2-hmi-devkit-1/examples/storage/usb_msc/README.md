@@ -2,8 +2,6 @@
 
 USB Flash Disk example.
 
-**The demo is only used for function preview , only tested on Windows 10 now, don't be surprised if you find bug **
-
 ## How to Use Example
 
 ### Hardware Required

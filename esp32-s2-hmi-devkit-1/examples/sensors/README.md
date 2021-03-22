@@ -27,7 +27,7 @@ See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/l
 
 ## Example Output
 
-Run the example, you will sensor evaluation interface.
+Run the example, you will see sensor evaluation interface.
 
 You can select the sensor at the left of screen and see the value on the right.
 
