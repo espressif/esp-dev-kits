@@ -21,21 +21,23 @@
 #include "lvgl/lvgl.h"
 #include "lvgl_port.h"
 
-#include "ws2812.h"
-
-#include "tca9554.h"
-
 #include "bsp_ext_io.h"
+#include "bh1750.h"
+#include "cat5171.h"
+#include "hdc1080.h"
+#include "mpu6050.h"
+#include "tca9554.h"
+#include "ws2812.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
 /**
- * @brief Initialize ulp evaluation UI
+ * @brief Initialize power evaluation UI
  * 
  */
-void ui_ulp_init(void);
+void ui_power_init(void);
 
 #ifdef __cplusplus
 }

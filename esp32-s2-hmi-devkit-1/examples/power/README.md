@@ -1,8 +1,6 @@
-# ULP Example
+# Power Example
 
-Make ESP32-S2 to deep sleep and wakeup by IO0.
-
-It also shows how to shutdown every programmable power to decrease the power consuming.
+Config power of ESP32-S2-HMI-DevKit-1.
 
 ## How to use example
 
@@ -30,9 +28,7 @@ See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/l
 
 ## Example Output
 
-Run the example, you will see a simple button.
-
-By clicking it, the development board will shutdown progammable power. You can wake it up by pressing IO0.
+Run the example, you will see LEDs shows input level of IO expander, switches to control output level of IO expander, sliders to change LCD brightness and WS2812's color. Also, a "Sleep" button. By clicking it, the dev board will shutdown progammable power area and into deep sleep. You can wake it up by pressing wake up button (connected to IO0).
 
 ## Troubleshooting
 

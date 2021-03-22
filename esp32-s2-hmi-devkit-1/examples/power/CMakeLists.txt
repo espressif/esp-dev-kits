@@ -9,4 +9,4 @@ set(EXTRA_COMPONENT_DIRS    ../../components)
 
 add_compile_options(-fdiagnostics-color=always)
 
-project(ulp)
+project(power)
