@@ -1,3 +1,4 @@
+[[EN]](./README_en.md)
 # ESP32-S2-HMI-DevKit-1 使用说明
 
 本文档将介绍如何使用 ESP32-S2-HMI-DevKit-1 开发板。
@@ -37,7 +38,7 @@
 
 ### 编译工程
 
-首先，请确保您已经正确完成 IDF 环境配置。为确保这一点，请在终端中输入` idf --version`，如果输出结果类似于 `ESP-IDF v4.2-dev-2084-g98d5b5dfd`，则代表安装成功。详细的安装和配置说明请参考[快速入门文档](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/get-started/index.html)。
+首先，请确保您已经正确完成 IDF 环境配置。为确保这一点，请在终端中输入`idf --version`，如果输出结果类似于 `ESP-IDF v4.2-dev-2084-g98d5b5dfd`，则代表安装成功。详细的安装和配置说明请参考[快速入门文档](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/get-started/index.html)。
 
 配置完成后，请切换到仓库所在的目录。所有的示例代码都被放置在 examples 目录下。您可以运行 `idf.py build` 对工程进行编译。
 
@@ -52,10 +53,10 @@
 - `(Top) > HMI Board Config > LCD Drivers`：LCD 显示 IC 型号选择，ESP32-S2-HMI-DevKit-1 使用的显示 IC 为 RM68120；
 - `(Top) > Component config > ESP32S2-specific` 中，请进入 `Support for external, SPI-connected RAM` 选项：
   - 在 `SPI RAM config > Set RAM clock speed` 中，将 PSRAM 的时钟设置为 `80 MHz clock speed`；
-- `(Top) -> Component config -> FreeRTOS`： `Tick rate (Hz)` 设置为 1000。
+- `(Top) -> Component config -> FreeRTOS`：`Tick rate (Hz)` 设置为 1000。
 
 在每个示例下，我们都提供了名为 `sdkconfig.defaults` 的默认配置文件，已将上述选项配置完成。
 
 ### IDF 版本依赖
 
-`examples/storage/usb_msc` 需要在 IDF V4.3 下进行编译，其它示例程序可以在 IDF V4.2 及以后版本进行编译。
+`examples/storage/usb_msc` 需要在 IDF v4.3 下进行编译，其它示例程序可以在 IDF v4.2 及以后版本进行编译。
