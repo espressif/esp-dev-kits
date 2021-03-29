@@ -26,25 +26,57 @@
 #include "esp_spi_flash.h"
 #include "esp_system.h"
 
+#include "lvgl_port.h"
+
+static void btn_click_cb(lv_obj_t *obj, lv_event_t event)
+{
+    static lv_obj_t *label = NULL;
+    static size_t count = 0;
+
+    if (LV_EVENT_CLICKED == event) {
+        if (NULL == label) {
+            label = lv_label_create(lv_scr_act(), NULL);
+            lv_label_set_align(label, LV_LABEL_ALIGN_CENTER);
+            lv_obj_set_style_local_text_font(label, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_48);
+            lv_label_set_text(label, "Hello world!");
+            lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 20);
+        } else {
+            lv_label_set_text_fmt(label,
+                "Hello world!\n"
+                "Again! %zu", ++count);
+            lv_obj_align(label, NULL, LV_ALIGN_CENTER, 0, 20);
+        }
+    } 
+}
+
+static void ui_hello_world(void)
+{
+    lv_port_sem_take();
+
+    lv_obj_t *btn = lv_btn_create(lv_scr_act(), NULL);
+    lv_obj_set_size(btn, 150, 50);
+    lv_obj_set_event_cb(btn, btn_click_cb);
+    lv_obj_align(btn, NULL, LV_ALIGN_CENTER, 0, -100);
+    lv_obj_set_style_local_value_str(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, "Say Hello");
+    lv_obj_set_style_local_value_font(btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_en_24);
+
+    lv_port_sem_give();
+}
+
 void app_main(void)
 {
-    printf("Hello world!\n");
+    /* Initialize I2C bus for touch IC */
+    ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
 
-    /* Print chip information */
-    esp_chip_info_t chip_info;
-    esp_chip_info(&chip_info);
-    printf("This is %s chip with %d CPU core(s), WiFi%s%s, ",
-            CONFIG_IDF_TARGET,
-            chip_info.cores,
-            (chip_info.features & CHIP_FEATURE_BT) ? "/BT" : "",
-            (chip_info.features & CHIP_FEATURE_BLE) ? "/BLE" : "");
+    /* LCD touch IC init */
+    ESP_ERROR_CHECK(ft5x06_init());
 
-    printf("silicon revision %d, ", chip_info.revision);
+    /* Initialize LCD */
+    ESP_ERROR_CHECK(bsp_lcd_init());
 
-    printf("%dMB %s flash\n", spi_flash_get_chip_size() / (1024 * 1024),
-            (chip_info.features & CHIP_FEATURE_EMB_FLASH) ? "embedded" : "external");
+    /* Initialize LVGL */
+    ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
-    /* Print memory information */
-    printf("Internal RAM size : %8d bytes free, %8d bytes total.\n", heap_caps_get_free_size(MALLOC_CAP_INTERNAL), heap_caps_get_total_size(MALLOC_CAP_INTERNAL));
-    printf("External RAM size : %8d bytes free, %8d bytes total.\n", heap_caps_get_free_size(MALLOC_CAP_SPIRAM), heap_caps_get_total_size(MALLOC_CAP_SPIRAM));
+    /* Start UI */
+    ui_hello_world();
 }

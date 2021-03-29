@@ -58,11 +58,6 @@ esp_err_t sensor_init(void)
     /* Init MEMS sensor */
     ESP_ERROR_CHECK(mpu6050_init());
 
-    /* Init RGB LED and turn it off */
-    ESP_ERROR_CHECK(ws2812_init());
-    ESP_ERROR_CHECK(ws2812_set_rgb(0, 0, 0, 0));
-    ESP_ERROR_CHECK(ws2812_refresh());
-
     ESP_ERROR_CHECK(sensor_task_start());
 
     /* Noting went wrong */

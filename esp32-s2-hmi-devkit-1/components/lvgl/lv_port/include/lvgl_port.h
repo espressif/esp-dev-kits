@@ -4,9 +4,21 @@
  * @version 0.1
  * @date 2021-02-24
  * 
- * @copyright Copyright (c) 2021
- * 
+ * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+ *
+ *      Licensed under the Apache License, Version 2.0 (the "License");
+ *      you may not use this file except in compliance with the License.
+ *      You may obtain a copy of the License at
+ *
+ *               http://www.apache.org/licenses/LICENSE-2.0
+ *
+ *      Unless required by applicable law or agreed to in writing, software
+ *      distributed under the License is distributed on an "AS IS" BASIS,
+ *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *      See the License for the specific language governing permissions and
+ *      limitations under the License.
  */
+
 #pragma once
 
 #include <stdio.h>
@@ -23,6 +35,13 @@
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+#define LVGL_SCR_SIZE       (LV_HOR_RES_MAX * LV_VER_RES_MAX)
+#define LVGL_BUFFER_SIZE    (sizeof(lv_color_t) * LVGL_SCR_SIZE)
+#define LVGL_INIT_PIXCNT    (LV_HOR_RES_MAX * LV_VER_RES_MAX)
+
+#define LV_BUF_ALLOC_INTERNAL   (MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT)
+#define LV_BUF_ALLOC_EXTERNAL   (MALLOC_CAP_SPIRAM) 
 
 typedef struct {
     size_t buffer_size;

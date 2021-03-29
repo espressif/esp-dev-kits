@@ -145,7 +145,9 @@ void sensor_data_update_task(lv_task_t *task)
     
     case ui_item_als:
         als_get_value(&light);
-        lv_arc_set_value(arc_als_val, (int) light / 10);
+        sprintf(fmt_text, "%d", (int) light);
+        lv_arc_set_value(arc_als_val, (int) light);
+        lv_obj_set_style_local_value_str(arc_als_val, LV_ARC_PART_BG, LV_STATE_DEFAULT, fmt_text);
         break;
 
     case ui_item_temp_humid:
@@ -284,9 +286,12 @@ static void ui_als_detail_init(void)
     arc_als_val = lv_arc_create(obj_detail, NULL);
 
     lv_obj_set_click(arc_als_val, false);
-    lv_arc_set_range(arc_als_val, 0, 100);
+    lv_arc_set_range(arc_als_val, 0, 1000);
     lv_obj_set_size(arc_als_val, 300, 300);
     lv_obj_set_style_local_border_width(arc_als_val, LV_ARC_PART_BG, LV_STATE_DEFAULT, 0);
+    lv_obj_set_style_local_value_font(arc_als_val, LV_ARC_PART_BG, LV_STATE_DEFAULT, &font_en_bold_48);
+    lv_obj_set_style_local_value_align(arc_als_val, LV_ARC_PART_BG, LV_STATE_DEFAULT, LV_ALIGN_CENTER);
+    lv_obj_set_style_local_line_color(arc_als_val, LV_ARC_PART_INDIC, LV_STATE_DEFAULT, COLOR_THEME);
     lv_obj_align(arc_als_val, NULL, LV_ALIGN_CENTER, 0, -20);
 
     slider_backlight = lv_slider_create(obj_detail, NULL);

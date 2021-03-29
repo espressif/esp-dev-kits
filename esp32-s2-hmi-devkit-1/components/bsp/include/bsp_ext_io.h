@@ -53,7 +53,7 @@ typedef struct {
         .vdd_off = 0,                   \
         .boost_en = 0,                  \
         .rmt_ctrl = 0,                  \
-        .lcd_light = 1,                 \
+        .lcd_light = 0,                 \
     }
 
 #define BSP_EXT_IO_DEFAULT_LEVEL() {    \
@@ -62,7 +62,7 @@ typedef struct {
         .tp_int = 1,                    \
         .audio_pa = 1,                  \
         .vdd_off = 0,                   \
-        .boost_en = 1,                  \
+        .boost_en = 0,                  \
         .rmt_ctrl = 1,                  \
         .lcd_light = 1,                 \
     }
@@ -74,7 +74,7 @@ typedef struct {
         .audio_pa = 0,                  \
         .vdd_off = 1,                   \
         .boost_en = 0,                  \
-        .rmt_ctrl = 0,                  \
+        .rmt_ctrl = 1,                  \
         .lcd_light = 0,                 \
     }
 

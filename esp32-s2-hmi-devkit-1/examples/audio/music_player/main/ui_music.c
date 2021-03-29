@@ -41,148 +41,23 @@ static lv_obj_t *slider_volume = NULL;
 static lv_obj_t *obj_lyric = NULL;
 static lv_obj_t *obj_control = NULL;
 static lv_obj_t *slider_progress = NULL;
-static lv_obj_t *img_mask = NULL;
+
 static const char * music_lyric[] = {
-    "Poker Face - Lady Gaga\n"
-    "Lyrics by:Lady GaGa/Red One\n"
-    "Composed by:Lady GaGa/Red One\n"
-    "Mum mum mum mah\n"
-    "Mum mum mum mah\n"
-    "I wanna hold 'em like they do in Texas plays\n"
-    "Fold 'em let 'em hit me raise it baby stay with me\n"
-    "I love it\n"
-    "Luck and intuition play the cards with spades to start\n"
-    "And after he's been hooked I'll play the one that's on his heart\n"
-    "Oh oh oh oh ohhhh ohh oh e ohh oh oh\n"
-    "I'll get him hot show him what I've got\n"
-    "Oh oh oh oh ohhhh ohh oh e ohh oh oh\n"
-    "I'll get him hot show him what I've got\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "Mum mum mum mah\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "Mum mum mum mah\n"
-    "I wanna roll with him a hard pair we will be\n"
-    "A little gambling is fun when you're with me I love it\n"
-    "Russian roulette is not the same without a gun\n"
-    "And baby when it's love if its not rough it isn't fun fun\n"
-    "Oh oh oh oh ohhhh ohh oh e ohh oh oh\n"
-    "I'll get him hot show him what I've got\n"
-    "Oh oh oh oh ohhhh ohh oh e ohh oh oh\n"
-    "I'll get him hot show him what I've got\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "Mum mum mum mah\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "Mum mum mum mah\n"
-    "I won't tell you that I love you\n"
-    "Kiss or hug you\n"
-    "Cause I'm bluffing with my muffin\n"
-    "I'm not lying I'm just stunning with my love glue gunning\n"
-    "Just like a chick in the casino\n"
-    "Take your bank before I pay you out\n"
-    "I promise this promise this\n"
-    "Check this hand cause I'm marvelous\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "Can't read my\n"
-    "Can't read my\n"
-    "No he can't read my poker face\n"
-    "She's got to love nobody\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "Mum mum mum mah\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "Mum mum mum mah\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "Mum mum mum mah\n"
-    "P-p-p-poker face p-p-poker face\n"
-    "Mum mum mum mah",
-    
-    "Outside - Ellie Goulding / Calvin Harris\n"
-    "Lyrics by : Calvin Harris\n"
-    "Composed by : Calvin Harris\n"
-    "Look at what you've done\n"
-    "Stand still falling away from me\n"
-    "When it takes so long\n"
-    "Fire's out what do you want to be\n"
-    "Now I'm holding on\n"
-    "Myself was never enough for me\n"
-    "Gotta be so strong\n"
-    "There's a power in what you do\n"
-    "Now every other day\n"
-    "I'll be watching you\n"
-    "I'll show you what it feels like\n"
-    "Now I'm on the outside\n"
-    "We did everything right\n"
-    "Now I'm on the outside\n"
-    "I'll show you what it feels like\n"
-    "Now I'm on the outside\n"
-    "We did everything right\n"
-    "Now I'm on the outside\n"
-    "So you give me no reason\n"
-    "For me to stay close to you\n"
-    "Tell me what lovers do\n"
-    "How are we still breathing\n"
-    "It's never for us to choose\n"
-    "I'll be the strength in you\n"
-    "Now I'm holding on\n"
-    "I'm holding on\n"
-    "Myself was never enough for me\n"
-    "Gotta be so strong\n"
-    "There's a power in what you do\n"
-    "Now every other day\n"
-    "I'll be watching you\n"
-    "I'll show you what it feels like\n"
-    "Now I'm on the outside\n"
-    "We did everything right\n"
-    "Now I'm on the outside\n"
-    "I'll show you what it feels like\n"
-    "Now I'm on the outside\n"
-    "We did everything right\n"
-    "Now I'm on the outside\n"
-    "I'll show you what it feels like\n"
-    "Now I'm on the outside\n"
-    "I'll show you what it feels like\n"
-    "I'll show you what it feels like\n"
-    "Now I'm on the outside\n"
-    "We did everything right\n"
-    "Now I'm on the outside",
+    "Music Lyric - Examples\n"
+    "Lyrics by : Espressif\n"
+    "Composed by : Espressif\n"
+    "Music player example with lyric display\n"
+    "You can place pcm files in SD card\n"
+    "Example lyrics - 1\n"
+    "Example lyrics - 2\n"
+    "Example lyrics - 3\n"
+    "Example lyrics - 4\n"
+    "Example lyrics - 5\n"
+    "Example lyrics - 6\n"
+    "Example lyrics - 7",
 };
 
+static void lyric_task(lv_task_t *task);
 static void slider_volume_cb(lv_obj_t *obj, lv_event_t event);
 static void btn_play_pause_cb(lv_obj_t *obj, lv_event_t event);
 
@@ -192,39 +67,23 @@ LV_IMG_DECLARE(music_album)
 
 void ui_music(void)
 {
-    img_mask = lv_objmask_create(lv_scr_act(), NULL);
-    lv_obj_set_size(img_mask, 256, 256);
-    lv_obj_set_style_local_radius(img_mask, LV_OBJMASK_PART_MAIN, LV_STATE_DEFAULT, 90);
-    lv_obj_set_pos(img_mask, 25, 50);
-
-    do {
-        lv_area_t a;
-        lv_draw_mask_radius_param_t r1;
-        a.x1 = 0;
-        a.y1 = 0;
-        a.x2 = 255;
-        a.y2 = 255;
-        lv_draw_mask_radius_init(&r1, &a, 10, false);
-        lv_objmask_add_mask(img_mask, &r1);
-    } while (0);
-
-    img_album = lv_img_create(img_mask, NULL);
+    img_album = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(img_album, &music_album);
     lv_obj_set_style_local_radius(img_album, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, 10);
-    lv_obj_align(img_album, NULL, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_pos(img_album, 25, 50);
 
     obj_lyric = lv_obj_create(lv_scr_act(), NULL);
     lv_obj_set_size(obj_lyric, 465, 305);
     lv_obj_set_style_local_radius(obj_lyric, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 15);
     lv_obj_set_style_local_border_width(obj_lyric, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 0);
-    lv_obj_align(obj_lyric, img_mask, LV_ALIGN_OUT_RIGHT_TOP, 25, 0);
+    lv_obj_align(obj_lyric, img_album, LV_ALIGN_OUT_RIGHT_TOP, 25, 0);
 
     slider_volume = lv_slider_create(lv_scr_act(), NULL);
     lv_obj_set_size(slider_volume, 200, 4);
     lv_slider_set_range(slider_volume, 0, 100);
     lv_slider_set_value(slider_volume, 30, LV_ANIM_ON);
     lv_obj_set_style_local_radius(slider_volume, LV_BAR_PART_BG, LV_STATE_DEFAULT, 15);
-    lv_obj_align(slider_volume, img_mask, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, 30);
+    lv_obj_align(slider_volume, img_album, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, 30);
     lv_obj_set_style_local_value_str(slider_volume, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_SYMBOL_VOLUME_MID);
     lv_obj_set_style_local_value_align(slider_volume, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_ALIGN_OUT_LEFT_MID);
     lv_obj_set_style_local_value_font(slider_volume, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, &lv_font_montserrat_32);
@@ -247,7 +106,6 @@ void ui_music(void)
     lv_obj_set_style_local_border_width(btn_prev, LV_BTN_PART_MAIN, LV_STATE_FOCUSED, 0);
     lv_obj_set_style_local_outline_width(btn_prev, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_outline_width(btn_prev, LV_BTN_PART_MAIN, LV_STATE_FOCUSED, 0);
-    
     lv_obj_set_style_local_bg_color(btn_prev, LV_BTN_PART_MAIN, LV_STATE_PRESSED, COLOR_THEME);
     lv_obj_set_style_local_value_font(btn_prev, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_32);
     lv_obj_align(btn_prev, NULL, LV_ALIGN_IN_LEFT_MID, 25, 0);
@@ -295,17 +153,14 @@ void ui_music(void)
     lv_obj_set_style_local_value_color(btn_list, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_THEME);
     lv_obj_set_style_local_value_color(btn_list, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_COLOR_WHITE);
     lv_obj_align(btn_list, btn_play_mode, LV_ALIGN_OUT_RIGHT_MID, 25, 0);
-    // lv_obj_set_event_cb(btn_list, btn_list_cb);
 
     label_music_name = lv_label_create(obj_lyric, NULL);
-    lv_label_set_text(label_music_name, "Poker Face");
+    lv_label_set_text(label_music_name, "Music Player");
     lv_obj_set_style_local_text_font(label_music_name, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_48);
     lv_obj_align(label_music_name, NULL, LV_ALIGN_IN_TOP_MID, 0, 40);
 
     roller_lyric = lv_roller_create(lv_scr_act(), NULL);
-    lv_roller_set_options(roller_lyric,
-                        music_lyric[0],
-                        LV_ROLLER_MODE_NORMAL);
+    lv_roller_set_options(roller_lyric, music_lyric[0], LV_ROLLER_MODE_NORMAL);
 
     lv_roller_set_visible_row_count(roller_lyric, 3);
     lv_obj_set_style_local_text_font(roller_lyric, LV_ROLLER_PART_BG, LV_STATE_DEFAULT, &font_en_20);
@@ -323,6 +178,27 @@ void ui_music(void)
     lv_obj_set_style_local_border_width(roller_lyric, LV_ROLLER_PART_BG, LV_STATE_DEFAULT, 0);
     lv_obj_set_width(roller_lyric, 450);
     lv_obj_align(roller_lyric, label_music_name, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
+
+    lv_task_create(lyric_task, 100, 1, NULL);
+}
+
+static void lyric_task(lv_task_t *task)
+{
+    int delay_time = 3000;  /* ms */
+    int delay_times = task->period > delay_time ? 1 : delay_time / task->period;
+
+    static int count = 0;
+    static int roller_selected_index = 0;
+
+    if (count++ >= delay_times) {
+        count = 0;
+
+        if (++roller_selected_index >= lv_roller_get_option_cnt(roller_lyric)) {
+            lv_task_del(task);
+        } else {
+            lv_roller_set_selected(roller_lyric, roller_selected_index, LV_ANIM_ON);
+        }
+    }
 }
 
 static void slider_volume_cb(lv_obj_t *obj, lv_event_t event)

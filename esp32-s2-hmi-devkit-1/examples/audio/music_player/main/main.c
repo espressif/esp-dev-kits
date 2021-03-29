@@ -64,11 +64,11 @@ void app_main(void)
     /* LCD touch IC init */
     ESP_ERROR_CHECK(ft5x06_init());
 
-     /* Initialize LCD */
+    /* Initialize LCD */
     ESP_ERROR_CHECK(bsp_lcd_init());
 
     /* Initialize LVGL */
-    ESP_ERROR_CHECK(lvgl_init(800 * 480 / 8, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
     /* Init SD card */
     ESP_ERROR_CHECK(bsp_sdcard_init());

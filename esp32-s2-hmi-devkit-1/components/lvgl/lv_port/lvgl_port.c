@@ -21,9 +21,6 @@
 
 #include "lvgl_port.h"
 
-#define LVGL_BUFFER_SIZE  (sizeof(lv_color_t) * (LV_HOR_RES_MAX * LV_VER_RES_MAX))
-#define LVGL_INIT_PIXCNT  (LV_HOR_RES_MAX * LV_VER_RES_MAX)
-
 static SemaphoreHandle_t lvgl_mutex = NULL;
 
 esp_err_t lv_port_sem_take(void)

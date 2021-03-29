@@ -30,6 +30,7 @@
 #include "freertos/task.h"
 
 #include "lvgl/lvgl.h"
+#include "lvgl_port.h"
 #include "lv_symbol_extra_def.h"
 
 #include "wifi_basic.h"

@@ -67,7 +67,7 @@ void app_main(void)
     ESP_ERROR_CHECK(bsp_lcd_init());
 
     /* Initialize LVGL */
-    ESP_ERROR_CHECK(lvgl_init(800 * 480 / 8, MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT));
+    ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
     ESP_ERROR_CHECK(ws2812_init());
     
@@ -79,11 +79,12 @@ void app_main(void)
     lv_led_on(obj_led);
     lv_port_sem_give();
 
-    /* Print memory usage */
     while (1) {
         for (int i = 0; i < sizeof led_color_list / sizeof led_color_list[0]; i++) {
             ws2812_set_rgb(LED_INDEX,
-                led_color_list[i].ch.red << 3, led_color_list[i].ch.green << 2, led_color_list[i].ch.blue << 3);
+                led_color_list[i].ch.red << 3,
+                led_color_list[i].ch.green << 2,
+                led_color_list[i].ch.blue << 3);
             ws2812_refresh();
 
             if (LV_COLOR_BLACK.full == led_color_list[i].full) {
@@ -93,6 +94,7 @@ void app_main(void)
             }
 
             lv_obj_set_style_local_bg_color(obj_led, LV_LED_PART_MAIN, LV_STATE_DEFAULT, led_color_list[i]);
+            lv_obj_set_style_local_shadow_color(obj_led, LV_LED_PART_MAIN, LV_STATE_DEFAULT, led_color_list[i]);
 
             vTaskDelay(pdMS_TO_TICKS(1000));
         }

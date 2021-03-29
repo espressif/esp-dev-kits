@@ -3,6 +3,5 @@ idf_component_register(
         adc_isr.c
         main.c
         ui_record.c
-        icon/music_album.c
     INCLUDE_DIRS
         include)
