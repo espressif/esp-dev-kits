@@ -29,9 +29,9 @@ The power input through the USB port on the bottom of the board is split into tw
 
 The following functions depend on the 5 V power domain:
 
-- TWAI®
-- Audio amplifier
-- 5 V power output connector
+- TWAI® (selects available power supply from USB 5 V or Booster 5 V automatically)
+- Audio amplifier (gets power supply from USB 5 V, if it fails, will try from the battery)
+- 5 V power output connector (the same as TWAI®)
 
 The following functions depend on the controlled 3.3 V power domain:
 

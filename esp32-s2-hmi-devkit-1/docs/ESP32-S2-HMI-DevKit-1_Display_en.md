@@ -15,9 +15,9 @@ The touch IC uses I2C interface to communicate with MCU and can share this inter
 
 ## Backlight
 
-This LCD has a built-in series LED, which needs to be drived by constant current using the Booster circuit. The rated current is 18 mA and the voltage is approximately 24 V (may not be accurate, only for reference). To prevent the feedback voltage of the Booster circuit always being 0 when the display is not connected, and thus causing high voltage loaded to both ends of the backlight filter capacitor, please make sure this capacitor has a withstand voltage of 38 V or more.
+As the LEDs are connected in series, they need to be drived by constant current via the Booster circuit. The rated current is 18 mA and the voltage is approximately 24 V (may not be accurate, only for reference). To prevent the feedback voltage of the Booster circuit always being 0 when the display is not connected, and thus causing high voltage loaded to both ends of the backlight filter capacitor, please make sure this capacitor has a withstand voltage of 38 V or more.
 
-As PWM dimming may has flicker issue and some Booster IC does not support high-frequency PWM signal control, this development board uses DC dimming circuit to reach high performance. This DC dimming circuit inputs the VFB voltage to the operational amplifier, whose gain resistor is a digital potentiometer which can be modified via the I2C bus to change its gain level. This digital potentiometer is CAT5171, with 256 levels of resolution and a maximum resistance value of 50 k.
+Since PWM dimming may has flicker issue and some Booster IC does not support high-frequency PWM signal control, this development board uses DC dimming circuit to reach high performance. This DC dimming circuit inputs the VFB voltage to the operational amplifier, whose gain resistor is a digital potentiometer which can be modified via the I2C bus to change its gain level. This digital potentiometer is CAT5171, with 256 levels of resolution and a maximum resistance value of 50 k. V1.1 of the development board does not has this function yet and its LED current is configured at a fixed value 20 mA.
 
 The EN pin of the Booster IC is controlled by the P7 pin of the IO expander in high level. If you want to keep the contents while turning off the display, please set this pin to low level so as to disable backlight.
 
