@@ -6,7 +6,7 @@ variables:
   BATCH_BUILD: "1"
   V: "0"
   MAKEFLAGS: "-j5 --no-keep-going"
-  IDF_PATH: "$CI_PROJECT_DIR/esp-idf"
+  # IDF_PATH: "$CI_PROJECT_DIR/esp-idf"
   IDF_CI_BUILD: "1"
 
 before_script:
@@ -19,17 +19,17 @@ before_script:
   - echo -e "Host gitlab.espressif.cn\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - git --version
   - git submodule update --init --recursive
-  - git clone --recursive --branch release/v4.2 --depth 1 $GITLAB_SSH_SERVER/espressif/esp-idf.git
-  - export PATH="$IDF_PATH/tools:$PATH"
-  - cd esp-idf
-  - source tools/ci/setup_python.sh
-  - source tools/ci/configure_ci_environment.sh
-  - tools/idf_tools.py --non-interactive install && eval "$(tools/idf_tools.py --non-interactive export)" || exit 1
-  - cd ..
+  # - git clone --recursive --branch release/v4.2 --depth 1 $GITLAB_SSH_SERVER/espressif/esp-idf.git
+  # - export PATH="$IDF_PATH/tools:$PATH"
+  # - cd esp-idf
+  # - source tools/ci/setup_python.sh
+  # - source tools/ci/configure_ci_environment.sh
+  # - tools/idf_tools.py --non-interactive install && eval "$(tools/idf_tools.py --non-interactive export)" || exit 1
+  # - cd ..
 
 .build_examples_template: &build_examples_template
   stage: build
-  image: $CI_DOCKER_REGISTRY/esp32-ci-env$BOT_DOCKER_IMAGE_TAG
+  image: espressif/idf:release-v4.2
   tags:
     - build
   # Artifacts are not used temporarily
@@ -55,7 +55,7 @@ before_script:
 #     - make defconfig && make -j5
 #     - cd ../../
 
-build_demo_cmake:
+build_kaluga_demo_cmake:
   <<: *build_examples_template
   script:
     - cd esp32-s2-kaluga-1
@@ -88,7 +88,62 @@ build_demo_cmake:
     - idf.py fullclean
     - idf.py set-target esp32s2 
     - idf.py build
+
+build_hmi_demo_cmake:
+  <<: *build_examples_template
+  image: espressif/idf:latest
+  script:
+    - cd esp32-s2-hmi-devkit-1
+    - cd examples/audio/audio_record
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
+    - cd examples/audio/music_player
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
+    - cd examples/get-started/hello_world
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
+    - cd examples/get-started/led_blink
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
+    - cd examples/get-started/provision
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
+    - cd examples/sensors
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
     - cd ../../
+    - cd examples/storage/sdcard_fatfs
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
+    - cd examples/ulp
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../
+    - cd examples/usb/usb_dfu_cdc
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
+    - cd examples/usb/usb_msc
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
 
 push_master_to_github:
   stage: deploy
