@@ -21,13 +21,6 @@
 
 #include "audio_hal.h"
 
-typedef enum {
-    AUDIO_STATE_STOPPED = 0,
-    AUDIO_STATE_PLAY,
-    AUDIO_STATE_PAUSE,
-    AUDIO_STATE_PENDING,
-} audio_hal_state_t;
-
 static DRAM_ATTR ringbuf_handle_t audio_buffer = NULL;
 static DRAM_ATTR volatile audio_hal_state_t audio_hal_state = AUDIO_STATE_STOPPED;
 
@@ -139,4 +132,9 @@ IRAM_ATTR esp_err_t audio_hal_clear_data(void)
 
     rb_flush(audio_buffer);
     return ESP_OK;
+}
+
+IRAM_ATTR audio_hal_state_t audio_hal_get_state(void)
+{
+    return audio_hal_state;
 }

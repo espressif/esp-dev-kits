@@ -17,7 +17,7 @@ extern "C" {
  *      INCLUDES
  *********************/
 #include <stdio.h>
-
+#include "esp_err.h"
 #include "lvgl/lvgl.h"
 /*********************
  *      DEFINES
@@ -26,7 +26,20 @@ extern "C" {
 /**********************
  *      TYPEDEFS
  **********************/
-void lv_port_fs_init(void);
+
+/**
+ * @brief Init LVGL file system.
+ * 
+ * @return esp_err_t Result of state.
+ */
+esp_err_t lv_port_fs_init(void);
+
+/**
+ * @brief Get LVGL file system init state.
+ * 
+ * @return esp_err_t Result of state.
+ */
+esp_err_t lv_fs_get_init_result(void);
 /**********************
  * GLOBAL PROTOTYPES
  **********************/

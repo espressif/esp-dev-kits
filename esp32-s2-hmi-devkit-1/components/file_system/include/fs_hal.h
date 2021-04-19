@@ -84,6 +84,24 @@ esp_err_t fs_open_dir(fs_dir_t *dir, const char *path);
 /**
  * @brief 
  * 
+ * @param fp 
+ * @param offset 
+ * @param whence 
+ * @return int 
+ */
+int fs_file_seek(fs_file_t *fp, int offset, int whence);
+
+/**
+ * @brief 
+ * 
+ * @param fp 
+ * @return long 
+ */
+int fs_file_tell(fs_file_t *fp);
+
+/**
+ * @brief 
+ * 
  * @param dir 
  * @return esp_err_t 
  */

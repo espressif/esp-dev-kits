@@ -74,6 +74,16 @@ esp_err_t fs_close_file(fs_file_t *fp)
     return fclose(*fp);
 }
 
+int fs_file_seek(fs_file_t *fp, int offset, int whence)
+{
+    return fseek(*fp, offset, whence);
+}
+
+int fs_file_tell(fs_file_t *fp)
+{
+    return ftell(*fp);
+}
+
 esp_err_t fs_open_dir(fs_dir_t *dir, const char *path)
 {
     *dir = opendir(path);
@@ -178,7 +188,7 @@ esp_err_t fs_get_dir_file(fs_file_t *pfile, const char *path, size_t index)
         return ESP_FAIL;
     }
 
-    char *file_path = heap_caps_malloc(64 * sizeof(char), MALLOC_CAP_SPIRAM);
+    char file_path[sizeof(struct dirent)];
 
     /* Open directory */
     file_dir = opendir(path);
@@ -211,8 +221,6 @@ esp_err_t fs_get_dir_file(fs_file_t *pfile, const char *path, size_t index)
             ESP_LOGE(TAG, "Failed close dir!");
             return ESP_FAIL;
         }
-
-        free(file_path);
     } else {
         ESP_LOGE(TAG, "Failed open dir : [%s]", path);
         return ESP_FAIL;

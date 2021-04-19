@@ -48,6 +48,13 @@
 extern "C" {
 #endif
 
+typedef enum {
+    AUDIO_STATE_STOPPED = 0,
+    AUDIO_STATE_PLAY,
+    AUDIO_STATE_PAUSE,
+    AUDIO_STATE_PENDING,
+} audio_hal_state_t;
+
 typedef struct {
     size_t buffer_size;
     size_t audio_freq;
@@ -96,6 +103,12 @@ esp_err_t audio_hal_clear_data(void);
  */
 esp_err_t audio_hal_add_byte(uint8_t data);
 
+/**
+ * @brief Get audio play state.
+ * 
+ * @return audio_hal_state_t 
+ */
+audio_hal_state_t audio_hal_get_state(void);
 
 #ifdef __cplusplus
 }

@@ -41,7 +41,7 @@ esp_err_t bsp_sdcard_init(void)
      *****************************************************************************/
     esp_vfs_fat_sdmmc_mount_config_t mount_config = {
         .format_if_mount_failed = false,
-        .max_files = 5,
+        .max_files = 2,
         .allocation_unit_size = 16 * 1024
     };
     LOG_TRACE("Initializing SD card");

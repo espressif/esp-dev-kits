@@ -1,7 +1,8 @@
 #include "https_request.h"
 
 static const char *TAG = "https_request";
-#define LOG_TRACE(...)	ESP_LOGI(TAG, ##__VA_ARGS__)
+#define LOG_TRACE(...)	ESP_LOGD(TAG, ##__VA_ARGS__)
+#define RSP_OUTPUT      (0)
 
 esp_err_t https_request(https_request_t *req)
 {
@@ -10,6 +11,7 @@ esp_err_t https_request(https_request_t *req)
 
     esp_tls_cfg_t esp_tls_cfg = {
         .crt_bundle_attach = esp_crt_bundle_attach,
+        .timeout_ms = 30000,
     };
 
     struct esp_tls *tls = esp_tls_conn_http_new(req->url, &esp_tls_cfg);
@@ -63,11 +65,13 @@ esp_err_t https_request(https_request_t *req)
         total_length += msg_length;
     } while(1);
 
+#if RSP_OUTPUT
     /* Print response directly to stdout as it is read */
     for(int i = 0; i < total_length; i++) {
         putchar(req->rsp[i]);
     }
     putchar('\n');
+#endif
 
     esp_tls_conn_delete(tls);
 
