@@ -23,6 +23,7 @@
 
 static const char *TAG = "lvgl_port";
 static SemaphoreHandle_t lvgl_mutex = NULL;
+static bool lv_port_default_handler_en = true;
 
 esp_err_t lv_port_sem_take(void)
 {
@@ -132,15 +133,22 @@ esp_err_t lvgl_init(size_t buffer_pix_size, uint32_t buffer_caps)
     }
 
     /* Task for lvgl event handler and screen flush */
-    if (pdPASS != xTaskCreate(
-        (TaskFunction_t)        lv_handler_task,
-        (const char * const)    "LVGL Handler Task",
-        (const uint32_t)        4 * 1024,
-        (void * const)          NULL,
-        (UBaseType_t)           configMAX_PRIORITIES - 3,
-        (TaskHandle_t * const)  NULL)) {
-        return ESP_ERR_NO_MEM;
+    if (lv_port_default_handler_en) {
+        if (pdPASS != xTaskCreate(
+            (TaskFunction_t)        lv_handler_task,
+            (const char * const)    "LVGL Handler Task",
+            (const uint32_t)        4 * 1024,
+            (void * const)          NULL,
+            (UBaseType_t)           configMAX_PRIORITIES - 3,
+            (TaskHandle_t * const)  NULL)) {
+            return ESP_ERR_NO_MEM;
+        }
     }
 
     return ESP_OK;
+}
+
+void lv_port_use_default_handler(bool en)
+{
+    lv_port_default_handler_en = en;
 }
