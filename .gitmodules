@@ -10,3 +10,6 @@
 [submodule "esp32-s2-hmi-devkit-1/tools/lvgl/lv_utils"]
 	path = esp32-s2-hmi-devkit-1/tools/lvgl/lv_utils
 	url = https://github.com/lvgl/lv_utils.git
+[submodule "esp32-s2-hmi-devkit-1/components/esp-qcloud"]
+	path = esp32-s2-hmi-devkit-1/components/esp-qcloud
+	url = https://github.com/espressif/esp-qcloud.git

@@ -1,6 +1,6 @@
 /**
  * @file lv_conf.h
- *
+ * 
  */
 
 /*
@@ -380,18 +380,31 @@ typedef void * lv_indev_drv_user_data_t;            /*Type of user data in the i
  * #define LV_FONT_CUSTOM_DECLARE LV_FONT_DECLARE(my_font_1) \
  *                                LV_FONT_DECLARE(my_font_2)
  */
-#define LV_FONT_CUSTOM_DECLARE  LV_FONT_DECLARE(font_en_20) \
+#define LV_FONT_CUSTOM_DECLARE  LV_FONT_DECLARE(font_clock_32) \
+                                LV_FONT_DECLARE(font_clock_108) \
+                                LV_FONT_DECLARE(font_en_18) \
+                                LV_FONT_DECLARE(font_en_20) \
                                 LV_FONT_DECLARE(font_en_24) \
                                 LV_FONT_DECLARE(font_en_28) \
                                 LV_FONT_DECLARE(font_en_32) \
                                 LV_FONT_DECLARE(font_en_36) \
                                 LV_FONT_DECLARE(font_en_40) \
                                 LV_FONT_DECLARE(font_en_48) \
+                                LV_FONT_DECLARE(font_en_bold_20) \
+                                LV_FONT_DECLARE(font_en_bold_24) \
+                                LV_FONT_DECLARE(font_en_bold_28) \
+                                LV_FONT_DECLARE(font_en_bold_32) \
+                                LV_FONT_DECLARE(font_en_bold_36) \
+                                LV_FONT_DECLARE(font_en_bold_48) \
+                                LV_FONT_DECLARE(font_en_bold_60) \
+                                LV_FONT_DECLARE(font_en_bold_72) \
                                 LV_FONT_DECLARE(font_kb_24) \
                                 LV_FONT_DECLARE(font_en_bold_24) \
                                 LV_FONT_DECLARE(font_en_bold_28) \
                                 LV_FONT_DECLARE(font_en_bold_48) \
-                                LV_FONT_DECLARE(font_en_20_compress)
+                                LV_FONT_DECLARE(font_en_20_compress) \
+                                LV_FONT_DECLARE(font_symbol_28) \
+                                LV_FONT_DECLARE(font_en_thin_20)
 
 /* Enable it if you have fonts with a lot of characters.
  * The limit depends on the font size, font face and bpp

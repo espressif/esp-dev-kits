@@ -5,8 +5,6 @@ stages:
 variables:
   BATCH_BUILD: "1"
   V: "0"
-  MAKEFLAGS: "-j5 --no-keep-going"
-  # IDF_PATH: "$CI_PROJECT_DIR/esp-idf"
   IDF_CI_BUILD: "1"
 
 before_script:
@@ -19,41 +17,12 @@ before_script:
   - echo -e "Host gitlab.espressif.cn\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - git --version
   - git submodule update --init --recursive
-  # - git clone --recursive --branch release/v4.2 --depth 1 $GITLAB_SSH_SERVER/espressif/esp-idf.git
-  # - export PATH="$IDF_PATH/tools:$PATH"
-  # - cd esp-idf
-  # - source tools/ci/setup_python.sh
-  # - source tools/ci/configure_ci_environment.sh
-  # - tools/idf_tools.py --non-interactive install && eval "$(tools/idf_tools.py --non-interactive export)" || exit 1
-  # - cd ..
 
 .build_examples_template: &build_examples_template
   stage: build
-  image: espressif/idf:release-v4.2
+  image: espressif/idf:release-v4.3
   tags:
     - build
-  # Artifacts are not used temporarily
-  # artifacts:
-  #   when: always
-  #   paths:
-  #     - $LOG_PATH
-  #   expire_in: 1 week
-  # variables:
-  #   LOG_PATH: "$CI_PROJECT_DIR/log_examples"
-
-# build_demo_make:
-#   <<: *build_examples_template
-#   script:
-#     - cd esp32-s2-kaluga-1
-#     - cd examples/camera
-#     - make defconfig && make -j5
-#     - cd ../../
-#     - cd examples/lcd
-#     - make defconfig && make -j5
-#     - cd ../../
-#     - cd examples/touch
-#     - make defconfig && make -j5
-#     - cd ../../
 
 build_kaluga_demo_cmake:
   <<: *build_examples_template
@@ -129,21 +98,21 @@ build_hmi_demo_cmake:
     - idf.py set-target esp32s2
     - idf.py build
     - cd ../../../
-    - cd examples/ulp
+    - cd examples/storage/usb_msc
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../../
+    - cd examples/power
     - idf.py fullclean
     - idf.py set-target esp32s2
     - idf.py build
     - cd ../../
-    - cd examples/usb/usb_dfu_cdc
+    - cd examples/smart-panel
     - idf.py fullclean
     - idf.py set-target esp32s2
     - idf.py build
-    - cd ../../../
-    - cd examples/usb/usb_msc
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../../
+    - cd ../../
 
 push_master_to_github:
   stage: deploy
@@ -173,5 +142,3 @@ push_master_to_github:
     # NB: In gitlab 9.x, CI_BUILD_REF was deprecated. New name is CI_COMMIT_REF. If below command suddenly
     # generates bash syntax errors, this is probably why.
     - eval $(git for-each-ref --shell bash --format 'if [ $CI_BUILD_REF == %(objectname) ]; then git checkout -B %(refname:strip=3); git push --follow-tags github %(refname:strip=3); fi;' $GITHUB_PUSH_REFS)
-  
-  

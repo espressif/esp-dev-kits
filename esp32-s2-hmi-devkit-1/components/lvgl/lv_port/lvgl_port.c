@@ -21,6 +21,7 @@
 
 #include "lvgl_port.h"
 
+static const char *TAG = "lvgl_port";
 static SemaphoreHandle_t lvgl_mutex = NULL;
 
 esp_err_t lv_port_sem_take(void)
@@ -101,6 +102,11 @@ esp_err_t lvgl_init(size_t buffer_pix_size, uint32_t buffer_caps)
     lv_buf = (lv_color_t *)heap_caps_malloc(sizeof(lv_color_t) * buffer_pix_size, buffer_caps);
     lv_disp_buf_init(&disp_buf, lv_buf, NULL, buffer_pix_size);
 
+    if (NULL == lv_buf) {
+        ESP_LOGE(TAG, "No free mem for allocating buffer");
+        return ESP_ERR_NO_MEM;
+    }
+
     /*Create a display*/
     lv_disp_drv_t disp_drv;
     lv_disp_drv_init(&disp_drv);
@@ -115,22 +121,26 @@ esp_err_t lvgl_init(size_t buffer_pix_size, uint32_t buffer_caps)
     indev_drv.read_cb = lvgl_read_cb;
     lv_indev_drv_register(&indev_drv);
 
-    xTaskCreate(
+    if (pdPASS != xTaskCreate(
 		(TaskFunction_t)        lvgl_tick_task,
 		(const char * const)    "LVGL Tick Task",
 		(const uint32_t)        512,
 		(void * const)          NULL,
 		(UBaseType_t)           configMAX_PRIORITIES - 1,
-		(TaskHandle_t * const)  NULL);
+		(TaskHandle_t * const)  NULL)) {
+        return ESP_ERR_NO_MEM;
+    }
 
     /* Task for lvgl event handler and screen flush */
-    xTaskCreate(
+    if (pdPASS != xTaskCreate(
         (TaskFunction_t)        lv_handler_task,
         (const char * const)    "LVGL Handler Task",
         (const uint32_t)        4 * 1024,
         (void * const)          NULL,
-        (UBaseType_t)           configMAX_PRIORITIES - 2,
-        (TaskHandle_t * const)  NULL);
+        (UBaseType_t)           configMAX_PRIORITIES - 3,
+        (TaskHandle_t * const)  NULL)) {
+        return ESP_ERR_NO_MEM;
+    }
 
     return ESP_OK;
 }

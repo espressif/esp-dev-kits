@@ -1,0 +1,11 @@
+idf_component_register(
+    SRC_DIRS
+        "."
+        "app"
+        "icon"
+        "qrgen"
+        "ui"
+    INCLUDE_DIRS
+        "include"
+        "qrgen"
+        "app/include")

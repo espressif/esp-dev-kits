@@ -73,6 +73,7 @@ static lv_fs_res_t fs_dir_close (lv_fs_drv_t * drv, void * rddir_p);
 /**********************
  *  STATIC VARIABLES
  **********************/
+static esp_err_t lv_fs_init_result = LV_FS_RES_HW_ERR;
 static char f_path[256];
 /**********************
  * GLOBAL PROTOTYPES
@@ -86,14 +87,21 @@ static char f_path[256];
  *   GLOBAL FUNCTIONS
  **********************/
 
-void lv_port_fs_init(void)
+esp_err_t lv_fs_get_init_result(void)
 {
-    /*----------------------------------------------------
-     * Initialize your storage device and File System
-     * -------------------------------------------------*/
-    fs_init();
+    return lv_fs_init_result;
+}
 
-    
+esp_err_t lv_port_fs_init(void)
+{
+    lv_fs_init_result = bsp_sdcard_init();
+
+    if (ESP_OK == lv_fs_init_result) {
+        fs_init();
+        return ESP_OK;
+    }
+
+    return lv_fs_init_result;
 }
 
 /**********************
