@@ -70,6 +70,13 @@ esp_err_t lv_port_sem_take(void);
  */
 esp_err_t lv_port_sem_give(void);
 
+/**
+ * @brief Use default ported lvgl handler task or not.
+ * 
+ * @param en Enable or not.
+ */
+void lv_port_use_default_handler(bool en);
+
 #ifdef __cplusplus
 }
 #endif

@@ -16,11 +16,11 @@ before_script:
   - chmod 600 ~/.ssh/id_rsa
   - echo -e "Host gitlab.espressif.cn\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - git --version
-  - git submodule update --init --recursive
+  - git submodule update --init --recursive --force
 
 .build_examples_template: &build_examples_template
   stage: build
-  image: espressif/idf:release-v4.3
+  image: espressif/idf:release-v4.2
   tags:
     - build
 
@@ -109,6 +109,11 @@ build_hmi_demo_cmake:
     - idf.py build
     - cd ../../
     - cd examples/smart-panel
+    - idf.py fullclean
+    - idf.py set-target esp32s2
+    - idf.py build
+    - cd ../../
+    - cd examples/freetype
     - idf.py fullclean
     - idf.py set-target esp32s2
     - idf.py build
