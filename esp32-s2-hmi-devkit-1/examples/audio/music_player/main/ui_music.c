@@ -2,7 +2,7 @@
  * @file ui_music.c
  * @brief Music example UI
  * @version 0.1
- * @date 2021-03-04
+ * @date 2021-01-01
  * 
  * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
  *
@@ -21,11 +21,7 @@
 
 #include "ui_music.h"
 
-#define COLOR_BAR   lv_color_make(86, 94, 102)
-#define COLOR_THEME lv_color_make(252, 199, 0)
-#define COLOR_DEEP  lv_color_make(246, 174, 61)
-#define COLOR_TEXT  lv_color_make(56, 56, 56)
-#define COLOR_BG    lv_color_make(238, 241, 245)
+static const char *TAG = "ui_music";
 
 static lv_obj_t *img_album = NULL;
 static lv_obj_t *label_music_name = NULL;
@@ -41,6 +37,13 @@ static lv_obj_t *slider_volume = NULL;
 static lv_obj_t *obj_lyric = NULL;
 static lv_obj_t *obj_control = NULL;
 static lv_obj_t *slider_progress = NULL;
+static lv_obj_t *list_music_file = NULL;
+
+static int lyric_count = 0;
+static bool is_playing = false;
+static audio_file_info_list_t *p_audio_file_info = NULL;
+
+extern void *data_music_album[];
 
 static const char * music_lyric[] = {
     "Music Lyric - Examples\n"
@@ -60,8 +63,8 @@ static const char * music_lyric[] = {
 static void lyric_task(lv_task_t *task);
 static void slider_volume_cb(lv_obj_t *obj, lv_event_t event);
 static void btn_play_pause_cb(lv_obj_t *obj, lv_event_t event);
-
-static bool is_playing = false;
+static void btn_prev_next_cb(lv_obj_t *obj, lv_event_t event);
+static void btn_list_cb(lv_obj_t *obj, lv_event_t event);
 
 LV_IMG_DECLARE(music_album)
 
@@ -70,10 +73,10 @@ void ui_music(void)
     img_album = lv_img_create(lv_scr_act(), NULL);
     lv_img_set_src(img_album, &music_album);
     lv_obj_set_style_local_radius(img_album, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, 10);
-    lv_obj_set_pos(img_album, 25, 50);
+    lv_obj_set_pos(img_album, 25, 75);
 
     obj_lyric = lv_obj_create(lv_scr_act(), NULL);
-    lv_obj_set_size(obj_lyric, 465, 305);
+    lv_obj_set_size(obj_lyric, 465, 280);
     lv_obj_set_style_local_radius(obj_lyric, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 15);
     lv_obj_set_style_local_border_width(obj_lyric, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_align(obj_lyric, img_album, LV_ALIGN_OUT_RIGHT_TOP, 25, 0);
@@ -83,7 +86,7 @@ void ui_music(void)
     lv_slider_set_range(slider_volume, 0, 100);
     lv_slider_set_value(slider_volume, 30, LV_ANIM_ON);
     lv_obj_set_style_local_radius(slider_volume, LV_BAR_PART_BG, LV_STATE_DEFAULT, 15);
-    lv_obj_align(slider_volume, img_album, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, 30);
+    lv_obj_align(slider_volume, img_album, LV_ALIGN_OUT_BOTTOM_RIGHT, 0, 20);
     lv_obj_set_style_local_value_str(slider_volume, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_SYMBOL_VOLUME_MID);
     lv_obj_set_style_local_value_align(slider_volume, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_ALIGN_OUT_LEFT_MID);
     lv_obj_set_style_local_value_font(slider_volume, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, &lv_font_montserrat_32);
@@ -109,6 +112,7 @@ void ui_music(void)
     lv_obj_set_style_local_bg_color(btn_prev, LV_BTN_PART_MAIN, LV_STATE_PRESSED, COLOR_THEME);
     lv_obj_set_style_local_value_font(btn_prev, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_32);
     lv_obj_align(btn_prev, NULL, LV_ALIGN_IN_LEFT_MID, 25, 0);
+    lv_obj_set_event_cb(btn_prev, btn_prev_next_cb);
 
     btn_play_pause = lv_btn_create(obj_control, btn_prev);
     lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLAY);
@@ -125,6 +129,7 @@ void ui_music(void)
     btn_next = lv_btn_create(obj_control, btn_prev);
     lv_obj_set_style_local_value_str(btn_next, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_NEXT);
     lv_obj_align(btn_next, btn_play_pause, LV_ALIGN_OUT_RIGHT_MID, 25, 0);
+    lv_obj_set_event_cb(btn_next, btn_prev_next_cb);
 
     slider_progress = lv_slider_create(obj_control, NULL);
     lv_obj_set_size(slider_progress , 250, 4);
@@ -153,33 +158,65 @@ void ui_music(void)
     lv_obj_set_style_local_value_color(btn_list, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_THEME);
     lv_obj_set_style_local_value_color(btn_list, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_COLOR_WHITE);
     lv_obj_align(btn_list, btn_play_mode, LV_ALIGN_OUT_RIGHT_MID, 25, 0);
+    lv_obj_set_event_cb(btn_list, btn_list_cb);
 
     label_music_name = lv_label_create(obj_lyric, NULL);
     lv_label_set_text(label_music_name, "Music Player");
     lv_obj_set_style_local_text_font(label_music_name, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_48);
     lv_obj_align(label_music_name, NULL, LV_ALIGN_IN_TOP_MID, 0, 40);
 
-    roller_lyric = lv_roller_create(lv_scr_act(), NULL);
-    lv_roller_set_options(roller_lyric, music_lyric[0], LV_ROLLER_MODE_NORMAL);
-
+    roller_lyric = lv_roller_create(obj_lyric, NULL);
+    lv_roller_set_auto_fit(roller_lyric, false);
     lv_roller_set_visible_row_count(roller_lyric, 3);
+    lv_obj_set_width(roller_lyric, 450);
+    lv_roller_set_options(roller_lyric, music_lyric[0], LV_ROLLER_MODE_NORMAL);
     lv_obj_set_style_local_text_font(roller_lyric, LV_ROLLER_PART_BG, LV_STATE_DEFAULT, &font_en_20);
     lv_obj_set_style_local_text_font(roller_lyric, LV_ROLLER_PART_SELECTED, LV_STATE_DEFAULT, &font_en_20);
-
     lv_obj_set_style_local_bg_color(roller_lyric, LV_ROLLER_PART_BG, LV_STATE_DEFAULT, LV_COLOR_WHITE);
     lv_obj_set_style_local_bg_color(roller_lyric, LV_ROLLER_PART_SELECTED, LV_STATE_DEFAULT, LV_COLOR_WHITE);
-    
     lv_obj_set_style_local_text_color(roller_lyric, LV_ROLLER_PART_BG, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_text_color(roller_lyric, LV_ROLLER_PART_SELECTED, LV_STATE_DEFAULT, COLOR_THEME);
-
     lv_obj_set_style_local_bg_opa(roller_lyric, LV_ROLLER_PART_BG, LV_STATE_DEFAULT, 0);
-    
-    lv_roller_set_auto_fit(roller_lyric, false);
     lv_obj_set_style_local_border_width(roller_lyric, LV_ROLLER_PART_BG, LV_STATE_DEFAULT, 0);
-    lv_obj_set_width(roller_lyric, 450);
-    lv_obj_align(roller_lyric, label_music_name, LV_ALIGN_OUT_BOTTOM_MID, 0, 60);
+    lv_obj_align(roller_lyric, label_music_name, LV_ALIGN_OUT_BOTTOM_MID, 0, 40);
+
+    list_music_file = lv_list_create(lv_scr_act(), NULL);
+    lv_obj_set_hidden(list_music_file, true);
+    lv_obj_set_size(list_music_file, 300, 250);
+    lv_obj_set_style_local_text_font(list_music_file, LV_LIST_PART_BG, LV_STATE_DEFAULT, &font_en_20);
+    lv_obj_set_style_local_border_width(list_music_file, LV_LIST_PART_BG, LV_STATE_DEFAULT, 0);
+    lv_obj_align(list_music_file, obj_control, LV_ALIGN_OUT_TOP_RIGHT, 0, -10);
+    /* Update music file to list */
+
+    app_music_get_audio_info_link_head(&p_audio_file_info);
+    if (NULL != p_audio_file_info) {
+        do {
+            if (NULL != p_audio_file_info->file_name) {
+                lv_list_add_btn(list_music_file, NULL, p_audio_file_info->file_name);
+            }
+            p_audio_file_info = p_audio_file_info->next;
+        } while (NULL != p_audio_file_info);
+    } else {
+        ESP_LOGE(TAG, "Empty audio file info link");
+    }
+
 
     lv_task_create(lyric_task, 100, 1, NULL);
+}
+void ui_music_update_length(size_t data_size)
+{
+    static char fmt_text[16];
+    sprintf(fmt_text, "%02d:%02d", data_size / 44100 / 60, (data_size / 44100) % 60);
+    lv_label_set_text_static(label_music_length, fmt_text);
+}
+
+void ui_music_update_btn(void)
+{
+    if (AUDIO_STATE_PLAY == audio_hal_get_state()) {
+        lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PAUSE);
+    } else {
+        lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLAY);
+    }
 }
 
 static void lyric_task(lv_task_t *task)
@@ -187,11 +224,14 @@ static void lyric_task(lv_task_t *task)
     int delay_time = 3000;  /* ms */
     int delay_times = task->period > delay_time ? 1 : delay_time / task->period;
 
-    static int count = 0;
     static int roller_selected_index = 0;
 
-    if (count++ >= delay_times) {
-        count = 0;
+    if (AUDIO_STATE_PLAY == audio_hal_get_state()) {
+        lyric_count++;
+    }
+
+    if (lyric_count >= delay_times) {
+        lyric_count = 0;
 
         if (++roller_selected_index >= lv_roller_get_option_cnt(roller_lyric)) {
             lv_task_del(task);
@@ -199,6 +239,11 @@ static void lyric_task(lv_task_t *task)
             lv_roller_set_selected(roller_lyric, roller_selected_index, LV_ANIM_ON);
         }
     }
+}
+
+void lyric_reset_count(void)
+{
+    lyric_count = 0;
 }
 
 static void slider_volume_cb(lv_obj_t *obj, lv_event_t event)
@@ -211,14 +256,32 @@ static void slider_volume_cb(lv_obj_t *obj, lv_event_t event)
 static void btn_play_pause_cb(lv_obj_t *obj, lv_event_t event)
 {
     if (LV_EVENT_CLICKED == event) {
+        is_playing =  AUDIO_STATE_PLAY == audio_hal_get_state();
         if (is_playing) {
-            lv_obj_set_style_local_value_str(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLAY);
             audio_hal_pause();
         } else {
-            lv_obj_set_style_local_value_str(obj, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PAUSE);
             audio_hal_start();
         }
         is_playing = !is_playing;
     }
+
+    ui_music_update_btn();
 }
 
+static void btn_list_cb(lv_obj_t *obj, lv_event_t event)
+{
+    if (LV_EVENT_CLICKED == event) {
+        lv_obj_set_hidden(list_music_file, !lv_obj_get_hidden(list_music_file));
+    }
+}
+
+static void btn_prev_next_cb(lv_obj_t *obj, lv_event_t event)
+{
+    if (LV_EVENT_CLICKED == event) {
+        if (btn_prev == obj) {
+            app_music_send_event(MUSIC_EVENT_PREV);
+        } else {
+            app_music_send_event(MUSIC_EVENT_NEXT);
+        }
+    }
+}

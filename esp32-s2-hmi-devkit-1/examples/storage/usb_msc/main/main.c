@@ -27,24 +27,6 @@
 
 static const char *TAG = "main";
 
-/**
- * @brief USB Device Driver task
- * 
- * @param param Not used
- */
-static void usb_device_task(void *param)
-{
-    (void) param;
-
-    while (1) {
-        if(tusb_inited()) {
-            tud_task();
-        }
-
-        vTaskDelay(pdMS_TO_TICKS(1));
-    }
-}
-
 //--------------------------------------------------------------------+
 // tinyusb callbacks
 //--------------------------------------------------------------------+
@@ -84,24 +66,15 @@ static tinyusb_config_t tusb_cfg = {
 
 void app_main(void)
 {
-    ext_io_t io_config = BSP_EXT_IO_DEFAULT_CONFIG();
-    ext_io_t io_level = BSP_EXT_IO_DEFAULT_LEVEL();
-
     ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
 
     ESP_ERROR_CHECK(tca9554_init());
+    ext_io_t io_config = BSP_EXT_IO_DEFAULT_CONFIG();
+    ext_io_t io_level = BSP_EXT_IO_DEFAULT_LEVEL();
     ESP_ERROR_CHECK(tca9554_write_output_pins(io_config.val));
     ESP_ERROR_CHECK(tca9554_write_output_pins(io_level.val));
 
-    bsp_sdcard_init();
+    ESP_ERROR_CHECK(bsp_sdcard_init());
 
     ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
-    
-    xTaskCreate(
-        (TaskFunction_t)        usb_device_task,
-        (const char * const)    "USB Device Task",
-        (const uint32_t)        4 * 1024,
-        (void * const)          NULL,
-        (UBaseType_t)           configMAX_PRIORITIES,
-        (TaskHandle_t * const)  NULL);
 }

@@ -78,8 +78,10 @@ static lv_obj_t *bar_gyro_z = NULL;
 
 /* Objects for als sensor detail page */
 static lv_obj_t *arc_als_val = NULL;
+static lv_obj_t *label_voltage = NULL;
+static lv_obj_t *label_voltage_val = NULL;
 // static lv_obj_t *gauge_als_val = NULL;
-static lv_obj_t *slider_backlight = NULL;
+// static lv_obj_t *slider_backlight = NULL;
 
 /* Objects for temp & humid sensor detail page */
 static lv_obj_t *label_temp = NULL;
@@ -109,16 +111,12 @@ static void ui_temp_humid_detail_init(void);
 static void ui_temp_humid_detail_show(void);
 static void ui_temp_humid_detail_hide(void);
 
-static void slider_event_cb(lv_obj_t *obj, lv_event_t event)
-{
-    if (LV_EVENT_VALUE_CHANGED == event) {
-        cat5171_set_resistance(lv_slider_get_value(obj));
-    }
-}
-
 void sensor_data_update_task(lv_task_t *task)
 {
     static char fmt_text[8];
+    static float voltage = 0.0f;
+    static uint8_t adc_cvt_count = 0;
+    static uint8_t adc_val = 0;
     static float light;
     static float temp, humid;
     static mpu6050_gyro_value_t gyro_val;
@@ -145,6 +143,18 @@ void sensor_data_update_task(lv_task_t *task)
     
     case ui_item_als:
         als_get_value(&light);
+        adc081_get_converted_value(&adc_val);
+        adc_cvt_count++;
+        if (adc_cvt_count <= 5) {
+            voltage += adc_val * 3.3f * 4 / 255.0f;
+        } else {
+            sprintf(fmt_text, "%.2f V", voltage / 5);
+            lv_label_set_text(label_voltage_val, fmt_text);
+            voltage = 0;
+            adc_cvt_count = 0;
+        }
+
+
         sprintf(fmt_text, "%d", (int) light);
         lv_arc_set_value(arc_als_val, (int) light);
         lv_obj_set_style_local_value_str(arc_als_val, LV_ARC_PART_BG, LV_STATE_DEFAULT, fmt_text);
@@ -294,30 +304,30 @@ static void ui_als_detail_init(void)
     lv_obj_set_style_local_line_color(arc_als_val, LV_ARC_PART_INDIC, LV_STATE_DEFAULT, COLOR_THEME);
     lv_obj_align(arc_als_val, NULL, LV_ALIGN_CENTER, 0, -20);
 
-    slider_backlight = lv_slider_create(obj_detail, NULL);
-    lv_obj_set_style_local_border_color(slider_backlight, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, COLOR_THEME);
-    lv_obj_set_style_local_bg_color(slider_backlight, LV_SLIDER_PART_INDIC,LV_STATE_DEFAULT, COLOR_LIGHT);
-    lv_obj_set_style_local_bg_color(slider_backlight, LV_SLIDER_PART_KNOB,LV_STATE_DEFAULT, COLOR_DEEP);
-    
-    lv_obj_align(slider_backlight, arc_als_val, LV_ALIGN_OUT_BOTTOM_MID, 0, 0);
-    lv_slider_set_range(slider_backlight, 0, 255);
-    lv_slider_set_value(slider_backlight, 127, LV_ANIM_ON);
-    lv_obj_set_event_cb(slider_backlight, slider_event_cb);
+    label_voltage = lv_label_create(obj_detail, NULL);
+    lv_label_set_text_static(label_voltage, "Battery :");
+    lv_obj_set_style_local_text_font(label_voltage, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_28);
+    lv_obj_align(label_voltage, arc_als_val, LV_ALIGN_OUT_BOTTOM_LEFT, 50, 0);
+
+    label_voltage_val = lv_label_create(obj_detail, NULL);
+    lv_label_set_text_static(label_voltage_val, "0.00 V");
+    lv_obj_set_style_local_text_font(label_voltage_val, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_28);
+    lv_obj_align(label_voltage_val, arc_als_val, LV_ALIGN_OUT_BOTTOM_RIGHT, -50, 0);
 }
 
 static void ui_als_detail_show(void)
 {
     lv_obj_set_hidden(arc_als_val, false);
-    // lv_obj_set_hidden(gauge_als_val, false);
-    lv_obj_set_hidden(slider_backlight, false);
+    lv_obj_set_hidden(label_voltage, false);
+    lv_obj_set_hidden(label_voltage_val, false);
 }
 
 static void ui_als_detail_hide(void)
 {
     UI_LOG_TRACE("Hide ALS page");
     lv_obj_set_hidden(arc_als_val, true);
-    // lv_obj_set_hidden(gauge_als_val, true);
-    lv_obj_set_hidden(slider_backlight, true);
+    lv_obj_set_hidden(label_voltage, true);
+    lv_obj_set_hidden(label_voltage_val, true);
 }
 
 static void ui_temp_humid_detail_init(void)

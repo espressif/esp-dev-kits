@@ -23,7 +23,6 @@
 #include "ui_main.h"
 
 static const char *TAG = "device";
-#define LOG_TRACE(...)	ESP_LOGD(TAG, ##__VA_ARGS__)
 
 static float temp = 0, humid = 0;
 static volatile bool b_sensor_data_update = true;
@@ -36,7 +35,6 @@ esp_err_t device_init(void)
     ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
 
     /* Turn on sensor power supply */
-    LOG_TRACE("Init for IO Expander");
     ESP_ERROR_CHECK(tca9554_init());
     ext_io_t io_level = BSP_EXT_IO_DEFAULT_LEVEL();
     ext_io_t io_config = BSP_EXT_IO_DEFAULT_CONFIG();
@@ -47,24 +45,18 @@ esp_err_t device_init(void)
     vTaskDelay(pdMS_TO_TICKS(30));
 
     /* Init ADC */
-    LOG_TRACE("Init for Battery ADC");
     ESP_ERROR_CHECK(adc081_init());
     ESP_ERROR_CHECK(adc081_config_default());
 
     /* Init LCD touch panel */
-    LOG_TRACE("Init for Touch IC");
     ESP_ERROR_CHECK(ft5x06_init());
 
     /* Init temp and humid sensor */
-    LOG_TRACE("Init for Temp/Humid Sensor");
     ESP_ERROR_CHECK(hdc1080_init());
 
     /* Volume digital potentiometer */
-    LOG_TRACE("Init for Digital Potentiometer");
     ESP_ERROR_CHECK(tpl0401_init());
 
-    /* Init WS2812 */
-    LOG_TRACE("Init for RGB LED");
     ws2812_init();
 
     /* Noting went wrong */

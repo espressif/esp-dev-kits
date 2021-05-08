@@ -29,11 +29,9 @@
 #include "nvs_flash.h"
 #include "sdkconfig.h"
 
-#include "bsp_ext_io.h"
 #include "bsp_i2c.h"
 #include "ft5x06.h"
 #include "lvgl_port.h"
-#include "tca9554.h"
 #include "wifi_basic.h"
 
 #include "app_prov.h"
@@ -50,21 +48,17 @@ void app_main(void)
     }
 
     ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
-    ESP_ERROR_CHECK(tca9554_init());
-    ESP_ERROR_CHECK(tca9554_set_configuration(io_config.val));
-    ESP_ERROR_CHECK(tca9554_write_output_pins(io_level.val));
-
-    /* LCD touch IC init */
-    ESP_ERROR_CHECK(ft5x06_init());
 
     /* Initialize LCD */
     ESP_ERROR_CHECK(bsp_lcd_init());
+
+    /* LCD touch IC init */
+    ESP_ERROR_CHECK(ft5x06_init());
 
     /* Initialize LVGL */
     ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
     /* Initialize provision UI */
-    
     ui_prov_init();
 
     /* Start provisioning app */

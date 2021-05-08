@@ -68,11 +68,11 @@ void app_main(void)
     /* Initialize I2C bus for touch IC */
     ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
 
-    /* LCD touch IC init */
-    ESP_ERROR_CHECK(ft5x06_init());
-
     /* Initialize LCD */
     ESP_ERROR_CHECK(bsp_lcd_init());
+
+    /* LCD touch IC init */
+    ESP_ERROR_CHECK(ft5x06_init());
 
     /* Initialize LVGL */
     ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));

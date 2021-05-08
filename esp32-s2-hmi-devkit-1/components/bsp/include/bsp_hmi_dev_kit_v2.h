@@ -98,6 +98,7 @@
  */
 #define FUNC_ADC_EN     (1)
 #define GPIO_ADC_IN     (GPIO_NUM_9)
+#define GPIO_ADC_CH     (ADC_CHANNEL_8)
 
 /**
  * @brief ESP32-S2-HMI-DevKit DAC GPIO defination
