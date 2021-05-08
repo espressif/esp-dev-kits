@@ -26,6 +26,11 @@ GPATH
 **/examples/**/sdkconfig.old
 **/examples/**/build
 
+**/sdkconfig
+**/sdkconfig.old
+**/build
+**/.idea
+
 # Doc build artifacts
 **/docs/_build/
 **/docs/doxygen_sqlite3.db
