@@ -47,6 +47,4 @@ idf_component_register(
 
 # LVGL might have warnings. Just ignore them
 target_compile_options(${COMPONENT_LIB} PRIVATE
-    -w
-    -I /usr/local/include/freetype2
-    -L /usr/local/lib -lfreetype)
+    -w)
