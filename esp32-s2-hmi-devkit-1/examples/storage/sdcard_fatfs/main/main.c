@@ -28,13 +28,11 @@
 
 #include "esp_heap_caps.h"
 
-#include "bsp_ext_io.h"
 #include "bsp_i2c.h"
 #include "bsp_lcd.h"
 #include "bsp_sdcard.h"
 #include "fs_hal.h"
 #include "ft5x06.h"
-#include "tca9554.h"
 
 #include "lvgl_port.h"
 
@@ -44,9 +42,6 @@ static char *global_sub_path = NULL;
 static lv_obj_t *file_list = NULL;
 static lv_obj_t *label_path = NULL;
 static lv_obj_t *btn_back = NULL;
-
-static ext_io_t io_config = BSP_EXT_IO_DEFAULT_CONFIG();
-static ext_io_t io_level = BSP_EXT_IO_DEFAULT_LEVEL();
 
 LV_IMG_DECLARE(icon_file)
 LV_IMG_DECLARE(icon_music)
@@ -188,11 +183,6 @@ void app_main(void)
 {
     /* Init I2C bus for sensor communication */
     ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
-
-    /* Turn on sensor power supply */
-    ESP_ERROR_CHECK(tca9554_init());
-    ESP_ERROR_CHECK(tca9554_set_configuration(io_config.val));
-    ESP_ERROR_CHECK(tca9554_write_output_pins(io_level.val));
 
     /* Init LCD and touch panel */
     ESP_ERROR_CHECK(bsp_lcd_init());

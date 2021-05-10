@@ -17,6 +17,7 @@ before_script:
   - echo -e "Host gitlab.espressif.cn\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - git --version
   - git submodule update --init --recursive --force
+  - export LC_ALL="UTF-8" # Add UTF-8 support
 
 .build_examples_template: &build_examples_template
   stage: build
@@ -109,11 +110,6 @@ build_hmi_demo_cmake:
     - idf.py build
     - cd ../../
     - cd examples/smart-panel
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-    - cd examples/freetype
     - idf.py fullclean
     - idf.py set-target esp32s2
     - idf.py build

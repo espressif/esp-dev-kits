@@ -40,10 +40,7 @@ esp_err_t sensor_init(void)
     ESP_ERROR_CHECK(tca9554_init());
     ESP_ERROR_CHECK(tca9554_set_configuration(io_config.val));
     ESP_ERROR_CHECK(tca9554_write_output_pins(io_level.val));
-
-    /* Set lcd backlight to half (255 max) */
-    ESP_ERROR_CHECK(cat5171_init());
-    ESP_ERROR_CHECK(cat5171_set_resistance(127));
+    vTaskDelay(pdMS_TO_TICKS(10));
 
     /* Turn on ALS */
     ESP_ERROR_CHECK(bh1750_init());
@@ -57,6 +54,10 @@ esp_err_t sensor_init(void)
 
     /* Init MEMS sensor */
     ESP_ERROR_CHECK(mpu6050_init());
+
+    /* Init ADC */
+    ESP_ERROR_CHECK(adc081_init());
+    ESP_ERROR_CHECK(adc081_config_default());
 
     ESP_ERROR_CHECK(sensor_task_start());
 

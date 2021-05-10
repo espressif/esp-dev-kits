@@ -34,7 +34,6 @@
 #include "bsp_i2c.h"
 #include "lvgl_port.h"
 #include "ft5x06.h"
-#include "tca9554.h"
 #include "bsp_ext_io.h"
 
 #define LED_INDEX   (0)
@@ -56,15 +55,11 @@ void app_main(void)
 {
     ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
 
-    ESP_ERROR_CHECK(tca9554_init());
-    ESP_ERROR_CHECK(tca9554_set_configuration(io_config.val));
-    ESP_ERROR_CHECK(tca9554_write_output_pins(io_level.val));
+    /* Initialize LCD */
+    ESP_ERROR_CHECK(bsp_lcd_init());
 
     /* LCD touch IC init */
     ESP_ERROR_CHECK(ft5x06_init());
-
-    /* Initialize LCD */
-    ESP_ERROR_CHECK(bsp_lcd_init());
 
     /* Initialize LVGL */
     ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
@@ -81,18 +76,21 @@ void app_main(void)
 
     while (1) {
         for (int i = 0; i < sizeof led_color_list / sizeof led_color_list[0]; i++) {
+            /* The color format of WS2812 if RGB888, However, LVGL is configured as RGB565. */
             ws2812_set_rgb(LED_INDEX,
                 led_color_list[i].ch.red << 3,
                 led_color_list[i].ch.green << 2,
                 led_color_list[i].ch.blue << 3);
             ws2812_refresh();
 
+            /* Switch LED widget state */
             if (LV_COLOR_BLACK.full == led_color_list[i].full) {
                 lv_led_off(obj_led);
             } else {
                 lv_led_on(obj_led);
             }
 
+            /* Change color of LED widget */
             lv_obj_set_style_local_bg_color(obj_led, LV_LED_PART_MAIN, LV_STATE_DEFAULT, led_color_list[i]);
             lv_obj_set_style_local_shadow_color(obj_led, LV_LED_PART_MAIN, LV_STATE_DEFAULT, led_color_list[i]);
 

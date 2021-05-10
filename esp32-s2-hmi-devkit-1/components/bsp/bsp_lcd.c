@@ -28,6 +28,18 @@ static scr_info_t lcd_info;
 
 esp_err_t bsp_lcd_init(void)
 {
+    /* Reset LCD before initialize */
+    tca9554_init();
+    ext_io_t io_conf = BSP_EXT_IO_DEFAULT_CONFIG();
+    ext_io_t io_level = BSP_EXT_IO_DEFAULT_LEVEL();
+    io_level.lcd_rst = 0;
+    tca9554_set_configuration(io_conf.val);
+    tca9554_write_output_pins(io_level.val);
+    vTaskDelay(pdMS_TO_TICKS(20));
+    io_level.lcd_rst = 1;
+    tca9554_write_output_pins(io_level.val);
+
+    /* Initialize LCD */
     scr_interface_driver_t *iface_drv_i2s;
     scr_controller_config_t lcd_cfg = {0};
     i2s_lcd_config_t i2s_lcd_cfg = {

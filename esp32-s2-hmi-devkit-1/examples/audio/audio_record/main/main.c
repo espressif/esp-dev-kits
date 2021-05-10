@@ -35,7 +35,6 @@
 #include "bsp_i2c.h"
 #include "lvgl_port.h"
 
-#include "cat5171.h"
 #include "ft5x06.h"
 #include "tpl0401.h"
 #include "tca9554.h"
@@ -45,8 +44,6 @@
 #include "ui_record.h"
 #include "sdkconfig.h"
 
-#define CONFIG_AUDIO_SAMPLE_RATE     (20000)
-
 #ifdef CONFIG_AUDIO_DAC_OUTPUT
 #include "dac_audio.h"
 #endif
@@ -54,6 +51,10 @@
 #ifdef CONFIG_AUDIO_PWM_OUTPUT
 #include "pwm_audio.h"
 #endif
+
+#define CONFIG_AUDIO_SAMPLE_RATE     (20000)
+
+static const char *TAG = "rec_example";
 
 static size_t audio_index = 0;
 static size_t audio_total = 0;
@@ -145,42 +146,34 @@ void audio_record_start(void)
     timer_start(TIMER_GROUP_0, TIMER_0);
 }
 
-static ext_io_t io_config = BSP_EXT_IO_DEFAULT_CONFIG();
-static ext_io_t io_level = BSP_EXT_IO_DEFAULT_LEVEL();
-
 void app_main(void)
 {
     ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
-    ESP_ERROR_CHECK(tca9554_init());
-    ESP_ERROR_CHECK(tca9554_set_configuration(io_config.val));
-    ESP_ERROR_CHECK(tca9554_write_output_pins(io_level.val));
-
-    /* LCD backlight brightness digital potentiometer */
-    ESP_ERROR_CHECK(cat5171_init());
-    ESP_ERROR_CHECK(cat5171_set_resistance(250));
 
     /* Volume digital potentiometer */
     ESP_ERROR_CHECK(tpl0401_init());
-    ESP_ERROR_CHECK(tpl0401_set_resistance(30 * 255 / 100));
-
-    /* LCD touch IC init */
-    ESP_ERROR_CHECK(ft5x06_init());
+    ESP_ERROR_CHECK(tpl0401_set_resistance(30 * 127 / 100));
 
     /* Initialize LCD */
     ESP_ERROR_CHECK(bsp_lcd_init());
+
+    /* LCD touch IC init */
+    ESP_ERROR_CHECK(ft5x06_init());
 
     /* Initialize LVGL */
     ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
     /* Config ADC */
     adc1_config_width(ADC_WIDTH_BIT_13);
-    adc1_config_channel_atten(ADC_CHANNEL_8, ADC_ATTEN_DB_6);
+    adc1_config_channel_atten(GPIO_ADC_CH, ADC_ATTEN_DB_6);
 
 #if CONFIG_AUDIO_DAC_OUTPUT
-    dac_output_enable(DAC_CHANNEL_2);
+    /* Config DAC output for audio interface */
+    dac_output_enable(GPIO_DAC_CH);
 #endif
 
 #if CONFIG_AUDIO_PWM_OUTPUT
+    /* Config LEDC as PWM output for audio interface */
     static pwm_audio_config_t pac = {
         .duty_resolution    = LEDC_TIMER_8_BIT,
         .gpio_num           = GPIO_NUM_18,
@@ -190,11 +183,18 @@ void app_main(void)
     pwm_audio_init(&pac);
 #endif
 
-    /* Allocate 3s audio buffer */
+    /* Allocate audio buffer. Limited by DRAM size, only allocate 3S */
     audio_buffer = heap_caps_malloc(CONFIG_AUDIO_SAMPLE_RATE * 3 * sizeof(uint8_t),
         MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
 
+    if (NULL == audio_buffer) {
+        ESP_LOGE(TAG, "Failed allocate mem for audio buffer.");
+        return;
+    }
+
+    /* Start timer group to call isr periodically */
     timer_group_init();
 
+    /* Init UI of example */
     ui_record();
 }

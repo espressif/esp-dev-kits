@@ -27,11 +27,15 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
+#include "freertos/task.h"
 
 #include "esp_log.h"
 
 #include "bsp_board.h"
 #include "screen_driver.h"
+
+#include "tca9554.h"
+#include "bsp_ext_io.h"
 
 #ifdef __cplusplus
 extern "C" {

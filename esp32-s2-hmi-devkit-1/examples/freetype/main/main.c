@@ -138,22 +138,19 @@ void app_main(void)
 {
     print_sys_info("App begin");
     ESP_ERROR_CHECK(bsp_i2c_init(I2C_NUM_0, 400000));
-    ESP_ERROR_CHECK(tca9554_init());
-    ext_io_t io_level = BSP_EXT_IO_DEFAULT_LEVEL();
-    ext_io_t io_config = BSP_EXT_IO_DEFAULT_CONFIG();
-    io_level.lcd_rst = 0;
-    ESP_ERROR_CHECK(tca9554_set_configuration(io_config.val));
-    ESP_ERROR_CHECK(tca9554_write_output_pins(io_level.val));
-    vTaskDelay(pdMS_TO_TICKS(30));
-    io_level.lcd_rst = 1;
-    ESP_ERROR_CHECK(tca9554_write_output_pins(io_level.val));
-    ESP_ERROR_CHECK(ft5x06_init());
-    ESP_ERROR_CHECK(init_storage());
+    
+    /* Init LCD and touch IC */
     ESP_ERROR_CHECK(bsp_lcd_init());
+    ESP_ERROR_CHECK(ft5x06_init());
+
+    /* Init storage with font file */
+    ESP_ERROR_CHECK(init_storage());
+
+    /* Disable default LVGL handler task in `lvgl_port.c` */
     lv_port_use_default_handler(false);
     ESP_ERROR_CHECK(lvgl_init(LVGL_SCR_SIZE / 8, LV_BUF_ALLOC_INTERNAL));
 
-    /* Set background color */
+    /* Set background color. And manually call lv_task_handler to update background */
     lv_obj_set_style_local_bg_color(lv_scr_act(), LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
     lv_task_handler();
 

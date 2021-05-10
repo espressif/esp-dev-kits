@@ -30,8 +30,8 @@
 #include "lvgl_port.h"
 #include "sensor.h"
 
+#include "adc081.h"
 #include "bh1750.h"
-#include "cat5171.h"
 #include "mpu6050.h"
 
 #ifdef __cplusplus

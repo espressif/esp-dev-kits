@@ -26,22 +26,64 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/semphr.h"
 
+#include "audio_hal.h"
+#include "bsp_sdcard.h"
+#include "fs_hal.h"
 #include "lvgl/lvgl.h"
 #include "lvgl_port.h"
-#include "audio_hal.h"
-#include "fs_hal.h"
-#include "bsp_sdcard.h"
+
+#include "ui_music.h"
+
+#define SAMPLE_RATE     (44100)
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
+typedef enum {
+    MUSIC_EVENT_NONE = 0,
+	MUSIC_EVENT_PREV,
+	MUSIC_EVENT_NEXT,
+} music_event_t;
+
+typedef struct _audio_file_info_list_t {
+    char *file_name;
+    size_t file_size;
+    struct _audio_file_info_list_t *prev;
+    struct _audio_file_info_list_t *next;
+} audio_file_info_list_t;
+
 /**
- * @brief Start music player app
+ * @brief Start music player app.
  * 
- * @return esp_err_t 
+ * @return esp_err_t Task create state.
  */
 esp_err_t app_music_start(void);
+
+/**
+ * @brief Send event to music app.
+ * 
+ * @param event Event to send. See `music_event_t`.
+ * @return esp_err_t Send state.
+ */
+esp_err_t app_music_send_event(music_event_t event);
+
+/**
+ * @brief Scan audio files with given path.
+ * 
+ * @param path The full path want to scan. Like "/sdcard/music" or "/spiffs/audio".
+ * @param p_file_count pointer to count of files.
+ * @return esp_err_t Scan result.
+ */
+esp_err_t app_music_update_music_info(const char *path, size_t *p_file_count);
+
+/**
+ * @brief Get head of audio info link, NULL if no file or not scaned.
+ * 
+ * @param head poniter to the pointer of audio file info list.
+ * @return esp_err_t Result of link head get result.
+ */
+esp_err_t app_music_get_audio_info_link_head(audio_file_info_list_t **head);
 
 #ifdef __cplusplus
 }

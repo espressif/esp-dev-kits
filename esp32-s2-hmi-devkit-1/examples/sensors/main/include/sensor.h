@@ -30,8 +30,8 @@
 #include "esp_log.h"
 
 #include "bsp_ext_io.h"
+#include "adc081.h"
 #include "bh1750.h"
-#include "cat5171.h"
 #include "ft5x06.h"
 #include "hdc1080.h"
 #include "mpu6050.h"
