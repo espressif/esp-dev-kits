@@ -21,13 +21,7 @@
 #include "lvgl/lvgl.h"
 #include "lvgl_port.h"
 
-#include "bsp_ext_io.h"
-#include "bh1750.h"
-#include "cat5171.h"
-#include "hdc1080.h"
-#include "mpu6050.h"
-#include "tca9554.h"
-#include "ws2812.h"
+#include "sensor.h"
 
 #ifdef __cplusplus
 extern "C" {

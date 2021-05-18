@@ -26,9 +26,9 @@
 #define UI_LOG_TRACE(...)	ESP_LOGI(TAG, ##__VA_ARGS__)
 
 static lv_obj_t *btn_sleep = NULL;
-static lv_obj_t *slider_lcd_bl = NULL;
+static lv_obj_t *bar_bat_voltage = NULL;
 static lv_obj_t *slider_led[3];
-static lv_obj_t *label_lcd_bl = NULL;
+static lv_obj_t *label_bat_voltage = NULL;
 static lv_obj_t *label_led = NULL;
 static lv_obj_t *led[8] = { [0 ... 7] = NULL };
 static lv_obj_t *sw_ext_io[8] = { [0 ... 7] = NULL };
@@ -90,18 +90,6 @@ static void sw_ext_io_cb(lv_obj_t *obj, lv_event_t event)
     }
 }
 
-static void slider_lcd_cb(lv_obj_t *obj, lv_event_t event)
-{
-    static char fmt_text[8];
-
-    if (LV_EVENT_VALUE_CHANGED == event) {
-        int value = lv_slider_get_value(obj);
-        cat5171_set_resistance(value * 255 / 100);
-        sprintf(fmt_text, "%d%%", value);
-        lv_obj_set_style_local_value_str(obj, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, fmt_text);
-    }
-}
-
 static void slider_led_cb(lv_obj_t *obj, lv_event_t event)
 {
     static char fmt_text[3][8];
@@ -131,6 +119,28 @@ static void ext_io_update_task(lv_task_t *task)
             lv_led_off(led[i]);
         }
     }
+}
+
+static void bat_voltage_update_task(lv_task_t *task)
+{
+    static int count = 0;
+    static float voltage = 0;
+    static uint8_t adc_val = 0;
+    static char fmt_text[8] = "0.00V";
+
+    count++;
+    if (count <= 10) {
+        adc081_get_converted_value(&adc_val);
+        voltage += adc_val * 3.3f * 4 / 255.0f;
+    } else {
+        voltage /= 10.0f;
+        sprintf(fmt_text, "%.2fV", voltage);
+        lv_bar_set_value(bar_bat_voltage, 100 * voltage, LV_ANIM_ON);
+        lv_obj_set_style_local_value_str(bar_bat_voltage, LV_BAR_PART_BG, LV_STATE_DEFAULT, fmt_text);
+        count = 0;
+        voltage = 0;
+    }
+
 }
 
 void ui_power_init(void)
@@ -172,23 +182,29 @@ void ui_power_init(void)
         lv_obj_align(led[i], sw_ext_io[i], LV_ALIGN_OUT_LEFT_MID, -30, 0);
     }
 
+    /* Some of power domain control is not recommanded by UI, disable them */
+    lv_obj_set_state(sw_ext_io[1], LV_STATE_DISABLED);
+    lv_obj_set_state(sw_ext_io[2], LV_STATE_DISABLED);
+    lv_obj_set_state(sw_ext_io[4], LV_STATE_DISABLED);
+    lv_obj_set_state(sw_ext_io[7], LV_STATE_DISABLED);
+    
+
     /* Create a task to show input level */
     lv_task_create(ext_io_update_task, 100, 1, NULL);
 
     /* Create sliders to set LCD backlight */
-    slider_lcd_bl = lv_slider_create(lv_scr_act(), NULL);
-    lv_slider_set_range(slider_lcd_bl, 0, 100);
-    lv_slider_set_value(slider_lcd_bl, 75, LV_ANIM_ON);
-    lv_obj_align(slider_lcd_bl, NULL, LV_ALIGN_CENTER, 150, -120);
-    lv_obj_set_event_cb(slider_lcd_bl, slider_lcd_cb);
-    lv_obj_set_style_local_value_str(slider_lcd_bl, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, "75%");
-    lv_obj_set_style_local_value_font(slider_lcd_bl, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, &font_en_24);
-    lv_obj_set_style_local_value_align(slider_lcd_bl, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_ALIGN_OUT_RIGHT_MID);
-    lv_obj_set_style_local_value_ofs_x(slider_lcd_bl, LV_SLIDER_PART_BG, LV_STATE_DEFAULT, 10);
-    label_lcd_bl = lv_label_create(lv_scr_act(), NULL);
-    lv_label_set_text_static(label_lcd_bl, "LCD Backlight");
-    lv_obj_set_style_local_text_font(label_lcd_bl, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_28);
-    lv_obj_align(label_lcd_bl, slider_lcd_bl, LV_ALIGN_OUT_TOP_MID, 0, -20);
+    bar_bat_voltage = lv_bar_create(lv_scr_act(), NULL);
+    lv_bar_set_range(bar_bat_voltage, 300, 450);
+    lv_bar_set_value(bar_bat_voltage, 0, LV_ANIM_ON);
+    lv_obj_align(bar_bat_voltage, NULL, LV_ALIGN_CENTER, 150, -120);
+    lv_obj_set_style_local_value_str(bar_bat_voltage, LV_BAR_PART_BG, LV_STATE_DEFAULT, "0.00V");
+    lv_obj_set_style_local_value_font(bar_bat_voltage, LV_BAR_PART_BG, LV_STATE_DEFAULT, &font_en_24);
+    lv_obj_set_style_local_value_align(bar_bat_voltage, LV_BAR_PART_BG, LV_STATE_DEFAULT, LV_ALIGN_OUT_RIGHT_MID);
+    lv_obj_set_style_local_value_ofs_x(bar_bat_voltage, LV_BAR_PART_BG, LV_STATE_DEFAULT, 10);
+    label_bat_voltage = lv_label_create(lv_scr_act(), NULL);
+    lv_label_set_text_static(label_bat_voltage, "Battery Voltage");
+    lv_obj_set_style_local_text_font(label_bat_voltage, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_28);
+    lv_obj_align(label_bat_voltage, bar_bat_voltage, LV_ALIGN_OUT_TOP_MID, 0, -20);
 
     /* Create sliders to control WS2812 RGB LED */
     for (int i = 0; i < 3; i++) {
@@ -197,7 +213,7 @@ void ui_power_init(void)
         lv_slider_set_value(slider_led[i], 0, LV_ANIM_ON);
         lv_obj_set_event_cb(slider_led[i], slider_led_cb);
         lv_obj_set_user_data(slider_led[i], (lv_obj_user_data_t) i);
-        lv_obj_align(slider_led[i], slider_lcd_bl, LV_ALIGN_OUT_BOTTOM_MID, 0, 100 + 50 * i);
+        lv_obj_align(slider_led[i], bar_bat_voltage, LV_ALIGN_OUT_BOTTOM_MID, 0, 100 + 50 * i);
         lv_obj_set_style_local_value_str(slider_led[i], LV_SLIDER_PART_BG, LV_STATE_DEFAULT, "0");
         lv_obj_set_style_local_value_font(slider_led[i], LV_SLIDER_PART_BG, LV_STATE_DEFAULT, &font_en_24);
         lv_obj_set_style_local_value_align(slider_led[i], LV_SLIDER_PART_BG, LV_STATE_DEFAULT, LV_ALIGN_OUT_RIGHT_MID);
@@ -212,7 +228,8 @@ void ui_power_init(void)
     lv_label_set_text_static(label_led, "LED Color");
     lv_obj_set_style_local_text_font(label_led, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_28);
     lv_obj_align(label_led, slider_led[0], LV_ALIGN_OUT_TOP_MID, 0, -20);
-    
+
+    lv_task_create(bat_voltage_update_task, 100, 1, NULL);
 
     lv_port_sem_give();
 }
