@@ -16,3 +16,6 @@
 [submodule "esp32-s2-hmi-devkit-1/examples/freetype/main/freetype"]
 	path = esp32-s2-hmi-devkit-1/examples/freetype/main/freetype
 	url = https://gitlab.freedesktop.org/freetype/freetype.git
+[submodule "esp32-s2-kaluga-1/components/esp32-camera"]
+	path = esp32-s2-kaluga-1/components/esp32-camera
+	url = https://github.com/espressif/esp32-camera.git
