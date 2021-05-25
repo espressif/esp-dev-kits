@@ -19,7 +19,7 @@
 #include "esp_log.h"
 #include "esp_spiffs.h"
 #include "lcd.h"
-#include "jpeg.h"
+#include "esp_camera.h"
 #include "board.h"
 
 static const char *TAG = "main";
@@ -59,10 +59,18 @@ void esp_photo_display(void)
     size_t total = 0, used = 0;
     ESP_ERROR_CHECK(esp_spiffs_info(NULL, &total, &used));
 
-    uint8_t *img = NULL;
+    uint8_t *rgb565 = malloc(IMAGE_WIDTH * IMAGE_HIGHT * 2);
+    if (NULL == rgb565) {
+        ESP_LOGE(TAG, "can't alloc memory for rgb565 buffer");
+        return;
+    }
     uint8_t *buf = malloc(IMAGE_MAX_SIZE);
+    if (NULL == buf) {
+        free(rgb565);
+        ESP_LOGE(TAG, "can't alloc memory for jpeg file buffer");
+        return;
+    }
     int read_bytes = 0;
-    int width = 0, height = 0;
 
     FILE *fd = fopen("/spiffs/image.jpg", "r");
 
@@ -70,10 +78,11 @@ void esp_photo_display(void)
     ESP_LOGI(TAG, "spiffs:read_bytes:%d  fd: %p", read_bytes, fd);
     fclose(fd);
 
-    img = jpeg_decode(buf, &width, &height);
+    jpg2rgb565(buf, read_bytes, rgb565, JPG_SCALE_NONE);
     lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HIGHT - 1);
-    lcd_write_data(img, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
+    lcd_write_data(rgb565, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
     free(buf);
+    free(rgb565);
     vTaskDelay(2000 / portTICK_RATE_MS);
 }
 
@@ -146,7 +155,8 @@ void app_main()
         .pin_rst         = LCD_RST,
         .pin_bk          = LCD_BK,
         .max_buffer_size = 2 * 1024,
-        .horizontal      = 2 /*!< 2: UP, 3: DOWN */
+        .horizontal      = 2, /*!< 2: UP, 3: DOWN */
+        .swap_data       = 1,
     };
 
     lcd_init(&lcd_config);
