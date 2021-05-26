@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.5)
 
 set(EXTRA_COMPONENT_DIRS "../../components/board"
                          "../../components/lcd"
-                         "../../components/jpeg"
+                         "../../components/esp32-camera"
 )
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)

@@ -41,6 +41,7 @@ typedef struct {
     uint8_t pin_bk;
     lldesc_t *dma;
     uint8_t *buffer;
+    bool swap_data;
     QueueHandle_t event_queue;
 } lcd_obj_t;
 
@@ -105,7 +106,16 @@ static void spi_write_data(uint8_t *data, size_t len)
 
     /*!< Processing a complete piece of data, ping-pong operation */
     for (x = 0; x < cnt; x++) {
-        memcpy((uint8_t *)lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf, data, lcd_obj->half_buffer_size);
+        uint8_t *out = (uint8_t *)lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf;
+        if (lcd_obj->swap_data) {
+            for (size_t i = 0; i < lcd_obj->half_buffer_size; i += 2) {
+                out[i]   = data[i+1];
+                out[i+1] = data[i];
+            }
+        } else {
+            memcpy(out, data, lcd_obj->half_buffer_size);
+        }
+        
         data += lcd_obj->half_buffer_size;
         xQueueReceive(lcd_obj->event_queue, (void *)&event, portMAX_DELAY);
         GPSPI3.mosi_dlen.usr_mosi_bit_len = lcd_obj->half_buffer_size * 8 - 1;
@@ -119,7 +129,15 @@ static void spi_write_data(uint8_t *data, size_t len)
 
     /*!< Processing remaining incomplete segment data */
     if (cnt) {
-        memcpy((uint8_t *)lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf, data, cnt);
+        uint8_t *out = (uint8_t *)lcd_obj->dma[(x % 2) * lcd_obj->half_node_cnt].buf;
+        if (lcd_obj->swap_data && cnt > 1) {
+            for (size_t i = 0; i < cnt; i += 2) {
+                out[i]   = data[i+1];
+                out[i+1] = data[i];
+            }
+        } else {
+            memcpy(out, data, cnt);
+        }
 
         /*!< Handle the case where the data length is an integer multiple of lcd_obj->dma_size */
         if (cnt % lcd_obj->dma_size) {
@@ -248,7 +266,7 @@ static void lcd_ili9341_config(lcd_config_t *config)
 
     /* Memory access contorl, MX=MY=0, MV=1, ML=0, BGR=1, MH=0 */
     lcd_write_cmd(0x36);
-    lcd_write_byte(0x28);
+    lcd_write_byte(0b11000000);
 
     /* Pixel format, 16bits/pixel for RGB/MCU interface */
     lcd_write_cmd(0x3A);
@@ -593,6 +611,7 @@ int lcd_init(lcd_config_t *config)
     lcd_obj->event_queue = xQueueCreate(1, sizeof(int));
 
     lcd_obj->buffer_size = config->max_buffer_size;
+    lcd_obj->swap_data = config->swap_data;
 
     lcd_obj->pin_dc = config->pin_dc;
     lcd_obj->pin_cs = config->pin_cs;
