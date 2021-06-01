@@ -6,7 +6,7 @@ idf_component_register(
         lv_lib_freetype
         freetype/include)
 
-add_prebuilt_library(prebuilt "lib/libfreetype.a")
+add_prebuilt_library(prebuilt "lib/libfreetype.a" REQUIRES esp_rom)
 
 target_link_libraries(${COMPONENT_LIB} PRIVATE prebuilt)
 
