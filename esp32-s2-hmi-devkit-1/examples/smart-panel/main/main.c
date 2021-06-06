@@ -24,7 +24,6 @@
 #include "nvs_flash.h"
 
 #include "bsp_lcd.h"
-#include "bsp_sdcard.h"
 #include "lvgl_port.h"
 #include "lv_port_fs.h"
 

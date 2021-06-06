@@ -33,16 +33,9 @@ void *data_icon_uv = NULL;
 void *data_icon_pm2p5 = NULL;
 void *data_icon_pm2p5_press = NULL;
 
-void *data_icon_provision = NULL;
-void *data_icon_setting = NULL;
-void *data_icon_setting_btn = NULL;
 void *data_icon_app = NULL;
-void *data_icon_location = NULL;
 void *data_icon_about = NULL;
 
-void *data_icon_qr = NULL;
-
-void *bedroom = NULL;
 void *living_room = NULL;
 void *kitchen = NULL;
 void *dining_room = NULL;
@@ -70,10 +63,6 @@ void *other_device = NULL;
 
 void *data_music_album[1];
 
-void *data_ico_file_doc = NULL;
-void *data_ico_file_image = NULL;
-void *data_ico_file_music = NULL;
-
 void *weather_icon_data[5] = { [0 ... 4] = NULL };
 
 /* Resources loading list */
@@ -86,22 +75,8 @@ static ui_data_fetch_t img_fetch_list[] = {
     { "S:/UI/pm2p5_press.bin", &data_icon_pm2p5_press },
 
     /* Setting Page */
-    { "S:/UI/provision.bin", &data_icon_provision },
-    { "S:/UI/setting.bin", &data_icon_setting },
-    { "S:/UI/setting_pressed.bin", &data_icon_setting_btn },
     { "S:/UI/app.bin", &data_icon_app },
-    { "S:/UI/location.bin", &data_icon_location },
     { "S:/UI/about.bin", &data_icon_about },
-
-    /* Provision page */
-    { "S:/Icon/qr_esp_prov.bin", &data_icon_qr },
-    
-    /* Room Selection Page */
-    { "S:/UI/bedroom.bin", &bedroom },
-    { "S:/UI/living_room.bin", &living_room },
-    { "S:/UI/kitchen.bin", &kitchen },
-    { "S:/UI/dining_room.bin", &dining_room },
-    { "S:/UI/bathroom.bin", &bathroom },
 
     /* Air Conditioner Control Page */
     { "S:/UI/icon_auto.bin", &data_ico_auto },
@@ -126,12 +101,7 @@ static ui_data_fetch_t img_fetch_list[] = {
     { "S:/UI/other_device.bin", &other_device },
 
     /* Music Player Album */
-    { "S:/Pic/Album_0.bin", &(data_music_album[0]) },
-
-    /* File Manager Page */
-    { "S:/Icon/ico_file_doc.bin", &data_ico_file_doc },
-    { "S:/Icon/ico_file_image.bin", &data_ico_file_image },
-    { "S:/Icon/ico_file_music.bin", &data_ico_file_music },
+    { "S:/UI/Album_0.bin", &(data_music_album[0]) },
 
     /* Weather Pager */
     { "S:/Icon/999.bin", &weather_icon_data[0] },

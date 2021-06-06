@@ -52,7 +52,7 @@ static void app_music_task(void *pvParam)
     size_t file_count = 0;
     fs_file_t audio_file = NULL;
     size_t offset = 0, bytes_read = 0;
-    char *audio_file_dir = MOUNT_POINT "/Music";
+    char *audio_file_dir = "/spiffs" "/Music";
     music_event_t music_event = MUSIC_EVENT_NONE;
     audio_file_info_list_t *audio_file_info_list = NULL;
     
