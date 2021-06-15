@@ -39,6 +39,8 @@ static const size_t file_buffer_size = 64 * 1024;
 
 static QueueHandle_t music_event_queue = NULL;
 static audio_file_info_list_t *s_audio_file_info_list_head = NULL;
+static int32_t queue_buffer[8];
+static StaticQueue_t s_t_audio_queue;
 
 /**
  * @brief Task of music app
@@ -53,14 +55,14 @@ static void app_music_task(void *pvParam)
     size_t file_count = 0;
     fs_file_t audio_file = NULL;
     size_t offset = 0, bytes_read = 0;
-    char *audio_file_dir = MOUNT_POINT "/Music";
+    char *audio_file_dir = "/spiffs" "/Music";
     music_event_t music_event = MUSIC_EVENT_NONE;
     audio_file_info_list_t *audio_file_info_list = NULL;
     
     /* Get audio files' info */
     app_music_update_music_info(audio_file_dir, &file_count);
     app_music_get_audio_info_link_head(&audio_file_info_list);
-    LOG_TRACE("Find %d muisc files on SD card", file_count);
+    LOG_TRACE("Find %d muisc files on storage", file_count);
     if (NULL != audio_file_info_list) {
         do {
             if (NULL != audio_file_info_list->file_name) {
@@ -89,7 +91,7 @@ static void app_music_task(void *pvParam)
     }
 
     /* Create music event queue */
-    music_event_queue = xQueueCreate(8, sizeof(uint32_t));
+    music_event_queue = xQueueCreateStatic(8, sizeof(uint32_t), (uint8_t *) &queue_buffer[0],&s_t_audio_queue);
     if (NULL == music_event_queue) {
         ESP_LOGE(TAG, "No mem for music event queue");
         free(file_buffer);

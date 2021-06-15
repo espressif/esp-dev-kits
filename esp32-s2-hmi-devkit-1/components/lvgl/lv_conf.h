@@ -404,7 +404,8 @@ typedef void * lv_indev_drv_user_data_t;            /*Type of user data in the i
                                 LV_FONT_DECLARE(font_en_bold_48) \
                                 LV_FONT_DECLARE(font_en_20_compress) \
                                 LV_FONT_DECLARE(font_symbol_28) \
-                                LV_FONT_DECLARE(font_en_thin_20)
+                                LV_FONT_DECLARE(font_en_thin_20) \
+                                LV_FONT_DECLARE(font_bar_symbol)
 
 /* Enable it if you have fonts with a lot of characters.
  * The limit depends on the font size, font face and bpp

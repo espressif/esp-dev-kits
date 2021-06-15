@@ -34,12 +34,6 @@ extern "C" {
  */
 esp_err_t lv_port_fs_init(void);
 
-/**
- * @brief Get LVGL file system init state.
- * 
- * @return esp_err_t Result of state.
- */
-esp_err_t lv_fs_get_init_result(void);
 /**********************
  * GLOBAL PROTOTYPES
  **********************/

@@ -66,12 +66,12 @@ static esp_err_t audio_file_check(void)
 {
     size_t file_num = 0;
     fs_dir_t dir;
-    fs_open_dir(&dir, MOUNT_POINT "/Music");
+    fs_open_dir(&dir, "/spiffs" "/Music");
     if (NULL == dir) {
         return ESP_FAIL;
     }
 
-    fs_get_dir_file_count(MOUNT_POINT "/Music", &file_num);
+    fs_get_dir_file_count("/spiffs" "/Music", &file_num);
     if (0 == file_num) {
         fs_close_dir(&dir);
         return ESP_FAIL;
@@ -88,9 +88,10 @@ esp_err_t sys_check(void)
         "Check for PSRAM avaliable size",
         ESP_FAIL);
 
-    CHECK(ESP_OK == lv_fs_get_init_result(),
-        "Check for SD card",
-        ESP_FAIL);
+    /* Files have been stored in SPIFFS, skip SD card check */
+    // CHECK(ESP_OK == lv_fs_get_init_result(),
+    //     "Check for SD card",
+    //     ESP_FAIL);
 
     CHECK(ESP_OK == audio_file_check(),
         "Check for PCM audio file in \"Music\" folder",

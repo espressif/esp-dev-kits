@@ -29,7 +29,11 @@
 #include <unistd.h>
 
 #include "lv_port_fs.h"
-#include "bsp_sdcard.h"
+
+#include "esp_err.h"
+#include "esp_log.h"
+#include "esp_spiffs.h"
+
 /*********************
  *      DEFINES
  *********************/
@@ -82,26 +86,47 @@ static char f_path[256];
 /**********************
  *      MACROS
  **********************/
+#define LV_FS_PATH_PREFIX   "/spiffs"
 
 /**********************
  *   GLOBAL FUNCTIONS
  **********************/
-
-esp_err_t lv_fs_get_init_result(void)
-{
-    return lv_fs_init_result;
-}
-
 esp_err_t lv_port_fs_init(void)
 {
-    lv_fs_init_result = bsp_sdcard_init();
+    ESP_LOGI(TAG, "Initializing SPIFFS as demo assets storage.");
 
-    if (ESP_OK == lv_fs_init_result) {
-        fs_init();
-        return ESP_OK;
+    esp_vfs_spiffs_conf_t conf = {
+      .base_path = LV_FS_PATH_PREFIX,
+      .partition_label = NULL,
+      .max_files = 2,
+      .format_if_mount_failed = false
+    };
+
+    esp_err_t ret = esp_vfs_spiffs_register(&conf);
+
+    if (ret != ESP_OK) {
+        if (ret == ESP_FAIL) {
+            ESP_LOGE(TAG, "Failed to mount or format filesystem");
+        } else if (ret == ESP_ERR_NOT_FOUND) {
+            ESP_LOGE(TAG, "Failed to find SPIFFS partition");
+        } else {
+            ESP_LOGE(TAG, "Failed to initialize SPIFFS (%s)", esp_err_to_name(ret));
+        }
+        return ret;
     }
 
-    return lv_fs_init_result;
+    size_t total = 0, used = 0;
+    ret = esp_spiffs_info(NULL, &total, &used);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to get SPIFFS partition information (%s)", esp_err_to_name(ret));
+        return ret;
+    } else {
+        ESP_LOGI(TAG, "Partition size: total: %d, used: %d", total, used);
+    }
+
+    fs_init();
+
+    return ESP_OK;
 }
 
 /**********************
@@ -161,12 +186,11 @@ static lv_fs_res_t fs_open (lv_fs_drv_t * drv, void * file_p, const char * path,
 	else if(mode == (LV_FS_MODE_WR | LV_FS_MODE_RD)) flags = "rb+";
 
 
-    sprintf(f_path, MOUNT_POINT "/%s", path);
+    sprintf(f_path, LV_FS_PATH_PREFIX "/%s", path);
     
     file_t f = fopen(f_path, flags);
 
     if (NULL == f) {
-        ESP_LOGE(TAG, "NULL file pointer");
         return LV_FS_RES_NOT_EX;
     }
 

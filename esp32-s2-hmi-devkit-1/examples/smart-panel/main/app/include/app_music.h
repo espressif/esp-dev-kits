@@ -32,7 +32,7 @@
 #include "lvgl/lvgl.h"
 #include "lvgl_port.h"
 
-#define SAMPLE_RATE     (44100)
+#define SAMPLE_RATE     (20000)
 
 #ifdef __cplusplus
 extern "C" {

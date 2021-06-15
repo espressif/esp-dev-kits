@@ -22,8 +22,6 @@
 #include "device.h"
 #include "ui_main.h"
 
-static const char *TAG = "device";
-
 static float temp = 0, humid = 0;
 static volatile bool b_sensor_data_update = true;
 

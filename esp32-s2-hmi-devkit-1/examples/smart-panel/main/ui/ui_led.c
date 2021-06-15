@@ -124,7 +124,7 @@ void ui_led_init(void *data)
     lv_obj_set_size(_btn_pwr, 50, 50);
     lv_obj_set_style_local_radius(_btn_pwr, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_value_str(_btn_pwr, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_POWER);
-    lv_obj_set_style_local_value_font(_btn_pwr, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_symbol_28);
+    lv_obj_set_style_local_value_font(_btn_pwr, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_bar_symbol);
     
     lv_obj_set_style_local_border_width(_btn_pwr, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_outline_color(_btn_pwr, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BG);

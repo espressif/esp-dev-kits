@@ -62,7 +62,7 @@ void ui_status_bar_init(void)
     lv_obj_set_width(btn_setting, 50);
     lv_obj_set_style_local_bg_color(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
-    lv_obj_set_style_local_value_font(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_symbol_28);
+    lv_obj_set_style_local_value_font(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_bar_symbol);
     lv_obj_set_style_local_value_color(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xd9e1f9));
     lv_obj_set_style_local_value_str(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_SETTINGS);
     lv_obj_set_style_local_value_str(btn_setting, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_SYMBOL_EXTRA_SETTING_SOLID);
@@ -76,7 +76,7 @@ void ui_status_bar_init(void)
     lv_obj_set_event_cb(btn_battery, btn_cb);
     lv_obj_set_style_local_bg_color(btn_battery, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_battery, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
-    lv_obj_set_style_local_value_font(btn_battery, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_symbol_28);
+    lv_obj_set_style_local_value_font(btn_battery, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_bar_symbol);
     lv_obj_set_style_local_value_color(btn_battery, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xd9e1f9));
     lv_obj_set_style_local_value_str(btn_battery, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_EXTRA_BATTERY_FULL);
     lv_obj_align(btn_battery, btn_setting, LV_ALIGN_OUT_LEFT_MID, -20, 0);
@@ -87,7 +87,7 @@ void ui_status_bar_init(void)
     lv_obj_set_style_local_radius(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_bg_color(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
-    lv_obj_set_style_local_value_font(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_symbol_28);
+    lv_obj_set_style_local_value_font(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_bar_symbol);
     lv_obj_set_style_local_value_color(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xd9e1f9));
     lv_obj_set_style_local_value_str(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_EXTRA_WIFI_SLASH);
     lv_obj_align(btn_wifi, btn_battery, LV_ALIGN_OUT_LEFT_MID, -20, 0);
@@ -97,7 +97,7 @@ void ui_status_bar_init(void)
     lv_obj_set_style_local_radius(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_bg_color(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
-    lv_obj_set_style_local_value_font(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_symbol_28);
+    lv_obj_set_style_local_value_font(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_bar_symbol);
     lv_obj_set_style_local_value_color(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xd9e1f9));
     lv_obj_set_style_local_value_str(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_HOME);
     lv_obj_align(btn_home, NULL, LV_ALIGN_IN_LEFT_MID, 20, 0);
@@ -108,7 +108,7 @@ void ui_status_bar_init(void)
     lv_obj_set_style_local_radius(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_bg_color(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
-    lv_obj_set_style_local_value_font(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_symbol_28);
+    lv_obj_set_style_local_value_font(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_bar_symbol);
     lv_obj_set_style_local_value_color(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xd9e1f9));
     lv_obj_set_style_local_value_str(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_EXTRA_APP);
     lv_obj_set_style_local_value_str(btn_switch, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_SYMBOL_EXTRA_APP_SOLID);
@@ -120,7 +120,7 @@ void ui_status_bar_init(void)
     lv_obj_set_style_local_radius(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_bg_color(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
-    lv_obj_set_style_local_value_font(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_symbol_28);
+    lv_obj_set_style_local_value_font(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_bar_symbol);
     lv_obj_set_style_local_value_color(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xd9e1f9));
     lv_obj_set_style_local_value_str(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_EXTRA_MUSIC);
     lv_obj_set_style_local_value_str(btn_music, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_SYMBOL_EXTRA_MUSIC_SOLID);
