@@ -60,3 +60,5 @@ In each example folder, we have provided a default configuration file named `sdk
 ### IDF Version Dependencies
 
 The `examples/storage/usb_msc` example needs to be built in IDF v4.3, while other examples can be built in IDF v4.2 and later versions.
+
+<font color="red">**Notice:** Due to strict regulation on battery export, for deliveries outside of China mainland, we are shipping ESP32-S2-HMI-DevKit-1 without the battery. As a substitute, you can use the iPhone 5 replacement battery (the connector type is non-standard). The battery capacity is not critical.
