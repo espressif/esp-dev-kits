@@ -3,6 +3,7 @@ stages:
   - deploy
 
 variables:
+  PYTHON_VER: 3.6.13
   BATCH_BUILD: "1"
   V: "0"
   IDF_CI_BUILD: "1"
@@ -17,7 +18,7 @@ before_script:
   - echo -e "Host gitlab.espressif.cn\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
   - git --version
   - git submodule update --init --recursive --force
-  - export LC_ALL="UTF-8" # Add UTF-8 support
+  - export LC_ALL="C.UTF-8" # Add UTF-8 support
 
 .build_examples_template: &build_examples_template
   stage: build
@@ -114,6 +115,26 @@ build_hmi_demo_cmake:
     - idf.py set-target esp32s2
     - idf.py build
     - cd ../../
+
+build_docs:
+  stage: build
+  image: $CI_DOCKER_REGISTRY/esp-idf-doc-env:v4.4-1-v4
+  tags:
+    - build_docs
+  artifacts:
+    when: always
+    paths:
+      # English version of documentation
+      - docs/_build/en
+      # Chinese version of documentation
+      - docs/_build/zh_CN
+    expire_in: 1 week
+  script:
+    - cd docs
+    - source ./setup_python.sh
+    - pyenv rehash
+    # - /opt/pyenv/pyenv-1.2.16/versions/3.6.10/bin/python -m pip install --user -r docs/requirements.txt
+    - ./build_example.sh
 
 push_master_to_github:
   stage: deploy

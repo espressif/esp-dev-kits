@@ -1,0 +1,1 @@
+build-docs -t esp32s2 esp32
