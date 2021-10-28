@@ -6,12 +6,9 @@
 
 # Importing conf_common adds all the non-language-specific
 # parts to this conf module
-
-
-import os
-import sys
+import sys, os
 sys.path.insert(0, os.path.abspath('../'))
-from conf_common import *  # noqa: F403,F401
+from conf_common import *
 
 # General information about the project.
 project = u'ESP-Dev-Kits'
@@ -21,3 +18,10 @@ copyright = u'2016 - 2021 乐鑫信息科技（上海）股份有限公司'
 # for a list of supported languages.
 language = 'zh_CN'
 
+# Grouping the document tree into LaTeX files. List of tuples
+# (source start file, target name, title,
+#  author, documentclass [howto, manual, or own class]).
+latex_documents = [
+  ('index', 'ReadtheDocsTemplate.tex', u'ESP-Dev-Kits', 
+   u'2016 - 2021 乐鑫信息科技（上海）股份有限公司', 'manual'),
+]
