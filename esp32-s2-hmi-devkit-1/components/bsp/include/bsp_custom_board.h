@@ -31,6 +31,7 @@
 #define FUNC_LCD_EN     (0)
 #define LCD_BIT_WIDTH   (16)
 
+#define GPIO_LCD_BL     (CONFIG_LCD_BL_GPIO)
 #define GPIO_LCD_CS     (GPIO_NUM_NC)
 #define GPIO_LCD_EN     (GPIO_NUM_NC)
 #define GPIO_LCD_RS     (CONFIG_LCD_RS_GPIO)
