@@ -4,7 +4,7 @@ idf_component_register(
         lv_lib_freetype/lv_freetype.c
     INCLUDE_DIRS
         lv_lib_freetype
-        freetype/include)
+        include)
 
 add_prebuilt_library(prebuilt "lib/libfreetype.a" REQUIRES esp_rom)
 

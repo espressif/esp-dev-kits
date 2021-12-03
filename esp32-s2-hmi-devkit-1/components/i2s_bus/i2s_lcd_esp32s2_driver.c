@@ -23,6 +23,7 @@
 #include "esp_log.h"
 #include "driver/gpio.h"
 #include "driver/i2s.h"
+#include "driver/periph_ctrl.h"
 #include "esp_heap_caps.h"
 #include "esp32s2/rom/lldesc.h"
 #include "soc/system_reg.h"
