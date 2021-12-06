@@ -62,7 +62,6 @@ build_kaluga_demo_cmake:
 
 build_hmi_demo_cmake:
   <<: *build_examples_template
-  image: espressif/idf:latest
   script:
     - cd esp32-s2-hmi-devkit-1
     - cd examples/audio/audio_record
