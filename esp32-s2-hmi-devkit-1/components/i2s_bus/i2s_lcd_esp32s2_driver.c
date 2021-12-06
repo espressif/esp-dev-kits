@@ -28,7 +28,7 @@
 #include "esp32s2/rom/lldesc.h"
 #include "soc/system_reg.h"
 #include "i2s_lcd_driver.h"
-
+#include "esp_private/periph_ctrl.h"
 
 static const char *TAG = "ESP32S2_I2S_LCD";
 
