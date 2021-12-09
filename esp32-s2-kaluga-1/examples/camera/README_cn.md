@@ -8,9 +8,9 @@
 
 <table>
     <tr>
-        <td ><img src="../../docs/_static/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
-        <td ><img src="../../docs/_static/ESP-LyraP-LCD32_V1.0.png" width="300"><p align=center>ESP-LyraP-LCD32 显示屏</p></td>
-        <td ><img src="../../docs/_static/ESP-LyraP-CAM_V1.0.png" width="300"><p align=center>ESP-LyraP-CAM 摄像头</p></td>
+        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
+        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraP-LCD32_V1.0.png" width="300"><p align=center>ESP-LyraP-LCD32 显示屏</p></td>
+        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraP-CAM_V1.0.png" width="300"><p align=center>ESP-LyraP-CAM 摄像头</p></td>
     </tr>
 </table>
 
@@ -19,15 +19,15 @@
 1. 将 SW3 和 SW4 的拨码开关**全部打开（ ON ）**，即主板左下角两组拨码开关，如下图：
 * 高级：如果想使用部分触摸板  管脚，只需将触摸板相关拨码开关关闭( OFF )，详情请参阅主板和触摸板原理图。
 
-<div align="left"><img src="../../docs/_static/kaluga_examples_camera_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
 
 2. 将显示屏插入主板双排排针的内侧一排（注意：不要在显示屏和主板之间接入音频板），如下图:
 
-<div align="left"><img src="../../docs/_static/kaluga_examples_lcd_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_lcd_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
 
 3. 将摄像头插入主板，如下图:
 
-<div align="left"><img src="../../docs/_static/kaluga_examples_camera_2.jpg" width = "450" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_2.jpg" width = "450" alt="image 1-2" align=center /></div>  
 
 * ESP32_S2_Kaluga-1 LCD 管脚分配
 
@@ -168,7 +168,7 @@ I (1015) main: camera init done
 
 ## 2 附录
 
-* [ESP32-S2数据手册](../../docs/datasheet/esp32-s2_datasheet_cn.pdf)
-* [ESP32-S2-Kaluga-1 主板](../../docs/schematic/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
-* [ESP-LyraP-CAM 摄像头](../../docs/schematic/SCH_ESP-LYRAP-CAM_V1_20200302.pdf)
-* [ESP-LyraP-LCD32 显示屏](../../docs/schematic/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)
+* [ESP32-S2 技术规格书](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf)
+* [ESP32-S2-Kaluga-1 主板](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
+* [ESP-LyraP-CAM 摄像头](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP-LYRAP-CAM_V1_20200302.pdf)
+* [ESP-LyraP-LCD32 显示屏](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)

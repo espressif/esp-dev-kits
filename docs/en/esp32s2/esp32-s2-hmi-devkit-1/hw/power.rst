@@ -1,56 +1,65 @@
-电源
+Power
 ==========
 
-:link_to_translation:`en: [English]`
+:link_to_translation:`zh_CN:[中文]`
 
-为了降低电源功耗、提高电源效率并支持电池供电，ESP32-S2-HMI-DevKit-1 的电源花分成了 5 V 电源域和 3.3 V 电源域，其中部分电源可以通过软件控制，另一部分在硬件设计时被配置为始终开启。
+The power of the ESP32-S2-HMI-DevKit-1 development board is divided into a 5 V power domain and a 3.3 V power domain, so as to reduce power consumption, improve power efficiency and support battery charging. Part of the power domain can be controlled by software whereas the other part is configured as permanently enabled in hardware design.
 
-开发板出厂时烧录的固件已经关闭所有可控电源域的电源，并将所有 IC 配置为低功耗模式，以降低电流消耗。
+To reduce current consumption, the preloaded firmware will power off all controlled power domains and put all ICs to low-power mode.
 
-3.3 V 电源域
-----------------
+.. _v-power-domain-2:
 
-该电源域负责为绝大部分的 IC 和模组供电，但其分为两部分：不可控 3.3 V 电源域和可控 3.3 V 电源域。
+3.3 V Power Domain
+------------------
 
-不可控 3.3 V 电源域无法通过软件关闭，该电源由 Buck 电路得到。在 USB 有电源输入的情况下，将从 USB 线缆输入的 5 V 电源取电；在 USB 断开的情况下，则由锂电池提供 3.6 ~ 4.2 V 的电源。该电源域负责为 ESP32-S2-WROVER 模组以及其他可通过软件控制进入低功耗模式的器件供电。
+Most of the ICs and modules are powered by the 3.3 V power domain, which can be divided into an uncontrolled 3.3 V power domain and a controlled 3.3 V power domain.
 
-可控 3.3 V 电源域来自于不可控 3.3 V 电源域，通过 PMOS 控制开关，该 PMOS 栅极连接至 IO 扩展器的 P4 脚，低电平开启该电源。该电源负责为一些具有较大静态功耗且无法进入低功耗模式的 IC 进行供电。
+The uncontrolled 3.3 V power domain cannot be powered off via software, and provides power for the Buck circuit. When there is a power supply from USB, this power domain will obtain power from the 5 V input through the USB cable; when USB is disconnected, it will obtain 3.6 ~ 4.2 V power from the lithium battery. This power domain mainly provides power for the ESP32-S2-WROVER module and other devices which can enter low-power mode via software control.
 
-.. _v-电源域-1:
+The controlled 3.3 V power domain comes from the uncontrolled 3.3 V power domain and is turned on/off via a PMOS control switch, which is connected to the P4 pin of the IO expander. This power domain mainly provides power for ICs with higher static power consumption and cannot enter low-power mode.
 
-5 V 电源域
+.. figure:: ../../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-IO-expander.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 IO expander schematic
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 IO expander schematic
+
+.. _v-power-domain-1:
+
+5 V Power Domain
+------------------
+
+The 5 V power domain of the development board provides power for the audio amplifier and the TWAI® transceiver. It obtains power from the following resources:
+
+-  The USB port
+-  The power input from external 5 V power port
+-  The power passing through the Booster circuit from the lithium battery
+
+The power obtained from USB and the external 5 V power input supplies power for all devices (except CP2102N) that require 5 V power and cannot be disconnected by software. When obtaining power from the lithium battery, the EN pin level of the Booster IC can be controlled via the P5 pin of the IO expander to enable 5 V power in high level.
+
+The power input through the USB port on the bottom of the board is split into two lines: one provides power for CP2102N while the other becomes USB_5V after passing through a diode. The CP2102N will only be powered up when this USB port is connected, since it only needs to be in operation when the PC is connected. Any 5 V power input will cause the Booster IC to be powered off and charge the on-board lithium battery via the charging IC.
+
+Power Dependencies
+---------------------
+
+The following functions depend on the 5 V power domain:
+
+-  TWAI® (selects available power supply from USB 5 V or Booster 5 V automatically)
+-  Audio amplifier (gets power supply from USB 5 V, if it fails, will try from the battery)
+-  5 V power output connector (the same as TWAI®)
+
+The following functions depend on the controlled 3.3 V power domain:
+
+-  Micro-SD card
+-  Microphone and its bias circuit, and operational amplifier
+-  Display and touch function
+-  WS2812 RGB LED and IR LED
+-  IR LED
+
+Power State
 ---------------
 
-开发板的 5 V 电源域负责为音频功放和 TWAI® 收发器供电。其来源有以下几种方式：
+When the development board is connected via the USB cable, the 5 V power domain is powered on automatically and the charging IC outputs voltage to supply power for the battery. In this case, the controlled 3.3 V power domain is controlled by the P4 pin of the IO expander.
 
--  USB 接口
--  外部输入至连接器的 5 V 电源口
--  锂电池经过 Booster 电路后的电源
-
-通过 USB 和外部 5 V 输入的电源会为所有需要 5 V 供电的器件（除 CP2102N）进行供电，且无法通过软件断开。通过电池供电时，则可以通过 IO 扩展器的 P5 引脚来控制 Booster IC 的 EN 脚电平，通过高电平开启 5 V 电源。
-
-通过开发板底部 USB 接口输入的电源将分为两路，一路负责为 CP2102N 供电，另一路在经过二极管后成为 USB_5V。由于 CP2102N 只在连接 PC 时才需进入工作状态，因此只有在该 USB 口连接后，CP2102N 才会上电。任何 5 V 的电源输入都会关闭 Booster IC，并经由充电 IC 为板载锂离子电池进行充电。
-
-电源依赖情况
-----------------
-
-以下功能依赖 5 V 电源域：
-
--  TWAI®（从 USB 5 V 或 Booster 5 V 自动选择可用电源）
--  音频功放（从 USB 5 V 获取，若失败，尝试从电池获取）
--  5 V 电源输出连接器（同 TWAI®)
-
-以下功能依赖可控 3.3 V 电源域：
-
--  Micro-SD 卡
--  麦克风及其偏置电路、运算放大器
--  显示屏与触摸功能
--  WS2812 RGB LED 与红外二极管
--  红外二极管
-
-电源工作状态
-----------------
-
-当通过 USB 线缆连接开发板时，5 V 电源域自动开启，充电 IC 输出电压为电池充电，可控 3.3 V 电源域由 IO 扩展器的 P4 脚进行控制。
-
-当使用电池为开发板进行供电时，可控 3.3 V 电源域由 IO 扩展器的 P4 脚进行控制，5 V 电源域由 IO 扩展器的 P5 脚控制，充电 IC 不会工作。
+When the development board is powered by the battery, the controlled 3.3 V power domain is controlled by the P4 pin of the IO expander while the 5 V power domain is controlled by the P5 pin of the IO expander, and the charging IC will not work.

@@ -1,6 +1,5 @@
-
-ESP32-LCDKit
-=================
+ESP32-MeshKit-Sense
+======================
 
 :link_to_translation:`en:[English]`
 
@@ -10,5 +9,6 @@ ESP32-MeshKit-Sense 是一款以乐鑫 ESP32 模组为核心的开发板，集�
 .. toctree::
     :maxdepth: 2
 
-    用户手册 <user_guide>
-    硬件资料 <hw/index>
+    用户指南 <user_guide>
+    硬件参考 <hw/hw-reference>
+ 

@@ -1,13 +1,12 @@
-
-硬件
+H/W Reference
 ========================
 
-:link_to_translation:`en:[English]`
+:link_to_translation:`zh_CN:[中文]`
 
 .. toctree::
     :maxdepth: 2
 
-    音频 <audio>
-    显示 <display>
-    电源 <power>
-    资料 <board-resource>
+    Audio <audio>
+    Display <display>
+    Power <power>
+    Resources <board-resource>
