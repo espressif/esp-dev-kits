@@ -48,6 +48,8 @@ Description of Components
 
 ESP32-S2-HMI-DevKit-1 is an HMI development board designed based on the ESP32-S2. The following figure describes its key on-board resources:
 
+.. _board-func:
+
 .. figure:: ../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-board-func-v1.0.jpg
    :align: center
    :alt: ESP32-S2-HMI-DevKit-1 (click to enlarge)
@@ -78,10 +80,6 @@ The key components of the board are described in a clockwise direction.
      - Press this button to restart the system.
    * - IR LED
      - Infrared emitting diode, driven by GPIO21. Can switch between RGB LED and IR LED via IO expander.
-   * - microSD Connector
-     - Insert microSD card to expand the storage space of the device.
-   * - Battery Connector
-     - Connect to the battery.
    * - Charge IC
      - Charge battery.
    * - MEMS
@@ -92,23 +90,10 @@ The key components of the board are described in a clockwise direction.
      - Expand GPIO through I2C bus.
    * - MIC
      - On-board simulated microphone.
-   * - Speaker Connector
-     - To connect a speaker.
-   * - 4.3" LCD FPC Connector
-     - (Reserved) Connect to the supported 4.3” LCD extension board using the FPC cable.
    * - Audio PA
      - Audio amplifier.
    * - 4.3" 800 × 480 LCD
      - A 4.3-inch TFT-LCD which uses 16-bit 8080 parallel port with 480×800 resolution, and 256-level hardware DC backlight adjustment circuit. It is connected with an I2C capacitive touch panel overlay.
-
-The following figure presents the back view of ESP32-S2-HMI-DevKit-1。
-
-.. figure:: ../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-back-view-v1.0.png
-   :align: center
-   :alt: ESP32-S2-HMI-DevKit-1 - back view
-   :figclass: align-center
-
-   ESP32-S2-HMI-DevKit-1 - back view
 
 
 Start Application Development
@@ -151,6 +136,20 @@ After configuration completed, you can switch back to the ``esp-dev-kits/esp32-s
 Project Options
 ^^^^^^^^^^^^^^^
 
+Various exmaples are provided for ESP32-S2-HMI-DevKit-1 as shown below:
+
+- Prining "Hello world!" on screen: `Hello World Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/hello_world>`_
+- Blinking WS2812 LED and showing the color on screen: `LED Blink Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/led_blink>`_
+- Starting a UI to configure Wi-Fi credential: `GUI Provision Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/provision>`_
+- Acquiring audio with ADC from the output of analog MIC: `Audio Record Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/audio_record>`_
+- Playing music: `Music Player Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/music_player>`_
+- Shutting down selected board area into a deep sleep: `Power Example <../../../../esp32-s2-hmi-devkit-1/examples/power>`_
+- Using Freetype to render fonts: `Freetype Example <../../../../esp32-s2-hmi-devkit-1/examples/freetype>`_
+- Using on-board sensors: `Sensor Evaluation Example <../../../../esp32-s2-hmi-devkit-1/examples/sensors>`_
+- Using smart panel: `Smart Panel Example <../../../../esp32-s2-hmi-devkit-1/examples/smart-panel>`_
+- Viewing files on SD card: `SD Card File Viewer Example <../../../../esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs>`_
+- USB flash disk: `USB Flash Disk File Serving Demo <../../../../esp32-s2-hmi-devkit-1/examples/storage/usb_msc>`_
+
 You can configure project options by entering ``idf.py menuconfig`` in each example directory.
 
 Please make sure to correctly configure the following options in menuconfig:
@@ -165,20 +164,6 @@ Please make sure to correctly configure the following options in menuconfig:
 -  ``(Top) -> Component config -> FreeRTOS``: set ``Tick rate (Hz)`` as 1000.
 
 In each example folder, we have provided a default configuration file named ``sdkconfig.defaults``, with above options configured correctly.
-
-Here are the exmaples provided:
-
-- Prining "Hello world!" on screen: `Hello World Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/hello_world>`_
-- Blinking WS2812 LED and showing the color on screen: `LED Blink Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/led_blink>`_
-- Starting a UI to configure Wi-Fi credential: `GUI Provision Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/provision>`_
-- Acquiring audio with ADC from the output of analog MIC: `Audio Record Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/audio_record>`_
-- Playing music: `Music Player Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/music_player>`_
-- Shutting down selected board area into a deep sleep: `Power Example <../../../../esp32-s2-hmi-devkit-1/examples/power>`_
-- Using Freetype to render fonts: `Freetype Example <../../../../esp32-s2-hmi-devkit-1/examples/freetype>`_
-- Using on-board sensors: `Sensor Evaluation Example <../../../../esp32-s2-hmi-devkit-1/examples/sensors>`_
-- Using smart panel: `Smart Panel Example <../../../../esp32-s2-hmi-devkit-1/examples/smart-panel>`_
-- Viewing files on SD card: `SD Card File Viewer Example <../../../../esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs>`_
-- USB flash disk: `USB Flash Disk File Serving Demo <../../../../esp32-s2-hmi-devkit-1/examples/storage/usb_msc>`_
 
 
 ESP-IDF Version Dependencies
@@ -247,13 +232,15 @@ The power of the ESP32-S2-HMI-DevKit-1 development board is divided into a 5 V p
 
 To reduce current consumption, the preloaded firmware will power off all controlled power domains and put all ICs to low-power mode.
 
-For more information, please refer to `Power <hw/power.rst>`_.
+For more information, please refer to :ref:`power`.
 
+
+.. _connectors:
 
 Connectors
 -------------
 
-It provides multiple extended interfaces for customized development. The connectors of the board are described in a clockwise direction. 
+It provides multiple extended interfaces for customized development. The connectors of the board are described in a clockwise direction. Please refer to :ref:`ESP32-S2-HMI-DevKit-1 key on-board resources <board-func>`.
 
 .. list-table::
    :widths: 30 70
@@ -261,6 +248,10 @@ It provides multiple extended interfaces for customized development. The connect
 
    * - Connecotrs
      - Description
+   * - Speaker Connector
+     - To connect a speaker.
+   * - 4.3" LCD FPC Connector
+     - (Reserved) Connect to the supported 4.3” LCD extension board using the FPC cable.
    * - USB DFU/CDC
      - 1 x USB-C OTG (DFU/CDC) port, 1 x USB-C debug port.
    * - 3.3 V Connector
@@ -275,8 +266,19 @@ It provides multiple extended interfaces for customized development. The connect
      - Can connect devices on the SPI bus if the SD card is not in use.
    * - Prog/UART
      - This interface is used to observe log output and firmware flash.
+   * - microSD Connector
+     - Insert microSD card to expand the storage space of the device.
+   * - Battery Connector
+     - To connect a battery.
 
+Below is the back view of the board for your reference.
 
+.. figure:: ../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-back-view-v1.0.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 - back view
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 - back view
 
 Related Documents
 =================
