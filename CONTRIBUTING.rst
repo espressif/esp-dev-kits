@@ -1,6 +1,9 @@
 Contributions Guide
 ========================
 
+:link_to_translation:`zh_CN:[中文]`
+
+
 We welcome contributions to the esp-iot-solution project!
 
 How to Contribute

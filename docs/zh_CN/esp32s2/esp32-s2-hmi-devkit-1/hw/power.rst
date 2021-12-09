@@ -7,6 +7,8 @@
 
 开发板出厂时烧录的固件已经关闭所有可控电源域的电源，并将所有 IC 配置为低功耗模式，以降低电流消耗。
 
+.. _v-电源域-2:
+
 3.3 V 电源域
 ----------------
 
@@ -16,10 +18,18 @@
 
 可控 3.3 V 电源域来自于不可控 3.3 V 电源域，通过 PMOS 控制开关，该 PMOS 栅极连接至 IO 扩展器的 P4 脚，低电平开启该电源。该电源负责为一些具有较大静态功耗且无法进入低功耗模式的 IC 进行供电。
 
+.. figure:: ../../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-IO-expander.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 IO 扩展器原理图
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 IO 扩展器原理图
+
 .. _v-电源域-1:
 
 5 V 电源域
 ---------------
+<div id="3vpowerdomain">
 
 开发板的 5 V 电源域负责为音频功放和 TWAI® 收发器供电。其来源有以下几种方式：
 
@@ -45,8 +55,8 @@
 -  Micro-SD 卡
 -  麦克风及其偏置电路、运算放大器
 -  显示屏与触摸功能
--  WS2812 RGB LED 与红外二极管
--  红外二极管
+-  WS2812 RGB LED 与 IR LED
+-  IR LED
 
 电源工作状态
 ----------------

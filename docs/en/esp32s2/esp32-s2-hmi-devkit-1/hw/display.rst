@@ -1,31 +1,56 @@
-显示屏与触摸面板
-=================
+Display and Touch Panel
+===========================
 
-:link_to_translation:`en: [English]`
+:link_to_translation:`zh_CN:[中文]`
 
-ESP32-S2-HMI-DevKit-1 配备了一块分辨率为 800×480 的 4.3 英寸彩色液晶显示屏，并附带有 I2C 接口的触摸面板。该屏幕的接口类型与数据位宽由可编程引脚控制。该开发板已通过电阻配置为 16 位的 8080 并口通讯。
+The ESP32-S2-HMI-DevKit-1 has a 4.3-inch color TFT-LCD with 800×480 resolution, and a touch panel with an I2C interface. The interface type and data bit width of this display is controlled by programmable pins. This development board has been configured as 16-bit 8080 parallel communication via resistors.
 
-该 LCD 使用的显示 IC 为 RM68120，触控 IC 为 FT5436。
+This LCD uses RM68120 as its display IC and FT5436 as its touch IC.
 
-通讯
+Communication
+----------------
+
+The display IC of the LCD used in ESP32-S2-HMI-DevKit-1 has been configured for 16-bit 8080 parallel communication, with a total of 18 GPIOs used, i.e., 16 data lines (LCD_D0…LCD_D15), a bit clock signal (LCD_WR) and a data/command distinguish signal (LCD_DC/LCD_RS).
+
+The touch IC uses the I2C interface to communicate with MCU and can share this interface with other I2C's ICs, and thus does not need to use additional GPIOs. The touch IC supports interrupt signal output. The interrupt signal is first sent to the P2 pin of the IO expander, and the falling edge from this pin will generate a low level in the interrupt output pin of the IO expander, so that the MCU receives this interrupt signal. In this case, you can read the input level register of the IO expander to check whether this interrupt is from the touch IC. Once a read operation completed, the interrupt flag will be cleared.
+
+.. figure:: ../../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-IO-expander.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 IO expander schematic
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 IO expander schematic
+
+Backlight
+------------
+
+As the LEDs are connected in series, they need to be drived by constant current via the Booster circuit. The rated current is 18 mA and the voltage is approximately 24 V (may not be accurate, only for reference). To prevent the feedback voltage of the Booster circuit always being 0 when the display is not connected, and thus causing high voltage loaded to both ends of the backlight filter capacitor C21, please make sure this capacitor can withstand 38 V.
+
+.. figure:: ../../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-backlight-PWM-dimming.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 backlight PWM dimming schematic (click to enlarge)
+   :scale: 60%
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 backlight PWM dimming schematic (click to enlarge)
+
+Since PWM dimming may cause display flicker and some Booster IC do not support high-frequency PWM signal control, this development board provides an option to use DC dimming circuit to reach high performance, as shown in the figure below:
+
+.. figure:: ../../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-dc-diming-circuit.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 DC dimming circuit schematic (click to enlarge)
+   :scale: 50%
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 DC dimming circuit schematic (click to enlarge)
+
+This DC dimming circuit inputs the VFB voltage to the operational amplifier TLV6741, whose gain resistor is a digital potentiometer that can be modified via the I2C bus. This digital potentiometer is CAT5171, with 256 levels of resolution and a maximum resistance value of 50 kOhm.
+
+The EN pin of the Booster IC is controlled by the P7 pin of the IO expander in high level. If you want to keep the contents while turning off the display, please set this pin to low level so as to disable backlight.
+
+Touch
 --------
 
-ESP32-S2-HMI-DevKit-1 所用 LCD 的显示 IC 已配置为使用 16 位的 8080 接口进行通讯，共使用 18 个 GPIO 接口，包括 16 位数据线（LCD_D0…LCD_D15)，位时钟信号（LCD_WR）及数据命令区分信号 (LCD_DC/LCD_RS)。
+The capacitive touch panel on the development board uses a touch IC with a resolution of 800×480 and supports up to 5-point touch and hardware gesture recognition.
 
-触控 IC 使用 I2C 接口与 MCU 通讯，可与其他 I2C IC 共用，无需额外占用 GPIO 接口。触控 IC 支持中断信号输出。该中断信号将被发送至 IO 扩展器的 P2 引脚，由该引脚产生的下降沿会使 IO 扩展器的中断输出脚产生低电平，从而使 MCU 接收到中断信号。此时，可通过读取 IO 扩展器的输入电平寄存器判读中断来源，从而确定该中断是否来自触控 IC。完成一次输入电平的读取会自动清除中断标志。
-
-背光
---------
-
-该 LCD 内置了串联型 LED，需要使用 Booster 电路进行恒流驱动。额定电流为 18 mA，此时电压约为 24 V（可能有误差，仅供参考）。为了防止屏幕未连接时 Booster 电路的反馈电压始终为0，从而导致高压加载到背光滤波电容的两端，请确保该电容的耐压在 38 V 以上 。
-
-由于 PWM 调光可能会带来闪烁，且部分 Booster IC 不支持高频 PWM 信号控制，该开发板使用了 DC 调光电路以解决上述问题。该 DC 调光电路将 VFB 电压输入到运算放大器，其增益电阻为数字电位器，可以通过 I2C 总线修改其阻值以达到修改增益大小的目的。使用的数字电位器为 CAT5171，具有 256 级分辨率，最大电阻值为 50 k。V1.1 版本的开发板未使用该功能，LED 的电流被固定至 20 mA。
-
-Booster IC 的 EN 脚由 IO 扩展器的 P7 脚控制，高电平有效。如需在关闭屏幕的同时保留显存的内容，可以将该引脚设置为低电平来关闭屏幕背光。
-
-触摸
---------
-
-开发板搭载的电容式触摸面板使用的触控 IC 分辨率为 800×480，支持最多 5 点触摸和硬件手势识别。
-
-该显示 IC 不支持硬件坐标方向转换，因此，对于显示时使用不同的旋转方向，可能需要软件对触摸 IC 读取到的数据做交换或求其相对于分辨率的差值。多点触摸属于硬件支持，在驱动中，我们也提供了读取多个触摸点的 API 供您使用该功能，但是使用的 GUI 库 LVGL 暂时不支持多点触控的处理，您可能需要在应用层自行处理这些触摸点的数据。
+The hardware of this display IC does not support screen rotation itself. Therefore, for scenarios where the panel is needed to be rotated, you may need to convert the data read by the touch IC through calculating its relative value to the resolution or via certain software. Multi-touch is supported by hardware and we provide some APIs for reading the multiple touch points. However, since the LVGL used in the GUI library does not support multi-touch processing for now, you may need to handle the data of these touch points in the application layer yourself.

@@ -12,8 +12,8 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
 
 <table>
     <tr>
-        <td ><img src="../../docs/_static/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
-        <td ><img src="../../docs/_static/ESP-LyraP-TOUCHA_V1.0.png" width="300"><p align=center>ESP-LyraP-TOUCHA 触摸板</p></td>
+        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
+        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraP-TOUCHA_V1.0.png" width="300"><p align=center>ESP-LyraP-TOUCHA 触摸板</p></td>
     </tr>
 </table>
 
@@ -21,14 +21,14 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
 
 1. 将 SW3 和 SW4 的拨码开关全部关闭（ OFF ）,即主板左下角两组拨码开关，如下图.
   *  或者将 SW3[2 3 4 6 7] 和 SW4[5 8] (kaluga 1.3: T1, T2, T3, T5, T6，T11, T14)关闭（ OFF ）.
-<div align="left"><img src="../../docs/_static/kaluga_examples_touch_1.jpg" width = "650" alt="image 1-1" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_1.jpg" width = "650" alt="image 1-1" align=center /></div>  
 
 2. 将 GPIO45 上预留的两个管脚短接，如下图：
-<div align="left"><img src="../../docs/_static/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>  
 
 3. 将触摸板接入主板中。如下图：
 
-<div align="left"><img src="../../docs/_static/kaluga_examples_touch_3.jpg" width = "650" alt="image 1-3" align=center /></div> </br></br>
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_3.jpg" width = "650" alt="image 1-3" align=center /></div> </br></br>
 
 * ESP32_S2_Kaluga-1_v1.2 & ESP32_S2_Kaluga-1_v1.3 Touch 管脚分配
 
@@ -142,6 +142,6 @@ I (469) Touch pad: touch pad [4] base 15530, thresh 155
   
 ## 2 附录
 
-* [ESP32-S2数据手册](../../docs/datasheet/esp32-s2_datasheet_cn.pdf)
-* [ESP32-S2-Kaluga-1 主板](../../docs/schematic/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
-* [ESP-LyraP-TOUCHA 触摸板](../../docs/schematic/SCH_ESP-LYRAP-TOUCHA_V1.1_20200325A.pdf)
+* [ESP32-S2 技术规格书](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf)
+* [ESP32-S2-Kaluga-1 主板](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
+* [ESP-LyraP-TOUCHA 触摸板](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP-LYRAP-TOUCHA_V1.1_20200325A.pdf)

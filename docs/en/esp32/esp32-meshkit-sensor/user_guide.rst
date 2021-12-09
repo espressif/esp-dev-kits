@@ -1,167 +1,252 @@
+ESP32-MeshKit-Sense 
+======================
 
-ESP32-MeshKit-Sense 硬件设计指南
-================================
+:link_to_translation:`zh_CN:[中文]`
 
-
-1. 产品概述
-===========
-
-ESP32-MeshKit-Sense 是一款以乐鑫 ESP32
-模组为核心的开发板，集成了温湿度传感器、环境亮度传感器等外设，并且可外接屏幕，主要用于检测模组在正常工作或睡眠状态下，连接各个外设时的电流情况。
-
-关于 ESP32 详细信息，请参考文档\ `《ESP32
-技术规格书》 <https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_cn.pdf>`__\ 。
-
-2. 电路设计说明
-===============
-
-2.1 系统框图
+Overview
 ------------
 
-ESP32 的系统框图如图 2 所示。
+ESP32-MeshKit-Sense is a development board with an ESP32 module at its core. It features peripherals, such as a temperature and humidity sensor, an ambient light sensor, etc. The board can be interfaced with screens. The board is mainly used to detect the current consumption of ESP32 modules in a normal operation state or in sleep mode, when connected to different peripherals.
 
-2.2 PCB 布局
-------------
+For more information on ESP32, please refer to `ESP32 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf>`__.
 
-PCB 布局如下图所示。
+Block Diagram and PCB Layout
+---------------------------------
 
-表 1: PCB 部件功能说明
+Block Diagram
++++++++++++++++++
 
-+-----------------+------------------------------------------------------------------------------+
-| PCB 部件        | 说明                                                                         |
-+=================+==============================================================================+
-| EXT5V           | USB 输入的 5V                                                                |
-+-----------------+------------------------------------------------------------------------------+
-| CH5V            | 充电管理芯片的输入                                                           |
-+-----------------+------------------------------------------------------------------------------+
-| CHVBA           | 充电管理芯片的输出                                                           |
-+-----------------+------------------------------------------------------------------------------+
-| VBA             | 接至电源的正极                                                               |
-+-----------------+------------------------------------------------------------------------------+
-| SUFVCC          | 当开关处于“ON”档位时，与电源输入接通，当开关处于“OFF”档位时，与 电源输入断   |
-+-----------------+------------------------------------------------------------------------------+
-| DCVCC           | 电源管理芯片 DC-DC 的输入                                                    |
-+-----------------+------------------------------------------------------------------------------+
-| 3.3V            | 电源管理芯片的输出, 即总路 3.3V                                              |
-+-----------------+------------------------------------------------------------------------------+
-| 3.3V\_PER       | 为所有外设供电的 3.3V\_Perip                                                 |
-+-----------------+------------------------------------------------------------------------------+
-| 3.3V\_ESP       | 为 ESP32 模组模块供电的 3.3V\_ESP                                            |
-+-----------------+------------------------------------------------------------------------------+
-| 3.3V\_SEN       | 为三款传感器供电的 3.3V-Perip\_Sensor                                        |
-+-----------------+------------------------------------------------------------------------------+
-| 3.3V\_SCR       | 为外接屏幕供电的 3.3V-Perip\_Screen                                          |
-+-----------------+------------------------------------------------------------------------------+
-| Charge          | 电池充电指示灯，D5 为红灯，表示正在充电;D6 为绿灯，表示充电完成              |
-+-----------------+------------------------------------------------------------------------------+
-| Sensor          | 电源指示灯，表示 3.3V-Perip\_Sensor 已接通                                   |
-+-----------------+------------------------------------------------------------------------------+
-| Screen          | 电源指示灯，表示 3.3V-Perip\_Screen 已接通                                   |
-+-----------------+------------------------------------------------------------------------------+
-| WiFi / IO15     | 信号指示灯，表示 Wi-Fi 正常工作                                              |
-+-----------------+------------------------------------------------------------------------------+
-| Network / IO4   | 信号指示灯，表示与服务器连接正常                                             |
-+-----------------+------------------------------------------------------------------------------+
+The figure below shows the block diagram of ESP32.
 
-3. 硬件模块
-===========
+.. figure:: ../../../_static/esp32-meshkit-sensor/blockdiagram.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   ESP32 Block Diagram
 
-本章主要介绍各个功能模块（接口）的硬件实现，以及对这些模块的描述。
+PCB Layout
+++++++++++++++
 
-3.1 电源管理
-------------
+The figure below shows the layout of ESP32-MeshKit-Sense PCB.
 
-3.1.1 USB/BAT 供电管理模块
+Functional Descriptions of PCB Layout are shown in the following table:
+
++-----------------------------------+-----------------------------------+
+| PCB Elements                      | Description                       |
++===================================+===================================+
+| EXT5V                             | 5 V input from USB                |
++-----------------------------------+-----------------------------------+
+| CH5V                              | input from the electrical         |
+|                                   | charging chip                     |
++-----------------------------------+-----------------------------------+
+| CHVBA                             | output from the electrical        |
+|                                   | charging chip                     |
++-----------------------------------+-----------------------------------+
+| VBA                               | Connects to the positive          |
+|                                   | electrode of the battery          |
++-----------------------------------+-----------------------------------+
+| SUFVCC                            | When the switch is toggled to the |
+|                                   | ”ON” position, it is connected to |
+|                                   | the power input. When the switch  |
+|                                   | is toggled to the ”OFF” position, |
+|                                   | the power supply is disconnected. |
++-----------------------------------+-----------------------------------+
+| DCVCC                             | Input from power management chip  |
+|                                   | DC-DC                             |
++-----------------------------------+-----------------------------------+
+| 3.3V                              | 3.3 V power output from power     |
+|                                   | supply management chip            |
++-----------------------------------+-----------------------------------+
+| 3.3V_PER                          | 3.3 V power supply for all        |
+|                                   | peripherals                       |
++-----------------------------------+-----------------------------------+
+| 3.3V_ESP                          | 3.3 V power supply for all ESP32  |
+|                                   | modules                           |
++-----------------------------------+-----------------------------------+
+| 3.3V_SEN                          | 3.3 V power supply for the three  |
+|                                   | on-board sensors                  |
++-----------------------------------+-----------------------------------+
+| 3.3V_SCR                          | 3.3 V power supply for the        |
+|                                   | off-board screen                  |
++-----------------------------------+-----------------------------------+
+| Charge                            | Battery charging indicator, D5 is |
+|                                   | a red light, indicating that      |
+|                                   | charging is undergoing; D6 is a   |
+|                                   | green light, indicating that      |
+|                                   | charging is complete.             |
++-----------------------------------+-----------------------------------+
+| Sensor                            | Power indicator, indicating that  |
+|                                   | 3.3V_Perip_Sensor is enabled      |
++-----------------------------------+-----------------------------------+
+| Screen                            | Power indicator, indicates that   |
+|                                   | 3.3V_Perip_Screen is enabled      |
++-----------------------------------+-----------------------------------+
+| WiFi / IO15                       | Signal indicator, indicating that |
+|                                   | Wi-Fi connection is working       |
+|                                   | properly                          |
++-----------------------------------+-----------------------------------+
+| Network / IO4                     | Signal indicator, indicating the  |
+|                                   | board is properly connected to    |
+|                                   | the server                        |
++-----------------------------------+-----------------------------------+
+
+Functional Modules
+-----------------------
+
+This chapter mainly introduces each functional module (interface) and the hardware schematics for them.
+
+Power Supply Management Module
++++++++++++++++++++++++++++++++++++
+
+.. _power-supply-management-module-1:
+
+Power Supply Management Module
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The development board can be powered by battery and the AP5056 power supply management chip can be used to charge the battery. The AP5056 is a complete constant current constant voltage linear charger for single cell lithium-ion batteries. It has 4.2 V of preset charge voltage and 1 A of programmable charge current.
+
+When both the USB power supply and the battery power supply are available, the system selection of power supply will be: VBUS is high, Q4 is in cut-off state, VBAT (battery power) is automatically cut off from the system power supply, and the USB supplies power for the system.
+
+The figure below shows the schematics for USB/BAT power supply management.
+
+.. figure:: ../../../_static/esp32-meshkit-sensor/BATTERY-POWER.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   USB/BAT Power Supply Management Schematics
+
+Power Supply Management for Peripherals
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+First of all, the input from the USB or BAT is converted by the power management chip into a 3.3 V voltage to power the circuit. The power management chip on the board is ETA3425, which has an output voltage of 3.3 V and a maximum output current of 600 mA.
+
+The figure below shows the schematics for peripheral power supply.
+
+.. figure:: ../../../_static/esp32-meshkit-sensor/peripheral.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   Peripheral Power Supply Schematics
+
+The main VDD33 circuit has two branches: 
+
+- ESP32_VDD33, used to power the ESP32 module module 
+- VDD33_PeriP, used to power all peripherals. 
+
+The connection between them can be controlled via the pin header and jumper cap. The figure below shows the schematics for ESP32_VDD33.
+
+.. figure:: ../../../_static/esp32-meshkit-sensor/VDD33.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   ESP32_VDD33 Schematics
+
+The VDD33_PeriP branch circuit also has two sub-branches
+
+- VDD33_PeriP_Screen, dedicated power supply for the external screen
+- VDD33_PeriP_Sensor, power supply for the three sensors
+
+The connection of the two can be controlled by the module GPIO+MOS. The figure below shows the schematics for VDD33_PeriP.
+
+.. figure:: ../../../_static/esp32-meshkit-sensor/PeriP.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   VDD33_PeriP Schematics
+
+Boot & UART
+++++++++++++++
+
+The development board is integrated with a PROG Header, which can be connected to a ESP-PROG development board via a cable. Users can then connect the Micro USB of the ESP-PROG development board to a PC for ESP32-MeshKit-Sense firmware download and debugging.
+
+The figure below shows the schematics for Boot & UART Circuit.
+
+.. figure:: ../../../_static/esp32-meshkit-sensor/UART.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   Boot & UART Circuit
+
+Module for Wakeup from Sleep
+++++++++++++++++++++++++++++++++
+
+The board has a button connected to the pin IO34, which is a pin in the RTC domain. When the chip is in sleep, pressing the button will wake up ESP32.
+
+The figure below shows the schematics for wakeup-from-sleep module.
+
+.. figure:: ../../../_static/esp32-meshkit-sensor/wakeup.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   Wake-from-Sleep Module Schematics
+
+External Screens
+++++++++++++++++++++
+
+The development board is integrated with a screen connector that can connect different external screens to the board via cables.
+
+The figure below shows the schematics for external screens.
+
+.. figure:: ../../../_static/esp32-meshkit-sensor/screen.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   Schematics for External Screens
+
+Sensors
+++++++++++
+
+Temperature and Humidity Sensor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+The HTS221 is an ultra-compact sensor for relative humidity and temperature. A 3.3 V power supply and I2C interface on the board are dedicated to HTS221.
+
+The figure below shows the schematics for the temperature and humidity sensor.
+
+.. figure:: ../../../_static/esp32-meshkit-sensor/THsensor.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   Temperature and Humidity Sensor Schematics
+
+Ambient Light Sensor
 ~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-开发板支持电池供电，电源管理芯片 AP5056 可对电池进行充电。AP5056
-是一款单片锂离子电池恒流/恒压线性电源管理芯片。高达 1A
-的可编程充电电流，预设充电电压为 4.2V。
+The BH1750FVI is a digital ambient light sensor. A 3.3 V power supply and I2C interface on the board are dedicated to HTS221.
 
-而当 USB 供电与电池供电同时存在时，系统的选择会如图 4 所示: VBUS
-为高，Q4 处于截止状态，VBAT（电池电源）自动与系统电源切断，USB
-成为了系统的供电之选。
+The figure below shows the schematics for the ambient light sensor.
 
-USB/电池供电管理模块电路图如下图所示。
+.. figure:: ../../../_static/esp32-meshkit-sensor/ambientlightsensor.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   Ambient Light Sensor Schematics
 
-3.1.2 外设电源管理模块
-~~~~~~~~~~~~~~~~~~~~~~
+Ambient Brightness Sensor
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-首先，源自 USB 或 BAT 的输入需要通过电源管理芯片生成电路所需的
-3.3V。开发板采用了 ETA3425，其输出电压为 3.3V，最大输出电流为 600 mA。
+The APDS-9960 is a ambient brightness sensor featuring advanced gesture detection, proximity detection, digital Ambient Light Sense (ALS) and Color Sense (RGBC). It also incorporates an IR LED driver. The development board uses 3.3V power supply and I2C interface. It should be noted that this device is not surface-mounted by default.
 
-外设电池电路如下图所示。
+The figure below shows the schematics for the ambient brightness sensor.
 
-总路 VDD33 有两路分支：
+.. figure:: ../../../_static/esp32-meshkit-sensor/proximity.png
+   :align: center
+   :alt: ESP32-MeshKit-Sense
+   :figclass: align-center
+ 
+   Ambient Brightness Sensor Schematics
 
--  专为 ESP32 模组模块供电的ESP32\_VDD33
--  专为所有外设供电的 VDD33\_PeriP
-
-二者的连接与否都可以通过排针及跳线帽进行控制，ESP32\_VDD33
-原理图如下图所示。
-
-其中，VDD33-PeriP 也有两路分支:一路是专为外接屏供电的
-VDD33\_PeriP\_Screen，另一路是专为三款传感器供电的
-VDD33\_PeriP\_Sensor，二者的连接与否都可以通过模组 GPIO+MOS 管进行控制。
-
-VDD33\_PeriP 原理图如下图所示。
-
-3.2 Boot & UART 功能
---------------------
-
-开发板采用一款插座 PROG Header，可通过排线连接至另一款 ESP-PROG
-开发板上，然后再将 ESP-PROG 开发板中的 Micro USB 接口与 PC
-机相连，即可利用 PC 机对此开发板进行下载及调试。
-
-Boot & UART 电路原理图如下图所示。
-
-3.3 睡眠唤醒模块
-----------------
-
-开发板采用了一个实体按键，IO34 是一个 RTC
-域中的管脚。当芯片处于睡眠时，可以利用此按键的操作来实现 芯片的唤醒。
-
-睡眠唤醒模块电路原理图如下图所示。
-
-3.4 外接屏幕
+Example
 ------------
 
-开发板采用一款可以外接屏幕的连接插座，利用排线可以将不同屏幕接至开发板上，以实现
-ESP32 模组对屏幕的操作。
-
-外接屏幕电路原理图如下图所示。
-
-3.5 传感器
-----------
-
-3.5.1 湿温度传感器
-~~~~~~~~~~~~~~~~~~
-
-HTS221 是一种超小型相对湿度和温度传感器。开发板采用 3.3V 供电，以及 I2C
-的接口方式。
-
-温湿度传感器电路原理图如下图所示。
-
-3.5.2 环境光传感器
-~~~~~~~~~~~~~~~~~~
-
-BH1750FVI 是一款数字的环境光传感器。开发板采用 3.3V 供电，以及 I2C
-的接口方式。
-
-环境光传感器电路原理图如下图所示。
-
-3.5.3 环境亮度传感器
-~~~~~~~~~~~~~~~~~~~~
-
-APDS-9960 是一款集成 ALS、红外 LED
-和接近检测器的光学模块和环境亮度感测的环境亮度传感器。开发板 采用 3.3V
-供电，以及 I2C
-的接口方式。需说明的是，此款传感器当前设计中默认为不上件的状态。
-
-环境光传感器电路原理图如下图所示。
-
-4. 示例程序
-===========
-
-见
-`esp-mdf/examples/development\_kit/sense <https://github.com/espressif/esp-mdf/tree/master/examples/development_kit/sense>`__
+See `esp-mdf/examples/development_kit/sense <https://github.com/espressif/esp-mdf/tree/master/examples/development_kit/sense>`__.

@@ -8,8 +8,8 @@
 
 <table>
     <tr>
-        <td ><img src="../../docs/_static/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
-        <td ><img src="../../docs/_static/ESP-LyraP-LCD32_V1.0.png" width="300"><p align=center>ESP-LyraP-LCD32 显示屏</p></td>
+        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
+        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraP-LCD32_V1.0.png" width="300"><p align=center>ESP-LyraP-LCD32 显示屏</p></td>
     </tr>
 </table>
 
@@ -18,11 +18,11 @@
 1. 将 SW3 和 SW4 的拨码开关全部打开（ ON ），即主板左下角两组拨码开关，如下图：
 * 高级：如果想使用部分触摸板 GPIO 管脚，只需将触摸板相关拨码开关关闭OFF，详情请参阅主板和触摸板原理图。
   
-<div align="left"><img src="../../docs/_static/kaluga_examples_camera_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
 
 2. 将显示屏插入主板双排排针的内侧一排，如下图:
 
-<div align="left"><img src="../../docs/_static/kaluga_examples_lcd_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_lcd_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
 
 * ESP32_S2_kaluga-1_v1.1 LCD 管脚分配
 
@@ -59,7 +59,7 @@ idf.py -p PORT flash monitor
 
 当程序烧录进去后，你会看到如下场景，则烧录成功。
 
-![lcd展示图](../../docs/_static/kaluga_examples_lcd_2.jpg)
+![lcd展示图](../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_lcd_2.jpg)
 
 您还可以在串行监视器上看到以下输出日志:
 
@@ -126,7 +126,6 @@ I (737) LCD: ST7789V initialization.
 
 ## 2 附录
 
-* [ESP32-S2 数据手册](../../docs/datasheet/esp32-s2_datasheet_cn.pdf)
-* [ST7789V 数据手册](../../docs/datasheet/ST7789V.pdf)
-* [ESP32-S2-Kaluga-1 主板原理图](../../docs/schematic/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
-* [ESP-LyraP-LCD32 显示屏原理图](../../docs/schematic/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)
+* [ESP32-S2 技术规格书](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf)
+* [ESP32-S2-Kaluga-1 主板原理图](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
+* [ESP-LyraP-LCD32 显示屏原理图](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)

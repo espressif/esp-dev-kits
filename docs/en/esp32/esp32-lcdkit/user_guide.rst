@@ -1,88 +1,136 @@
+ESP32-LCDKit
+============
 
+:link_to_translation:`zh_CN:[中文]`
 
-ESP32-LCDKit 开发板介绍
-=======================
+Overview
+----------
 
+ESP32-LCDKit is an HMI (Human Machine Interface) development board with the ESP32-DevKitC at its core. ESP32-LCDKit is integrated with such peripherals as SD-Card, DAC-Audio, and can be connected to an external display. The board is mainly used for HMI-related development and evaluation.Development board reserved screen interface type: SPI serial interface, 8-bit parallel interface, 16-bit parallel interface.
 
-1. 概述
-=======
+You may find HMI-related examples running with ESP32-LCDKit in `HMI Example <https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/hmi>`__.
 
-ESP32-LCDKit 是一款以乐鑫 ESP32-DevKitC（需另采购） 为核心的
-HMI（人机交互）开发板，可外接屏幕，并且集成了 SD-Card、DAC-Audio
-等外设，主要用于 HMI 相关开发与评估。开发板预留屏幕接口类型：SPI
-串行接口、8 位并行接口、16 位并行接口。
+For more information on ESP32, please refer to `ESP32 Series Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf>`__.
 
-`HMI
-Example <https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/hmi>`__
-这里提供的一些 HMI 示例可在 ESP32-LCDKit 开发板上运行。
+.. figure:: ../../../_static/esp32-lcdkit/esp32_lcdkit.jpg
+   :align: center
+   :alt: ESP32-LCDKit
+   :figclass: align-center
+ 
+   ESP32-LCDKit 
 
-关于 ESP32 详细信息，请参考文档\ `《ESP32
-系列芯片技术规格书》 <https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_cn.pdf>`__\ 。
+Block Diagram and PCB Layout
+---------------------------------
 
-2. 电路设计说明
-===============
+Block Diagram
+^^^^^^^^^^^^^^^^^
 
-2.1 系统框图
-------------
+The figure below shows the block diagram for ESP32-LCDKit.
 
-ESP32-LCDKit 开发板的系统框图如下所示：
+.. figure:: ../../../_static/esp32-lcdkit/esp32_lcdkit_block.jpg
+   :align: center
+   :alt: ESP32-LCDKit
+   :figclass: align-center
+ 
+   ESP32-LCDKit Block Diagram
 
-2.2 PCB 布局
-------------
+PCB Layout
+^^^^^^^^^^^^^^^^
 
-ESP32-LCDKit 开发板的 PCB 布局如下所示：
+The figure below shows the layout of ESP32-LCDKit PCB.
 
-表 1：PCB 部件功能说明
+.. figure:: ../../../_static/esp32-lcdkit/esp32_lcdkit_pcb.jpg
+   :align: center
+   :alt: ESP32-LCDKit
+   :figclass: align-center
+ 
+   ESP32-LCDKit PCB Layout
 
-+--------------------------------+----------------------------------------------+
-| PCB 部件                       | 说明                                         |
-+================================+==============================================+
-| 屏幕连接模块                   | 连接串行或者并行（8/16 bit）屏幕             |
-+--------------------------------+----------------------------------------------+
-| ESP32 DevKitC 开发板连接模块   | 与 ESP32 DevKitC 开发板连接                  |
-+--------------------------------+----------------------------------------------+
-| SD-Card 模块                   | 连接 SD-Card，扩展存储                       |
-+--------------------------------+----------------------------------------------+
-| DAC-Audio 模块                 | 连接喇叭播放音频，包含音频功率放大器         |
-+--------------------------------+----------------------------------------------+
-| 数据位选择跳冒                 | 用于选择所用并行屏幕的数据位宽（8/16 bit）   |
-+--------------------------------+----------------------------------------------+
+Descriptions of PCB components are shown in the following table:
 
-3. 硬件模块
-===========
++-----------------------------------+-----------------------------------+
+| Components                        | Description                       |
++===================================+===================================+
+| Display connection module         | Allows to connect serial or       |
+|                                   | parallel LCD displays (8/16 bit)  |
++-----------------------------------+-----------------------------------+
+| ESP32 DevKitC connection module   | Offers connection to an ESP32     |
+|                                   | DevKitC development board         |
++-----------------------------------+-----------------------------------+
+| SD-Card module                    | Provides an SD-Card slot for      |
+|                                   | memory expansion                  |
++-----------------------------------+-----------------------------------+
+| DAC-Audio module                  | Features an audio power amplifier |
+|                                   | and two output ports for external |
+|                                   | speakers                          |
++-----------------------------------+-----------------------------------+
 
-本章主要介绍各个功能模块（接口）的硬件实现，以及对这些模块的描述。
+Functional Modules
+------------------------
 
-`原理图 <hw/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
+This section introduces the functional modules (interfaces) of
+ESP32-LCDKit and their hardware schematics.
 
-`PCB Layout <hw/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `Schematic <hw/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
-3.1 ESP32 DevKitC 开发板连接模块
---------------------------------
+- `PCB Layout <hw/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
-使用 ESP32-LCDKit 开发板进行 HMI 相关开发时需要搭配使用 `ESP32 DevKitC
-开发板 <https://docs.espressif.com/projects/esp-idf/en/stable/hw-reference/modules-and-boards.html#esp32-devkitc-v4>`__\ 。
+ESP32 DevKitC Connection Module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ESP32-LCDKit 开发板与 ESP32 DevKitC 开发板连接模块电路原理图如下所示：
+For the HMI-related development with ESP32-LCDKit, you also need the `ESP32 DevKitC <https://docs.espressif.com/projects/esp-idf/en/stable/hw-reference/modules-and-boards.html#esp32-devkitc-v4>`__ development board.
 
-3.2 电源管理
-------------
+The figure below shows the schematics for the ESP32 DevKitC connection module.
 
-USB 供电管理模块电路图如下所示：
+.. figure:: ../../../_static/esp32-lcdkit/coreboard_module.jpg
+   :align: center
+   :alt: ESP32-LCDKit
+   :figclass: align-center
+ 
+   ESP32 DevKitC Connection Module
 
-3.3 屏幕连接模块
-----------------
+Power Supply Management Module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-开发板采用两种不同的连接插座，可以将不同屏幕接至 ESP32-LCDKit
-开发板上，以实现 ESP32 模组对屏幕的操作。以下接口可供选择使用：SPI
-串行接口、8 位并行接口、16 位并行接口。
+The figure below shows the schematics for the USB power supply management module.
 
-外接屏幕电路原理图如下所示：
+.. figure:: ../../../_static/esp32-lcdkit/power_module.jpg
+   :align: center
+   :alt: ESP32-LCDKit
+   :figclass: align-center
+ 
+   ESP32-LCDKit Power Supply Module
 
-3.4 SD-Card、DAC-Audio 外设模块
--------------------------------
+Display Connection Module
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-开发板支持外接 SD-Card 以扩展存储，并且有 MIX3006
-功率放大器，可以外接喇叭播放音频。
+The display connection module supports the following interfaces:
 
-SD-Card、DAC-Audio 外设模块电路原理图如下所示：
+-  SPI serial interface
+-  8-bit parallel interface
+-  16-bit parallel interface
+
+With this module, you can connect ESP32-LCDKit to an external display and interact with the pre-programmed GUI if the display has a touchscreen.
+
+The figure below shows the schematics for this module.
+
+.. figure:: ../../../_static/esp32-lcdkit/serial_screen_module.jpg
+   :align: center
+   :alt: ESP32-LCDKit
+   :figclass: align-center
+ 
+   ESP32-LCDKit Display Connection Module
+
+SD-Card and DAC-Audio Modules
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The SD-Card module provides an SD Card slot for memory expansion. The DAC-Audio module features the MIX3006 power amplifier and two output ports for connection of external speakers.
+
+The figure below shows the schematics for the SD-Card and DAC-Audio modules.
+
+.. figure:: ../../../_static/esp32-lcdkit/sd_card_dac_module.jpg
+   :align: center
+   :alt: ESP32-LCDKit
+   :figclass: align-center
+ 
+   SD-Card and DAC-Audio Modules

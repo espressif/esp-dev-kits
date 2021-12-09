@@ -14,12 +14,37 @@ ESP32-S2-HMI-DevKit-1 所用 LCD 的显示 IC 已配置为使用 16 位的 8080 
 
 触控 IC 使用 I2C 接口与 MCU 通讯，可与其他 I2C IC 共用，无需额外占用 GPIO 接口。触控 IC 支持中断信号输出。该中断信号将被发送至 IO 扩展器的 P2 引脚，由该引脚产生的下降沿会使 IO 扩展器的中断输出脚产生低电平，从而使 MCU 接收到中断信号。此时，可通过读取 IO 扩展器的输入电平寄存器判读中断来源，从而确定该中断是否来自触控 IC。完成一次输入电平的读取会自动清除中断标志。
 
+.. figure:: ../../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-IO-expander.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 IO 扩展器原理图
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 IO 扩展器原理图
+
 背光
 --------
 
-该 LCD 内置了串联型 LED，需要使用 Booster 电路进行恒流驱动。额定电流为 18 mA，此时电压约为 24 V（可能有误差，仅供参考）。为了防止屏幕未连接时 Booster 电路的反馈电压始终为0，从而导致高压加载到背光滤波电容的两端，请确保该电容的耐压在 38 V 以上 。
+该 LCD 内置了串联型 LED，需要使用 Booster 电路进行恒流驱动。额定电流为 18 mA，此时电压约为 24 V（可能有误差，仅供参考）。为了防止屏幕未连接时 Booster 电路的反馈电压始终为 0，从而导致高压加载到背光滤波电容 C21 的两端，请确保该电容的耐压在 38 V 以上。
 
-由于 PWM 调光可能会带来闪烁，且部分 Booster IC 不支持高频 PWM 信号控制，该开发板使用了 DC 调光电路以解决上述问题。该 DC 调光电路将 VFB 电压输入到运算放大器，其增益电阻为数字电位器，可以通过 I2C 总线修改其阻值以达到修改增益大小的目的。使用的数字电位器为 CAT5171，具有 256 级分辨率，最大电阻值为 50 k。V1.1 版本的开发板未使用该功能，LED 的电流被固定至 20 mA。
+.. figure:: ../../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-backlight-PWM-dimming.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 PWM 调光电路原理图（点击放大）
+   :scale: 60%
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 PWM 调光电路原理图（点击放大）
+
+由于 PWM 调光可能会带来闪烁，且部分 Booster IC 不支持高频 PWM 信号控制，该开发板提供了 DC 调光电路以解决上述问题，如下图所示：
+
+.. figure:: ../../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-dc-diming-circuit.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 DC 调光电路原理图（点击放大）
+   :scale: 50%
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 DC 调光电路原理图（点击放大）
+
+该 DC 调光电路将 VFB 电压输入到运算放大器 TLV6741，其增益电阻为数字电位器，可以通过 I2C 总线修改其阻值以达到修改增益大小的目的。使用的数字电位器为 CAT5171，具有 256 级分辨率，最大电阻值为 50 kOhm。
 
 Booster IC 的 EN 脚由 IO 扩展器的 P7 脚控制，高电平有效。如需在关闭屏幕的同时保留显存的内容，可以将该引脚设置为低电平来关闭屏幕背光。
 
