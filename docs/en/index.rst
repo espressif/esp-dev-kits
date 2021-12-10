@@ -49,7 +49,7 @@ Supported Development Boards
 .. |esp32-lcdkit| image:: ../_static/esp32-lcdkit.png
 .. _esp32-lcdkit: esp32/esp32-lcdkit/index.html
 
-.. |esp32-s2-hmi-devkit-1| image:: ../_static/esp32-s2-hmi-devkit-1/board_func.jpg
+.. |esp32-s2-hmi-devkit-1| image:: ../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-board-func-v1.0.jpg
 .. _esp32-s2-hmi-devkit-1: esp32s2/esp32-s2-hmi-devkit-1/index.html
 
 .. |esp32-s2-touch-devkit-1| image:: ../_static/esp32-s2-touch-devkit-1/motherboard.png

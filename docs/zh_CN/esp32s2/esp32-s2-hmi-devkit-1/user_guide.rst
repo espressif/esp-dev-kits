@@ -48,6 +48,8 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
 
 该开发板是基于 ESP32-S2 的 HMI 开发板，其板载资源如下图所示。
 
+.. _board-func:
+
 .. figure:: ../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-board-func-v1.0.jpg
    :align: center
    :alt: ESP32-S2-HMI-DevKit-1（点击放大）
@@ -56,7 +58,7 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
 
    ESP32-S2-HMI-DevKit-1（点击放大）
 
-以下按照顺时针的顺序依次介绍开发板上的主要组件。
+以下按照顺时针的顺序依次介绍开发板上的主要组件（开发板接口将在 :ref:`connectors` 小节单独介绍）。
 
 .. list-table::
    :widths: 30 70
@@ -78,10 +80,6 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
      - 复位按键。
    * - IR LED
      - 红外发射二极管，由 GPIO21 驱动。需要通过 IO 扩展器在 RGB LED 与 IR LED 间切换。
-   * - microSD 连接器
-     - 可以插入 microSD 卡以扩展设备存储空间。
-   * - 电源端口
-     - 用于连接电池。
    * - 电源 IC
      - 用于为电池充电。
    * - MEMS
@@ -92,23 +90,10 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
      - 通过 I2C 总线扩展 GPIO。
    * - MIC
      - 板载模拟麦克风。
-   * - 扬声器接口
-     - 用于连接扬声器。
-   * - 4.3" LCD FPC C连接器
-     - （保留）可使用 FPC 线连接配套的 4.3” LCD 扩展板。
    * - 音频 PA
      - 音频放大器。
    * - 4.3" 800 × 480 LCD
      - 使用 16 位 8080 并口的 4.3 寸 TFT-LCD，分辨率为 480×800，配有 256 级硬件 DC 背光调节电路，并与一个 I2C 电容式触摸板相连。
-
-下图展示了 ESP32-S2-HMI-DevKit-1 开发板的背面。
-
-.. figure:: ../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-back-view-v1.0.png
-   :align: center
-   :alt: ESP32-S2-HMI-DevKit-1 背面
-   :figclass: align-center
-
-   ESP32-S2-HMI-DevKit-1 背面
 
 
 开始开发应用
@@ -151,6 +136,20 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
 工程选项
 ^^^^^^^^
 
+我们为 ESP32-S2-HMI-DevKit-1 开发板提供了丰富示例，如下所示：
+
+- 在屏幕上打印 "Hello world!"： `Hello World Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/hello_world>`_
+- 使 WS2812 LED 灯闪烁并在屏幕上显示颜色： `LED Blink Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/led_blink>`_
+- 启动交互界面以配置 Wi-Fi 凭证： `GUI Provision Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/provision>`_
+- 利用 ADC 从模拟 MIC 获取音频： `Audio Record Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/audio_record>`_
+- 播放音乐： `Music Player Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/music_player>`_
+- 使特定区域进入 Deep-sleep 模式： `Power Example <../../../../esp32-s2-hmi-devkit-1/examples/power>`_
+- 使用 Freetype 渲染字体： `Freetype Example <../../../../esp32-s2-hmi-devkit-1/examples/freetype>`_
+- 使用板载传感器： `Sensor Evaluation Example <../../../../esp32-s2-hmi-devkit-1/examples/sensors>`_
+- 使用智慧触摸板： `Smart Panel Example <../../../../esp32-s2-hmi-devkit-1/examples/smart-panel>`_
+- 查看 SD 卡上的文件： `SD Card File Viewer Example <../../../../esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs>`_
+- USB flash disk： `USB Flash Disk File Serving Demo <../../../../esp32-s2-hmi-devkit-1/examples/storage/usb_msc>`_
+
 您可以在各示例目录下，输入 ``idf.py menuconfig`` 配置工程选项。
 
 在 menuconfig 中，请确保正确配置以下选项：
@@ -165,20 +164,6 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
 -  ``(Top) -> Component config -> FreeRTOS``：``Tick rate (Hz)`` 设置为 1000。
 
 在每个示例下，我们都提供了名为 ``sdkconfig.defaults`` 的默认配置文件，已将上述选项配置完成。
-
-以下为该工程提供的示例：
-
-- 在屏幕上打印 "Hello world!"： `Hello World Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/hello_world>`_
-- 使 WS2812 LED 灯闪烁并在屏幕上显示颜色： `LED Blink Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/led_blink>`_
-- 启动交互界面以配置 Wi-Fi 凭证： `GUI Provision Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/provision>`_
-- 利用 ADC 从模拟 MIC 获取音频： `Audio Record Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/audio_record>`_
-- 播放音乐： `Music Player Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/music_player>`_
-- 使特定区域进入 Deep-sleep 模式： `Power Example <../../../../esp32-s2-hmi-devkit-1/examples/power>`_
-- 使用 Freetype 渲染字体： `Freetype Example <../../../../esp32-s2-hmi-devkit-1/examples/freetype>`_
-- 使用板载传感器： `Sensor Evaluation Example <../../../../esp32-s2-hmi-devkit-1/examples/sensors>`_
-- 使用智慧触摸板： `Smart Panel Example <../../../../esp32-s2-hmi-devkit-1/examples/smart-panel>`_
-- 查看 SD 卡上的文件： `SD Card File Viewer Example <../../../../esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs>`_
-- USB flash disk： `USB Flash Disk File Serving Demo <../../../../esp32-s2-hmi-devkit-1/examples/storage/usb_msc>`_
 
 
 ESP-IDF 版本依赖
@@ -247,13 +232,15 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
 
 开发板出厂时烧录的固件已经关闭所有可控电源域的电源，并将所有 IC 配置为低功耗模式，以降低电流消耗。
 
-更多信息请参阅 `电源 <hw/power.rst>`_。
+更多信息请参阅 :ref:`power`。
 
+
+.. _connectors:
 
 接口
 --------
 
-该开发板提供了多个扩展接口方便用户进行二次开发，以下按照顺时针顺序依次介绍开发板上的连接器。
+该开发板提供了多个扩展接口方便用户进行二次开发，以下按照顺时针顺序依次介绍开发板上的接口，请参考 :ref:`ESP32-S2-HMI-DevKit-1 板载资源 <board-func>`。
 
 .. list-table::
    :widths: 30 70
@@ -261,6 +248,10 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
 
    * - 连接器
      - 介绍
+   * - 扬声器接口
+     - 用于连接扬声器。
+   * - 4.3" LCD FPC 连接器
+     - （保留）可使用 FPC 线连接配套的 4.3” LCD 扩展板。
    * - USB DFU/CDC
      - 1 个 USB-C OTG (DFU/CDC) 端口，1 个 USB-C 调试端口。
    * - 3.3 V
@@ -274,9 +265,20 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
    * - SPI
      - 在不使用 SD 卡时可以使用该连接器连接 SPI 总线的设备。
    * - Prog/UART
-     - 可以通过该串口接口观察日志输出与固件烧录。
+     - 可以通过该串口接口观察日志输出与固件烧录。   
+   * - microSD 连接器
+     - 可以插入 microSD 卡以扩展设备存储空间。
+   * - 电源端口
+     - 用于连接电池。
 
+下图展示了该开发板的背面，供您参考。
 
+.. figure:: ../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-back-view-v1.0.png
+   :align: center
+   :alt: ESP32-S2-HMI-DevKit-1 背面
+   :figclass: align-center
+
+   ESP32-S2-HMI-DevKit-1 背面
 
 相关文档
 ========
