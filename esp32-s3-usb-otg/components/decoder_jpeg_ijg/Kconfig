@@ -1,0 +1,13 @@
+menu "Decoder JPEG IJG"
+
+    choice OUTPUT_COLOR_SPACE
+        prompt "choose jpeg decoder output color space"
+        default COLOR_SPACE_RGB_565
+
+        config COLOR_SPACE_RGB_888
+            bool "Color Space RGB 888"
+        config COLOR_SPACE_RGB_565
+            bool "Color Space RGB 565"
+    endchoice
+
+endmenu
