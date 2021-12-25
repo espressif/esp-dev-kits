@@ -138,17 +138,17 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
 
 我们为 ESP32-S2-HMI-DevKit-1 开发板提供了丰富示例，如下所示：
 
-- 在屏幕上打印 "Hello world!"： `Hello World Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/hello_world>`_
-- 使 WS2812 LED 灯闪烁并在屏幕上显示颜色： `LED Blink Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/led_blink>`_
-- 启动交互界面以配置 Wi-Fi 凭证： `GUI Provision Example <../../../../esp32-s2-hmi-devkit-1/examples/get-started/provision>`_
-- 利用 ADC 从模拟 MIC 获取音频： `Audio Record Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/audio_record>`_
-- 播放音乐： `Music Player Example <../../../../esp32-s2-hmi-devkit-1/examples/audio/music_player>`_
-- 使特定区域进入 Deep-sleep 模式： `Power Example <../../../../esp32-s2-hmi-devkit-1/examples/power>`_
-- 使用 Freetype 渲染字体： `Freetype Example <../../../../esp32-s2-hmi-devkit-1/examples/freetype>`_
-- 使用板载传感器： `Sensor Evaluation Example <../../../../esp32-s2-hmi-devkit-1/examples/sensors>`_
-- 使用智慧触摸板： `Smart Panel Example <../../../../esp32-s2-hmi-devkit-1/examples/smart-panel>`_
-- 查看 SD 卡上的文件： `SD Card File Viewer Example <../../../../esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs>`_
-- USB flash disk： `USB Flash Disk File Serving Demo <../../../../esp32-s2-hmi-devkit-1/examples/storage/usb_msc>`_
+- 在屏幕上打印 "Hello world!"：:dev-kits:`esp32-s2-hmi-devkit-1/examples/get-started/hello_world`
+- 使 WS2812 LED 灯闪烁并在屏幕上显示颜色：:dev-kits:`esp32-s2-hmi-devkit-1/examples/get-started/led_blink`
+- 启动交互界面以配置 Wi-Fi 凭证： :dev-kits:`esp32-s2-hmi-devkit-1/examples/get-started/provision`
+- 利用 ADC 从模拟 MIC 获取音频：:dev-kits:`esp32-s2-hmi-devkit-1/examples/audio/audio_record`
+- 播放音乐：:dev-kits:`esp32-s2-hmi-devkit-1/examples/audio/music_player`
+- 使特定区域进入 Deep-sleep 模式：:dev-kits:`esp32-s2-hmi-devkit-1/examples/examples/power`
+- 使用 Freetype 渲染字体：:dev-kits:`esp32-s2-hmi-devkit-1/examples/freetype`
+- 使用板载传感器：:dev-kits:`esp32-s2-hmi-devkit-1/examples/sensors`
+- 使用智慧触摸板：:dev-kits:`esp32-s2-hmi-devkit-1/examples/smart-panel`
+- 查看 SD 卡上的文件：:dev-kits:`esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs`
+- USB flash disk：:dev-kits:`esp32-s2-hmi-devkit-1/examples/storage/usb_msc`
 
 您可以在各示例目录下，输入 ``idf.py menuconfig`` 配置工程选项。
 
@@ -285,9 +285,9 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
 
 - `ESP32-S2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-S2-WROVER 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 原理图 <hw/schematics/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 PCB 布局图 <hw/schematics/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 尺寸图 <hw/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 尺寸图源文件 <hw/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+- `ESP32-S2-HMI-DevKit-1 原理图 <../../_static/schematics/esp32-s2-hmi-devkit-1/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 PCB 布局图 <../../_static/schematics/esp32-s2-hmi-devkit-1/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 尺寸图 <../../_static/schematics/esp32-s2-hmi-devkit-1/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 尺寸图源文件 <../../_static/schematics/esp32-s2-hmi-devkit-1/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
