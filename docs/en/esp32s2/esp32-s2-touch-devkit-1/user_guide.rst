@@ -224,5 +224,3 @@ Reference documents
 -  `ESP32-S2-MINI-1 datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-1_esp32-s2-mini-1u_datasheet_en.pdf>`__
 -  `ESP32-S2 datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`__
 -  `ESP32-S2 technical reference manual <https://www.espressif.com/sites/default/files/documentation/esp32-s2_technical_reference_manual_en.pdf>`__
-
-For related schematics, please see `H/W Reference <hw>`_.

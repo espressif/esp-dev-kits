@@ -6,10 +6,10 @@ H/W Reference
 Schematic
 ------------
 
-- `Schematic <schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `Schematic <../../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
 
 
 PCB Layout 
 -------------
 
-- `PCB Layout <schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `PCB Layout <../../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_

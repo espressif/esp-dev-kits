@@ -67,9 +67,9 @@ PCB 部件功能说明如下表所示：
 
 本章主要介绍各个功能模块（接口）的硬件实现，以及对这些模块的描述。
 
-- `原理图 <hw/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `原理图 <../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
-- `PCB Layout <hw/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `PCB Layout <../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
 ESP32 DevKitC 开发板连接模块
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^

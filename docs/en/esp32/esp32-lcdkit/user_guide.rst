@@ -71,9 +71,9 @@ Functional Modules
 This section introduces the functional modules (interfaces) of
 ESP32-LCDKit and their hardware schematics.
 
-- `Schematic <hw/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `Schematic <../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
-- `PCB Layout <hw/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `PCB Layout <../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
 ESP32 DevKitC Connection Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
