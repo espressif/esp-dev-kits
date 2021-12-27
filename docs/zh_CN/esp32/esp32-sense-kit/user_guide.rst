@@ -23,7 +23,7 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
 - **开发环境**
 
   -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ 是 ESP32 平台的软件开发包。文档 `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ 介绍编译环境的搭建和软件开发包的使用说明。
-  -  `ESP-Prog <../../esp-prog/docs/ESP-Prog_guide_cn.md>`__ 是 ESP32 调试工具，有下载和 Jtag 调试功能。
+  -  `ESP-Prog <../../other/esp-prog/index.html>`__ 是 ESP32 调试工具，有下载和 Jtag 调试功能。
 
 - **ESP32 IoT 应用方案**
 
@@ -38,7 +38,7 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
 
   -  `Espressif 官网 <http://www.espressif.com>`__。
   -  `ESP32 编程指南 <https://docs.espressif.com/projects/esp-idf/en/stable/index.html>`__ : ESP32 相关开发文档的汇总平台，包含硬件手册，软件 API 介绍等。
-  -  `触摸传感器应用设计参考文档 <../touch_pad_solution/readme_cn.md>`__: ESP32 触摸传感器功能应用设计手册，包括触摸传感器原理介绍，软件设计，PCB 设计等内容。
+  -  `触摸传感器应用设计参考文档 <https://github.com/espressif/esp-iot-solution/blob/release/v1.1/documents/touch_pad_solution/touch_sensor_design_cn.md>`__: ESP32 触摸传感器功能应用设计手册，包括触摸传感器原理介绍，软件设计，PCB 设计等内容。
 
 - **技术支持**
 

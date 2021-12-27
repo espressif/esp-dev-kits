@@ -24,7 +24,7 @@ Related Resources
 -  **Set up Software Environment**
 
    -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ is the SDK for ESP32. You can refer to `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ for how to set up the ESP32 software environment.
-   -  `ESP-Prog <../../esp-prog/docs/ESP-Prog_guide_en.md>`__ is the debugger for ESP32 that features download and debugging functions.
+   -  `ESP-Prog <../../other/esp-prog/index.html>`__ is the debugger for ESP32 that features download and debugging functions.
 
 -  **ESP32 IoT Solution**
 
@@ -39,7 +39,7 @@ Related Resources
 
    -  `Espressif website <https://espressif.com>`__.
    -  `ESP32 programming guide <https://docs.espressif.com/projects/esp-idf/en/stable/index.html>`__: It hosts extensive documentation for ESP-IDF ranging from hardware guides to API reference.
-   -  `ESP32 touch sensor design <../touch_pad_solution/readme_en.md>`__: It is the reference design manual for the ESP32 touch sensor system.
+   -  `ESP32 touch sensor design <https://github.com/espressif/esp-iot-solution/blob/release/v1.1/documents/touch_pad_solution/touch_sensor_design_en.md>`__: It is the reference design manual for the ESP32 touch sensor system.
 
 -  **Technical Support**
 

@@ -447,5 +447,5 @@ No. ESP32-S3-MINI-1 管脚 说明
 -  `ESP32-S3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf>`__ (PDF)
 -  `ESP32-S3-MINI-1/1U 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_cn.pdf>`__ (PDF)
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-USB-OTG 原理图 <hw/schematics/SCH_ESP32-S3_USB_OTG.pdf>`__ (PDF)
--  `ESP32-S3-USB-OTG PCB 布局图 <hw/schematics/PCB_ESP32-S3_USB_OTG.pd>`__ (PDF)
+-  `ESP32-S3-USB-OTG 原理图 <../../_static/schematics/esp32-s3-usb-otg/SCH_ESP32-S3_USB_OTG.pdf>`__ (PDF)
+-  `ESP32-S3-USB-OTG PCB 布局图 <../../_static/schematics/esp32-s3-usb-otg/PCB_ESP32-S3_USB_OTG.pd>`__ (PDF)
