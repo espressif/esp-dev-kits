@@ -10,4 +10,4 @@ ESP-Prog is one of Espressif’s development and debugging tools, with functions
     :maxdepth: 2
 
     User Guide <user_guide>
-    H/W Reference <hw/hw-reference>
+    H/W Reference <reference/reference-doc>
