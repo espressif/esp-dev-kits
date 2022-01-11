@@ -34,6 +34,6 @@ ESP32-S3-USB-OTG is a development board that focuses on USB-OTG function verific
 * [ESP32-S3 Technical Specification](https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf) (PDF)
 * [ESP32-S3-MINI-1 & ESP32-S3-MINI-1U Technical Specifications](https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_cn.pdf) (PDF)
 * [Espressif Product Selection Tool](https://products.espressif.com/#/product-selector?names=)
-* [ESP32-S3-USB-OTG schematic diagram](../docs/zh_CN/esp32s3/esp32-s3-usb-otg/hw/schematics/SCH_ESP32-S3_USB_OTG.pdf) (PDF)
-* [ESP32-S3-USB-OTG PCB layout drawing](../docs/zh_CN/esp32s3/esp32-s3-usb-otg/hw/schematics/PCB_ESP32-S3_USB_OTG.pdf) (PDF)
+* [ESP32-S3-USB-OTG schematic diagram](../docs/_static/schematics/esp32-s3-usb-otg/SCH_ESP32-S3_USB_OTG.pdf) (PDF)
+* [ESP32-S3-USB-OTG PCB layout drawing](../docs/_static/schematics/esp32-s3-usb-otg/PCB_ESP32-S3_USB_OTG.pdf) (PDF)
   
