@@ -1,65 +1,82 @@
-ESP-Dev-Kits
+esp-dev-kits
 ===========================
 
 :link_to_translation:`en:[English]`
 
-该仓库为 `ESP-Dev-Kits <https://github.com/espressif/esp-dev-kits>`_ 的文档。
+该仓库为 `esp-dev-kits <https://github.com/espressif/esp-dev-kits>`_ 的文档。
 
 
 开发板
 -------
 
 ============================   ===========================
-       ESP32 系列开发板
-----------------------------------------------------------
- |ESP32-Sense-Kit|_                |ESP32-MeshKit-Sense|_
-----------------------------   ---------------------------
- `esp32-sense-kit`_                `esp32-meshkit-sense`_
-----------------------------   ---------------------------
- |ESP32-LCDKit|_                        
-----------------------------   ---------------------------
- `esp32-lcdkit`_       
-----------------------------   ---------------------------
-       ESP32-S2 系列开发板   
-----------------------------------------------------------
- |ESP32-S2-HMI-DevKit-1|_       |ESP32-S2-Touch-DevKit-1| 
-----------------------------   ---------------------------
- `esp32-s2-hmi-devkit-1`_       `esp32-s2-touch-devkit-1`_  
-----------------------------   ---------------------------
-       ESP32-S3 系列开发板   
+       **ESP32-S3 系列开发板**    
 ----------------------------------------------------------
   |ESP32-S3-USB-OTG|_
 ----------------------------   ---------------------------
- `esp32-s3-usb-otg`_ 
-----------------------------   ---------------------------
-       其他开发板    
-----------------------------------------------------------
- |ESP-Prog|_        
-----------------------------   ---------------------------
- `esp-prog`_       
-----------------------------   ---------------------------
+ `ESP32-S3-USB-OTG`_ 
 ============================   ===========================
 
-.. |esp32-sense-kit| image:: ../_static/esp32-sense-kit/touch_eb_overview.jpg
-.. _esp32-sense-kit: esp32/esp32-sense-kit/index.html
+============================   ===========================
+       **ESP32-S2 系列开发板**    
+----------------------------------------------------------
+ |ESP32-S2-Kaluga-1|_           |ESP32-S2-Touch-DevKit-1|
+----------------------------   ---------------------------
+ `ESP32-S2-Kaluga-1`_           `ESP32-S2-Touch-DevKit-1`_
+============================   ===========================
 
-.. |esp32-meshkit-sense| image:: ../_static/esp32-meshkit-sense.png
-.. _esp32-meshkit-sense: esp32/esp32-meshkit-sensor/index.html
+============================   ===========================
+       **ESP32 系列开发板**
+----------------------------------------------------------
+ |ESP32-LCDKit|_                        
+----------------------------   ---------------------------
+ `ESP32-LCDKit`_       
+============================   ===========================
 
-.. |esp32-lcdkit| image:: ../_static/esp32-lcdkit.png
-.. _esp32-lcdkit: esp32/esp32-lcdkit/index.html
+============================   ===========================
+       **其他开发板**
+----------------------------------------------------------
+ |ESP-Prog|_                    |ESP32-MeshKit-Sense|_
+----------------------------   ---------------------------
+ `ESP-Prog`_                     `ESP32-MeshKit-Sense`_
+============================   ===========================
 
-.. |esp32-s2-hmi-devkit-1| image:: ../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-board-func-v1.0.jpg
-.. _esp32-s2-hmi-devkit-1: esp32s2/esp32-s2-hmi-devkit-1/index.html
+============================   ===========================
+       **寿命终止开发板**
+----------------------------------------------------------
+ |ESP32-S2-HMI-DevKit-1|_       |ESP32-Sense-Kit|_ 
+----------------------------   ---------------------------
+ `ESP32-S2-HMI-DevKit-1`_       `ESP32-Sense-Kit`_ 
+============================   ===========================
 
-.. |esp32-s2-touch-devkit-1| image:: ../_static/esp32-s2-touch-devkit-1/motherboard.png
-.. _esp32-s2-touch-devkit-1: esp32s2/esp32-s2-touch-devkit-1/index.html
+
+.. |ESP32-Sense-Kit| image:: ../_static/esp32-sense-kit/touch_eb_overview.jpg
+.. _ESP32-Sense-Kit: esp32/esp32-sense-kit/index.html
+
+.. |ESP32-MeshKit-Sense| image:: ../_static/esp32-meshkit-sense.png
+.. _ESP32-MeshKit-Sense: esp32/esp32-meshkit-sensor/index.html
+
+.. |ESP32-LCDKit| image:: ../_static/esp32-lcdkit.png
+                  :height: 230px
+                  :width: 400px
+.. _ESP32-LCDKit: esp32/esp32-lcdkit/index.html
+
+.. |ESP32-S2-HMI-DevKit-1| image:: ../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-3d-v1.0.png
+.. _ESP32-S2-HMI-DevKit-1: esp32s2/esp32-s2-hmi-devkit-1/index.html
+
+.. |ESP32-S2-Kaluga-1| image:: ../_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png
+.. _ESP32-S2-Kaluga-1: esp32s2/esp32-s2-kaluga-1/index.html
+
+.. |ESP32-S2-Touch-DevKit-1| image:: ../_static/esp32-s2-touch-devkit-1/motherboard.png
+.. _ESP32-S2-Touch-DevKit-1: esp32s2/esp32-s2-touch-devkit-1/index.html
 
 .. |ESP32-S3-USB-OTG| image:: ../_static/esp32-s3-usb-otg/pic_product_esp32_s3_otg.png
-.. _esp32-s3-usb-otg: esp32s3/esp32-s3-usb-otg/index.html
+                      :height: 230px
+                      :width: 400px
+.. _ESP32-S3-USB-OTG: esp32s3/esp32-s3-usb-otg/index.html
 
-.. |esp-prog| image:: ../_static/esp-prog/modules.png
-.. _esp-prog: other/esp-prog/index.html
+.. |ESP-Prog| image:: ../_static/esp-prog/modules.png
+.. _ESP-Prog: other/esp-prog/index.html
 
 
 相关文档
@@ -71,13 +88,40 @@ ESP-Dev-Kits
 
 .. toctree::
    :hidden:
+   :caption: ESP32-S3 系列开发板
 
-   ESP32-LCDKit <esp32/esp32-lcdkit/index>
-   ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
-   ESP32-Sense-Kit <esp32/esp32-sense-kit/index>
-   ESP32-S2-HMI-DevKit-1 <esp32s2/esp32-s2-hmi-devkit-1/index>
+   ESP32-S3-USB-OTG <esp32s3/esp32-s3-usb-otg/index>
+
+.. toctree::
+   :hidden:
+   :caption: ESP32-S2 系列开发板
+
    ESP32-S2-Kaluga-1 <esp32s2/esp32-s2-kaluga-1/index>
    ESP32-S2-Touch-Devkit-1 <esp32s2/esp32-s2-touch-devkit-1/index>
-   ESP32-S3-USB-OTG <esp32s3/esp32-s3-usb-otg/index>
+
+.. toctree::
+   :hidden:
+   :caption: ESP32 系列开发板
+
+   ESP32-LCDKit <esp32/esp32-lcdkit/index>
+
+   
+.. toctree::
+   :hidden:
+   :caption: 其他开发板
+
    ESP-Prog <other/esp-prog/index>
-   贡献代码 <contribute/index>
+   ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
+
+.. toctree::
+   :hidden:
+   :caption: 寿命终止开发板
+
+   ESP32-S2-HMI-DevKit-1 <esp32s2/esp32-s2-hmi-devkit-1/index>
+   ESP32-Sense-Kit <esp32/esp32-sense-kit/index>
+
+.. toctree::
+   :hidden:
+   :caption: 贡献代码
+
+   Contribute <contribute/index>
