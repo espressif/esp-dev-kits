@@ -17,4 +17,4 @@ PCB 布局
 规格书
 ---------
 
-- 《ST7789VW 规格书》：:dev-kits:`esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf`
+- 《ST7789VW 规格书》：:dev-kits:`esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf`_

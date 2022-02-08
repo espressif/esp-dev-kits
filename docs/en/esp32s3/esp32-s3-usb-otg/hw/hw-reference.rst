@@ -17,4 +17,4 @@ PCB Layout
 Datasheet 
 -------------
 
-- ST7789VW Datasheet: :dev-kits:`esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf`
+- ST7789VW Datasheet: :dev-kits:`esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf`_ (PDF)

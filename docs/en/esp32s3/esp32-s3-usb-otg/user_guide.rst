@@ -317,7 +317,7 @@ LCD Interface
 
    LCD Interface Circuit (click to enlarge)
 
-Please note that this interface supports connecting SPI interface screens. The screen controller used by this development board is :dev-kits:` ST7789 <esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`, and ``LCD_BL`` (GPIO9) can be used to control the screen backlight.
+Please note that this interface supports connecting SPI interface screens. The screen controller used by this development board is :dev-kits:` ST7789 <esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`_ , and ``LCD_BL`` (GPIO9) can be used to control the screen backlight.
 
 SD Card Interface
 ~~~~~~~~~~~~~~~~~
