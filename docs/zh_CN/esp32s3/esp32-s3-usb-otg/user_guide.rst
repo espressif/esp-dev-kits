@@ -317,7 +317,7 @@ LCD 接口
 
    LCD 接口电路图
 
-请注意，该接口支持连接 SPI 接口屏幕，该开发板使用的屏幕型号为 :dev-kits:` ST7789 <esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`，``LCD_BL`` (GPIO9) 可用于控制屏幕背光。
+请注意，该接口支持连接 SPI 接口屏幕，该开发板使用的屏幕型号为 :dev-kits:` ST7789 <esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`_ ，``LCD_BL`` (GPIO9) 可用于控制屏幕背光。
 
 SD 卡接口
 ~~~~~~~~~
