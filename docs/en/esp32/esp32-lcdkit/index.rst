@@ -11,4 +11,3 @@ ESP32-LCDKit is an HMI (Human Machine Interface) development board with the ESP3
     :maxdepth: 2
 
     User Guide <user_guide>
-    H/W Reference <hw/hw-reference>

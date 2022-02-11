@@ -10,5 +10,4 @@ ESP32-MeshKit-Sense 是一款以乐鑫 ESP32 模组为核心的开发板，集�
     :maxdepth: 2
 
     用户指南 <user_guide>
-    硬件参考 <hw/hw-reference>
  

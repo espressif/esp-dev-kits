@@ -11,4 +11,3 @@ ESP32-S3-USB-OTG is a development board that focuses on USB-OTG function verific
     :maxdepth: 2
 
     User Guide <user_guide>
-    H/W Reference <hw/hw-reference>

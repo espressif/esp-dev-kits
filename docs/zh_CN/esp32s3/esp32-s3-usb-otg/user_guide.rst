@@ -7,7 +7,7 @@ ESP32-S3-USB-OTG 是一款侧重于 USB-OTG 功能验证和应用开发的开发
 
 -  板载 ESP32-S3-MINI-1-N8 模组，内置 8 MB flash
 -  板载 USB Type-A 主机和从机接口，内置接口切换电路
--  板载 USB 转串口调试芯片（Micro USB 接口）
+-  板载 USB 转串口调试芯片（micro USB 接口）
 -  板载 1.3 英寸 LCD 彩屏，支持 GUI
 -  板载 SD 卡接口，兼容 SDIO 和 SPI 接口
 -  板载充电 IC，可外接锂电池
@@ -476,3 +476,4 @@ GPIO 分配
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
 -  `ESP32-S3-USB-OTG 原理图 <../../_static/schematics/esp32-s3-usb-otg/SCH_ESP32-S3_USB_OTG.pdf>`__ (PDF)
 -  `ESP32-S3-USB-OTG PCB 布局图 <../../_static/schematics/esp32-s3-usb-otg/PCB_ESP32-S3_USB_OTG.pdf>`__ (PDF)
+-  `ST7789VW 规格书 <../../_static/esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`_ (PDF)

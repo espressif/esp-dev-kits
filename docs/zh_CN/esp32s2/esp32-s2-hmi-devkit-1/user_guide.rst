@@ -33,7 +33,7 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
 本指南包括如下内容：
 
 - `入门指南`_：简要介绍了开发板和硬件、软件设置指南。
-- `硬件概况`_：详细介绍了开发板的硬件。
+- `硬件参考`_：详细介绍了开发板的硬件。
 - `相关文档`_：列出了相关文档的链接。
 
 
@@ -208,7 +208,7 @@ ESP-IDF 版本依赖
 批量订单请前往 https://www.espressif.com/zh-hans/contact-us/sales-questions。
 
 
-硬件概况
+硬件参考
 ========
 
 
@@ -283,7 +283,7 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
 相关文档
 ========
 
-- `ESP32-S2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
+- `ESP32-S2 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-S2-WROVER 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-S2-HMI-DevKit-1 原理图 <../../_static/schematics/esp32-s2-hmi-devkit-1/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf>`_ (PDF)
 - `ESP32-S2-HMI-DevKit-1 PCB 布局图 <../../_static/schematics/esp32-s2-hmi-devkit-1/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)

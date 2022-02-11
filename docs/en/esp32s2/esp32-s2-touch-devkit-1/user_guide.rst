@@ -217,10 +217,23 @@ Proximity-board needs to startup in an ideal environment(Far away from
 your hands). If it goes wrong, you can reset it mandatorily by releasing
 the power-switch.
 
-Reference documents
+Related Documents
 -------------------
 
--  `Touch Element library programming guide <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/api-reference/peripherals/touch_element.html>`__
--  `ESP32-S2-MINI-1 datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-1_esp32-s2-mini-1u_datasheet_en.pdf>`__
--  `ESP32-S2 datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`__
--  `ESP32-S2 technical reference manual <https://www.espressif.com/sites/default/files/documentation/esp32-s2_technical_reference_manual_en.pdf>`__
+Schematic
+^^^^^^^^^^^^^^^
+
+- `ESP32-S2-Touch-Devkit-1 Motherboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-MainBoard_V1.0_20210312.pdf>`_
+- `Button Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Waterproof_V1.0_20210402.pdf>`_
+- `Slider Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Slider_V1.0_20210401.pdf>`_
+- `Matrix Button Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Matrix%20Button_V1.0_20210402.pdf>`_
+- `Touchpad Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Touchpad_V1.0_20210406.pdf>`_
+- `Proximity Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Proximity_V1.0_20210402.pdf>`_
+
+Other documents
+^^^^^^^^^^^^^^^^^^^^
+
+-  `Touch Element Library Programming Guide <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/api-reference/peripherals/touch_element.html>`__
+-  `ESP32-S2-MINI-1 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-1_esp32-s2-mini-1u_datasheet_en.pdf>`__
+-  `ESP32-S2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`__
+-  `ESP32-S2 Technical Reference Manual <https://www.espressif.com/sites/default/files/documentation/esp32-s2_technical_reference_manual_en.pdf>`__

@@ -10,4 +10,4 @@ The ESP32-S2-Kaluga-1 kit v1.3 is a development kit by Espressif.
     :maxdepth: 2
 
     User Guide <user_guide>
-    H/W Reference <hw/hw-reference>
+    Reference Documentation <reference/reference-doc>

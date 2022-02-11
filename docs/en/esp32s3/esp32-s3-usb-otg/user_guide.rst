@@ -188,7 +188,7 @@ For wholesale orders, please go to https://www.espressif.com/en/contact-us/sales
 
 .. _Hardware-reference:
 
-Hardware Overview
+Hardware Reference
 ------------------
 
 Block Diagram
@@ -468,11 +468,12 @@ Pin Layout
 
 .. _Related-documents:
 
-Related 
------------
+Related Documents
+---------------------
 
--  `ESP32-S3 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf>`_ (PDF)
--  `ESP32-S3-MINI-1/1U Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_cn.pdf>`_ (PDF)
+-  `ESP32-S3 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf>`_ (PDF)
+-  `ESP32-S3-MINI-1/1U Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_en.pdf>`_ (PDF)
 -  `Espressif Product Selection Tool <https://products.espressif.com/#/product-selector?names=>`_
--  `ESP32-S3-USB-OTG schematic diagram <../../_static/schematics/esp32-s3-usb-otg/SCH_ESP32-S3_USB_OTG.pdf>`_ (PDF)
--  `ESP32-S3-USB-OTG PCB layout drawing <../../_static/schematics/esp32-s3-usb-otg/PCB_ESP32-S3_USB_OTG.pdf>`_ (PDF)
+-  `ESP32-S3-USB-OTG Schematic Diagram <../../_static/schematics/esp32-s3-usb-otg/SCH_ESP32-S3_USB_OTG.pdf>`_ (PDF)
+-  `ESP32-S3-USB-OTG PCB Layout Drawing <../../_static/schematics/esp32-s3-usb-otg/PCB_ESP32-S3_USB_OTG.pdf>`_ (PDF)
+-  `ST7789VW Datasheet <../../_static/esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`_ (PDF)

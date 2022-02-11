@@ -11,4 +11,3 @@ ESP32-LCDKit 是一款以乐鑫 ESP32-DevKitC（需另采购） 为核心的 HMI
     :maxdepth: 2
 
     用户指南 <user_guide>
-    硬件参考 <hw/hw-reference>

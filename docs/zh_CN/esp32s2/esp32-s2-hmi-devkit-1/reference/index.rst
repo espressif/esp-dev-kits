@@ -1,4 +1,4 @@
-硬件参考
+参考文档
 ========================
 
 :link_to_translation:`en:[English]`
@@ -9,4 +9,3 @@
     音频 <audio>
     显示 <display>
     电源 <power>
-    开发板资料 <board-resource>

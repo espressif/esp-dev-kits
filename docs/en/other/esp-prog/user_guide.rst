@@ -260,7 +260,7 @@ Related Documents
 =================
 
 - `ESP-Prog Schematic <../../_static/schematics/esp-prog/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
-- `ESP-Prog PCB layout <../../_static/schematics/esp-prog/PCB_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+- `ESP-Prog PCB Layout <../../_static/schematics/esp-prog/PCB_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
 - `ESP-Prog Dimensions <../../_static/schematics/esp-prog/DIM_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
 
 

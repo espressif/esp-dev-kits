@@ -10,4 +10,3 @@ The ESP32 touch sensor development kit, ESP32-Sense-Kit, is used for evaluating 
     :maxdepth: 2
 
     User Guide <user_guide>
-    H/W Reference <hw/hw-reference>

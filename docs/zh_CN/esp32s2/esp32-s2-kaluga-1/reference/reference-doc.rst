@@ -1,4 +1,4 @@
-硬件参考
+参考文档
 ========================
 
 :link_to_translation:`en:[English]`

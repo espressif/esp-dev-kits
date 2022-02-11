@@ -10,4 +10,3 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
     :maxdepth: 2
 
     User Guide <user_guide>
-    H/W Reference <hw/hw-reference>
