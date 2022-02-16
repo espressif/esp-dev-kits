@@ -1,226 +1,268 @@
-ESP-Prog 
-==========
+========
+ESP-Prog
+========
 
 :link_to_translation:`en:[English]`
 
-1. 概述
--------
 
-ESP-Prog 是一款乐鑫推出的开发调试工具，具有自动下载固件、串口通信、JTAG
-在线调试等功能。自动下载固件和串口通信功能适用于 ESP8266 和 ESP32
-平台，JTAG 在线调试功能适用于 ESP32 平台。
+本指南将帮助您快速上手 ESP-Prog，并提供该款开发板的详细信息。
 
-ESP-Prog 使用简单方便，仅用一根 USB
-线即可实现与电脑的连接，电脑端可识别出下载功能和 JTAG
-功能对应的两个端口。
+ESP-Prog 是一款乐鑫推出的开发调试工具，具有自动下载固件、串口通信、JTAG 在线调试等功能。自动下载固件和串口通信功能适用于 ESP8266、ESP32、ESP32-S2、ESP32-S3 和 ESP32-C3；JTAG 在线调试功能适用于 ESP32、ESP32-S2、ESP32-S3 和 ESP32-C3。
 
-ESP-Prog 可使用排线与用户板连接，连接器可选 2.54 mm 和 1.27 mm
-两种间距的封装，具有防呆设计。用户板上需按对应顺序放置 Program (6-Pin)
-和 JTAG (10-Pin) 的连接器。
+ESP-Prog 使用简单方便，仅用一根 USB 线即可实现与电脑的连接。电脑端可以通过端口号识别出下载功能和 JTAG 功能对应的两个端口。
 
-考虑到不同用户板的电源电压可能不同，ESP-Prog 的两个接口均可通过 Pin
-Header 选择 5V 或者 3.3V 供电，具备较强的电源兼容性。
+考虑到不同用户板的电源电压可能不同，ESP-Prog 的两个接口均可通过排针选择 5 V 或者 3.3 V 供电，具备较强的电源兼容性。不过，尽管 ESP-Prog 的电源可以在 3.3 V 和 5 V 之间切换，但 RX/TX 和 JTAG 信号将恒定在 3.3 V。
 
-2. 系统框图
------------
+.. figure:: ../../../_static/esp-prog/three_dimension.png
+    :align: center
+    :scale: 70%
+    :alt: ESP-Prog（点击放大）
 
-ESP-Prog 的整体功能框图：
+    ESP-Prog（点击放大）
 
-.. raw:: html
+本指南包括如下内容：
 
-   <div align="center">
+- `入门指南`_：简要介绍了开发板和硬件、软件设置指南。
+- `硬件参考`_：详细介绍了开发板的硬件。
+- `相关文档`_：列出了相关文档的链接。
 
-.. raw:: html
 
-   </div>
+入门指南
+========
 
-3. 硬件介绍
------------
+本小节将简要介绍 ESP-Prog，说明如何在 ESP-Prog 进行初始硬件设置。
 
-下图总体介绍 ESP-Prog 板子上各功能的位置。
 
-.. raw:: html
+组件介绍
+--------
 
-   <div align="center">
+.. figure:: ../../../_static/esp-prog/modules.png
+    :align: center
+    :scale: 70%
+    :alt: ESP-Prog - 正面（点击放大）
 
-.. raw:: html
+    ESP-Prog - 正面（点击放大）
 
-   </div>
+以下按照顺时针的顺序依次介绍开发板上的主要组件。
 
-3.1. PCB 布局和尺寸
-~~~~~~~~~~~~~~~~~~~
+.. list-table::
+   :widths: 25 75
+   :header-rows: 1
 
-下面是 ESP-Prog 的 PCB 设计图，介绍了板子尺寸和接口的丝印标注。ESP-Prog
-硬件原理图，PCB 文件，BOM 等文件参考
-`乐鑫官网硬件参考设计 <http://espressif.com/zh-hans/support/download/documents?keys=参考设计>`__\ 。
+   * - 主要组件
+     - 介绍
+   * - Micro USB
+     - 电脑端与 ESP-Prog 的接口。
+   * - Boot 按键
+     - 下载按键。按下 Boot 键并保持，同时按一下 Reset 键，进入“固件下载”模式，通过串口下载固件。正常使用中可以作为确认按钮。
+   * - IO0 On/Off
+     - 用于配置 GPIO0 Strapping 管脚状态的排针。
+   * - PROG PWR SEL
+     - 用于选择 Program 接口电源输入的排针。
+   * - PROG 2.54 mm
+     - 管脚间距为 2.54 mm (0.1") 的 Program 接口。
+   * - PROG 1.27 mm
+     - 管脚间距为 1.27 mm (0.05") 的 Program 接口。
+   * - JTAG 1.27 mm
+     - 管脚间距为 1.27 mm (0.05") 的 JTAG 接口。
+   * - JTAG 2.54 mm
+     - 管脚间距为 2.54 mm (0.1") 的 JTAG 接口。
+   * - JTAG PWR SEL
+     - 用于选择 JTAG 接口电源输入的排针。
+   * - LED 指示灯
+     - 显示 ESP-Prog 的状态。共有三种 LED 模式：红色、绿色和蓝色。当系统的 3.3 V 电源通电时，红色 LED 灯亮起；当下载板发送数据时，绿色 LED 灯亮起；当下载板接收数据时，蓝色 LED 灯亮起。
+   * - USB 桥接器
+     - 单芯片 USB 至 UART 桥接器，可提供高达 3 Mbps 的传输速率。
+   * - Reset 按钮
+     - 用于重启系统。
 
--  Top side
 
-.. raw:: html
+开始开发应用
+-------------
 
-   <div align="center">
+通电前，请确保开发板完好无损。
 
-.. raw:: html
 
-   </div>
+必备硬件
+^^^^^^^^
 
--  Bottom side
+- ESP-Prog
+- 一根 USB 2.0 数据线（标准 A 转 Micro-B）
+- 装有 Windows、macOS 或 Linux 系统的电脑
+- 杜邦线或是乐鑫提供的排线，用于连接开发板和 ESP-Prog
 
-.. raw:: html
+.. 注解::
 
-   <div align="center">
+  请确保使用适当的 USB 数据线。部分数据线仅可用于充电，无法用于数据传输和编程。
 
-.. raw:: html
 
-   </div>
-
-3.2. 功能介绍
-~~~~~~~~~~~~~
-
-3.2.1. USB Bridge 的工作模式
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-ESP-Prog 采用 FTDI 公司的 FT2232HL 为 USB Bridge Controller
-芯片，可通过配置将 USB 2.0
-接口转换为支持多种工业标准的串行和并行接口。ESP-Prog 使用 FT2232HL
-默认的双异步串行接口模式，用户只需在电脑上安装相应的\ `FT2232HL
-驱动程序 <http://www.ftdichip.com/Drivers/VCP.htm>`__\ 即可使用。
-
-    注：电脑端识别出两个端口，端口序号大的是 Program 接口，序号小的是
-    JTAG 接口。
-
-3.2.2. 通讯接口
-^^^^^^^^^^^^^^^
-
-ESP-Prog 上与 ESP32 产品板连接的部分，既有 Program 接口，又有 JTAG
-接口。用户板上的接口顺序需要按照 ESP-Prog 上的规定设计。
-
--  **Program 接口**
-   Program 接口有 6 个管脚，包括了 UART 接口 (TXD,
-   RXD)、启动模式选择管脚 (ESP\_IO0) 和复位管脚 (ESP\_EN)。用户板上
-   Program 接口管脚设计应如下图。
-
-.. raw:: html
-
-   <div align="center">
-
-.. raw:: html
-
-   </div>
-
--  **JTAG 接口**
-   用户板上的 JTAG 接口顺序应如下图设计。
-
-.. raw:: html
-
-   <div align="center">
-
-.. raw:: html
-
-   </div>
-
--  **防呆设计**
-   ESP-Prog
-   接口使用牛角座连接器（DC3-6P/DC3-10P），具有防反接功能。建议用户板上使用此类型的连接器。如
-   ``FTSH-105-01-S-DV-*`` 或 ``DC3-*P``\ 。
-
-    注：排线具有方向性，请使用官方提供的排线。
-
-3.2.3. 自动下载功能
-^^^^^^^^^^^^^^^^^^^
-
-| ESP-Prog 具有自动下载功能。连接 Program
-  接口到用户板之后，下载程序会控制复位管脚和启动模式选择管脚的状态，执行下载命令后可实现设备自动下载和运行，无需用户手动重启和选择下载模式。
-| ESP-Prog 上的两个按键能实现手动复位设备和控制设备的启动模式。
-| 自动下载电路的原理图如下。
-
-.. raw:: html
-
-   <div align="center">
-
-.. raw:: html
-
-   </div>
-
-3.2.4. 延时电路
-^^^^^^^^^^^^^^^
-
-延时电路包括了 Bus Buffer、反相器、MOS 管、一阶 RC
-电路等器件。延时电路的作用实现 ESP32
-芯片在上电或复位过程中，先完成自身的上电启动或复位，再与 JTAG
-的信号接通，确保其上电或复位过程不被 JTAG 影响。
-
-.. raw:: html
-
-   <div align="center">
-
-.. raw:: html
-
-   </div>
-
-3.2.5. LED 状态指示
-^^^^^^^^^^^^^^^^^^^
-
--  当系统的 3.3 V 电源通电时，红色 LED 灯亮起；
--  当下载板向 ESP32 发送数据时，绿色 LED 灯亮起；
--  当下载板接收来自 ESP32 的数据时，蓝色 LED 灯亮起。
-
-.. raw:: html
-
-   <div align="center">
-
-.. raw:: html
-
-   </div>
-
-3.2.6. 跳针功能描述
-^^^^^^^^^^^^^^^^^^^
-
-Program 和 JTAG 接口中的参考电源可以通过跳线帽来选择，如下图所示。
-
--  | **接口电源选择跳针**
-   | 中间的 Pin header 是每个接口的电源输入管脚。其与 5V
-     连接，接口的电源输出为 5V。其与 3.3V 连接，接口电源输出为 3.3V。
-
--  | **IO0 On/Off 跳针**
-   | IO0 是 ESP8266 和 ESP32 的 Boot 模式选择管脚，芯片上电后 IO0 做正常
-     GPIO 使用。为了使 ESP-Prog 自动下载电路不影响客户板上 IO0
-     的正常使用，用户可手动控制 IO0 的通断。
-
-.. raw:: html
-
-   <div align="center">
-
-.. raw:: html
-
-   </div>
-
-4. 使用步骤
------------
+硬件设置
+^^^^^^^^^^^^^^
 
 1. 通过 USB 线连接 ESP-Prog 调试板和电脑端的 USB 口。
-2. 在电脑端安装 `FT2232HL
-   芯片驱动 <http://www.ftdichip.com/Drivers/VCP.htm>`__\ 。电脑端识别到两个端口，表明驱动已安装成功。
-3. 用 Pin header 选择 Program/JTAG 接口上的电源输出电压。
-4. 用灰排线连接调试板和 ESP 产品板。
-5. 使用官方软件工具或脚本，即可实现 ESP32 产品板的自动下载和 JTAG
-   调试功能。
+2. 在电脑端安装 `FT2232HL 芯片驱动 <http://www.ftdichip.com/Drivers/VCP.htm>`_。若电脑端识别到两个端口，则表明驱动已安装成功。
+3. 使用 PROG PWR SEL/JTAG PWR SEL 排针选择 Program/JTAG 接口上的电源输出电压。
+4. 使用乐鑫提供的排线连接 ESP-Prog 调试板和 ESP 产品板。
+5. 使用乐鑫官方软件工具或脚本，实现自动下载和 JTAG 调试功能。
 
-5. 资料链接
------------
 
--  `乐鑫官网 <http://www.espressif.com>`__
+软件设置
+^^^^^^^^^^^^^^
 
--  **购买方式**\ ：espressif\_systems
-   (微信公众号)，`商务咨询 <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__
+请前往 `ESP-IDF 快速入门 <https://idf.espressif.com/zh-cn/index.html>`__ 中 `详细安装步骤 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ 一节查看如何快速设置开发环境。
 
--  `ESP-Prog PCB
-   文件 <http://espressif.com/zh-hans/support/download/documents?keys=参考设计>`__
 
--  `ESP32 JTAG
-   调试使用介绍 <https://docs.espressif.com/projects/esp-idf/en/stable/api-guides/jtag-debugging/index.html#>`__
+内容和包装
+----------------------
 
--  `Flash 下载工具 (ESP8266 &
-   ESP32) <http://www.espressif.com/zh-hans/support/download/other-tools#>`__
+零售订单
+^^^^^^^^^^^^^
 
--  `FT2232HL 芯片驱动 <http://www.ftdichip.com/Drivers/VCP.htm>`__
+每一个零售 ESP-Prog 开发板均有独立包装。
+
+.. figure:: ../../../_static/esp-prog/package.png
+   :align: center
+   :scale: 120%
+   :alt: ESP-Prog 包装内容
+
+   ESP-Prog 包装内容
+
+包含以下部分：
+
+- 开发板
+
+  ESP-Prog
+
+- 数据线
+
+  两根排线：
+    - 一根用于 PROG 2.54 mm 接口，连接 2*5-PIN 的牛角座。
+    - 一根用于 PROG 1.27 mm 接口，连接 2*3-PIN 的牛角座。
+
+如果您订购了一批样品，根据零售商的不同，每块板子的独立包装会有所差异。
+
+零售订单请前往 https://www.espressif.com/zh-hans/company/contact/buy-a-sample。
+
+
+批量订单
+^^^^^^^^^^^^^^^^
+
+If you order in bulk, the boards come in large cardboard boxes.
+
+批量订单请前往 https://www.espressif.com/zh-hans/contact-us/sales-questions。
+
+
+硬件参考
+==================
+
+功能框图
+-------------
+
+ESP-Prog 的主要组件和连接方式如下图所示。
+
+.. figure:: ../../../_static/esp-prog/block.png
+    :align: center
+    :scale: 80%
+    :alt: ESP-Prog 功能框图（点击放大）
+
+    ESP-Prog 功能框图（点击放大）
+
+
+电源选项
+^^^^^^^^^^^^^^^^^^^^^^^
+
+开发板有三种互不兼容的供电方式：
+
+- 默认使用 ESP-Prog USB 端口供电（推荐供电方式）
+- 5 V 和 G (GND) 管脚供电
+- 3.3 V 和 G (GND) 管脚供电
+
+
+排针
+-------------
+
+下列的两个表格提供了开发板两侧管脚（Program 接口和 JTAG 接口）的 **名称** 和 **功能**。管脚名称如 ESP-Prog 正面图所示，管脚编号与 `ESP-Prog 原理图 <../../_static/schematics/esp-prog/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF) 中一致。
+
+
+Program 接口
+^^^^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 30 35 35
+   :header-rows: 1
+   
+   * - 编号
+     - 名称
+     - 功能
+   * - 1
+     - ESP_EN
+     - 使能信号
+   * - 2
+     - VDD
+     - 供电
+   * - 3
+     - ESP_TXD
+     - TX 管脚
+   * - 4
+     - GND
+     - 地线
+   * - 5
+     - ESP_RXD
+     - RX 管脚
+   * - 6
+     - ESP_IO0
+     - Strapping 管脚
+
+
+JTAG 接口
+^^^^^^^^^^^^^^^
+
+.. list-table::
+   :widths: 30 30 40
+   :header-rows: 1
+   
+   * - 编号
+     - 名称
+     - 功能
+   * - 1
+     - VDD
+     - 供电
+   * - 2
+     - ESP_TMS
+     - JTAG TMS 管脚，选择模式
+   * - 3
+     - GND
+     - 地线
+   * - 4
+     - ESP_TCK
+     - JTAG TCK 管脚，时钟输入
+   * - 5
+     - GND
+     - 地线
+   * - 6
+     - ESP_TDO
+     - JTAG TDO 管脚
+   * - 7
+     - GND
+     - 地线
+   * - 8
+     - ESP_TDI
+     - JTAG TDI 管脚
+   * - 9
+     - GND
+     - 地线
+   * - 10
+     - NC
+     - 无
+
+
+相关文档
+=================
+
+- `ESP-Prog 原理图 <../../_static/schematics/esp-prog/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+- `ESP-Prog PCB 布局图 <../../_static/schematics/esp-prog/PCB_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+- `ESP-Prog 尺寸图 <../../_static/schematics/esp-prog/DIM_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+
+
+有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
+

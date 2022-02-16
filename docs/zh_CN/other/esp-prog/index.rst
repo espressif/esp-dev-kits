@@ -9,4 +9,4 @@ ESP-Prog 是一款乐鑫推出的开发调试工具，具有自动下载固件�
     :maxdepth: 2
 
     用户指南 <user_guide>
-    硬件参考 <hw/hw-reference>
+    硬件参考 <reference/reference-doc>
