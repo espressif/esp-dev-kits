@@ -153,7 +153,7 @@ USB/电池供电管理模块电路图如下图所示。
 Boot & UART 功能
 ++++++++++++++++++++
 
-开发板采用一款插座 PROG Header，可通过排线连接至另一款 ESP-PROG 开发板上，然后再将 ESP-PROG 开发板中的 Micro USB 接口与 PC 机相连，即可利用 PC 机对此开发板进行下载及调试。
+开发板采用一款插座 PROG Header，可通过排线连接至另一款 ESP-PROG 开发板上，然后再将 ESP-PROG 开发板中的 micro USB 接口与 PC 机相连，即可利用 PC 机对此开发板进行下载及调试。
 
 Boot & UART 电路原理图如下图所示。
 
@@ -242,3 +242,10 @@ APDS-9960 是一款集成 ALS、红外 LED 和接近检测器的光学模块和�
 -----------
 
 见 `esp-mdf/examples/development_kit/sense <https://github.com/espressif/esp-mdf/tree/master/examples/development_kit/sense>`__。
+
+
+相关文档
+-----------
+
+- `ESP32-MeshKit-Sense 原理图 <../../_static/schematics/esp32-meshkit-sense/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
+- `ESP32-MeshKit-Sense PCB 布局 <../../_static/schematics/esp32-meshkit-sense/ESP32-MeshKit-Sense_V1.1.pdf>`_

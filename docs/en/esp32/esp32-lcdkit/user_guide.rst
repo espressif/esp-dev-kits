@@ -134,3 +134,10 @@ The figure below shows the schematics for the SD-Card and DAC-Audio modules.
    :figclass: align-center
  
    SD-Card and DAC-Audio Modules
+
+
+Related Documents
+---------------------
+
+- `ESP32-LCDKit Schematic <../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `ESP32-LCDKit PCB Layout <../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_

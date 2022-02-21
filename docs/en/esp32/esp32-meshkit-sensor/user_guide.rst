@@ -162,7 +162,7 @@ The connection of the two can be controlled by the module GPIO+MOS. The figure b
 Boot & UART
 ++++++++++++++
 
-The development board is integrated with a PROG Header, which can be connected to a ESP-PROG development board via a cable. Users can then connect the Micro USB of the ESP-PROG development board to a PC for ESP32-MeshKit-Sense firmware download and debugging.
+The development board is integrated with a PROG Header, which can be connected to a ESP-PROG development board via a cable. Users can then connect the micro USB of the ESP-PROG development board to a PC for ESP32-MeshKit-Sense firmware download and debugging.
 
 The figure below shows the schematics for Boot & UART Circuit.
 
@@ -250,3 +250,10 @@ Example
 ------------
 
 See `esp-mdf/examples/development_kit/sense <https://github.com/espressif/esp-mdf/tree/master/examples/development_kit/sense>`__.
+
+
+Related Documents
+--------------------
+
+- `ESP32-MeshKit-Sense Schematic <../../_static/schematics/esp32-meshkit-sense/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
+- `ESP32-MeshKit-Sense PCB Layout <../../_static/schematics/esp32-meshkit-sense/ESP32-MeshKit-Sense_V1.1.pdf>`_

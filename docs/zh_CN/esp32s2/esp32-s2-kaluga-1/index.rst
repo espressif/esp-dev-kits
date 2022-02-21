@@ -9,4 +9,4 @@ ESP32-S2-Kaluga-1 是一款来自乐鑫的开发套件。
     :maxdepth: 2
 
     用户指南 <user_guide>
-    硬件参考 <hw/hw-reference>
+    参考文档 <reference/reference-doc>

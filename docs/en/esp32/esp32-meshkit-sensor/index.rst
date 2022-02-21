@@ -10,4 +10,4 @@ ESP32-MeshKit-Sense is a development board with an ESP32 module at its core. It 
     :maxdepth: 2
 
     User Guide <user_guide>
-    H/W Reference <hw/hw-reference>
+    

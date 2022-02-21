@@ -131,3 +131,9 @@ SD-Card、DAC-Audio 外设模块电路原理图如下所示：
  
    SD-Card 与 DAC-Audio 外设
 
+
+相关文档
+-----------
+
+- `ESP32-LCDKit 原理图 <../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `ESP32-LCDKit PCB 布局 <../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_

@@ -1,4 +1,4 @@
-H/W Reference
+Reference Documentation
 ========================
 
 :link_to_translation:`zh_CN:[中文]`
@@ -9,4 +9,3 @@ H/W Reference
     Audio <audio>
     Display <display>
     Power <power>
-    Resources <board-resource>

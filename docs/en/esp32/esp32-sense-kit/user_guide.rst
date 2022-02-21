@@ -18,38 +18,6 @@ The following image shows the whole ESP32-Sense-Kit.
  
    ESP32-Sense-Kit
 
-Related Resources
---------------------
-
--  **Set up Software Environment**
-
-   -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ is the SDK for ESP32. You can refer to `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ for how to set up the ESP32 software environment.
-   -  `ESP-Prog <../../other/esp-prog/index.html>`__ is the debugger for ESP32 that features download and debugging functions.
-
--  **ESP32 IoT Solution**
-
-   -  `ESP32 IoT Solution <https://github.com/espressif/esp-iot-solution/tree/release/v1.1>`__ project is based on ESP-IDF and contains multiple projects.
-   -  `ESP32-Sense Project <https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb>`__ contains the programs for ESP32-Sense Kit that can be downloaded to the development board to enable touch sensor function.
-
--  **Hardware Manuals**
-
-   -  Please refer to `Espressif website <http://espressif.com/en/support/download/documents?keys=Reference+Design>`__ for the hardware resources including schematics, PCB reference design, BOM and other files.
-
--  **Related Resources**
-
-   -  `Espressif website <https://espressif.com>`__.
-   -  `ESP32 programming guide <https://docs.espressif.com/projects/esp-idf/en/stable/index.html>`__: It hosts extensive documentation for ESP-IDF ranging from hardware guides to API reference.
-   -  `ESP32 touch sensor design <https://github.com/espressif/esp-iot-solution/blob/release/v1.1/documents/touch_pad_solution/touch_sensor_design_en.md>`__: It is the reference design manual for the ESP32 touch sensor system.
-
--  **Technical Support**
-
-   -  If you need technical support regarding ESP32-Sense-Kit, please submit a `new issue <https://github.com/espressif/esp-iot-solution/issues>`__ referring to the ESP32-Sense Project.
-
--  **How to buy**
-
-   -  WeChat Account: espressif_systems.
-   -  `Purchase consulting <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__.
-
 Preparation
 --------------
 
@@ -258,3 +226,45 @@ Demo
 .. |Duplex Slider| image:: ../../../_static/esp32-sense-kit/touch_diplexed_slide.jpg
 .. |Wheel Slider| image:: ../../../_static/esp32-sense-kit/touch_wheel.jpg
 
+
+Related Resources
+--------------------
+
+-  **Schematic**
+
+   -  `ESP32-Sense-Kit Mainboard Schematic <../../_static/schematics/esp32-sense-kit/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
+   -  `ESP32-Sense-Kit Subboard Schematic <../../_static/schematics/esp32-sense-kit/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
+
+-  **PCB Layout**
+
+   -  `ESP32-Sense-Kit Mainboard PCB Layout <../../_static/schematics/esp32-sense-kit/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
+   -  `ESP32-Sense-Kit Subboard PCB Layout <../../_static/schematics/esp32-sense-kit/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
+
+-  **Set up Software Environment**
+
+   -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ is the SDK for ESP32. You can refer to `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ for how to set up the ESP32 software environment.
+   -  `ESP-Prog <../../other/esp-prog/index.html>`__ is the debugger for ESP32 that features download and debugging functions.
+
+-  **ESP32 IoT Solution**
+
+   -  `ESP32 IoT Solution <https://github.com/espressif/esp-iot-solution/tree/release/v1.1>`__ project is based on ESP-IDF and contains multiple projects.
+   -  `ESP32-Sense Project <https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb>`__ contains the programs for ESP32-Sense Kit that can be downloaded to the development board to enable touch sensor function.
+
+-  **Hardware Manuals**
+
+   -  Please click `ESP32-Sense Kit Reference Design <https://www.espressif.com/sites/default/files/documentation/ESP32-Sense-Kit_V3.2_reference_design_r1.0.zip>`__ to download the hardware resources including schematics, PCB reference design, BOM and other files.
+
+-  **Useful References**
+
+   -  `Espressif website <https://espressif.com>`__.
+   -  `ESP32 programming guide <https://docs.espressif.com/projects/esp-idf/en/stable/index.html>`__: It hosts extensive documentation for ESP-IDF ranging from hardware guides to API reference.
+   -  `ESP32 touch sensor design <https://github.com/espressif/esp-iot-solution/blob/release/v1.1/documents/touch_pad_solution/touch_sensor_design_en.md>`__: It is the reference design manual for the ESP32 touch sensor system.
+
+-  **Technical Support**
+
+   -  If you need technical support regarding ESP32-Sense-Kit, please submit a `new issue <https://github.com/espressif/esp-iot-solution/issues>`__ referring to the ESP32-Sense Project.
+
+-  **How to buy**
+
+   -  WeChat Account: espressif_systems.
+   -  `Purchase consulting <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__.

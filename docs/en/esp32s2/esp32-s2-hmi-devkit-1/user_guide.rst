@@ -33,7 +33,7 @@ The main features of the board are listed below:
 The document consists of the following major sections:
 
 - `Getting started`_: Overview of the board and hardware/software setup instructions to get started.
-- `Hardware Overview`_: More detailed information about the board's hardware.
+- `Hardware Reference`_: More detailed information about the board's hardware.
 - `Related Documents`_: Links to related documentation.
 
 
@@ -181,7 +181,7 @@ Contents and Packaging
 Retail Orders
 ^^^^^^^^^^^^^
 
-If you order one or several samples of the kit, each ESP32-S2-Kaluga-1 development kit comes in an individual package.
+If you order one or several samples of the kit, each ESP32-S2-HMI-DevKit-1 development kit comes in an individual package.
 
 .. figure:: ../../../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-pacakge-v1.0.png
    :align: center
@@ -208,7 +208,7 @@ If you order in bulk, the boards come in large cardboard boxes.
 For wholesale orders, please go to https://www.espressif.com/en/contact-us/sales-questions.
 
 
-Hardware Overview
+Hardware Reference
 ==================
 
 
@@ -286,8 +286,8 @@ Related Documents
 - `ESP32-S2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`_ (PDF)
 - `ESP32-S2-WROVER Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_en.pdf>`_ (PDF)
 - `ESP32-S2-HMI-DevKit-1 Schematic <../../_static/schematics/esp32-s2-hmi-devkit-1/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 PCB layout <../../_static/schematics/esp32-s2-hmi-devkit-1/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 PCB Layout <../../_static/schematics/esp32-s2-hmi-devkit-1/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
 - `ESP32-S2-HMI-DevKit-1 Dimensions <../../_static/schematics/esp32-s2-hmi-devkit-1/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf>`_ (PDF)
-- `Dimensions source file <../../_static/schematics/esp32-s2-hmi-devkit-1/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+- `ESP32-S2-HMI-DevKit-1 Dimensions Source File <../../_static/schematics/esp32-s2-hmi-devkit-1/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

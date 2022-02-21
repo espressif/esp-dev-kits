@@ -12,4 +12,4 @@ ESP32-S2-HMI-DevKit-1 has been specifically designed for human-machine interface
     :maxdepth: 2
 
     User Guide <user_guide>
-    H/W Reference <hw/index>
+    Reference Documentation <reference/index>

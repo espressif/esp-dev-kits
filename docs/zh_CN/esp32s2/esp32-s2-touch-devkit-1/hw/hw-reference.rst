@@ -1,1 +1,0 @@
-.. include:: ../../../../en/esp32s2/esp32-s2-touch-devkit-1/hw/hw-reference.rst

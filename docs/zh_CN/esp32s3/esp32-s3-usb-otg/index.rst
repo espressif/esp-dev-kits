@@ -9,4 +9,3 @@ ESP32-S3-USB-OTG 是一款侧重于 USB-OTG 功能验证和应用开发的开发
     :maxdepth: 2
 
     用户手册 <user_guide>
-    硬件参考 <hw/hw-reference>

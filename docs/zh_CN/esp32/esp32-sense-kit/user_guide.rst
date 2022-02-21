@@ -17,38 +17,6 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
  
    ESP32-Sense-Kit
 
-相关资源
------------
-
-- **开发环境**
-
-  -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ 是 ESP32 平台的软件开发包。文档 `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ 介绍编译环境的搭建和软件开发包的使用说明。
-  -  `ESP-Prog <../../other/esp-prog/index.html>`__ 是 ESP32 调试工具，有下载和 Jtag 调试功能。
-
-- **ESP32 IoT 应用方案**
-
-  -  `ESP32 IoT Solution <https://github.com/espressif/esp-iot-solution/tree/release/v1.1>`__ 基于 ESP-IDF 开发，包含多种应用解决方案。文档 `build-system-and-dependency <../../README.md#build-system-and-dependency>`__ 介绍了如何编译解决方案。
-  -  `ESP32-Sense 项目工程 <https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb>`__ 是 ESP32-Sense 开发套件对应的软件工程文件。下载程序到主板即可使用触摸功能。
-
-- **硬件手册**
-
-  -  ESP32-Sense-Kit 开发套件的硬件原理图，PCB 文件，BOM 等文件参考 `乐鑫官网 <http://espressif.com/zh-hans/support/download/documents?keys=参考设计>`__。
-
-- **其他参考资料**
-
-  -  `Espressif 官网 <http://www.espressif.com>`__。
-  -  `ESP32 编程指南 <https://docs.espressif.com/projects/esp-idf/en/stable/index.html>`__ : ESP32 相关开发文档的汇总平台，包含硬件手册，软件 API 介绍等。
-  -  `触摸传感器应用设计参考文档 <https://github.com/espressif/esp-iot-solution/blob/release/v1.1/documents/touch_pad_solution/touch_sensor_design_cn.md>`__: ESP32 触摸传感器功能应用设计手册，包括触摸传感器原理介绍，软件设计，PCB 设计等内容。
-
-- **技术支持**
-
-  -  若在 ESP32-Sense-Kit 开发套件使用时遇到问题，请在 ESP32-Sense 工程中提交 `issue <https://github.com/espressif/esp-iot-solution/issues>`__。
-
-- **购买方式**
-
-  -  微信公众号： espressif_systems
-  -  `商务咨询 <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__
-
 开发板操作
 -------------
 
@@ -116,7 +84,7 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
 
    ESP32 上电时会检测子板上的分压电阻的分压值，识别不同的子板。更换子板后需给开发板重新上电。
 
-硬件介绍
+硬件参考
 -----------
 
 主板
@@ -255,3 +223,46 @@ ESP32 IoT Solution 工程下的 `ESP32-Sense 项目 <https://github.com/espressi
 .. |Linear Slider| image:: ../../../_static/esp32-sense-kit/touch_slide.jpg
 .. |Duplex Slider| image:: ../../../_static/esp32-sense-kit/touch_diplexed_slide.jpg
 .. |Wheel Slider| image:: ../../../_static/esp32-sense-kit/touch_wheel.jpg
+
+
+相关资源
+-----------
+
+- **原理图**
+
+  - `ESP32-Sense-kit 主板原理图 <../../_static/schematics/esp32-sense-kit/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
+  - `ESP32-Sense-kit 子板原理图 <../../_static/schematics/esp32-sense-kit/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
+
+- **PCB 布局**
+
+  - `ESP32-Sense-kit 主板 PCB 布局 <../../_static/schematics/esp32-sense-kit/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
+  - `ESP32-Sense-kit 子板 PCB 布局 <../../_static/schematics/esp32-sense-kit/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
+
+- **开发环境**
+
+  -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ 是 ESP32 平台的软件开发包。文档 `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ 介绍编译环境的搭建和软件开发包的使用说明。
+  -  `ESP-Prog <../../other/esp-prog/index.html>`__ 是 ESP32 调试工具，有下载和 Jtag 调试功能。
+
+- **ESP32 IoT 应用方案**
+
+  -  `ESP32 IoT Solution <https://github.com/espressif/esp-iot-solution/tree/release/v1.1>`__ 基于 ESP-IDF 开发，包含多种应用解决方案。文档 `build-system-and-dependency <../../README.md#build-system-and-dependency>`__ 介绍了如何编译解决方案。
+  -  `ESP32-Sense 项目工程 <https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb>`__ 是 ESP32-Sense 开发套件对应的软件工程文件。下载程序到主板即可使用触摸功能。
+
+- **硬件手册**
+
+  -  ESP32-Sense-Kit 开发套件的硬件原理图、PCB 文件、BOM 等文件，请点击 `ESP32-Sense Kit 参考设计 <https://www.espressif.com/sites/default/files/documentation/ESP32-Sense-Kit_V3.2_reference_design_r1.0_0.zip>`__ 下载。
+
+- **其他参考资料**
+
+  -  `Espressif 官网 <http://www.espressif.com>`__。
+  -  `ESP32 编程指南 <https://docs.espressif.com/projects/esp-idf/en/stable/index.html>`__ : ESP32 相关开发文档的汇总平台，包含硬件手册、软件 API 介绍等。
+  -  `触摸传感器应用设计参考文档 <https://github.com/espressif/esp-iot-solution/blob/release/v1.1/documents/touch_pad_solution/touch_sensor_design_cn.md>`__: ESP32 触摸传感器功能应用设计手册，包括触摸传感器原理介绍、软件设计、PCB 设计等内容。
+
+- **技术支持**
+
+  -  若在 ESP32-Sense-Kit 开发套件使用时遇到问题，请在 ESP32-Sense 工程中提交 `issue <https://github.com/espressif/esp-iot-solution/issues>`__。
+
+- **购买方式**
+
+  -  微信公众号： espressif_systems
+  -  `商务咨询 <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__
