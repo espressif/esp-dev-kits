@@ -10,15 +10,23 @@ esp-dev-kits
 -------
 
 ============================   ===========================
-       **ESP32-S3 系列开发板**    
+       **ESP8684 系列开发板**
 ----------------------------------------------------------
-  |ESP32-S3-USB-OTG|_
+ |ESP8684-DevKitM-1|_
 ----------------------------   ---------------------------
- `ESP32-S3-USB-OTG`_ 
+ `ESP8684-DevKitM-1`_
 ============================   ===========================
 
 ============================   ===========================
-       **ESP32-S2 系列开发板**    
+       **ESP32-S3 系列开发板**
+----------------------------------------------------------
+  |ESP32-S3-USB-OTG|_
+----------------------------   ---------------------------
+ `ESP32-S3-USB-OTG`_
+============================   ===========================
+
+============================   ===========================
+       **ESP32-S2 系列开发板**
 ----------------------------------------------------------
  |ESP32-S2-Kaluga-1|_           |ESP32-S2-Touch-DevKit-1|
 ----------------------------   ---------------------------
@@ -28,9 +36,9 @@ esp-dev-kits
 ============================   ===========================
        **ESP32 系列开发板**
 ----------------------------------------------------------
- |ESP32-LCDKit|_                        
+ |ESP32-LCDKit|_
 ----------------------------   ---------------------------
- `ESP32-LCDKit`_       
+ `ESP32-LCDKit`_
 ============================   ===========================
 
 ============================   ===========================
@@ -44,9 +52,9 @@ esp-dev-kits
 ============================   ===========================
        **寿命终止开发板**
 ----------------------------------------------------------
- |ESP32-S2-HMI-DevKit-1|_       |ESP32-Sense-Kit|_ 
+ |ESP32-S2-HMI-DevKit-1|_       |ESP32-Sense-Kit|_
 ----------------------------   ---------------------------
- `ESP32-S2-HMI-DevKit-1`_       `ESP32-Sense-Kit`_ 
+ `ESP32-S2-HMI-DevKit-1`_       `ESP32-Sense-Kit`_
 ============================   ===========================
 
 
@@ -75,6 +83,9 @@ esp-dev-kits
                       :width: 400px
 .. _ESP32-S3-USB-OTG: esp32s3/esp32-s3-usb-otg/index.html
 
+.. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
+.. _ESP8684-DevKitM-1: esp8684/esp8684-devkitm-1/index.html
+
 .. |ESP-Prog| image:: ../_static/esp-prog/modules.png
 .. _ESP-Prog: other/esp-prog/index.html
 
@@ -85,6 +96,12 @@ esp-dev-kits
 - `ESP-IDF 详细安装步骤 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-get-prerequisites>`_
 - `ESP-IDF 编程指南 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html>`__
 - `ESP 产品选型工具 <http://products.espressif.com:8000/#/product-selector>`_
+
+.. toctree::
+   :hidden:
+   :caption: ESP8684 系列开发板
+
+   ESP8684-DevKitM-1 <esp8684/esp8684-devkitm-1/index>
 
 .. toctree::
    :hidden:
@@ -105,7 +122,6 @@ esp-dev-kits
 
    ESP32-LCDKit <esp32/esp32-lcdkit/index>
 
-   
 .. toctree::
    :hidden:
    :caption: 其他开发板

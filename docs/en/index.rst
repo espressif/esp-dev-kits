@@ -1,4 +1,4 @@
-esp-dev-kits 
+esp-dev-kits
 ===========================
 
 :link_to_translation:`zh_CN:[中文]`
@@ -10,15 +10,23 @@ Supported Development Boards
 ----------------------------------------
 
 ============================   ===========================
-       **ESP32-S3 Development Boards**     
+       **ESP8684 Development Boards**
 ----------------------------------------------------------
-  |ESP32-S3-USB-OTG|_                
+ |ESP8684-DevKitM-1|_
 ----------------------------   ---------------------------
- `ESP32-S3-USB-OTG`_                 
+ `ESP8684-DevKitM-1`_
 ============================   ===========================
 
 ============================   ===========================
-       **ESP32-S2 Development Boards**    
+       **ESP32-S3 Development Boards**
+----------------------------------------------------------
+  |ESP32-S3-USB-OTG|_
+----------------------------   ---------------------------
+ `ESP32-S3-USB-OTG`_
+============================   ===========================
+
+============================   ===========================
+       **ESP32-S2 Development Boards**
 ----------------------------------------------------------
  |ESP32-S2-Kaluga-1|_           |ESP32-S2-Touch-DevKit-1|
 ----------------------------   ---------------------------
@@ -26,11 +34,11 @@ Supported Development Boards
 ============================   ===========================
 
 ============================   ===========================
-       **ESP32 Development Boards** 
+       **ESP32 Development Boards**
 ----------------------------------------------------------
- |ESP32-LCDKit|_                        
+ |ESP32-LCDKit|_
 ----------------------------   ---------------------------
- `ESP32-LCDKit`_       
+ `ESP32-LCDKit`_
 ============================   ===========================
 
 ============================   ===========================
@@ -44,9 +52,9 @@ Supported Development Boards
 ============================   ===========================
        **EOL (End of Life) Boards**
 ----------------------------------------------------------
- |ESP32-S2-HMI-DevKit-1|_       |ESP32-Sense-Kit|_ 
+ |ESP32-S2-HMI-DevKit-1|_       |ESP32-Sense-Kit|_
 ----------------------------   ---------------------------
- `ESP32-S2-HMI-DevKit-1`_       `ESP32-Sense-Kit`_ 
+ `ESP32-S2-HMI-DevKit-1`_       `ESP32-Sense-Kit`_
 ============================   ===========================
 
 
@@ -75,17 +83,26 @@ Supported Development Boards
                       :width: 400px
 .. _ESP32-S3-USB-OTG: esp32s3/esp32-s3-usb-otg/index.html
 
+.. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
+.. _ESP8684-DevKitM-1: esp8684/esp8684-devkitm-1/index.html
+
 .. |ESP-Prog| image:: ../_static/esp-prog/modules.png
 .. _ESP-Prog: other/esp-prog/index.html
 
 
-Related 
+Related
 ~~~~~~~~~~~~~~~~
 
 - `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#get-started-get-prerequisites>`_
 - `ESP-IDF Programming Guide <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html>`__
 - `ESP Product Selector <http://products.espressif.com:8000/#/product-selector>`_
 
+.. toctree::
+   :hidden:
+   :caption: ESP8684 Boards
+
+   ESP8684-DevKitM-1 <esp8684/esp8684-devkitm-1/index>
+   
 .. toctree::
    :hidden:
    :caption: ESP32-S3 Boards
@@ -105,7 +122,6 @@ Related
 
    ESP32-LCDKit <esp32/esp32-lcdkit/index>
 
-   
 .. toctree::
    :hidden:
    :caption: Other Boards
