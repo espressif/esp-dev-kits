@@ -27,6 +27,7 @@ static const char *TAG = "main";
 #define IMAGE_MAX_SIZE (100 * 1024)/**< The maximum size of a single picture in the boot animation */
 #define IMAGE_WIDTH    320 /*!< width of jpeg file */
 #define IMAGE_HIGHT    240 /*!< height of jpeg file */
+#define DELAYMS        1000 /*!< height of jpeg file */
 
 /**
  * @brief rgb -> rgb565
@@ -63,7 +64,7 @@ void esp_photo_display(void)
     if (NULL == rgb565) {
         ESP_LOGE(TAG, "can't alloc memory for rgb565 buffer");
         return;
-    }
+    };
     uint8_t *buf = malloc(IMAGE_MAX_SIZE);
     if (NULL == buf) {
         free(rgb565);
@@ -83,7 +84,7 @@ void esp_photo_display(void)
     lcd_write_data(rgb565, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
     free(buf);
     free(rgb565);
-    vTaskDelay(2000 / portTICK_RATE_MS);
+    vTaskDelay(DELAYMS / portTICK_RATE_MS);
 }
 
 void esp_color_display(void)
@@ -91,7 +92,7 @@ void esp_color_display(void)
     ESP_LOGI(TAG, "LCD color test....");
     uint16_t *data_buf = (uint16_t *)heap_caps_calloc(IMAGE_WIDTH * IMAGE_HIGHT, sizeof(uint16_t), MALLOC_CAP_SPIRAM);
 
-    while (1) {
+    /* while (1) { */
         uint16_t color = color565(0, 0, 0);
 
         for (int r = 0,  j = 0; j < IMAGE_HIGHT; j++) {
@@ -106,7 +107,7 @@ void esp_color_display(void)
 
         lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HIGHT - 1);
         lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
-        vTaskDelay(2000 / portTICK_RATE_MS);
+        vTaskDelay(DELAYMS / portTICK_RATE_MS);
 
         for (int g = 0,  j = 0; j < IMAGE_HIGHT; j++) {
             if (j % 8 == 0) {
@@ -120,7 +121,7 @@ void esp_color_display(void)
 
         lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HIGHT - 1);
         lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
-        vTaskDelay(2000 / portTICK_RATE_MS);
+        vTaskDelay(DELAYMS / portTICK_RATE_MS);
 
         for (int b = 0,  j = 0; j < IMAGE_HIGHT; j++) {
             if (j % 8 == 0) {
@@ -134,9 +135,9 @@ void esp_color_display(void)
 
         lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HIGHT - 1);
         lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
-        vTaskDelay(2000 / portTICK_RATE_MS);
+        vTaskDelay(DELAYMS / portTICK_RATE_MS);
 
-    }
+    /* } */
 }
 
 void app_main()
@@ -160,11 +161,13 @@ void app_main()
     };
 
     lcd_init(&lcd_config);
-
+  while (1) {
     /*< Show a picture */
+    
     esp_photo_display();
     /*< RGB display */
     esp_color_display();
+  }
 
 }
 
