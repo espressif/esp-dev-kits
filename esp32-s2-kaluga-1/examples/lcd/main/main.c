@@ -27,7 +27,7 @@ static const char *TAG = "main";
 #define IMAGE_MAX_SIZE (100 * 1024)/**< The maximum size of a single picture in the boot animation */
 #define IMAGE_WIDTH    320 /*!< width of jpeg file */
 #define IMAGE_HIGHT    240 /*!< height of jpeg file */
-#define DELAYMS        1000 /*!< height of jpeg file */
+#define DELAYMS        10000 /*!< height of jpeg file */
 
 /**
  * @brief rgb -> rgb565
