@@ -27,7 +27,7 @@ static const char *TAG = "main";
 #define IMAGE_MAX_SIZE (100 * 1024)/**< The maximum size of a single picture in the boot animation */
 #define IMAGE_WIDTH    320 /*!< width of jpeg file */
 #define IMAGE_HIGHT    240 /*!< height of jpeg file */
-#define DELAYMS        10000 /*!< height of jpeg file */
+#define DELAYMS        50000 /*!< height of jpeg file */
 
 /**
  * @brief rgb -> rgb565
@@ -46,7 +46,7 @@ uint16_t color565(uint8_t r, uint8_t g, uint8_t b)
 
 void esp_photo_display(void)
 {
-    ESP_LOGI(TAG, "LCD photo test....");
+    ESP_LOGI(TAG, "LCD photo test Githib demo by HW....");
     esp_vfs_spiffs_conf_t conf = {
         .base_path = "/spiffs",
         .partition_label = NULL,
@@ -76,7 +76,7 @@ void esp_photo_display(void)
     FILE *fd = fopen("/spiffs/image.jpg", "r");
 
     read_bytes = fread(buf, 1, IMAGE_MAX_SIZE, fd);
-    ESP_LOGI(TAG, "spiffs:read_bytes:%d  fd: %p", read_bytes, fd);
+    ESP_LOGI(TAG, "spiffs:read_bytes:%d  fd: %p ......>", read_bytes, fd);
     fclose(fd);
 
     jpg2rgb565(buf, read_bytes, rgb565, JPG_SCALE_NONE);
@@ -89,7 +89,7 @@ void esp_photo_display(void)
 
 void esp_color_display(void)
 {
-    ESP_LOGI(TAG, "LCD color test....");
+    ESP_LOGI(TAG, "LCD color test by Willing....");
     uint16_t *data_buf = (uint16_t *)heap_caps_calloc(IMAGE_WIDTH * IMAGE_HIGHT, sizeof(uint16_t), MALLOC_CAP_SPIRAM);
 
     /* while (1) { */
