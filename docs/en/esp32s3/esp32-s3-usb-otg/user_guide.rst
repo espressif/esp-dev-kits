@@ -302,8 +302,8 @@ USB Interface Switch Circuit
 
    USB Interface Switch Circuit (click to enlarge)
 
--  When **USB_SEL** (GPIO18) is set to high level, the USB D+/D- Pin (GPIO19, 20) will be connected to ``USB_DEV D+ D-``. Then you can use the ``USB HOST`` interface (Type-A female Port) to connect other USB devices.
--  When **USB_SEL** (GPIO18) is set to low level, the USB D+/D- Pin (GPIO19, 20) will be connected to ``USB_HOST D+ D-``. Then you can use the ``USB DEV`` interface (Type-A male port) to connect to host like PC.
+-  When **USB_SEL** (GPIO18) is set to high level, the USB D+/D- Pin (GPIO19, 20) will be connected to ``USB_HOST D+ D-``. Then you can use the ``USB HOST`` interface (Type-A female Port) to connect other USB devices.
+-  When **USB_SEL** (GPIO18) is set to low level, the USB D+/D- Pin (GPIO19, 20) will be connected to ``USB_DEV D+ D-``. Then you can use the ``USB DEV`` interface (Type-A male port) to connect to host like PC.
 -  **USB_SEL** is pulled low level by default.
 
 LCD Interface
