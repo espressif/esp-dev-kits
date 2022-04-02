@@ -428,7 +428,7 @@ Pin Layout
      - LIMIT_EN: Enable current limiting IC, high level enable.
    * - 24
      - GPIO21
-     - 0VER_CURRENT: Current overrun signal, high level means overrun.
+     - OVER_CURRENT: Current overrun signal, high level means overrun.
    * - 25
      - GPIO12
      - DEV_VBUS_EN: High level to enable DEV_VBUS power supply.
