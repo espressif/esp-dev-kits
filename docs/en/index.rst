@@ -20,9 +20,9 @@ Supported Development Boards
 ============================   ===========================
        **ESP32-S3 Development Boards**
 ----------------------------------------------------------
-  |ESP32-S3-USB-OTG|_
+  |ESP32-S3-USB-OTG|_           |ESP32-S3-LCD-EV-BOARD|_
 ----------------------------   ---------------------------
- `ESP32-S3-USB-OTG`_
+ `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-BOARD`_
 ============================   ===========================
 
 ============================   ===========================
@@ -83,6 +83,9 @@ Supported Development Boards
                       :width: 400px
 .. _ESP32-S3-USB-OTG: esp32s3/esp32-s3-usb-otg/index.html
 
+.. |ESP32-S3-LCD-EV-BOARD| image:: ../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board.png
+.. _ESP32-S3-LCD-EV-BOARD: esp32s3/esp32-s3-lcd-ev-board/index.html
+
 .. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
 .. _ESP8684-DevKitM-1: esp8684/esp8684-devkitm-1/index.html
 
@@ -102,12 +105,13 @@ Related
    :caption: ESP8684 Boards
 
    ESP8684-DevKitM-1 <esp8684/esp8684-devkitm-1/index>
-   
+
 .. toctree::
    :hidden:
    :caption: ESP32-S3 Boards
 
    ESP32-S3-USB-OTG <esp32s3/esp32-s3-usb-otg/index>
+   ESP32-S3-LCD-EV-BOARD <esp32s3/esp32-s3-lcd-ev-board/index>
 
 .. toctree::
    :hidden:

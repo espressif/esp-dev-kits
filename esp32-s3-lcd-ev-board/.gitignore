@@ -1,0 +1,32 @@
+build
+bin
+.config
+*.o
+*.pyc
+sdkconfig
+sdkconfig.old
+
+# emacs
+.dir-locals.el
+
+# emacs temp file suffixes
+*~
+.#*
+\#*#
+
+# eclipse setting
+.settings
+
+# MacOS directory files
+.DS_Store
+
+# VS Code Settings
+.vscode/
+
+# Clion Settings
+*.idea/
+
+# Clion build directory
+*cmake-build-debug
+
+*.tmp
