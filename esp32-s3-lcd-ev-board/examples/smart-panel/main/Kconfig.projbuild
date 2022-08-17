@@ -1,0 +1,69 @@
+menu "Example Configuration"
+    config LIGHT_REBOOT_UNBROKEN_COUNT_RESET
+        int "More than this number of continuous uninterrupted restarts triggers a reset of the device"
+        range 3 15
+        default 5
+        help
+            Devices without buttons trigger a device reset through continuous restart.
+
+    config LIGHT_DEBUG
+        bool "The device will be in debug mode"
+        default n
+        help
+            Debug mode device performance is only used during development.
+endmenu
+
+menu "QWeather Configuration"
+    config QWEATHER_REQUEST_KEY
+        string "Request Key"
+        default "REQUEST_KEY"
+        help
+            Set QWeather request key. You can add key at https://console.qweather.com/#/apps.
+
+endmenu
+
+menu "wifi Configuration"
+
+    config ESP_WIFI_SSID
+        string "WiFi SSID"
+        default "myssid"
+        help
+            SSID (network name) for the example to connect to.
+
+    config ESP_WIFI_PASSWORD
+        string "WiFi Password"
+        default "mypassword"
+        help
+            WiFi password (WPA or WPA2) for the example to use.
+
+    config ESP_MAXIMUM_RETRY
+        int "Maximum retry"
+        default 5
+        help
+            Set the Maximum retry to avoid station reconnecting to the AP unlimited when the AP is really inexistent.
+
+    choice ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD
+        prompt "WiFi Scan auth mode threshold"
+        default ESP_WIFI_AUTH_OPEN
+        help
+            The weakest authmode to accept in the scan mode.
+
+        config ESP_WIFI_AUTH_OPEN
+            bool "OPEN"
+        config ESP_WIFI_AUTH_WEP
+            bool "WEP"
+        config ESP_WIFI_AUTH_WPA_PSK
+            bool "WPA PSK"
+        config ESP_WIFI_AUTH_WPA2_PSK
+            bool "WPA2 PSK"
+        config ESP_WIFI_AUTH_WPA_WPA2_PSK
+            bool "WPA/WPA2 PSK"
+        config ESP_WIFI_AUTH_WPA3_PSK
+            bool "WPA3 PSK"
+        config ESP_WIFI_AUTH_WPA2_WPA3_PSK
+            bool "WPA2/WPA3 PSK"
+        config ESP_WIFI_AUTH_WAPI_PSK
+            bool "WAPI PSK"
+    endchoice
+
+endmenu

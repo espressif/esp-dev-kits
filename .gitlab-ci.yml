@@ -32,32 +32,32 @@ build_kaluga_demo_cmake:
     - cd esp32-s2-kaluga-1
     - cd examples/camera
     - idf.py fullclean
-    - idf.py set-target esp32s2 
+    - idf.py set-target esp32s2
     - idf.py build
     - cd ../../
     - cd examples/lcd
     - idf.py fullclean
-    - idf.py set-target esp32s2 
+    - idf.py set-target esp32s2
     - idf.py build
     - cd ../../
     - cd examples/touch
     - idf.py fullclean
-    - idf.py set-target esp32s2 
+    - idf.py set-target esp32s2
     - idf.py build
     - cd ../../
     - cd examples/adc_button
     - idf.py fullclean
-    - idf.py set-target esp32s2 
+    - idf.py set-target esp32s2
     - idf.py build
     - cd ../../
     - cd examples/touch_audio
     - idf.py fullclean
-    - idf.py set-target esp32s2 
+    - idf.py set-target esp32s2
     - idf.py build
     - cd ../../
     - cd examples/web_tts
     - idf.py fullclean
-    - idf.py set-target esp32s2 
+    - idf.py set-target esp32s2
     - idf.py build
 
 build_hmi_demo_cmake:

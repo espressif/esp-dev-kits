@@ -29,7 +29,7 @@ ESP32-S3-USB-OTG 是一款侧重于 USB-OTG 功能验证和应用开发的开发
 .. _Getting-started:
 
 快速入门
---------
+-----------
 
 本节介绍如何开始使用 ESP32-S3-USB-OTG。首先，介绍一些关于 ESP32-S3-USB-OTG 的基本信息，然后在应用程序开发章节介绍如何开始使用该开发板进行开发，最后介绍该开发板包装和零售信息。
 
@@ -469,7 +469,7 @@ GPIO 分配
 .. _Related-documents:
 
 相关文档
---------
+------------
 
 -  `ESP32-S3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf>`__ (PDF)
 -  `ESP32-S3-MINI-1/1U 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_cn.pdf>`__ (PDF)

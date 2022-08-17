@@ -1,0 +1,89 @@
+menu "Board Configuration"
+
+    choice LCD_SUB_BOARD
+        prompt "Select LCD Sub Board"
+        default LCD_EV_SUB_BOARD2
+        help
+            Select an sub board for LCD EV mainboard
+    config LCD_EV_SUB_BOARD1
+        bool "SUB_BOARD1 128x64 & 320x240 screen"
+    config LCD_EV_SUB_BOARD2
+        bool "SUB_BOARD2 480x480 & 320x480 screen"
+    config LCD_EV_SUB_BOARD3
+        bool "SUB_BOARD3 800x480 screen"
+    endchoice
+
+    choice LCD_SUB_BOARD1_SCREEN
+        depends on LCD_EV_SUB_BOARD1
+        prompt "Select screen for Sub Board1"
+        default LCD_EV_SUB_BOARD1_LCD_320x240
+    config LCD_EV_SUB_BOARD1_OLED_128x64
+        bool "128x64 0.96' OLED screen"
+    config LCD_EV_SUB_BOARD1_LCD_320x240
+        bool "320x240 2.4' LCD screen"
+    endchoice
+
+    choice LCD_SUB_BOARD2_SCREEN
+        depends on LCD_EV_SUB_BOARD2
+        prompt "Select screen for Sub Board2"
+        default LCD_EV_SUB_BOARD2_LCD_480x480
+    config LCD_EV_SUB_BOARD2_LCD_480x480
+        bool "480x480 3.95' LCD screen"
+    config LCD_EV_SUB_BOARD2_LCD_480x320
+        bool "480x320 3.5' LCD screen"
+    endchoice
+
+    choice LCD_SUB_BOARD2_SCREEN_DATA_WIDTH
+        depends on LCD_EV_SUB_BOARD2_LCD_480x320
+        prompt "Select data width for 480x320 3.5' LCD screen"
+        default LCD_EV_SUB_BOARD2_LCD_480x320_8BIT
+    config LCD_EV_SUB_BOARD2_LCD_480x320_8BIT
+        bool "8Bit 8080 interface"
+    config LCD_EV_SUB_BOARD2_LCD_480x320_16BIT
+        bool "16Bit 8080 interface"
+    endchoice
+
+    config LCD_EVB_SCREEN_WIDTH
+        int
+        default 800 if LCD_EV_SUB_BOARD3
+        default 480 if LCD_EV_SUB_BOARD2_LCD_480x480
+        default 320 if LCD_EV_SUB_BOARD2_LCD_480x320
+        default 240 if LCD_EV_SUB_BOARD1_LCD_320x240
+        default 128 if LCD_EV_SUB_BOARD1_OLED_128x64
+
+    config LCD_EVB_SCREEN_HEIGHT
+        int
+        default 480 if LCD_EV_SUB_BOARD3 || LCD_EV_SUB_BOARD2_LCD_480x480 || LCD_EV_SUB_BOARD2_LCD_480x320
+        default 320 if LCD_EV_SUB_BOARD1_LCD_320x240
+        default 64 if LCD_EV_SUB_BOARD1_OLED_128x64
+
+    config LCD_EVB_SCREEN_FREQ
+        depends on LCD_EV_SUB_BOARD2_LCD_480x480 || LCD_EV_SUB_BOARD3
+        int "Frequency of lcd pclk"
+        default 18
+
+    config LCD_AVOID_TEAR
+        depends on LCD_EV_SUB_BOARD2_LCD_480x480 || LCD_EV_SUB_BOARD3
+        bool "Avoid tearing effect"
+        default "n"
+
+    choice LCD_LVGL_MODE
+        depends on LCD_AVOID_TEAR
+        prompt "Select lvgl mode for avoiding tearing"
+        default LCD_LVGL_FULL_REFRESH
+        config LCD_LVGL_FULL_REFRESH
+            bool "full refresh with two frame psram buffer"
+        config LCD_LVGL_DIRECT_MODE
+            bool "direct mode with two frame psram buffer"
+    endchoice
+
+    config LCD_TASK_PRIORITY
+        depends on LCD_AVOID_TEAR
+        int "Priority of lcd refresh task"
+        default 5
+
+    config LCD_TASK_REFRESH_TIME
+        depends on LCD_AVOID_TEAR
+        int "Screen refresh period(ms)"
+        default 10
+endmenu
