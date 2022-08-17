@@ -85,5 +85,5 @@ menu "Board Configuration"
     config LCD_TASK_REFRESH_TIME
         depends on LCD_AVOID_TEAR
         int "Screen refresh period(ms)"
-        default 20
+        default 10
 endmenu
