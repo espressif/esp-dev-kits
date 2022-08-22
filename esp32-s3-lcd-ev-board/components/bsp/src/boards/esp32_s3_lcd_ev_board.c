@@ -95,8 +95,11 @@ static const board_res_desc_t g_board_lcd_evb_res = {
     .TOUCH_PANEL_INVERSE_Y =   (1),
 #elif defined CONFIG_LCD_EV_SUB_BOARD1_LCD_320x240
     .LCD_IFACE =   (LCD_IFACE_SPI),
+    .LCD_HOST  =   (SPI2_HOST),
     .LCD_DISP_IC_STR = "st7789",
     .LCD_FREQ =        (40 * 1000 * 1000),
+    .LCD_CMD_BITS =    (8),
+    .LCD_PARAM_BITS =  (8),
     .LCD_SWAP_XY =     (false),
     .LCD_MIRROR_X =    (false),
     .LCD_MIRROR_Y =    (false),
@@ -121,18 +124,8 @@ static const board_res_desc_t g_board_lcd_evb_res = {
 
     .LCD_WIDTH =       (CONFIG_LCD_EVB_SCREEN_WIDTH),
     .LCD_HEIGHT =      (CONFIG_LCD_EVB_SCREEN_HEIGHT),
-
     .LCD_COLOR_SPACE = ESP_LCD_COLOR_SPACE_RGB,
 
-    .GPIO_LCD_BL =     (GPIO_NUM_NC),
-    .GPIO_LCD_BL_ON =  (0),
-
-    // RGB interface GPIOs for LCD panel
-    .GPIO_LCD_DISP_EN = GPIO_NUM_NC,
-    .GPIO_LCD_VSYNC   = GPIO_NUM_3,
-    .GPIO_LCD_HSYNC   = GPIO_NUM_46,
-    .GPIO_LCD_DE      = GPIO_NUM_17,
-    .GPIO_LCD_PCLK    = GPIO_NUM_9,
 #ifdef CONFIG_LCD_EV_SUB_BOARD2_LCD_480x320 // for 8080 interface
     .GPIO_LCD_WR      = GPIO_NUM_3,
     .GPIO_LCD_CS      = GPIO_NUM_17,
@@ -153,7 +146,23 @@ static const board_res_desc_t g_board_lcd_evb_res = {
     .GPIO_LCD_DATA13  = GPIO_NUM_42,
     .GPIO_LCD_DATA14  = GPIO_NUM_2,
     .GPIO_LCD_DATA15  = GPIO_NUM_1,
-#else // for RGB interface
+    .GPIO_LCD_BL      = GPIO_NUM_NC,
+#elif CONFIG_LCD_EV_SUB_BOARD1_LCD_320x240
+    .GPIO_LCD_CS      = GPIO_NUM_17,
+    .GPIO_LCD_CLK     = GPIO_NUM_10,
+    .GPIO_LCD_DIN     = GPIO_NUM_14,
+    .GPIO_LCD_DOUT    = GPIO_NUM_47,
+    .GPIO_LCD_RST     = GPIO_NUM_NC,
+    .GPIO_LCD_DC      = GPIO_NUM_12,
+    .GPIO_LCD_BL      = GPIO_NUM_45,
+    .GPIO_LCD_BL_ON   = 1,
+#else // RGB interface GPIOs for LCD panel
+    .GPIO_LCD_DISP_EN = GPIO_NUM_NC,
+    .GPIO_LCD_VSYNC   = GPIO_NUM_3,
+    .GPIO_LCD_HSYNC   = GPIO_NUM_46,
+    .GPIO_LCD_DE      = GPIO_NUM_17,
+    .GPIO_LCD_PCLK    = GPIO_NUM_9,
+    .GPIO_LCD_BL      = GPIO_NUM_NC,
 #if BIGENDIAN_DATA
     .GPIO_LCD_DATA0   = GPIO_NUM_10, // B0
     .GPIO_LCD_DATA1   = GPIO_NUM_11, // B1
@@ -291,7 +300,7 @@ esp_err_t bsp_board_lcd_evb_detect(void)
          * @brief probe io expander other latent address
          */
         g_io_expander_addr = 0x39;
-        ret = bsp_i2c_probe_addr(g_io_expander_addr); 
+        ret = bsp_i2c_probe_addr(g_io_expander_addr);
     }
     ESP_RETURN_ON_FALSE(ESP_OK == ret, ESP_FAIL, TAG, "Can't detect io expander @0x%x", g_io_expander_addr);
     ret = bsp_i2c_probe_addr(0x41); // probe es7210
