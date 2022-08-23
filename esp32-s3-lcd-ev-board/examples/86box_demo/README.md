@@ -1,6 +1,6 @@
 # 86box_demo Example
 
-A GUI demo designed for smart control panel which is usually used fo rwall-mounted 86 type box. **Note that this example is only applicable to 480 x 480 LCD.**
+A GUI demo designed for smart control panel which is usually used fo wall-mounted 86 type box. **Note that this example is only applicable to 480 x 480 LCD.**
 
 ## How to use example
 

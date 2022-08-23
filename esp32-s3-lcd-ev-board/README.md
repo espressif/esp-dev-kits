@@ -1,6 +1,6 @@
 # ESP32-S3-LCD-EV-BOARD Development Board
 
-ESP32-S3-LCD-EV-BOARD is a development board for evaluating and verifying esp32s3 screen interactive applications. It has the functions of touch screen interaction and voice interaction. The development board has the following characteristics:
+ESP32-S3-LCD-EV-BOARD is a development board for evaluating and verifying ESP32-S3 screen interactive applications. It has the functions of touch screen interaction and voice interaction. The development board has the following characteristics:
 
 * Onboard ESP32-S3-WROOM-1 module, with built-in 16 MB Flash + 8 MB PSRAM
 * Onboard audio codec + audio amplifier
