@@ -32,6 +32,7 @@ Click one of development boards shown below to set up and start using esp-dev-ki
 |<div style="width: 150pt">Board</div>|Picture|Description|
 |:----:|:----:|:----|
 | [ESP32-S3-USB-OTG](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-usb-otg/index.html)| [<img src="docs/_static/esp32-s3-usb-otg/ESP32-S3-USB-OTG.png" alt ="ESP32-S3-USB-OTG" align="center" />](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-usb-otg/index.html) |ESP32-S3-USB-OTG is targeting at applications based on USB interface. It is equipped with the ESP32-S3-MINI-1-N8 module. Combined with the Wi-Fi functionality provided by the SoC, the USB interface can be used for video streaming over Wi-Fi, accessing the Internet through a 4G hotspot, connecting to a wireless USB disk, and many other applications.|
+| [ESP32-S3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/index.html)| [<img src="docs/_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=140/>](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/index.html) | ESP32-S3-LCD-EV-BOARD is a development board for evaluating and verifying ESP32-S3 screen interactive applications. The motherboard of ESP32-S3-LCD-EV-BOARD integrates ESP32-S3-WROOM-1 module and it has the functions of touch screen interaction and voice interaction. |
 
 **ESP32-S2 Development Boards**
 

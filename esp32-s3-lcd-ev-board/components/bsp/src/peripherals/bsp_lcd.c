@@ -20,6 +20,7 @@
 #include "rom/cache.h"
 #include "soc/soc_memory_layout.h"
 #include "lcd_panel_st7796.h"
+#include "lcd_panel_st7789.h"
 #include "sdkconfig.h"
 
 static const char *TAG = "bsp_lcd";
@@ -124,7 +125,7 @@ esp_err_t bsp_lcd_init(void)
         spi_bus_config_t buscfg = {
             .sclk_io_num = brd->GPIO_LCD_CLK,
             .mosi_io_num = brd->GPIO_LCD_DIN,
-            .miso_io_num = GPIO_NUM_NC,
+            .miso_io_num = brd->GPIO_LCD_DOUT,
             .quadwp_io_num = GPIO_NUM_NC,
             .quadhd_io_num = GPIO_NUM_NC,
             .max_transfer_sz = brd->LCD_WIDTH * brd->LCD_HEIGHT * sizeof(uint16_t)
@@ -135,7 +136,7 @@ esp_err_t bsp_lcd_init(void)
             .dc_gpio_num = brd->GPIO_LCD_DC,
             .cs_gpio_num = brd->GPIO_LCD_CS,
             .pclk_hz = brd->LCD_FREQ,
-            .spi_mode = 0,
+            .spi_mode = 3,
             .trans_queue_depth = 10,
             .lcd_cmd_bits = brd->LCD_CMD_BITS,
             .lcd_param_bits = brd->LCD_PARAM_BITS,
@@ -246,7 +247,7 @@ esp_err_t bsp_lcd_init(void)
 #endif
     if (LCD_IFACE_RGB != brd->LCD_IFACE) {
         if (strstr(brd->LCD_DISP_IC_STR, "st7789")) {
-            ESP_ERROR_CHECK(esp_lcd_new_panel_st7789(io_handle, &panel_config, &panel_handle));
+            ESP_ERROR_CHECK(lcd_new_panel_st7789(io_handle, &panel_config, &panel_handle));
         } else if (strstr(brd->LCD_DISP_IC_STR, "st7796")) {
             ESP_ERROR_CHECK(esp_lcd_new_panel_st7796(io_handle, &panel_config, &panel_handle));
         }
@@ -282,7 +283,7 @@ esp_err_t bsp_lcd_init(void)
             .pin_bit_mask = brd->GPIO_LCD_BL > 0 ? 1ULL << brd->GPIO_LCD_BL : 0ULL,
         };
         gpio_config(&bk_gpio_config);
-        gpio_set_level(brd->GPIO_LCD_BL, !brd->GPIO_LCD_BL_ON);
+        gpio_set_level(brd->GPIO_LCD_BL, brd->GPIO_LCD_BL_ON);
     }
 
     screen_clear(0x00ff);
