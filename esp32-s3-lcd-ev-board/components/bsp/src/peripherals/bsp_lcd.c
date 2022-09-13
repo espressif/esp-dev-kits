@@ -62,8 +62,8 @@ static bool lcd_trans_done_cb(esp_lcd_panel_io_handle_t panel_io, esp_lcd_panel_
 static esp_err_t screen_clear(uint16_t color)
 {
     const board_res_desc_t *brd = bsp_board_get_description();
-    int width = brd->LCD_SWAP_XY ? brd->LCD_HEIGHT : brd->LCD_WIDTH;
-    int height = brd->LCD_SWAP_XY ? brd->LCD_WIDTH : brd->LCD_HEIGHT;
+    int width = brd->LCD_WIDTH;
+    int height = brd->LCD_HEIGHT;
     uint16_t *buffer = malloc(width * sizeof(uint16_t));
     ESP_RETURN_ON_FALSE(NULL != buffer, ESP_FAIL, TAG,  "no memory for screen clear");
 
@@ -110,7 +110,7 @@ static void lcd_task(void *args)
 esp_err_t bsp_lcd_init(void)
 {
     esp_err_t ret_val = ESP_OK;
-    const board_res_desc_t *brd = bsp_board_get_description();
+    board_res_desc_t *brd = bsp_board_get_description();
     if (!brd->FUNC_LCD_EN) {
         return ESP_OK;
     }
@@ -258,6 +258,11 @@ esp_err_t bsp_lcd_init(void)
     esp_lcd_panel_invert_color(panel_handle, brd->LCD_COLOR_INV);
     esp_lcd_panel_set_gap(panel_handle, 0, 0);
     esp_lcd_panel_swap_xy(panel_handle, brd->LCD_SWAP_XY);
+    if (brd->LCD_SWAP_XY) {
+        brd->LCD_WIDTH = brd->LCD_WIDTH + brd->LCD_HEIGHT;
+        brd->LCD_HEIGHT = brd->LCD_WIDTH - brd->LCD_HEIGHT;
+        brd->LCD_WIDTH = brd->LCD_WIDTH - brd->LCD_HEIGHT;
+    }
     esp_lcd_panel_mirror(panel_handle, brd->LCD_MIRROR_X, brd->LCD_MIRROR_Y);
 #if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 0, 0)
     esp_lcd_panel_disp_on_off(panel_handle, true);

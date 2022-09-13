@@ -84,5 +84,5 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 
 * 购买方式
     - 了解更多购买信息，请访问公司官方公众号 **乐鑫信息科技**。
-    - 您可以借助 [ESP 产品选型工具](http://products.espressif.com:8000/#/product-selector) 选择合适的开发板。
+    - 您可以借助 [ESP 产品选型工具](https://products.espressif.com/#/product-selector?names=) 选择合适的开发板。
     - 如果您有任何与销售相关的问题需要咨询，请在 [商务问题](https://www.espressif.com/zh-hans/contact-us/sales-questions) 页面留言。

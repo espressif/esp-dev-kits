@@ -164,11 +164,11 @@ esp_err_t indev_tp_read(uint8_t *tp_num, uint16_t *x, uint16_t *y, uint8_t *btn_
     }
 
     if (brd->TOUCH_PANEL_INVERSE_X) {
-        *x = brd->LCD_SWAP_XY ? brd->LCD_HEIGHT - ( *x + 1) : brd->LCD_WIDTH - ( *x + 1);
+        *x = brd->LCD_WIDTH - ( *x + 1);
     }
 
     if (brd->TOUCH_PANEL_INVERSE_Y) {
-        *y = brd->LCD_SWAP_XY ? brd->LCD_WIDTH - (*y + 1) : brd->LCD_HEIGHT - (*y + 1);
+        *y =  brd->LCD_HEIGHT - (*y + 1);
     }
 
     ESP_LOGV(TAG, "[%3u, %3u]", *x, *y);

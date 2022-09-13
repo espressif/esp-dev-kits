@@ -84,5 +84,5 @@ Click one of development boards shown below to set up and start using esp-dev-ki
 
 * Purchase
     - Visit our WeChat Account **espressif_systems** to learn more about how to buy our products.
-    - If you need help in choosing a desired development board, [ESP Product Selector](http://products.espressif.com:8000/#/product-selector) is a place for you to visit.
+    - If you need help in choosing a desired development board, [ESP Product Selector](https://products.espressif.com/#/product-selector?names=) is a place for you to visit.
     - Contact us at [Sales Questions](http://www.espressif.com/en/company/contact/pre-sale-questions-crm) if you have any sales-related question about our products.

@@ -57,6 +57,19 @@ menu "Board Configuration"
         default 320 if LCD_EV_SUB_BOARD1_LCD_320x240
         default 64 if LCD_EV_SUB_BOARD1_OLED_128x64
 
+    choice LCD_EVB_SCREEN_ROTATION
+        prompt "Set rotation of lcd and touch"
+        default LCD_EVB_SCREEN_ROTATION_0
+        config LCD_EVB_SCREEN_ROTATION_0
+            bool "Rotate 0"
+        config LCD_EVB_SCREEN_ROTATION_90
+            bool "Rotate 90"
+        config LCD_EVB_SCREEN_ROTATION_180
+            bool "Rotate 180"
+        config LCD_EVB_SCREEN_ROTATION_270
+            bool "Rotate 270"
+    endchoice
+
     config LCD_EVB_SCREEN_FREQ
         depends on LCD_EV_SUB_BOARD2_LCD_480x480 || LCD_EV_SUB_BOARD3
         int "Frequency of lcd pclk"
