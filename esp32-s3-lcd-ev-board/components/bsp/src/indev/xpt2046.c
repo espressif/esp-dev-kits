@@ -13,6 +13,7 @@
 
 static const char *TAG = "XPT2046";
 
+#define gpio_pad_select_gpio(g) esp_rom_gpio_pad_select_gpio(g)
 #define TOUCH_CHECK(a, str, ret)  if(!(a)) {                                      \
         ESP_LOGE(TAG,"%s:%d (%s):%s", __FILE__, __LINE__, __FUNCTION__, str);   \
         return (ret);                                                                   \
