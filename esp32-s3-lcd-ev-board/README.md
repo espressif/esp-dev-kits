@@ -20,7 +20,7 @@ ESP32-S3-LCD-EV-BOARD is a development board for evaluating and verifying ESP32-
 ## Tips
 
 * ESP32-S3 RGB driver only supports 16-bit RGB565 and 8-bit RGB888 interface
-* Please use octal PSRAM at least to guarantee the RGB interface usability, otherwise the frame rate will be unbearably slow
+* Please use octal PSRAM with 120MHz to guarantee the RGB interface usability, otherwise the frame rate will be unbearably slow. **See [here](./examples/factory/README.md#idf-patch) to configure IDF with 120MHz PSRAM.**
 * The function of avoiding tearing effect is only aviliable for RGB driver. It can be demonstrated on examples [LVGL Demos](./examples/lvgl_demos/) and [86-Box GUI](./examples/86box_demo/).
 
 ## Examples
