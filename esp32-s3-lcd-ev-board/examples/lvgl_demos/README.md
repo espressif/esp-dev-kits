@@ -1,6 +1,6 @@
 # LVGL Demos Example
 
-An example used to run LVGL's internal demos on ESP32-S3-LCD-EV-Board. Includes music player, widgets, stress and benchmark.
+An example used to run LVGL's internal demos on ESP32-S3-LCD-EV-Board. Includes music player, widgets, stress, benchmark, printer and tuner.
 
 This example alse shows two methods to avoid tearing effect. It uses two frame buffers and semaphores based on LVGL **buffering modes**. For more information about this, please refer to official [LVGL buffering-mode](https://docs.lvgl.io/master/porting/display.html?#buffering-modes). The implementation principles of them are shown as follows:
 

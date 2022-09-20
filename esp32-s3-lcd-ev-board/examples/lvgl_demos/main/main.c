@@ -18,6 +18,10 @@
 #include "bsp_board.h"
 #include "lv_demos.h"
 #include "lv_port.h"
+#include "ui_demo1.h"
+#include "ui_demo2.h"
+
+#define LOG_MEM_INFO        1
 
 static const char *TAG = "app_main";
 
@@ -39,9 +43,29 @@ void app_main(void)
 
     lv_port_sem_take();
     // lv_demo_widgets();      /* A widgets example. This is what you get out of the box */
-    lv_demo_music();        /* A modern, smartphone-like music player demo. */
+    // lv_demo_music();        /* A modern, smartphone-like music player demo. */
     // lv_demo_stress();       /* A stress test for LVGL. */
     // lv_demo_benchmark();    /* A demo to measure the performance of LVGL or to compare different settings. */
+    ui_demo1_init();         /* A demo to show virtual printer (must be 800*480)*/
+    // ui_demo2_init();         /* A demo to show virtual tuner
+                                /* (must be 480*800, set LCD_EVB_SCREEN_ROTATION_90 in menuconfig)*/
     lv_port_sem_give();
 
+#if LOG_MEM_INFO
+    static char buffer[128];    /* Make sure buffer is enough for `sprintf` */
+    while (1) {
+        sprintf(buffer, "   Biggest /     Free /    Total\n"
+                "\tI/DRAM : [%8d / %8d / %8d]\n"
+                "\t PSRAM : [%8d / %8d / %8d]",
+                heap_caps_get_largest_free_block(MALLOC_CAP_INTERNAL),
+                heap_caps_get_free_size(MALLOC_CAP_INTERNAL),
+                heap_caps_get_total_size(MALLOC_CAP_INTERNAL),
+                heap_caps_get_largest_free_block(MALLOC_CAP_SPIRAM),
+                heap_caps_get_free_size(MALLOC_CAP_SPIRAM),
+                heap_caps_get_total_size(MALLOC_CAP_SPIRAM));
+        ESP_LOGI("MEM", "%s", buffer);
+
+        vTaskDelay(pdMS_TO_TICKS(2000));
+    }
+#endif
 }
