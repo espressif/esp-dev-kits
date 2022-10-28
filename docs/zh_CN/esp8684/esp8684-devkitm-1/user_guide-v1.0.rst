@@ -1,10 +1,10 @@
-=========================
-ESP8684-DevKitM-1 v1.1
-=========================
+===================
+ESP8684-DevKitM-1
+===================
 
 :link_to_translation:`en: [English]`
 
-更早版本：:doc:`user_guide-v1.0`
+最新版本：:doc:`user_guide`
 
 本指南将帮助您快速上手 ESP8684-DevKitM-1，并提供该款开发板的详细信息。
 
@@ -12,7 +12,7 @@ ESP8684-DevKitM-1 是一款入门级开发板，使用内置 1 MB/2 MB/4 MB SPI 
 
 板上模组的大部分管脚均已引出至开发板两侧排针，开发人员可根据实际需求，轻松通过跳线连接多种外围设备，同时也可将开发板插在面包板上使用。
 
-.. figure:: ../../../_static/esp8684-devkitm-1/esp8684-devkitm-1-v1.1-isometric.png
+.. figure:: ../../../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
     :align: center
     :alt: ESP8684-DevKitM-1（板载 ESP8684-MINI-1 模组）
     :figclass: align-center
@@ -37,9 +37,9 @@ ESP8684-DevKitM-1 是一款入门级开发板，使用内置 1 MB/2 MB/4 MB SPI 
 组件介绍
 --------
 
-.. _user-guide-esp8684-devkitm-1-v1.1-board-front:
+.. _user-guide-esp8684-devkitm-1-v1-board-front:
 
-.. figure:: ../../../_static/esp8684-devkitm-1/ESP8684-DevKitM-1-v1.1-annotated-photo.png
+.. figure:: ../../../_static/esp8684-devkitm-1/ESP8684-DevKitM-1-v1-annotated-photo.png
     :align: center
     :alt: ESP8684-DevKitM-1 - 正面
     :figclass: align-center
@@ -58,12 +58,12 @@ ESP8684-DevKitM-1 是一款入门级开发板，使用内置 1 MB/2 MB/4 MB SPI 
      - 介绍
    * - ESP8684-MINI-1
      - ESP8684-MINI-1 是乐鑫推出的一款通用型 Wi-Fi 和低功耗蓝牙双模模组，功能强大。该模组采用 PCB 板载天线，配置了 1 MB/2 MB/4 MB SPI flash。
-   * - Pin Headers（排针）
-     - 所有可用 GPIO 管脚均已引出至开发板的排针。请查看 :ref:`user-guide-esp8684-devkitm-1-v1.1-header-blocks` 获取更多信息。
    * - 5 V to 3.3 V LDO（5 V 转 3.3 V LDO）
      - 电源转换器，输入 5 V，输出 3.3 V。
    * - 5 V Power On LED（5 V 电源指示灯）
      - 开发板连接 USB 电源后，该指示灯亮起。
+   * - Pin Headers（排针）
+     - 所有可用 GPIO 管脚均已引出至开发板的排针。请查看 :ref:`user-guide-esp8684-devkitm-1-v1-header-blocks` 获取更多信息。
    * - Boot Button（Boot 键）
      - 下载按键。按住 **Boot** 键的同时按一下 **Reset** 键进入“固件下载”模式，通过串口下载固件。
    * - Micro-USB Port（Micro-USB 接口）
@@ -73,7 +73,8 @@ ESP8684-DevKitM-1 是一款入门级开发板，使用内置 1 MB/2 MB/4 MB SPI 
    * - USB-to-UART Bridge（USB 至 UART 桥接器）
      - 单芯片 USB 至 UART 桥接器，可提供高达 3 Mbps 的传输速率。
    * - RGB LED
-     - RGB 发光二极管，由 GPIO0、GPIO1、和 GPIO8 驱动。
+     - 可寻址 RGB 发光二极管，由 GPIO8 驱动。
+
 
 
 开始开发应用
@@ -158,13 +159,13 @@ ESP8684-DevKitM-1 的主要组件和连接方式如下图所示。
 - 3V3 和 G (GND) 排针供电
 
 
-.. _user-guide-esp8684-devkitm-1-v1.1-header-blocks:
+.. _user-guide-esp8684-devkitm-1-v1-header-blocks:
 
 排针
 ----
 
 
-下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-esp8684-devkitm-1-v1.1-board-front` 所示，排针的序号与 `开发板原理图 <../../../_static/schematics/esp8684-devkitm-1/esp8684-devkitm-1-schematics_V1.1>`_ (PDF) 一致。
+下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-esp8684-devkitm-1-v1-board-front` 所示，排针的序号与 `开发板原理图 <../../../_static/schematics/esp8684-devkitm-1/esp8684-devkitm-1-schematics_V1>`_ (PDF) 一致。
 
 J1
 ^^^
@@ -180,8 +181,8 @@ J1
 6     G     G            接地
 7     RST   I            复位；高电平：使能；低电平：关闭
 8     G     G            接地
-9     0     I/O/T        GPIO0, ADC1_CH0, LED Red
-10    1     I/O/T        GPIO1, ADC1_CH1, LED Green
+9     0     I/O/T        GPIO0, ADC1_CH0
+10    1     I/O/T        GPIO1, ADC1_CH1
 11    10    I/O/T        GPIO10, FSPICS0
 12    G     G            接地
 13    5V    P            5 V 电源
@@ -200,7 +201,7 @@ J3
 3     RX    I/O/T        GPIO19, U0RXD
 4     G     G            接地
 5     9     I/O/T        GPIO9 [2]_
-6     8     I/O/T        GPIO8 [2]_, LED Blue
+6     8     I/O/T        GPIO8 [2]_, RGB LED
 7     G     G            接地
 8     7     I/O/T        GPIO7, FSPID , MTDO
 9     6     I/O/T        GPIO6, FSPICLK , MTCK
@@ -213,17 +214,20 @@ J3
 ====  ====  ==========  ================================
 
 .. [1] P：电源；I：输入；O：输出；T：可设置为高阻。
-.. [2] GPIO8 和 GPIO9 为 ESP8684 芯片的 Strapping 管脚。在芯片上电和系统复位过程中，Strapping 管脚根据管脚的二进制电压值控制芯片功能。Strapping 管脚的具体描述和应用，请参考 `ESP8684 技术规格书`_ > Strapping 管脚章节。
+.. [2] GPIO8 和 GPIO9 为 ESP8684 芯片的 Strapping 管脚。在芯片上电和系统复位过程中，Strapping 管脚根据管脚的二进制电压值控制芯片功能。
 
+
+.. Strapping 管脚的具体描述和应用，请参考 `ESP8684 技术规格书`_ 的 Strapping 管脚章节。
+.. 有关管脚功能名称的解释，请参考 `ESP8684 芯片规格书 <insert your link here>`_ (PDF)。
 
 
 管脚布局
 ^^^^^^^^
 
 
-.. figure:: ../../../_static/esp8684-devkitm-1/esp8684-devkitm-1-pinout_v1.1.png
+.. figure:: ../../../_static/esp8684-devkitm-1/esp8684-devkitm-1-pinout.png
     :align: center
-    :scale: 49%
+    :scale: 37%
     :alt: ESP8684-DevKitM-1（点击放大）
     :figclass: align-center
 
@@ -233,31 +237,17 @@ J3
 硬件版本
 ============
 
-:doc:`首次发布 <user_guide-v1.0>`
-
-与旧版本相比的主要区别：
-
-- 旧版本中是可寻址 RGB 发光二极管，该版本中 RGB 发光二极管的每个颜色均由独立的管脚驱动。
-- 旧版本中可寻址 RGB 发光二极管由 GPIO8 驱动，该版本中 RGB 发光二极管由 GPIO0、GPIO1、和 GPIO8 驱动。
-
-.. note::
-
-    目前两个版本开发板均可订购。
+无历史版本。
 
 
 相关文档
 ========
 
-- `ESP8684 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp8684_datasheet_cn.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 原理图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 PCB 布局图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 尺寸图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 尺寸图源文件 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.1.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+
+- `ESP8684-DevKitM-1 原理图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 PCB 布局图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 尺寸图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 尺寸图源文件 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
-
-.. toctree::
-    :hidden:
-
-    user_guide-v1.0

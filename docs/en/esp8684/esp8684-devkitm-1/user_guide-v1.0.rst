@@ -1,18 +1,19 @@
-=========================
-ESP8684-DevKitM-1 v1.1
-=========================
+===================
+ESP8684-DevKitM-1
+===================
 
 :link_to_translation:`zh_CN:[中文]`
 
-The older version: :doc:`user_guide-v1.0`.
+The latest version: :doc:`user_guide`.
 
 This user guide will help you get started with ESP8684-DevKitM-1 and will also provide more in-depth information.
+
 
 The ESP8684-DevKitM-1 is an entry-level development board based on ESP8684-MINI-1, a general-purpose module with 1 MB/2 MB/4 MB SPI flash. This board integrates complete Wi-Fi and Bluetooth LE functions.
 
 Most of the I/O pins on the module are broken out to the pin headers on both sides of this board for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP8684-DevKitM-1 on a breadboard.
 
-.. figure:: ../../../_static/esp8684-devkitm-1/esp8684-devkitm-1-v1.1-isometric.png
+.. figure:: ../../../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
     :align: center
     :alt: ESP8684-DevKitM-1 with ESP8684-MINI-1 module
     :figclass: align-center
@@ -36,9 +37,9 @@ This section provides a brief introduction of ESP8684-DevKitM-1, instructions on
 Description of Components
 -------------------------
 
-.. _user-guide-esp8684-devkitm-1-v1.1-board-front:
+.. _user-guide-esp8684-devkitm-1-v1-board-front:
 
-.. figure:: ../../../_static/esp8684-devkitm-1/ESP8684-DevKitM-1-v1.1-annotated-photo.png
+.. figure:: ../../../_static/esp8684-devkitm-1/ESP8684-DevKitM-1-v1-annotated-photo.png
     :align: center
     :alt: ESP8684-DevKitM-1 - front
     :figclass: align-center
@@ -57,12 +58,12 @@ The key components of the board are described in a counter-clockwise direction.
      - Description
    * - ESP8684-MINI-1
      - ESP8684-MINI-1 from Espressif is a powerful and general-purpose module that offers Wi-Fi and Bluetooth LE coexistence. It has a PCB antenna and a 1 MB/2 MB/4 MB SPI flash.
-   * - Pin Headers
-     - All available GPIO pins are broken out to the pin headers on the board. For details, please see :ref:`user-guide-esp8684-devkitm-1-v1.1-header-blocks`.
    * - 5 V to 3.3 V LDO
      - Power regulator that converts a 5 V supply into a 3.3 V output.
    * - 5 V Power On LED
      - Turns on when the USB power is connected to the board.
+   * - Pin Headers
+     - All available GPIO pins are broken out to the pin headers on the board. For details, please see :ref:`user-guide-esp8684-devkitm-1-v1-header-blocks`.
    * - Boot Button
      - Download button. Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port.
    * - Micro-USB Port
@@ -72,7 +73,7 @@ The key components of the board are described in a counter-clockwise direction.
    * - USB-to-UART Bridge
      - Single USB-to-UART bridge chip provides transfer rates up to 3 Mbps.
    * - RGB LED
-     - RGB LED, driven by GPIO0, GPIO1 and GPIO8.
+     - Addressable RGB LED, driven by GPIO8.
 
 
 
@@ -158,13 +159,13 @@ There are three mutually exclusive ways to provide power to the board:
 - 3V3 and G (GND) pins
 
 
-.. _user-guide-esp8684-devkitm-1-v1.1-header-blocks:
+.. _user-guide-esp8684-devkitm-1-v1-header-blocks:
 
 Header Block
 -------------
 
 
-The two tables below provide the **Name** and **Function** of the pins on both sides of the board (J1 and J3). The pin names are shown in :ref:`user-guide-esp8684-devkitm-1-v1.1-board-front`. The numbering is the same as in the `Board Schematic <../../../_static/schematics/esp8684-devkitm-1/esp8684-devkitm-1-schematics_V1.1>`_ (PDF).
+The two tables below provide the **Name** and **Function** of the pins on both sides of the board (J1 and J3). The pin names are shown in :ref:`user-guide-esp8684-devkitm-1-v1-board-front`. The numbering is the same as in the `Board Schematic <../../../_static/schematics/esp8684-devkitm-1/esp8684-devkitm-1-schematics_V1>`_ (PDF).
 
 J1
 ^^^
@@ -180,8 +181,8 @@ No.   Name  Type [1]_   Function
 6     G     G            Ground
 7     RST   I            Reset; High: enable; Low: powers off
 8     G     G            Ground
-9     0     I/O/T        GPIO0, ADC1_CH0, LED Red
-10    1     I/O/T        GPIO1, ADC1_CH1, LED Green
+9     0     I/O/T        GPIO0, ADC1_CH0
+10    1     I/O/T        GPIO1, ADC1_CH1
 11    10    I/O/T        GPIO10, FSPICS0
 12    G     G            Ground
 13    5V    P            5 V power supply
@@ -200,10 +201,10 @@ No.   Name  Type [1]_   Function
 3     RX    I/O/T        GPIO19, U0RXD
 4     G     G            Ground
 5     9     I/O/T        GPIO9 [2]_
-6     8     I/O/T        GPIO8 [2]_, LED Blue
+6     8     I/O/T        GPIO8 [2]_, RGB LED
 7     G     G            Ground
-8     7     I/O/T        GPIO7, FSPID, MTDO
-9     6     I/O/T        GPIO6, FSPICLK, MTCK
+8     7     I/O/T        GPIO7, FSPID , MTDO
+9     6     I/O/T        GPIO6, FSPICLK , MTCK
 10    5     I/O/T        GPIO5, ADC2_CH0, FSPIWP ,MTDI
 11    4     I/O/T        GPIO4, ADC1_CH4, FSPIHD ,MTMS
 12    G     G            Ground
@@ -213,17 +214,20 @@ No.   Name  Type [1]_   Function
 ====  ====  ==========  ================================
 
 .. [1] P: Power supply; I: Input; O: Output; T: High impedance.
-.. [2] GPIO8 and GPIO9 are strapping pins of the ESP8684 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset. For description and application of the strapping pins, please refer to `ESP8684 Datasheet`_ > Section *Strapping Pins*.
+.. [2] GPIO8 and GPIO9 are strapping pins of the ESP8684 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset.
 
+
+.. For description and application of the strapping pins, please refer to Section Strapping Pins in `ESP38684 Datasheet`_.
+.. For the description of function names, please refer to `ESP8684 Chip Datasheet <insert your link here>`_ (PDF).
 
 
 Pin Layout
 ^^^^^^^^^^^
 
 
-.. figure:: ../../../_static/esp8684-devkitm-1/esp8684-devkitm-1-pinout_v1.1.png
+.. figure:: ../../../_static/esp8684-devkitm-1/esp8684-devkitm-1-pinout.png
     :align: center
-    :scale: 49%
+    :scale: 37%
     :alt: ESP8684-DevKitM-1 (click to enlarge)
     :figclass: align-center
 
@@ -233,31 +237,17 @@ Pin Layout
 Hardware Revision Details
 =========================
 
-:doc:`Initial release <user_guide-v1.0>`
-
-Main differences compared to the previous version:
-
-- Addressable RGB LED in the previous version of the board has been changed to an RGB LED with discrete inputs for each color.
-- The addressable LED was connected to GPIO8, and the new discrete LED is connected to GPIO0, GPIO1, and GPIO8.
-
-.. note::
-
-    Both versions of ESP8684-DevKitM-1 are available on the market.
+This is the first revision of this board released.
 
 
 Related Documents
 =================
 
-- `ESP8684 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp8684_datasheet_en.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 Schematic <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 PCB layout <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 Dimensions <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 Dimensions source file <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.1.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+
+- `ESP8684-DevKitM-1 Schematic <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 PCB layout <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 Dimensions <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 Dimensions source file <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
-
-.. toctree::
-    :hidden:
-
-    user_guide-v1.0
