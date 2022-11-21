@@ -4,7 +4,7 @@ This is the first version of bin for factory firmware which is programmed by [86
 
 # IDF Patch
 
-The patch is intended to achieve best perfermance of RGB LCD by using PSRAM 120MHz feature. Therefore, the examples can work normally under the default LCD PCLK of 18 MHz.
+The patch is intended to achieve best perfermance of RGB LCD by using Octal PSRAM 120MHz feature. Therefore, the examples can work normally under the default LCD PCLK of 18 MHz.
 The patch can be applied in IDF master **(commit id:f3159)** by following commands:
 ```
 cd <root directory of IDF>
