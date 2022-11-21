@@ -109,6 +109,6 @@ Note: Since 800x480 LCD will flicker obviously in a longer refresh period, the r
 Please use the following feedback channels:
 
 * For technical queries, go to the [esp32.com](https://esp32.com/) forum
-* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-idf/issues)
+* For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-dev-kits/issues)
 
 We will get back to you as soon as possible.
