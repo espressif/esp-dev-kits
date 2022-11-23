@@ -5,13 +5,27 @@ ESP32-S3-LCD-EV-BOARD is a development board for evaluating and verifying ESP32-
 * Onboard ESP32-S3-WROOM-1 module, with built-in 16 MB Flash + 8 MB PSRAM
 * Onboard audio codec + audio amplifier
 * Onboard dual microphone pickup
-* It can be used with different screen sub boards, and supports `RGB`, `8080`, `SPI`, `I2C` interface screens
 * USB type-C interface download and debugging
+* It can be used with different screen sub boards, and supports `RGB`, `8080`, `SPI`, `I2C` interface screens, as below:
+
+|         Board Name         | Screen Size (inch) | Resolution | LCD Driver IC (Interface) | Touch Driver IC |
+| -------------------------- | ------------------ | ---------- | ------------------------- | --------------- |
+| ESP32-S3-LCD_Ev_Board_SUB1 | 0.9                | 128 x 64   | SSD1315 (I2C)             | *               |
+|                            | 2.4                | 320 x 240  | ST7789V (SPI)             | XTP2046         |
+| ESP32-S3-LCD_Ev_Board_SUB2 | 3.5                | 480 x 320  | ST7796S (8080)            | GT911           |
+|                            | 3.95               | 480 x 480  | GC9503CV (RGB)            | FT5x06          |
+| ESP32-S3-LCD_Ev_Board_SUB3 | 4.3                | 800 x 480  | Unkonw (RGB)              | GT1151          |
+
 
 <div align="center">
-    <img src="../docs/_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board.png" width="400px"/>
+    <img src="../docs/_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png" width="400px"/>
 </div>
-<div align="center"> ESP32-S3-LCD-EV-BOARD (click to enlarge) </div>
+<div align="center"> ESP32-S3-LCD-EV-BOARD with 480x480 RGB Screen </div>
+
+<div align="center">
+    <img src="../docs/_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_800x480.png" width="400px"/>
+</div>
+<div align="center"> ESP32-S3-LCD-EV-BOARD with 800x480 RGB Screen </div>
 
 **The document consists of the following major sections:**
 
@@ -29,6 +43,7 @@ ESP32-S3-LCD-EV-BOARD is a development board for evaluating and verifying ESP32-
 * [LVGL Demos](./examples/lvgl_demos/)
 * [Smart Panel](./examples/smart-panel/)
 * [USB keyboard](./examples/usb_keyboard/)
+* [USB Camera](./examples/rgb_lcd_camera_demo/)
 
 ## Released Bin
 
