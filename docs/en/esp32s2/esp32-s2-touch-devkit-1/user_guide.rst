@@ -1,13 +1,11 @@
 ESP32-S2-Touch-Devkit-1
 =======================
 
-:link_to_translation:`zh_CN:[中文]`
-
 .. figure:: ../../../_static/esp32-s2-touch-devkit-1/boardset.jpg
    :align: center
    :alt: ESP32-S2-Touch-Devkit-1
    :figclass: align-center
- 
+
    ESP32-S2-Touch-Devkit-1 Board-set
 
 Overview
@@ -21,7 +19,7 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
    :align: center
    :alt: ESP32-S2-Touch-Devkit-1
    :figclass: align-center
- 
+
    Motherboard
 
 **Subboards**
@@ -29,9 +27,9 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
 - Button-board: Three capacitive touch button with waterproof sensor.
 
 ==========================   ===========================
-    |Button-board|                |Water-proof sensor|    
+    |Button-board|                |Water-proof sensor|
 --------------------------   ---------------------------
-      Button-board                 Water-proof sensor    
+      Button-board                 Water-proof sensor
 ========================================================
 
 .. |Button-board| image:: ../../../_static/esp32-s2-touch-devkit-1/buttonboard.png
@@ -40,9 +38,9 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
 - Slider-board: Capacitive touch linear slider, the relative distance of slider has up to 8 bit precision.
 
 ==========================   ===========================
-    |Slider-board|                |Slider|    
+    |Slider-board|                |Slider|
 --------------------------   ---------------------------
-      Slider-board                 Slider    
+      Slider-board                 Slider
 ========================================================
 
 .. |Slider-board| image:: ../../../_static/esp32-s2-touch-devkit-1/sliderboard.png
@@ -51,9 +49,9 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
 - Matrix-board: 3 x 4 capacitive touch matrix button, 7 channels of touch sensor make up of 12 capacitive touch buttons.
 
 ==========================   ===========================
-    |Matrix-board|                |Matrix button|    
+    |Matrix-board|                |Matrix button|
 --------------------------   ---------------------------
-      Matrix-board                 Matrix button    
+      Matrix-board                 Matrix button
 ========================================================
 
 .. |Matrix-board| image:: ../../../_static/esp32-s2-touch-devkit-1/matrixboard.png
@@ -62,9 +60,9 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
 - Touchpad-board: 7 x 6 two-dimension capacitive touchpad.
 
 ==========================   ===========================
-    |Touchpad-board|                |Touchpad|    
+    |Touchpad-board|                |Touchpad|
 --------------------------   ---------------------------
-      Touchpad-board                 Touchpad    
+      Touchpad-board                 Touchpad
 ========================================================
 
 .. |Touchpad-board| image:: ../../../_static/esp32-s2-touch-devkit-1/touchpadboard.png
@@ -73,9 +71,9 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
 - Proximity-board: Three capacitive touch proximity sensor.
 
 ==========================   ===========================
-    |Proximity-board|                |Sensor|    
+    |Proximity-board|                |Sensor|
 --------------------------   ---------------------------
-      Proximity-board                 Sensor    
+      Proximity-board                 Sensor
 ========================================================
 
 .. |Proximity-board| image:: ../../../_static/esp32-s2-touch-devkit-1/proximityboard.png
@@ -126,7 +124,7 @@ Get Started
       ├── main        #Main application demo logic
       │   ├── CMakeLists.txt
       │   └── main.c
-  
+
 
 **Build & Flash ESP32-S2-Touch-Devkit-1 demo project**:
 
