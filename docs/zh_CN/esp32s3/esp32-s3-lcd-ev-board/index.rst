@@ -8,4 +8,4 @@ ESP32-S3-LCD-EV-BOARD 是用于评估和验证 ESP32-S3 屏幕应用的开发板
 .. toctree::
     :maxdepth: 2
 
-    用户手册 <user_guide>
+    用户指南 <user_guide>

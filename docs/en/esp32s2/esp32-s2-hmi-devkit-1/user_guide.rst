@@ -6,7 +6,7 @@ ESP32-S2-HMI-DevKit-1 V1.0
 
 This user guide will help you get started with ESP32-S2-HMI-DevKit-1 and will also provide more in-depth information.
 
-ESP32-S2-HMI-DevKit-1 has been specifically designed for human-machine interfaces in smart-home automation controllers, smart speakers with display, smart alarm clocks, etc. This development kit supports rapid secondary development, since developers can take advantage of the kit’s various onboard resources and expansion interfaces, in order to develop various functions. 
+ESP32-S2-HMI-DevKit-1 has been specifically designed for human-machine interfaces in smart-home automation controllers, smart speakers with display, smart alarm clocks, etc. This development kit supports rapid secondary development, since developers can take advantage of the kit’s various onboard resources and expansion interfaces, in order to develop various functions.
 
 The main features of the board are listed below:
 
@@ -68,8 +68,8 @@ The key components of the board are described in a clockwise direction.
      - Description
    * - ESP32-S2-WROVER Module
      - ESP32-S2-WROVER is a powerful, generic Wi-Fi MCU module that integrates ESP32-S2. It has a PCB antenna, a 4 MB external SPI flash and an additional 2 MB PSRAM.
-   * - Temperature & Himidity Sensor
-     - Temperature & himidity sensors for detecting ambient temperature and humidity. Read via the I2C bus.
+   * - Temperature & Humidity Sensor
+     - Temperature & humidity sensors for detecting ambient temperature and humidity. Read via the I2C bus.
    * - RGB LED
      - Addressable RGB LED (WS2812), driven by GPIO21. Can switch between the LED and IR LED via IO expander.
    * - Ambient Light Sensor
@@ -122,7 +122,7 @@ Hardware Setup
 To facilitate your quick evaluation of all examples, please follow these steps to set up the board:
 
 1. Insert microSD card into the connector. Please make sure all the important data is backed up, as the microSD card may be formatted if its partition format is not FAT.
-2. If you need to evaluate the audio playback function, please connect the speaker pad near the USB port on the bottom of the board to the supplied speaker, or to another speaker with similar size (8 Ohm, 2 W).
+2. If you need to evaluate the audio playback function, please connect the speaker pad near the USB port on the bottom of the board to the supplied speaker, or to another speaker with a similar size (8 Ohm, 2 W).
 
 
 Software Setup
@@ -136,7 +136,7 @@ After configuration completed, you can switch back to the ``esp-dev-kits/esp32-s
 Project Options
 ^^^^^^^^^^^^^^^
 
-Various exmaples are provided for ESP32-S2-HMI-DevKit-1 as shown below:
+Various examples are provided for ESP32-S2-HMI-DevKit-1 as shown below:
 
 - Prining "Hello world!" on screen: :dev-kits:`esp32-s2-hmi-devkit-1/examples/get-started/hello_world`
 - Blinking WS2812 LED and showing the color on screen: :dev-kits:`esp32-s2-hmi-devkit-1/examples/get-started/led_blink`
@@ -196,7 +196,7 @@ The contents are as follows:
   - ESP32-S2-HMI-Devit-1
 - Cables
   - SH1.25 to 2.54mm cables x 7
-  
+
 For retail orders, please go to https://www.espressif.com/en/company/contact/buy-a-sample.
 
 

@@ -1,4 +1,4 @@
-ESP32-S3-USB-OTG 
+ESP32-S3-USB-OTG
 =======================
 
 :link_to_translation:`en:[English]`
@@ -13,7 +13,6 @@ ESP32-S3-USB-OTG 是一款侧重于 USB-OTG 功能验证和应用开发的开发
 -  板载充电 IC，可外接锂电池
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_product_esp32_s3_otg.png
-   :align: center
    :alt: ESP32-S3-USB-OTG (click to enlarge)
    :scale: 40%
    :figclass: align-center
@@ -41,7 +40,6 @@ ESP32-S3-USB-OTG 开发板包括以下两部分：
 -  **主板**：ESP32-S3-USB-OTG 主板是整个套件的核心，该主板集成了 ESP32-S3-MINI-1 模组，并提供一个与 1.3 英寸 LCD 屏连接的接口。
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_board_top_lable.png
-   :align: center
    :alt: ESP32-S3-USB-OTG（点击图片放大）
    :scale: 70%
    :figclass: align-center
@@ -75,7 +73,7 @@ ESP32-S3-USB-OTG 开发板包括以下两部分：
    * - Boot 按键
      - 按键 Boot 键并保持，同时按一下 Reset 键，进入“固件下载”模式，通过串口下载固件。正常使用中可以作为确认按钮。
    * - DW- 按键
-     - 向下按键。 
+     - 向下按键。
    * - 屏幕排座
      - 用于连接 1.3 英寸 LCD 屏。
    * - UP+ 按键
@@ -85,19 +83,18 @@ ESP32-S3-USB-OTG 开发板包括以下两部分：
 
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_board_bottom_lable.png
-   :align: center
    :alt: ESP32-S3-USB-OTG (click to enlarge)
    :scale: 70%
    :figclass: align-center
 
    ESP32-S3-USB-OTG 背面图（点击图片放大）
-   
+
 下表将从左边的 USB_HOST 接口开始，以逆时针顺序介绍上图中的主要组件。
 
 .. list-table::
    :widths: 30 70
    :header-rows: 1
-   
+
    * - 主要组件
      - 描述
    * - 黄色指示灯
@@ -119,7 +116,6 @@ ESP32-S3-USB-OTG 开发板包括以下两部分：
 -  **子板**：ESP32-S3-USB-OTG-SUB - 贴装 1.3 英寸 LCD 屏
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_sub.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 50%
    :figclass: align-center
@@ -143,6 +139,13 @@ ESP32-S3-USB-OTG 上电前，请首先确认开发板完好无损。
 
 请前往 `快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html>`__ 中 `详细安装步骤 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html#get-started-step-by-step>`__ 一节查看如何快速设置开发环境。
 
+工程选项
+^^^^^^^^
+
+我们为 ESP32-S3-USB-OTG 开发板提供了应用示例，存放在 :dev-kits:`Examples <esp32-s3-usb-otg/examples>` 文件夹中。
+
+您可以在示例目录下，输入 ``idf.py menuconfig`` 配置工程选项。
+
 
 内容和包装
 ~~~~~~~~~~
@@ -153,8 +156,7 @@ ESP32-S3-USB-OTG 上电前，请首先确认开发板完好无损。
 每一个零售 ESP32-S3-USB-OTG 开发套件均有独立包装。
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_product_package.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 50%
    :figclass: align-center
 
@@ -163,18 +165,18 @@ ESP32-S3-USB-OTG 上电前，请首先确认开发板完好无损。
 
 包含以下部分：
 
-- 主板： 
+- 主板：
 
-  - ESP32-S3-USB-OTG 
+  - ESP32-S3-USB-OTG
 
 - 子板：
 
-  - ESP32-S3-USB-OTG_SUB 
+  - ESP32-S3-USB-OTG_SUB
 
-- 紧固件 
+- 紧固件
 
-  - 安装螺栓（x4） 
-  - 螺丝（x4） 
+  - 安装螺栓（x4）
+  - 螺丝（x4）
   - 螺母（x4）
 
 零售订单请前往 https://www.espressif.com/zh-hans/company/contact/buy-a-sample。
@@ -197,8 +199,7 @@ ESP32-S3-USB-OTG 上电前，请首先确认开发板完好无损。
 ESP32-S3-USB-OTG 的主要组件和连接方式如下图所示。
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_function_block.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 40%
    :figclass: align-center
 
@@ -224,8 +225,7 @@ ESP32-S3-USB-OTG 的主要组件和连接方式如下图所示。
    -  使用方法 3 供电时，应将 ``BOOST_EN`` 设置为高电平，将电源开关设置为 ON，并将 1S 锂电池 (3.7 V ~ 4.2 V) 焊接于主控板背面预留的电源焊点。该供电模式可同时向 ``USB HOST`` 接口供电。电池接口说明如下图：
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_board_battery_lable.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 65%
    :figclass: align-center
 
@@ -242,7 +242,6 @@ USB HOST 接口供电选择
    2. 通过锂电池接口供电，锂电池 3.6 V ~ 4.2 V 电压通过 Boost 电路升压到 5 V。Boost IC 的工作状态可通过 BOOST_EN/GPIO13 控制，GPIO13 为高电平是使能 Boost。
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_boost_circuit.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 50%
    :figclass: align-center
@@ -254,7 +253,7 @@ USB HOST 接口供电选择
 .. list-table::
    :widths: 30 35 35
    :header-rows: 1
-   
+
    * - BOOST_EN
      - DEV_VBUS_EN
      - Power Source
@@ -272,7 +271,6 @@ USB HOST 接口供电选择
      - Undefined
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_power_switch.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 65%
    :figclass: align-center
@@ -284,7 +282,6 @@ USB HOST 接口供电选择
    1. 限流 IC MIC2005A 可将 ``USB HOST`` 接口最大输出电流限制为 500 mA。必须设置 ``IDEV_LIMIT_EN`` (GPIO17) 为高电平，使能限流 IC，``USB HOST`` 接口才有电压输出。
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_500ma_limit.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 40%
    :figclass: align-center
@@ -295,7 +292,6 @@ USB 接口选择电路
 ~~~~~~~~~~~~~~~~
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_usb_switch.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 45%
    :figclass: align-center
@@ -310,8 +306,7 @@ LCD 接口
 ~~~~~~~~
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_interface_lcd.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 50%
    :figclass: align-center
 
@@ -323,8 +318,7 @@ SD 卡接口
 ~~~~~~~~~
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_micro_sd_slot.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 45%
    :figclass: align-center
 
@@ -336,8 +330,7 @@ SD 卡接口
 ~~~~~~~~
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_charge_circuit.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 40%
    :figclass: align-center
 
@@ -443,7 +436,7 @@ GPIO 分配
    :widths: 10 30 60
    :header-rows: 1
 
-   * - No. 
+   * - No.
      - ESP32-S3-MINI-1 管脚
      - 说明
    * - 1

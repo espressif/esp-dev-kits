@@ -28,9 +28,9 @@ Supported Development Boards
 ============================   ===========================
        **ESP32-S2 Development Boards**
 ----------------------------------------------------------
- |ESP32-S2-Kaluga-1|_           |ESP32-S2-Touch-DevKit-1|
+ |ESP32-S2-Kaluga-1|_
 ----------------------------   ---------------------------
- `ESP32-S2-Kaluga-1`_           `ESP32-S2-Touch-DevKit-1`_
+ `ESP32-S2-Kaluga-1`_
 ============================   ===========================
 
 ============================   ===========================
@@ -44,9 +44,9 @@ Supported Development Boards
 ============================   ===========================
        **Other Boards**
 ----------------------------------------------------------
- |ESP-Prog|_                    |ESP32-MeshKit-Sense|_
+ |ESP-Prog|_
 ----------------------------   ---------------------------
- `ESP-Prog`_                     `ESP32-MeshKit-Sense`_
+ `ESP-Prog`_
 ============================   ===========================
 
 ============================   ===========================
@@ -55,6 +55,10 @@ Supported Development Boards
  |ESP32-S2-HMI-DevKit-1|_       |ESP32-Sense-Kit|_
 ----------------------------   ---------------------------
  `ESP32-S2-HMI-DevKit-1`_       `ESP32-Sense-Kit`_
+----------------------------   ---------------------------
+ |ESP32-MeshKit-Sense|_         |ESP32-S2-Touch-DevKit-1|_
+----------------------------   ---------------------------
+ `ESP32-MeshKit-Sense`_         `ESP32-S2-Touch-DevKit-1`_
 ============================   ===========================
 
 
@@ -98,7 +102,7 @@ Related
 
 - `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#get-started-get-prerequisites>`_
 - `ESP-IDF Programming Guide <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html>`__
-- `ESP Product Selector <http://products.espressif.com:8000/#/product-selector>`_
+- `ESP Product Selector <https://products.espressif.com/#/product-selector?language=en&names=>`_
 
 .. toctree::
    :hidden:
@@ -118,7 +122,6 @@ Related
    :caption: ESP32-S2 Boards
 
    ESP32-S2-Kaluga-1 <esp32s2/esp32-s2-kaluga-1/index>
-   ESP32-S2-Touch-Devkit-1 <esp32s2/esp32-s2-touch-devkit-1/index>
 
 .. toctree::
    :hidden:
@@ -131,7 +134,6 @@ Related
    :caption: Other Boards
 
    ESP-Prog <other/esp-prog/index>
-   ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
 
 .. toctree::
    :hidden:
@@ -139,6 +141,8 @@ Related
 
    ESP32-S2-HMI-DevKit-1 <esp32s2/esp32-s2-hmi-devkit-1/index>
    ESP32-Sense-Kit <esp32/esp32-sense-kit/index>
+   ESP32-S2-Touch-Devkit-1 <esp32s2/esp32-s2-touch-devkit-1/index>
+   ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
 
 .. toctree::
    :hidden:
