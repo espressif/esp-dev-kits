@@ -22,15 +22,15 @@ esp-dev-kits
 ----------------------------------------------------------
   |ESP32-S3-USB-OTG|_           |ESP32-S3-LCD-EV-BOARD|_
 ----------------------------   ---------------------------
- `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-BOARD`_             
+ `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-BOARD`_
 ============================   ===========================
 
 ============================   ===========================
        **ESP32-S2 系列开发板**
 ----------------------------------------------------------
- |ESP32-S2-Kaluga-1|_           |ESP32-S2-Touch-DevKit-1|
+ |ESP32-S2-Kaluga-1|_
 ----------------------------   ---------------------------
- `ESP32-S2-Kaluga-1`_           `ESP32-S2-Touch-DevKit-1`_
+ `ESP32-S2-Kaluga-1`_
 ============================   ===========================
 
 ============================   ===========================
@@ -44,9 +44,9 @@ esp-dev-kits
 ============================   ===========================
        **其他开发板**
 ----------------------------------------------------------
- |ESP-Prog|_                    |ESP32-MeshKit-Sense|_
+ |ESP-Prog|_
 ----------------------------   ---------------------------
- `ESP-Prog`_                     `ESP32-MeshKit-Sense`_
+ `ESP-Prog`_
 ============================   ===========================
 
 ============================   ===========================
@@ -55,6 +55,10 @@ esp-dev-kits
  |ESP32-S2-HMI-DevKit-1|_       |ESP32-Sense-Kit|_
 ----------------------------   ---------------------------
  `ESP32-S2-HMI-DevKit-1`_       `ESP32-Sense-Kit`_
+----------------------------   ---------------------------
+ |ESP32-MeshKit-Sense|_         |ESP32-S2-Touch-DevKit-1|_
+----------------------------   ---------------------------
+ `ESP32-MeshKit-Sense`_         `ESP32-S2-Touch-DevKit-1`_
 ============================   ===========================
 
 
@@ -98,7 +102,7 @@ esp-dev-kits
 
 - `ESP-IDF 详细安装步骤 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-get-prerequisites>`_
 - `ESP-IDF 编程指南 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html>`__
-- `ESP 产品选型工具 <http://products.espressif.com:8000/#/product-selector>`_
+- `ESP 产品选型工具 <https://products.espressif.com/#/product-selector?language=zh&names=>`_
 
 .. toctree::
    :hidden:
@@ -118,7 +122,6 @@ esp-dev-kits
    :caption: ESP32-S2 系列开发板
 
    ESP32-S2-Kaluga-1 <esp32s2/esp32-s2-kaluga-1/index>
-   ESP32-S2-Touch-Devkit-1 <esp32s2/esp32-s2-touch-devkit-1/index>
 
 .. toctree::
    :hidden:
@@ -131,7 +134,6 @@ esp-dev-kits
    :caption: 其他开发板
 
    ESP-Prog <other/esp-prog/index>
-   ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
 
 .. toctree::
    :hidden:
@@ -139,6 +141,8 @@ esp-dev-kits
 
    ESP32-S2-HMI-DevKit-1 <esp32s2/esp32-s2-hmi-devkit-1/index>
    ESP32-Sense-Kit <esp32/esp32-sense-kit/index>
+   ESP32-S2-Touch-Devkit-1 <esp32s2/esp32-s2-touch-devkit-1/index>
+   ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
 
 .. toctree::
    :hidden:

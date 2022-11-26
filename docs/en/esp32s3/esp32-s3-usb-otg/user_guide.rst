@@ -13,7 +13,6 @@ ESP32-S3-USB-OTG is a development board that focuses on USB-OTG function verific
 -  Onboard charging IC, can be connected to lithium battery
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_product_esp32_s3_otg.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 40%
    :figclass: align-center
@@ -41,7 +40,6 @@ The ESP32-S3-USB-OTG development board includes the following parts:
 -  **Motherboard:** ESP32-S3-USB-OTG motherboard is the core of the kit. The motherboard integrates the ESP32-S3-MINI-1 module and provides an interface of the 1.3-inch LCD screen.
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_board_top_lable.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 70%
    :figclass: align-center
@@ -71,7 +69,7 @@ The following table starts with the USB_HOST Interface on the left, and introduc
    * - USB_DEV Interface
      - USB Type-A male port, can be connected to the USB host, and also used as a lithium battery charge power source.
    * - Power Switch
-     - Switch to ON to use battery power. Switch to OFF to power off battery.  
+     - Switch to ON to use battery power. Switch to OFF to power off battery.
    * - Boot Button
      - Download button. Holding down Boot and then pressing Reset initiates Firmware Download mode for downloading firmware through the serial port.
    * - DW- Button
@@ -85,8 +83,7 @@ The following table starts with the USB_HOST Interface on the left, and introduc
 
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_board_bottom_lable.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 70%
    :figclass: align-center
 
@@ -143,6 +140,13 @@ Software Setup
 
 Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html>`__, where Section `Installation Step by Step <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html#get-started-step-by-step>`__ will quickly help you set up the development environment and then flash an application example onto your board.
 
+Project Option
+^^^^^^^^^^^^^^
+
+An example is provided for ESP32-S3-USB-OTG under the folder :dev-kits:`Examples <esp32-s3-usb-otg/examples>`.
+
+You can configure project options by entering ``idf.py menuconfig`` in the example directory.
+
 
 Contents and Packaging
 ~~~~~~~~~~~~~~~~~~~~~~
@@ -150,31 +154,30 @@ Contents and Packaging
 Retail Orders
 ^^^^^^^^^^^^^
 
-If you order a few samples, each board comes in an individual package in either antistatic bag or any packaging depending on your retailer.
+If you order a few samples, each board comes in an individual package in either an antistatic bag or any packaging depending on your retailer.
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_product_package.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 50%
    :figclass: align-center
 
    ESP32-S3-USB-OTG Package (click to enlarge)
 
 
-Which contains the following parts: 
+Which contains the following parts:
 
-- Motherboard: 
-  
+- Motherboard:
+
   - ESP32-S3-USB-OTG
 
-- Subboard: 
+- Subboard:
 
-  - ESP32-S3-USB-OTG_SUB 
+  - ESP32-S3-USB-OTG_SUB
 
-- Fastener 
+- Fastener
 
   - Mounting bolt (x4)
-  - Screw (x4) 
+  - Screw (x4)
   - Nut (x4)
 
 For retail orders, please go to https://www.espressif.com/zh-hans/company/contact/buy-a-sample.
@@ -197,8 +200,7 @@ Block Diagram
 The block diagram below shows the components of ESP32-S3-USB-OTG and their interconnections.
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_function_block.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 40%
    :figclass: align-center
 
@@ -217,15 +219,15 @@ There are three power supply methods for the development board:
 
 2. Power supply through the ``USB_DEV`` interface
 
-   -  Set ``DEV_VBUS_EN`` to high level, and set battery switch to OFF. This mode can supply power to the ``USB HOST`` interface. The lithium battery will be charged at the same time (if the lithium battery is installed)
+   -  Set ``DEV_VBUS_EN`` to high level, and set the battery switch to OFF. This mode can supply power to the ``USB HOST`` interface. The lithium battery will be charged at the same time (if the lithium battery is installed)
 
-3. Power supply through battery
+3. Power supply through the battery
 
-   -  Set ``BOOST_EN`` to high level, and set battery switch to ON. You should solder a 1-Serial lithium battery (3.7 V ~ 4.2 V) to the power solder joint reserved on the back of the motherboard first. This mode can supply power to the ``USB HOST`` interface at the same time. The battery interface description is as follows:
+   -  Set ``BOOST_EN`` to high level, and set the battery switch to ON. You should solder a 1-Serial lithium battery (3.7 V ~ 4.2 V) to the power solder joint reserved on the back of the motherboard first. This mode can supply power to the ``USB HOST`` interface at the same time. The battery interface description is as follows:
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_board_battery_lable.png
    :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 65%
    :figclass: align-center
 
@@ -254,7 +256,7 @@ The ``USB HOST`` interface (Type-A female port) can supply power to the connecte
 .. list-table::
    :widths: 30 35 35
    :header-rows: 1
-   
+
    * - BOOST_EN
      - DEV_VBUS_EN
      - Power Source
@@ -272,7 +274,6 @@ The ``USB HOST`` interface (Type-A female port) can supply power to the connecte
      - Undefined
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_power_switch.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 65%
    :figclass: align-center
@@ -284,7 +285,6 @@ The ``USB HOST`` interface (Type-A female port) can supply power to the connecte
    1. The current limiting IC MIC2005A can limit the maximum output current of the ``USB HOST`` interface to 500 mA. Please set the ``IDEV_LIMIT_EN`` (GPIO17) to high level to enable the current-limiting IC to output voltage.
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_500ma_limit.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 40%
    :figclass: align-center
@@ -295,7 +295,6 @@ USB Interface Switch Circuit
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_usb_switch.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 45%
    :figclass: align-center
@@ -303,15 +302,14 @@ USB Interface Switch Circuit
    USB Interface Switch Circuit (click to enlarge)
 
 -  When **USB_SEL** (GPIO18) is set to high level, the USB D+/D- Pin (GPIO19, 20) will be connected to ``USB_DEV D+ D-``. Then you can use the ``USB HOST`` interface (Type-A female Port) to connect other USB devices.
--  When **USB_SEL** (GPIO18) is set to low level, the USB D+/D- Pin (GPIO19, 20) will be connected to ``USB_HOST D+ D-``. Then you can use the ``USB DEV`` interface (Type-A male port) to connect to host like PC.
+-  When **USB_SEL** (GPIO18) is set to low level, the USB D+/D- Pin (GPIO19, 20) will be connected to ``USB_HOST D+ D-``. Then you can use the ``USB DEV`` interface (Type-A male port) to connect to a host like a PC.
 -  **USB_SEL** is pulled low level by default.
 
 LCD Interface
 ~~~~~~~~~~~~~
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_interface_lcd.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 50%
    :figclass: align-center
 
@@ -323,21 +321,19 @@ SD Card Interface
 ~~~~~~~~~~~~~~~~~
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_micro_sd_slot.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 45%
    :figclass: align-center
 
    SD Card Interface Circuit (click to enlarge)
 
-Please note that the SD card interface is compatible with 1-wire, 4-wire SDIO mode and SPI mode. After powered on, the card will be in 3.3 V signaling mode. Please send the first CMD0 command to select the bus mode: SD mode or SPI mode.
+Please note that the SD card interface is compatible with 1-wire, 4-wire SDIO mode and SPI mode. After being powered on, the card will be in 3.3 V signaling mode. Please send the first CMD0 command to select the bus mode: SD mode or SPI mode.
 
 Charging Circuit
 ~~~~~~~~~~~~~~~~
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_charge_circuit.png
-   :align: center
-   :alt: ESP32-S3-USB-OTG 
+   :alt: ESP32-S3-USB-OTG
    :scale: 40%
    :figclass: align-center
 
@@ -443,7 +439,7 @@ Pin Layout
    :widths: 10 30 60
    :header-rows: 1
 
-   * - No. 
+   * - No.
      - ESP32-S3-MINI-1 Pin
      - Description
    * - 1
