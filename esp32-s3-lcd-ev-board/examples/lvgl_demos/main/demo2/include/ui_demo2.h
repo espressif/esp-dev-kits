@@ -87,7 +87,7 @@ LV_FONT_DECLARE(ui_font_mos_semibold_16);
 LV_FONT_DECLARE(ui_font_number);
 
 
-void ui_demo2_init(void);
+void ui_tuner_init(void);
 
 #ifdef __cplusplus
 } /*extern "C"*/

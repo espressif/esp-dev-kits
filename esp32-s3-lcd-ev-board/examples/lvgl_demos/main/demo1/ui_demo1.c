@@ -3247,7 +3247,7 @@ void ui_Screen_3_Setting_screen_init(void)
 
 }
 
-void ui_demo1_init(void)
+void ui_printer_init(void)
 {
     lv_disp_t * dispp = lv_disp_get_default();
     lv_theme_t * theme = lv_theme_default_init(dispp, lv_palette_main(LV_PALETTE_BLUE), lv_palette_main(LV_PALETTE_RED),

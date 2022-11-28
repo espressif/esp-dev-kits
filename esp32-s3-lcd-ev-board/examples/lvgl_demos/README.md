@@ -1,6 +1,6 @@
 # LVGL Demos Example
 
-An example used to run LVGL's internal demos on ESP32-S3-LCD-EV-Board. Includes music player, widgets, stress, benchmark, printer and tuner.
+An example used to run LVGL's demos on ESP32-S3-LCD-EV-Board. Internal demos include music player, widgets, stress and benchmark. What's more, printer and tuner are generated from [Squareline](https://squareline.io/).
 
 This example alse shows two methods to avoid tearing effect. It uses two frame buffers and semaphores based on LVGL **buffering modes**. For more information about this, please refer to official [LVGL buffering-mode](https://docs.lvgl.io/master/porting/display.html?#buffering-modes). The implementation principles of them are shown as follows:
 
@@ -21,14 +21,12 @@ This example alse shows two methods to avoid tearing effect. It uses two frame b
 
 ### Configure
 
-Run `idf.py menuconfig` and go to `Board Configuration`:
+Run `idf.py menuconfig` and go to `Board Support Package`:
 
-1. Based on hardware to `Select LCD Sub Board` and related configuration.
-2. Set `Frequency of lcd pclk`
-3. Choose whether to `Avoid tearing effect`
-4. Chosse to `Select lvgl mode for avoiding tearing` (available only when step `3` was chosen to true)
-5. Set `Priority of lcd refresh task` (available only when step `3` was chosen to true)
-6. Set `Screen refresh period(ms)` (available only when step `3` was chosen to true)
+* `BSP_LCD_SUB_BOARD`: Choose a LCD sub-board according to hardware
+* `BSP_DISPLAY_LVGL_BUF_CAPS`: Choose the memory type of LVGL buffer. Internal memory is more fast.
+* `BSP_DISPLAY_LVGL_BUF_HEIGHT`: Set the height of LVGL buffer, and its width is equal to LCD's width.
+* `BSP_DISPLAY_LVGL_AVOID_TEAR`: Avoid tearing effect by using double buffers. Need to enable `BSP_LCD_RGB_DOUBLE_BUFFER` and `BSP_LCD_RGB_REFRESH_TASK_ENABLE` first.
 
 ### Build and Flash
 
@@ -46,44 +44,41 @@ Run the example, you will see an example of LVGL's internal demos, default is mu
 
 ### Test Environment
 
-| Params                    | Value                             |
-|:-------------------------:|:---------------------------------:|
-| Pclk of RGB LCD           | 18M                               |
-| Version of ESP-IDF        | master (id: f3159) + 120M_patch   |
-| Configuration of PSRAM    | Octal, 120M                       |
-| Version of LVGL           | v8.2                              |
-| Test Demo of LVGL         | Music player                      |
+|         Params         |    Value     |
+| :--------------------: | :----------: |
+| Configuration of PSRAM | Octal, 120M  |
+| Configuration of Flash |  QIO, 120M   |
+|    Version of LVGL     |    v8.3.0    |
+|   Test Demo of LVGL    | Music player |
+|    DCache Line Size    |   64 Byte    |
+|         Others         |   Default    |
 
 ### Description of Buffering Mode
 
-| Buffering Mode | Description                                      |
-|:--------------:|:------------------------------------------------:|
-| Mode1          | One buffer with 64-line heights in internal sram |
-| Mode2          | One buffer with frame-size in psram              |
-| Mode3          | Full-refresh with two frame-size psram buffers   |
-| Mode4          | Direct-mode with two frame-size psram buffers    |
+| Buffering Mode |                    Description                    |
+| :------------: | :-----------------------------------------------: |
+|     Mode1      | One buffer with 100-line heights in internal sram |
+|     Mode2      |        One buffer with frame-size in psram        |
+|     Mode3      |  Full-refresh with two frame-size psram buffers   |
+|     Mode4      |   Direct-mode with two frame-size psram buffers   |
 
 ### Average FPS with 480x480
 
-| Buffering Mode | LCD refresh period: 20ms |  LCD refresh period: 30ms |  LCD refresh period: 40ms |
-|:--------------:|:------------------------:| :------------------------:| :------------------------:|
-| Mode1          | 25                       |  25                       |  25                       |
-| Mode2          | 23                       |  23                       |  23                       |
-| Mode3          | 21                       |  22                       |  24                       |
-| Mode4          | 21                       |  22                       |  22                       |
-
-Note: Mode1 and Mode2 are not controlled by LCD refresh period.
+| Buffering Mode | Average FPS |
+| :------------: | :---------: |
+|     Mode1      |     25      |
+|     Mode2      |     23      |
+|     Mode3      |     21      |
+|     Mode4      |     21      |
 
 ### Average FPS with 800x480
 
-| Buffering Mode | LCD refresh period: 20ms |
-|:--------------:|:------------------------:|
-| Mode1          | 23                       |
-| Mode2          | 19                       |
-| Mode3          | 18                       |
-| Mode4          | 17                       |
-
-Note: Since 800x480 LCD will flicker obviously in a longer refresh period, the rest tests are not conducted.
+| Buffering Mode | Average FPS |
+| :------------: | :---------: |
+|     Mode1      |     23      |
+|     Mode2      |     19      |
+|     Mode3      |     18      |
+|     Mode4      |     17      |
 
 ## Troubleshooting
 
@@ -95,12 +90,8 @@ Note: Since 800x480 LCD will flicker obviously in a longer refresh period, the r
         2. short press "RST(SW1)" button
         3. release "BOOT(SW2)".
         4. upload program and reset
-* LCD screen drift
-  * Slow down the PCLK frequency
-  * Adjust other timing parameters like PCLK clock edge (by `pclk_active_neg`), sync porches like VBP (by `vsync_back_porch`) according to your LCD spec
-  * Enable `CONFIG_SPIRAM_FETCH_INSTRUCTIONS` and `CONFIG_SPIRAM_RODATA`, which can saves some bandwidth of SPI0 from being consumed by ICache.
 * LCD screen tear effect
-    * Using avoid tearing effect.
+    * Enable to avoid tearing effect in menuconfig.
 * LCD screen flickering after enable avoid tearing effect
     * Set lower screen refresh period.
 
