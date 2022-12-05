@@ -18,16 +18,14 @@
 #include "esp_system.h"
 #include "nvs.h"
 #include "nvs_flash.h"
-#include "lv_port.h"
+#include "bsp/esp-bsp.h"
 
 extern void usb_keyboard_init(void);
 
 void app_main(void)
 {
-    ESP_LOGI("TAG", "system start");
-
-    ESP_ERROR_CHECK(bsp_board_init());
-    lv_port_init();
+    bsp_i2c_init();
+    lv_disp_t *disp = bsp_display_start();
 
     usb_keyboard_init();
 }

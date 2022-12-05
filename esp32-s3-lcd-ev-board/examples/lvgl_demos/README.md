@@ -19,10 +19,6 @@ This example alse shows two methods to avoid tearing effect. It uses two frame b
 * An ESP32-S3-LCD-EV-Board development board
 * An USB Type-C cable for Power supply and programming
 
-### Software Required
-
-* IDF v5.0 (recommand release/v5.0 and [patch](../../factory/README.md#idf-patch))
-
 ### Configurations
 
 Run `idf.py menuconfig` and go to `Board Support Package`:
