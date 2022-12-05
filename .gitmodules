@@ -22,3 +22,6 @@
 [submodule "esp32-s3-lcd-ev-board/components/lvgl"]
 	path = esp32-s3-lcd-ev-board/components/lvgl
 	url = https://github.com/lvgl/lvgl.git
+[submodule "esp32-s3-lcd-ev-board/examples/smart-panel/components/lvgl/lvgl"]
+	path = esp32-s3-lcd-ev-board/examples/smart-panel/components/lvgl/lvgl
+	url = https://github.com/lvgl/lvgl.git

@@ -4,11 +4,6 @@ A USB keyboard GUI example on ESP32-S3-LCD-EV-Board.
 
 ## How to use example
 
-### Hardware Required
-
-* An ESP32-S3-LCD-EV-Board development board
-* An USB Type-C cable for Power supply, programming and USB communication
-
 ### Configurations
 
 Run `idf.py menuconfig` and go to `Board Support Package`:

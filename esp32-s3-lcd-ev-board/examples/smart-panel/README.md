@@ -1,19 +1,8 @@
 # Smart Panel Example
 
-A smart panel example on ESP32-S3-LCD-EV-Board. **Note that this example is only applicable to 800x480 LCD.**
+A smart panel example on ESP32-S3-LCD-EV-Board. **Note that, this example is only applicable to 800x480 LCD. And it uses an old version of LVGL and BSP components, so it is not recommended as a reference routine and is only used to demonstrate the GUI.**
+
 ## How to use example
-
-### Hardware Required
-
-* An ESP32-S3-LCD-EV-Board development board
-* An USB Type-C cable for Power supply and programming
-
-### Configure
-
-Run `idf.py menuconfig` and go to `Board Configuration`:
-
-1. Based on hardware to `Select LCD Sub Board` and related configuration.
-2. Set `Frequency of lcd pclk`
 
 ### Build and Flash
 
@@ -37,10 +26,6 @@ Run the example, you will see an example of smart panel. Includes music player, 
         2. short press "RST(SW1)" button
         3. release "BOOT(SW2)".
         4. upload program and reset
-* LCD screen drift
-    * Slow down the PCLK frequency
-    * Adjust other timing parameters like PCLK clock edge (by `pclk_active_neg`), sync porches like VBP (by `vsync_back_porch`) according to your LCD spec
-    * Enable `CONFIG_SPIRAM_FETCH_INSTRUCTIONS` and `CONFIG_SPIRAM_RODATA`, which can saves some bandwidth of SPI0 from being consumed by ICache.
 
 ## Technical support and feedback
 
