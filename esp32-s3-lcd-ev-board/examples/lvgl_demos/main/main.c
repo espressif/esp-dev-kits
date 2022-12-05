@@ -10,6 +10,8 @@
 
 #include "lv_demos.h"
 #include "bsp/esp-bsp.h"
+#include "ui_printer.h"
+#include "ui_tuner.h"
 
 static char *TAG = "app_main";
 
@@ -18,7 +20,7 @@ static char *TAG = "app_main";
 void app_main(void)
 {
     bsp_i2c_init();
-    bsp_display_start();
+    lv_disp_t *disp = bsp_display_start();
 
 #if CONFIG_BSP_DISPLAY_LVGL_AVOID_TEAR
     ESP_LOGI(TAG, "Avoid lcd tearing effect");
@@ -31,12 +33,17 @@ void app_main(void)
 
     ESP_LOGI(TAG, "Display LVGL demo");
     bsp_display_lock(0);
-    // lv_demo_music();        /* A modern, smartphone-like music player demo. */
+    lv_demo_music();        /* A modern, smartphone-like music player demo. */
     // lv_demo_widgets();      /* A widgets example */
     // lv_demo_stress();       /* A stress test for LVGL. */
-    lv_demo_benchmark();    /* A demo to measure the performance of LVGL or to compare different settings. */
-    // ui_printer_init();         /* A demo to show virtual printer (must be 800*480)*/
-    // ui_tuner_init();         /* A demo to show virtual tuner (must be 480*800)*/
+    // lv_demo_benchmark();    /* A demo to measure the performance of LVGL or to compare different settings. */
+#if CONFIG_BSP_LCD_SUB_BOARD_800_480
+    // ui_printer_init();         /* A demo to show virtual printer */
+#ifndef CONFIG_BSP_DISPLAY_LVGL_AVOID_TEAR
+    // bsp_display_rotate(disp, LV_DISP_ROT_90); /* Rotate screen from 800*480 to 480*800 */
+    // ui_tuner_init();         /* A demo to show virtual tuner */
+#endif
+#endif
     bsp_display_unlock();
 
 #if LOG_MEM_INFO

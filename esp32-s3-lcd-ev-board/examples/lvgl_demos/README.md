@@ -1,8 +1,8 @@
 # LVGL Demos Example
 
-An example used to run LVGL's demos on ESP32-S3-LCD-EV-Board. Internal demos include music player, widgets, stress and benchmark. What's more, printer and tuner are generated from [Squareline](https://squareline.io/).
+An example used to run LVGL's demos on ESP32-S3-LCD-EV-Board. Internal demos include music player, widgets, stress and benchmark. What's more, the printer and tuner are generated from [Squareline](https://squareline.io/).
 
-This example alse shows two methods to avoid tearing effect. It uses two frame buffers and semaphores based on LVGL **buffering modes**. For more information about this, please refer to official [LVGL buffering-mode](https://docs.lvgl.io/master/porting/display.html?#buffering-modes). The implementation principles of them are shown as follows:
+This example alse shows two methods to avoid tearing effect. It uses two frame buffers and semaphores based on LVGL **buffering modes**. For more information about this, please refer to official [documents](https://docs.lvgl.io/master/porting/display.html?#buffering-modes). The implementation principles of them are shown as follows:
 
 ## Full-refresh
 
@@ -19,7 +19,11 @@ This example alse shows two methods to avoid tearing effect. It uses two frame b
 * An ESP32-S3-LCD-EV-Board development board
 * An USB Type-C cable for Power supply and programming
 
-### Configure
+### Software Required
+
+* IDF v5.0 (recommand release/v5.0 and [patch](../../factory/README.md#idf-patch))
+
+### Configurations
 
 Run `idf.py menuconfig` and go to `Board Support Package`:
 
@@ -28,9 +32,11 @@ Run `idf.py menuconfig` and go to `Board Support Package`:
 * `BSP_DISPLAY_LVGL_BUF_HEIGHT`: Set the height of LVGL buffer, and its width is equal to LCD's width.
 * `BSP_DISPLAY_LVGL_AVOID_TEAR`: Avoid tearing effect by using double buffers. Need to enable `BSP_LCD_RGB_DOUBLE_BUFFER` and `BSP_LCD_RGB_REFRESH_TASK_ENABLE` first.
 
+**Note**: When `BSP_DISPLAY_LVGL_AVOID_TEAR` is enabled, the screen does not support software rotation like calling `bsp_display_rotate()` or setting software rotation through LVGL.
+
 ### Build and Flash
 
-Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
+Run `idf.py -p PORT build flash monitor` to build, flash and monitor the project.
 
 (To exit the serial monitor, type ``Ctrl-]``.)
 
@@ -66,18 +72,18 @@ Run the example, you will see an example of LVGL's internal demos, default is mu
 
 | Buffering Mode | Average FPS |
 | :------------: | :---------: |
-|     Mode1      |     25      |
-|     Mode2      |     23      |
-|     Mode3      |     21      |
-|     Mode4      |     21      |
+|     Mode1      |     30      |
+|     Mode2      |     25      |
+|     Mode3      |     23      |
+|     Mode4      |     23      |
 
 ### Average FPS with 800x480
 
 | Buffering Mode | Average FPS |
 | :------------: | :---------: |
-|     Mode1      |     23      |
-|     Mode2      |     19      |
-|     Mode3      |     18      |
+|     Mode1      |     27      |
+|     Mode2      |     21      |
+|     Mode3      |     19      |
 |     Mode4      |     17      |
 
 ## Troubleshooting
