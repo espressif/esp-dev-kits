@@ -65,10 +65,10 @@ esp-dev-kits
 .. |ESP32-Sense-Kit| image:: ../_static/esp32-sense-kit/touch_eb_overview.jpg
 .. _ESP32-Sense-Kit: esp32/esp32-sense-kit/index.html
 
-.. |ESP32-MeshKit-Sense| image:: ../_static/esp32-meshkit-sense.png
+.. |ESP32-MeshKit-Sense| image:: ../_static/esp32-meshkit-sensor/esp32-meshkit-sensor.png
 .. _ESP32-MeshKit-Sense: esp32/esp32-meshkit-sensor/index.html
 
-.. |ESP32-LCDKit| image:: ../_static/esp32-lcdkit.png
+.. |ESP32-LCDKit| image:: ../_static/esp32-lcdkit/esp32_lcdkit.png
                   :height: 230px
                   :width: 400px
 .. _ESP32-LCDKit: esp32/esp32-lcdkit/index.html
@@ -148,4 +148,4 @@ esp-dev-kits
    :hidden:
    :caption: 贡献代码
 
-   Contribute <contribute/index>
+   Contribute <contribute/contributions_guide>

@@ -24,7 +24,7 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
 
 **Subboards**
 
-- Button-board: Three capacitive touch button with waterproof sensor.
+- Button-board: Three capacitive touch buttons with waterproof sensor.
 
 ==========================   ===========================
     |Button-board|                |Water-proof sensor|
@@ -35,7 +35,7 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
 .. |Button-board| image:: ../../../_static/esp32-s2-touch-devkit-1/buttonboard.png
 .. |Water-proof sensor| image:: ../../../_static/esp32-s2-touch-devkit-1/buttonboard_sch.jpg
 
-- Slider-board: Capacitive touch linear slider, the relative distance of slider has up to 8 bit precision.
+- Slider-board: Capacitive touch linear slider, the relative distance of slider has up to 8-bit precision.
 
 ==========================   ===========================
     |Slider-board|                |Slider|
@@ -68,7 +68,7 @@ ESP32-S2-Touch-Devkit-1 is a development kit that is aimed at helping evaluate a
 .. |Touchpad-board| image:: ../../../_static/esp32-s2-touch-devkit-1/touchpadboard.png
 .. |Touchpad| image:: ../../../_static/esp32-s2-touch-devkit-1/touchpadboard_sch.jpg
 
-- Proximity-board: Three capacitive touch proximity sensor.
+- Proximity-board: Three capacitive touch proximity sensors.
 
 ==========================   ===========================
     |Proximity-board|                |Sensor|
@@ -109,7 +109,7 @@ Get Started
 
       cd esp-dev-kits/esp32-s2-touch-devkit-1
 
-   The project’s structure is show as followed:
+   The project’s structure is shown as followed:
 
    .. code:: bash
 
@@ -117,7 +117,7 @@ Get Started
       ├── components              #components' driver
       │   ├── board_detect    #subboard detector
       │   ├── buzzer              #buzzer driver
-      │   ├── digital_tube    #digital tube controllor driver
+      │   ├── digital_tube    #digital tube controller driver
       │   ├── rgb_light       #RGB light driver(ws2812)
       │   ├── subboards       #Subboards' application source file
       │   └── touch_element       #Touch element library
@@ -221,14 +221,14 @@ Related Documents
 Schematic
 ^^^^^^^^^^^^^^^
 
-- `ESP32-S2-Touch-Devkit-1 Motherboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-MainBoard_V1.0_20210312.pdf>`_
-- `Button Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Waterproof_V1.0_20210402.pdf>`_
-- `Slider Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Slider_V1.0_20210401.pdf>`_
-- `Matrix Button Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Matrix%20Button_V1.0_20210402.pdf>`_
-- `Touchpad Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Touchpad_V1.0_20210406.pdf>`_
-- `Proximity Subboard Schematic <../../_static/schematics/esp32-s2-touch-devkit-1/SCH_ESP-Touch-Kit-Proximity_V1.0_20210402.pdf>`_
+- `ESP32-S2-Touch-Devkit-1 Motherboard Schematic <../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-MainBoard_V1.0_20210312.pdf>`_
+- `Button Subboard Schematic <../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Waterproof_V1.0_20210402.pdf>`_
+- `Slider Subboard Schematic <../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Slider_V1.0_20210401.pdf>`_
+- `Matrix Button Subboard Schematic <../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Matrix%20Button_V1.0_20210402.pdf>`_
+- `Touchpad Subboard Schematic <../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Touchpad_V1.0_20210406.pdf>`_
+- `Proximity Subboard Schematic <../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Proximity_V1.0_20210402.pdf>`_
 
-Other documents
+Other Documents
 ^^^^^^^^^^^^^^^^^^^^
 
 -  `Touch Element Library Programming Guide <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/api-reference/peripherals/touch_element.html>`__

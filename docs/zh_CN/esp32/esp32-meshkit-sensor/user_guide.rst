@@ -1,4 +1,4 @@
-ESP32-MeshKit-Sense 
+ESP32-MeshKit-Sense
 ====================
 
 :link_to_translation:`en:[English]`
@@ -14,7 +14,7 @@ ESP32-MeshKit-Sense 是一款以乐鑫 ESP32 模组为核心的开发板，集�
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    ESP32-MeshKit-Sense
 
 电路设计说明
@@ -29,7 +29,7 @@ ESP32 的系统框图如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    ESP32 系统框图
 
 
@@ -42,7 +42,7 @@ PCB 布局如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    PCB 布局
 
 
@@ -105,7 +105,7 @@ USB/电池供电管理模块电路图如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    USB/电池供电管理模块
 
 外设电源管理模块
@@ -119,7 +119,7 @@ USB/电池供电管理模块电路图如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    外设电池电路
 
 总路 VDD33 有两路分支：
@@ -133,7 +133,7 @@ USB/电池供电管理模块电路图如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    ESP32_VDD33 原理图
 
 其中，VDD33-PeriP 也有两路分支：
@@ -147,7 +147,7 @@ USB/电池供电管理模块电路图如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    VDD33_PeriP 原理图
 
 Boot & UART 功能
@@ -161,7 +161,7 @@ Boot & UART 电路原理图如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    Boot & UART 电路原理图
 
 睡眠唤醒模块
@@ -175,7 +175,7 @@ Boot & UART 电路原理图如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    睡眠唤醒模块电路原理图
 
 外接屏幕
@@ -189,7 +189,7 @@ Boot & UART 电路原理图如下图所示。
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    外接屏幕电路原理图
 
 传感器
@@ -206,7 +206,7 @@ HTS221 是一种超小型相对湿度和温度传感器。开发板采用 3.3 V 
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    温湿度传感器电路原理图
 
 
@@ -221,7 +221,7 @@ BH1750FVI 是一款数字的环境光传感器。开发板采用 3.3 V 供电，
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    环境光传感器电路原理图
 
 环境亮度传感器
@@ -235,7 +235,7 @@ APDS-9960 是一款集成 ALS、红外 LED 和接近检测器的光学模块和�
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    环境亮度传感器电路原理图
 
 示例程序
@@ -247,5 +247,5 @@ APDS-9960 是一款集成 ALS、红外 LED 和接近检测器的光学模块和�
 相关文档
 -----------
 
-- `ESP32-MeshKit-Sense 原理图 <../../_static/schematics/esp32-meshkit-sense/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
-- `ESP32-MeshKit-Sense PCB 布局 <../../_static/schematics/esp32-meshkit-sense/ESP32-MeshKit-Sense_V1.1.pdf>`_
+- `ESP32-MeshKit-Sense 原理图 <../../_static/esp32-meshkit-sense/schematics/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
+- `ESP32-MeshKit-Sense PCB 布局 <../../_static/esp32-meshkit-sense/schematics/ESP32-MeshKit-Sense_V1.1.pdf>`_

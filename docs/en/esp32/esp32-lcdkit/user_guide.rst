@@ -16,8 +16,8 @@ For more information on ESP32, please refer to `ESP32 Series Datasheet <https://
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
-   ESP32-LCDKit 
+
+   ESP32-LCDKit
 
 Block Diagram and PCB Layout
 ---------------------------------
@@ -31,7 +31,7 @@ The figure below shows the block diagram for ESP32-LCDKit.
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32-LCDKit Block Diagram
 
 PCB Layout
@@ -43,7 +43,7 @@ The figure below shows the layout of ESP32-LCDKit PCB.
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32-LCDKit PCB Layout
 
 Descriptions of PCB components are shown in the following table:
@@ -71,9 +71,9 @@ Functional Modules
 This section introduces the functional modules (interfaces) of
 ESP32-LCDKit and their hardware schematics.
 
-- `Schematic <../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `Schematic <../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
-- `PCB Layout <../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `PCB Layout <../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
 ESP32 DevKitC Connection Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -86,7 +86,7 @@ The figure below shows the schematics for the ESP32 DevKitC connection module.
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32 DevKitC Connection Module
 
 Power Supply Management Module
@@ -98,7 +98,7 @@ The figure below shows the schematics for the USB power supply management module
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32-LCDKit Power Supply Module
 
 Display Connection Module
@@ -118,7 +118,7 @@ The figure below shows the schematics for this module.
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32-LCDKit Display Connection Module
 
 SD-Card and DAC-Audio Modules
@@ -132,12 +132,12 @@ The figure below shows the schematics for the SD-Card and DAC-Audio modules.
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    SD-Card and DAC-Audio Modules
 
 
 Related Documents
 ---------------------
 
-- `ESP32-LCDKit Schematic <../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
-- `ESP32-LCDKit PCB Layout <../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `ESP32-LCDKit Schematic <../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `ESP32-LCDKit PCB Layout <../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_
