@@ -1,4 +1,4 @@
-ESP32-MeshKit-Sense 
+ESP32-MeshKit-Sense
 ======================
 
 :link_to_translation:`zh_CN:[中文]`
@@ -22,7 +22,7 @@ The figure below shows the block diagram of ESP32.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    ESP32 Block Diagram
 
 PCB Layout
@@ -114,7 +114,7 @@ The figure below shows the schematics for USB/BAT power supply management.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    USB/BAT Power Supply Management Schematics
 
 Power Supply Management for Peripherals
@@ -128,13 +128,13 @@ The figure below shows the schematics for peripheral power supply.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    Peripheral Power Supply Schematics
 
-The main VDD33 circuit has two branches: 
+The main VDD33 circuit has two branches:
 
-- ESP32_VDD33, used to power the ESP32 module module 
-- VDD33_PeriP, used to power all peripherals. 
+- ESP32_VDD33, used to power the ESP32 module module
+- VDD33_PeriP, used to power all peripherals.
 
 The connection between them can be controlled via the pin header and jumper cap. The figure below shows the schematics for ESP32_VDD33.
 
@@ -142,7 +142,7 @@ The connection between them can be controlled via the pin header and jumper cap.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    ESP32_VDD33 Schematics
 
 The VDD33_PeriP branch circuit also has two sub-branches
@@ -156,7 +156,7 @@ The connection of the two can be controlled by the module GPIO+MOS. The figure b
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    VDD33_PeriP Schematics
 
 Boot & UART
@@ -170,7 +170,7 @@ The figure below shows the schematics for Boot & UART Circuit.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    Boot & UART Circuit
 
 Module for Wakeup from Sleep
@@ -184,7 +184,7 @@ The figure below shows the schematics for wakeup-from-sleep module.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    Wake-from-Sleep Module Schematics
 
 External Screens
@@ -198,7 +198,7 @@ The figure below shows the schematics for external screens.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    Schematics for External Screens
 
 Sensors
@@ -215,7 +215,7 @@ The figure below shows the schematics for the temperature and humidity sensor.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    Temperature and Humidity Sensor Schematics
 
 Ambient Light Sensor
@@ -229,7 +229,7 @@ The figure below shows the schematics for the ambient light sensor.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    Ambient Light Sensor Schematics
 
 Ambient Brightness Sensor
@@ -243,7 +243,7 @@ The figure below shows the schematics for the ambient brightness sensor.
    :align: center
    :alt: ESP32-MeshKit-Sense
    :figclass: align-center
- 
+
    Ambient Brightness Sensor Schematics
 
 Example
@@ -255,5 +255,5 @@ See `esp-mdf/examples/development_kit/sense <https://github.com/espressif/esp-md
 Related Documents
 --------------------
 
-- `ESP32-MeshKit-Sense Schematic <../../_static/schematics/esp32-meshkit-sense/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
-- `ESP32-MeshKit-Sense PCB Layout <../../_static/schematics/esp32-meshkit-sense/ESP32-MeshKit-Sense_V1.1.pdf>`_
+- `ESP32-MeshKit-Sense Schematic <../../_static/esp32-meshkit-sensor/schematics/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
+- `ESP32-MeshKit-Sense PCB Layout <../../_static/esp32-meshkit-sensor/schematics/ESP32-MeshKit-Sense_V1.1.pdf>`_

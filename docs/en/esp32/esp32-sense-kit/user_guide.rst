@@ -15,7 +15,7 @@ The following image shows the whole ESP32-Sense-Kit.
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    ESP32-Sense-Kit
 
 Preparation
@@ -29,29 +29,29 @@ Preparation
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    Install Overlay
 
 -  **Install daughterboard**
 
-   Use a connector to connect motherboard with daughterboard. You can use four 7 mm plastic stud bolts to have the daughterboard steadily parallel to the motherboard, as shown on the image below:
+   Use a connector to connect motherboard with daughterboard. You can use four 7 mm plastic stud bolts to have the daughterboard steadily parallel to the motherboard, as shown in the image below:
 
 .. figure:: ../../../_static/esp32-sense-kit/board_setup.png
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    Install Daughterboard
 
 -  **Set ESP-Prog debugger**
 
-   ESP-Prog is used as the program download tool and power supply. ESP-Prog has two sets of jumpers: IO0 jumper and power supply jumper. Choose 5V power supply for the latter. IO0 can be used both for selecting boot mode (download mode or working mode) and as a touch pin. As a result, it should be disconnected if used as a touch pin in working mode. The image below shows the settings for ESP-Prog.
+   ESP-Prog is used as the program download tool and power supply. ESP-Prog has two sets of jumpers: IO0 jumper and power supply jumper. Choose 5 V power supply for the latter. IO0 can be used both for selecting boot mode (download mode or working mode) and as a touch pin. As a result, it should be disconnected if used as a touch pin in working mode. The image below shows the settings for ESP-Prog.
 
 .. figure:: ../../../_static/esp32-sense-kit/board_pwr_sel.jpg
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    Set ESP-Prog Debuggers
 
 -  **Connect ESP-Prog with motherboard**
@@ -62,7 +62,7 @@ Preparation
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    Connect ESP-Prog with Motherboard
 
 -  **Download programs**
@@ -93,7 +93,7 @@ Motherboard
 
 -  **Function Block Diagram**
 
-   The image belows shows the function block diagram of the motherboard.
+   The image below shows the function block diagram of the motherboard.
 
 .. figure:: ../../../_static/esp32-sense-kit/touch_eb_block_diagram.png
    :align: center
@@ -127,7 +127,7 @@ Motherboard
 -  **Display Unit**
 
    The display unit on the motherboard can intuitively feedback touch event. The three 7-segment displays show the location of the pad that is being touched and the duration of a touch event. The segment displays are driven by CH455G chip, and controlled through I2C interface. The RGB LED reflects the colors when a touch event occurs. When a finger moves on the slider, the RGB LED will show the change of colors.
-   
+
    The figure below shows the schematics of the display unit:
 
 .. figure:: ../../../_static/esp32-sense-kit/board_7seg_display.png
@@ -199,7 +199,7 @@ Application Programs
 Configure Settings
 ~~~~~~~~~~~~~~~~~~~~~~~
 
-When using overlays of different thicknesses or materials, users need to reset the change rate of touch readings on each channel, that is, the sensitivity. This parameter is calculated from the pulse count value. The calculation formula is: (Non-touch value - Touch value) / Non-touch value, where “Non-touch value” refers to the pulse count value when there is no touch event, and “Touch value” refers to the pulse count value when a touch event occurs. Users need to take a measurement and obtain these two values. When the system is initialized, the touch threshold is automatically calculated from the change rate of touch readings. The touch threshold is directly proportional to the change rate. 
+When using overlays of different thicknesses or materials, users need to reset the change rate of touch readings on each channel, that is, the sensitivity. This parameter is calculated from the pulse count value. The calculation formula is: (Non-touch value - Touch value) / Non-touch value, where “Non-touch value” refers to the pulse count value when there is no touch event, and “Touch value” refers to the pulse count value when a touch event occurs. Users need to take a measurement and obtain these two values. When the system is initialized, the touch threshold is automatically calculated from the change rate of touch readings. The touch threshold is directly proportional to the change rate.
 
 When the change rate is set, users can write it into ``evb.h`` file.
 
@@ -211,13 +211,13 @@ Demo
 ----------------------------   ---------------------------
   Spring Button                  Matrix Button
 ----------------------------   ---------------------------
- |Linear Slider|                |Duplex Slider|        
+ |Linear Slider|                |Duplex Slider|
 ----------------------------   ---------------------------
   Linear Slider                  Duplex Slider
 ----------------------------   ---------------------------
- |Wheel Slider|              
+ |Wheel Slider|
 ----------------------------   ---------------------------
-  Wheel Slider      
+  Wheel Slider
 ============================   ===========================
 
 .. |Spring Button| image:: ../../../_static/esp32-sense-kit/touch_spring.jpg
@@ -232,13 +232,13 @@ Related Resources
 
 -  **Schematic**
 
-   -  `ESP32-Sense-Kit Mainboard Schematic <../../_static/schematics/esp32-sense-kit/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
-   -  `ESP32-Sense-Kit Subboard Schematic <../../_static/schematics/esp32-sense-kit/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
+   -  `ESP32-Sense-Kit Mainboard Schematic <../../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
+   -  `ESP32-Sense-Kit Subboard Schematic <../../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
 
 -  **PCB Layout**
 
-   -  `ESP32-Sense-Kit Mainboard PCB Layout <../../_static/schematics/esp32-sense-kit/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
-   -  `ESP32-Sense-Kit Subboard PCB Layout <../../_static/schematics/esp32-sense-kit/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
+   -  `ESP32-Sense-Kit Mainboard PCB Layout <../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
+   -  `ESP32-Sense-Kit Subboard PCB Layout <../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
 
 -  **Set up Software Environment**
 

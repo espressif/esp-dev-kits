@@ -14,7 +14,7 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    ESP32-Sense-Kit
 
 开发板操作
@@ -28,7 +28,7 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    保护盖板安装
 
 -  **子板安装**
@@ -39,18 +39,18 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    子板安装
 
 -  **ESP-Prog 调试器设置**
-   
+
    ESP-Prog 起到下载程序和供电作用。调试器上有两组跳针，IO0 跳针和供电跳针，供电跳针上的供电电压选择为 5 V。因为 IO0 既有启动模式（下载模式、运行模式）选择功能，同时也是触摸功能管脚，如果 IO0 作为触摸功能使用，则运行模式时，调试器上 IO0 跳针应断开。调试器设置如下图：
 
 .. figure:: ../../../_static/esp32-sense-kit/board_pwr_sel.jpg
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    调试器设置
 
 -  **ESP-Prog 调试器连接主板**
@@ -61,11 +61,11 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
    :align: center
    :alt: ESP32-Sense
    :figclass: align-center
- 
+
    调试器连接主板
 
 -  **编译下载**
-   
+
    配置 `ESP32-Sense 项目工程 <https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb>`__ 的 config 参数，执行命令 ``make menuconfig`` 配置参数，如下图所示。执行命令 ``make flash``，程序会自动下载到开发板中。
 
 .. figure:: ../../../_static/esp32-sense-kit/menuconfig-1.png
@@ -126,7 +126,7 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
 -  **显示电路**
 
    ESP32-Sense-Kit 开发套件的主板上有显示单元，可直观地反馈触摸动作。三个数码管分别显示被触摸按键的位置和触摸动作的持续时间。数码管驱动芯片为 CH455G，使用 I2C 接口控制。RGB 灯用于触摸时的颜色反馈。用户滑动滑条，RGB 灯的颜色会相应变化。
-   
+
    下图是显示单元的硬件原理图：
 
 .. figure:: ../../../_static/esp32-sense-kit/board_7seg_display.png
@@ -139,7 +139,7 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
    :alt: ESP32-Sense
    :figclass: align-center
 
-   显示电路  
+   显示电路
 
 子板
 ~~~~~~~~
@@ -153,7 +153,7 @@ ESP32-Sense-Kit 开发套件用于评估和开发 ESP32 触摸传感器功能。
    :alt: ESP32-Sense
    :figclass: align-center
 
-   分压电路 
+   分压电路
 
    主板上的分压电阻是 10 KΩ，下表是各子板上对应的分压电阻阻值：
 
@@ -209,13 +209,13 @@ ESP32 IoT Solution 工程下的 `ESP32-Sense 项目 <https://github.com/espressi
 ----------------------------   ---------------------------
   Spring Button                  Matrix Button
 ----------------------------   ---------------------------
- |Linear Slider|                |Duplex Slider|        
+ |Linear Slider|                |Duplex Slider|
 ----------------------------   ---------------------------
   Linear Slider                  Duplex Slider
 ----------------------------   ---------------------------
- |Wheel Slider|              
+ |Wheel Slider|
 ----------------------------   ---------------------------
-  Wheel Slider      
+  Wheel Slider
 ============================   ===========================
 
 .. |Spring Button| image:: ../../../_static/esp32-sense-kit/touch_spring.jpg
@@ -230,13 +230,13 @@ ESP32 IoT Solution 工程下的 `ESP32-Sense 项目 <https://github.com/espressi
 
 - **原理图**
 
-  - `ESP32-Sense-kit 主板原理图 <../../_static/schematics/esp32-sense-kit/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
-  - `ESP32-Sense-kit 子板原理图 <../../_static/schematics/esp32-sense-kit/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
+  - `ESP32-Sense-kit 主板原理图 <../../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
+  - `ESP32-Sense-kit 子板原理图 <../../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
 
 - **PCB 布局**
 
-  - `ESP32-Sense-kit 主板 PCB 布局 <../../_static/schematics/esp32-sense-kit/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
-  - `ESP32-Sense-kit 子板 PCB 布局 <../../_static/schematics/esp32-sense-kit/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
+  - `ESP32-Sense-kit 主板 PCB 布局 <../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
+  - `ESP32-Sense-kit 子板 PCB 布局 <../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
 
 - **开发环境**
 

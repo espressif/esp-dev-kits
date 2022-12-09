@@ -135,7 +135,7 @@ The contents are as follows:
 
 - Cables
 
-  Two flexible flat cables: 
+  Two flexible flat cables:
     - One cable to connect to 2*5-PIN 2.54 mm male shrouded box header.
     - One cable to connect to 2*3-PIN 1.27 mm male shrouded box header.
 
@@ -181,7 +181,7 @@ There are three mutually exclusive ways to provide power to the board:
 Header Block
 -------------
 
-The two tables below provide the **Name** and **Function** of the pins on both sides of the board (Program Interface and JTAG Interface). The pin names are shown in the front view of the ESP-Prog board. The numbering is the same as in the `ESP-Prog Schematic <../../_static/schematics/esp-prog/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF).
+The two tables below provide the **Name** and **Function** of the pins on both sides of the board (Program Interface and JTAG Interface). The pin names are shown in the front view of the ESP-Prog board. The numbering is the same as in the `ESP-Prog Schematic <../../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF).
 
 
 Program Interface
@@ -190,7 +190,7 @@ Program Interface
 .. list-table::
    :widths: 30 35 35
    :header-rows: 1
-   
+
    * - No.
      - Name
      - Function
@@ -220,7 +220,7 @@ JTAG Interface
 .. list-table::
    :widths: 30 30 40
    :header-rows: 1
-   
+
    * - No.
      - Name
      - Function
@@ -259,9 +259,9 @@ JTAG Interface
 Related Documents
 =================
 
-- `ESP-Prog Schematic <../../_static/schematics/esp-prog/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
-- `ESP-Prog PCB Layout <../../_static/schematics/esp-prog/PCB_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
-- `ESP-Prog Dimensions <../../_static/schematics/esp-prog/DIM_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+- `ESP-Prog Schematic <../../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+- `ESP-Prog PCB Layout <../../_static/esp-prog/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+- `ESP-Prog Dimensions <../../_static/esp-prog/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
 
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

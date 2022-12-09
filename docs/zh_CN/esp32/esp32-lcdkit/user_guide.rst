@@ -1,4 +1,4 @@
-ESP32-LCDKit 
+ESP32-LCDKit
 ================
 
 :link_to_translation:`en:[English]`
@@ -16,8 +16,8 @@ ESP32-LCDKit 是一款以乐鑫 ESP32-DevKitC（需另采购） 为核心的 HMI
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
-   ESP32-LCDKit 
+
+   ESP32-LCDKit
 
 电路设计说明
 -----------------
@@ -31,7 +31,7 @@ ESP32-LCDKit 开发板的系统框图如下所示：
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32-LCDKit 系统框图
 
 PCB 布局
@@ -43,7 +43,7 @@ ESP32-LCDKit 开发板的 PCB 布局如下所示：
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32-LCDKit PCB 布局
 
 PCB 部件功能说明如下表所示：
@@ -67,9 +67,9 @@ PCB 部件功能说明如下表所示：
 
 本章主要介绍各个功能模块（接口）的硬件实现，以及对这些模块的描述。
 
-- `原理图 <../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `原理图 <../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
-- `PCB Layout <../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `PCB Layout <../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
 ESP32 DevKitC 开发板连接模块
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -82,7 +82,7 @@ ESP32-LCDKit 开发板与 ESP32 DevKitC 开发板连接模块电路原理图如�
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32 DevKitC 连接模块
 
 电源管理
@@ -94,7 +94,7 @@ USB 供电管理模块电路图如下所示：
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32-LCDKit 供电管理模块
 
 屏幕连接模块
@@ -114,7 +114,7 @@ USB 供电管理模块电路图如下所示：
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    ESP32-LCDKit 外接屏幕模块
 
 SD-Card、DAC-Audio 外设模块
@@ -128,12 +128,12 @@ SD-Card、DAC-Audio 外设模块电路原理图如下所示：
    :align: center
    :alt: ESP32-LCDKit
    :figclass: align-center
- 
+
    SD-Card 与 DAC-Audio 外设
 
 
 相关文档
 -----------
 
-- `ESP32-LCDKit 原理图 <../../_static/schematics/esp32-lcdkit/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
-- `ESP32-LCDKit PCB 布局 <../../_static/schematics/esp32-lcdkit/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `ESP32-LCDKit 原理图 <../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `ESP32-LCDKit PCB 布局 <../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_

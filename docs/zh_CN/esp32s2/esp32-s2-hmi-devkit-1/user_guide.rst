@@ -28,7 +28,7 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
     :figclass: align-center
 
     ESP32-S2-HMI-DevKit-1（板载 ESP32-S2-WROVER 模组）
-    
+
 
 本指南包括如下内容：
 
@@ -265,7 +265,7 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
    * - SPI
      - 在不使用 SD 卡时可以使用该连接器连接 SPI 总线的设备。
    * - Prog/UART
-     - 可以通过该串口接口观察日志输出与固件烧录。   
+     - 可以通过该串口接口观察日志输出与固件烧录。
    * - microSD 连接器
      - 可以插入 microSD 卡以扩展设备存储空间。
    * - 电源端口
@@ -285,9 +285,9 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
 
 - `ESP32-S2 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-S2-WROVER 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 原理图 <../../_static/schematics/esp32-s2-hmi-devkit-1/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 PCB 布局图 <../../_static/schematics/esp32-s2-hmi-devkit-1/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 尺寸图 <../../_static/schematics/esp32-s2-hmi-devkit-1/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 尺寸图源文件 <../../_static/schematics/esp32-s2-hmi-devkit-1/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+- `ESP32-S2-HMI-DevKit-1 原理图 <../../_static/esp32-s2-hmi-devkit-1/schematics/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 PCB 布局图 <../../_static/esp32-s2-hmi-devkit-1/schematics/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 尺寸图 <../../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 尺寸图源文件 <../../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。

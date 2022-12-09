@@ -104,7 +104,7 @@ Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/l
 ESP-AT Support
 ^^^^^^^^^^^^^^^^^^^^^^
 
-The ESP8684-DevKitM-1 supports ESP-AT software that provides a set of AT commands with which you can quickly integrate wireless connectivity features into your product without a need for embedded application development of the module on this development board .
+The ESP8684-DevKitM-1 supports ESP-AT software that provides a set of AT commands with which you can quickly integrate wireless connectivity features into your product without a need for embedded application development of the module on this development board.
 
 The software is available as a pre-built binary that can be downloaded from `ESP-AT repository <https://github.com/espressif/esp-at/tags>`_.
 
@@ -165,7 +165,7 @@ Header Block
 -------------
 
 
-The two tables below provide the **Name** and **Function** of the pins on both sides of the board (J1 and J3). The pin names are shown in :ref:`user-guide-esp8684-devkitm-1-v1-board-front`. The numbering is the same as in the `Board Schematic <../../../_static/schematics/esp8684-devkitm-1/esp8684-devkitm-1-schematics_V1>`_ (PDF).
+The two tables below provide the **Name** and **Function** of the pins on both sides of the board (J1 and J3). The pin names are shown in :ref:`user-guide-esp8684-devkitm-1-v1-board-front`. The numbering is the same as in the `Board Schematic <../../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1>`_ (PDF).
 
 J1
 ^^^
