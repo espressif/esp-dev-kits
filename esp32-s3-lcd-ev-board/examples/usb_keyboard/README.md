@@ -4,17 +4,11 @@ A USB keyboard GUI example on ESP32-S3-LCD-EV-Board.
 
 ## How to use example
 
-### Hardware Required
+### Configurations
 
-* An ESP32-S3-LCD-EV-Board development board
-* An USB Type-C cable for Power supply and programming
+Run `idf.py menuconfig` and go to `Board Support Package`:
 
-### Configure
-
-Run `idf.py menuconfig` and go to `Board Configuration`:
-
-1. Based on hardware to `Select LCD Sub Board` and related configuration.
-2. Set `Frequency of lcd pclk`
+* `BSP_LCD_SUB_BOARD`: Choose a LCD sub-board according to hardware
 
 ### Build and Flash
 
@@ -38,11 +32,7 @@ Run the example, you will see a GUI of USB keyboard. The board includes most com
         2. short press "RST(SW1)" button
         3. release "BOOT(SW2)".
         4. upload program and reset
-* LCD screen drift
-    * Slow down the PCLK frequency
-    * Adjust other timing parameters like PCLK clock edge (by `pclk_active_neg`), sync porches like VBP (by `vsync_back_porch`) according to your LCD spec
-    * Enable `CONFIG_SPIRAM_FETCH_INSTRUCTIONS` and `CONFIG_SPIRAM_RODATA`, which can saves some bandwidth of SPI0 from being consumed by ICache.
-* PC can't input key from example
+* PC can't get key from development board
     * Make sure development board connected with USB port instead of UART port.
 
 ## Technical support and feedback

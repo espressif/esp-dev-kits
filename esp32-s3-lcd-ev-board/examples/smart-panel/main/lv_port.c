@@ -166,7 +166,7 @@ static void lv_port_disp_init(void)
     /* Option 1 : Allocate memories from heap */
     static lv_disp_buf_t disp_buf;
 
-    const size_t disp_buf_width = brd->LCD_WIDTH, disp_buf_height = 10;
+    const size_t disp_buf_width = brd->LCD_WIDTH, disp_buf_height = 20;
     lv_color_t *lv_buf = (lv_color_t *)heap_caps_malloc(1 * disp_buf_width * disp_buf_height * sizeof(lv_color_t), MALLOC_CAP_INTERNAL | MALLOC_CAP_8BIT);
     if (NULL == lv_buf) {
         ESP_LOGE(TAG, "No free mem for allocating buffer");

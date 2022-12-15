@@ -22,7 +22,9 @@
 #include "tinyusb.h"
 #include "sdkconfig.h"
 #include "lvgl.h"
-#include "lv_port.h"
+#include "class/hid/hid.h"
+#include "class/hid/hid_device.h"
+#include "bsp/esp-bsp.h"
 
 static const char *TAG = "usb keyboard";
 
@@ -217,7 +219,7 @@ static lv_obj_t *kb;
 
 #define LV_KB_BTN(width) LV_BTNMATRIX_CTRL_POPOVER | width
 
-static const char *const default_kb_map_custom_lc[] = {
+static const char * default_kb_map_custom_lc[] = {
     "ESC", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "Del", "\n",
     "~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", LV_SYMBOL_BACKSPACE, "\n",
     "Tab", "q", "w", "e", "r", "t", "y", "u", "i", "o", "p", "[", "]", "\\", "\n",
@@ -226,7 +228,7 @@ static const char *const default_kb_map_custom_lc[] = {
     "Ctrl", LV_SYMBOL_DRIVE, "Alt", " ", "Alt", "Ctrl", LV_SYMBOL_LEFT, LV_SYMBOL_DOWN, LV_SYMBOL_RIGHT, ""
 };
 
-static const char *const default_kb_map_custom_uc[] = {
+static const char * default_kb_map_custom_uc[] = {
     "ESC", "F1", "F2", "F3", "F4", "F5", "F6", "F7", "F8", "F9", "F10", "F11", "F12", "Del", "\n",
     "~", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "-", "=", LV_SYMBOL_BACKSPACE, "\n",
     "Tab", "Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P", "[", "]", "\\", "\n",
@@ -245,7 +247,7 @@ static const lv_btnmatrix_ctrl_t default_kb_ctrl_map_custom[] = {
     LV_KB_BTN(3), LV_KEYBOARD_CTRL_BTN_FLAGS | 2, LV_KB_BTN(1), LV_KB_BTN(6), LV_KB_BTN(1), LV_KB_BTN(1), LV_KB_BTN(1), LV_KB_BTN(1), LV_KB_BTN(1),
 };
 
-static void send_hid_report(uint8_t report_id, uint32_t btn);
+// static void send_hid_report(uint8_t report_id, uint32_t btn);
 
 static uint8_t keycode[6] = { 0 };
 
@@ -256,7 +258,6 @@ static void ta_event_cb(lv_event_t *e)
 
     if (LV_EVENT_PRESSED == code) {
         lv_obj_t *obj = lv_event_get_target(e);
-        lv_keyboard_t *keyboard = (lv_keyboard_t *)obj;
         uint16_t btn_id   = lv_btnmatrix_get_selected_btn(obj);
         if (btn_id == LV_BTNMATRIX_BTN_NONE) {
             return;
@@ -298,7 +299,7 @@ static void ta_event_cb(lv_event_t *e)
         } else {
             char c[8] = {0};
             bool matched = 0;
-            strncpy(c, txt, 8);
+            strncpy(c, txt, sizeof(c) - 1);
             if (c[0] >= 'a' && c[0] <= 'z') {
                 c[0] -= 32; // to upper
             }
@@ -375,8 +376,6 @@ void usb_keyboard_init(void)
         "012-345",            // 3: Serials, should use chip ID
     };
 
-
-
     enum {
         ITF_NUM_HID,
         ITF_NUM_TOTAL
@@ -402,7 +401,7 @@ void usb_keyboard_init(void)
     ESP_ERROR_CHECK(tinyusb_driver_install(&tusb_cfg));
     ESP_LOGI(TAG, "USB initialization DONE");
 
-    lv_port_sem_take();
+    bsp_display_lock(0);
     kb = lv_keyboard_create(lv_scr_act());
     lv_keyboard_set_map(kb, LV_KEYBOARD_MODE_USER_2, default_kb_map_custom_uc, default_kb_ctrl_map_custom);
     lv_keyboard_set_map(kb, LV_KEYBOARD_MODE_USER_1, default_kb_map_custom_lc, default_kb_ctrl_map_custom);
@@ -411,11 +410,9 @@ void usb_keyboard_init(void)
     lv_obj_remove_event_cb(kb, lv_keyboard_def_event_cb);
     lv_obj_add_event_cb(kb, ta_event_cb, LV_EVENT_PRESSED, kb);
     lv_obj_add_event_cb(kb, ta_event_cb, LV_EVENT_RELEASED, kb);
-    lv_port_sem_give();
+    bsp_display_unlock();
 
     while (1) {
-
-
         // uint32_t const btn = board_button_read();
 
         // Remote wakeup
@@ -465,92 +462,91 @@ void tud_resume_cb(void)
 //--------------------------------------------------------------------+
 // USB HID
 //--------------------------------------------------------------------+
+// static void send_hid_report(uint8_t report_id, uint32_t btn)
+// {
+//     // skip if hid is not ready yet
+//     if ( !tud_hid_ready() ) {
+//         return;
+//     }
 
-static void send_hid_report(uint8_t report_id, uint32_t btn)
-{
-    // skip if hid is not ready yet
-    if ( !tud_hid_ready() ) {
-        return;
-    }
+//     switch (report_id) {
+//     case REPORT_ID_KEYBOARD: {
+//         // use to avoid send multiple consecutive zero report for keyboard
+//         static bool has_keyboard_key = false;
 
-    switch (report_id) {
-    case REPORT_ID_KEYBOARD: {
-        // use to avoid send multiple consecutive zero report for keyboard
-        static bool has_keyboard_key = false;
+//         if ( btn ) {
+//             uint8_t keycode[6] = { 0 };
+//             keycode[0] = HID_KEY_GUI_LEFT;
 
-        if ( btn ) {
-            uint8_t keycode[6] = { 0 };
-            keycode[0] = HID_KEY_GUI_LEFT;
+//             tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
+//             has_keyboard_key = true;
+//         } else {
+//             // send empty key report if previously has key pressed
+//             if (has_keyboard_key) {
+//                 tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
+//             }
+//             has_keyboard_key = false;
+//         }
+//     }
+//     break;
 
-            tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
-            has_keyboard_key = true;
-        } else {
-            // send empty key report if previously has key pressed
-            if (has_keyboard_key) {
-                tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
-            }
-            has_keyboard_key = false;
-        }
-    }
-    break;
+//     case REPORT_ID_MOUSE: {
+//         int8_t const delta = 5;
 
-    case REPORT_ID_MOUSE: {
-        int8_t const delta = 5;
+//         // no button, right + down, no scroll, no pan
+//         tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta, delta, 0, 0);
+//     }
+//     break;
 
-        // no button, right + down, no scroll, no pan
-        tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta, delta, 0, 0);
-    }
-    break;
+//     case REPORT_ID_CONSUMER_CONTROL: {
+//         // use to avoid send multiple consecutive zero report
+//         static bool has_consumer_key = false;
 
-    case REPORT_ID_CONSUMER_CONTROL: {
-        // use to avoid send multiple consecutive zero report
-        static bool has_consumer_key = false;
+//         if ( btn ) {
+//             // volume down
+//             uint16_t volume_down = HID_USAGE_CONSUMER_VOLUME_DECREMENT;
+//             tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_down, 2);
+//             has_consumer_key = true;
+//         } else {
+//             // send empty key report (release key) if previously has key pressed
+//             uint16_t empty_key = 0;
+//             if (has_consumer_key) {
+//                 tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &empty_key, 2);
+//             }
+//             has_consumer_key = false;
+//         }
+//     }
+//     break;
 
-        if ( btn ) {
-            // volume down
-            uint16_t volume_down = HID_USAGE_CONSUMER_VOLUME_DECREMENT;
-            tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_down, 2);
-            has_consumer_key = true;
-        } else {
-            // send empty key report (release key) if previously has key pressed
-            uint16_t empty_key = 0;
-            if (has_consumer_key) {
-                tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &empty_key, 2);
-            }
-            has_consumer_key = false;
-        }
-    }
-    break;
+//     case REPORT_ID_GAMEPAD: {
+//         // use to avoid send multiple consecutive zero report for keyboard
+//         static bool has_gamepad_key = false;
 
-    case REPORT_ID_GAMEPAD: {
-        // use to avoid send multiple consecutive zero report for keyboard
-        static bool has_gamepad_key = false;
+//         hid_gamepad_report_t report = {
+//             .x   = 0, .y = 0, .z = 0, .rz = 0, .rx = 0, .ry = 0,
+//             .hat = 0, .buttons = 0
+//         };
 
-        hid_gamepad_report_t report = {
-            .x   = 0, .y = 0, .z = 0, .rz = 0, .rx = 0, .ry = 0,
-            .hat = 0, .buttons = 0
-        };
+//         if ( btn ) {
+//             report.hat = GAMEPAD_HAT_UP;
+//             report.buttons = GAMEPAD_BUTTON_A;
+//             tud_hid_report(REPORT_ID_GAMEPAD, &report, sizeof(report));
 
-        if ( btn ) {
-            report.hat = GAMEPAD_HAT_UP;
-            report.buttons = GAMEPAD_BUTTON_A;
-            tud_hid_report(REPORT_ID_GAMEPAD, &report, sizeof(report));
+//             has_gamepad_key = true;
+//         } else {
+//             report.hat = GAMEPAD_HAT_CENTERED;
+//             report.buttons = 0;
+//             if (has_gamepad_key) {
+//                 tud_hid_report(REPORT_ID_GAMEPAD, &report, sizeof(report));
+//             }
+//             has_gamepad_key = false;
+//         }
+//     }
+//     break;
 
-            has_gamepad_key = true;
-        } else {
-            report.hat = GAMEPAD_HAT_CENTERED;
-            report.buttons = 0;
-            if (has_gamepad_key) {
-                tud_hid_report(REPORT_ID_GAMEPAD, &report, sizeof(report));
-            }
-            has_gamepad_key = false;
-        }
-    }
-    break;
-
-    default: break;
-    }
-}
+//     default: break;
+//     }
+// }
 
 // Invoked when sent REPORT successfully to host
 // Application can use this to send the next report
