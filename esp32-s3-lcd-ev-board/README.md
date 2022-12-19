@@ -12,7 +12,7 @@ The following examples are developed under the ESP-IDF release/v5.0 branch:
 * [LVGL Demos](./examples/lvgl_demos/)
 * [Smart Panel](./examples/smart-panel/)
 * [USB keyboard](./examples/usb_keyboard/)
-* [USB Camera](./examples/rgb_lcd_camera_demo/)
+* [USB Camera](./examples/usb_camera_lcd/)
 
 ## Released Bin
 
