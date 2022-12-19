@@ -7,12 +7,8 @@ An example used to show video which captured be USB camera.
 ### Hardware Required
 
 * An ESP32-S3-LCD-EV-Board development board with 800x480 LCD
-* A CDC USB camera
-* An USB Type-C cable for Power supply and programming
-
-### Software Required
-
-* IDF with Octal PSRAM 120M patch (See [here](../factory/README.md#idf-patch))
+* A CDC USB camera (Can be connected to USB port or Exanpsion Connector)
+* An USB Type-C cable for Power supply and programming (Please connect to UART port instead of USB port)
 
 ### Build and Flash
 
@@ -24,10 +20,14 @@ See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/l
 
 ## Troubleshooting
 
-* LCD screen drift
-  * Slow down the PCLK frequency
-  * Adjust other timing parameters like PCLK clock edge (by `pclk_active_neg`), sync porches like VBP (by `vsync_back_porch`) according to your LCD spec
-  * Enable `CONFIG_SPIRAM_FETCH_INSTRUCTIONS` and `CONFIG_SPIRAM_RODATA`, which can saves some bandwidth of SPI0 from being consumed by ICache.
+* Program upload failure
+    * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
+    * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
+    * Error message with `A fatal error occurred: Could not open /dev/ttyACM0, the port doesn't exist`: Please first make sure development board connected, then make board into "Download Boot" mode to upload by following steps:
+        1. keep press "BOOT(SW2)" button
+        2. short press "RST(SW1)" button
+        3. release "BOOT(SW2)".
+        4. upload program and reset
 
 ## Technical support and feedback
 
