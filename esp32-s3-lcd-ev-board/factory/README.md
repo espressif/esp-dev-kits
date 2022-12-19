@@ -4,10 +4,13 @@ This is the first version of bin for factory firmware which is programmed by [86
 
 # IDF Patch
 
-The patch is intended to achieve best perfermance of RGB LCD by using **Octal PSRAM 120MHz** feature. The patch can be applied in IDF **release/v5.0** by following commands:
+The patch is intended to achieve best perfermance of RGB LCD by using **Octal PSRAM 120MHz** feature. Now there are two versions of patch that are used for the respective branch of ESP-IDF (master or release/v5.0).
+
+**Please make sure your IDF project is clean** (use `git status` to check), then the patch can be applied by following commands:
+
 ```
 cd <root directory of IDF>
-git apply <path of the patch>/idf_psram_120m.patch
+git apply <path of the patch>/idf_psram_120m.patch # Nothing return if success
 git status      # Check whether the operation is successful, the output should look like below:
 
 HEAD detached at f315986401

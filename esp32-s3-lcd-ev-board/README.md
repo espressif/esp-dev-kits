@@ -6,6 +6,8 @@
 
 ## Examples
 
+The following examples are developed under the ESP-IDF release/v5.0 branch:
+
 * [86-Box GUI](./examples/86box_demo/)
 * [LVGL Demos](./examples/lvgl_demos/)
 * [Smart Panel](./examples/smart-panel/)
@@ -14,4 +16,9 @@
 
 ## Released Bin
 
-* [Factory bin](./examples/factory/factory.bin)
+* [Factory Bin](./factory/factory.bin)
+
+## ESP-IDF Patch
+
+* [Patch for Master](./factory/master_psram_octal_120m.patch)
+* [Patch for Release/v5.0](./factory/release5.0_psram_octal_120m.patch)
