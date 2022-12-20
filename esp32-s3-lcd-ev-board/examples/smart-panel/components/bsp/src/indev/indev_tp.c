@@ -14,7 +14,6 @@
 #include "tt21100.h"
 #include "gt1151.h"
 #include "gt911.h"
-#include "xpt2046.h"
 
 static const char *TAG = "indev_tp";
 typedef enum {
@@ -23,7 +22,6 @@ typedef enum {
     TP_VENDOR_FT,
     TP_VENDOR_GOODIX,
     TP_VENDOR_MAX,
-    TP_VENDOR_XPT,
 } tp_vendor_t;
 
 typedef struct {
@@ -37,9 +35,6 @@ static tp_dev_t tp_dev_list[] = {
     { "Focal Tech", 0x38, TP_VENDOR_FT },
     { "Goodix Tech GT1151", 0x14, TP_VENDOR_GOODIX },
     { "Goodix Tech GT911", 0x5D, TP_VENDOR_GOODIX }, // The GT911 address can also be set to 0x14, so this is not very appropriate
-#ifdef CONFIG_LCD_EV_SUB_BOARD1_LCD_320x240
-    { "XPT2046", 0xff, TP_VENDOR_XPT },
-#endif
 };
 
 static int tp_dev_id = -1;
@@ -47,18 +42,10 @@ static int tp_dev_id = -1;
 static esp_err_t tp_prob(int *tp_dev_id)
 {
     for (size_t i = 0; i < sizeof(tp_dev_list) / sizeof(tp_dev_list[0]); i++) {
-        if (tp_dev_list[i].dev_addr != 0xff) {
-            if (ESP_OK == bsp_i2c_probe_addr(tp_dev_list[i].dev_addr)) {
-                *tp_dev_id = tp_dev_list[i].dev_vendor;
-                ESP_LOGI(TAG, "Detected touch panel at 0x%02X. Vendor : %s",
-                        tp_dev_list[i].dev_addr, tp_dev_list[i].dev_name);
-                return ESP_OK;
-            }
-        }
-        else {
-            *tp_dev_id = tp_dev_list[i].dev_vendor;
+        if (ESP_OK == bsp_i2c_probe_addr(tp_dev_list[i].dev_addr)) {
+            *tp_dev_id = i;
             ESP_LOGI(TAG, "Detected touch panel at 0x%02X. Vendor : %s",
-                    tp_dev_list[i].dev_addr, tp_dev_list[i].dev_name);
+                     tp_dev_list[i].dev_addr, tp_dev_list[i].dev_name);
             return ESP_OK;
         }
     }
@@ -92,10 +79,6 @@ esp_err_t indev_tp_init(void)
             tp_dev_id = 3;
             break;
         }
-        break;
-    case TP_VENDOR_XPT:
-        ret_val |= xpt2046_init();
-        xpt2046_calibration_run(true);
         break;
     default:
         break;
@@ -143,14 +126,6 @@ esp_err_t indev_tp_read(uint8_t *tp_num, uint16_t *x, uint16_t *y, uint8_t *btn_
         }
         ret_val = ESP_OK;
         break;
-    case TP_VENDOR_XPT:
-        touch_panel_points_t pos;
-        xpt2046_sample(&pos);
-        *tp_num = pos.point_num;
-        *x = pos.curx[0];
-        *y = pos.cury[0];
-        ret_val = ESP_OK;
-        break;
     default:
         return ESP_ERR_NOT_FOUND;
         break;
@@ -164,11 +139,11 @@ esp_err_t indev_tp_read(uint8_t *tp_num, uint16_t *x, uint16_t *y, uint8_t *btn_
     }
 
     if (brd->TOUCH_PANEL_INVERSE_X) {
-        *x = brd->LCD_WIDTH - ( *x + 1);
+        *x = brd->LCD_SWAP_XY ? brd->LCD_HEIGHT - ( *x + 1) : brd->LCD_WIDTH - ( *x + 1);
     }
 
     if (brd->TOUCH_PANEL_INVERSE_Y) {
-        *y =  brd->LCD_HEIGHT - (*y + 1);
+        *y = brd->LCD_SWAP_XY ? brd->LCD_WIDTH - (*y + 1) : brd->LCD_HEIGHT - (*y + 1);
     }
 
     ESP_LOGV(TAG, "[%3u, %3u]", *x, *y);

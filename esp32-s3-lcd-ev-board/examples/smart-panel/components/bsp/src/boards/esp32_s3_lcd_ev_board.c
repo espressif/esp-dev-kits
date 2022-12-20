@@ -14,8 +14,6 @@
 #include "bsp_codec.h"
 #include "../codec/es7210.h"
 #include "../codec/es8311.h"
-#include "button.h"
-#include "bsp_btn.h"
 #include "tca9554.h"
 #include "ht8574.h"
 #include "lcd_panel_config.h"
@@ -320,7 +318,6 @@ esp_err_t bsp_board_lcd_evb_init(void)
         g_board_lcd_evb_io_expander_ops.init(g_io_expander_addr);
         g_board_lcd_evb_io_expander_ops.set_direction(EXPANDER_IO_PA_CTRL, 1);
     }
-    bsp_btn_init_default();
 #ifdef CONFIG_LCD_EV_SUB_BOARD2_LCD_480x320
     int gpio_num_rd = 10;
     gpio_set_direction(gpio_num_rd, GPIO_MODE_OUTPUT);
