@@ -1,0 +1,9 @@
+idf_component_register(
+    SRC_DIRS
+        "lv_fonts"
+        "."
+    INCLUDE_DIRS
+        "."
+    REQUIRES
+        lvgl
+ )

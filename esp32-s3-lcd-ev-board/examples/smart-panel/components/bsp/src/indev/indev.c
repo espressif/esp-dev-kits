@@ -8,7 +8,6 @@
 #include <stdint.h>
 #include "esp_log.h"
 #include "bsp_board.h"
-#include "bsp_btn.h"
 #include "indev.h"
 #include "indev_hid.h"
 #include "indev_tp.h"
@@ -46,11 +45,6 @@ esp_err_t indev_init_default(void)
         if (ESP_OK == ret) {
             g_major_dev = BSP_INDEV_TP;
         }
-    } else {
-        ret = indev_init(BSP_INDEV_BTN);
-        if (ESP_OK == ret) {
-            g_major_dev = BSP_INDEV_BTN;
-        }
     }
 
     return ret;
@@ -85,14 +79,6 @@ esp_err_t indev_get_major_value(indev_data_t *data)
             } else {
                 data->pressed = false;
             }
-        }
-        break;
-    case BSP_INDEV_BTN:
-        data->btn_val = bsp_btn_get_state(BOARD_BTN_ID_PREV) << 2 | bsp_btn_get_state(BOARD_BTN_ID_ENTER) << 1 | bsp_btn_get_state(BOARD_BTN_ID_NEXT);
-        if (data->btn_val) {
-            data->pressed = true;
-        } else {
-            data->pressed = false;
         }
         break;
     default:

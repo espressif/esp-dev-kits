@@ -1,4 +1,6 @@
 
+
+
 idf_component_register(
     SRC_DIRS
         "src/boards"
@@ -6,19 +8,14 @@ idf_component_register(
         "src/storage"
         "src/indev"
         "src/codec"
-        "src/calibration"
-        "src/calibration/basic_painter"
     INCLUDE_DIRS
         "src/boards"
         "src"
         "include"
-        "src/calibration"
     REQUIRES
-        iot_button
         esp_hid
         esp_lcd
         fatfs
         bus
         i2c_devices
-        nvs_flash
         spiffs)
