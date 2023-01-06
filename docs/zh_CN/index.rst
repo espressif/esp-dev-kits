@@ -10,6 +10,14 @@ esp-dev-kits
 -------
 
 ============================   ===========================
+       **ESP32-C6 系列开发板**
+----------------------------------------------------------
+ |ESP32-C6-DevKitC-1|_
+----------------------------   ---------------------------
+ `ESP32-C6-DevKitC-1`_
+============================   ===========================
+
+============================   ===========================
        **ESP8684 系列开发板**
 ----------------------------------------------------------
  |ESP8684-DevKitM-1|_
@@ -93,6 +101,9 @@ esp-dev-kits
 .. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
 .. _ESP8684-DevKitM-1: esp8684/esp8684-devkitm-1/index.html
 
+.. |ESP32-C6-DevKitC-1| image:: ../_static/esp32-c6-devkitc-1/esp32-c6-devkitc-1-v1-block-diagram.png
+.. _ESP32-C6-DevKitC-1: esp32c6/esp32-c6-devkitc-1/index.html
+
 .. |ESP-Prog| image:: ../_static/esp-prog/modules.png
 .. _ESP-Prog: other/esp-prog/index.html
 
@@ -103,6 +114,12 @@ esp-dev-kits
 - `ESP-IDF 详细安装步骤 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-get-prerequisites>`_
 - `ESP-IDF 编程指南 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html>`__
 - `ESP 产品选型工具 <https://products.espressif.com/#/product-selector?language=zh&names=>`_
+
+.. toctree::
+   :hidden:
+   :caption: ESP32-C6 Boards
+
+   ESP32-C6-DevKitC-1 <esp32c6/esp32-c6-devkitc-1/index>
 
 .. toctree::
    :hidden:
