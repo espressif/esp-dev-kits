@@ -101,7 +101,7 @@ esp-dev-kits
 .. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
 .. _ESP8684-DevKitM-1: esp8684/esp8684-devkitm-1/index.html
 
-.. |ESP32-C6-DevKitC-1| image:: ../_static/esp32-c6-devkitc-1/esp32-c6-devkitc-1-v1-block-diagram.png
+.. |ESP32-C6-DevKitC-1| image:: ../_static/esp32-c6-devkitc-1/esp32-c6-devkitc-1-isometric.png
 .. _ESP32-C6-DevKitC-1: esp32c6/esp32-c6-devkitc-1/index.html
 
 .. |ESP-Prog| image:: ../_static/esp-prog/modules.png
