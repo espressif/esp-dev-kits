@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
 
 #include <stdio.h>
 #include <time.h>
@@ -16,11 +21,11 @@ static lv_meter_indicator_t *indic_hour ;
 
 static time_out_count time_20ms;
 
-static bool clock_layer_enter_cb(struct lv_layer_t * layer);
-static bool clock_layer_exit_cb(struct lv_layer_t * layer);
-static void clock_layer_timer_cb(lv_timer_t * tmr);
+static bool clock_layer_enter_cb(struct lv_layer_t *layer);
+static bool clock_layer_exit_cb(struct lv_layer_t *layer);
+static void clock_layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t clock_Layer ={
+lv_layer_t clock_Layer = {
     .lv_obj_name    = "clock_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -70,7 +75,7 @@ static void clock_event_cb(lv_event_t *e)
     }
 }
 
-void ui_clock_init(lv_obj_t * parent)
+void ui_clock_init(lv_obj_t *parent)
 {
 
     page = lv_obj_create(parent);
@@ -112,32 +117,32 @@ void ui_clock_init(lv_obj_t * parent)
     ui_add_obj_to_encoder_group(page);
 }
 
-static bool clock_layer_enter_cb(struct lv_layer_t * layer)
+static bool clock_layer_enter_cb(struct lv_layer_t *layer)
 {
     bool ret = false;
 
-	if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_remove_style_all(layer->lv_obj_layer);
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
 
         ui_clock_init(layer->lv_obj_layer);
         set_time_out(&time_20ms, 20);
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
-static bool clock_layer_exit_cb(struct lv_layer_t * layer)
+static bool clock_layer_exit_cb(struct lv_layer_t *layer)
 {
     LV_LOG_USER("");
     return true;
 }
 
-static void clock_layer_timer_cb(lv_timer_t * tmr)
+static void clock_layer_timer_cb(lv_timer_t *tmr)
 {
-    if(is_time_out(&time_20ms)){
+    if (is_time_out(&time_20ms)) {
         clock_handler();
     }
 }

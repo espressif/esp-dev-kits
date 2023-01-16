@@ -1,7 +1,7 @@
 /*
- * SPDX-FileCopyrightText: 2015-2022 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- * SPDX-License-Identifier: Unlicense OR CC0-1.0
+ * SPDX-License-Identifier: CC0-1.0
  */
 
 #include <stdint.h>
@@ -20,11 +20,11 @@
 #define PI  (3.14159f)
 #endif
 
-static bool boot_layer_enter_cb(struct lv_layer_t * layer);
-static bool boot_layer_exit_cb(struct lv_layer_t * layer);
-static void boot_layer_timer_cb(lv_timer_t * tmr);
+static bool boot_layer_enter_cb(struct lv_layer_t *layer);
+static bool boot_layer_exit_cb(struct lv_layer_t *layer);
+static void boot_layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t boot_Layer ={
+lv_layer_t boot_Layer = {
     .lv_obj_name    = "boot_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -34,7 +34,7 @@ lv_layer_t boot_Layer ={
     .timer_cb       = boot_layer_timer_cb,
 };
 
-static lv_obj_t * arc[3];
+static lv_obj_t *arc[3];
 static time_out_count time_20ms;
 
 static void anim_timer_handle(lv_obj_t *parent)
@@ -83,12 +83,12 @@ static void anim_timer_handle(lv_obj_t *parent)
     }
 }
 
-void boot_animate_start(lv_obj_t * parent)
+void boot_animate_start(lv_obj_t *parent)
 {
     lv_obj_clear_flag(parent, LV_OBJ_FLAG_SCROLLABLE);
     lv_obj_set_style_radius(parent, 0, LV_PART_MAIN);
 
-    lv_obj_set_style_bg_color(parent,lv_color_make(0xFF, 0x0, 0x0), 0);
+    lv_obj_set_style_bg_color(parent, lv_color_make(0xFF, 0x0, 0x0), 0);
 
     const lv_color_t arc_color[] = {
         LV_COLOR_MAKE(237, 228, 239),
@@ -107,32 +107,33 @@ void boot_animate_start(lv_obj_t * parent)
     }
 }
 
-static bool boot_layer_enter_cb(struct lv_layer_t * layer)
+static bool boot_layer_enter_cb(struct lv_layer_t *layer)
 {
     bool ret = false;
 
-	if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    LV_LOG_USER("");
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_remove_style_all(layer->lv_obj_layer);
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
 
         boot_animate_start(layer->lv_obj_layer);
         set_time_out(&time_20ms, 20);
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
-static bool boot_layer_exit_cb(struct lv_layer_t * layer)
+static bool boot_layer_exit_cb(struct lv_layer_t *layer)
 {
     LV_LOG_USER("");
     return true;
 }
 
-static void boot_layer_timer_cb(lv_timer_t * tmr)
+static void boot_layer_timer_cb(lv_timer_t *tmr)
 {
-    if(is_time_out(&time_20ms)){
+    if (is_time_out(&time_20ms)) {
         anim_timer_handle(boot_Layer.lv_obj_layer);
     }
 }

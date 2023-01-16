@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 #include "lvgl.h"
 #include <stdio.h>
 #include "esp_system.h"
@@ -18,11 +24,11 @@
 
 #if USE_NEW_MENU
 
-static bool main_layer_enter_cb(struct lv_layer_t * layer);
-static bool main_layer_exit_cb(struct lv_layer_t * layer);
-static void main_layer_timer_cb(lv_timer_t * tmr);
+static bool main_layer_enter_cb(struct lv_layer_t *layer);
+static bool main_layer_exit_cb(struct lv_layer_t *layer);
+static void main_layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t main_Layer ={
+lv_layer_t main_Layer = {
     .lv_obj_name    = "main_menu_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -37,13 +43,13 @@ typedef struct {
     const lv_img_dsc_t *icon;
     const lv_img_dsc_t *icon_ns;
     lv_color_t theme_color;
-    struct lv_layer_t * layer;
+    struct lv_layer_t *layer;
 } ui_menu_app_t;
 
 static ui_menu_app_t menu[] = {
-    {"Washing", &icon_washing, &icon_washing_ns, LV_COLOR_MAKE(36, 163, 235), &washing_Layer},
-    {"Thermostat", &icon_thermostat, &icon_thermostat_ns, LV_COLOR_MAKE(249, 139, 122), &thermostat_Layer},
-    {"Light", &icon_light, &icon_light_ns, LV_COLOR_MAKE(255, 229, 147), &light_2color_Layer},
+    {"Washing",     &icon_washing,      &icon_washing_ns,       LV_COLOR_MAKE(36, 163, 235), &washing_Layer},
+    {"Thermostat",  &icon_thermostat,   &icon_thermostat_ns,    LV_COLOR_MAKE(249, 139, 122), &thermostat_Layer},
+    {"Light",       &icon_light,        &icon_light_ns,         LV_COLOR_MAKE(255, 229, 147), &light_2color_Layer},
 };
 
 #define APP_NUM 3//(sizeof(menu) / sizeof(ui_menu_app_t))
@@ -52,9 +58,7 @@ static uint8_t app_index = 0;
 static lv_obj_t *page;
 static lv_obj_t *label1;
 
-static time_out_count time_500ms;
-
-extern uint32_t ui_get_num_offset(uint32_t num, int32_t max, int32_t offset);
+static time_out_count time_500ms, time_100ms;
 
 static uint32_t get_app_index(int8_t offset)
 {
@@ -93,12 +97,12 @@ static void menu_event_cb(lv_event_t *e)
         lv_group_set_editing(lv_group_get_default(), true);
     } else if (LV_EVENT_KEY == code) {
         uint32_t key = lv_event_get_key(e);
-        if(is_time_out(&time_500ms)){
+        if (is_time_out(&time_500ms)) {
             int8_t last_index = app_index;
             if (LV_KEY_RIGHT == key) {
-                app_index = get_app_index(1);
-            } else if (LV_KEY_LEFT == key) {
                 app_index = get_app_index(-1);
+            } else if (LV_KEY_LEFT == key) {
+                app_index = get_app_index(1);
             }
             for (int i = 0; i < APP_NUM; i++) {
                 obj_set_to_hightlight(icons[i], i == app_index);
@@ -109,27 +113,25 @@ static void menu_event_cb(lv_event_t *e)
             lv_obj_set_style_border_color(page, menu[get_app_index(0)].theme_color, 0);
             lv_label_set_text(label1, menu[get_app_index(0)].name);
         }
+        reload_screenOff_timer();
 
     } else if (LV_EVENT_CLICKED == code) {
-        if(menu[get_app_index(0)].layer){
+        if (menu[get_app_index(0)].layer) {
             lv_group_set_editing(lv_group_get_default(), false);
             ui_remove_all_objs_from_encoder_group();
             lv_func_goto_layer(menu[get_app_index(0)].layer);
-        }
-        else{
+        } else {
             printf("Not supported\n");
         }
         reload_screenOff_timer();
     }
 }
 
-void ui_menu_init(lv_obj_t * parent)
+void ui_menu_init(lv_obj_t *parent)
 {
     page = lv_obj_create(parent);
     lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
-    /*
-    lv_obj_set_size(page, lv_obj_get_width(lv_obj_get_parent(top_main_page)), lv_obj_get_height(lv_obj_get_parent(top_main_page)));
-    */
+
     lv_obj_set_style_border_width(page, 5, 0);
     lv_obj_set_style_border_color(page, menu[get_app_index(0)].theme_color, 0);
     lv_obj_set_style_radius(page, LV_RADIUS_CIRCLE, 0);
@@ -152,8 +154,10 @@ void ui_menu_init(lv_obj_t * parent)
         lv_obj_set_style_border_width(icons[i], 2, 0);
         lv_obj_set_style_radius(icons[i], LV_RADIUS_CIRCLE, 0);
         obj_set_to_hightlight(icons[i], i == app_index);
+    }
 
-
+    if (0 != app_index) {
+        lv_obj_swap(icons[0], icons[app_index]);
     }
 
     label1 = lv_label_create(page);
@@ -169,16 +173,15 @@ void ui_menu_init(lv_obj_t * parent)
     ui_add_obj_to_encoder_group(page);
 }
 
-static bool main_layer_enter_cb(struct lv_layer_t * layer)
+static bool main_layer_enter_cb(struct lv_layer_t *layer)
 {
-	bool ret = false;
+    bool ret = false;
     uint32_t i;
 
-    LV_LOG_USER("lv_obj_name:%s, screen:[%d, %d]", layer->lv_obj_name, LV_HOR_RES, LV_VER_RES);
-    
-	if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    LV_LOG_USER("");
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
         lv_obj_set_style_border_width(layer->lv_obj_layer, 0, 0);
         lv_obj_set_style_pad_all(layer->lv_obj_layer, 0, 0);
@@ -186,19 +189,20 @@ static bool main_layer_enter_cb(struct lv_layer_t * layer)
         ui_menu_init(layer->lv_obj_layer);
     }
     set_time_out(&time_500ms, 200);
+    set_time_out(&time_100ms, 150);
     reload_screenOff_timer();
 
     return ret;
 }
 
 
-static bool main_layer_exit_cb(struct lv_layer_t * layer)
+static bool main_layer_exit_cb(struct lv_layer_t *layer)
 {
     LV_LOG_USER("");
     return true;
 }
 
-static void main_layer_timer_cb(lv_timer_t * tmr)
+static void main_layer_timer_cb(lv_timer_t *tmr)
 {
     trigger_screenOff_timer(&main_Layer);
     return;

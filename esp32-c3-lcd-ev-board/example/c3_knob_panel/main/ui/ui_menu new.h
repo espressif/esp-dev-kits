@@ -4,8 +4,8 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
-#ifndef UI_LIGHT_H
-#define UI_LIGHT_H
+#ifndef UI_MENU_NEW_H__
+#define UI_MENU_NEW_H__
 
 #ifdef __cplusplus
 extern "C" {

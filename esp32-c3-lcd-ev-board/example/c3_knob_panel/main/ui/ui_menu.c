@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 #include "lvgl.h"
 #include <stdio.h>
 #include "esp_system.h"
@@ -17,11 +23,11 @@
 #include "lv_example_image.h"
 
 #if !USE_NEW_MENU
-static bool main_layer_enter_cb(struct lv_layer_t * layer);
-static bool main_layer_exit_cb(struct lv_layer_t * layer);
-static void main_layer_timer_cb(lv_timer_t * tmr);
+static bool main_layer_enter_cb(struct lv_layer_t *layer);
+static bool main_layer_exit_cb(struct lv_layer_t *layer);
+static void main_layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t main_Layer ={
+lv_layer_t main_Layer = {
     .lv_obj_name    = "main_menu_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -34,8 +40,7 @@ lv_layer_t main_Layer ={
 typedef struct {
     const char *name;
     const lv_img_dsc_t *icon;
-    //void (*create)(ret_cb_t ret_cb);
-    struct lv_layer_t * layer;
+    struct lv_layer_t *layer;
 } ui_menu_app_t;
 
 LV_IMG_DECLARE(icon_clock);
@@ -133,7 +138,7 @@ static void menu_event_cb(lv_event_t *e)
         } else if (LV_KEY_LEFT == key) {
             extra_icon_index = -(ICONS_SHOW_NUM / 2) - 1;
         }
-        printf("evt=%s\n", (LV_KEY_RIGHT == key)? "LV_KEY_RIGHT":"LV_KEY_LEFT");
+        printf("evt=%s\n", (LV_KEY_RIGHT == key) ? "LV_KEY_RIGHT" : "LV_KEY_LEFT");
 
         lv_img_set_src(icons[invisable_index], menu[get_app_index(extra_icon_index)].icon);
         lv_obj_align(icons[invisable_index], LV_ALIGN_CENTER, 0, (extra_icon_index)* APP_ICON_GAP_PIXEL);
@@ -157,22 +162,21 @@ static void menu_event_cb(lv_event_t *e)
         reload_screenOff_timer();
     } else if (LV_EVENT_CLICKED == code) {
         printf("evt=%s\n", "LV_EVENT_CLICKED");
-        if(menu[get_app_index(0)].layer){
+        if (menu[get_app_index(0)].layer) {
             lv_group_set_editing(lv_group_get_default(), false);
             ui_remove_all_objs_from_encoder_group();
 
             //submode_item_focus = 0;
             lv_func_goto_layer(menu[get_app_index(0)].layer);
-        }
-        else{
+        } else {
             printf("Not supported\n");
         }
         reload_screenOff_timer();
     }
 }
 
-    static void menu_anim_ready_cb(lv_anim_t *a)
-    {
+static void menu_anim_ready_cb(lv_anim_t *a)
+{
     int8_t extra_icon_index = (int8_t)lv_anim_get_user_data(a);
     int8_t dir = extra_icon_index > 0 ? 1 : -1;
     app_index = get_app_index(dir);
@@ -184,7 +188,7 @@ static void menu_event_cb(lv_event_t *e)
     printf("dir=%d, app_index=%d, invisable_index=%d\n", dir, app_index, invisable_index);
 }
 
-void ui_menu_init(lv_obj_t * parent)
+void ui_menu_init(lv_obj_t *parent)
 {
     page = lv_obj_create(parent);
     lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
@@ -232,14 +236,14 @@ void ui_menu_init(lv_obj_t * parent)
 
 
 
-static bool main_layer_enter_cb(struct lv_layer_t * layer)
+static bool main_layer_enter_cb(struct lv_layer_t *layer)
 {
     bool ret = false;
     uint32_t i;
     LV_LOG_USER("lv_obj_name:%s, screen:[%d, %d]", layer->lv_obj_name, LV_HOR_RES, LV_VER_RES);
-    if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
         lv_obj_set_style_border_width(layer->lv_obj_layer, 0, 0);
         lv_obj_set_style_pad_all(layer->lv_obj_layer, 0, 0);
@@ -253,18 +257,18 @@ static bool main_layer_enter_cb(struct lv_layer_t * layer)
 }
 
 
-static bool main_layer_exit_cb(struct lv_layer_t * layer)
+static bool main_layer_exit_cb(struct lv_layer_t *layer)
 {
     LV_LOG_USER("");
     return true;
 }
 
-static void main_layer_timer_cb(lv_timer_t * tmr)
+static void main_layer_timer_cb(lv_timer_t *tmr)
 {
     trigger_screenOff_timer(&main_Layer);
 
-    if(is_time_out(&time_500ms)){
-		//update_time(NULL);
+    if (is_time_out(&time_500ms)) {
+        //update_time(NULL);
     }
 
     return;

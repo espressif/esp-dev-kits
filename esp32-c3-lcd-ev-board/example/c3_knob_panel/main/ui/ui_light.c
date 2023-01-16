@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 #include "lvgl.h"
 #include <stdio.h>
 #include "ui.h"
@@ -9,7 +15,6 @@
 
 static const char *TAG = "ui light";
 
-LV_FONT_DECLARE(font_cn_32);
 LV_IMG_DECLARE(light_brightness);
 
 static lv_obj_t *arc;
@@ -17,11 +22,11 @@ static lv_obj_t *img, *label_brightness;
 static lv_obj_t *page;
 static time_out_count time_20ms;
 
-static bool light_layer_enter_cb(struct lv_layer_t * layer);
-static bool light_layer_exit_cb(struct lv_layer_t * layer);
-static void light_layer_timer_cb(lv_timer_t * tmr);
+static bool light_layer_enter_cb(struct lv_layer_t *layer);
+static bool light_layer_exit_cb(struct lv_layer_t *layer);
+static void light_layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t light_Layer ={
+lv_layer_t light_Layer = {
     .lv_obj_name    = "light_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -55,17 +60,16 @@ static void light_event_cb(lv_event_t *e)
         lv_group_set_editing(lv_group_get_default(), true);
     } else if (LV_EVENT_KEY == code) {
         uint32_t key = lv_event_get_key(e);
-        printf("evt=%s\n", (LV_KEY_RIGHT == key)? "LV_KEY_RIGHT":"LV_KEY_LEFT");
+        printf("evt=%s\n", (LV_KEY_RIGHT == key) ? "LV_KEY_RIGHT" : "LV_KEY_LEFT");
 
-        if(LV_KEY_RIGHT == key){
+        if (LV_KEY_RIGHT == key) {
             current = lv_arc_get_value(arc);
-            if(current<100){
+            if (current < 100) {
                 current++;
             }
-        }
-        else{
+        } else {
             current = lv_arc_get_value(arc);
-            if(current){
+            if (current) {
                 current--;
             }
         }
@@ -83,7 +87,7 @@ static void light_event_cb(lv_event_t *e)
 }
 
 #if 0
-void ui_light_init(lv_obj_t * parent)
+void ui_light_init(lv_obj_t *parent)
 {
     page = lv_obj_create(parent);
     lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
@@ -179,7 +183,7 @@ void ui_light_init(lv_obj_t * parent)
     lv_anim_set_exec_cb(&a1, (lv_anim_exec_xcb_t)lv_obj_set_y);
     lv_anim_set_path_cb(&a1, lv_anim_path_overshoot);
     //lv_anim_set_time(&a1, 400);
-    lv_anim_set_time(&a1, 400*3);
+    lv_anim_set_time(&a1, 400 * 3);
     lv_anim_start(&a1);
     lv_anim_t a2;
     lv_anim_init(&a2);
@@ -188,7 +192,7 @@ void ui_light_init(lv_obj_t * parent)
     lv_anim_set_exec_cb(&a2, (lv_anim_exec_xcb_t)lv_obj_set_y);
     lv_anim_set_path_cb(&a2, lv_anim_path_overshoot);
     //lv_anim_set_time(&a2, 400);
-    lv_anim_set_time(&a1, 400*3);
+    lv_anim_set_time(&a1, 400 * 3);
     lv_anim_start(&a2);
 
     /**
@@ -205,7 +209,7 @@ void ui_light_init(lv_obj_t * parent)
     lv_obj_t *label = lv_label_create(tab3);
     lv_label_set_text(label, "First tab");
 
-    
+
     //ui_add_obj_to_encoder_group(arc);
     //ui_add_obj_to_encoder_group(cw);
     ui_add_obj_to_encoder_group(page);
@@ -220,7 +224,7 @@ void ui_light_init(lv_obj_t * parent)
     printf("arc:%x, cw:%x, tabview:=%x, page:%x", arc, cw, tabview, page);
 }
 #else
-void ui_light_init(lv_obj_t * parent)
+void ui_light_init(lv_obj_t *parent)
 {
     page = lv_obj_create(parent);
     lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
@@ -234,7 +238,7 @@ void ui_light_init(lv_obj_t * parent)
 
     arc = lv_arc_create(page);
     //lv_obj_set_size(arc, lv_obj_get_width(page) - 15, lv_obj_get_height(page) - 15);
-    lv_obj_set_size(arc, LV_HOR_RES -15, LV_VER_RES -15);
+    lv_obj_set_size(arc, LV_HOR_RES - 15, LV_VER_RES - 15);
     lv_arc_set_rotation(arc, 180);
     lv_arc_set_bg_angles(arc, 0, 180);
     // lv_arc_set_angles(arc, 0, 30);
@@ -290,7 +294,7 @@ void ui_light_init(lv_obj_t * parent)
     lv_anim_set_exec_cb(&a1, (lv_anim_exec_xcb_t)lv_obj_set_y);
     lv_anim_set_path_cb(&a1, lv_anim_path_overshoot);
     //lv_anim_set_time(&a1, 400);
-    lv_anim_set_time(&a1, 400*3);
+    lv_anim_set_time(&a1, 400 * 3);
     lv_anim_start(&a1);
     lv_anim_t a2;
     lv_anim_init(&a2);
@@ -299,7 +303,7 @@ void ui_light_init(lv_obj_t * parent)
     lv_anim_set_exec_cb(&a2, (lv_anim_exec_xcb_t)lv_obj_set_y);
     lv_anim_set_path_cb(&a2, lv_anim_path_overshoot);
     //lv_anim_set_time(&a2, 400);
-    lv_anim_set_time(&a1, 400*3);
+    lv_anim_set_time(&a1, 400 * 3);
     lv_anim_start(&a2);
 
     lv_obj_add_event_cb(page, light_event_cb, LV_EVENT_FOCUSED, NULL);
@@ -314,33 +318,33 @@ void ui_light_set_brightness(uint8_t value)
     lv_arc_set_value(arc, value);
 }
 
-static bool light_layer_enter_cb(struct lv_layer_t * layer)
+static bool light_layer_enter_cb(struct lv_layer_t *layer)
 {
     bool ret = false;
 
     LV_LOG_USER("%x", layer->lv_obj_layer);
-	if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_remove_style_all(layer->lv_obj_layer);
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
 
         ui_light_init(layer->lv_obj_layer);
         set_time_out(&time_20ms, 20);
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
-static bool light_layer_exit_cb(struct lv_layer_t * layer)
+static bool light_layer_exit_cb(struct lv_layer_t *layer)
 {
     LV_LOG_USER("");
     return true;
 }
 
-static void light_layer_timer_cb(lv_timer_t * tmr)
+static void light_layer_timer_cb(lv_timer_t *tmr)
 {
-    if(is_time_out(&time_20ms)){
+    if (is_time_out(&time_20ms)) {
         //light_handler();
     }
 }

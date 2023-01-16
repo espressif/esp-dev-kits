@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 #include "lvgl.h"
 #include <stdio.h>
 #include "ui.h"
@@ -11,11 +17,11 @@ static lv_obj_t *page;
 
 static time_out_count time_20ms;
 
-static bool player_Layer_enter_cb(struct lv_layer_t * layer);
-static bool player_Layer_exit_cb(struct lv_layer_t * layer);
-static void player_Layer_timer_cb(lv_timer_t * tmr);
+static bool player_Layer_enter_cb(struct lv_layer_t *layer);
+static bool player_Layer_exit_cb(struct lv_layer_t *layer);
+static void player_Layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t player_Layer ={
+lv_layer_t player_Layer = {
     .lv_obj_name    = "player_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -42,7 +48,7 @@ static void player_event_cb(lv_event_t *e)
     }
 }
 
-void ui_player_init(lv_obj_t * parent)
+void ui_player_init(lv_obj_t *parent)
 {
     page = lv_obj_create(parent);
     lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
@@ -261,32 +267,32 @@ void ui_player_init(lv_obj_t * parent)
     lv_anim_start(&a6);
 }
 
-static bool player_Layer_enter_cb(struct lv_layer_t * layer)
+static bool player_Layer_enter_cb(struct lv_layer_t *layer)
 {
     bool ret = false;
 
-	if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_remove_style_all(layer->lv_obj_layer);
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
 
         ui_player_init(layer->lv_obj_layer);
         set_time_out(&time_20ms, 20);
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
-static bool player_Layer_exit_cb(struct lv_layer_t * layer)
+static bool player_Layer_exit_cb(struct lv_layer_t *layer)
 {
     LV_LOG_USER("");
     return true;
 }
 
-static void player_Layer_timer_cb(lv_timer_t * tmr)
+static void player_Layer_timer_cb(lv_timer_t *tmr)
 {
-    if(is_time_out(&time_20ms)){
+    if (is_time_out(&time_20ms)) {
         //player_Lhandler();
     }
 }

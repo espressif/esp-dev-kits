@@ -1,6 +1,7 @@
-/**
- * @file lv_example_image.h
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
+ * SPDX-License-Identifier: CC0-1.0
  */
 
 #ifndef LV_EXAMPLE_IMAGE_H
@@ -60,6 +61,18 @@ LV_IMG_DECLARE(light_pwm_50)
 LV_IMG_DECLARE(light_pwm_75)
 LV_IMG_DECLARE(light_pwm_100)
 
+LV_IMG_DECLARE(img_washing_bg);
+LV_IMG_DECLARE(img_washing_wave1);
+LV_IMG_DECLARE(img_washing_wave2);
+LV_IMG_DECLARE(img_washing_bubble1);
+LV_IMG_DECLARE(img_washing_bubble2);
+LV_IMG_DECLARE(img_washing_stand);
+LV_IMG_DECLARE(img_washing_shirt);
+LV_IMG_DECLARE(img_washing_underwear);
+LV_IMG_DECLARE(wash_underwear1)
+LV_IMG_DECLARE(wash_underwear2)
+LV_IMG_DECLARE(wash_shirt)
+
 LV_IMG_DECLARE(AC_BG)
 LV_IMG_DECLARE(AC_temper)
 LV_IMG_DECLARE(AC_unit)
@@ -80,19 +93,13 @@ LV_IMG_DECLARE(standby_mouth_1)
 /********************************
  * font
 ********************************/
-LV_FONT_DECLARE(font_lanting16);
-LV_FONT_DECLARE(font_KaiTi20);
-LV_FONT_DECLARE(font_KaiTi60);
-LV_FONT_DECLARE(font_KaiTi96);
-LV_FONT_DECLARE(SourceHanSansCN_Normal20);
-LV_FONT_DECLARE(SourceHanSansCN_Normal36);
-LV_FONT_DECLARE(SourceHanSansCN_Normal120);
-
-//LV_FONT_DECLARE(lv_font_montserrat_20);
+LV_FONT_DECLARE(font_cn_12);
+LV_FONT_DECLARE(font_cn_32);
+LV_FONT_DECLARE(font_cn_48);
 
 #if (0 == LV_USE_FREETYPE)
 typedef struct {
-    lv_font_t * font;   /* point to lvgl font */
+    lv_font_t *font;    /* point to lvgl font */
 } lv_ft_info_t;
 #endif
 
