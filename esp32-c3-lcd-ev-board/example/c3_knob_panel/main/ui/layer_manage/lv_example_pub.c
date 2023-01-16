@@ -1,7 +1,9 @@
-/**
- * @file lv_example_pub.c
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
+ * SPDX-License-Identifier: CC0-1.0
  */
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/queue.h"
 #include "freertos/event_groups.h"
@@ -16,27 +18,26 @@
 
 static const char *TAG = "LVGL_PUB";
 
-bool is_time_out(time_out_count * tm)
+bool is_time_out(time_out_count *tm)
 {
     int32_t isTmOut;
     isTmOut = (lv_tick_get() - (tm->time_base + tm->timeOut));
-    if((isTmOut > 0) || (0 == tm->time_base)){
+    if ((isTmOut > 0) || (0 == tm->time_base)) {
         tm->time_base = lv_tick_get();
         return true;
-    }
-    else{
+    } else {
         return false;
     }
 }
 
-bool set_time_out(time_out_count * tm, uint32_t ms)
+bool set_time_out(time_out_count *tm, uint32_t ms)
 {
     tm->time_base = lv_tick_get();
     tm->timeOut = ms;
     return true;
 }
 
-bool reload_time_out(time_out_count * tm)
+bool reload_time_out(time_out_count *tm)
 {
     tm->time_base = lv_tick_get();
     return true;

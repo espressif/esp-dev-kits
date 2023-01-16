@@ -1,3 +1,9 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
+
 #include "lvgl.h"
 #include <stdio.h>
 #include "esp_system.h"
@@ -14,11 +20,11 @@
 static lv_obj_t *page;
 static time_out_count time_20ms;
 
-static bool weather_layer_enter_cb(struct lv_layer_t * layer);
-static bool weather_layer_exit_cb(struct lv_layer_t * layer);
-static void weather_layer_timer_cb(lv_timer_t * tmr);
+static bool weather_layer_enter_cb(struct lv_layer_t *layer);
+static bool weather_layer_exit_cb(struct lv_layer_t *layer);
+static void weather_layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t weather_Layer ={
+lv_layer_t weather_Layer = {
     .lv_obj_name    = "weather_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -49,7 +55,7 @@ static void weather_event_cb(lv_event_t *e)
     }
 }
 
-void ui_weather_init(lv_obj_t * parent)
+void ui_weather_init(lv_obj_t *parent)
 {
     page = lv_obj_create(parent);
     lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
@@ -75,7 +81,6 @@ void ui_weather_init(lv_obj_t * parent)
 
     lv_obj_t *label_temperature = lv_label_create(img);
     lv_label_set_text(label_temperature, "24℃");
-    LV_FONT_DECLARE(font_cn_48);
     lv_obj_set_style_text_font(label_temperature, &font_cn_48, 0);
     lv_obj_set_size(label_temperature, LV_SIZE_CONTENT, LV_SIZE_CONTENT);
     lv_obj_set_style_text_align(label_temperature, LV_TEXT_ALIGN_CENTER, 0);
@@ -88,7 +93,6 @@ void ui_weather_init(lv_obj_t * parent)
 
     lv_obj_t *label_state = lv_label_create(img);
     lv_label_set_text_fmt(label_state, "Mostly sunny\nMin:%02d℃ Max:%02d℃", 22, 28);
-    LV_FONT_DECLARE(font_cn_12);
     lv_obj_set_style_text_font(label_state, &font_cn_12, 0);
     lv_obj_set_width(label_state, 150);
     lv_obj_set_style_text_align(label_state, LV_TEXT_ALIGN_CENTER, 0);
@@ -127,32 +131,32 @@ void ui_weather_init(lv_obj_t * parent)
 
 }
 
-static bool weather_layer_enter_cb(struct lv_layer_t * layer)
+static bool weather_layer_enter_cb(struct lv_layer_t *layer)
 {
     bool ret = false;
 
-	if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_remove_style_all(layer->lv_obj_layer);
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
 
         ui_weather_init(layer->lv_obj_layer);
         set_time_out(&time_20ms, 20);
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
-static bool weather_layer_exit_cb(struct lv_layer_t * layer)
+static bool weather_layer_exit_cb(struct lv_layer_t *layer)
 {
     LV_LOG_USER("");
     return true;
 }
 
-static void weather_layer_timer_cb(lv_timer_t * tmr)
+static void weather_layer_timer_cb(lv_timer_t *tmr)
 {
-    if(is_time_out(&time_20ms)){
+    if (is_time_out(&time_20ms)) {
         //anim_timer_handle(weather_Layer.lv_obj_layer);
     }
 }

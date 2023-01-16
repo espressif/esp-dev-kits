@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
 
 #include <stdio.h>
 #include <time.h>
@@ -13,11 +18,11 @@ static lv_obj_t  *page;
 static time_out_count time_20ms;
 static const char *TAG = "Fan";
 
-static bool fan_layer_enter_cb(struct lv_layer_t * layer);
-static bool fan_layer_exit_cb(struct lv_layer_t * layer);
-static void fan_layer_timer_cb(lv_timer_t * tmr);
+static bool fan_layer_enter_cb(struct lv_layer_t *layer);
+static bool fan_layer_exit_cb(struct lv_layer_t *layer);
+static void fan_layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t fan_Layer ={
+lv_layer_t fan_Layer = {
     .lv_obj_name    = "fan_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -45,7 +50,7 @@ static void fan_event_cb(lv_event_t *e)
     }
 }
 
-void ui_fan_init(lv_obj_t * parent)
+void ui_fan_init(lv_obj_t *parent)
 {
     page = lv_obj_create(parent);
     lv_obj_set_size(page, LV_HOR_RES, LV_VER_RES);
@@ -75,7 +80,6 @@ void ui_fan_init(lv_obj_t * parent)
     lv_obj_center(arc);
 
     lv_obj_t *label1 = lv_label_create(page);
-    LV_FONT_DECLARE(font_cn_32);
     lv_obj_set_style_text_font(label1, &font_cn_32, 0);
     lv_label_set_text(label1, "Fan");
     lv_obj_set_width(label1, 150);  /*Set smaller width to make the lines wrap*/
@@ -101,32 +105,32 @@ void ui_fan_init(lv_obj_t * parent)
     ui_add_obj_to_encoder_group(page);
 }
 
-static bool fan_layer_enter_cb(struct lv_layer_t * layer)
+static bool fan_layer_enter_cb(struct lv_layer_t *layer)
 {
     bool ret = false;
 
-	if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_remove_style_all(layer->lv_obj_layer);
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
 
         ui_fan_init(layer->lv_obj_layer);
         set_time_out(&time_20ms, 20);
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
-static bool fan_layer_exit_cb(struct lv_layer_t * layer)
+static bool fan_layer_exit_cb(struct lv_layer_t *layer)
 {
     LV_LOG_USER("");
     return true;
 }
 
-static void fan_layer_timer_cb(lv_timer_t * tmr)
+static void fan_layer_timer_cb(lv_timer_t *tmr)
 {
-    if(is_time_out(&time_20ms)){
+    if (is_time_out(&time_20ms)) {
         //fan_handler();
     }
 }

@@ -1,14 +1,11 @@
-/* Hello World Example
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
 
-   This example code is in the Public Domain (or CC0 licensed, at your option.)
-
-   Unless required by applicable law or agreed to in writing, this
-   software is distributed on an "AS IS" BASIS, WITHOUT WARRANTIES OR
-   CONDITIONS OF ANY KIND, either express or implied.
-*/
 #include <stdio.h>
 #include <string.h>
-#include "sdkconfig.h"
 #include <math.h>
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
@@ -19,8 +16,7 @@
 #include "driver/gpio.h"
 #include "esp_log.h"
 
-#include "bsp_lcd.h"
-#include "lvgl_port.h"
+#include "esp32_c3_lcd_ev_board.h"
 #include "ui/ui.h"
 
 static const char *TAG = "main";
@@ -188,26 +184,15 @@ void app_main(void)
     }
     ESP_ERROR_CHECK(err);
 
-    lvgl_port_config_t lvgl_config = {
-        .display = {
-            .width = LCD_H_RES,
-            .height = LCD_V_RES,
-            .buf_size = LCD_H_RES * 20,
-        },
-        .tick_period = 2,
-        .task = {
-            .core_id = -1,
-            .period = 5,
-            .priority = 1,
-        },
-    };
-    lvgl_port(&lvgl_config);
+    bsp_display_start();
+
+    ESP_LOGI(TAG, "Display LVGL demo");
+    ESP_ERROR_CHECK(ui_init());
+
+    vTaskDelay(pdMS_TO_TICKS(500));
+    bsp_display_backlight_on();
 
 #if MEMORY_MONITOR
     sys_monitor_start();
 #endif
-
-    lvgl_sem_take();
-    ui_init();
-    lvgl_sem_give();
 }

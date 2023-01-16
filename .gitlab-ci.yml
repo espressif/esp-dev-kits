@@ -26,6 +26,24 @@ before_script:
   tags:
     - build
 
+.build_knob_board_examples_script: &build_knob_board_examples_script
+  - for EXAMPLE in $EXAMPLES; do
+  - cd $CI_PROJECT_DIR/esp32-c3-lcd-ev-board/example/$EXAMPLE
+  - echo Building $EXAMPLE
+  - idf.py fullclean
+  - idf.py build
+  - echo Build Complete for $EXAMPLE
+  - done
+
+.build_knob_board_template:
+  stage: build
+  tags:
+    - build
+  variables:
+    EXAMPLES: "c3_knob_panel"
+  script:
+    - *build_knob_board_examples_script
+
 build_kaluga_demo_cmake:
   <<: *build_examples_template
   script:
@@ -114,6 +132,10 @@ build_hmi_demo_cmake:
     - idf.py set-target esp32s2
     - idf.py build
     - cd ../../
+
+build_esp32-c3-lcd-ev-board:
+  extends: .build_knob_board_template
+  image: espressif/idf:release-v5.0
 
 build_docs:
   stage: build
