@@ -2,8 +2,6 @@
 ESP32-C3-LCD-EV-BOARD
 =====================
 
-:link_to_translation:`en: [English]`
-
 .. note::
 
   本文档不是最终版本，仍在更新中。
@@ -24,7 +22,7 @@ ESP32-C3-LCD-EV-BOARD
 开发板概述
 ===================
 
-ESP32-C3-LCD-EV-BOARD 是一款基于 ESP32-C3 芯片的屏幕应用开发板，通过配合不同类型的屏幕子板，可以驱动 IIC 和 SPI 接口的显示屏，同时它还使用了旋转编码器开关，可以实现与屏幕交互的功能。由于 ESP32-C3 具有成本低、功耗低、性能强的特点，能够满足用户基本的 GUI 交互需求，使得其在小尺寸屏幕的应用场景中占据优势。
+ESP32-C3-LCD-EV-BOARD 是一款基于 ESP32-C3 芯片的屏幕应用开发板，通过配合不同类型的屏幕子板，可以驱动 I2C 和 SPI 接口的显示屏，同时它还使用了旋转编码器开关，可以实现与屏幕交互的功能。由于 ESP32-C3 具有成本低、功耗低、性能强的特点，能够满足用户基本的 GUI 交互需求，使得其在小尺寸屏幕的应用场景中占据优势。
 
 .. figure:: ../../../_static/esp32-c3-lcd-ev-board/esp32-c3-lcd-ev-board-isometric-raw.png
     :align: center
@@ -41,7 +39,7 @@ ESP32-C3-LCD-EV-BOARD 是一款基于 ESP32-C3 芯片的屏幕应用开发板，
 
 -  **嵌入式模组：** 板载 ESP32-C3-MINI-1 模组，内置 4 MB flash 以及 400 KB SRAM
 -  **屏幕：** 可搭配不同屏幕子板使用，支持 ``I2C`` 和 ``SPI`` 接口屏幕，请查看 `LCD 子板`_ 了解更多信息
--  **旋转编码器开关：** 可进行 360° 的旋转以及按键开关，用于实现对屏幕 GUI 的控制操作
+-  **旋转编码器开关：** 支持按键开关以及进行 360° 的旋转，用于实现对屏幕 GUI 的控制操作
 -  **USB：** 支持 USB Type-C 接口下载调试
 
 
@@ -89,22 +87,22 @@ ESP32-C3-LCD-EV-BOARD 开发板由主板和子板组成。
      - ESP32-C3-MINI-1 模组是一款通用型 Wi-Fi + 低功耗蓝牙 MCU 模组，搭载 ESP32-C3 系列芯片，内置 4 MB flash 以及 400 KB SRAM。
    * - Reset 按键
      - 单独按下此按键会重置系统。
-   * - Boot 按键
-     - 长按 Boot 键时，再按 Reset 键可启动固件上传模式，然后便可通过串口或 USB 上传固件。
    * - 预留 IO 连接器
-     - 通过 2.54 mm 间距的连接器可供连接系统电源管脚以及预留的部分模组管脚。
-   * - 屏幕连接器
-     - 通过 2.54 mm 间距的连接器可以连接 1.28 英寸 LCD 子板。
+     - 通过 2.54 mm 间距的连接器连接系统电源管脚以及预留的部分模组管脚。
    * - LED
      - 具有 RGB 三色显示功能，可供用户配置用来做状态行为指示。
-   * - 旋转编码器开关
-     - 同时具有 360° 旋转编码器和按键开关的功能，用于实现对屏幕 GUI 的控制操作。
-   * - 电源开关
-     - 电源拨动开/关：向 ON 拨动开启开发板电源，向 OFF 拨动关闭开发板电源。
    * - ESP-Prog 连接器
      - 通过 1.27 mm 间距的连接器可以连接 `ESP-Prog <https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/other/esp-prog/user_guide.html>`_ 的 Program 接口，用于固件下载与调试。
+   * - 电源开关
+     - 电源拨动开/关：向 ON 拨动开启开发板电源，向 OFF 拨动关闭开发板电源。
    * - USB-to-USB 端口
      - 为整个系统提供电源。建议使用至少 5V/2A 电源适配器供电，保证供电稳定。该端口用于 PC 端与 ESP32-C3-MINI-1 模组的 USB 通信。
+   * - 屏幕连接器
+     - 通过 2.54 mm 间距的连接器连接 1.28 英寸 LCD 子板。
+   * - 旋转编码器开关
+     - 同时具有 360° 旋转编码器和按键开关的功能，用于实现对屏幕 GUI 的控制操作。
+   * - Boot 按键
+     - 长按 Boot 键时，再按 Reset 键可启动固件上传模式，然后便可通过串口或 USB 上传固件。
 
 
 LCD 子板
@@ -301,7 +299,7 @@ USB 供电
 
 .. figure:: ../../../_static/esp32-c3-lcd-ev-board/esp32-c3-lcd-ev-board-usb_usb-ps.png
     :align: center
-    :scale: 80%
+    :scale: 60%
     :alt: ESP32-C3-LCD-EV-BOARD - USB-to-USB 电源供电
 
     ESP32-C3-LCD-EV-BOARD - USB-to-USB 电源供电
@@ -345,9 +343,9 @@ USB 供电
 -  `ESP32-C3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf>`__
 -  `ESP32-C3-MINI-1 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf>`__
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-C3-LCD_EV_Board-MB 原理图 <../../../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_EV_Board_MB_V1.0_20221212.pdf>`__
--  `ESP32-C3-LCD_EV_Board-MB PCB 布局图 <../../../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_Ev_Board_MB_V1.0_20221213.pdf>`__
--  `ESP32-C3-LCD_EV_Board-DB 原理图 <../../../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_Ev_Board_DB_V1.0_20221207.pdf>`__
--  `ESP32-C3-LCD_EV_Board-DB PCB 布局图 <../../../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_EV_Board_DB_V1.0_20221213.pdf>`__
+-  `ESP32-C3-LCD_EV_Board-MB 原理图 <../../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_EV_Board_MB_V1.0_20221212.pdf>`__
+-  `ESP32-C3-LCD_EV_Board-MB PCB 布局图 <../../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_Ev_Board_MB_V1.0_20221213.pdf>`__
+-  `ESP32-C3-LCD_EV_Board-DB 原理图 <../../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_Ev_Board_DB_V1.0_20221207.pdf>`__
+-  `ESP32-C3-LCD_EV_Board-DB PCB 布局图 <../../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_EV_Board_DB_V1.0_20221213.pdf>`__
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
