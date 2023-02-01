@@ -1,7 +1,6 @@
-# ESP32-C3-LCD-EV-BOARD Development Board
+## User Guide
 
-The demo is based on the RISC-V core ESP32-C3 SoC to drive a SPI interface round LCD. The software GUI graphical interface is developed based on IDF v5.0 and LVGL v8.3. The LCD is 1.28 inch, resolution 240 x240, driver IC is GC9A01.
-ESP32-C3 supports I2C and SPI interface with small package, safety, stability, low power consumption and cost advantage, and is applicable for small screen display applications, such as washing machine, body scale, electric brushes, etc.
+* [ESP32-C3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcd-ev-board/user_guide.html)
 
 ## How to use example
 
