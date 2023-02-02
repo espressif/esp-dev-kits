@@ -84,7 +84,7 @@ esp-dev-kits
 .. |ESP32-MeshKit-Sense| image:: ../_static/esp32-meshkit-sensor/esp32-meshkit-sensor.png
 .. _ESP32-MeshKit-Sense: esp32/esp32-meshkit-sensor/index.html
 
-.. |ESP32-LCDKit| image:: ../_static/esp32-lcdkit/esp32_lcdkit.png
+.. |ESP32-LCDKit| image:: ../_static/esp32-lcdkit/esp32-lcdkit-board.png
                   :height: 230px
                   :width: 400px
 .. _ESP32-LCDKit: esp32/esp32-lcdkit/index.html
