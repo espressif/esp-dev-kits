@@ -27,6 +27,12 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 
 ### 支持开发板
 
+**ESP32-C3 系列开发板**
+
+|<div style="width: 150pt">开发板</div> |图片|描述|
+|:----:|:----:|:----|
+| [ESP32-C3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcd-ev-board/index.html)| [<img src="docs/_static/esp32-c3-lcd-ev-board/esp32-c3-lcd-ev-board-isometric-raw.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcd-ev-board/index.html) | ESP32-C3-LCD-EV-BOARD 是用于评估和验证 ESP32-C3 和 SPI 接口显示屏的开发板。ESP32-C3-LCD-EV-BOARD 主板集成了 ESP32-C3-MINI-1 模块，通过旋转编码器开关实现屏幕交互功能。|
+
 **ESP32-S3 系列开发板**
 
 |<div style="width: 150pt">开发板</div> |图片|描述|

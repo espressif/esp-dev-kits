@@ -27,6 +27,12 @@ Click one of the development boards shown below to set up and start using esp-de
 
 ### Supported Development Boards
 
+**ESP32-C3 Development Boards**
+
+|<div style="width: 150pt">Board</div>|Picture|Description|
+|:----:|:----:|:----|
+| [ESP32-C3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32c3/esp32-c3-lcd-ev-board/index.html)| [<img src="docs/_static/esp32-c3-lcd-ev-board/esp32-c3-lcd-ev-board-isometric-raw.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32c3/esp32-c3-lcd-ev-board/index.html) | ESP32-C3-LCD-EV-BOARD is a development board for evaluating and verifying ESP32-C3 chip and SPI interface screen. The motherboard of ESP32-C3-LCD-EV-BOARD integrates ESP32-C3-MINI-1 module and it has the functions of screen interaction through rotary encoder switch. |
+
 **ESP32-S3 Development Boards**
 
 |<div style="width: 150pt">Board</div>|Picture|Description|
