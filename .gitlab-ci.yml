@@ -28,7 +28,7 @@ before_script:
 
 .build_knob_board_examples_script: &build_knob_board_examples_script
   - for EXAMPLE in $EXAMPLES; do
-  - cd $CI_PROJECT_DIR/esp32-c3-lcd-ev-board/example/$EXAMPLE
+  - cd $CI_PROJECT_DIR/esp32-c3-lcd-ev-board/examples/$EXAMPLE
   - echo Building $EXAMPLE
   - idf.py fullclean
   - idf.py build

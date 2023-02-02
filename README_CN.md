@@ -27,6 +27,12 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 
 ### 支持开发板
 
+**ESP32-C3 系列开发板**
+
+|<div style="width: 150pt">开发板</div> |图片|描述|
+|:----:|:----:|:----|
+| [ESP32-C3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcd-ev-board/index.html)| [<img src="docs/_static/esp32-c3-lcd-ev-board/esp32-c3-lcd-ev-board-isometric-raw.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcd-ev-board/index.html) | ESP32-C3-LCD-EV-BOARD 是用于评估和验证 ESP32-C3 和 SPI 接口显示屏的开发板。ESP32-C3-LCD-EV-BOARD 主板集成了 ESP32-C3-MINI-1 模块，通过旋转编码器开关实现屏幕交互功能。|
+
 **ESP32-S3 系列开发板**
 
 |<div style="width: 150pt">开发板</div> |图片|描述|
@@ -59,7 +65,7 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 |:----:|:----:|:---- |
 | [ESP32-S2-HMI-DevKit-1](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s2/esp32-s2-hmi-devkit-1/index.html) | [<img src="docs/_static/esp32-s2-hmi-devkit-1/ESP32-S2-HMI-DevKit-1.png" alt ="ESP32-S2-HMI-DevKit-1" align="center" />](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s2/esp32-s2-hmi-devkit-1/index.html) | ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交互面板，带显示屏的音箱、闹钟等人机交互界面的智能控制。ESP32-S2-HMI-DevKit-1 搭载 ESP32-S2-WROVER 模组，支持 4.3 寸 TFT-LCD 触摸显示屏，配备一块 1950 mAh 的单芯锂离子电池，并提供了多个扩展接口，例如程序下载/UART、SPI、TWAI（兼容 CAN 2.0）、I2C 和 SD 卡。|
 | [ESP32-Sense-Kit](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32/esp32-sense-kit/index.html) | [<img src="docs/_static/esp32-sense-kit/ESP32-Sense-Kit.png" alt ="ESP32-Sense-Kit" align="center" />](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32/esp32-sense-kit/index.html) | ESP32-Sense 开发套件用于评估和开发 ESP32 触摸传感器功能。评估套件包含一个主板和若干子板。主板包含显示单元，主控单元，调试单元；子板的触摸电极的形状和排列方式多样，包括线性滑条、矩阵按键、弹簧按键、轮式滑条等，可以满足不同的使用场景。 |
-| [ESP32-MeshKit-Sense](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32/esp32-meshkit-sensor/index.html) | [<img src="docs/_static/esp32-meshkit-sensor/ESP32-MeshKit-Sense.png" alt ="ESP32-MeshKit-Sense" align="center" />](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32/esp32-meshkit-sensor/index.html) | ESP32-MeshKit-Sense 是一款以乐鑫 ESP32 模组为核心的开发板，集成了温湿度传感器、环境亮度传感器等外设，并且可外接屏幕，主要用于检测模组在正常工作或睡眠状态下，连接各个外设时的电流情况。  |
+| [ESP32-MeshKit-Sense](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32/esp32-meshkit-sensor/index.html) | [<img src="docs/_static/esp32-meshkit-sensor/esp32-meshkit-sensor.png" alt ="ESP32-MeshKit-Sense" align="center" />](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32/esp32-meshkit-sensor/index.html) | ESP32-MeshKit-Sense 是一款以乐鑫 ESP32 模组为核心的开发板，集成了温湿度传感器、环境亮度传感器等外设，并且可外接屏幕，主要用于检测模组在正常工作或睡眠状态下，连接各个外设时的电流情况。  |
 | [ESP32-S2-Touch-DevKit-1](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s2/esp32-s2-touch-devkit-1/index.html) |[<img src="docs/_static/esp32-s2-touch-devkit-1/ESP32-S2-Touch-DevKit-1.png" alt ="ESP32-S2-Touch-DevKit-1" align="center" />](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s2/esp32-s2-touch-devkit-1/index.html) |ESP32-S2-Touch-Devkit-1 开发板由主板和⼦板两部分组成，可用于帮助评估和开发 ESP32-S2 上的电容式触摸传感器应用。ESP32-S2-Touch-Devkit-1 的主板集成了 ESP32-S2-MINI-1 控制器模块及其他设备，例如蜂鸣器、数码管、RGB 灯等。|
 
 
