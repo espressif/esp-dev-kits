@@ -10,6 +10,14 @@ Supported Development Boards
 ----------------------------------------
 
 ============================   ===========================
+       **ESP32-H2 Development Boards**
+----------------------------------------------------------
+ |ESP32-H2-DevKitM-1|_
+----------------------------   ---------------------------
+ `ESP32-H2-DevKitM-1`_
+============================   ===========================
+
+============================   ===========================
        **ESP32-C3 Development Boards**
 ----------------------------------------------------------
  |ESP32-C3-LCD-EV-BOARD|_
@@ -121,6 +129,9 @@ Supported Development Boards
 .. |ESP-Prog| image:: ../_static/esp-prog/modules.png
 .. _ESP-Prog: other/esp-prog/index.html
 
+.. |ESP32-H2-DevKitM-1| image:: ../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45.png
+.. _ESP32-H2-DevKitM-1: esp32h2/esp32-h2-devkitm-1/index.html
+
 
 Related
 ~~~~~~~~~~~~~~~~
@@ -141,6 +152,12 @@ Related
 
    ESP32-C6-DevKitC-1 <esp32c6/esp32-c6-devkitc-1/index>
    ESP32-C6-DevKitM-1 <esp32c6/esp32-c6-devkitm-1/index>
+
+.. toctree::
+   :hidden:
+   :caption: ESP32-H2 Boards
+
+   ESP32-H2-DevKitM-1 <esp32h2/esp32-h2-devkitm-1/index>
 
 .. toctree::
    :hidden:

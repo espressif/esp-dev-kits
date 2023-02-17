@@ -8,6 +8,13 @@ esp-dev-kits
 
 开发板
 -------
+============================   ===========================
+       **ESP32-H2 系列开发板**
+----------------------------------------------------------
+|ESP32-H2-DevKitM-1|_
+----------------------------   ---------------------------
+`ESP32-H2-DevKitM-1`_
+============================   ===========================
 
 ============================   ===========================
        **ESP32-C3 系列开发板**
@@ -121,6 +128,8 @@ esp-dev-kits
 .. |ESP-Prog| image:: ../_static/esp-prog/modules.png
 .. _ESP-Prog: other/esp-prog/index.html
 
+.. |ESP32-H2-DevKitM-1| image:: ../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45.png
+.. _ESP32-H2-DevKitM-1: esp32h2/esp32-h2-devkitm-1/index.html
 
 相关文档
 ~~~~~~~~~~~~~~~~
@@ -141,6 +150,13 @@ esp-dev-kits
 
    ESP32-C6-DevKitC-1 <esp32c6/esp32-c6-devkitc-1/index>
    ESP32-C6-DevKitM-1 <esp32c6/esp32-c6-devkitm-1/index>
+
+.. toctree::
+   :hidden:
+   :caption: ESP32-H2 系列开发板
+
+   ESP32-H2-DevKitM-1 <esp32h2/esp32-h2-devkitm-1/index>
+
 
 .. toctree::
    :hidden:
