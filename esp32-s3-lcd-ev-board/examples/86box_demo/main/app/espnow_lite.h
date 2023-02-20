@@ -36,7 +36,7 @@ typedef struct {
 typedef struct {
     uint8_t mac_addr[ESP_NOW_ETH_ALEN];
     int data_len;
-    uint8_t* data;
+    uint8_t *data;
 } espnow_event_recv_cb_t;
 typedef union {
     espnow_event_send_cb_t send_cb;
@@ -70,7 +70,7 @@ typedef struct {
 typedef struct {
     uint8_t casttype; // ESPNOW cast data type.
     int len; // Length of ESPNOW data to be sent, unit: byte.
-    uint8_t* buffer; // Buffer pointing to ESPNOW data.
+    uint8_t *buffer; // Buffer pointing to ESPNOW data.
     uint8_t dest_mac[ESP_NOW_ETH_ALEN]; // MAC address of destination device.
 } espnow_send_param_t;
 
@@ -98,7 +98,7 @@ typedef enum {
 } espnow_task_evt_t;
 void espnow_wifi_init();
 esp_err_t espnow_init(void);
-esp_err_t espnow_send(const uint8_t* dest_mac, uint8_t* payload, uint16_t payloadlen);
+esp_err_t espnow_send(const uint8_t *dest_mac, uint8_t *payload, uint16_t payloadlen);
 int16_t NVS_read_peer_list_size(void);
-esp_err_t NVS_read_peer_list(esp_now_peer_info_t* peer, int16_t peer_number);
+esp_err_t NVS_read_peer_list(esp_now_peer_info_t *peer, int16_t peer_number);
 #endif

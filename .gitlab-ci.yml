@@ -35,6 +35,40 @@ before_script:
   - echo Build Complete for $EXAMPLE
   - done
 
+.setup_idf: &setup_idf
+  # TODO: IDF_VERSION maybe a commit id, use `git fetch` rather than `git clone -b`
+  - cd /opt/esp/idf/
+  - git branch
+  #- git log -5
+  # - git clone -b ${IDF_VERSION} ${IDF_GIT_REPO_URL} --depth=1
+  #- mkdir -p esp-idf
+  #- cd esp-idf
+  #- git init
+  #- git remote add origin ${IDF_GIT_REPO_URL}
+  #- git fetch origin ${IDF_VERSION}:refs/head --depth=1 -f
+  #- git checkout ${IDF_VERSION}
+  #- git checkout v5.0
+  #- git submodule update -f --init --recursive
+  #- pwd
+  - git apply $CI_PROJECT_DIR/esp32-s3-lcd-ev-board/factory/release5.0_psram_octal_120m.patch
+  #- ./install.sh
+  #- . ./export.sh
+  # fetch submodules
+  #- export PYTHONPATH=${IDF_PATH}/tools/ci/python_packages/:${PYTHONPATH}
+  #- pip install python-gitlab
+  #- python tools/ci/ci_fetch_submodule.py
+
+.build_esp_s3_lcd_ev_board_script: &build_esp_s3_lcd_ev_board_script
+  - ls $CI_PROJECT_DIR
+  - for EXAMPLE in $EXAMPLES; do
+  - cd $CI_PROJECT_DIR/esp32-s3-lcd-ev-board/examples/$EXAMPLE
+  - echo Building $EXAMPLE
+  - idf.py fullclean
+  - git submodule update -f --init --recursive
+  - idf.py build
+  - echo Build Complete for $EXAMPLE
+  - done
+
 .build_knob_board_template:
   stage: build
   tags:
@@ -43,6 +77,17 @@ before_script:
     EXAMPLES: "c3_knob_panel"
   script:
     - *build_knob_board_examples_script
+
+.build_esp_s3_lcd_ev_board_template:
+  stage: build
+  tags:
+    - build
+  variables:
+    EXAMPLES: "86box_demo"
+  before_script:
+    - *setup_idf
+  script:
+    - *build_esp_s3_lcd_ev_board_script
 
 build_kaluga_demo_cmake:
   <<: *build_examples_template
@@ -135,6 +180,10 @@ build_hmi_demo_cmake:
 
 build_esp32-c3-lcd-ev-board:
   extends: .build_knob_board_template
+  image: espressif/idf:release-v5.0
+
+build_esp32-s3-lcd-ev-board:
+  extends: .build_esp_s3_lcd_ev_board_template
   image: espressif/idf:release-v5.0
 
 build_docs:
