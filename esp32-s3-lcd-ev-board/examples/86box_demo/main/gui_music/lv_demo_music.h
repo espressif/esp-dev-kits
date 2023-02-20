@@ -13,7 +13,7 @@ extern "C" {
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_demo.h"
+#include "lvgl.h"
 
 #if LV_USE_DEMO_MUSIC
 
@@ -35,10 +35,10 @@ extern "C" {
  * GLOBAL PROTOTYPES
  **********************/
 
-void lv_demo_music(lv_obj_t * parent);
-const char * _lv_demo_music_get_title(uint32_t track_id);
-const char * _lv_demo_music_get_artist(uint32_t track_id);
-const char * _lv_demo_music_get_genre(uint32_t track_id);
+void lv_demo_music(lv_obj_t *parent);
+const char *_lv_demo_music_get_title(uint32_t track_id);
+const char *_lv_demo_music_get_artist(uint32_t track_id);
+const char *_lv_demo_music_get_genre(uint32_t track_id);
 uint32_t _lv_demo_music_get_track_length(uint32_t track_id);
 
 /**********************
