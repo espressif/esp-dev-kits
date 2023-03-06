@@ -6,7 +6,7 @@ ESP32-C6-DevKitC-1
 
 本指南将帮助您快速上手 ESP32-C6-DevKitC-1，并提供该款开发板的详细信息。
 
-ESP32-C6-DevKitC-1 是一款入门级开发板，使用带有 8 MB SPI flash 的通用型模组 ESP32-C6-WROOM-1。该款开发板具备完整的 Wi-Fi、低功耗蓝牙、Zigbee 及 Thread 功能。
+ESP32-C6-DevKitC-1 是一款入门级开发板，使用带有 8 MB SPI flash 的通用型模组 `ESP32-C6-WROOM-1 <https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_cn.pdf>`_。该款开发板具备完整的 Wi-Fi、低功耗蓝牙、Zigbee 及 Thread 功能。
 
 板上模组大部分管脚均已引出至两侧排针，开发人员可根据实际需求，轻松通过跳线连接多种外围设备，同时也可将开发板插在面包板上使用。
 
@@ -50,14 +50,14 @@ ESP32-C6-DevKitC-1 是一款入门级开发板，使用带有 8 MB SPI flash 的
    * - 主要组件
      - 介绍
    * - ESP32-C6-WROOM-1
-     - ESP32-C6-WROOM-1 是一款通用型模组，支持 Wi-Fi 6、蓝牙 5 及 IEEE 802.15.4（Zigbee 3.0 和 Thread）。该款模组内置 ESP32-C6 芯片，采用 PCB 板载天线，配置 8 MB SPI flash。
+     - ESP32-C6-WROOM-1 是一款通用型模组，支持 Wi-Fi 6、蓝牙 5 及 IEEE 802.15.4（Zigbee 3.0 和 Thread）。该款模组内置 ESP32-C6 芯片，采用 PCB 板载天线，配置 8 MB SPI flash。更多信息，请参考 `ESP32-C6-WROOM-1 技术规格书`_。
    * - Pin Header（排针）
      - 所有可用 GPIO 管脚（除 Flash 的 SPI 总线）均已引出至开发板的排针。
    * - 5 V to 3.3 V LDO（5 V 转 3.3 V LDO）
      - 电源转换器，输入 5 V，输出 3.3 V。
-   * - 3.3 V Power On LED（3.3 V 电源指示灯)
+   * - 3.3 V Power On LED（3.3 V 电源指示灯）
      - 开发板连接 USB 电源后，该指示灯亮起。
-   * - USB-to-UART Bridge（USB 转 UART 桥接器)
+   * - USB-to-UART Bridge（USB 转 UART 桥接器）
      - 单芯片 USB 转 UART 桥接器，可提供高达 3 Mbps 的传输速率。
    * - ESP32-C6 USB Type-C Port（ESP32-C6 USB Type-C 接口）
      - ESP32-C6 芯片的 USB Type-C 接口，支持 USB 2.0 全速模式，数据传输速率最高为 12 Mbps（注意，该接口不支持 480 Mbps 的高速传输模式）。
@@ -92,7 +92,7 @@ ESP32-C6-DevKitC-1 是一款入门级开发板，使用带有 8 MB SPI flash 的
 软件设置
 ^^^^^^^^
 
-请前往 ESP-IDF 快速入门，在 详细安装步骤 小节查看如何快速设置开发环境，将应用程序烧录至您的开发板。
+请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c6/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。
 
 ESP-AT 固件支持
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -215,7 +215,7 @@ J3
 
 .. [1] P：电源；I：输入；O：输出；T：可设置为高阻。 
 .. [2] 用于驱动 RGB LED。 
-.. [3] MTMS、MTDI、GPIO8、GPIO9 和 GPIO15 为 ESP32-C6 芯片的 Strapping 管脚。在芯片上电和系统复位过程中，Strapping 管脚根据管脚的二进制电压值控制芯片功能。Strapping 管脚的具体描述和应用，请参考 《ESP32-C6 技术规格书》 > Strapping 管脚章节。
+.. [3] MTMS、MTDI、GPIO8、GPIO9 和 GPIO15 为 ESP32-C6 芯片的 Strapping 管脚。在芯片上电和系统复位过程中，Strapping 管脚根据管脚的二进制电压值控制芯片功能。Strapping 管脚的具体描述和应用，请参考 `ESP32-C6 技术规格书`_ > Strapping 管脚章节。
 
 管脚布局
 ^^^^^^^^
@@ -234,9 +234,14 @@ J3
 
 相关文档
 ========
+* `ESP32-C6 技术规格书`_ (PDF)
+* `ESP32-C6-WROOM-1 技术规格书`_ (PDF)
 * `ESP32-C6-DevKitC-1 原理图 <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics.pdf>`_ (PDF)
 * `ESP32-C6-DevKitC-1 PCB 布局图 <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-pcb-layout.pdf>`_ (PDF)
 * `ESP32-C6-DevKitC-1 尺寸图 <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions.pdf>`_ (PDF)
 * `ESP32-C6-DevKitC-1 尺寸图源文件 <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
+
+.. _ESP32-C6 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_cn.pdf
+.. _ESP32-C6-WROOM-1 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_cn.pdf
