@@ -6,7 +6,7 @@ ESP32-C6-DevKitC-1
 
 This user guide will help you get started with ESP32-C6-DevKitC-1 and will also provide more in-depth information.
 
-ESP32-C6-DevKitC-1 is an entry-level development board based on ESP32-C6-WROOM-1, a general-purpose module with a 8 MB SPI flash. This board integrates complete Wi-Fi, Bluetooth LE, Zigbee, and Thread functions.
+ESP32-C6-DevKitC-1 is an entry-level development board based on `ESP32-C6-WROOM-1 <https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_en.pdf>`_, a general-purpose module with a 8 MB SPI flash. This board integrates complete Wi-Fi, Bluetooth LE, Zigbee, and Thread functions.
 
 Most of the I/O pins are broken out to the pin headers on both sides for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-C6-DevKitC-1 on a breadboard.
 
@@ -50,7 +50,7 @@ The key components of the board are described in a clockwise direction.
    * - Key Component
      - Description
    * - ESP32-C6-WROOM-1
-     - ESP32-C6-WROOM-1 is a general-purpose module supporting Wi-Fi 6, Bluetooth 5, and IEEE 802.15.4 (Zigbee 3.0 and Thread). This module is built around the ESP32-C6 chip, and comes with a PCB antenna and a 8 MB SPI flash.
+     - ESP32-C6-WROOM-1 is a general-purpose module supporting Wi-Fi 6, Bluetooth 5, and IEEE 802.15.4 (Zigbee 3.0 and Thread). This module is built around the ESP32-C6 chip, and comes with a PCB antenna and a 8 MB SPI flash. For more information, see `ESP32-C6-WROOM-1 Datasheet`_.
    * - Pin Header
      - All available GPIO pins (except for the SPI bus for flash) are broken out to the pin headers on the board.   
    * - 5 V to 3.3 V LDO
@@ -92,7 +92,7 @@ Required Hardware
 Software Setup
 ^^^^^^^^^^^^^^
 
-Please proceed to ESP-IDF Get Started, where Section Installation Step by Step will quickly help you set up the development environment then flash an application example onto your board.
+Please proceed to `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/get-started/index.html>`__, which will quickly help you set up the development environment then flash an application example onto your board.
 
 ESP-AT Support
 ^^^^^^^^^^^^^^^^^^^^^^
@@ -215,7 +215,7 @@ No.   Name       Type    Function
 
 .. [1] P: Power supply; I: Input; O: Output; T: High impedance. 
 .. [2] Used to drive the RGB LED.
-.. [3] MTMS, MTDI, GPIO8, GPIO9, and GPIO15 are strapping pins of the ESP32-C6 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset. For description and application of the strapping pins, please refer to ESP32-C6 Datasheet > Section *Strapping Pins*. 
+.. [3] MTMS, MTDI, GPIO8, GPIO9, and GPIO15 are strapping pins of the ESP32-C6 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset. For description and application of the strapping pins, please refer to `ESP32-C6 Datasheet`_ > Section *Strapping Pins*. 
 
 Pin Layout
 ^^^^^^^^^^^
@@ -234,9 +234,14 @@ No previous versions available.
 
 Related Documents
 =================
+* `ESP32-C6 Datasheet`_ (PDF)
+* `ESP32-C6-WROOM-1 Datasheet`_ (PDF)
 * `ESP32-C6-DevKitC-1 Schematic <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics.pdf>`_ (PDF)
 * `ESP32-C6-DevKitC-1 PCB Layout <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-pcb-layout.pdf>`_ (PDF)
 * `ESP32-C6-DevKitC-1 Dimensions <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions.pdf>`_ (PDF)
 * `ESP32-C6-DevKitC-1 Dimensions source file <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions.dxf>`_ (DXF)
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
+
+.. _ESP32-C6 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf
+.. _ESP32-C6-WROOM-1 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_en.pdf
