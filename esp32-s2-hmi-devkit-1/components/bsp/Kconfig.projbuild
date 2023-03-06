@@ -32,6 +32,10 @@ menu "HMI Board Config"
     menu "I2S LCD GPIO configuration"
         depends on LCD_INTERFACE_I2S
 
+            config LCD_BL_GPIO
+                int "LCD BL GPIO"
+                range -1 46
+                default -1
             config LCD_WR_GPIO
                 int "LCD WR GPIO"
                 range 0 46
