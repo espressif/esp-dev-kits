@@ -112,7 +112,7 @@ Supported Development Boards
 .. |ESP32-C3-LCD-EV-BOARD| image:: ../_static/esp32-c3-lcd-ev-board/esp32-c3-lcd-ev-board-isometric-raw.png
 .. _ESP32-C3-LCD-EV-BOARD: esp32c3/esp32-c3-lcd-ev-board/index.html
 
-.. |ESP32-C6-DevKitC-1| image:: ../_static/esp32-c6-devkitc-1/esp32-c6-devkitc-1-isometric.png
+.. |ESP32-C6-DevKitC-1| image:: ../_static/esp32-c6-devkitc-1/esp32-c6-devkitc-1-isometric_v1.2.png
 .. _ESP32-C6-DevKitC-1: esp32c6/esp32-c6-devkitc-1/index.html
 
 .. |ESP-Prog| image:: ../_static/esp-prog/modules.png
