@@ -4,7 +4,7 @@ dependencies:
   chmorgan/esp-file-iterator: "1.0.0"
   chmorgan/esp-libhelix-mp3: "1.0.3"
 
-  espressif/esp32_s3_lcd_ev_board: "==1.0.0"
+  espressif/esp32_s3_lcd_ev_board: "1.0.3"
   ## Required IDF version
   idf:
     version: ">=5.0.0"

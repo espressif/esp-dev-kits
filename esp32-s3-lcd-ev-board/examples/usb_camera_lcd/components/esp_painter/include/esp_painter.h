@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2021-2022 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: CC0-1.0
  */
@@ -75,26 +75,6 @@ esp_err_t esp_painter_draw_char(esp_painter_handle_t handle, uint16_t x, uint16_
 esp_err_t esp_painter_draw_string(esp_painter_handle_t handle, uint16_t x, uint16_t y, const esp_painter_basic_font_t* font, uint32_t color, const char* text);
 
 esp_err_t esp_painter_draw_string_format(esp_painter_handle_t handle, uint16_t x, uint16_t y, const esp_painter_basic_font_t* font, uint32_t color, const char* fmt, ...);
-
-// esp_err_t esp_painter_num(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint32_t num, uint8_t len, const esp_painter_basic_font_t *font, uint16_t color);
-
-// esp_err_t esp_painter_float(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint32_t num, uint8_t len, uint8_t point, const esp_painter_basic_font_t *font, uint16_t color);
-
-// esp_err_t esp_painter_image(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint16_t width, uint16_t height, uint16_t *img);
-
-// esp_err_t esp_painter_horizontal_line(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint16_t line_length, uint16_t color);
-
-// esp_err_t esp_painter_vertical_line(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint16_t line_length, uint16_t color);
-
-// esp_err_t esp_painter_line(esp_painter_handle_t handle, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
-
-// esp_err_t esp_painter_rectangle(esp_painter_handle_t handle, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
-
-// esp_err_t esp_painter_filled_rectangle(esp_painter_handle_t handle, uint16_t x0, uint16_t y0, uint16_t x1, uint16_t y1, uint16_t color);
-
-// esp_err_t esp_painter_circle(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint16_t radius, uint16_t color);
-
-// esp_err_t esp_painter_filled_circle(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint16_t radius, uint16_t color);
 
 #ifdef __cplusplus
 }

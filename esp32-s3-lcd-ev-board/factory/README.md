@@ -1,16 +1,28 @@
 # Factory Bin
 
-This is the first version of bin for factory firmware which is programmed by [86box_demo](../86box_demo/).
+## For Subboard2 (480x480)
+
+Programmed by [86box_demo](../86box_demo/).
+
+* [subboard2_480_480_v1_0.bin](./bin/subboard2_480_480_v1_0.bin)
+
+## For Subboard3 (800x480)
+
+Programmed by [smart_panel](../smart_panel/).
+
+* [subboard3_800_480_v1_0.bin](./bin/subboard3_800_480_v1_0.bin)
 
 # IDF Patch
 
-The patch is intended to achieve best perfermance of RGB LCD by using **Octal PSRAM 120MHz** feature. Now there are two versions of patch that are used for the respective branch of ESP-IDF (master or release/v5.0).
+The [patch](./patch/release5.0_psram_octal_120m.patch) is intended to achieve best perfermance of RGB LCD by using **PSRAM Octal 120MHz** feature. The patch is only used for the branch **release/v5.0** of ESP-IDF.
 
-**Please make sure your IDF project is clean** (use `git status` to check), then the patch can be applied by following commands:
+**Note: The feature of PSRAM Octal 120MHz has temperature risk and cannot guarantee it works normally above 65 degrees celsius.**
+
+Please make sure your IDF project is clean (use `git status` to check), then the patch can be applied by following commands:
 
 ```
 cd <root directory of IDF>
-git apply <path of the patch>/idf_psram_120m.patch # Nothing return if success
+git apply <path of the patch>/release5.0_psram_octal_120m.patch # Nothing return if success
 git status      # Check whether the operation is successful, the output should look like below:
 
 HEAD detached at f315986401

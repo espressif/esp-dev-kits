@@ -6,19 +6,20 @@
 
 ## Examples
 
-The following examples are developed under the ESP-IDF release/v5.0 branch:
+The following examples are developed under the ESP-IDF **release/v5.0** branch:
 
-* [86-Box GUI](./examples/86box_demo/)
+* [86-Box Demo](./examples/86box_demo/)
+* [86-Box Smart Panel](./examples/86box_smart_panel/)
 * [LVGL Demos](./examples/lvgl_demos/)
-* [Smart Panel](./examples/smart-panel/)
+* [Smart Panel](./examples/smart_panel/)
 * [USB keyboard](./examples/usb_keyboard/)
 * [USB Camera](./examples/usb_camera_lcd/)
 
 ## Released Bin
 
-* [Factory Bin](./factory/factory.bin)
+* [Factory Bin for Subboard2](./factory/bin/subboard2_480_480_v1_0.bin)
+* [Factory Bin for Subboard3](./factory/bin/subboard3_800_480_v1_0.bin)
 
 ## ESP-IDF Patch
 
-* [Patch for Master](./factory/master_psram_octal_120m.patch)
-* [Patch for Release/v5.0](./factory/release5.0_psram_octal_120m.patch)
+* [Patch for release/v5.0](./factory/patch/release5.0_psram_octal_120m.patch)
