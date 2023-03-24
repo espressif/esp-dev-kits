@@ -17,7 +17,7 @@ extern void usb_keyboard_init(void);
 void app_main(void)
 {
     bsp_i2c_init();
-    lv_disp_t *disp = bsp_display_start();
+    bsp_display_start();
 
     usb_keyboard_init();
 }

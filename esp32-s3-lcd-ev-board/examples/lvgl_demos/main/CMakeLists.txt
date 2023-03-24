@@ -11,4 +11,4 @@ idf_component_register(
     SRCS "main.c" ${LV_DEMOS_SOURCES} ${UI_PRINTER_SOURCES} ${UI_TUNER_SOURCES}
     INCLUDE_DIRS "." ${LV_DEMO_DIR} ${UI_PRINTER_DIR}/include ${UI_TUNER_DIR}/include)
 
-target_compile_options(${COMPONENT_LIB} PRIVATE -Wno-unused-variable -DLV_LVGL_H_INCLUDE_SIMPLE)
+target_compile_options(${COMPONENT_LIB} PRIVATE -Wno-unused-variable -Wno-format -DLV_LVGL_H_INCLUDE_SIMPLE)

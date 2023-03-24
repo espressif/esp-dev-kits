@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2021-2022 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: CC0-1.0
  */
@@ -18,7 +18,7 @@
 #include "class/hid/hid_device.h"
 #include "bsp/esp-bsp.h"
 
-static const char *TAG = "usb keyboard";
+static const char *TAG = "example_usb_keyboard";
 
 enum {
     REPORT_ID_KEYBOARD = 1,
@@ -239,10 +239,7 @@ static const lv_btnmatrix_ctrl_t default_kb_ctrl_map_custom[] = {
     LV_KB_BTN(3), LV_KEYBOARD_CTRL_BTN_FLAGS | 2, LV_KB_BTN(1), LV_KB_BTN(6), LV_KB_BTN(1), LV_KB_BTN(1), LV_KB_BTN(1), LV_KB_BTN(1), LV_KB_BTN(1),
 };
 
-// static void send_hid_report(uint8_t report_id, uint32_t btn);
-
 static uint8_t keycode[6] = { 0 };
-
 
 static void ta_event_cb(lv_event_t *e)
 {
@@ -360,9 +357,9 @@ void usb_keyboard_init(void)
         .bNumConfigurations = 0x01
     };
 
-    tusb_desc_strarray_device_t my_string_descriptor = {
+    char const *my_string_descriptor[] = {
         // array of pointer to string descriptors
-        (char[]){0x09, 0x04}, // 0: is supported language is English (0x0409)
+        (const char[]){0x09, 0x04}, // 0: is supported language is English (0x0409)
         "I",                  // 1: Manufacturer
         "My Custom Device",   // 2: Product
         "012-345",            // 3: Serials, should use chip ID
@@ -395,26 +392,21 @@ void usb_keyboard_init(void)
 
     bsp_display_lock(0);
     kb = lv_keyboard_create(lv_scr_act());
+    lv_obj_set_size(kb, LV_HOR_RES, LV_VER_RES);
     lv_keyboard_set_map(kb, LV_KEYBOARD_MODE_USER_2, default_kb_map_custom_uc, default_kb_ctrl_map_custom);
     lv_keyboard_set_map(kb, LV_KEYBOARD_MODE_USER_1, default_kb_map_custom_lc, default_kb_ctrl_map_custom);
     lv_keyboard_set_mode(kb, LV_KEYBOARD_MODE_USER_1);
-    // lv_obj_set_height(kb, LV_VER_RES - lv_obj_get_height(kb));
     lv_obj_remove_event_cb(kb, lv_keyboard_def_event_cb);
     lv_obj_add_event_cb(kb, ta_event_cb, LV_EVENT_PRESSED, kb);
     lv_obj_add_event_cb(kb, ta_event_cb, LV_EVENT_RELEASED, kb);
     bsp_display_unlock();
 
     while (1) {
-        // uint32_t const btn = board_button_read();
-
         // Remote wakeup
         if ( tud_suspended() && 1 ) {
             // Wake up host if we are in suspend mode
             // and REMOTE_WAKEUP feature is enabled by host
             tud_remote_wakeup();
-        } else {
-            // Send the 1st of report chain, the rest will be sent by tud_hid_report_complete_cb()
-            // send_hid_report(REPORT_ID_KEYBOARD, btn);
         }
         vTaskDelay(pdMS_TO_TICKS(100));
     }
@@ -450,95 +442,6 @@ void tud_resume_cb(void)
 {
     ESP_LOGI(TAG, "%s", __FUNCTION__);
 }
-
-//--------------------------------------------------------------------+
-// USB HID
-//--------------------------------------------------------------------+
-// static void send_hid_report(uint8_t report_id, uint32_t btn)
-// {
-//     // skip if hid is not ready yet
-//     if ( !tud_hid_ready() ) {
-//         return;
-//     }
-
-//     switch (report_id) {
-//     case REPORT_ID_KEYBOARD: {
-//         // use to avoid send multiple consecutive zero report for keyboard
-//         static bool has_keyboard_key = false;
-
-//         if ( btn ) {
-//             uint8_t keycode[6] = { 0 };
-//             keycode[0] = HID_KEY_GUI_LEFT;
-
-//             tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keycode);
-//             has_keyboard_key = true;
-//         } else {
-//             // send empty key report if previously has key pressed
-//             if (has_keyboard_key) {
-//                 tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
-//             }
-//             has_keyboard_key = false;
-//         }
-//     }
-//     break;
-
-//     case REPORT_ID_MOUSE: {
-//         int8_t const delta = 5;
-
-//         // no button, right + down, no scroll, no pan
-//         tud_hid_mouse_report(REPORT_ID_MOUSE, 0x00, delta, delta, 0, 0);
-//     }
-//     break;
-
-//     case REPORT_ID_CONSUMER_CONTROL: {
-//         // use to avoid send multiple consecutive zero report
-//         static bool has_consumer_key = false;
-
-//         if ( btn ) {
-//             // volume down
-//             uint16_t volume_down = HID_USAGE_CONSUMER_VOLUME_DECREMENT;
-//             tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &volume_down, 2);
-//             has_consumer_key = true;
-//         } else {
-//             // send empty key report (release key) if previously has key pressed
-//             uint16_t empty_key = 0;
-//             if (has_consumer_key) {
-//                 tud_hid_report(REPORT_ID_CONSUMER_CONTROL, &empty_key, 2);
-//             }
-//             has_consumer_key = false;
-//         }
-//     }
-//     break;
-
-//     case REPORT_ID_GAMEPAD: {
-//         // use to avoid send multiple consecutive zero report for keyboard
-//         static bool has_gamepad_key = false;
-
-//         hid_gamepad_report_t report = {
-//             .x   = 0, .y = 0, .z = 0, .rz = 0, .rx = 0, .ry = 0,
-//             .hat = 0, .buttons = 0
-//         };
-
-//         if ( btn ) {
-//             report.hat = GAMEPAD_HAT_UP;
-//             report.buttons = GAMEPAD_BUTTON_A;
-//             tud_hid_report(REPORT_ID_GAMEPAD, &report, sizeof(report));
-
-//             has_gamepad_key = true;
-//         } else {
-//             report.hat = GAMEPAD_HAT_CENTERED;
-//             report.buttons = 0;
-//             if (has_gamepad_key) {
-//                 tud_hid_report(REPORT_ID_GAMEPAD, &report, sizeof(report));
-//             }
-//             has_gamepad_key = false;
-//         }
-//     }
-//     break;
-
-//     default: break;
-//     }
-// }
 
 // Invoked when sent REPORT successfully to host
 // Application can use this to send the next report

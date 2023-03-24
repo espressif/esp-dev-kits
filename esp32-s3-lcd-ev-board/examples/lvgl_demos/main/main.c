@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2021-2022 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: CC0-1.0
  */
@@ -15,7 +15,8 @@
 
 static char *TAG = "app_main";
 
-#define LOG_MEM_INFO    (0)
+/* Print log about SRAM and PSRAM memory */
+#define LOG_MEM_INFO    (1)
 
 void app_main(void)
 {
@@ -33,17 +34,22 @@ void app_main(void)
 
     ESP_LOGI(TAG, "Display LVGL demo");
     bsp_display_lock(0);
-    lv_demo_music();        /* A modern, smartphone-like music player demo. */
+
+    /* Here're four internal demos of LVGL. They can run with all subboards */
+    lv_demo_music();        /* A modern, smartphone-like music player demo */
     // lv_demo_widgets();      /* A widgets example */
-    // lv_demo_stress();       /* A stress test for LVGL. */
-    // lv_demo_benchmark();    /* A demo to measure the performance of LVGL or to compare different settings. */
+    // lv_demo_stress();       /* A stress test for LVGL */
+    // lv_demo_benchmark();    /* A demo to measure the performance of LVGL or to compare different settings */
+
+    /* Here're two UI demos created by Squareline Studio. They can only run with subboard1(800x480) */
 #if CONFIG_BSP_LCD_SUB_BOARD_800_480
     // ui_printer_init();         /* A demo to show virtual printer */
 #ifndef CONFIG_BSP_DISPLAY_LVGL_AVOID_TEAR
-    // bsp_display_rotate(disp, LV_DISP_ROT_90); /* Rotate screen from 800*480 to 480*800 */
-    // ui_tuner_init();         /* A demo to show virtual tuner */
+    // bsp_display_rotate(disp, LV_DISP_ROT_90);   /* Rotate screen from 800*480 to 480*800, it can't work with anti-tearing function */
+    // ui_tuner_init();                            /* A demo to show virtual tuner */
 #endif
 #endif
+
     bsp_display_unlock();
 
 #if LOG_MEM_INFO

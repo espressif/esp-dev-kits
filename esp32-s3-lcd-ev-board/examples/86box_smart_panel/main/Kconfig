@@ -1,0 +1,70 @@
+menu "Project Support Package"
+
+    menu "SPIFFS - Virtual File System"
+        config BSP_SPIFFS_FORMAT_ON_MOUNT_FAIL
+            bool "Format SPIFFS if mounting fails"
+            default n
+            help
+                Format SPIFFS if it fails to mount the filesystem.
+
+        config BSP_SPIFFS_MOUNT_POINT
+            string "SPIFFS mount point"
+            default "/spiffs"
+            help
+                Mount point of SPIFFS in the Virtual File System.
+
+        config BSP_SPIFFS_PARTITION_LABEL
+            string "Partition label of SPIFFS"
+            default "storage"
+            help
+                Partition label which stores SPIFFS.
+
+        config BSP_SPIFFS_MAX_FILES
+            int "Max files supported for SPIFFS VFS"
+            default 5
+            help
+                Supported max files for SPIFFS in the Virtual File System.
+    endmenu
+
+
+    menu "vl53l1x Test Configuration"
+
+config I2C_NUM
+    int "I2C NUM"
+    default 0
+    help
+	I2C unit number
+
+config SCL_IO
+    int "SCL GPIO NUM"
+    default 19
+    help
+	GPIO pin for I2C SCL
+
+config SDA_IO
+    int "SDA GPIO NUM"
+    default 18
+    help
+	GPIO pin for I2C SDA
+
+config XSHUT_IO
+    int "XSHUT GPIO NUM"
+    default 5
+    help
+	GPIO pin for VL53L1X XSHUT
+
+config LED_RED_IO
+    int "LED_RED GPIO NUM"
+    default 25
+    help
+	GPIO pin for LED_RED
+    
+config LED_GREEN_IO
+    int "LED_GREEN GPIO NUM"
+    default 26
+    help
+	GPIO pin for LED_GREEN
+
+endmenu
+
+endmenu

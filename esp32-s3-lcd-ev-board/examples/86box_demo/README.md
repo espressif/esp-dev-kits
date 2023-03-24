@@ -1,55 +1,45 @@
-# 86box_demo Example
+# 86box Demo Example
 
-A GUI demo designed for smart control panel which is usually used fo wall-mounted 86 type box. **Note that this example is only applicable to 480 x 480 LCD.**
+A GUI demo designed for control panel which is usually used fo wall-mounted 86 type box.
+
+**Note: This example is only applicable to 480 x 480 LCD.**
 
 ## How to use example
 
+Please first read the [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-BOARD to learn about its software and hardware information.
+
 ### Hardware Required
 
-* An ESP32-S3-LCD-EV-Board development board
+* An ESP32-S3-LCD-EV-BOARD development board with subboard2(480x480)
 * An USB Type-C cable for Power supply and programming
-
-### Configure
-
-Run `idf.py menuconfig` and go to `Board Configuration`:
-
-1. Based on hardware to `Select LCD Sub Board` and related configuration.
-2. Set `Frequency of lcd pclk`
-3. Choose whether to `Avoid tearing effect`
-4. Chosse to `Select lvgl mode for avoiding tearing` (available only when step `3` was chosen to true)
-5. Set `Priority of lcd refresh task` (available only when step `3` was chosen to true)
-6. Set `Screen refresh period(ms)` (available only when step `3` was chosen to true)
+* A Speaker
 
 ### Build and Flash
 
-Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
+1. **The project configure PSRAM with Octal 120M by default**. Please see [here](../../factory/README.md#idf-patch) to enable `PSRAM Octal 120M` feature.
+2. Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 (To exit the serial monitor, type ``Ctrl-]``.)
 
 See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for full steps to configure and use ESP-IDF to build projects.
 
-## Example Output
+### Functions
 
 Run the example, you can achieve a smooth graphic operation experience, for example horizontally swiping between weather report, hot water heater and warm air heater page. Trigger the control centre by swiping down from the bottom of the screen. Open music player to test the animation performance of the board.
 
 ## Troubleshooting
 
+* Program build failure
+    * Error message with `error: static assertion failed: "FLASH and PSRAM Mode configuration are not supported"`: Please make sure ESP-IDF support `PSRAM Octal 120M` feature.
+    * Error message with `error: 'esp_lcd_rgb_panel_config_t' has no member named 'num_fbs'`: Please update the branch (release/v5.0 or master) of ESP-IDF.
 * Program upload failure
     * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
     * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
-    * Error message with `A fatal error occurred: Could not open /dev/ttyACM0, the port doesn't exist`: Please first make sure development board connected, then make board into "Download Boot" mode to upload by following steps:
+    * Error message with `A fatal error occurred: Could not open /dev/ttyACM0, the port doesn't exist`: Please first make sure the development board connected, then make board into "Download Boot" by following steps:
         1. keep press "BOOT(SW2)" button
         2. short press "RST(SW1)" button
         3. release "BOOT(SW2)".
         4. upload program and reset
-* LCD screen drift
-  * Slow down the PCLK frequency
-  * Adjust other timing parameters like PCLK clock edge (by `pclk_active_neg`), sync porches like VBP (by `vsync_back_porch`) according to your LCD spec
-  * Enable `CONFIG_SPIRAM_FETCH_INSTRUCTIONS` and `CONFIG_SPIRAM_RODATA`, which can saves some bandwidth of SPI0 from being consumed by ICache.
-* LCD screen tear effect
-    * Using avoid tearing effect.
-* LCD screen flickering after enable avoid tearing effect
-    * Set lower screen refresh period.
 
 ## Technical support and feedback
 

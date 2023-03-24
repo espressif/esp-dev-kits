@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2021-2022 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: CC0-1.0
  */
@@ -26,14 +26,13 @@ typedef struct {
         uint32_t color : 24;
     } canvas;
     uint8_t piexl_color_byte;
-    esp_painter_basic_font_t *default_font;
+    const esp_painter_basic_font_t *default_font;
     esp_lcd_panel_handle_t lcd_panel;
 } esp_painter_t;
 
 static const char *TAG = "esp_painter";
 
 static esp_err_t draw_point(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint32_t color);
-static esp_err_t draw_area(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint16_t w, uint16_t h, void *color);
 
 esp_err_t esp_painter_new(esp_painter_config_t *config, esp_painter_handle_t *handle)
 {
@@ -145,197 +144,7 @@ esp_err_t esp_painter_draw_string_format(esp_painter_handle_t handle, uint16_t x
     return ESP_OK;
 }
 
-// void esp_painter_num(int x, int y, uint32_t num, uint8_t len, const esp_painter_basic_font_t *font, uint32_t color)
-// {
-//     PAINTER_CHECK(len < 10, "The length of the number is too long");
-//     PAINTER_CHECK(NULL != font, "Font pointer invalid");
-//     char area[10] = {0};
-//     int8_t num_len;
-
-//     itoa(num, area, 10);
-//     num_len = strlen(area);
-//     x += (font_w * (len - 1));
-
-//     for (size_t i = 0; i < len; i++) {
-//         if (i < num_len) {
-//             esp_painter_draw_char(x, y, area[i], font, color);
-//         } else {
-//             esp_painter_draw_char(x, y, '0', font, color);
-//         }
-
-//         x -= font_w;
-//     }
-// }
-
-// void esp_painter_image(int x, int y, int width, int height, uint16_t *img)
-// {
-//     PAINTER_CHECK(NULL != img, "Image pointer invalid");
-//     g_config.draw_bitmap(x, y, width, height, img);
-// }
-
-// void esp_painter_horizontal_line(int x, int y, int line_length, uint32_t color)
-// {
-//     int i;
-
-//     for (i = x; i < x + line_length; i++) {
-//         g_config.draw_bitmap(i, y, 1, 1, &color);
-//     }
-// }
-
-// void esp_painter_vertical_line(int x, int y, int line_length, uint32_t color)
-// {
-//     int i;
-
-//     for (i = y; i < y + line_length; i++) {
-//         g_config.draw_bitmap(x, i, 1, 1, &color);
-//     }
-// }
-
-// void esp_painter_line(int x1, int y1, int x2, int y2, uint32_t color)
-// {
-//     uint16_t t;
-//     int xerr = 0, yerr = 0, delta_x, delta_y, distance;
-//     int incx, incy, uRow, uCol;
-//     delta_x = x2 - x1;
-//     delta_y = y2 - y1;
-//     uRow = x1;
-//     uCol = y1;
-
-//     if (delta_x > 0) {
-//         incx = 1;    //set direction
-//     } else if (delta_x == 0) {
-//         incx = 0;    //vertical line
-//     } else {
-//         incx = -1;
-//         delta_x = -delta_x;
-//     }
-
-//     if (delta_y > 0) {
-//         incy = 1;
-//     } else if (delta_y == 0) {
-//         incy = 0;    //horizontal line
-//     } else {
-//         incy = -1;
-//         delta_y = -delta_y;
-//     }
-
-//     if (delta_x > delta_y) {
-//         distance = delta_x;
-//     } else {
-//         distance = delta_y;
-//     }
-
-//     for (t = 0; t <= distance + 1; t++) {
-//         g_config.draw_bitmap(uRow, uCol, 1, 1, &color);
-//         xerr += delta_x ;
-//         yerr += delta_y ;
-
-//         if (xerr > distance) {
-//             xerr -= distance;
-//             uRow += incx;
-//         }
-
-//         if (yerr > distance) {
-//             yerr -= distance;
-//             uCol += incy;
-//         }
-//     }
-// }
-
-// void esp_painter_rectangle(int x0, int y0, int x1, int y1, uint32_t color)
-// {
-//     int min_x, min_y, max_x, max_y;
-//     min_x = x1 > x0 ? x0 : x1;
-//     max_x = x1 > x0 ? x1 : x0;
-//     min_y = y1 > y0 ? y0 : y1;
-//     max_y = y1 > y0 ? y1 : y0;
-
-//     esp_painter_horizontal_line(min_x, min_y, max_x - min_x + 1, color);
-//     esp_painter_horizontal_line(min_x, max_y, max_x - min_x + 1, color);
-//     esp_painter_vertical_line(min_x, min_y, max_y - min_y + 1, color);
-//     esp_painter_vertical_line(max_x, min_y, max_y - min_y + 1, color);
-// }
-
-// void esp_painter_filled_rectangle(int x0, int y0, int x1, int y1, uint32_t color)
-// {
-//     int min_x, min_y, max_x, max_y;
-//     int i;
-//     min_x = x1 > x0 ? x0 : x1;
-//     max_x = x1 > x0 ? x1 : x0;
-//     min_y = y1 > y0 ? y0 : y1;
-//     max_y = y1 > y0 ? y1 : y0;
-
-//     for (i = min_x; i <= max_x; i++) {
-//         esp_painter_vertical_line(i, min_y, max_y - min_y + 1, color);
-//     }
-// }
-
-// void esp_painter_circle(int x, int y, int radius, uint32_t color)
-// {
-//     /* Bresenham algorithm */
-//     int x_pos = -radius;
-//     int y_pos = 0;
-//     int err = 2 - 2 * radius;
-//     int e2;
-
-//     do {
-//         g_config.draw_bitmap(x - x_pos, y + y_pos, 1, 1, &color);
-//         g_config.draw_bitmap(x + x_pos, y + y_pos, 1, 1, &color);
-//         g_config.draw_bitmap(x + x_pos, y - y_pos, 1, 1, &color);
-//         g_config.draw_bitmap(x - x_pos, y - y_pos, 1, 1, &color);
-//         e2 = err;
-
-//         if (e2 <= y_pos) {
-//             err += ++y_pos * 2 + 1;
-
-//             if (-x_pos == y_pos && e2 <= x_pos) {
-//                 e2 = 0;
-//             }
-//         }
-
-//         if (e2 > x_pos) {
-//             err += ++x_pos * 2 + 1;
-//         }
-//     } while (x_pos <= 0);
-// }
-
-// void esp_painter_filled_circle(int x, int y, int radius, uint32_t color)
-// {
-//     /* Bresenham algorithm */
-//     int x_pos = -radius;
-//     int y_pos = 0;
-//     int err = 2 - 2 * radius;
-//     int e2;
-
-//     do {
-//         g_config.draw_bitmap(x - x_pos, y + y_pos, 1, 1, &color);
-//         g_config.draw_bitmap(x + x_pos, y + y_pos, 1, 1, &color);
-//         g_config.draw_bitmap(x + x_pos, y - y_pos, 1, 1, &color);
-//         g_config.draw_bitmap(x - x_pos, y - y_pos, 1, 1, &color);
-//         esp_painter_horizontal_line(x + x_pos, y + y_pos, 2 * (-x_pos) + 1, color);
-//         esp_painter_horizontal_line(x + x_pos, y - y_pos, 2 * (-x_pos) + 1, color);
-//         e2 = err;
-
-//         if (e2 <= y_pos) {
-//             err += ++y_pos * 2 + 1;
-
-//             if (-x_pos == y_pos && e2 <= x_pos) {
-//                 e2 = 0;
-//             }
-//         }
-
-//         if (e2 > x_pos) {
-//             err += ++x_pos * 2 + 1;
-//         }
-//     } while (x_pos <= 0);
-// }
-
 static esp_err_t draw_point(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint32_t color)
 {
     return esp_lcd_panel_draw_bitmap((esp_lcd_panel_handle_t)((esp_painter_t *)handle)->lcd_panel, x, y, x + 1, y + 1, &color);
-}
-
-static esp_err_t draw_area(esp_painter_handle_t handle, uint16_t x, uint16_t y, uint16_t w, uint16_t h, void *color)
-{
-    return esp_lcd_panel_draw_bitmap((esp_lcd_panel_handle_t)((esp_painter_t *)handle)->lcd_panel, x, y, x + w, y + h, color);
 }
