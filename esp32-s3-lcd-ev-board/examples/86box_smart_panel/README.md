@@ -1,4 +1,4 @@
-# 86box Smart Panel Example
+# 86-box Smart Panel Example
 
 A GUI demo designed for smart control panel which has offline voice recognition function.
 
