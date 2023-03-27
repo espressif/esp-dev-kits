@@ -2,6 +2,10 @@
 
 [![Documentation Status](https://readthedocs.com/projects/espressif-esp-dev-kits/badge/?version=latest)](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/?badge=latest)
 
+<a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://raw.githubusercontent.com/espressif/esp-dev-kits/master/launch.toml">
+    <img alt="Try it with ESP Launchpad" src="https://espressif.github.io/esp-launchpad/assets/try_with_launchpad.png" width="200" height="56">
+</a>
+
 * [中文版](./README_CN.md)
 
 ## Overview
