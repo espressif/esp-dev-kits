@@ -1,4 +1,4 @@
-# 86box Demo Example
+# 86-box Demo Example
 
 A GUI demo designed for control panel which is usually used fo wall-mounted 86 type box.
 
