@@ -1,10 +1,10 @@
 =====================
-ESP32-S3-LCD-Ev-Board
+ESP32-S3-LCD-EV-Board
 =====================
 
 :link_to_translation:`zh_CN:[中文]`
 
-This user guide will help you get started with ESP32-S3-LCD-Ev-Board and will also provide more in-depth information.
+This user guide will help you get started with ESP32-S3-LCD-EV-Board and will also provide more in-depth information.
 
 The document consists of the following sections:
 
@@ -19,14 +19,21 @@ The document consists of the following sections:
 Board Overview
 ==============
 
-ESP32-S3-LCD-Ev-Board is an ESP32-S3-based development board with a touchscreen. Together with different subboards, ESP32-S3-LCD-Ev-Board can drive LCDs with IIC, SPI, 8080, and RGB interfaces. It houses dual array microphones, supports voice recognition and near/far-field voice wake-up, and features screen and voice interaction. The board caters to development needs for touchscreen products with different resolutions and interfaces.
+ESP32-S3-LCD-EV-Board is an ESP32-S3-based development board with a touchscreen. Together with different subboards, ESP32-S3-LCD-EV-Board can drive LCDs with IIC, SPI, 8080, and RGB interfaces. It houses dual array microphones, supports voice recognition and near/far-field voice wake-up, and features screen and voice interaction. The board caters to development needs for touchscreen products with different resolutions and interfaces. Currently, we have two boards available: ESP32-S3-LCD-EV-Board with 480x480 LCD and ESP32-S3-LCD-EV-Board with 800x480 LCD.
 
-.. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-isometric-raw.png
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board with ESP32-S3-WROOM-1 Module
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board with 480x480 LCD
 
-    ESP32-S3-LCD-Ev-Board with ESP32-S3-WROOM-1 Module
+    ESP32-S3-LCD-EV-Board with 480x480 LCD
+
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_800x480.png
+    :align: center
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board with 800x480 LCD
+
+    ESP32-S3-LCD-EV-Board with 800x480 LCD
 
 
 Feature List
@@ -43,33 +50,33 @@ The main features of the board are listed below:
 Block Diagram
 -------------
 
-The block diagram below shows the components of ESP32-S3-LCD-Ev-Board and their interconnections.
+The block diagram below shows the components of ESP32-S3-LCD-EV-Board and their interconnections.
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-block-diagram.png
     :align: center
     :scale: 55%
-    :alt: ESP32-S3-LCD-Ev-Board Block Diagram (Click to Enlarge)
+    :alt: ESP32-S3-LCD-EV-Board Block Diagram (Click to Enlarge)
 
-    ESP32-S3-LCD-Ev-Board Block Diagram (Click to Enlarge)
+    ESP32-S3-LCD-EV-Board Block Diagram (Click to Enlarge)
 
 
 Description of Components
 -------------------------
 
-The ESP32-S3-LCD-Ev-Board development board consists of a mainboard and a subboard.
+The ESP32-S3-LCD-EV-Board development board consists of a mainboard and a subboard.
 
 
 Mainboard
 ^^^^^^^^^^^
 
-**ESP32-S3-LCD-Ev-Board_MB** is the core of the kit, which integrates the ESP32-S3-WROOM-1 module and provides ports for connection to the LCD subboard.
+**ESP32-S3-LCD-EV-Board-MB** is the core of the kit, which integrates the ESP32-S3-WROOM-1 module and provides ports for connection to the LCD subboard.
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-layout-front.png
     :align: center
     :scale: 18%
-    :alt: ESP32-S3-LCD-Ev-Board - Front (Click to Enlarge)
+    :alt: ESP32-S3-LCD-EV-Board - Front (Click to Enlarge)
 
-    ESP32-S3-LCD-Ev-Board - Front (Click to Enlarge)
+    ESP32-S3-LCD-EV-Board-MB - Front (Click to Enlarge)
 
 
 The key components of the board are described in a counter-clockwise direction.
@@ -120,7 +127,7 @@ LCD Subboards
 The mainboard can be used together with three different kinds of subboards:
 
 .. list-table::
-   :widths: 30 10 10 15 10
+   :widths: 30 10 10 15 10 30
    :header-rows: 1
 
    * - Board Name
@@ -128,72 +135,78 @@ The mainboard can be used together with three different kinds of subboards:
      - Resolution (Px)
      - LCD Driver (Interface)
      - Touch Driver
-   * - ESP32-S3-LCD_Ev_Board_SUB1
+     - Available Development Boards
+   * - ESP32-S3-LCD-EV-Board-SUB1
      - 0.96
      - 128 x 64
-     - SSD1315 (I2C)
+     - `SSD1315 <../../_static/esp32-s3-lcd-ev-board/datasheets/0.96_128x64/SSD1315.pdf>`_ (I2C)
      - N/A
+     - Not Available
    * -
      - 2.40
      - 320 x 240
-     - ST7789V (SPI)
-     - XTP2046
-   * - ESP32-S3-LCD_Ev_Board_SUB2
+     - `ST7789V <../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/ST7789V_SPEC_V1.0.pdf>`_ (SPI)
+     - `XTP2046 <../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/XPT2046_user_manual.pdf>`_
+     - Not Available
+   * - ESP32-S3-LCD-EV-Board-SUB2
      - 3.50
      - 480 x 320
-     - ST7796S (8080)
-     - GT911
+     - `ST7796S <../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/ST7796S_SPEC_V1.0.pdf>`_ (8080)
+     - `GT911 <../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/GT911_Datasheet_20130319.pdf>`_
+     - Not Available
    * -
      - 3.95
      - 480 x 480
-     - GC9503CV (RGB)
-     - FT5x06
-   * - ESP32-S3-LCD_Ev_Board_SUB3
+     - `GC9503CV <../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/GC9503NP_DataSheet_V1.7.pdf>`_ (RGB)
+     - `FT5x06 <https://www.displayfuture.com/Display/datasheet/controller/FT5x06.pdf>`_
+     - `ESP32-S3-LCD-EV-Board <https://www.aliexpress.us/item/3256804584611152.html?spm=5261.ProductManageOnline.0.0.541f4edfMsfGnH&gatewayAdapt=glo2usa4itemAdapt&_randl_shipto=US>`_
+   * - ESP32-S3-LCD-EV-Board-SUB3
      - 4.30
      - 800 x 480
-     - Unknown (RGB)
-     - GT1151
+     - `ST7262E43 <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/ST7262E43_V0.1_201905.pdf>`_ (RGB)
+     - `GT1151 <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/GT911.pdf>`_
+     - `ESP32-S3-LCD-EV-Board-2 <https://www.aliexpress.us/item/3256804584611152.html?spm=5261.ProductManageOnline.0.0.541f4edfMsfGnH&gatewayAdapt=glo2usa4itemAdapt&_randl_shipto=US>`_
 
 
-- **ESP32-S3-LCD-Ev-Board_SUB1** subboard has two interfaces, which support connection to a 2.4-inch display with the SPI interface or a 0.96-inch display with the I2C interface. This board is not yet configured, so it is not further explained here.
+- **ESP32-S3-LCD-EV-Board-SUB1** subboard has two interfaces, which support connection to a 2.4-inch display with the SPI interface or a 0.96-inch display with the I2C interface. This board is not yet configured, so it is not further explained here.
 
-- **ESP32-S3-LCD-Ev-Board_SUB2** subboard has two interfaces, which support connection to a display with the RGB interface or a display with the 8080 parallel interface. The current subboard has a 3.95-inch touchscreen with the RGB565 interface and 480x480 resolution. The LCD driver IC is GC9503CV and the touchscreen driver IC is FT5x06.
+- **ESP32-S3-LCD-EV-Board-SUB2** subboard has two interfaces, which support connection to a display with the RGB interface or a display with the 8080 parallel interface. The current subboard has a 3.95-inch touchscreen with the RGB565 interface and 480x480 resolution. The LCD driver IC is GC9503CV and the touchscreen driver IC is FT5x06.
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-front.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board_SUB2 - Front (Click to Enlarge)
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board-SUB2 - Front (Click to Enlarge)
 
-    ESP32-S3-LCD-Ev-Board_SUB2 - Front (Click to Enlarge)
+    ESP32-S3-LCD-EV-Board-SUB2 - Front (Click to Enlarge)
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-back.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board_SUB2 - Back (Click to Enlarge)
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board-SUB2 - Back (Click to Enlarge)
 
-    ESP32-S3-LCD-Ev-Board_SUB2 - Front (Click to Enlarge)
+    ESP32-S3-LCD-EV-Board-SUB2 - Back (Click to Enlarge)
 
-- **ESP32-S3-LCD-Ev-Board_SUB3** subboard only supports a 4.3-inch touchscreen with the RGB565 interface and 800x480 resolution. The touchscreen driver IC is GT1151.
+- **ESP32-S3-LCD-EV-Board-SUB3** subboard only supports a 4.3-inch touchscreen with the RGB565 interface and 800x480 resolution. The LCD driver IC is ST7262E43 and the touchscreen driver IC is GT1151.
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-front.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board_SUB3 - Front (Click to Enlarge)
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board-SUB3 - Front (Click to Enlarge)
 
-    ESP32-S3-LCD-Ev-Board_SUB3 - Front (Click to Enlarge)
+    ESP32-S3-LCD-EV-Board-SUB3 - Front (Click to Enlarge)
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-back.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board_SUB3 - Back (Click to Enlarge)
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board-SUB3 - Back (Click to Enlarge)
 
-    ESP32-S3-LCD-Ev-Board_SUB3 - Back (Click to Enlarge)
+    ESP32-S3-LCD-EV-Board-SUB3 - Back (Click to Enlarge)
 
 
 Software Support
 ----------------
 
-The ESP32-S3-LCD-Ev-Board development framework is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-Ev-Board under the folder :dev-kits:`Examples<esp32-s3-lcd-ev-board/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
+The ESP32-S3-LCD-EV-Board development framework is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :dev-kits:`Examples<esp32-s3-lcd-ev-board/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
 
 .. note::
 
@@ -211,7 +224,7 @@ This section provides instructions on how to do hardware and software setup and 
 Required Hardware
 -----------------
 
-- 1 x ESP32-S3-LCD-Ev-Board_MB
+- 1 x ESP32-S3-LCD-EV-Board-MB
 - 1 x LCD subboard
 - 1 x USB 2.0 cable (standard Type-A to Type-C)
 - 1 x PC (Windows, Linux, or macOS)
@@ -462,38 +475,38 @@ There are two ways to power the development board via USB power port.
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-usb_usb-ps.png
     :align: center
     :scale: 80%
-    :alt: ESP32-S3-LCD-Ev-Board - USB-to-USB Power Supply
+    :alt: ESP32-S3-LCD-EV-Board - USB-to-USB Power Supply
 
-    ESP32-S3-LCD-Ev-Board - USB-to-USB Power Supply
+    ESP32-S3-LCD-EV-Board - USB-to-USB Power Supply
 
 - Via ``USB-to-UART`` port
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-usb_uart-ps.png
     :align: center
     :scale: 80%
-    :alt: ESP32-S3-LCD-Ev-Board - USB-to-UART Power Supply
+    :alt: ESP32-S3-LCD-EV-Board - USB-to-UART Power Supply
 
-    ESP32-S3-LCD-Ev-Board - USB-to-UART Power Supply
+    ESP32-S3-LCD-EV-Board - USB-to-UART Power Supply
 
 
 Independent Audio and Digital Power Supply
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-ESP32-S3-LCD-Ev-Board features independent power supplies for the audio components and ESP module. This should reduce noise in the audio signal from digital components and improve the overall performance of the components.
+ESP32-S3-LCD-EV-Board features independent power supplies for the audio components and ESP module. This should reduce noise in the audio signal from digital components and improve the overall performance of the components.
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-digital-ps.png
     :align: center
     :scale: 40%
-    :alt: ESP32-S3-LCD-Ev-Board - Digital Power Supply
+    :alt: ESP32-S3-LCD-EV-Board - Digital Power Supply
 
-    ESP32-S3-LCD-Ev-Board - Digital Power Supply
+    ESP32-S3-LCD-EV-Board - Digital Power Supply
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-audio-ps.png
     :align: center
     :scale: 40%
-    :alt: ESP32-S3-LCD-Ev-Board - Audio Power Supply
+    :alt: ESP32-S3-LCD-EV-Board - Audio Power Supply
 
-    ESP32-S3-LCD-Ev-Board - Audio Power Supply
+    ESP32-S3-LCD-EV-Board - Audio Power Supply
 
 
 AEC Path
@@ -501,30 +514,30 @@ AEC Path
 
 The acoustic echo cancellation (AEC) path provides reference signals for AEC algorithm.
 
-ESP32-S3-LCD-Ev-Board provides two compatible echo reference signal source designs. One is Codec (ES8311) DAC output (DAC_AOUTLP/DAC_AOUTLP), the other is PA (NS4150) output (PA_OUT+/PA_OUT+). The former is a default and the recommended selection. Resistors R54 and R56 shown in the figure below should not be installed.
+ESP32-S3-LCD-EV-Board provides two compatible echo reference signal source designs. One is Codec (ES8311) DAC output (DAC_AOUTLP/DAC_AOUTLP), the other is PA (NS4150) output (PA_OUT+/PA_OUT+). The former is a default and the recommended selection. Resistors R54 and R56 shown in the figure below should not be installed.
 
 The echo reference signal is collected by ADC_MIC3P/ADC_MIC3N of ADC (ES7210) and then sent back to ESP32-S3 for AEC algorithm.
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-aec-codec.png
     :align: center
     :scale: 50%
-    :alt: ESP32-S3-LCD-Ev-Board - AEC Codec DAC Output (Click to Enlarge)
+    :alt: ESP32-S3-LCD-EV-Board - AEC Codec DAC Output (Click to Enlarge)
 
-    ESP32-S3-LCD-Ev-Board - AEC Codec DAC Output (Click to Enlarge)
+    ESP32-S3-LCD-EV-Board - AEC Codec DAC Output (Click to Enlarge)
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-aec-pa.png
     :align: center
     :scale: 50%
-    :alt: ESP32-S3-LCD-Ev-Board - AEC PA Output (Click to Enlarge)
+    :alt: ESP32-S3-LCD-EV-Board - AEC PA Output (Click to Enlarge)
 
     SP32-S3-LCD-Ev-Board - AEC PA Output (Click to Enlarge)
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-aec-adc.png
     :align: center
     :scale: 50%
-    :alt: ESP32-S3-LCD-Ev-Board - AEC Reference Signal Collection (Click to Enlarge)
+    :alt: ESP32-S3-LCD-EV-Board - AEC Reference Signal Collection (Click to Enlarge)
 
-    ESP32-S3-LCD-Ev-Board - AEC Reference Signal Collection (Click to Enlarge)
+    ESP32-S3-LCD-EV-Board - AEC Reference Signal Collection (Click to Enlarge)
 
 
 Hardware Setup Options
@@ -548,7 +561,7 @@ No previous revisions.
 Sample Request
 ==============
 
-This development board can be used to assess high performance HMI solutions and is not yet available for sale. For sample requests, please contact us at `sales@espressif.com <sales@espressif.com>`_.
+This development board is suitable for evaluating Espressif's high-performance `HMI Smart Displays Solution <https://www.espressif.com/en/solutions/hmi/smart-displays>`_. For placing orders, please proceed to the Espressif `Online Shop <https://www.aliexpress.us/item/3256804584611152.html?spm=5261.ProductManageOnline.0.0.541f4edfMsfGnH&gatewayAdapt=glo2usa4itemAdapt&_randl_shipto=US>`_.
 
 
 Related Documents
@@ -557,14 +570,14 @@ Related Documents
 -  `ESP32-S3 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf>`__
 -  `ESP32-S3-WROOM-1 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf>`__
 -  `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-LCD-EV-BOARD-MB Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_EV_Board_MB_V1.1_20220713.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-MB PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_MB_V1.0_20220610.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB1 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB1 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB2 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB2_V1.0_20220615.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB2 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB2_V1.1_20220708.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB3 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB3_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB3 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB3_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_EV_Board_MB_V1.1_20220713.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_MB_V1.0_20220610.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB1 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB1_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB1 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB1_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB2 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.0_20220615.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB2 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.1_20220708.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB3 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB3 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.0_20220617.pdf>`__
 -  `TCA9554 Datasheet <https://www.ti.com/lit/gpn/tca9554>`__
 -  `ES7210 Datasheet <http://www.everest-semi.com/pdf/ES7210%20PB.pdf>`__
 -  `ES8311 Datasheet <http://www.everest-semi.com/pdf/ES8311%20PB.pdf>`__

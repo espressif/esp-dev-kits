@@ -43,9 +43,9 @@ esp-dev-kits
 ============================   ===========================
        **ESP32-S3 系列开发板**
 ----------------------------------------------------------
-  |ESP32-S3-USB-OTG|_           |ESP32-S3-LCD-EV-BOARD|_
+  |ESP32-S3-USB-OTG|_           |ESP32-S3-LCD-EV-Board|_
 ----------------------------   ---------------------------
- `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-BOARD`_
+ `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
 ============================   ===========================
 
 ============================   ===========================
@@ -110,8 +110,8 @@ esp-dev-kits
                       :width: 400px
 .. _ESP32-S3-USB-OTG: esp32s3/esp32-s3-usb-otg/index.html
 
-.. |ESP32-S3-LCD-EV-BOARD| image:: ../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board.png
-.. _ESP32-S3-LCD-EV-BOARD: esp32s3/esp32-s3-lcd-ev-board/index.html
+.. |ESP32-S3-LCD-EV-Board| image:: ../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board.png
+.. _ESP32-S3-LCD-EV-Board: esp32s3/esp32-s3-lcd-ev-board/index.html
 
 .. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
 .. _ESP8684-DevKitM-1: esp8684/esp8684-devkitm-1/index.html
@@ -169,7 +169,7 @@ esp-dev-kits
    :caption: ESP32-S3 系列开发板
 
    ESP32-S3-USB-OTG <esp32s3/esp32-s3-usb-otg/index>
-   ESP32-S3-LCD-EV-BOARD <esp32s3/esp32-s3-lcd-ev-board/index>
+   ESP32-S3-LCD-EV-Board <esp32s3/esp32-s3-lcd-ev-board/index>
 
 .. toctree::
    :hidden:

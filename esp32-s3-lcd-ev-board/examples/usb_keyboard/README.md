@@ -4,11 +4,11 @@ An example for using LCD and LVGL to simulate USB keyboard.
 
 ## How to use example
 
-Please first read the [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-BOARD to learn about its software and hardware information.
+Please first read the [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-Board to learn about its software and hardware information.
 
 ### Hardware Required
 
-* An ESP32-S3-LCD-EV-BOARD development board with subboard1(800x480) or subboard2(480x480)
+* An ESP32-S3-LCD-EV-Board development board with subboard1(800x480) or subboard2(480x480)
 * At least one USB Type-C cable for Power supply, programming and USB communication.
 
 ### Configurations

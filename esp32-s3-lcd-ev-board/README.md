@@ -1,8 +1,8 @@
-# ESP32-S3-LCD-EV-BOARD Development Board
+# ESP32-S3-LCD-EV-Board Development Board
 
 ## User Guide
 
-* [ESP32-S3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html)
+* [ESP32-S3-LCD-EV-Board](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html)
 
 ## Examples
 
@@ -22,4 +22,4 @@ The following examples are developed under the ESP-IDF **release/v5.0** branch:
 
 ## ESP-IDF Patch
 
-* [Patch for release/v5.0](./factory/patch/release5.0_psram_octal_120m.patch)
+* [Patch for release/v5.0](./factory/patch/)

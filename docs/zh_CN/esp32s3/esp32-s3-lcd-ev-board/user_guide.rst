@@ -1,10 +1,10 @@
 =====================
-ESP32-S3-LCD-Ev-Board
+ESP32-S3-LCD-EV-Board
 =====================
 
 :link_to_translation:`en: [English]`
 
-本指南将帮助您快速上手 ESP32-S3-LCD-Ev-Board，并提供该款开发板的详细信息。
+本指南将帮助您快速上手 ESP32-S3-LCD-EV-Board，并提供该款开发板的详细信息。
 
 本指南包括如下内容：
 
@@ -19,14 +19,21 @@ ESP32-S3-LCD-Ev-Board
 开发板概述
 ===================
 
-ESP32-S3-LCD-Ev-Board 是一款基于 ESP32-S3 芯片的屏幕交互开发板，通过配合不同类型的 LCD 子板，可以驱动 IIC、SPI、8080 以及 RGB 接口的 LCD 显示屏。同时它还搭载双麦克风阵列，支持语音识别和近/远场语音唤醒，具有触摸屏交互和语音交互功能，满足用户对多种不同分辨率以及接口的触摸屏应用产品的开发需求。
+ESP32-S3-LCD-EV-Board 是一款基于 ESP32-S3 芯片的屏幕交互开发板，通过搭配不同类型的 LCD 子板，可以驱动 IIC、SPI、8080 以及 RGB 接口的 LCD 显示屏。同时它还搭载双麦克风阵列，支持语音识别和近/远场语音唤醒，具有触摸屏交互和语音交互功能，满足用户对多种不同分辨率以及接口的触摸屏应用产品的开发需求。目前支持两款开发板：搭配 480x480 LCD 的 ESP32-S3-LCD-EV-Board 和 搭配 800x480 LCD 的 ESP32-S3-LCD-EV-Board-2。
 
-.. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-isometric-raw.png
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
     :align: center
-    :scale: 20%
-    :alt: 搭载 ESP32-S3-WROOM-1 模组的 ESP32-S3-LCD-Ev-Board
+    :scale: 10%
+    :alt: 搭配 480x480 LCD 的 ESP32-S3-LCD-EV-Board
 
-    搭载 ESP32-S3-WROOM-1 模组的 ESP32-S3-LCD-Ev-Board
+    搭配 480x480 LCD 的 ESP32-S3-LCD-EV-Board
+
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_800x480.png
+    :align: center
+    :scale: 10%
+    :alt: 搭配 800x480 LCD 的 ESP32-S3-LCD-EV-Board-2
+
+    搭配 800x480 LCD 的 ESP32-S3-LCD-EV-Board-2
 
 
 特性列表
@@ -43,33 +50,33 @@ ESP32-S3-LCD-Ev-Board 是一款基于 ESP32-S3 芯片的屏幕交互开发板，
 功能框图
 -------------
 
-ESP32-S3-LCD-Ev-Board 的主要组件和连接方式如下图所示。
+ESP32-S3-LCD-EV-Board 的主要组件和连接方式如下图所示。
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-block-diagram.png
     :align: center
     :scale: 55%
-    :alt: ESP32-S3-LCD-Ev-Board 功能框图（点击放大）
+    :alt: ESP32-S3-LCD-EV-Board 功能框图（点击放大）
 
-    ESP32-S3-LCD-Ev-Board 功能框图（点击放大）
+    ESP32-S3-LCD-EV-Board 功能框图（点击放大）
 
 
 组件介绍
 -----------
 
-ESP32-S3-LCD-Ev-Board 开发板由主板和子板组成。
+ESP32-S3-LCD-EV-Board 开发板由主板和子板组成。
 
 
 主板
 ^^^^^^
 
-**ESP32-S3-LCD-Ev-Board_MB** 主板是整个套件的核心，该主板集成了 ESP32-S3-WROOM-1 模组，并提供与 LCD 子板连接的端口。
+**ESP32-S3-LCD-EV-Board-MB** 主板是整个套件的核心，该主板集成了 ESP32-S3-WROOM-1 模组，并提供与 LCD 子板连接的端口。
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-layout-front.png
     :align: center
     :scale: 18%
-    :alt: ESP32-S3-LCD-Ev-Board - 正面（点击放大）
+    :alt: ESP32-S3-LCD-EV-Board - 正面（点击放大）
 
-    ESP32-S3-LCD-Ev-Board - 正面（点击放大）
+    ESP32-S3-LCD-EV-Board-MB - 正面（点击放大）
 
 
 以下按照逆时针顺序依次介绍开发板上的主要组件。
@@ -120,7 +127,7 @@ LCD 子板
 主板可搭配以下三种不同类型的子板使用：
 
 .. list-table::
-   :widths: 30 15 15 15 15
+   :widths: 30 15 15 15 15 30
    :header-rows: 1
 
    * - 子板名称
@@ -128,72 +135,78 @@ LCD 子板
      - 分辨率 (px)
      - LCD 驱动芯片（接口）
      - 触摸驱动芯片
-   * - ESP32-S3-LCD_Ev_Board_SUB1
+     - 在售开发板
+   * - ESP32-S3-LCD-EV-Board-SUB1
      - 0.96
      - 128 x 64
-     - SSD1315 (I2C)
+     - `SSD1315 <../../_static/esp32-s3-lcd-ev-board/datasheets/0.96_128x64/SSD1315.pdf>`_ (I2C)
      - N/A
+     - 无
    * -
      - 2.40
      - 320 x 240
-     - ST7789V (SPI)
-     - XTP2046
-   * - ESP32-S3-LCD_Ev_Board_SUB2
+     - `ST7789V <../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/ST7789V_SPEC_V1.0.pdf>`_ (SPI)
+     - `XTP2046 <../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/XPT2046_user_manual.pdf>`_
+     - 无
+   * - ESP32-S3-LCD-EV-Board-SUB2
      - 3.50
      - 480 x 320
-     - ST7796S (8080)
-     - GT911
+     - `ST7796S <../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/ST7796S_SPEC_V1.0.pdf>`_ (8080)
+     - `GT911 <../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/GT911_Datasheet_20130319.pdf>`_
+     - 无
    * -
      - 3.95
      - 480 x 480
-     - GC9503CV (RGB)
-     - FT5x06
-   * - ESP32-S3-LCD_Ev_Board_SUB3
+     - `GC9503CV <../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/GC9503NP_DataSheet_V1.7.pdf>`_ (RGB)
+     - `FT5x06 <https://www.displayfuture.com/Display/datasheet/controller/FT5x06.pdf>`_
+     - `ESP32-S3-LCD-EV-Board <https://item.taobao.com/item.htm?spm=a1z10.5-c.w4002-8715811636.23.4bc567d8eBiLiI&id=680580609719>`_
+   * - ESP32-S3-LCD-EV-Board-SUB3
      - 4.30
      - 800 x 480
-     - 未提供 (RGB)
-     - GT1151
+     - `ST7262E43 <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/ST7262E43_V0.1_201905.pdf>`_ (RGB)
+     - `GT1151 <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/GT911.pdf>`_
+     - `ESP32-S3-LCD-EV-Board-2 <https://item.taobao.com/item.htm?spm=a1z10.5-c.w4002-8715811636.23.4bc567d8eBiLiI&id=680580609719>`_
 
 
-- **ESP32-S3-LCD-Ev-Board_SUB1** 子板提供了两种屏幕接口，分别支持连接一块 2.4 英寸 SPI 接口屏或者一块 0.96 英寸 I2C 接口屏。该子板暂未做适配，此处不做进一步讲解。
+- **ESP32-S3-LCD-EV-Board-SUB1** 子板提供了两种屏幕接口，分别支持连接一块 2.4 英寸 SPI 接口屏或者一块 0.96 英寸 I2C 接口屏。该子板暂未做适配，此处不做进一步讲解。
 
-- **ESP32-S3-LCD-Ev-Board_SUB2** 子板提供了两种屏幕接口，分别支持连接一块 RGB 接口屏或者一块 8080 并口屏。当前子板贴装了一块 3.95 英寸、RGB565 接口、分辨率为 480x480 的触摸屏，该屏使用的 LCD 驱动芯片型号为 GC9503CV，触摸驱动芯片型号为 FT5x06。
+- **ESP32-S3-LCD-EV-Board-SUB2** 子板提供了两种屏幕接口，分别支持连接一块 RGB 接口屏或者一块 8080 并口屏。当前子板贴装了一块 3.95 英寸、RGB565 接口、分辨率为 480x480 的触摸屏，该屏使用的 LCD 驱动芯片型号为 GC9503CV，触摸驱动芯片型号为 FT5x06。
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-front.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board_SUB2 - 正面（点击放大）
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board-SUB2 - 正面（点击放大）
 
-    ESP32-S3-LCD-Ev-Board_SUB2 - 正面（点击放大）
+    ESP32-S3-LCD-EV-Board-SUB2 - 正面（点击放大）
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-back.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board_SUB2 - 反面（点击放大）
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board-SUB2 - 反面（点击放大）
 
-    ESP32-S3-LCD-Ev-Board_SUB2 - 反面（点击放大）
+    ESP32-S3-LCD-EV-Board-SUB2 - 反面（点击放大）
 
-- **ESP32-S3-LCD-Ev-Board_SUB3** 子板仅支持 4.3 英寸、RGB565 接口、分辨率为 800x480 的触摸屏，该屏使用触摸驱动芯片型号为 GT1151。
+- **ESP32-S3-LCD-EV-Board-SUB3** 子板仅支持 4.3 英寸、RGB565 接口、分辨率为 800x480 的触摸屏，该屏使用的 LCD 驱动芯片型号为 ST7262E43，触摸驱动芯片型号为 GT1151。
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-front.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board_SUB3 - 正面（点击放大）
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board-SUB3 - 正面（点击放大）
 
-    ESP32-S3-LCD-Ev-Board_SUB3 - 正面（点击放大）
+    ESP32-S3-LCD-EV-Board-SUB3 - 正面（点击放大）
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-back.png
     :align: center
-    :scale: 20%
-    :alt: ESP32-S3-LCD-Ev-Board_SUB3 - 反面（点击放大）
+    :scale: 10%
+    :alt: ESP32-S3-LCD-EV-Board-SUB3 - 反面（点击放大）
 
-    ESP32-S3-LCD-Ev-Board_SUB3 - 反面（点击放大）
+    ESP32-S3-LCD-EV-Board-SUB3 - 反面（点击放大）
 
 
 软件支持
 ----------------
 
-ESP32-S3-LCD-Ev-Board 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :dev-kits:`Examples <esp32-s3-lcd-ev-board/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
+ESP32-S3-LCD-EV-Board 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :dev-kits:`Examples <esp32-s3-lcd-ev-board/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
 
 .. note::
 
@@ -211,7 +224,7 @@ ESP32-S3-LCD-Ev-Board 的开发框架为 `ESP-IDF <https://github.com/espressif/
 必备硬件
 --------
 
-- 1 x ESP32-S3-LCD-Ev-Board_MB
+- 1 x ESP32-S3-LCD-EV-Board-MB
 - 1 x LCD 子板
 - 1 x USB 2.0 数据线（标准 A 型转 Type-C 型）
 - 1 x 电脑（Windows、Linux 或 macOS）
@@ -462,38 +475,38 @@ USB 供电
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-usb_usb-ps.png
     :align: center
     :scale: 80%
-    :alt: ESP32-S3-LCD-Ev-Board - USB-to-USB 电源供电
+    :alt: ESP32-S3-LCD-EV-Board - USB-to-USB 电源供电
 
-    ESP32-S3-LCD-Ev-Board - USB-to-USB 电源供电
+    ESP32-S3-LCD-EV-Board - USB-to-USB 电源供电
 
 - 通过 ``USB-to-UART`` 端口供电
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-usb_uart-ps.png
     :align: center
     :scale: 80%
-    :alt: ESP32-S3-LCD-Ev-Board - USB-to-UART 电源供电
+    :alt: ESP32-S3-LCD-EV-Board - USB-to-UART 电源供电
 
-    ESP32-S3-LCD-Ev-Board - USB-to-UART 电源供电
+    ESP32-S3-LCD-EV-Board - USB-to-UART 电源供电
 
 
 音频和数字独立供电
 ^^^^^^^^^^^^^^^^^^
 
-ESP32-S3-LCD-Ev-Board 可为音频组件和 ESP 模组提供相互独立的电源，可降低数字组件给音频信号带来的噪声并提高组件的整体性能。
+ESP32-S3-LCD-EV-Board 可为音频组件和 ESP 模组提供相互独立的电源，可降低数字组件给音频信号带来的噪声并提高组件的整体性能。
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-digital-ps.png
     :align: center
     :scale: 40%
-    :alt: ESP32-S3-LCD-Ev-Board - 数字供电
+    :alt: ESP32-S3-LCD-EV-Board - 数字供电
 
-    ESP32-S3-LCD-Ev-Board - 数字供电
+    ESP32-S3-LCD-EV-Board - 数字供电
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-audio-ps.png
     :align: center
     :scale: 40%
-    :alt: ESP32-S3-LCD-Ev-Board - 音频供电
+    :alt: ESP32-S3-LCD-EV-Board - 音频供电
 
-    ESP32-S3-LCD-Ev-Board - 音频供电
+    ESP32-S3-LCD-EV-Board - 音频供电
 
 
 AEC 电路
@@ -501,30 +514,30 @@ AEC 电路
 
 AEC 电路为 AEC 算法提供参考信号。
 
-ESP32-S3-LCD-Ev-Board 回声参考信号源有两路兼容设计，一路是 Codec (ES8311) DAC 输出 (DAC_AOUTLN/DAC_AOUTLP)，一路是 PA (NS4150) 输出 (PA_OUTL+/PA_OUTL-)。推荐将默认 Codec (ES8311) DAC 输出 (DAC_AOUTLN/DAC_AOUTLP) 作为回声参考信号，下图中电阻 R54、R56 无需连接。
+ESP32-S3-LCD-EV-Board 回声参考信号源有两路兼容设计，一路是 Codec (ES8311) DAC 输出 (DAC_AOUTLN/DAC_AOUTLP)，一路是 PA (NS4150) 输出 (PA_OUTL+/PA_OUTL-)。推荐将默认 Codec (ES8311) DAC 输出 (DAC_AOUTLN/DAC_AOUTLP) 作为回声参考信号，下图中电阻 R54、R56 无需连接。
 
 回声参考信号通过 ADC (ES7210) 的 ADC_MIC3P/ADC_MIC3N 采集后送回给 ESP32-S3 用于 AEC 算法。
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-aec-codec.png
     :align: center
     :scale: 50%
-    :alt: ESP32-S3-LCD-Ev-Board - AEC Codec DAC 输出（点击放大）
+    :alt: ESP32-S3-LCD-EV-Board - AEC Codec DAC 输出（点击放大）
 
-    ESP32-S3-LCD-Ev-Board - AEC Codec DAC 输出（点击放大）
+    ESP32-S3-LCD-EV-Board - AEC Codec DAC 输出（点击放大）
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-aec-pa.png
     :align: center
     :scale: 50%
-    :alt: ESP32-S3-LCD-Ev-Board - AEC PA 输出 （点击放大）
+    :alt: ESP32-S3-LCD-EV-Board - AEC PA 输出 （点击放大）
 
-    ESP32-S3-LCD-Ev-Board - AEC PA 输出（点击放大）
+    ESP32-S3-LCD-EV-Board - AEC PA 输出（点击放大）
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-aec-adc.png
     :align: center
     :scale: 50%
-    :alt: ESP32-S3-LCD-Ev-Board - AEC 参考信号采集（点击放大）
+    :alt: ESP32-S3-LCD-EV-Board - AEC 参考信号采集（点击放大）
 
-    ESP32-S3-LCD-Ev-Board - 参考信号采集（点击放大）
+    ESP32-S3-LCD-EV-Board - 参考信号采集（点击放大）
 
 
 硬件设置选项
@@ -548,7 +561,7 @@ ESP32-S3-LCD-Ev-Board 回声参考信号源有两路兼容设计，一路是 Cod
 样品获取
 ================
 
-此开发板适用于评估高性能的 HMI 方案，尚未公开售卖，如有样品需求请邮件联系 sales@espressif.com。
+此开发板适用于评估高性能的 `智能屏方案 <https://www.espressif.com/zh-hans/solutions/hmi/smart-displays>`_。如有需要，请前往 `乐鑫官方淘宝商城 <https://item.taobao.com/item.htm?spm=a1z10.5-c.w4002-8715811636.23.4bc567d8eBiLiI&id=680580609719>`_ 进行采购。
 
 
 相关文档
@@ -557,14 +570,14 @@ ESP32-S3-LCD-Ev-Board 回声参考信号源有两路兼容设计，一路是 Cod
 -  `ESP32-S3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf>`__
 -  `ESP32-S3-WROOM-1 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_cn.pdf>`__
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-LCD-EV-BOARD-MB 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_EV_Board_MB_V1.1_20220713.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-MB PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_MB_V1.0_20220610.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB1 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB1 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB2 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB2_V1.0_20220615.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB2 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB2_V1.1_20220708.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB3 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB3_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-BOARD-SUB3 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB3_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_EV_Board_MB_V1.1_20220713.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_MB_V1.0_20220610.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB1 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB1_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB1 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB1_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB2 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.0_20220615.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB2 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.1_20220708.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB3 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.0_20220617.pdf>`__
 -  `TCA9554 规格书 <https://www.ti.com/lit/gpn/tca9554>`__
 -  `ES7210 规格书 <http://www.everest-semi.com/pdf/ES7210%20PB.pdf>`__
 -  `ES8311 规格书 <http://www.everest-semi.com/pdf/ES8311%20PB.pdf>`__
