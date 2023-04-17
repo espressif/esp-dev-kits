@@ -7,11 +7,11 @@ An example for using LCD display video which captured from USB camera.
 
 ## How to use example
 
-Please first read the [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-BOARD to learn about its software and hardware information.
+Please first read the [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-Board to learn about its software and hardware information.
 
 ### Hardware Required
 
-* An ESP32-S3-LCD-EV-BOARD development board with subboard 1 (800x480 LCD)
+* An ESP32-S3-LCD-EV-Board development board with subboard 1 (800x480 LCD)
 * An USB camera that can output 800x480 resolution image
 * An USB Type-C cable for Power supply and programming (Please connect to UART port instead of USB port)
 
