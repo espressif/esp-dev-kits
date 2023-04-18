@@ -23,14 +23,14 @@ ESP32-S3-LCD-EV-Board 是一款基于 ESP32-S3 芯片的屏幕交互开发板，
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: 搭配 480x480 LCD 的 ESP32-S3-LCD-EV-Board
 
     搭配 480x480 LCD 的 ESP32-S3-LCD-EV-Board
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_800x480.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: 搭配 800x480 LCD 的 ESP32-S3-LCD-EV-Board-2
 
     搭配 800x480 LCD 的 ESP32-S3-LCD-EV-Board-2
@@ -73,7 +73,7 @@ ESP32-S3-LCD-EV-Board 开发板由主板和子板组成。
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-layout-front.png
     :align: center
-    :scale: 18%
+    :scale: 70%
     :alt: ESP32-S3-LCD-EV-Board - 正面（点击放大）
 
     ESP32-S3-LCD-EV-Board-MB - 正面（点击放大）
@@ -174,14 +174,14 @@ LCD 子板
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-front.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB2 - 正面（点击放大）
 
     ESP32-S3-LCD-EV-Board-SUB2 - 正面（点击放大）
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-back.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB2 - 反面（点击放大）
 
     ESP32-S3-LCD-EV-Board-SUB2 - 反面（点击放大）
@@ -190,14 +190,14 @@ LCD 子板
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-front.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB3 - 正面（点击放大）
 
     ESP32-S3-LCD-EV-Board-SUB3 - 正面（点击放大）
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-back.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB3 - 反面（点击放大）
 
     ESP32-S3-LCD-EV-Board-SUB3 - 反面（点击放大）

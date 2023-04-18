@@ -110,7 +110,7 @@ esp-dev-kits
                       :width: 400px
 .. _ESP32-S3-USB-OTG: esp32s3/esp32-s3-usb-otg/index.html
 
-.. |ESP32-S3-LCD-EV-Board| image:: ../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board.png
+.. |ESP32-S3-LCD-EV-Board| image:: ../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
 .. _ESP32-S3-LCD-EV-Board: esp32s3/esp32-s3-lcd-ev-board/index.html
 
 .. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png

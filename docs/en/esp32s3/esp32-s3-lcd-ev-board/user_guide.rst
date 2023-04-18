@@ -23,14 +23,14 @@ ESP32-S3-LCD-EV-Board is an ESP32-S3-based development board with a touchscreen.
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board with 480x480 LCD
 
     ESP32-S3-LCD-EV-Board with 480x480 LCD
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_800x480.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board with 800x480 LCD
 
     ESP32-S3-LCD-EV-Board with 800x480 LCD
@@ -73,7 +73,7 @@ Mainboard
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-layout-front.png
     :align: center
-    :scale: 18%
+    :scale: 70%
     :alt: ESP32-S3-LCD-EV-Board - Front (Click to Enlarge)
 
     ESP32-S3-LCD-EV-Board-MB - Front (Click to Enlarge)
@@ -174,14 +174,14 @@ The mainboard can be used together with three different kinds of subboards:
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-front.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB2 - Front (Click to Enlarge)
 
     ESP32-S3-LCD-EV-Board-SUB2 - Front (Click to Enlarge)
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-back.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB2 - Back (Click to Enlarge)
 
     ESP32-S3-LCD-EV-Board-SUB2 - Back (Click to Enlarge)
@@ -190,14 +190,14 @@ The mainboard can be used together with three different kinds of subboards:
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-front.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB3 - Front (Click to Enlarge)
 
     ESP32-S3-LCD-EV-Board-SUB3 - Front (Click to Enlarge)
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-back.png
     :align: center
-    :scale: 10%
+    :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB3 - Back (Click to Enlarge)
 
     ESP32-S3-LCD-EV-Board-SUB3 - Back (Click to Enlarge)
