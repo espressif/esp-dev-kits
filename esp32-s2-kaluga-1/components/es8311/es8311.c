@@ -472,7 +472,7 @@ esp_err_t es8311_init(int sample_fre)
     return ESP_OK;
 }
 
-esp_err_t es8311_deinit()
+esp_err_t es8311_deinit(void)
 {
     es8311_pa_power(false);
     return ESP_OK;
@@ -540,7 +540,7 @@ int es8311_set_mic_gain(es8311_mic_gain_t gain_db)
     return res;
 }
 
-void es8311_read_all()
+void es8311_read_all(void)
 {
     for (int i = 0; i < 0x4A; i++) {
         uint8_t reg = es8311_read_reg(i);
