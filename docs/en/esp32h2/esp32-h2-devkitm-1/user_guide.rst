@@ -6,9 +6,9 @@ ESP32-H2-DevKitM-1
 
 This user guide will help you get started with ESP32-H2-DevKitM-1 and will also provide more in-depth information.
 
-ESP32-H2-DevKitM-1 is an entry-level development board based on Bluetooth® Low Energy and IEEE 802.15.4 combo modules ESP32-H2-MINI-1.
+ESP32-H2-DevKitM-1 is an entry-level development board based on Bluetooth® Low Energy and IEEE 802.15.4 combo module ESP32-H2-MINI-1 or ESP32-H2-MINI-1U.
 
-Most of the I/O pins on the ESP32-H2-MINI-1 module are broken out to the pin headers on both sides of this board for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-H2-DevKitM-1 on a breadboard.
+Most of the I/O pins on the ESP32-H2-MINI-1/1U module are broken out to the pin headers on both sides of this board for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-H2-DevKitM-1 on a breadboard.
 
 .. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45-20230303.png
     :align: center
@@ -29,6 +29,7 @@ Getting Started
 
 This section provides a brief introduction of ESP32-H2-DevKitM-1, instructions on how to do the initial hardware setup and how to flash firmware onto it.
 
+
 Description of Components
 -------------------------
 
@@ -40,7 +41,7 @@ Description of Components
 
     ESP32-H2-DevKitM-1 - Front
 
-The description of components starts from the ESP32-H2-MINI-1 module on the left side and then goes clockwise.
+The description of components starts from the ESP32-H2-MINI-1/1U module on the left side and then goes clockwise.
 
 .. list-table::
    :widths: 20 80
@@ -48,8 +49,8 @@ The description of components starts from the ESP32-H2-MINI-1 module on the left
 
    * - Key Component
      - Description
-   * - ESP32-H2-MINI-1
-     - ESP32-H2-MINI-1, with ESP32-H2 inside which integrates a 2.4 GHz transceiver compliant with Bluetooth ® Low Energy and IEEE 802.15.4-based technologies, supporting Bluetooth 5 (LE), Bluetooth mesh, Thread, Matter, and Zigbee. This module is specially designed for all kinds of low-power IoT applications.
+   * - ESP32-H2-MINI-1 or ESP32-H2-MINI-1U
+     - ESP32-H2-MINI-1/1U, with ESP32-H2 inside which integrates a 2.4 GHz transceiver compliant with Bluetooth ® Low Energy and IEEE 802.15.4-based technologies, supporting Bluetooth 5 (LE), Bluetooth mesh, Thread, Matter, and Zigbee. This module is specially designed for all kinds of low-power IoT applications.
    * - Pin Headers
      - All available GPIO pins (except for the SPI bus for flash) are broken out to the pin headers on the board. For details, please see `Header Block`_.
    * - 3.3 V Power On LED
@@ -71,10 +72,12 @@ The description of components starts from the ESP32-H2-MINI-1 module on the left
    * - J5
      - Used for current measurement. See details in Section :ref:`user-guide-c6-devkitc-1-v1-current`.
 
+
 Start Application Development
 -----------------------------
 
 Before powering up your ESP32-H2-DevKitM-1, please make sure that it is in good condition with no obvious signs of damage.
+
 
 Required Hardware
 ^^^^^^^^^^^^^^^^^
@@ -93,8 +96,36 @@ Software Setup
 
 Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html>`_, where Section `Installation Step by Step <Installation Step by Step>`_ will quickly help you set up the development environment and then flash an application example onto your ESP32-H2-DevKitM-1.
 
+
 Contents and Packaging
 ----------------------
+
+Ordering Information
+^^^^^^^^^^^^^^^^^^^^
+
+The development board has a variety of variants to choose from, as shown in the table below.
+
+.. list-table::
+   :header-rows: 1
+   :widths: 41 24 9 8 18
+
+   * - Ordering Code
+     - On-board Module
+     - Flash [A]_
+     - PSRAM
+     - Antenna
+   * - ESP32-H2-DevKitM-1-N4
+     - ESP32-H2-MINI-1
+     - 4 MB
+     - 0 MB
+     - PCB on-board antenna
+   * - ESP32-H2-DevKitM-1U-N4
+     - ESP32-H2-MINI-1U
+     - 4 MB
+     - 0 MB
+     - External antenna connector
+
+.. [A] The flash is integrated in the chip's package.
 
 Retail Orders
 ^^^^^^^^^^^^^
@@ -111,6 +142,7 @@ If you order in bulk, the boards come in large cardboard boxes.
 
 For wholesale orders, please go to https://www.espressif.com/en/contact-us/sales-questions.
 
+
 Hardware Reference
 ==================
 
@@ -118,7 +150,6 @@ Block Diagram
 -------------
 
 The block diagram below shows the components of ESP32-H2-DevKitM-1 and their interconnections.
-
 
 .. figure:: ../../../_static/esp32-h2-devkitm-1/ESP32-H2-DevKitM-1_v1.0_SystemBlock_20220610.png
     :align: center
@@ -141,7 +172,7 @@ There are three mutually exclusive ways to provide power to the board:
 Current Measurement
 -------------------
 
-The J5 headers on ESP32-H2-DevKitM-1 (see J5 in Figure :ref:`user-guide-H2-devkitm-1-board-front`) can be used for measuring the current drawn by the ESP32-H2-MINI-1 module:
+The J5 headers on ESP32-H2-DevKitM-1 (see J5 in Figure :ref:`user-guide-H2-devkitm-1-board-front`) can be used for measuring the current drawn by the ESP32-H2-MINI-1/1U module:
 
 - Remove the jumper: Power supply between the module and peripherals on the board is cut off. To measure the module's current, connect the board with an ammeter via J5 headers.
 - Apply the jumper (factory default): Restore the board's normal functionality.
@@ -205,7 +236,8 @@ No.   Name  Type [1]_   Function
 .. [3] When connected to XTAL_32K_N inside the module, this pin cannot be used for other purpose.
 .. [4] Used for driving RGB LED inside the module.
 
-For more information about pin description, please see ESP32-H2-beta Datasheet (see attached PDF).
+For more information about pin description, please see `ESP32-H2 Datasheet`_.
+
 
 Pin Layout
 ^^^^^^^^^^^
@@ -228,6 +260,7 @@ Related Documents
 =================
 
 - `ESP32-H2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_en.pdf>`_ (PDF)
+- `ESP32-H2-MINI-1/1U Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf>`_ (PDF)
 - `ESP32-H2-DevKitM-1 Schematics <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics_20230306.pdf>`_ (PDF)
 - `ESP32-H2-DevKitM-1 PCB Layout <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout_20221122.pdf>`_ (PDF)
 - `ESP32-H2-DevKitM-1 Dimensions <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension_20230303.pdf>`_ (PDF)
