@@ -6,7 +6,7 @@ ESP32-H2-DevKitM-1
 
 本指南将帮助您快速上手 ESP32-H2-DevKitM-1，并提供该款开发板的详细信息。
 
-ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE 802.15.4 双模模组 ESP32-H2-MINI-1。
+ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE 802.15.4 双模模组 ESP32-H2-MINI-1 或 ESP32-H2-MINI-1U。
 
 板上模组的大部分管脚均已引出至开发板两侧排针，开发人员可根据实际需求，轻松通过跳线连接多种外围设备，同时也可将开发板插在面包板上使用。
 
@@ -49,8 +49,8 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 
    * - 主要组件
      - 介绍
-   * - ESP32-H2-MINI-1
-     - ESP32-H2-MINI-1 搭载 ESP32-H2 芯片，集成 2.4 GHz 接收器兼容低功耗蓝牙和 IEEE 802.15.4 技术，支持 Bluetooth 5（LE）, Bluetooth mesh, Zigbee, Thread 和 Matter 等协议，适用于多种低功耗物联网应用场景。
+   * - ESP32-H2-MINI-1 或 ESP32-H2-MINI-1U
+     - ESP32-H2-MINI-1/1U 搭载 ESP32-H2 芯片，集成 2.4 GHz 接收器兼容低功耗蓝牙和 IEEE 802.15.4 技术，支持 Bluetooth 5（LE）, Bluetooth mesh, Zigbee, Thread 和 Matter 等协议，适用于多种低功耗物联网应用场景。
    * - Pin Headers（排针）
      - 所有可用 GPIO 管脚（除 flash 的 SPI 总线）均已引出至开发板的排针。请查看 `排针`_ 获取更多信息
    * - 3.3 V Power On LED（3.3 V 电源指示灯）
@@ -90,6 +90,7 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 
   请确保使用适当的 USB 数据线。部分数据线仅可用于充电，无法用于数据传输和编程。
 
+
 软件设置
 ^^^^^^^^
 
@@ -98,6 +99,33 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 
 内含组件和包装
 ---------------
+
+订购信息
+^^^^^^^^
+
+该开发板有多种型号可供选择，详见下表。
+
+.. list-table::
+   :header-rows: 1
+   :widths: 41 24 9 8 18
+
+   * - 订购代码
+     - 搭载模组
+     - Flash [A]_
+     - PSRAM
+     - 天线
+   * - ESP32-H2-DevKitM-1-N4
+     - ESP32-H2-MINI-1
+     - 4 MB
+     - 0 MB
+     - PCB 板载天线
+   * - ESP32-H2-DevKitM-1U-N4
+     - ESP32-H2-MINI-1U
+     - 4 MB
+     - 0 MB
+     - 外部天线连接器
+
+.. [A] flash 封装在芯片内部。
 
 零售订单
 ^^^^^^^^
@@ -115,10 +143,8 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 批量订单请前往 https://www.espressif.com/zh-hans/contact-us/sales-questions。
 
 
-
 硬件参考
 ========
-
 
 功能框图
 --------
@@ -132,11 +158,11 @@ ESP32-H2-DevKitM-1 的主要组件和连接方式如下图所示。
 
     ESP32-H2-DevKitM-1
 
+
 电源选项
 ^^^^^^^^
 
 您可从以下三种供电方式中任选其一给开发板供电：
-
 
 - USB Type-C 转 UART 接口供电（默认）
 - 5V 和 G (GND) 排针供电
@@ -146,21 +172,17 @@ ESP32-H2-DevKitM-1 的主要组件和连接方式如下图所示。
 测量电流
 ^^^^^^^^
 
-开发板上的 J5 排针（见图 :ref:`user-guide-H2-devkitm-1-board-front` - 正面 中的 J5）可用于测量 ESP32-H2-MINI-1 模组的电流：
-
+开发板上的 J5 排针（见图 :ref:`user-guide-H2-devkitm-1-board-front` - 正面 中的 J5）可用于测量 ESP32-H2-MINI-1/1U 模组的电流：
 
 - 移除 J5 跳帽：此时开发板上外设和模组电源断开，J5 排针接入电流表后可测量模组电流。
 - 安装 J5 跳帽（出厂时默认）：开发板恢复正常功能。
-
 
 .. 注解::
 
   使用 3V3 和 GND 排针给开发板供电时，需移除 J5 跳帽，在外部电路上串联接入电流表，才可测量模组的电流。
 
-
 排针
 ----
-
 
 下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称见 `管脚布局`_ 所示，排针的序号与开发板原理图（随附 PDF）一致。
 
@@ -214,8 +236,7 @@ J3
 .. [3] 当模组内部选择连接 XTAL_32K_N，不能作他用。
 .. [4] 模组内部已用于驱动 RGB LED。
 
-有关管脚功能名称的解释，请参考芯片规格书（见随附 PDF）。
-
+有关管脚功能名称的解释，请参考 `ESP32-H2 技术规格书`_。
 
 
 管脚布局
@@ -239,6 +260,7 @@ J3
 ========
 
 - `ESP32-H2 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_cn.pdf>`_ (PDF)
+- `ESP32-H2-MINI-1/1U 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-H2-DevKitM-1 原理图 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics_20230306.pdf>`_ (PDF)
 - `ESP32-H2-DevKitM-1 PCB 布局图 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout_20221122.pdf>`_ (PDF)
 - `ESP32-H2-DevKitM-1 尺寸图 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension_20230303.pdf>`_ (PDF)
