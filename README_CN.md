@@ -35,14 +35,14 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 
 |<div style="width: 150pt">开发板</div> |图片|描述|
 |:----:|:----:|:----|
-| [ESP32-C3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcd-ev-board/index.html)| [<img src="docs/_static/esp32-c3-lcd-ev-board/esp32-c3-lcd-ev-board-isometric-raw.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcd-ev-board/index.html) | ESP32-C3-LCD-EV-BOARD 是用于评估和验证 ESP32-C3 和 SPI 接口显示屏的开发板。ESP32-C3-LCD-EV-BOARD 主板集成了 ESP32-C3-MINI-1 模块，通过旋转编码器开关实现屏幕交互功能。|
+| [ESP32-C3-LCDkit](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcdkit/index.html)| [<img src="docs/_static/esp32-c3-lcdkit/esp32-c3-lcdkit-isometric-raw.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcdkit/index.html) | ESP32-C3-LCDkit 是用于评估和验证 ESP32-C3 和 SPI 接口显示屏的开发板。ESP32-C3-LCDkit 主板集成了 ESP32-C3-MINI-1 模块，通过旋转编码器开关实现屏幕交互，还具有音频播放和红外无线控制功能。|
 
 **ESP32-S3 系列开发板**
 
 |<div style="width: 150pt">开发板</div> |图片|描述|
 |:----:|:----:|:----|
 | [ESP32-S3-USB-OTG](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-usb-otg/index.html)| [<img src="docs/_static/esp32-s3-usb-otg/ESP32-S3-USB-OTG.png" alt ="ESP32-S3-USB-OTG" align="center" />](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-usb-otg/index.html) |ESP32-S3-USB-OTG 是一款着重 USB 外设应用的开发板，搭载 ESP32-S3-MINI-1-N8 模组。结合芯片的 Wi-Fi 功能，此开发板可利用 USB 实现摄像头 Wi-Fi 图传、4G 热点上网、无线 U 盘等应用。|
-| [ESP32-S3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/index.html)| [<img src="docs/_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=140/>](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/index.html) | ESP32-S3-LCD-EV-BOARD 是用于评估和验证 ESP32-S3 屏幕交互应用的开发板。ESP32-S3-LCD-EV-BOARD 主板集成了 ESP32-S3-WROOM-1 模块，具有触摸屏交互和语音交互功能。|
+| [ESP32-S3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/index.html)| [<img src="docs/_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=140/>](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/index.html) | ESP32-S3-LCD-EV-BOARD 是用于评估和验证 ESP32-S3 屏幕交互应用的开发板。ESP32-S3-LCD-EV-BOARD 主板集成了 ESP32-S3-WROOM-1 模块，具有触摸屏交互和语音交互功能。|
 
 **ESP32-S2 系列开发板**
 

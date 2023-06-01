@@ -1,6 +1,6 @@
 ## User Guide
 
-* [ESP32-C3-LCD-EV-BOARD](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcd-ev-board/user_guide.html)
+* [ESP32-C3-LCDkit](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcdkit/user_guide.html)
 
 ## How to use example
 
