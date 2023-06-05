@@ -1,12 +1,26 @@
 # Smart Panel Example
 
-An example used to display smart panel UI.
-
-**Note: This example is only applicable to 800x480 LCD. And it uses an old version of LVGL and BSP components, so it is not recommended as a reference routine and is only used to demonstrate the GUI.**
+A factory demo designed for smart control panel (800x480) which has offline voice recognition function.
 
 ## How to use example
 
 Please first read the [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-Board to learn about its software and hardware information.
+
+### Hardware Required
+
+* An ESP32-S3-LCD-EV-Board development board with subboard3 (800x480)
+* An USB Type-C cable for Power supply and programming
+* A Speaker
+
+### Configure
+
+Run `idf.py menuconfig`, then modify the below optional configurations:
+
+1. QWeather Configuration
+   * `QWEATHER_REQUEST_KEY`: To enable the function of realtime weather, please fill it with your own key. (see https://console.qweather.com/#/apps)
+2. wifi Configuration
+   * `ESP_WIFI_SSID`: The name of default Wi-Fi AP.
+   * `ESP_WIFI_PASSWORD`: The password of default Wi-Fi AP.
 
 ### Build and Flash
 
@@ -21,7 +35,7 @@ See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/l
 
 * Program build failure
     * Error message with `error: static assertion failed: "FLASH and PSRAM Mode configuration are not supported"`: Please make sure ESP-IDF support `PSRAM Octal 120M` feature.
-    * Error message with `error: 'esp_lcd_rgb_panel_config_t' has no member named 'num_fbs'`: Please update the branch (release/v5.0 or master) of ESP-IDF.
+    * Error message with `CMake Error at xxx (message): ERROR: Some components (espressif/esp-sr) in the "managed_components"`: Please remove the ".component_hash" file by running `rm -rf managed_components/espressif__esp-sr/.component_hash`.
 * Program upload failure
     * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
     * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.

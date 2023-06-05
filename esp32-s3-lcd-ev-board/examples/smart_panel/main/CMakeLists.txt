@@ -3,13 +3,12 @@ idf_component_register(
         "."
         "app"
         "icon"
-        "qrgen"
         "ui"
+        "lv_fonts"
     INCLUDE_DIRS
     "."
-        "include"
-        "qrgen"
         "app"
-        "ui")
+        "ui"
+        "lv_fonts")
 
 spiffs_create_partition_image(storage ../spiffs FLASH_IN_PROJECT)

@@ -1,22 +1,7 @@
-/**
- * @file app_weather.h
- * @brief Weather app header.
- * @version 0.1
- * @date 2021-04-07
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- * 
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: Unlicense OR CC0-1.0
  */
 
 #pragma once
@@ -31,15 +16,22 @@
 
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
+#include "freertos/semphr.h"
 
+#include "esp_err.h"
+#include "esp_log.h"
 #include "cJSON.h"
-#include "device.h"
-#include "https_request.h"
-#include "ui_main.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
+
+typedef enum {
+    LOCATION_NUM_SHANGHAI,
+    LOCATION_NUM_BEIJING,
+    LOCATION_NUM_SHENZHEN,
+    LOCATION_NUM_MAX,
+} location_num_t;
 
 typedef enum {
     air_item_pm2p5  = 0x00,
@@ -62,11 +54,11 @@ typedef struct {
 } weather_hourly_info_t;
 
 typedef struct {
-    char *temp;
-    char *humid;
+    char temp;
+    char icon_code;
+    char humid;
+    char uv_val;
     char *describe;
-    char *icon_code;
-    char *uv_val;
 } weather_info_t;
 
 typedef struct {
@@ -82,14 +74,22 @@ typedef struct {
 
 /**
  * @brief Start weather task.
- * 
+ *
  * @return esp_err_t Task create status.
  */
 esp_err_t app_weather_start(void);
 
+
+/**
+ * @brief Post weather request.
+ *
+ * @return esp_err_t request status.
+ */
+esp_err_t app_weather_request(location_num_t location);
+
 /**
  * @brief Get air info.
- * 
+ *
  * @param info Pointer to `air_info_t`.
  * @return esp_err_t Result.
  */
@@ -97,15 +97,16 @@ esp_err_t app_weather_get_air_info(air_info_t *info);
 
 /**
  * @brief Get current weather info.
- * 
+ *
  * @param info Pointer to `weather_info_t`.
  * @return esp_err_t Result.
  */
-esp_err_t app_weather_get_current_info(weather_info_t *info);
+esp_err_t app_weather_get_current_info(weather_info_t *info, location_num_t location);
+
 
 /**
  * @brief Get weather info of specified day.
- * 
+ *
  * @param day Specified day.
  * @param info Pointer to `weather_daily_info_t`.
  * @return esp_err_t Result.
@@ -114,7 +115,7 @@ esp_err_t app_weather_get_daily_info(size_t day, weather_daily_info_t *info);
 
 /**
  * @brief Get weather info of specified hour.
- * 
+ *
  * @param hour Specified hour.
  * @param info Pointer to `weather_hourly_info_t`.
  * @return esp_err_t Result.

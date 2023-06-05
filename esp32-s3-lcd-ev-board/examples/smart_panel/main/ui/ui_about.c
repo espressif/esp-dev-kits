@@ -1,27 +1,18 @@
-/**
- * @file ui_about.c
- * @brief About page UI code.
- * @version 0.1
- * @date 2021-01-11
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
 
+#include "esp_log.h"
+#include "esp_check.h"
+
+#include "main.h"
 #include "ui_main.h"
 #include "esp_mac.h"
 #include "esp_ota_ops.h"
+
+static const char *TAG = "ui_about";
 
 /* UI function declaration */
 ui_func_desc_t ui_about_func = {
@@ -66,7 +57,7 @@ void ui_about_init(void *data)
     lv_obj_set_style_local_text_font(tabel_about, LV_TABLE_PART_CELL2, LV_STATE_DEFAULT, &font_en_20);
     lv_obj_set_style_local_radius(tabel_about, LV_TABLE_PART_CELL2, LV_STATE_DEFAULT, 20);
     lv_obj_set_style_local_radius(tabel_about, LV_TABLE_PART_CELL2, LV_STATE_DEFAULT, 20);
-    
+
     /* Set tabel rol / col count and size */
     lv_table_set_col_cnt(tabel_about, 2);
     lv_table_set_row_cnt(tabel_about, 5);
@@ -81,14 +72,22 @@ void ui_about_init(void *data)
     lv_table_set_cell_value(tabel_about, 4, 0, "STA MAC Addr");
 
     /* Get app and device information and show in table */
-    app_desc = esp_ota_get_app_description();
+    app_desc = esp_app_get_description();
     uint8_t mac_arr[6];
     char fmt_text[24];
+    char text_data[10];
     esp_read_mac(mac_arr, ESP_MAC_WIFI_STA);
     sprintf(fmt_text,
-        "%02X:%02X:%02X:%02X:%02X:%02X",
-        mac_arr[0], mac_arr[1], mac_arr[2], mac_arr[3], mac_arr[4], mac_arr[5]);
-    lv_table_set_cell_value(tabel_about, 0, 1, app_desc->version);
+            "%02X:%02X:%02X:%02X:%02X:%02X",
+            mac_arr[0], mac_arr[1], mac_arr[2], mac_arr[3], mac_arr[4], mac_arr[5]);
+
+    sprintf(text_data, "v%d.%d.%d_%s", \
+            BOX_DEMO_VERSION_MAJOR, \
+            BOX_DEMO_VERSION_MINOR, \
+            BOX_DEMO_VERSION_PATCH, \
+            __DATE__);
+    // lv_table_set_cell_value(tabel_about, 0, 1, app_desc->version);
+    lv_table_set_cell_value(tabel_about, 0, 1, text_data);
     lv_table_set_cell_value(tabel_about, 1, 1, app_desc->idf_ver);
     lv_table_set_cell_value(tabel_about, 2, 1, "1.0");      //  IC version. Just defined in src
     lv_table_set_cell_value(tabel_about, 3, 1, "1.0");      //  Sensor version. Just defined in src
@@ -100,7 +99,7 @@ void ui_about_init(void *data)
     }
 
     /* Place it at bottom of parent */
-    lv_obj_align(tabel_about, NULL ,LV_ALIGN_IN_BOTTOM_MID, 0, 35);
+    lv_obj_align(tabel_about, NULL, LV_ALIGN_IN_BOTTOM_MID, 0, 35);
 
     ui_about_state = ui_state_show;
 }
@@ -111,12 +110,15 @@ void ui_about_show(void *data)
         ui_about_init(data);
     } else if (ui_state_hide == ui_about_state) {
         ui_page_show("About");
+        ui_about_state = ui_state_show;
         lv_obj_set_hidden(tabel_mask, false);
+        lv_obj_set_hidden(obj_page_about, false);
     }
 }
 
 void ui_about_hide(void *data)
 {
+    ESP_LOGI(TAG, "about_hide:%d", ui_about_state);
     if (ui_state_show == ui_about_state) {
         lv_obj_set_hidden(tabel_mask, true);
         lv_obj_set_hidden(obj_page_about, true);

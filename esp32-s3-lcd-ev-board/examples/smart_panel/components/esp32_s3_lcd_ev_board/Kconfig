@@ -1,0 +1,153 @@
+menu "Board Support Package"
+
+    config BSP_ERROR_CHECK
+        bool "Enable error check in BSP"
+        default y
+        help
+            Error check assert the application before returning the error code.
+
+    menu "I2C"
+        config BSP_I2C_NUM
+            int "I2C peripheral index"
+            default 1
+            range 0 1
+            help
+                ESP32S3 has two I2C peripherals, pick the one you want to use.
+
+        config BSP_I2C_FAST_MODE
+            bool "Enable I2C fast mode"
+            default y
+            help
+                I2C has two speed modes: normal (100kHz) and fast (400kHz).
+
+        config BSP_I2C_CLK_SPEED_HZ
+            int
+            default 400000 if BSP_I2C_FAST_MODE
+            default 100000
+    endmenu
+
+    menu "LCD"
+        choice BSP_LCD_SUB_BOARD
+            prompt "Select Sub board"
+            default BSP_LCD_SUB_BOARD_800_480
+            config BSP_LCD_SUB_BOARD_480_480
+                bool "Sub board 2 with 480x480 RGB LCD"
+            config BSP_LCD_SUB_BOARD_800_480
+                bool "Sub board 3 with 800x480 RGB LCD"
+        endchoice
+
+        config BSP_LCD_RGB_BUFFER_NUMS
+            int "Set number of frame buffers"
+            depends on BSP_LCD_SUB_BOARD_480_480 || BSP_LCD_SUB_BOARD_800_480
+            default 1
+            range 1 3
+            help
+                Let RGB LCD driver create a specified number of frame-size buffers. Only when it is set to multiple can the avoiding tearing be turned on.
+
+        choice BSP_LCD_RGB_REFRESH_MODE
+            prompt "Select the refresh mode for RGB LCD"
+            depends on BSP_LCD_SUB_BOARD_480_480 || BSP_LCD_SUB_BOARD_800_480
+            default BSP_LCD_RGB_REFRESH_AUTO
+            config BSP_LCD_RGB_REFRESH_AUTO
+                bool "Auto refresh mode"
+                help
+                    Refresh the LCD in the most common way.
+            config BSP_LCD_RGB_REFRESH_MANUALLY
+                bool "Manually refresh mode"
+                help
+                    Refresh the LCD in a specific task instead of automatically refreshing.
+            config BSP_LCD_RGB_BOUNCE_BUFFER_MODE
+                bool "Bounce buffer mode"
+                help
+                    Enable bounce buffer mode can achieve higher PCLK frequency at the cost of higher CPU consumption.
+        endchoice
+
+        config BSP_LCD_RGB_REFRESH_TASK_PERIOD
+            int "Minimum Period(ms) of LCD refreshing task"
+            depends on BSP_LCD_RGB_REFRESH_MANUALLY
+            default 10
+            help
+               This configuration does not necessarily represent the actual refresh cycle of the RGB interface.
+
+        config BSP_LCD_RGB_REFRESH_TASK_PRIORITY
+            int "Priority of LCD refreshing task"
+            depends on BSP_LCD_RGB_REFRESH_MANUALLY
+            default 2
+
+        config BSP_LCD_RGB_BOUNCE_BUFFER_HEIGHT
+            depends on BSP_LCD_RGB_BOUNCE_BUFFER_MODE
+            int "Bounce buffer height"
+            default 10
+            help
+                Height of bounce buffer. The width of the buffer is the same as that of the LCD.
+    endmenu
+
+    menu "Display"
+        config BSP_DISPLAY_LVGL_TASK_PRIORITY
+            int "LVGL task priority"
+            default 2
+            help
+                The Board Support Package will create a task that will periodically handle LVGL operation in lv_timer_handler().
+
+        config BSP_DISPLAY_LVGL_TASK_DELAY
+            int "LVGL task minimum delay time (ms)"
+            default 10
+            range 1 100
+            help
+                Minimum delay time for LVGL task. It should be larger if the task watchdog is triggered frequently.
+
+        config BSP_DISPLAY_LVGL_TASK_STACK_SIZE
+            int "LVGL task stack size (KB)"
+            default 4
+            help
+                Size(KB) of LVGL task stack.
+
+        config BSP_DISPLAY_LVGL_TICK
+            int "LVGL tick period"
+            default 5
+            range 1 100
+            help
+                Period of LVGL tick timer.
+
+        config BSP_DISPLAY_LVGL_AVOID_TEAR
+            bool "Avoid tearing effect"
+            depends on BSP_LCD_RGB_BUFFER_NUMS > 1
+            default "n"
+            help
+                Avoid tearing effect through LVGL buffer mode and double frame buffers of RGB LCD. This feature is only available for RGB LCD.
+
+        choice BSP_DISPLAY_LVGL_MODE
+            depends on BSP_DISPLAY_LVGL_AVOID_TEAR
+            prompt "Select LVGL buffer mode"
+            default BSP_DISPLAY_LVGL_FULL_REFRESH
+            config BSP_DISPLAY_LVGL_FULL_REFRESH
+                bool "Full refresh"
+            config BSP_DISPLAY_LVGL_DIRECT_MODE
+                bool "Direct mode"
+        endchoice
+
+        choice BSP_DISPLAY_LVGL_BUF_CAPS
+            depends on !BSP_DISPLAY_LVGL_AVOID_TEAR
+            prompt "Select LVGL buffer memory capability"
+            default BSP_DISPLAY_LVGL_INTERNAL
+            config BSP_DISPLAY_LVGL_PSRAM
+                bool "PSRAM memory"
+            config BSP_DISPLAY_LVGL_INTERNAL
+                bool "Internal memory"
+        endchoice
+
+        config BSP_DISPLAY_LVGL_BUF_HEIGHT
+            depends on !BSP_DISPLAY_LVGL_AVOID_TEAR
+            int "LVGL buffer height"
+            default 100
+            help
+                Height of LVGL buffer. The width of the buffer is the same as that of the LCD.
+    endmenu
+
+    config BSP_I2S_NUM
+        int "I2S peripheral index"
+        default 1
+        range 0 1
+        help
+            ESP32S3 has two I2S peripherals, pick the one you want to use.
+endmenu

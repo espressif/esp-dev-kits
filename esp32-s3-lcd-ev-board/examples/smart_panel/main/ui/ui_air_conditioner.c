@@ -1,22 +1,7 @@
-/**
- * @file ui_air_conditioner.c
- * @brief Air conditioner control page.
- * @version 0.1
- * @date 2021-01-11
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
 
 #include "ui_main.h"
@@ -154,7 +139,7 @@ void ui_air_conditioner_init(void *data)
     lv_obj_set_style_local_border_width(_btn_auto, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_bg_color(_btn_auto, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, COLOR_BG);
     lv_obj_set_style_local_bg_color(_btn_auto, LV_OBJ_PART_MAIN, LV_STATE_PRESSED, COLOR_THEME);
-    
+
     /* Create copy of buttons */
     _btn_cool = lv_obj_create(obj_air_conditioner, _btn_auto);
     _btn_heat = lv_obj_create(obj_air_conditioner, _btn_auto);
@@ -175,7 +160,7 @@ void ui_air_conditioner_init(void *data)
     lv_imgbtn_set_src(_img_icon_auto, LV_BTN_STATE_RELEASED, data_ico_auto);
     lv_imgbtn_set_src(_img_icon_auto, LV_BTN_STATE_PRESSED, data_ico_auto_down);
     lv_obj_align(_img_icon_auto, NULL, LV_ALIGN_CENTER, 0, -10);
-    
+
     _label_auto = lv_label_create(_btn_auto, NULL);
     lv_label_set_text(_label_auto, "AUTO");
     lv_obj_align(_label_auto, NULL, LV_ALIGN_CENTER, 0, 25);
@@ -264,7 +249,7 @@ void ui_air_conditioner_init(void *data)
     /* Fan control panel */
     _fan_panel = lv_obj_create(obj_air_conditioner, NULL);
     lv_obj_set_size(_fan_panel, 220, 135);
-    lv_obj_align(_fan_panel, NULL, LV_ALIGN_IN_TOP_RIGHT, -20, 70); 
+    lv_obj_align(_fan_panel, NULL, LV_ALIGN_IN_TOP_RIGHT, -20, 70);
 
     /* Timing panel */
     _time_panel = lv_obj_create(obj_air_conditioner, _fan_panel);
@@ -292,7 +277,7 @@ void ui_air_conditioner_init(void *data)
     lv_label_set_text(_label_room_temp_val, "26°C");
     lv_obj_align(_label_room_temp_val, NULL, LV_ALIGN_CENTER, 0, 0);
 
-    /* Power button, has external click area */         
+    /* Power button, has external click area */
     _btn_pwr = lv_btn_create(_main_panel, NULL);
     lv_obj_set_size(_btn_pwr, 40, 40);
     lv_obj_set_ext_click_area(_btn_pwr, 200, 100, 10, 160);
@@ -425,7 +410,7 @@ void ui_air_conditioner_init(void *data)
         lv_obj_set_click(_div_led[i], false);
         lv_obj_set_style_local_bg_color(_div_led[i], LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
         lv_obj_set_style_local_border_width(_div_led[i], LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
-        
+
     }
 
     lv_obj_set_style_local_bg_color(_div_led[0], LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_GRAY);
@@ -510,7 +495,7 @@ void ui_air_conditioner_init(void *data)
         "20   \n"
         "21   \n"
         "22   \n"
-        "23   "                
+        "23   "
     };
     _roller_hour = lv_roller_create(_time_panel, NULL);
     lv_roller_set_options(_roller_hour, text_hour, LV_ROLLER_MODE_INFINITE);
@@ -642,7 +627,7 @@ void ui_air_conditioner_show(void *data)
         lv_obj_set_hidden(_time_panel, false);
 
         ui_page_show("Air Conditioner");
-        
+
         ui_air_conditioner_state = ui_state_show;
     }
 
@@ -663,7 +648,7 @@ void ui_air_conditioner_hide(void *data)
         lv_obj_set_hidden(_fan_panel, true);
         lv_obj_set_hidden(_time_panel, true);
         lv_obj_set_hidden(obj_air_conditioner, true);
-        
+
         ui_air_conditioner_state = ui_state_hide;
     }
 }
@@ -692,7 +677,7 @@ static void ui_ac_update_mode(void)
             lv_imgbtn_set_src(_img_icon_heat, LV_BTN_STATE_RELEASED, data_ico_heat);
             lv_imgbtn_set_src(_img_icon_dry, LV_BTN_STATE_RELEASED, data_ico_dry);
             lv_imgbtn_set_src(_img_icon_fan, LV_BTN_STATE_RELEASED, data_ico_fan);
-            
+
             ui_obj_set_highlight(_btn_auto, true);
             ui_obj_set_highlight(_btn_cool, false);
             ui_obj_set_highlight(_btn_heat, false);
@@ -795,7 +780,7 @@ static void ui_ac_update_fan_speed(void)
         lv_obj_set_style_local_bg_color(_bar_fan_speed[0], LV_BAR_PART_BG, LV_STATE_DEFAULT, lv_color_make(251, 217, 163));
         lv_obj_set_style_local_bg_color(_bar_fan_speed[1], LV_BAR_PART_BG, LV_STATE_DEFAULT, lv_color_make(251, 217, 163));
         lv_obj_set_style_local_bg_color(_bar_fan_speed[2], LV_BAR_PART_BG, LV_STATE_DEFAULT, lv_color_make(251, 217, 163));
-        
+
         switch (ac_state.fan_speed) {
         case ac_fan_speed_low:
             lv_bar_set_value(_bar_fan_speed[0], 10, LV_ANIM_ON);
@@ -838,7 +823,7 @@ static void ui_ac_update_set_temp(void)
 
 /**
  * @brief Update timing panel
- * 
+ *
  */
 static void ui_ac_update_time_panel(void)
 {
@@ -886,7 +871,7 @@ static void ui_ac_update_time_panel(void)
 
 /**
  * @brief Update air conditioner mode.
- * 
+ *
  */
 static void ui_ac_update(void)
 {

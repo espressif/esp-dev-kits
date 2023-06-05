@@ -1,22 +1,7 @@
-/**
- * @file ui_page.c
- * @brief Page for some UI.
- * @version 0.1
- * @date 2021-01-11
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- * 
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
 
 #include "ui_main.h"
@@ -58,15 +43,15 @@ void ui_page_init(void *data)
     lv_obj_set_style_local_outline_color(btn_back, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
     lv_obj_set_style_local_outline_color(btn_back, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_COLOR_WHITE);
     lv_obj_set_style_local_border_color(btn_back, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
-    lv_obj_set_style_local_border_color(btn_back, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_COLOR_WHITE);        
-    lv_obj_set_style_local_value_str(btn_back, LV_BTN_PART_MAIN,LV_STATE_DEFAULT, LV_SYMBOL_LEFT);
+    lv_obj_set_style_local_border_color(btn_back, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_COLOR_WHITE);
+    lv_obj_set_style_local_value_str(btn_back, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_LEFT);
     lv_obj_set_style_local_value_font(btn_back, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_40);
     lv_obj_align(btn_back, NULL, LV_ALIGN_IN_TOP_LEFT, 10, 5);
 
-    lv_obj_t* bar_div = lv_bar_create(page, NULL);
+    lv_obj_t *bar_div = lv_bar_create(page, NULL);
     lv_obj_set_size(bar_div, 750, 2);
     lv_obj_set_style_local_bg_color(bar_div, LV_BAR_PART_BG, LV_STATE_DEFAULT, COLOR_THEME);
-    lv_obj_align(bar_div, NULL, LV_ALIGN_IN_TOP_MID, 0 , 60);
+    lv_obj_align(bar_div, NULL, LV_ALIGN_IN_TOP_MID, 0, 60);
 
     /* Create a tittle for page */
     label_tittle = lv_label_create(page, NULL);
