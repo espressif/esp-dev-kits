@@ -1,30 +1,19 @@
-/**
- * @file ui_music.c
- * @brief Music example UI
- * @version 0.1
- * @date 2021-01-01
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
- *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "ui_main.h"
-#include "bsp_codec.h"
-#include "app_player.h"
-#include "file_manager.h"
+#include "main.h"
+
+#include "bsp_board.h"
+#include "audio_player.h"
+#include "file_iterator.h"
+#include "bsp/esp-bsp.h"
 
 static const char *TAG = "ui_music";
 
@@ -34,7 +23,7 @@ ui_func_desc_t ui_music_func = {
     .show = ui_music_show,
     .hide = ui_music_hide,
 };
-extern bool sdcard_ok;
+
 static ui_state_t ui_music_state = ui_state_dis;
 
 static lv_obj_t *img_album = NULL;
@@ -57,7 +46,7 @@ const char *lrc = NULL;
 const uint32_t *lrc_ts = NULL;
 uint32_t lrc_line_num = 0;
 
-static uint32_t music_total_time = 0;
+static bool g_media_is_playing = false;
 
 extern void *data_music_album[];
 
@@ -78,48 +67,73 @@ static const char *music_lyric[] = {
     "Example lyrics - 7",
 };
 
-static void lyric_task(lv_task_t *task);
 static void slider_volume_cb(lv_obj_t *obj, lv_event_t event);
 static void btn_play_pause_cb(lv_obj_t *obj, lv_event_t event);
 static void btn_prev_next_cb(lv_obj_t *obj, lv_event_t event);
 static void btn_list_cb(lv_obj_t *obj, lv_event_t event);
 static void btn_file_list_cb(lv_obj_t *obj, lv_event_t event);
 
-static void audio_cb(player_cb_ctx_t *ctx)
+static void audio_cb(audio_player_cb_ctx_t *ctx)
 {
-    if (AUDIO_EVENT_CHANGE == ctx->audio_event) {
+    switch (ctx->audio_event) {
+    case AUDIO_PLAYER_CALLBACK_EVENT_IDLE: /**< Player is idle, not playing audio */
+        ESP_LOGI(TAG, "IDLE");
+        g_media_is_playing = false;
+        break;
+    case AUDIO_PLAYER_CALLBACK_EVENT_PLAYING:
+    case AUDIO_PLAYER_CALLBACK_EVENT_COMPLETED_PLAYING_NEXT:
+        ESP_LOGI(TAG, "%s", (AUDIO_PLAYER_CALLBACK_EVENT_PLAYING == ctx->audio_event) ? "Play" : "Next");
+        g_media_is_playing = true;
 
-    } else if (AUDIO_EVENT_PLAY_BRFORE == ctx->audio_event) {
-        lv_port_sem_take();
-        uint8_t name[256];
-        StringGBK2UTF8(app_player_get_name_from_index(app_player_get_index()), name);
-        lv_label_set_text(label_music_name, (char *)name);
-        music_total_time = app_player_get_total_time() / 1000;
-        lv_label_set_text_fmt(label_music_length, "%02d:%02d", music_total_time / 60, music_total_time % 60);
-
-        app_player_get_current_lyric(&lrc, &lrc_ts, &lrc_line_num);
+        bsp_display_lock(0);
+        char filename[256];
+        file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+        file_iterator_get_full_path_from_index(file_iterator, file_iterator_get_index(file_iterator), filename, sizeof(filename));
+        lv_label_set_text(label_music_name, (char *)filename + strlen("/spiffs/"));
         if (lrc) {
             lv_roller_set_options(roller_lyric, lrc, LV_ROLLER_MODE_NORMAL);
         } else {
             lv_roller_set_options(roller_lyric, music_lyric[0], LV_ROLLER_MODE_NORMAL);
         }
-        lv_port_sem_give();
-    } else if (AUDIO_EVENT_PLAY == ctx->audio_event) {
-        lv_port_sem_take();
         lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PAUSE);
-        lv_port_sem_give();
-    } else if (AUDIO_EVENT_FILE_SCAN_DONE == ctx->audio_event) {
-        size_t list_len = 0;
-        const char **p_audio_file_info = app_player_get_file_list(&list_len);
-        lv_port_sem_take();
-        for (size_t i = 0; i < list_len; i++) {
-            uint8_t name[256];
-            StringGBK2UTF8(p_audio_file_info[i], name);
-            lv_obj_t *list_btn = lv_list_add_btn(list_music_file, LV_SYMBOL_AUDIO, (char *)name);
-            lv_obj_set_event_cb(list_btn, btn_file_list_cb);
-        }
-        lv_port_sem_give();
+        bsp_display_unlock();
+        break;
+    case AUDIO_PLAYER_CALLBACK_EVENT_PAUSE:
+        ESP_LOGI(TAG, "PAUSE");
+        bsp_display_lock(0);
+        lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLAY);
+        bsp_display_unlock();
+        break;
+    case AUDIO_PLAYER_CALLBACK_EVENT_SHUTDOWN:
+        ESP_LOGI(TAG, "SHUTDOWN");
+        break;
+    case AUDIO_PLAYER_CALLBACK_EVENT_UNKNOWN_FILE_TYPE:
+        ESP_LOGI(TAG, "UNKNOWN FILE");
+        break;
+    case AUDIO_PLAYER_CALLBACK_EVENT_UNKNOWN:
+        ESP_LOGI(TAG, "UNKNOWN");
+        break;
     }
+}
+
+static void play_present()
+{
+    char filename[128];
+    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_get_full_path_from_index(file_iterator, file_iterator_get_index(file_iterator), filename, sizeof(filename));
+    if (strstr(filename, "lrc")) {
+        file_iterator_next(file_iterator);
+        file_iterator_get_full_path_from_index(file_iterator, file_iterator_get_index(file_iterator), filename, sizeof(filename));
+    }
+    FILE *fp = fopen(filename, "rb");
+    if (!fp) {
+        ESP_LOGE(TAG, "unable to open '%s'", filename);
+        return;
+    } else {
+        ESP_LOGI(TAG, "open '%s'", filename);
+    }
+
+    audio_player_play(fp);
 }
 
 void ui_music_init(void *data)
@@ -170,8 +184,9 @@ void ui_music_init(void *data)
     lv_obj_align(btn_prev, NULL, LV_ALIGN_IN_LEFT_MID, 25, 0);
     lv_obj_set_event_cb(btn_prev, btn_prev_next_cb);
 
+    g_media_is_playing = (audio_player_get_state() == AUDIO_PLAYER_STATE_PLAYING);
     btn_play_pause = lv_btn_create(obj_control, btn_prev);
-    if (PLAYER_STATE_PLAYING == app_player_get_state()) {
+    if (g_media_is_playing) {
         lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PAUSE);
     } else {
         lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLAY);
@@ -256,17 +271,29 @@ void ui_music_init(void *data)
     lv_obj_set_style_local_border_width(list_music_file, LV_LIST_PART_BG, LV_STATE_DEFAULT, 1);
     lv_obj_set_style_local_border_color(list_music_file, LV_LIST_PART_BG, LV_STATE_DEFAULT, COLOR_THEME);
     lv_obj_align(list_music_file, obj_control, LV_ALIGN_OUT_TOP_RIGHT, 0, -10);
-    /* Update music file to list */
 
-    app_player_callback_register(audio_cb, NULL);
-    /* Start music task */
-    if (sdcard_ok) {
-        ESP_ERROR_CHECK(app_player_start("/sdcard"));
-    } else {
-        ESP_ERROR_CHECK(app_player_start("/spiffs"));
+    size_t list_len = 0;
+    char filename[128];
+    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    list_len = file_iterator_get_count(file_iterator);
+    for (size_t i = 0; i < list_len; i++) {
+
+        file_iterator_get_full_path_from_index(file_iterator, i, filename, sizeof(filename));
+        if (strstr(filename, "lrc")) {
+            continue;
+        }
+        lv_obj_t *list_btn = lv_list_add_btn(list_music_file, LV_SYMBOL_AUDIO, (char *)filename + strlen("/spiffs/"));
+        lv_obj_set_style_local_border_width(list_btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
+        lv_obj_set_style_local_border_width(list_btn, LV_BTN_PART_MAIN, LV_STATE_FOCUSED, 0);
+        lv_obj_set_style_local_outline_width(list_btn, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
+        lv_obj_set_style_local_outline_width(list_btn, LV_BTN_PART_MAIN, LV_STATE_FOCUSED, 0);
+
+        lv_obj_set_event_cb(list_btn, btn_file_list_cb);
     }
 
-    lv_task_create(lyric_task, 100, 1, NULL);
+    /* Update music file to list */
+
+    audio_player_callback_register(audio_cb, NULL);
     ui_music_state = ui_state_show;
 }
 
@@ -302,85 +329,69 @@ void ui_music_hide(void *data)
     }
 }
 
-static void lyric_task(lv_task_t *task)
-{
-    if (PLAYER_STATE_PLAYING != app_player_get_state()) {
-        return;
-    }
-
-    uint32_t ct = app_player_get_current_time();
-    static uint32_t counter_1s = 0;
-    if (++counter_1s >= 10) {
-        counter_1s = 0;
-        if (label_music_time && slider_progress && music_total_time) {
-            uint32_t t = ct / 1000;
-            lv_label_set_text_fmt(label_music_time, "%02d:%02d", t / 60, t % 60);
-            lv_slider_set_value(slider_progress, 100 * t / music_total_time, 0);
-        }
-    }
-
-    static uint16_t last_lrc_index = 0;
-    if (lrc) {
-        for (int i = lrc_line_num - 1; i >= 0; i--) {
-            if (ct > lrc_ts[i]) {
-                if (last_lrc_index != i) {
-                    last_lrc_index = i;
-                    printf("lrc set to %d\n", i);
-                    lv_roller_set_selected(roller_lyric, i, LV_ANIM_ON);
-                }
-                break;
-            }
-        }
-    }
-}
-
 static void slider_volume_cb(lv_obj_t *obj, lv_event_t event)
 {
     if (LV_EVENT_VALUE_CHANGED == event) {
         int v = lv_slider_get_value(obj);
         ESP_LOGI(TAG, "volume=%d", v);
-        bsp_codec_set_voice_volume(v);
-    }
-}
 
-static void btn_play_pause_cb(lv_obj_t *obj, lv_event_t event)
-{
-    if (LV_EVENT_CLICKED == event) {
-        bool is_playing = PLAYER_STATE_PLAYING == app_player_get_state();
-        if (is_playing) {
-            app_player_pause();
-            lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLAY);
-        } else {
-            app_player_play();
-            lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PAUSE);
-        }
+        bsp_codec_config_t *codec_handle = bsp_board_get_codec_handle();
+        codec_handle->volume_set_fn(v, NULL);
     }
 }
 
 static void btn_list_cb(lv_obj_t *obj, lv_event_t event)
 {
-    if (LV_EVENT_CLICKED == event) {
+    if (LV_EVENT_RELEASED == event) {
+        ESP_LOGI(TAG, "hidden list");
         lv_obj_set_hidden(list_music_file, !lv_obj_get_hidden(list_music_file));
     }
 }
 
 static void btn_file_list_cb(lv_obj_t *obj, lv_event_t event)
 {
-    if (LV_EVENT_CLICKED == event) {
+    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+
+    if (LV_EVENT_RELEASED == event) {
         lv_obj_t *btn = obj;
         int32_t i = lv_list_get_btn_index(list_music_file, btn);
+        file_iterator_set_index(file_iterator, i);
         ESP_LOGI(TAG, "selected %d-%s", i, lv_list_get_btn_text(btn));
-        app_player_play_index(i);
+        play_present();
+    }
+}
+
+static void btn_play_pause_cb(lv_obj_t *obj, lv_event_t event)
+{
+    if (LV_EVENT_RELEASED == event) {
+        if (g_media_is_playing) {
+            ESP_LOGI(TAG, "btn_pause");
+            audio_player_pause();
+            g_media_is_playing = false;
+            lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PLAY);
+        } else {
+            ESP_LOGI(TAG, "btn_play");
+            play_present();
+            g_media_is_playing = true;
+            lv_obj_set_style_local_value_str(btn_play_pause, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_PAUSE);
+        }
     }
 }
 
 static void btn_prev_next_cb(lv_obj_t *obj, lv_event_t event)
 {
-    if (LV_EVENT_CLICKED == event) {
+    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+
+    if (LV_EVENT_RELEASED == event) {
         if (btn_prev == obj) {
-            app_player_play_prev();
+            ESP_LOGI(TAG, "btn_prev");
+            file_iterator_prev(file_iterator);
+            play_present();
         } else {
-            app_player_play_next();
+            ESP_LOGI(TAG, "btn_next");
+            file_iterator_next(file_iterator);
         }
+        g_media_is_playing = 0;
+        btn_play_pause_cb(btn_play_pause, event);
     }
 }

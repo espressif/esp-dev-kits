@@ -1,22 +1,7 @@
-/**
- * @file device.c
- * @brief Initialize and get data of devices
- * @version 0.1
- * @date 2021-03-30
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
 
 #include "freertos/FreeRTOS.h"
@@ -37,12 +22,12 @@ static void sensor_task(void *data);
 esp_err_t sensor_task_start(void)
 {
     if (pdPASS != xTaskCreate(
-        (TaskFunction_t)        sensor_task,
-        (const char * const)    "Sensor Task",
-        (const uint32_t)        3 * 1024,
-        (void * const)          NULL,
-        (UBaseType_t)           1,
-        (TaskHandle_t * const)  NULL)) {
+                (TaskFunction_t)        sensor_task,
+                (const char *const)    "Sensor Task",
+                (const uint32_t)        3 * 1024,
+                (void *const)          NULL,
+                (UBaseType_t)           1,
+                (TaskHandle_t *const)  NULL)) {
         return ESP_FAIL;
     }
 
@@ -63,21 +48,21 @@ static void sensor_task(void *data)
 
             /* Update clock page */
             sprintf(fmt_text, "%.1f°C", temp);
-            
+
             /* Update data in clock page if network not connected */
-            lv_port_sem_take();
+            bsp_display_lock(0);
             ui_clock_set_item_val(ui_clock_item_temp, fmt_text);
-            lv_port_sem_give();
+            bsp_display_unlock();
 
             sprintf(fmt_text, "%.1f%%", humid);
-            
-            lv_port_sem_take();
+
+            bsp_display_lock(0);
             ui_clock_set_item_val(ui_clock_item_humid, fmt_text);
-            lv_port_sem_give();
+            bsp_display_unlock();
         } else {
             break;
         }
-        
+
         vTaskDelay(pdMS_TO_TICKS(500));
     }
 
@@ -105,7 +90,7 @@ void adc_bat_get_raw(uint8_t *val)
         return;
     }
 
-    *val=12;
+    *val = 12;
 }
 
 void adc_bat_get_voltage(float *voltage)

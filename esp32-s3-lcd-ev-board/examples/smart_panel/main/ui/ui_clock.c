@@ -1,23 +1,11 @@
-/**
- * @file ui_clock.c
- * @brief 
- * @version 0.1
- * @date 2021-01-11
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
+
+#include <time.h>
+#include <sys/time.h>
 
 #include "ui_main.h"
 #include "app_weather.h"
@@ -75,7 +63,7 @@ void ui_clock_init(void *data)
 {
     (void)data;
 
-    app_weather_get_current_info(&weather_info);
+    app_weather_get_current_info(&weather_info, LOCATION_NUM_SHANGHAI);
 
     /* Weather page */
     page_weather = lv_obj_create(lv_scr_act(), NULL);
@@ -92,12 +80,14 @@ void ui_clock_init(void *data)
     lv_obj_align(img_weather, page_weather, LV_ALIGN_IN_LEFT_MID, 30, 0);
 
     label_temp = lv_label_create(page_weather, NULL);
-    lv_label_set_text(label_temp, weather_info.temp);
+    lv_label_set_text_fmt(label_temp, "%d", weather_info.temp);
     lv_obj_set_style_local_text_font(label_temp, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_60);
     lv_obj_align(label_temp, img_weather, LV_ALIGN_OUT_RIGHT_TOP, 40, 20);
 
     label_weather = lv_label_create(page_weather, NULL);
-    lv_label_set_text(label_weather, weather_info.describe);
+    if (weather_info.describe) {
+        lv_label_set_text(label_weather, weather_info.describe);
+    }
     lv_obj_set_style_local_text_font(label_weather, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_36);
     lv_obj_align(label_weather, label_temp, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 10);
 
@@ -110,7 +100,7 @@ void ui_clock_init(void *data)
     lv_obj_set_style_local_radius(page_humidity, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 10);
     lv_obj_set_style_local_border_width(page_humidity, LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_align(page_humidity, page_weather, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 16);
-    
+
     img_humid = lv_img_create(page_humidity, NULL);
     lv_img_set_src(img_humid, data_icon_humidity);
     lv_obj_align(img_humid, page_humidity, LV_ALIGN_IN_LEFT_MID, 15, 0);
@@ -121,7 +111,7 @@ void ui_clock_init(void *data)
     lv_obj_align(label_humid, img_humid, LV_ALIGN_OUT_RIGHT_TOP, 10, -10);
 
     label_humid_val = lv_label_create(page_humidity, NULL);
-    lv_label_set_text(label_humid_val, weather_info.humid);
+    lv_label_set_text_fmt(label_humid_val, "%d", weather_info.humid);
     lv_obj_set_style_local_text_font(label_humid_val, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_28);
     lv_obj_align(label_humid_val, img_humid, LV_ALIGN_OUT_RIGHT_BOTTOM, 15, 10);
 
@@ -145,7 +135,7 @@ void ui_clock_init(void *data)
     lv_obj_align(label_uv, img_uv, LV_ALIGN_OUT_RIGHT_TOP, 10, -10);
 
     label_uv_val = lv_label_create(page_uv, NULL);
-    lv_label_set_text(label_uv_val, weather_info.uv_val);
+    lv_label_set_text_fmt(label_uv_val, "%d", weather_info.uv_val);
     lv_obj_set_style_local_text_font(label_uv_val, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_bold_28);
     lv_obj_align(label_uv_val, img_uv, LV_ALIGN_OUT_RIGHT_BOTTOM, 15, 10);
 
@@ -262,7 +252,7 @@ void ui_clock_set_item_val(ui_clock_item_t item, const char *text)
         break;
     case ui_clock_item_humid:
         if (NULL != label_humid_val) {
-           lv_label_set_text(label_humid_val, text); 
+            lv_label_set_text(label_humid_val, text);
         }
         break;
     case ui_clock_item_uv:
@@ -301,6 +291,9 @@ static void time_update_task(lv_task_t *task)
     } else {
         lv_label_set_text_static(label_time, fmt_text);
     }
+
+    ui_clock_update_date();
+    ui_clock_update();
 }
 
 static void page_detail_cb(lv_obj_t *obj, lv_event_t event)
@@ -397,19 +390,24 @@ static void ui_clock_icon_update(void)
     char file_path[64];
     void *old_icon_ptr = data_icon_weather;
 
-    sprintf(file_path, "S:/Icon/%s.bin", weather_info.icon_code);
+    static uint8_t icon_code = 0xFF;
 
-    if (LV_FS_RES_OK == lv_fs_open(&file, file_path, LV_FS_MODE_RD)) {
-        lv_fs_close(&file);
-    } else {
-        strcpy(file_path, "S:/Icon/999.bin");
+    if (icon_code != weather_info.icon_code) {
+        icon_code = weather_info.icon_code;
+
+        sprintf(file_path, "S:/Icon/%s.bin", weather_info.icon_code);
+
+        if (LV_FS_RES_OK == lv_fs_open(&file, file_path, LV_FS_MODE_RD)) {
+            lv_fs_close(&file);
+        } else {
+            strcpy(file_path, "S:/Icon/999.bin");
+        }
+
+        ui_laod_resource(file_path, &data_icon_weather);
+        lv_img_set_src(img_weather, data_icon_weather);
+
+        free(old_icon_ptr);
     }
-
-    ui_laod_resource(file_path, &data_icon_weather);
-
-    lv_img_set_src(img_weather, data_icon_weather);
-
-    free(old_icon_ptr);
 }
 
 void ui_clock_update(void)
@@ -417,25 +415,27 @@ void ui_clock_update(void)
     static char temp_text[8];
     static char humid_text[8];
 
-    app_weather_get_current_info(&weather_info);
-    app_weather_get_air_info(&air_info);
+    app_weather_get_current_info(&weather_info, LOCATION_NUM_SHANGHAI);
+    // app_weather_get_air_info(&air_info);
 
     if (ui_state_dis == ui_clock_state) {
         return;
     }
 
-    sprintf(temp_text, "%s°C", weather_info.temp);
-    sprintf(humid_text, "%s%%", weather_info.humid);
+    sprintf(temp_text, "%d°C", weather_info.temp);
+    sprintf(humid_text, "%d%%", weather_info.humid);
 
     lv_label_set_text_static(label_temp, temp_text);
     lv_label_set_text_static(label_humid_val, humid_text);
-    lv_label_set_text_static(label_uv_val, weather_info.uv_val);
-    lv_label_set_text_static(label_weather, weather_info.describe);
-    lv_label_set_text_static(label_aqi_val, air_info.aqi);
-    lv_label_set_text_static(label_air, air_info.level);
-    lv_obj_align(label_air, NULL, LV_ALIGN_CENTER, 80, 0);
+    lv_label_set_text_fmt(label_uv_val, "%d", weather_info.uv_val);
+    if (weather_info.describe) {
+        lv_label_set_text_static(label_weather, weather_info.describe);
+    }
+    // lv_label_set_text_static(label_aqi_val, air_info.aqi);
+    // lv_label_set_text_static(label_air, air_info.level);
+    // lv_obj_align(label_air, NULL, LV_ALIGN_CENTER, 80, 0);
 
-    ui_clock_icon_update();
+    // ui_clock_icon_update();
 }
 
 void ui_clock_update_date(void)
@@ -476,10 +476,10 @@ void ui_clock_update_date(void)
     time(&time_now);
     tm_now = localtime(&time_now);
     sprintf(fmt_text, "%s, %s %d%s",
-        week_str[tm_now->tm_wday],
-        month_str[tm_now->tm_mon],
-        tm_now->tm_mday,
-        1 == tm_now->tm_mday ? "st" : 2 == tm_now->tm_mday ? "nd" : 3 == tm_now->tm_mday ? "rd" : "th");
+            week_str[tm_now->tm_wday],
+            month_str[tm_now->tm_mon],
+            tm_now->tm_mday,
+            1 == tm_now->tm_mday ? "st" : 2 == tm_now->tm_mday ? "nd" : 3 == tm_now->tm_mday ? "rd" : "th");
 
     lv_label_set_text(label_date, fmt_text);
 }

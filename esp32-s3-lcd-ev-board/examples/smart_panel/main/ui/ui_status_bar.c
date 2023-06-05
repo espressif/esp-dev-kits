@@ -1,26 +1,12 @@
-/**
- * @file ui_status_bar.c
- * @brief Status bar src.
- * @version 0.1
- * @date 2021-01-11
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- * 
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
 
 #include "ui_main.h"
 #include "device.h"
+#include "app_wifi.h"
 
 /* LVGL objects defination */
 static lv_obj_t *status_bar = NULL;
@@ -47,6 +33,7 @@ void ui_status_bar_init(void)
     lv_obj_align(status_bar, NULL, LV_ALIGN_IN_TOP_MID, 0, 0);
 
     btn_little_time = lv_btn_create(status_bar, NULL);
+    lv_obj_set_style_local_outline_width(btn_little_time, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_radius(btn_little_time, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_value_str(btn_little_time, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, "08:00");
     lv_obj_set_style_local_bg_color(btn_little_time, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
@@ -60,6 +47,7 @@ void ui_status_bar_init(void)
     btn_setting = lv_btn_create(status_bar, NULL);
     lv_obj_set_style_local_radius(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_width(btn_setting, 50);
+    lv_obj_set_style_local_outline_width(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_bg_color(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_value_font(btn_setting, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, &font_bar_symbol);
@@ -94,6 +82,7 @@ void ui_status_bar_init(void)
 
     btn_home = lv_btn_create(status_bar, NULL);
     lv_obj_set_width(btn_home, 50);
+    lv_obj_set_style_local_outline_width(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_radius(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_bg_color(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_home, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
@@ -105,6 +94,7 @@ void ui_status_bar_init(void)
 
     btn_switch = lv_btn_create(status_bar, NULL);
     lv_obj_set_width(btn_switch, 50);
+    lv_obj_set_style_local_outline_width(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_radius(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_bg_color(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_switch, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
@@ -117,6 +107,7 @@ void ui_status_bar_init(void)
 
     btn_music = lv_btn_create(status_bar, NULL);
     lv_obj_set_width(btn_music, 50);
+    lv_obj_set_style_local_outline_width(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 0);
     lv_obj_set_style_local_radius(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, 25);
     lv_obj_set_style_local_bg_color(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
     lv_obj_set_style_local_border_color(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, COLOR_BAR);
@@ -124,7 +115,7 @@ void ui_status_bar_init(void)
     lv_obj_set_style_local_value_color(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, lv_color_hex(0xd9e1f9));
     lv_obj_set_style_local_value_str(btn_music, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_EXTRA_MUSIC);
     lv_obj_set_style_local_value_str(btn_music, LV_BTN_PART_MAIN, LV_STATE_PRESSED, LV_SYMBOL_EXTRA_MUSIC_SOLID);
-    
+
     lv_obj_align(btn_music, btn_switch, LV_ALIGN_OUT_RIGHT_MID, 20, 0);
     lv_obj_set_event_cb(btn_music, btn_cb);
     lv_task_create(ui_status_bar_update_battery, 100, 1, NULL);
@@ -202,6 +193,13 @@ void ui_status_bar_set_item_text(status_bar_item_t item, const char *text)
 static void ui_status_bar_update_battery(lv_task_t *task)
 {
     (void) task;
+
+    WiFi_Connect_Status wifi_status = wifi_connected_already();
+    if (WIFI_STATUS_CONNECTED_OK == wifi_status) {
+        lv_obj_set_style_local_value_str(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_EXTRA_WIFI_MAX);
+    } else {
+        lv_obj_set_style_local_value_str(btn_wifi, LV_BTN_PART_MAIN, LV_STATE_DEFAULT, LV_SYMBOL_EXTRA_WIFI_SLASH);
+    }
 
     static float voltage = 0.0f;
     static float voltage_avr = 0.0f;

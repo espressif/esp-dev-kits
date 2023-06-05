@@ -1,23 +1,9 @@
-/**
- * @file ui_uv.c
- * @brief UV detail page src.
- * @version 0.1
- * @date 2021-01-11
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
@@ -38,7 +24,7 @@ static lv_obj_t *obj_page_uv = NULL;
 static lv_obj_t *arc_uv_outline = NULL;
 static lv_obj_t *arc_uv_val = NULL;
 static lv_obj_t *label_uv_level = NULL;
-static lv_obj_t *img_uv= NULL;
+static lv_obj_t *img_uv = NULL;
 static lv_obj_t *label_uv_tips = NULL;
 static lv_obj_t *label_tips = NULL;
 static lv_obj_t *bar_top = NULL;
@@ -91,11 +77,11 @@ void ui_uv_init(void *data)
     label_uv_tips = lv_label_create(obj_page_uv, NULL);
     lv_obj_set_style_local_text_font(label_uv_tips, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_thin_20);
     lv_label_set_text(label_uv_tips,
-    "Wear sunglasses on bright days.\n"
-    "If you burn easily, cover up and\n"
-    "use broad spectrum SPF 30+\n"
-    "sunscreen.\n");
-        
+                      "Wear sunglasses on bright days.\n"
+                      "If you burn easily, cover up and\n"
+                      "use broad spectrum SPF 30+\n"
+                      "sunscreen.\n");
+
     lv_obj_set_style_local_text_line_space(label_uv_tips, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, 5);
     lv_obj_set_style_local_text_letter_space(label_uv_tips, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, 1);
     lv_obj_align(label_uv_tips, NULL, LV_ALIGN_IN_RIGHT_MID, -40, 70);
@@ -132,11 +118,11 @@ void ui_uv_show(void *data)
 
         xTaskCreate(
             (TaskFunction_t)        anim_uv_task,
-            (const char * const)    "UV Animate Task",
+            (const char *const)    "UV Animate Task",
             (const uint32_t)        3 * 1024,
-            (void * const)          NULL,
+            (void *const)          NULL,
             (UBaseType_t)           1,
-            (TaskHandle_t * const)  NULL);
+            (TaskHandle_t *const)  NULL);
     } else if (ui_state_hide == ui_uv_state) {
         lv_obj_set_hidden(arc_uv_outline, false);
         lv_obj_set_hidden(arc_uv_val, false);
@@ -152,16 +138,16 @@ void ui_uv_show(void *data)
         ui_page_show("UV Index");
 
         ui_status_bar_time_show(true);
-        
+
         ui_uv_state = ui_state_show;
 
         xTaskCreate(
             (TaskFunction_t)        anim_uv_task,
-            (const char * const)    "UV Animate Task",
+            (const char *const)    "UV Animate Task",
             (const uint32_t)        3 * 1024,
-            (void * const)          NULL,
+            (void *const)          NULL,
             (UBaseType_t)           1,
-            (TaskHandle_t * const)  NULL);
+            (TaskHandle_t *const)  NULL);
 
     }
 }
@@ -191,9 +177,9 @@ static void anim_uv_task(void *data)
     static int i = 0;
 
     tick = xTaskGetTickCount();
-    lv_port_sem_take();
+    bsp_display_lock(0);
     lv_arc_set_value(arc_uv_val, 0);
-    lv_port_sem_give();
+    bsp_display_unlock();
 
     /* Reset value */
     i = 0;
@@ -204,10 +190,10 @@ static void anim_uv_task(void *data)
         }
         if (i <= uv_val) {
             sprintf(fmt_text, "%1.1f", i / 10.0f);
-            lv_port_sem_take();
+            bsp_display_lock(0);
             lv_obj_set_style_local_value_str(arc_uv_val, LV_ARC_PART_BG, LV_STATE_DEFAULT, fmt_text);
             lv_arc_set_value(arc_uv_val, i);
-            lv_port_sem_give();
+            bsp_display_unlock();
             i += 1;
             vTaskDelayUntil(&tick, pdMS_TO_TICKS(25));
         } else {
@@ -216,7 +202,7 @@ static void anim_uv_task(void *data)
     }
 }
 
-static const char * uv_index_get_level_str(int uv_level)
+static const char *uv_index_get_level_str(int uv_level)
 {
     static const char *uv_level_str[] = {
         "Low",

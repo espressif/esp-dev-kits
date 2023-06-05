@@ -1,22 +1,7 @@
-/**
- * @file ui_weather.c
- * @brief Weather UI page src.
- * @version 0.1
- * @date 2021-01-11
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
 
 #include "ui_main.h"
@@ -94,7 +79,7 @@ void ui_weather_init(void *data)
         lv_obj_align(bar_div[1], NULL, LV_ALIGN_CENTER, -75, -40);
         lv_obj_align(bar_div[2], NULL, LV_ALIGN_CENTER, 75, -40);
         lv_obj_align(bar_div[3], NULL, LV_ALIGN_CENTER, 225, -40);
-        
+
         /* Set default value */
         for (int i = 0; i < DAYS_TO_SHOW; i++) {
             label_date[i] = lv_label_create(obj_page_weater, NULL);
@@ -164,7 +149,7 @@ void ui_weather_show(void *data)
         }
 
         lv_obj_set_hidden(chart_temp, false);
-        
+
         ui_page_show("Weather");
 
         weather_update_widget_caption();
@@ -194,7 +179,7 @@ void ui_weather_hide(void *data)
         }
 
         lv_obj_set_hidden(chart_temp, true);
-        
+
         lv_obj_set_hidden(obj_page_weater, true);
 
         ui_weather_state = ui_state_hide;
@@ -206,7 +191,8 @@ static lv_coord_t max = 0;
 static lv_coord_t hourly_temp_val[24] = {
     10, 11, 10, 10, 9, 8, 8, 8, 7, 7,
     6, 6, 6, 7, 7, 8, 9, 10, 11, 11,
-    12, 12, 12, 11 };
+    12, 12, 12, 11
+};
 
 static void weather_update_daily_date(void)
 {
@@ -288,7 +274,7 @@ static void weather_update_daily_icon(void)
             if (NULL == prev_icon_code[i]) {
                 continue;
             } else {
-                strcpy(prev_icon_code[i] , DRAM_STR("999"));
+                strcpy(prev_icon_code[i], DRAM_STR("999"));
             }
         }
 
@@ -309,7 +295,7 @@ static void weather_update_daily_icon(void)
             }
 
             strcpy(prev_icon_code[i], weather_daily_info[i].icon_code);
-            
+
             if (NULL != old_icon_ptr) {
                 free(old_icon_ptr);
             }
@@ -379,9 +365,9 @@ static void weather_update_hourly_chart_axis_y(void)
     lv_chart_set_y_range(chart_temp, LV_CHART_AXIS_PRIMARY_Y, min, max);
 
     ESP_LOGD(TAG, "Range : [%d - %d]", min, max);
-    ESP_LOGD(TAG , "Points : [%d], [%d], [%d], [%d], [%d], [%d], [%d], [%d]",
-        hourly_temp_val[0], hourly_temp_val[3], hourly_temp_val[6], hourly_temp_val[9],
-        hourly_temp_val[12], hourly_temp_val[15], hourly_temp_val[18], hourly_temp_val[21]);
+    ESP_LOGD(TAG, "Points : [%d], [%d], [%d], [%d], [%d], [%d], [%d], [%d]",
+             hourly_temp_val[0], hourly_temp_val[3], hourly_temp_val[6], hourly_temp_val[9],
+             hourly_temp_val[12], hourly_temp_val[15], hourly_temp_val[18], hourly_temp_val[21]);
 }
 
 static void weather_update_hourly_chart_value(void)
@@ -466,11 +452,11 @@ static void weather_update_hourly_temp(void)
 void weather_update_widget_caption(void)
 {
     for (size_t i = 0; i < sizeof(weather_daily_info) / sizeof(weather_daily_info[0]); i++) {
-        app_weather_get_daily_info(i, &weather_daily_info[i]);
+        // app_weather_get_daily_info(i, &weather_daily_info[i]);
     }
 
     for (size_t i = 0; i < sizeof(weather_hourly_info) / sizeof(weather_hourly_info[0]); i++) {
-        app_weather_get_hourly_info(i, &weather_hourly_info[i]);
+        // app_weather_get_hourly_info(i, &weather_hourly_info[i]);
     }
 
     /* Hourly part update */

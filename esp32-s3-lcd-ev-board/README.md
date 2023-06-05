@@ -18,7 +18,7 @@ The following examples are developed under the ESP-IDF **release/v5.0** branch:
 ## Released Bin
 
 * [Factory Bin for Subboard2](./factory/bin/subboard2_480_480_v1_0.bin)
-* [Factory Bin for Subboard3](./factory/bin/subboard3_800_480_v1_0.bin)
+* [Factory Bin for Subboard3](./factory/bin/ESP32-S3-LCD-EV-Board-2_fac_v0_5_0.bin)
 
 ## ESP-IDF Patch
 

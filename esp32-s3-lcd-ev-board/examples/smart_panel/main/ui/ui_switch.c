@@ -1,22 +1,7 @@
-/**
- * @file ui_switch.c
- * @brief Smart switch panel selection UI src.
- * @version 0.1
- * @date 2021-01-15
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
 
 #include "ui_main.h"
@@ -55,7 +40,7 @@ extern void *other_device;
 /* Static function forward declaration */
 static void show_msg(const char *text);
 static void btn_obj_click_cb(lv_obj_t *obj, lv_event_t event);
-static lv_obj_t *ui_img_obj_vertical_create(lv_obj_t * par, lv_coord_t width, lv_coord_t height, lv_style_int_t radius, const void *src_img, const char *text);
+static lv_obj_t *ui_img_obj_vertical_create(lv_obj_t *par, lv_coord_t width, lv_coord_t height, lv_style_int_t radius, const void *src_img, const char *text);
 
 void ui_switch_init(void *data)
 {
@@ -67,7 +52,7 @@ void ui_switch_init(void *data)
     _obj_video_entertainment = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, video_entertainment, "Media");
     _obj_smart_security = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, smart_security, " Smart\nSecurity");
     _obj_other_device = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, other_device, "Other");
-    
+
     lv_obj_align(_obj_light_control, NULL, LV_ALIGN_CENTER, -270, -65);
     lv_obj_align(_obj_air_conditioner, NULL, LV_ALIGN_CENTER, -90, -65);
     lv_obj_align(_obj_smart_plug, NULL, LV_ALIGN_CENTER, 90, -65);
@@ -103,9 +88,9 @@ void ui_switch_show(void *data)
         lv_obj_set_hidden(_obj_video_entertainment, false);
         lv_obj_set_hidden(_obj_smart_security, false);
         lv_obj_set_hidden(_obj_other_device, false);
-        
+
         ui_status_bar_time_show(true);
-        
+
         ui_switch_state = ui_state_show;
     }
 }
@@ -139,7 +124,7 @@ static void btn_obj_click_cb(lv_obj_t *obj, lv_event_t event)
     }
 }
 
-static lv_obj_t *ui_img_obj_vertical_create(lv_obj_t * par, lv_coord_t width, lv_coord_t height, lv_style_int_t radius, const void *src_img, const char *text)
+static lv_obj_t *ui_img_obj_vertical_create(lv_obj_t *par, lv_coord_t width, lv_coord_t height, lv_style_int_t radius, const void *src_img, const char *text)
 {
     lv_obj_t *_obj = NULL;
     lv_obj_t *_img = NULL;

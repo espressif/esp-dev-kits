@@ -1,29 +1,15 @@
-/**
- * @file ui_main.c
- * @brief UI load and call stack related fuctions.
- * @version 0.1
- * @date 2021-01-10
- * 
- * @copyright Copyright 2021 Espressif Systems (Shanghai) Co. Ltd.
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- *      Licensed under the Apache License, Version 2.0 (the "License");
- *      you may not use this file except in compliance with the License.
- *      You may obtain a copy of the License at
- *
- *               http://www.apache.org/licenses/LICENSE-2.0
- *
- *      Unless required by applicable law or agreed to in writing, software
- *      distributed under the License is distributed on an "AS IS" BASIS,
- *      WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- *      See the License for the specific language governing permissions and
- *      limitations under the License.
+ * SPDX-License-Identifier: CC0-1.0
  */
+
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_log.h"
 #include "ui_main.h"
-#include "audio_hal.h"
 #include "sys_check.h"
+#include "settings.h"
 
 static const char *TAG = "ui_main";
 
@@ -115,7 +101,7 @@ static ui_data_fetch_t img_fetch_list[] = {
 
 static void ui_init_internal(void);
 
-static esp_err_t ui_call_stack_push(ui_func_desc_t *func);
+esp_err_t ui_call_stack_push(ui_func_desc_t *func);
 static esp_err_t ui_call_stack_pop(ui_func_desc_t *func);
 static esp_err_t ui_call_stack_peek(ui_func_desc_t *func);
 static esp_err_t ui_call_stack_clear(void);
@@ -123,7 +109,7 @@ static esp_err_t ui_call_stack_clear(void);
 void ui_main(void)
 {
     /* Init main screen */
-    lv_port_sem_take();
+    bsp_display_lock(0);
     lv_obj_set_style_local_bg_color(lv_scr_act(), LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, COLOR_THEME);
 
     /* Show logo */
@@ -132,7 +118,7 @@ void ui_main(void)
     lv_obj_set_style_local_bg_color(img, LV_IMG_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
     lv_img_set_src(img, &esp_logo);
     lv_obj_align(img, NULL, LV_ALIGN_CENTER, 0, -50);
-    lv_port_sem_give();
+    bsp_display_unlock();
 
     if (ESP_OK != sys_check()) {
         while (1) {
@@ -141,7 +127,7 @@ void ui_main(void)
         }
     }
 
-    lv_port_sem_take();
+    bsp_display_lock(0);
     /* Create a bar to update loading progress */
     lv_obj_t *bar = lv_bar_create(lv_scr_act(), NULL);
     lv_obj_set_style_local_bg_color(bar, LV_BAR_PART_BG, LV_STATE_DEFAULT, COLOR_BG);
@@ -160,17 +146,16 @@ void ui_main(void)
     lv_obj_set_style_local_text_color(label_loading_hint, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, LV_COLOR_WHITE);
     lv_obj_align(label_loading_hint, bar, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
 
-    lv_port_sem_give();
+    bsp_display_unlock();
 
     /* Load resource from SD crad to PSARM */
     TickType_t tick = xTaskGetTickCount();
     for (size_t i = 0; i < sizeof(img_fetch_list) / sizeof(ui_data_fetch_t); i++) {
-        lv_port_sem_take();
+        bsp_display_lock(0);
         lv_bar_set_value(bar, i + 1, LV_ANIM_ON);
         lv_label_set_text_fmt(label_loading_hint, "Loading \"%s\"", img_fetch_list[i].path);
         lv_obj_align(label_loading_hint, bar, LV_ALIGN_OUT_BOTTOM_MID, 0, 10);
-        lv_port_sem_give();
-
+        bsp_display_unlock();
         if (ESP_OK != img_file_check(img_fetch_list[i].path)) {
             /* If any of file was missing, block the task */
             while (1) {
@@ -179,7 +164,6 @@ void ui_main(void)
         }
 
         ui_laod_resource(img_fetch_list[i].path, img_fetch_list[i].data);
-
         /* Yeah, it's only because that makes ui more flexible */
         vTaskDelayUntil(&tick, pdMS_TO_TICKS(50));
     }
@@ -187,30 +171,44 @@ void ui_main(void)
     vTaskDelay(pdMS_TO_TICKS(500));
 
     /* Remove image and bar, reset background color */
-    lv_port_sem_take();
+    bsp_display_lock(0);
     lv_obj_del(img);
     lv_obj_del(bar);
     lv_obj_del(label_loading_hint);
     lv_obj_set_style_local_bg_color(lv_scr_act(), LV_OBJ_PART_MAIN, LV_STATE_DEFAULT, COLOR_BG);
-    lv_port_sem_give();
+    bsp_display_unlock();
 
     /* Init call queue and pre-init widgets */
     ui_init_internal();
 
     /* Entering main UI */
-    lv_port_sem_take();
+    bsp_display_lock(0);
     ui_status_bar_init();
-    ui_clock_show(NULL);
-    ui_call_stack_push(&ui_clock_func);
-    lv_port_sem_give();
+    sys_param_t *sys_set = settings_get_parameter();
+
+    if (sys_set->need_hint) {
+        ESP_LOGI(TAG, "@@@Enter user_guide_layer");
+        ui_guide_show(NULL);
+    } else {
+        if (sys_set->demo_gui) {
+            ESP_LOGI(TAG, "@@@Enter main_Layer");
+            ui_clock_show(NULL);
+            ui_call_stack_push(&ui_clock_func);
+        } else {
+            ESP_LOGI(TAG, "@@@Enter sr_layer");
+            ui_sr_show(NULL);
+        }
+    }
+    bsp_display_unlock();
 }
+
 
 void ui_laod_resource(const char *path, void **dst)
 {
     void *_data = NULL;
     lv_fs_file_t file_img;
-    size_t file_size = 0;
-    size_t real_size = 0;
+    uint32_t file_size = 0;
+    uint32_t real_size = 0;
 
     /* Try to open file */
     if (LV_FS_RES_OK != lv_fs_open(&file_img, path, LV_FS_MODE_RD)) {
@@ -252,7 +250,7 @@ static volatile size_t call_stack_index = 0;
 
 /**
  * @brief An initialize task before UI start. Basicly create a call stack.
- * 
+ *
  */
 static void ui_init_internal(void)
 {
@@ -262,16 +260,16 @@ static void ui_init_internal(void)
 
 /**
  * @brief Push operator for call stack.
- * 
+ *
  * @param func pointer to `ui_func_desc_t`.
  * @return esp_err_t Push result.
  */
-static esp_err_t ui_call_stack_push(ui_func_desc_t *func)
+esp_err_t ui_call_stack_push(ui_func_desc_t *func)
 {
     if (call_stack_index <= call_stack_size - 1) {
         memcpy(&call_stack[call_stack_index], func, sizeof(call_stack_type_t));
         call_stack_index++;
-        LOG_TRACE("Send : %s", func->name);
+        ESP_LOGI(TAG, "push : %s", func->name);
     } else {
         ESP_LOGE(TAG, "Call stack full");
         return ESP_ERR_NO_MEM;
@@ -282,7 +280,7 @@ static esp_err_t ui_call_stack_push(ui_func_desc_t *func)
 
 /**
  * @brief Pop operator for call stack.
- * 
+ *
  * @param func pointer to `ui_func_desc_t`.
  * @return esp_err_t Pop result.
  */
@@ -291,18 +289,18 @@ static esp_err_t ui_call_stack_pop(ui_func_desc_t *func)
     if (0 != call_stack_index) {
         call_stack_index--;
         memcpy(func, &call_stack[call_stack_index], sizeof(call_stack_type_t));
-        LOG_TRACE("Recieve : %s", func->name);
+        ESP_LOGI(TAG, "pop : %s", func->name);
     } else {
         ESP_LOGE(TAG, "Call queue empty");
         return ESP_FAIL;
     }
-    
+
     return ESP_OK;
 }
 
 /**
  * @brief Peek top element from call stack. Keep data in call stack.
- * 
+ *
  * @param func pointer to `ui_func_desc_t`.
  * @return esp_err_t Peek result.
  */
@@ -310,7 +308,7 @@ static esp_err_t ui_call_stack_peek(ui_func_desc_t *func)
 {
     if (0 != call_stack_index) {
         memcpy(func, &call_stack[call_stack_index - 1], sizeof(call_stack_type_t));
-        LOG_TRACE("Peek : %s", func->name);
+        ESP_LOGI(TAG, "Peek : %s", func->name);
     } else {
         ESP_LOGE(TAG, "Call queue empty");
         return ESP_FAIL;
@@ -321,7 +319,7 @@ static esp_err_t ui_call_stack_peek(ui_func_desc_t *func)
 
 /**
  * @brief Clear all data in call stack.
- * 
+ *
  * @return esp_err_t Always return `ESP_OK`.
  */
 static esp_err_t ui_call_stack_clear(void)
@@ -331,7 +329,7 @@ static esp_err_t ui_call_stack_clear(void)
     while (call_stack_index) {
         call_stack_index--;
         memcpy(&func, &call_stack[call_stack_index], sizeof(call_stack_type_t));
-        LOG_TRACE("Clear : %s", func.name);
+        ESP_LOGI(TAG, "Clear : %s", func.name);
     }
 
     call_stack_index = 0;
@@ -345,6 +343,7 @@ void ui_show(ui_func_desc_t *ui, ui_show_mode_t mode)
 
     switch (mode) {
     case UI_SHOW_OVERRIDE:
+        ESP_LOGI(TAG, "overWrite");
         ui_call_stack_pop(&ui_now);
         ui_now.hide(NULL);
         ui->show(NULL);
@@ -352,12 +351,14 @@ void ui_show(ui_func_desc_t *ui, ui_show_mode_t mode)
         ui_call_stack_push(ui);
         break;
     case UI_SHOW_PEDDING:
+        ESP_LOGI(TAG, "pedding");
         ui_call_stack_peek(&ui_now);
         ui_now.hide(NULL);
         ui->show(NULL);
         ui_call_stack_push(ui);
         break;
     case UI_SHOW_BACKPORT:
+        ESP_LOGI(TAG, "backport");
         ui_call_stack_pop(&ui_now);
         ui_now.hide(NULL);
         ui_call_stack_peek(&ui_now);
