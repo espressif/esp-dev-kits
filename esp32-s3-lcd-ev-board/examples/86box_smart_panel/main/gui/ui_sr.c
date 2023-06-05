@@ -1,28 +1,41 @@
 /*
- * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2015-2022 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Unlicense OR CC0-1.0
  */
 
 #include "esp_log.h"
-#include "bsp/esp-bsp.h"
+#include "bsp_board.h"
+#include "lvgl.h"
 
 #include "lv_example_pub.h"
 #include "lv_example_image.h"
-#include "ui_sr.h"
-#include "settings.h"
 
 static const char *TAG = "ui_sr";
 
-#define LV_SR_USE_GIF              0
+static bool sr_layer_enter_cb(void *create_layer);
+static bool sr_layer_exit_cb(void *create_layer);
+static void sr_layer_timer_cb(lv_timer_t *tmr);
 
-static bool g_voice_wakeuped = false;
+lv_layer_t sr_layer = {
+    .lv_obj_name    = "sr_layer",
+    .lv_obj_parent  = NULL,
+    .lv_obj_layer   = NULL,
+    .lv_show_layer  = NULL,
+    .enter_cb       = sr_layer_enter_cb,
+    .exit_cb        = sr_layer_exit_cb,
+    .timer_cb       = sr_layer_timer_cb,
+};
+
+static bool g_sr_anim_active = false;
 static int32_t g_sr_anim_count = 0;
 static lv_obj_t *g_sr_label = NULL;
+static lv_obj_t *g_sr_mask = NULL;
 static lv_obj_t *g_sr_bar[8] = {NULL};
+static time_out_count time_100ms;
 
-static bool wakeup_changed = false;
-static char wakeup_text[30] = {0};
+uint8_t reboot_wait_time = 5;
+static lv_obj_t *bg_factory_reset;
 
 static int int16_sin(int32_t deg)
 {
@@ -52,16 +65,18 @@ static int int16_sin(int32_t deg)
     }
 }
 
+
+static void set_tips_info(const char *message)
+{
+    lv_label_set_text(g_sr_label, message);
+}
+
 static void sr_label_event_handler(lv_event_t *event)
 {
-    char *text = (char *) event->param;
-    ESP_LOGW(TAG, "sr_label_event_handler,%d,%s", strlen(text), text);
-    // if (NULL != text) {
-    //     lv_label_set_text(g_sr_label, text);
-    // }
-    // else{
-    //     ESP_LOGW(TAG, "text NULL");
-    // }
+    char *text = (char *) event-> param;
+    if (NULL != text) {
+        lv_label_set_text_static(g_sr_label, text);
+    }
 }
 
 static void sr_mask_event_handler(lv_event_t *event)
@@ -69,52 +84,94 @@ static void sr_mask_event_handler(lv_event_t *event)
     bool active = (bool) event->param;
 
     if (active) {
-        lv_indev_t *indev = lv_indev_get_next(NULL);
-        lv_indev_enable(indev, false);
+        ESP_LOGI(TAG, "animation start");
         g_sr_anim_count = 0;
+        g_sr_anim_active = true;
     } else {
-        lv_indev_t *indev = lv_indev_get_next(NULL);
-        lv_indev_enable(indev, true);
+        ESP_LOGI(TAG, "animation stop");
+        g_sr_anim_active = false;
     }
 }
 
-void sr_speech_anim_handle(void)
+static void factory_reset_event_handler(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
+
+    if (code == LV_EVENT_SHORT_CLICKED) {
+        ESP_LOGI(TAG, "factory reset");
+        settings_factory_reset();
+        lv_obj_clear_flag(bg_factory_reset, LV_OBJ_FLAG_HIDDEN);
+    }
+}
+
+static void ui_speech_anim_cb(lv_timer_t *timer)
 {
     const int32_t step = 40;
 
-    /* Set bar value */
-    int32_t sr_val[4] = {
-        abs(int16_sin(g_sr_anim_count * step + step * 0)) / (32768 >> 7),
-        abs(int16_sin(g_sr_anim_count * step + step * 1)) / (32768 >> 7),
-        abs(int16_sin(g_sr_anim_count * step + step * 2)) / (32768 >> 7),
-        abs(int16_sin(g_sr_anim_count * step + step * 3)) / (32768 >> 7),
-    };
+    if (g_sr_anim_active) {
+        /* Set bar value */
+        int32_t sr_val[4] = {
+            abs(int16_sin(g_sr_anim_count * step + step * 0)) / (32768 >> 7),
+            abs(int16_sin(g_sr_anim_count * step + step * 1)) / (32768 >> 7),
+            abs(int16_sin(g_sr_anim_count * step + step * 2)) / (32768 >> 7),
+            abs(int16_sin(g_sr_anim_count * step + step * 3)) / (32768 >> 7),
+        };
 
-    for (size_t i = 0; i < 4; i++) {
-        lv_bar_set_value(g_sr_bar[i], sr_val[i] > 20 ? sr_val[i] : 20, LV_ANIM_ON);
-        lv_bar_set_value(g_sr_bar[7 - i], sr_val[i] > 20 ? sr_val[i] : 20, LV_ANIM_ON);
-        lv_bar_set_start_value(g_sr_bar[i], sr_val[i] > 20 ? -sr_val[i] : -20, LV_ANIM_ON);
-        lv_bar_set_start_value(g_sr_bar[7 - i], sr_val[i] > 20 ? -sr_val[i] : -20, LV_ANIM_ON);
+        for (size_t i = 0; i < 4; i++) {
+            lv_bar_set_value(g_sr_bar[i], sr_val[i] > 20 ? sr_val[i] : 20, LV_ANIM_ON);
+            lv_bar_set_value(g_sr_bar[7 - i], sr_val[i] > 20 ? sr_val[i] : 20, LV_ANIM_ON);
+            lv_bar_set_start_value(g_sr_bar[i], sr_val[i] > 20 ? -sr_val[i] : -20, LV_ANIM_ON);
+            lv_bar_set_start_value(g_sr_bar[7 - i], sr_val[i] > 20 ? -sr_val[i] : -20, LV_ANIM_ON);
+        }
+        g_sr_anim_count++;
+    } else {
+        /* The first timer callback will set the bars to 0 */
+        if (g_sr_anim_count != 0) {
+            for (size_t i = 0; i < 8; i++) {
+                lv_bar_set_value(g_sr_bar[i], 0, LV_ANIM_ON);
+                lv_bar_set_start_value(g_sr_bar[i], -0, LV_ANIM_ON);
+            }
+            g_sr_anim_count = 0;
+        } else {
+            /* The second timer callback will hide sr mask */
+        }
     }
-    g_sr_anim_count++;
 }
 
-lv_obj_t *ui_sr_anim_init(lv_obj_t *parent)
+static void lv_create_display_reboot(lv_obj_t *parent)
 {
-    const sys_param_t *param = settings_get_parameter();
+    bg_factory_reset = lv_obj_create(parent);
+    lv_obj_set_style_border_width(bg_factory_reset, 0, LV_STATE_DEFAULT);
+    lv_obj_set_size(bg_factory_reset, LV_HOR_RES, LV_VER_RES);
+    lv_obj_set_style_radius(bg_factory_reset, 0, 0);
+    lv_obj_set_style_bg_color(bg_factory_reset, lv_color_hex(COLOUR_BLACK), LV_PART_MAIN);
 
-    lv_obj_t *sr_mask = lv_obj_create(parent);
-    lv_obj_set_size(sr_mask, lv_obj_get_width(lv_obj_get_parent(sr_mask)), lv_obj_get_height(lv_obj_get_parent(sr_mask)));
-    lv_obj_clear_flag(sr_mask, LV_OBJ_FLAG_SCROLLABLE);
+    reboot_wait_time = 50;
+    lv_obj_t *label_reboot = lv_label_create(bg_factory_reset);
+    lv_obj_align(label_reboot, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_set_style_text_color(label_reboot, lv_color_hex(COLOUR_WHITE), 0);
+    lv_obj_set_style_text_font(label_reboot, &SourceHanSansCN_Normal_20, 0);
+    lv_label_set_text(label_reboot, "Rebooting");
 
-    lv_obj_set_style_radius(sr_mask, 0, LV_STATE_DEFAULT);
-    lv_obj_set_style_border_width(sr_mask, 0, LV_STATE_DEFAULT);
-    lv_obj_set_style_bg_color(sr_mask, lv_obj_get_style_bg_color(lv_obj_get_parent(sr_mask), LV_PART_MAIN), LV_STATE_DEFAULT);
-    lv_obj_align(sr_mask, LV_ALIGN_CENTER, 0, 0);
-    lv_obj_add_event_cb(sr_mask, sr_mask_event_handler, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_obj_add_flag(bg_factory_reset, LV_OBJ_FLAG_HIDDEN);
+
+    return;
+}
+
+void ui_sr_anim_start(lv_obj_t *parent)
+{
+    ESP_LOGI(TAG, "sr animation initialize");
+    g_sr_mask = lv_obj_create(parent);
+    lv_obj_set_size(g_sr_mask, LV_HOR_RES, LV_VER_RES);
+    lv_obj_clear_flag(g_sr_mask, LV_OBJ_FLAG_SCROLLABLE);
+    lv_obj_set_style_radius(g_sr_mask, 0, LV_STATE_DEFAULT);
+    lv_obj_set_style_border_width(g_sr_mask, 0, LV_STATE_DEFAULT);
+    lv_obj_set_style_bg_color(g_sr_mask, lv_obj_get_style_bg_color(lv_obj_get_parent(g_sr_mask), LV_PART_MAIN), LV_STATE_DEFAULT);
+    lv_obj_align(g_sr_mask, LV_ALIGN_CENTER, 0, 0);
+    lv_obj_add_event_cb(g_sr_mask, sr_mask_event_handler, LV_EVENT_VALUE_CHANGED, NULL);
 
     lv_obj_t *obj_img = NULL;
-    obj_img = lv_obj_create(sr_mask);
+    obj_img = lv_obj_create(g_sr_mask);
     lv_obj_set_size(obj_img, 80, 80);
     lv_obj_clear_flag(obj_img, LV_OBJ_FLAG_SCROLLABLE);
     lv_obj_set_style_radius(obj_img, 40, LV_STATE_DEFAULT);
@@ -123,23 +180,19 @@ lv_obj_t *ui_sr_anim_init(lv_obj_t *parent)
     lv_obj_set_style_shadow_opa(obj_img, LV_OPA_30, LV_STATE_DEFAULT);
     lv_obj_align(obj_img, LV_ALIGN_CENTER, 0, -30);
     lv_obj_t *img_mic_logo = lv_img_create(obj_img);
-    LV_IMG_DECLARE(mic_logo)
     lv_img_set_src(img_mic_logo, &mic_logo);
     lv_obj_center(img_mic_logo);
 
-    g_sr_label = lv_label_create(sr_mask);
-    if (SR_LANG_EN == param->sr_lang) {
-        lv_label_set_text_static(g_sr_label, "Say command");
-    } else {
-        lv_label_set_text_static(g_sr_label, "请说");
-    }
-    lv_obj_set_style_text_font(g_sr_label, font36.font, LV_STATE_DEFAULT);
+    g_sr_label = lv_label_create(g_sr_mask);
+    lv_label_set_long_mode(g_sr_label, LV_LABEL_LONG_WRAP);
+    lv_label_set_text_static(g_sr_label, (sys_set->sr_lang ? "倾听中..." : "Listening..."));
+    lv_obj_set_style_text_font(g_sr_label, &SourceHanSansCN_Normal_20, LV_STATE_DEFAULT);
     lv_obj_set_style_text_color(g_sr_label, lv_color_black(), LV_STATE_DEFAULT);
     lv_obj_align(g_sr_label, LV_ALIGN_CENTER, 0, 80);
     lv_obj_add_event_cb(g_sr_label, sr_label_event_handler, LV_EVENT_VALUE_CHANGED, NULL);
 
     for (size_t i = 0; i < sizeof(g_sr_bar) / sizeof(g_sr_bar[0]); i++) {
-        g_sr_bar[i] = lv_bar_create(sr_mask);
+        g_sr_bar[i] = lv_bar_create(g_sr_mask);
         lv_obj_set_size(g_sr_bar[i], 5, 60);
         lv_obj_set_style_anim_time(g_sr_bar[i], 400, LV_STATE_DEFAULT);
         lv_obj_set_style_bg_color(g_sr_bar[i], lv_color_make(237, 238, 239), LV_STATE_DEFAULT);
@@ -156,87 +209,130 @@ lv_obj_t *ui_sr_anim_init(lv_obj_t *parent)
         lv_obj_align_to(g_sr_bar[i + 4], obj_img, LV_ALIGN_OUT_RIGHT_MID, 15 * i + 20, 0);
     }
 
-    g_sr_anim_count = 0;
+    lv_obj_t *lab_hint = lv_label_create(parent);
+    lv_obj_set_style_text_font(lab_hint, &SourceHanSansCN_Normal_20, LV_STATE_DEFAULT);
+    lv_label_set_text_static(lab_hint, (sys_set->sr_lang ? "恢复出厂设置" : "Touch to enter factory reset"));
+    lv_obj_set_style_text_align(lab_hint, LV_TEXT_ALIGN_CENTER, LV_PART_MAIN);
+    lv_obj_align(lab_hint, LV_ALIGN_CENTER, 0, 140);
 
-    return sr_mask;
+    lv_obj_t *btn_reset = lv_btn_create(parent);
+    lv_obj_remove_style_all(btn_reset);
+    lv_obj_set_size(btn_reset, 100, 75);
+    lv_obj_align(btn_reset, LV_ALIGN_CENTER, 0, 180);
+    lv_obj_add_event_cb(btn_reset, factory_reset_event_handler, LV_EVENT_SHORT_CLICKED, (void *)0);
+
+    lv_obj_t *img = lv_img_create(btn_reset);
+    lv_img_set_src(img, &hand_down);
+    lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
+    
+
+    lv_create_display_reboot(parent);
+
+    g_sr_anim_count = 0;
+    g_sr_anim_active = false;
 }
 
 void sr_anim_start(void)
 {
-    g_voice_wakeuped = true;
+    lv_event_send(g_sr_mask, LV_EVENT_VALUE_CHANGED, (void *) true);
 }
 
 void sr_anim_stop(void)
 {
-    g_voice_wakeuped = false;
+    lv_event_send(g_sr_mask, LV_EVENT_VALUE_CHANGED, (void *) false);
 }
 
 void sr_anim_set_text(char *text)
 {
-    wakeup_changed = true;
-    strcpy(wakeup_text, text);
+    if (g_sr_label) {
+        lv_event_send(g_sr_label, LV_EVENT_VALUE_CHANGED, (void *) text);
+    } else {
+        ESP_LOGW(TAG, "g_sr_label null");
+    }
 }
 
-anim_handle_cb sr_anim_task(lv_layer_t *layer)
+static void update_reboot_step(void)
 {
-    static bool local_voice_wakeuped = true;
+    if (false == lv_obj_has_flag(bg_factory_reset, LV_OBJ_FLAG_HIDDEN)) {
+        if (reboot_wait_time/10) {
 
-#if LV_SR_USE_GIF
-    static lv_obj_t *gif_listening;
-#else
-    static lv_obj_t *box_listening;
-#endif
+            char reboot_info[30] = {0};
+            lv_obj_t *label_reboot = lv_obj_get_child(bg_factory_reset, 0);
 
-    if (wakeup_changed) {
-        wakeup_changed = false;
-        if (g_sr_label) {
-            lv_label_set_text(g_sr_label, wakeup_text);
-            ESP_LOGW(TAG, "g_sr_label set");
+            sprintf(reboot_info, "Rebooting  %d sec", reboot_wait_time/10);
+            reboot_wait_time--;
+            lv_label_set_text(label_reboot, reboot_info);
         } else {
-            ESP_LOGW(TAG, "text NULL");
+            esp_restart();
         }
     }
 
-    if (g_voice_wakeuped ^ local_voice_wakeuped) {
+    return;
+}
 
-        local_voice_wakeuped = g_voice_wakeuped;
-        ESP_LOGI(TAG, "## voice_wakeuped: %d", g_voice_wakeuped);
-        if (g_voice_wakeuped) {
-#if LV_SR_USE_GIF
-            gif_listening = lv_gif_create(layer->lv_obj_layer);
-            //lv_gif_set_src(gif_listening, "S:/spiffs/test_gif.gif");
-            lv_gif_set_src(gif_listening, &test_gif);
-            lv_obj_align(gif_listening, LV_ALIGN_CENTER, 0, 0);
-#else
-            box_listening = ui_sr_anim_init(layer->lv_obj_layer);
-#endif
-            lv_obj_clear_flag(layer->lv_obj_layer, LV_OBJ_FLAG_HIDDEN);
-            lv_obj_add_flag(layer->lv_obj_parent, LV_OBJ_FLAG_HIDDEN);
-        } else {
-#if LV_SR_USE_GIF
-            if (gif_listening) {
-                lv_obj_del_async(gif_listening);
-                gif_listening = NULL;
-            }
-#else
-            if (box_listening) {
-                lv_obj_del_async(box_listening);
-                box_listening = NULL;
-            }
-#endif
-            lv_obj_add_flag(layer->lv_obj_layer, LV_OBJ_FLAG_HIDDEN);
-            lv_obj_clear_flag(layer->lv_obj_parent, LV_OBJ_FLAG_HIDDEN);
-            g_sr_label = NULL;
+static bool sr_layer_enter_cb(void *create_layer)
+{
+    bool ret = false;
+
+    lv_layer_t *layer = create_layer;
+    ESP_LOGI(TAG, "sr_layer_enter_cb");
+
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+        lv_obj_remove_style_all(layer->lv_obj_layer);
+        lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
+
+        ui_sr_anim_start(layer->lv_obj_layer);
+        set_time_out(&time_100ms, 100);
+    }
+    sr_anim_stop();
+
+    return ret;
+}
+
+static bool sr_layer_exit_cb(void *create_layer)
+{
+    ESP_LOGI(TAG, "sr_layer_exit_cb");
+    g_sr_label = NULL;
+    return true;
+}
+
+static void sr_layer_timer_cb(lv_timer_t *tmr)
+{
+    lv_event_info_t lvgl_event;
+    feed_clock_time();
+
+    if (is_time_out(&time_100ms)) {
+        ui_speech_anim_cb(NULL);
+        update_reboot_step();
+    }
+
+    if (pdPASS == app_lvgl_get_event(&lvgl_event, 0)) {
+        switch (lvgl_event.event) {
+
+        case LV_EVENT_I_AM_LEAVING:
+            sr_anim_stop();
+            set_tips_info(sys_set->sr_lang ? "倾听中..." : "Listening...");
+            break;
+        case LV_EVENT_I_AM_HERE:
+            sr_anim_start();
+            set_tips_info(sys_set->sr_lang ? "请说" : "Say command");
+            break;
+
+        case LV_EVENT_LIGHT_ON:
+        case LV_EVENT_LIGHT_OFF:
+        case LV_EVENT_AC_SET_ON:
+        case LV_EVENT_AC_SET_OFF:
+        case LV_EVENT_AC_TEMP_ADD:
+        case LV_EVENT_AC_TEMP_DEC:
+            set_tips_info((const char *)lvgl_event.event_data);
+            break;
+
+        default:
+        case LV_EVENT_EXIT_CLOCK:
+            ESP_LOGI(TAG, "invalid event: %d", lvgl_event.event);
+            break;
         }
     }
-
-#if LV_SR_USE_GIF
-    return NULL;
-#else
-    if (local_voice_wakeuped) {
-        return sr_speech_anim_handle;
-    } else {
-        return NULL;
-    }
-#endif
 }

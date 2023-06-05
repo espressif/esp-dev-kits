@@ -35,8 +35,6 @@ LV_IMG_DECLARE(set_icon_screen_B);
 LV_IMG_DECLARE(set_icon_screen_y);
 LV_IMG_DECLARE(set_icon_set_B);
 LV_IMG_DECLARE(set_icon_set_y);
-LV_IMG_DECLARE(set_icon_temp_B);
-LV_IMG_DECLARE(set_icon_temp_y);
 
 LV_IMG_DECLARE(watch_bg);
 LV_IMG_DECLARE(hour);
@@ -48,50 +46,7 @@ LV_IMG_DECLARE(watch_hour);
 LV_IMG_DECLARE(watch_min);
 LV_IMG_DECLARE(watch_sec);
 
-LV_IMG_DECLARE(Icon_little_AC);
-LV_IMG_DECLARE(Icon_little_music);
-LV_IMG_DECLARE(Icon_little_home);
-LV_IMG_DECLARE(Icon_little_game);
-
-LV_IMG_DECLARE(Icon_blue_1_1);
-LV_IMG_DECLARE(Icon_white_1_1);
-LV_IMG_DECLARE(Icon_yellow_1_1);
-LV_IMG_DECLARE(Icon_red_1_2);
-LV_IMG_DECLARE(Icon_black_2_2);
-LV_IMG_DECLARE(Icon_black_2_2_new);
-
-LV_IMG_DECLARE(test_gif);
 LV_IMG_DECLARE(mic_logo);
-/*
-Light
-*/
-LV_IMG_DECLARE(livingRoom_Light_on_yellow);
-LV_IMG_DECLARE(livingRoom_Light_on_red);
-LV_IMG_DECLARE(livingRoom_Light_on_white);
-LV_IMG_DECLARE(livingRoom_Light_on_blue);
-LV_IMG_DECLARE(livingRoom_Light_off);
-
-LV_IMG_DECLARE(livingRoom_power_on);
-LV_IMG_DECLARE(livingRoom_power_off);
-
-LV_IMG_DECLARE(livingRoom_light_red);
-LV_IMG_DECLARE(livingRoom_light_white);
-LV_IMG_DECLARE(livingRoom_light_blue);
-LV_IMG_DECLARE(livingRoom_light_yellow);
-
-LV_IMG_DECLARE(livingRoom_slider_icon);
-LV_IMG_DECLARE(livingRoom_slider_bg);
-
-/*
-AC
-*/
-LV_IMG_DECLARE(ac_background);
-LV_IMG_DECLARE(ac_power_off);
-LV_IMG_DECLARE(ac_power_on);
-LV_IMG_DECLARE(ac_temp_add_off);
-LV_IMG_DECLARE(ac_temp_add_on);
-LV_IMG_DECLARE(ac_temp_dec_off);
-LV_IMG_DECLARE(ac_temp_dec_on);
 
 LV_IMG_DECLARE(icon_160_light);
 LV_IMG_DECLARE(icon_160_home);
@@ -135,40 +90,35 @@ LV_IMG_DECLARE(icon_light_color_warm);
 LV_IMG_DECLARE(icon_light_light_warm);
 LV_IMG_DECLARE(icon_light_normal_warm);
 
+LV_IMG_DECLARE(icon_display);
+LV_IMG_DECLARE(icon_voice);
+LV_IMG_DECLARE(hand_down);
+
 /********************************
  * font
 ********************************/
-LV_FONT_DECLARE(font_KaiTi20);
-LV_FONT_DECLARE(font_KaiTi60);
-LV_FONT_DECLARE(font_KaiTi96);
-
-LV_FONT_DECLARE(siyuan20);
-LV_FONT_DECLARE(siyuan36);
-
-LV_FONT_DECLARE(pingfang_18);
-LV_FONT_DECLARE(pingfang_20);
-
 LV_FONT_DECLARE(helveticaneue_32);
 LV_FONT_DECLARE(helveticaneue_36);
-
 LV_FONT_DECLARE(Montserrat_Bold_116);
 
-LV_FONT_DECLARE(my_font_64);
+/*
+ 0x20-0x7F
+关闭屏幕蓝牙设置声音亮度与显示升级关于待机时间秒分钟小时永久生产厂家主板名称子板名称设备版本号语音版本语言
+请输入密码已未连接静音亮度调节屏幕首页当前版本已是最新版本设备名称设备型号序列号地址灯上海北京深圳屏幕中文
+是否确认恢复出厂设置取消确认打开电空高温降低乐鑫开启离线语音助手连接网络本出厂固件提供了两个演示: 下一步
+精美的UI 和语音控制，请选择进入您想体验的演示倾听中默认命令词语音助手操作步骤请说唤醒设备等待屏幕显示请说，说出命令例如
+ */
+LV_FONT_DECLARE(SourceHanSansCN_Normal_20);
 
-//LV_FONT_DECLARE(lv_font_montserrat_20);
+/*
+主题照明主页空调天气打开关闭空调电灯升高降低温度请说上海北京深圳
+*/
+LV_FONT_DECLARE(SourceHanSansCN_Normal_18);
 
-#if (0 == LV_USE_FREETYPE)
-typedef struct {
-    lv_font_t *font;    /* point to lvgl font */
-} lv_ft_info_t;
-#endif
-
-extern lv_ft_info_t font30;
-extern lv_ft_info_t font20;
-extern lv_ft_info_t font60;
-extern lv_ft_info_t font36;
-extern lv_ft_info_t font120;
-
+/*
+空调
+*/
+LV_FONT_DECLARE(SourceHanSansCN_Normal_26);
 /**********************
  *      MACROS
  **********************/

@@ -26,45 +26,13 @@ menu "Project Support Package"
                 Supported max files for SPIFFS in the Virtual File System.
     endmenu
 
-
-    menu "vl53l1x Test Configuration"
-
-config I2C_NUM
-    int "I2C NUM"
-    default 0
-    help
-	I2C unit number
-
-config SCL_IO
-    int "SCL GPIO NUM"
-    default 19
-    help
-	GPIO pin for I2C SCL
-
-config SDA_IO
-    int "SDA GPIO NUM"
-    default 18
-    help
-	GPIO pin for I2C SDA
-
-config XSHUT_IO
-    int "XSHUT GPIO NUM"
-    default 5
-    help
-	GPIO pin for VL53L1X XSHUT
-
-config LED_RED_IO
-    int "LED_RED GPIO NUM"
-    default 25
-    help
-	GPIO pin for LED_RED
-    
-config LED_GREEN_IO
-    int "LED_GREEN GPIO NUM"
-    default 26
-    help
-	GPIO pin for LED_GREEN
-
 endmenu
+
+menu "QWeather Configuration"
+    config QWEATHER_REQUEST_KEY
+        string "Request Key"
+        default "REQUEST_KEY"
+        help
+            Set QWeather request key. You can add key at https://console.qweather.com/#/apps.
 
 endmenu

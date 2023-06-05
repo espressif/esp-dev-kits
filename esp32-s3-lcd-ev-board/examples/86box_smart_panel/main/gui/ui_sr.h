@@ -1,25 +1,24 @@
 /*
- * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2015-2022 Espressif Systems (Shanghai) CO LTD
  *
- * SPDX-License-Identifier: CC0-1.0
+ * SPDX-License-Identifier: Unlicense OR CC0-1.0
  */
 
-#ifndef __UI_SR_H__
-#define __UI_SR_H__
+#pragma once
 
 #include <stddef.h>
 #include "esp_err.h"
-#include "lvgl.h"
-
-#include "bsp/esp-bsp.h"
-#include "lv_example_pub.h"
-#include "lv_example_image.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-typedef void (* anim_handle_cb)(void);
+/**
+ * @brief
+ *
+ */
+void ui_sr_anim_init(void);
+
 /**
  * @brief
  *
@@ -39,14 +38,6 @@ void sr_anim_stop(void);
  */
 void sr_anim_set_text(char *text);
 
-/**
- * @brief
- *
- */
-anim_handle_cb sr_anim_task(lv_layer_t *layer);
-
 #ifdef __cplusplus
 }
-#endif
-
 #endif

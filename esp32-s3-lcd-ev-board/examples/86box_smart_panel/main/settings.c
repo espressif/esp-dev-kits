@@ -23,16 +23,38 @@ static const char *TAG = "settings";
 static sys_param_t g_sys_param = {0};
 
 static const sys_param_t g_default_sys_param = {
-    .need_hint = 1,
+    .need_hint = true,
     .sr_lang = SR_LANG_EN,
     .volume = 4, // default volume is 70%
-    .standby_time = 1,
+    .standby_time = 0, //15sec
     .brightness = 60,
-
-    .light_onoff = true,    /**< true or false.*/
-    .light_colour = 0,      /**< 0-3.*/
-    .light_pwm = 70,        /**< 0-100.*/
 };
+
+esp_err_t settings_factory_reset(void)
+{
+    ESP_LOGW(TAG, "Set to default");
+    memcpy(&g_sys_param, &g_default_sys_param, sizeof(sys_param_t));
+
+    // wifi_config_t wifi_cfg;
+    // if (esp_wifi_get_config(WIFI_IF_STA, &wifi_cfg) != ESP_OK) {
+    //     ESP_LOGW(TAG, "ssid|password:[%s:%s]", DEFAULT_ESP_WIFI_SSID, DEFAULT_ESP_WIFI_PASS);
+    //     memcpy(&g_sys_param.ssid[0], DEFAULT_ESP_WIFI_SSID, strlen(DEFAULT_ESP_WIFI_SSID));
+    //     memcpy(&g_sys_param.password[0], DEFAULT_ESP_WIFI_PASS, strlen(DEFAULT_ESP_WIFI_PASS));
+    // } else {
+    //     memcpy(&g_sys_param.ssid[0], wifi_cfg.sta.ssid, sizeof(wifi_cfg.sta.ssid) - 1);
+    //     memcpy(&g_sys_param.password[0], wifi_cfg.sta.password, sizeof(wifi_cfg.sta.password) - 1);
+    //     ESP_LOGI(TAG, "ssid|password:[%s:%s]", wifi_cfg.sta.ssid, wifi_cfg.sta.password);
+    // }
+    ESP_LOGW(TAG, "ssid|password:[%s:%s]", DEFAULT_ESP_WIFI_SSID, DEFAULT_ESP_WIFI_PASS);
+    memcpy(&g_sys_param.ssid[0], DEFAULT_ESP_WIFI_SSID, strlen(DEFAULT_ESP_WIFI_SSID));
+    memcpy(&g_sys_param.password[0], DEFAULT_ESP_WIFI_PASS, strlen(DEFAULT_ESP_WIFI_PASS));
+
+    g_sys_param.password_len = strlen(g_sys_param.password);
+    g_sys_param.ssid_len = strlen(g_sys_param.ssid);
+    settings_write_parameter_to_nvs();
+
+    return ESP_OK;
+}
 
 static esp_err_t settings_check(sys_param_t *param)
 {
@@ -42,38 +64,18 @@ static esp_err_t settings_check(sys_param_t *param)
     ESP_GOTO_ON_FALSE(param->standby_time <= 3, ESP_ERR_INVALID_ARG, reset, TAG, "standby_time incorrect");
     ESP_GOTO_ON_FALSE(param->brightness <= 100, ESP_ERR_INVALID_ARG, reset, TAG, "brightness incorrect");
 
-    ESP_GOTO_ON_FALSE(param->light_onoff <= 1, ESP_ERR_INVALID_ARG, reset, TAG, "light_onoff incorrect");
-    ESP_GOTO_ON_FALSE(param->light_colour <= 3, ESP_ERR_INVALID_ARG, reset, TAG, "light_colour incorrect");
-    ESP_GOTO_ON_FALSE(param->light_pwm <= 100, ESP_ERR_INVALID_ARG, reset, TAG, "light_pwm incorrect");
-
-    if(((0 == param->ssid_len) || (param->ssid_len > 32)) || \
-        ((0 == param->password_len) || (param->password_len > 64)) || \
-        (param->ssid_len != strlen(param->ssid)) || \
-        (param->password_len != strlen(param->password))){
+    if (((0 == param->ssid_len) || (param->ssid_len > 32)) || \
+            ((0 == param->password_len) || (param->password_len > 64)) || \
+            (param->ssid_len != strlen(param->ssid)) || \
+            (param->password_len != strlen(param->password))) {
         ESP_LOGI(TAG, "ssid | password incorrect, [%d.%d, %d.%d]", \
-        param->ssid_len, strlen(param->ssid), param->password_len, strlen(param->password));
+                 param->ssid_len, strlen(param->ssid), param->password_len, strlen(param->password));
         goto reset;
     }
 
     return ret;
 reset:
-    ESP_LOGI(TAG, "Set to default");
-    memcpy(&g_sys_param, &g_default_sys_param, sizeof(sys_param_t));
-
-    wifi_config_t wifi_cfg;
-    if (esp_wifi_get_config(WIFI_IF_STA, &wifi_cfg) != ESP_OK) {
-        ESP_LOGI(TAG, "ssid|password:[%s:%s]", EXAMPLE_ESP_WIFI_SSID, EXAMPLE_ESP_WIFI_PASS);
-        memcpy(&g_sys_param.ssid[0], EXAMPLE_ESP_WIFI_SSID, strlen(EXAMPLE_ESP_WIFI_SSID));
-        memcpy(&g_sys_param.password[0], EXAMPLE_ESP_WIFI_PASS, strlen(EXAMPLE_ESP_WIFI_PASS));
-    }
-    else{
-        memcpy(&g_sys_param.ssid[0], wifi_cfg.sta.ssid, sizeof(wifi_cfg.sta.ssid)-1);
-        memcpy(&g_sys_param.password[0], wifi_cfg.sta.password, sizeof(wifi_cfg.sta.password) -1);
-        ESP_LOGI(TAG, "ssid|password:[%s:%s]", wifi_cfg.sta.ssid, wifi_cfg.sta.password);
-    }
-    g_sys_param.password_len = strlen(g_sys_param.password);
-    g_sys_param.ssid_len = strlen(g_sys_param.ssid);
-
+    settings_factory_reset();
     return ret;
 }
 
@@ -82,12 +84,12 @@ esp_err_t settings_read_parameter_from_nvs(void)
     nvs_handle_t my_handle = 0;
     esp_err_t ret = nvs_open(NAME_SPACE, NVS_READONLY, &my_handle);
     if (ESP_ERR_NVS_NOT_FOUND == ret) {
-        ESP_LOGI(TAG, "Not found, Set to default");
+        ESP_LOGW(TAG, "Not found, Set to default");
         memcpy(&g_sys_param, &g_default_sys_param, sizeof(sys_param_t));
-        memcpy(&g_sys_param.ssid[0], EXAMPLE_ESP_WIFI_SSID, strlen(EXAMPLE_ESP_WIFI_SSID));
-        memcpy(&g_sys_param.password[0], EXAMPLE_ESP_WIFI_PASS, strlen(EXAMPLE_ESP_WIFI_PASS));
-        g_sys_param.ssid_len = strlen(EXAMPLE_ESP_WIFI_SSID);
-        g_sys_param.password_len = strlen(EXAMPLE_ESP_WIFI_PASS);
+        memcpy(&g_sys_param.ssid[0], DEFAULT_ESP_WIFI_SSID, strlen(DEFAULT_ESP_WIFI_SSID));
+        memcpy(&g_sys_param.password[0], DEFAULT_ESP_WIFI_PASS, strlen(DEFAULT_ESP_WIFI_PASS));
+        g_sys_param.ssid_len = strlen(DEFAULT_ESP_WIFI_SSID);
+        g_sys_param.password_len = strlen(DEFAULT_ESP_WIFI_PASS);
 
         settings_write_parameter_to_nvs();
         return ESP_OK;
