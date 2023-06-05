@@ -22,9 +22,9 @@
 
 static bool boot_layer_enter_cb(void *create_layer);
 static bool boot_layer_exit_cb(void *create_layer);
-static void boot_layer_timer_cb(lv_timer_t * tmr);
+static void boot_layer_timer_cb(lv_timer_t *tmr);
 
-lv_layer_t boot_Layer ={
+lv_layer_t boot_Layer = {
     .lv_obj_name    = "boot_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
@@ -34,7 +34,7 @@ lv_layer_t boot_Layer ={
     .timer_cb       = boot_layer_timer_cb,
 };
 
-static lv_obj_t * arc[3];
+static lv_obj_t *arc[3];
 static time_out_count time_20ms;
 
 static void anim_timer_handle(lv_obj_t *parent)
@@ -80,11 +80,19 @@ static void anim_timer_handle(lv_obj_t *parent)
     }
 
     if ((count += 2) >= 300) {
-        lv_func_goto_layer(&main_Layer);
+        if (sys_set->need_hint) {
+            lv_func_goto_layer(&user_guide_layer);
+        } else {
+            if (sys_set->demo_gui) {
+                lv_func_goto_layer(&main_Layer);
+            } else {
+                lv_func_goto_layer(&sr_layer);
+            }
+        }
     }
 }
 
-void boot_animate_start(lv_obj_t * parent)
+void boot_animate_start(lv_obj_t *parent)
 {
     lv_obj_clear_flag(parent, LV_OBJ_FLAG_SCROLLABLE);
     lv_obj_set_style_radius(parent, 0, LV_PART_MAIN);
@@ -111,17 +119,17 @@ static bool boot_layer_enter_cb(void *create_layer)
     bool ret = false;
 
     lv_layer_t *layer = create_layer;
-	if(NULL == layer->lv_obj_layer){
-		ret = true;
-		layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+    if (NULL == layer->lv_obj_layer) {
+        ret = true;
+        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
         lv_obj_remove_style_all(layer->lv_obj_layer);
         lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
 
         boot_animate_start(layer->lv_obj_layer);
         set_time_out(&time_20ms, 20);
-	}
+    }
 
-	return ret;
+    return ret;
 }
 
 static bool boot_layer_exit_cb(void *create_layer)
@@ -130,9 +138,9 @@ static bool boot_layer_exit_cb(void *create_layer)
     return true;
 }
 
-static void boot_layer_timer_cb(lv_timer_t * tmr)
+static void boot_layer_timer_cb(lv_timer_t *tmr)
 {
-    if(is_time_out(&time_20ms)){
+    if (is_time_out(&time_20ms)) {
         anim_timer_handle(boot_Layer.lv_obj_layer);
     }
 }

@@ -42,8 +42,9 @@ typedef bool (*lv_layer_exit_cb)(void *layer);
 
 typedef struct lv_layer {
     char *lv_obj_name;
-    lv_obj_t *lv_obj_parent;
     lv_obj_t *lv_obj_layer;
+    uint8_t user_data;
+    lv_obj_t *lv_obj_parent;
     struct lv_layer *lv_show_layer;
     lv_layer_enter_cb enter_cb;
     lv_layer_exit_cb exit_cb;
@@ -68,7 +69,9 @@ extern void enter_clock_time();
 
 extern void feed_clock_time();
 
-extern void lv_create_clock(lv_layer_t *clock_layer, uint32_t tmOut);
+extern void reset_clock_time(uint8_t index);
+
+extern void lv_create_clock(lv_layer_t *clock_layer);
 
 extern void lv_func_goto_layer(lv_layer_t *dst_layer);
 

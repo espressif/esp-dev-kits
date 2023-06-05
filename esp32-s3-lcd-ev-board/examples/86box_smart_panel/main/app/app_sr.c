@@ -79,54 +79,28 @@ static sr_data_t *g_sr_data = NULL;
  */
 static const sr_cmd_t g_default_cmd_info[] = {
     // English
+    {SR_CMD_AC_SET_ON, SR_LANG_EN, 0, "Open the air conditioner", "bPcN jc fR KcNDgscNk", {NULL}},
+    {SR_CMD_AC_SET_ON, SR_LANG_EN, 0, "Switch On the air conditioner", "SWgp nN jc fR KcNDgscNk", {NULL}},
+    {SR_CMD_AC_SET_OFF, SR_LANG_EN, 0, "Switch Off the air conditioner", "SWgp eF jc fR KcNDgscNk", {NULL}},
+    {SR_CMD_AC_SET_OFF, SR_LANG_EN, 0, "Close the air conditioner", "KLbS jc fR KcNDgscNk", {NULL}},
+
+    {SR_CMD_AC_TEMP_ADD, SR_LANG_EN, 0, "Raise the temperature", "RdZ jc TfMPRcpk", {NULL}},
+    {SR_CMD_AC_TEMP_DEC, SR_LANG_EN, 0, "Reduce the temperature", "RcDoS jc TfMPRcpk", {NULL}},
+
     {SR_CMD_LIGHT_ON, SR_LANG_EN, 0, "Turn On the Light", "TkN nN jc LiT", {NULL}},
     {SR_CMD_LIGHT_ON, SR_LANG_EN, 0, "Switch On the Light", "SWgp nN jc LiT", {NULL}},
     {SR_CMD_LIGHT_OFF, SR_LANG_EN, 0, "Switch Off the Light", "SWgp eF jc LiT", {NULL}},
     {SR_CMD_LIGHT_OFF, SR_LANG_EN, 0, "Turn Off the Light", "TkN eF jc LiT", {NULL}},
-    {SR_CMD_SET_RED, SR_LANG_EN, 0, "Turn Red", "TkN RfD", {NULL}},
-    {SR_CMD_SET_GREEN, SR_LANG_EN, 0, "Turn Green", "TkN GRmN", {NULL}},
-    {SR_CMD_SET_BLUE, SR_LANG_EN, 0, "Turn Blue", "TkN BLo", {NULL}},
-    {SR_CMD_CUSTOMIZE_COLOR, SR_LANG_EN, 0, "Customize Color", "KcSTcMiZ KcLk", {NULL}},
-    {SR_CMD_PLAY, SR_LANG_EN, 0, "Sing a song", "Sgl c Sel", {NULL}},
-    {SR_CMD_PLAY, SR_LANG_EN, 0, "Play Music", "PLd MYoZgK", {NULL}},
-    {SR_CMD_NEXT, SR_LANG_EN, 0, "Next Song", "NfKST Sel", {NULL}},
-    {SR_CMD_PAUSE, SR_LANG_EN, 0, "Pause Playing", "PeZ PLdgl", {NULL}},
 
     // Chinese
-#if SR_RUN_TEST
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_cha ba ji kai ji", "cha ba ji kai ji", {NULL}},
-    {SR_CMD_LIGHT_OFF, SR_LANG_CN, 0, "T_cha ba ji guan ji", "cha ba ji guan ji", {NULL}},
-    {SR_CMD_CUSTOMIZE_COLOR, SR_LANG_CN, 0, "T_you bian jia shui", "you bian jia shui", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_you bian qu shui", "you bian qu shui", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_ting zhi qu shui", "ting zhi qu shui", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_shui hu jia re", "shui hu jia re", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_ting zhi jia re", "ting zhi jia re", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_zuo bian jia shui", "zuo bian jia shui", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_zuo bian qu shui", "zuo bian qu shui", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_kai shi bao wen", "kai shi bao wen", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_bao wen mo shi", "bao wen mo shi", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_kai shi zhi leng", "kai shi zhi leng", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_zhi leng mo shi", "zhi leng mo shi", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_kai si zi leng", "kai si zi leng", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_zi leng mo shi", "zi leng mo shi", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_ting zhi bao wen", "ting zhi bao wen", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_guan bi bao wen", "guan bi bao wen", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_ting zhi zhi leng",  "ting zhi zhi leng", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_guan bi zhi leng",  "guan bi zhi leng", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_zui da yin liang",  "zui da yin liang", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_zui xiao yin liang",  "zui xiao yin liang", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_hua cha mo shi",  "hua cha mo shi", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_guo cha mo shi",  "guo cha mo shi", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_hong cha mo shi",  "hong cha mo shi", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_lv cha mo shi",  "lv cha mo shi", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_tui chu zhu cha mo shi",  "tui chu zhu cha mo shi", {NULL}},
-    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "T_ting zhi zhu cha",  "ting zhi zhu cha", {NULL}},
-#else
     {SR_CMD_AC_SET_ON, SR_LANG_CN, 0, "打开空调", "da kai kong tiao", {NULL}},
     {SR_CMD_AC_SET_OFF, SR_LANG_CN, 0, "关闭空调", "guan bi kong tiao", {NULL}},
+
     {SR_CMD_AC_TEMP_ADD, SR_LANG_CN, 0, "升高温度", "sheng gao wen du", {NULL}},
     {SR_CMD_AC_TEMP_DEC, SR_LANG_CN, 0, "降低温度", "jiang di wen du", {NULL}},
-#endif
+
+    {SR_CMD_LIGHT_ON, SR_LANG_CN, 0, "打开电灯", "da kai dian deng", {NULL}},
+    {SR_CMD_LIGHT_OFF, SR_LANG_CN, 0, "关闭电灯", "guan bi dian deng", {NULL}},
 };
 
 
@@ -182,9 +156,6 @@ static void audio_feed_task(void *arg)
     }
 }
 
-extern uint8_t titleview_action;
-uint8_t sr_auto_enable = 0;
-
 static void audio_detect_task(void *arg)
 {
     bool detect_flag = false;
@@ -206,25 +177,6 @@ static void audio_detect_task(void *arg)
         afe_fetch_result_t *res = afe_handle->fetch(afe_data);
         if (!res || res->ret_value == ESP_FAIL) {
             continue;
-        }
-
-        if (1 == titleview_action) {
-            titleview_action = 0;
-            //ESP_LOGI(TAG, "disable_wakenet");
-            //g_sr_data->afe_handle->disable_wakenet(afe_data);
-        } else if (2 == titleview_action) {
-            titleview_action = 0;
-            //ESP_LOGI(TAG, "enable_wakenet start");
-            sr_auto_enable = 30;
-            //g_sr_data->afe_handle->enable_wakenet(afe_data);
-        }
-
-        if (sr_auto_enable) {
-            sr_auto_enable--;
-            if (0 == sr_auto_enable) {
-                //ESP_LOGI(TAG, "enable_wakenet end");
-                //g_sr_data->afe_handle->enable_wakenet(afe_data);
-            }
         }
 
 #if DEBUG_SAVE_PCM
@@ -432,7 +384,6 @@ esp_err_t app_sr_start(bool record_en)
     g_sr_data->afe_data = afe_data;
 
     sys_param_t *param = settings_get_parameter();
-    param->sr_lang = SR_LANG_CN;
     g_sr_data->lang = SR_LANG_MAX;
     ret = app_sr_set_language(param->sr_lang);
     ESP_GOTO_ON_FALSE(ESP_OK == ret, ESP_FAIL, err, TAG,  "Failed to set language");

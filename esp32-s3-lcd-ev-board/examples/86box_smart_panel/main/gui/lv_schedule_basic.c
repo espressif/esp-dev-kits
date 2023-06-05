@@ -7,6 +7,7 @@
 #include "esp_check.h"
 #include "esp_err.h"
 #include "esp_log.h"
+#include "settings.h"
 
 #include "lv_schedule_basic.h"
 
@@ -18,6 +19,7 @@ static const char *TAG = "lvgl_basic";
  *   STATIC FUNCTIONS
  **********************/
 
+static lv_layer_t *screen_off_layer;
 static lv_timer_t *timer_system;
 static lv_layer_t *current_layer = NULL;
 
@@ -91,7 +93,7 @@ void lv_func_goto_layer(lv_layer_t *dst_layer)
         if (src_layer->lv_obj_layer) {
 
             if (src_layer->lv_show_layer) {
-                src_layer->exit_cb(src_layer->lv_show_layer);
+                src_layer->lv_show_layer->exit_cb(src_layer->lv_show_layer);
                 LV_LOG_INFO("[-] Delete show lv_layer:%s", src_layer->lv_show_layer->lv_obj_name);
                 if (src_layer->lv_show_layer->lv_obj_layer) {
                     //lv_obj_del_async(src_layer->lv_show_layer->lv_obj_layer);
@@ -134,9 +136,6 @@ void lv_func_goto_layer(lv_layer_t *dst_layer)
         } else {
             LV_LOG_INFO("%s != NULL", dst_layer->lv_obj_name);
         }
-        if (current_layer) {
-            memory_monitor();
-        }
         current_layer = dst_layer;
     }
 
@@ -161,23 +160,36 @@ void feed_clock_time()
 void enter_clock_time()
 {
     ESP_LOGI(TAG, "screen off");
+    lv_func_goto_layer(screen_off_layer);
     time_enter_clock.time_base = 0;
+}
+
+void reset_clock_time(uint8_t index)
+{
+    uint32_t clock_time[] = {15 * 1000, 5 * 60 * 1000, 1 * 60 * 60 * 1000, 0xFFFFFFFF};
+    assert(index < 4);
+
+    uint32_t tmOut = clock_time[index];
+    ESP_LOGI(TAG, "reset clock time:%d sec", tmOut / 1000);
+    set_time_out(&time_enter_clock, tmOut);
 }
 
 static void time_clock_update_cb(lv_timer_t *timer)
 {
     lv_obj_t *obj = (lv_obj_t *)timer->user_data;
-    lv_layer_t *clock_layer = (lv_layer_t *)obj;
+    screen_off_layer = (lv_layer_t *)obj;
 
     if (is_time_out(&time_enter_clock)) {
-        lv_func_goto_layer(clock_layer);
+        lv_func_goto_layer(screen_off_layer);
         feed_clock_time();
     }
 }
 
-void lv_create_clock(lv_layer_t *clock_layer, uint32_t tmOut)
+void lv_create_clock(lv_layer_t *clock_layer)
 {
-    set_time_out(&time_enter_clock, tmOut);
+    sys_param_t *sys_set = settings_get_parameter();
+    reset_clock_time(sys_set->standby_time);
+
     lv_timer_t *timer_clock = lv_timer_create(time_clock_update_cb, 1 * 1000, clock_layer);
     if ( timer_clock ) {
         timer_system = timer_clock;

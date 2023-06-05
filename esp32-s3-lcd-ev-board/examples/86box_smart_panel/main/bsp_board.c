@@ -6,11 +6,13 @@
 
 #include "esp_log.h"
 #include "esp_check.h"
+#include "esp_spiffs.h"
 #include "hal/i2s_hal.h"
 #include "driver/rmt_tx.h"
 #include "led_strip.h"
 #include "led_strip_interface.h"
 
+#include "audio_player.h"
 #include "bsp_board.h"
 #include "es7210.h"
 #include "es8311.h"
@@ -28,7 +30,6 @@
 #define ES7210_ADC_VOLUME           (0)
 
 #define BLINK_GPIO                  GPIO_NUM_4
-// #define BLINK_GPIO                  GPIO_NUM_14
 
 static led_strip_handle_t led_strip;
 static bsp_codec_config_t g_codec_handle;
@@ -38,6 +39,8 @@ static i2s_chan_handle_t i2s_rx_chan;
 
 static es7210_dev_handle_t es7210_handle = NULL;
 static es8311_handle_t es8311_handle = NULL;
+
+static file_iterator_instance_t *file_iterator;
 
 static const char *TAG = "board";
 
@@ -189,4 +192,74 @@ esp_err_t bsp_board_init(void)
     bsp_codec_init();
 
     return ret;
+}
+
+esp_err_t bsp_spiffs_mount(void)
+{
+    esp_vfs_spiffs_conf_t conf = {
+        .base_path = CONFIG_BSP_SPIFFS_MOUNT_POINT,
+        .partition_label = CONFIG_BSP_SPIFFS_PARTITION_LABEL,
+        .max_files = CONFIG_BSP_SPIFFS_MAX_FILES,
+#ifdef CONFIG_BSP_SPIFFS_FORMAT_ON_MOUNT_FAIL
+        .format_if_mount_failed = true,
+#else
+        .format_if_mount_failed = false,
+#endif
+    };
+
+    esp_err_t ret_val = esp_vfs_spiffs_register(&conf);
+
+    ESP_ERROR_CHECK(ret_val);
+
+    size_t total = 0, used = 0;
+    ret_val = esp_spiffs_info(conf.partition_label, &total, &used);
+    if (ret_val != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to get SPIFFS partition information (%s)", esp_err_to_name(ret_val));
+    } else {
+        ESP_LOGI(TAG, "Partition size: total: %d, used: %d", total, used);
+    }
+
+    return ret_val;
+}
+
+esp_err_t bsp_spiffs_unmount(void)
+{
+    return esp_vfs_spiffs_unregister(CONFIG_BSP_SPIFFS_PARTITION_LABEL);
+}
+
+file_iterator_instance_t *get_file_iterator_instance(void)
+{
+    return file_iterator;
+}
+
+static esp_err_t audio_mute_function(AUDIO_PLAYER_MUTE_SETTING setting)
+{
+    // Volume saved when muting and restored when unmuting. Restoring volume is necessary
+    // as es8311_set_voice_mute(true) results in voice volume (REG32) being set to zero.
+    static int last_volume;
+    bsp_codec_config_t *codec_handle = bsp_board_get_codec_handle();
+
+    codec_handle->mute_set_fn(setting == AUDIO_PLAYER_MUTE ? true : false);
+
+    if (setting == AUDIO_PLAYER_UNMUTE) {
+        codec_handle->volume_set_fn(80, NULL);
+    }
+    ESP_LOGI(TAG, "mute setting %d, volume:%d", setting, last_volume);
+
+    return ESP_OK;
+}
+
+esp_err_t bsp_audio_player_init(void)
+{
+    bsp_codec_config_t *codec_handle = bsp_board_get_codec_handle();
+    file_iterator = file_iterator_new("/spiffs/mp3");
+    assert(file_iterator != NULL);
+    audio_player_config_t config = { .mute_fn = audio_mute_function,
+                                     .write_fn = codec_handle->i2s_write_fn,
+                                     .clk_set_fn = codec_handle->i2s_reconfig_clk_fn,
+                                     .priority = 5
+                                   };
+    ESP_ERROR_CHECK(audio_player_new(config));
+
+    return ESP_OK;
 }

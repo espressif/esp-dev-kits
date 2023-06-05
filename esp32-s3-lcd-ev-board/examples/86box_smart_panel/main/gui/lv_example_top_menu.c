@@ -10,6 +10,8 @@
 #include "settings.h"
 
 #include "bsp_board.h"
+#include "app_weather.h"
+
 #include "lv_example_pub.h"
 #include "lv_example_image.h"
 
@@ -27,26 +29,27 @@ static void lv_btn_create_light_light(lv_obj_t *parent);
 static void lv_btn_create_light_color(lv_obj_t *parent);
 static void lv_btn_create_page_clock(lv_obj_t *parent);
 static void lv_btn_create_page_air_conditioner(lv_obj_t *parent);
-static void lv_btn_create_page_weather(lv_obj_t *parent);
+static void lv_btn_create_page_weather1(lv_obj_t *parent);
+static void lv_btn_create_page_weather3(lv_obj_t *parent);
 
 static void lv_btn_create_page_select_theam(lv_obj_t *parent);
 static void lv_btn_create_page_select_light(lv_obj_t *parent);
 static void lv_btn_create_page_select_home(lv_obj_t *parent);
 static void lv_btn_create_page_select_ac(lv_obj_t *parent);
 
-typedef enum{
+typedef enum {
     PAGE_NUM_HOME,
     PAGE_NUM_LIGHT,
     PAGE_NUM_AC,
     PAGE_NUM_THEAM,
-}PAGE_NUM_t;
+} PAGE_NUM_t;
 
 lv_layer_t main_Layer = {
     .lv_obj_name    = "main_Layer",
     .lv_obj_parent  = NULL,
     .lv_obj_layer   = NULL,
-    //.lv_show_layer  = &show_set_layer,
-    .lv_show_layer  = NULL,
+    .lv_show_layer  = &show_set_layer,
+    // .lv_show_layer  = NULL,
     .enter_cb       = main_layer_enter_cb,
     .exit_cb        = main_layer_exit_cb,
     .timer_cb       = main_layer_timer_cb,
@@ -72,22 +75,22 @@ typedef struct {
 } ac_obj_item_t;
 
 icon_descrip icon_descrip_layout_1[] = {
-    {true, false,   0, 0, 1, 2, (uint8_t *)&icon_320_weather, lv_btn_create_page_weather},
-    {true, false,   1, 0, 2, 2, (uint8_t *)&icon_320_AC, lv_btn_create_page_clock},
+    {true, false,   0, 0, 1, 2, (uint8_t *) &icon_320_weather, lv_btn_create_page_weather1},
+    {true, false,   1, 0, 2, 2, (uint8_t *) &icon_320_AC, lv_btn_create_page_clock},
     {false, false,  2, 0, 1, 2, NULL, NULL},
 
     {false, false,  0, 1, 1, 1, NULL, NULL},
     {false, false,  1, 1, 1, 1, NULL, NULL},
     {false, false,  2, 1, 1, 1, NULL, NULL},
 
-    {true, false,   0, 2, 1, 1, (uint8_t *)&icon_160_theam, lv_btn_create_page_select_theam},
-    {true, false,   1, 2, 1, 1, (uint8_t *)&icon_160_light, lv_btn_create_page_select_light},
-    {true, false,   2, 2, 1, 1, (uint8_t *)&icon_160_home, lv_btn_create_page_select_ac},
+    {true, false,   0, 2, 1, 1, (uint8_t *) &icon_160_theam, lv_btn_create_page_select_theam},
+    {true, false,   1, 2, 1, 1, (uint8_t *) &icon_160_light, lv_btn_create_page_select_light},
+    {true, false,   2, 2, 1, 1, (uint8_t *) &icon_160_home, lv_btn_create_page_select_ac},
 };
 
 icon_descrip icon_descrip_layout_2[] = {
-    {true, false,   0, 0, 1, 2, (uint8_t *)&icon_320_weather, lv_btn_create_light_light},
-    {true, false,   1, 0, 2, 2, (uint8_t *)&icon_320_AC, lv_btn_create_light_color},
+    {true, false,   0, 0, 1, 2, (uint8_t *) &icon_320_weather, lv_btn_create_light_light},
+    {true, false,   1, 0, 2, 2, (uint8_t *) &icon_320_AC, lv_btn_create_light_color},
     {false, false,  2, 0, 1, 2, NULL, NULL},
 
 
@@ -95,14 +98,14 @@ icon_descrip icon_descrip_layout_2[] = {
     {false, false,  1, 1, 1, 1, NULL, NULL},
     {false, false,  2, 1, 1, 1, NULL, NULL},
 
-    {true, false,   0, 2, 1, 1, (uint8_t *)&icon_160_theam, lv_btn_create_page_select_theam},
-    {true, false,   1, 2, 1, 1, (uint8_t *)&icon_160_light, lv_btn_create_page_select_home},
-    {true, false,   2, 2, 1, 1, (uint8_t *)&icon_160_home, lv_btn_create_page_select_ac},
+    {true, false,   0, 2, 1, 1, (uint8_t *) &icon_160_theam, lv_btn_create_page_select_theam},
+    {true, false,   1, 2, 1, 1, (uint8_t *) &icon_160_light, lv_btn_create_page_select_home},
+    {true, false,   2, 2, 1, 1, (uint8_t *) &icon_160_home, lv_btn_create_page_select_ac},
 };
 
 icon_descrip icon_descrip_layout_3[] = {
-    {true, false,   0, 0, 1, 2, (uint8_t *)&icon_320_weather, lv_btn_create_page_weather},
-    {true, false,   1, 0, 2, 2, (uint8_t *)&icon_320_AC, lv_btn_create_page_air_conditioner},
+    {true, false,   0, 0, 1, 2, (uint8_t *) &icon_320_weather, lv_btn_create_page_weather3},
+    {true, false,   1, 0, 2, 2, (uint8_t *) &icon_320_AC, lv_btn_create_page_air_conditioner},
     {false, false,  2, 0, 1, 2, NULL, NULL},
 
 
@@ -110,9 +113,9 @@ icon_descrip icon_descrip_layout_3[] = {
     {false, false,  1, 1, 1, 1, NULL, NULL},
     {false, false,  2, 1, 1, 1, NULL, NULL},
 
-    {true, false,   0, 2, 1, 1, (uint8_t *)&icon_160_theam, lv_btn_create_page_select_theam},
-    {true, false,   1, 2, 1, 1, (uint8_t *)&icon_160_light, lv_btn_create_page_select_light},
-    {true, false,   2, 2, 1, 1, (uint8_t *)&icon_160_home, lv_btn_create_page_select_home},
+    {true, false,   0, 2, 1, 1, (uint8_t *) &icon_160_theam, lv_btn_create_page_select_theam},
+    {true, false,   1, 2, 1, 1, (uint8_t *) &icon_160_light, lv_btn_create_page_select_light},
+    {true, false,   2, 2, 1, 1, (uint8_t *) &icon_160_home, lv_btn_create_page_select_home},
 };
 
 icon_descrip *emoji_layout[USER_MAINMENU_MAX] = {
@@ -120,6 +123,9 @@ icon_descrip *emoji_layout[USER_MAINMENU_MAX] = {
     &icon_descrip_layout_2[0],
     &icon_descrip_layout_3[0]
 };
+
+static lv_obj_t *label_weather1_temp, *label_weather1_city;
+static lv_obj_t *label_weather3_temp, *label_weather3_city;
 
 static lv_obj_t *page1_time_Hour_H, *page1_time_Hour_L;
 static lv_obj_t *page1_time_min_H, *page1_time_min_L;
@@ -131,46 +137,41 @@ static lv_obj_t *cont_page_index;
 
 static lv_obj_t *titleview_home;
 
-static lv_obj_t *tips_btn, *tips_label;
+static lv_obj_t *tips_btn, *tips_label, *slider_light;
 static lv_obj_t *img_AC_power, *img_AC_add,  *img_AC_dec;
 
-// static bool thream_set = false;
-static bool thream_set = true;
+static uint8_t tips_delay;
+THEAM_SET_SELECT thream_set = THEAM_SET_WARM;
 
-static lv_color16_t color_select = {
+static lv_color16_t light_color_select = {
     .full = 0x00FF,
 };
-static uint8_t brightness_set = 40;
+static uint8_t light_brightness_set = 0;
 
 static time_out_count time_500ms;
 
 static void light_set_rgb(lv_color16_t color_set, uint8_t brightness)
 {
-    // ESP_LOGI(TAG, "[%d,%d,%d]->[%d,%d,%d]",
-    //                 color_set.ch.red,
-    //                 color_set.ch.green,
-    //                 color_set.ch.blue,
-
-    //                 brightness*color_set.ch.red*255/63/100,
-    //                 brightness*color_set.ch.green*255/63/100,
-    //                 brightness*color_set.ch.blue*255/63/100);
-
-    bsp_led_set_rgb(0, brightness*color_set.ch.red*255/63/100,
-                    brightness*color_set.ch.green*255/63/100,
-                    brightness*color_set.ch.blue*255/63/100);
+    bsp_led_set_rgb(0, brightness * color_set.ch.red * 255 / 63 / 100,
+                    brightness * color_set.ch.green * 255 / 63 / 100,
+                    brightness * color_set.ch.blue * 255 / 63 / 100);
 }
 
 
-static void light_set_onoff(sys_param_t *param)
+static void light_set_onoff(bool onoff)
 {
-    if (false == param->light_onoff) {
-        //light_set_rgb(param->light_colour, 0);
+    if (true == onoff) {
+        if (0 == light_brightness_set) {
+            light_brightness_set = 40;
+        }
     } else {
-        //light_set_rgb(param->light_colour, param->light_pwm);
+        light_brightness_set = 0;
     }
-}
 
-uint8_t titleview_action = 0;
+    light_set_rgb(light_color_select, light_brightness_set);
+    lv_slider_set_value(slider_light, light_brightness_set, LV_ANIM_OFF);
+    lv_obj_set_tile_id(titleview_home, PAGE_NUM_LIGHT, 0, LV_ANIM_ON);
+}
 
 static void top_titleview_event_cb(lv_event_t *e)
 {
@@ -182,11 +183,9 @@ static void top_titleview_event_cb(lv_event_t *e)
         code_xor = code;
 
         if (code == LV_EVENT_SCROLL_BEGIN) {
-            titleview_action = 1;
             // ESP_LOGI(TAG, "Code: begin");
         }
         if (code == LV_EVENT_SCROLL_END) {
-            titleview_action = 2;
             // ESP_LOGI(TAG, "Code: end");
         }
     }
@@ -194,42 +193,25 @@ static void top_titleview_event_cb(lv_event_t *e)
     if (code == LV_EVENT_VALUE_CHANGED) {
         feed_clock_time();
         lv_obj_t *nowObj = lv_tileview_get_tile_act(obj);
-        //LV_LOG_USER("act child:%d, index:%d",lv_obj_get_child_cnt(obj), lv_obj_get_index(nowObj));
 
         if (cont_page_index) {
             active_page_index = lv_obj_get_index(nowObj);
             lv_event_send(cont_page_index, LV_EVENT_VALUE_CHANGED, &active_page_index);
         } else {
-            //ESP_LOGW(TAG, "g_sr_label not initialize");
         }
     }
 }
 
-/*
-// static void color_change_press_event_cb(lv_event_t *e)
-// {
-//     lv_event_code_t code = lv_event_get_code(e);
+static void color_change_press_event_cb(lv_event_t *e)
+{
+    lv_event_code_t code = lv_event_get_code(e);
 
-//     if (code == LV_EVENT_SHORT_CLICKED) {
-//         feed_clock_time();
-//         lv_obj_t *light = (lv_obj_t *)lv_event_get_user_data(e);
+    if (code == LV_EVENT_SHORT_CLICKED) {
+        feed_clock_time();
+        light_set_onoff(light_brightness_set ? false : true);
+    }
+}
 
-//         if ((&icon_light_color == lv_imgbtn_get_src_middle(light, LV_IMGBTN_STATE_RELEASED)) ||\
-//             (&icon_light_color_warm == lv_imgbtn_get_src_middle(light, LV_IMGBTN_STATE_RELEASED))){
-//             lv_imgbtn_set_src(light, LV_IMGBTN_STATE_RELEASED, NULL, \
-//                             (false == thream_set) ? &icon_light_normal:&icon_light_normal_warm, NULL);
-//             lv_imgbtn_set_src(light, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, \
-//                             (false == thream_set) ? &icon_light_normal:&icon_light_normal_warm, NULL);
-//         }
-//         else{
-//             lv_imgbtn_set_src(light, LV_IMGBTN_STATE_RELEASED, NULL, \
-//                             (false == thream_set) ? &icon_light_color:&icon_light_color_warm, NULL);
-//             lv_imgbtn_set_src(light, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL,\
-//                             (false == thream_set) ? &icon_light_color:&icon_light_color_warm, NULL);
-//         }
-//     }
-// }
-*/
 static void color_select_press_event_cb(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
@@ -237,34 +219,30 @@ static void color_select_press_event_cb(lv_event_t *e)
     if (code == LV_EVENT_SHORT_CLICKED) {
         feed_clock_time();
         lv_indev_t *indev = lv_indev_get_next(NULL);
-        int x,y;
+        int x, y;
 
         if (lv_indev_get_type(indev) == LV_INDEV_TYPE_POINTER) {
             x = indev->proc.types.pointer.act_point.x;
             y = indev->proc.types.pointer.act_point.y;
-        }
-        else{
+        } else {
             x = y = 0;
         }
 
-        lv_disp_t * disp = lv_disp_get_default();
-        if(!disp) {
+        lv_disp_t *disp = lv_disp_get_default();
+        if (!disp) {
             LV_LOG_WARN("no display registered");
             return;
         }
 
-        lv_disp_draw_buf_t * draw_buf = lv_disp_get_draw_buf(disp);
+        lv_disp_draw_buf_t *draw_buf = lv_disp_get_draw_buf(disp);
         lv_coord_t hor_res = lv_disp_get_hor_res(disp);
 
-        color_select.full = *((uint16_t *)draw_buf->buf_act + y*hor_res + x);
-
-        // lv_coord_t ver_res = lv_disp_get_ver_res(disp);
-        // ESP_LOGI(TAG, "[%d,%d], bitmap[%04x], RGB:[%d,%d,%d]", hor_res, ver_res,
-        //     color_select.full, color_select.ch.red, color_select.ch.green, color_select.ch.blue);
-        // lv_obj_set_style_bg_color(tips_btn, color_select, LV_PART_MAIN);
-
-        bsp_led_set_rgb(0, color_select.ch.red, color_select.ch.green, color_select.ch.blue);
-        light_set_rgb(color_select, brightness_set);
+        light_color_select.full = *((uint16_t *)draw_buf->buf_act + y * hor_res + x);
+        if (0 == light_brightness_set) {
+            light_brightness_set = 40;
+            lv_slider_set_value(slider_light, light_brightness_set, LV_ANIM_OFF);
+        }
+        light_set_rgb(light_color_select, light_brightness_set);
     }
 }
 
@@ -276,18 +254,21 @@ static void btn_press_event_cb(lv_event_t *e)
         feed_clock_time();
         int fun_select = (int)lv_event_get_user_data(e);
 
-        switch(fun_select)
-        {
-            case PAGE_NUM_THEAM:
-            thream_set = !thream_set;
+        switch (fun_select) {
+        case PAGE_NUM_THEAM:
+            if (THEAM_SET_WARM == thream_set) {
+                thream_set = THEAM_SET_COOL;
+            } else {
+                thream_set = THEAM_SET_WARM;
+            }
             lv_func_goto_layer(&main_Layer);
             break;
 
-            default:
-            case PAGE_NUM_HOME:
-            case PAGE_NUM_LIGHT:
-            case PAGE_NUM_AC:
-            lv_obj_set_tile_id(titleview_home, fun_select, 0, LV_ANIM_ON);
+        default:
+        case PAGE_NUM_HOME:
+        case PAGE_NUM_LIGHT:
+        case PAGE_NUM_AC:
+            lv_obj_set_tile_id(titleview_home, fun_select, 0, LV_ANIM_OFF);
             break;
         }
         //LV_LOG_USER("Found fun_select:%d, thream_set:%d", fun_select, thream_set);
@@ -403,14 +384,10 @@ static void pwm_slider_show_event_cb(lv_event_t *e)
     lv_event_code_t code = lv_event_get_code(e);
 
     if (code == LV_EVENT_VALUE_CHANGED) {
-        lv_obj_t *slider = lv_event_get_target(e);
-        pwm_set = (int)lv_slider_get_value(slider);
-        brightness_set = pwm_set;
-        light_set_rgb(color_select, brightness_set);
-
-        // sys_param_t *sys_param = settings_get_parameter();
-        // sys_param->light_pwm = pwm_set;
-        // light_set_rgb(sys_param->light_colour, (sys_param->light_onoff ? sys_param->light_pwm : 0));
+        lv_obj_t *slider_light = lv_event_get_target(e);
+        pwm_set = (int)lv_slider_get_value(slider_light);
+        light_brightness_set = pwm_set;
+        light_set_rgb(light_color_select, light_brightness_set);
     }
 }
 
@@ -423,16 +400,8 @@ static void update_time(void *arg)
     //unix_time += 1642254;
     time_info = localtime(&unix_time);
 
-    // int year = time_info->tm_year + 1900;
-    // int month = time_info->tm_mon + 1;
-    // int day = time_info->tm_mday;
-    // int weekday = time_info->tm_wday;
     int clock_hour = time_info->tm_hour;
     int clock_minutes = time_info->tm_min;
-    // int clock_second = time_info->tm_sec;
-
-    clock_hour = time_info->tm_min;
-    clock_minutes = time_info->tm_sec;
 
     if ((page1_time_Hour_H != NULL) && (page1_time_min_L != NULL)) {
         lv_label_set_text_fmt(page1_time_Hour_H, "%d", (clock_hour % 24) / 10);
@@ -443,14 +412,47 @@ static void update_time(void *arg)
     }
 }
 
+static void update_weather(void *arg)
+{
+    weather_info_t info;
+    char *city_name;
+    static uint8_t city_poll;
+
+    city_poll++;
+    if (ESP_OK == app_weather_get_current_info(&info, (city_poll / 6) % LOCATION_NUM_MAX)) {
+        switch ((city_poll / 6) % LOCATION_NUM_MAX) {
+        case LOCATION_NUM_BEIJING:
+            city_name = sys_set->sr_lang ? "北京" : "BeiJing";
+            break;
+        case LOCATION_NUM_SHENZHEN:
+            city_name = sys_set->sr_lang ? "深圳" : "ShenZhen";
+            break;
+        default:
+        case LOCATION_NUM_SHANGHAI:
+            city_name = sys_set->sr_lang ? "上海" : "ShangHai";
+            break;
+        }
+
+        if ((label_weather1_temp != NULL) && (label_weather1_city != NULL)) {
+            lv_label_set_text_fmt(label_weather1_temp, "%d℃", info.temp);
+            lv_label_set_text_fmt(label_weather1_city, "%s", city_name);
+        }
+
+        if ((label_weather3_temp != NULL) && (label_weather3_city != NULL)) {
+            lv_label_set_text_fmt(label_weather3_temp, "%d℃", info.temp);
+            lv_label_set_text_fmt(label_weather3_city, "%s", city_name);
+        }
+    }
+}
+
 void lv_btn_create_light_color(lv_obj_t *parent)
 {
     lv_obj_t *color_btn = lv_imgbtn_create(parent);
     lv_obj_set_size(color_btn, 250, 250);
     lv_imgbtn_set_src(color_btn, LV_IMGBTN_STATE_RELEASED, NULL, \
-                            (false == thream_set) ? &icon_light_color:&icon_light_color_warm, NULL);
-    lv_imgbtn_set_src(color_btn, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL,\
-                            (false == thream_set) ? &icon_light_color:&icon_light_color_warm, NULL);
+                      (false == thream_set) ? &icon_light_color : &icon_light_color_warm, NULL);
+    lv_imgbtn_set_src(color_btn, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, \
+                      (false == thream_set) ? &icon_light_color : &icon_light_color_warm, NULL);
 
     lv_obj_align(color_btn, LV_ALIGN_CENTER, 0, 0);
     lv_obj_set_style_bg_color(color_btn, lv_color_hex(0xFF0000), 0);
@@ -462,29 +464,29 @@ void lv_btn_create_light_color(lv_obj_t *parent)
     lv_imgbtn_set_src(change_btn, LV_IMGBTN_STATE_RELEASED, NULL, &icon_light_change, NULL);
     lv_imgbtn_set_src(change_btn, LV_IMGBTN_STATE_CHECKED_RELEASED, NULL, &icon_light_change, NULL);
     lv_obj_align(change_btn, LV_ALIGN_CENTER, 0, 0);
-    //lv_obj_add_event_cb(change_btn, color_change_press_event_cb, LV_EVENT_SHORT_CLICKED, color_btn);
+    lv_obj_add_event_cb(change_btn, color_change_press_event_cb, LV_EVENT_SHORT_CLICKED, color_btn);
 }
 
 void lv_btn_create_light_light(lv_obj_t *parent)
 {
     lv_obj_t *icon_light = lv_img_create(parent);
     lv_img_set_src(icon_light, &icon_light_light);
-    lv_img_set_src(icon_light, thream_set ? &icon_light_light_warm:&icon_light_light);
+    lv_img_set_src(icon_light, thream_set ? &icon_light_light_warm : &icon_light_light);
 
     lv_obj_align(icon_light, LV_ALIGN_CENTER, 0, 0);
 
-    lv_obj_t *slider = lv_slider_create(parent);
-    lv_obj_remove_style_all(slider);        /*Remove the styles coming from the theme*/
-    lv_obj_set_size(slider, 15, 180);
-    lv_obj_align(slider, LV_ALIGN_CENTER, 0, 0);
+    slider_light = lv_slider_create(parent);
+    lv_obj_remove_style_all(slider_light);        /*Remove the styles coming from the theme*/
+    lv_obj_set_size(slider_light, 15, 180);
+    lv_obj_align(slider_light, LV_ALIGN_CENTER, 0, 0);
 
-    lv_obj_add_style(slider, &style_main, LV_PART_MAIN);
-    lv_obj_add_style(slider, &style_indicator, LV_PART_INDICATOR);
-    lv_obj_add_style(slider, &style_knob, LV_PART_KNOB);
+    lv_obj_add_style(slider_light, &style_main, LV_PART_MAIN);
+    lv_obj_add_style(slider_light, &style_indicator, LV_PART_INDICATOR);
+    lv_obj_add_style(slider_light, &style_knob, LV_PART_KNOB);
 
-    lv_obj_add_event_cb(slider, pwm_slider_show_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
-    lv_slider_set_range(slider, 0, 100);
-    lv_slider_set_value(slider, 40, LV_ANIM_OFF);
+    lv_obj_add_event_cb(slider_light, pwm_slider_show_event_cb, LV_EVENT_VALUE_CHANGED, NULL);
+    lv_slider_set_range(slider_light, 0, 100);
+    lv_slider_set_value(slider_light, light_brightness_set, LV_ANIM_OFF);
 }
 
 static lv_coord_t grid_clock_col_dsc[] = {30, 80, 80, LV_GRID_TEMPLATE_LAST};
@@ -495,21 +497,25 @@ void lv_btn_create_page_clock(lv_obj_t *parent)
     lv_obj_t *label_HourH = lv_label_create(parent);
     lv_obj_set_style_text_color(label_HourH, lv_color_white(), 0);
     lv_obj_set_style_text_font(label_HourH, &Montserrat_Bold_116, 0);
+    // lv_obj_set_style_text_font(label_HourH, &SourceHanSansCN_Normal_20, 0);
     lv_label_set_text(label_HourH, "1");
 
     lv_obj_t *label_HourL = lv_label_create(parent);
     lv_obj_set_style_text_color(label_HourL, lv_color_white(), 0);
     lv_obj_set_style_text_font(label_HourL, &Montserrat_Bold_116, 0);
+    // lv_obj_set_style_text_font(label_HourL, &SourceHanSansCN_Normal_20, 0);
     lv_label_set_text(label_HourL, "2");
 
     lv_obj_t *label_MinH = lv_label_create(parent);
     lv_obj_set_style_text_color(label_MinH, lv_color_white(), 0);
     lv_obj_set_style_text_font(label_MinH, &Montserrat_Bold_116, 0);
+    // lv_obj_set_style_text_font(label_MinH, &SourceHanSansCN_Normal_20, 0);
     lv_label_set_text(label_MinH, "3");
 
     lv_obj_t *label_MinL = lv_label_create(parent);
     lv_obj_set_style_text_color(label_MinL, lv_color_white(), 0);
     lv_obj_set_style_text_font(label_MinL, &Montserrat_Bold_116, 0);
+    // lv_obj_set_style_text_font(label_MinL, &SourceHanSansCN_Normal_20, 0);
     lv_label_set_text(label_MinL, "4");
 
     lv_obj_set_grid_dsc_array(parent, grid_clock_col_dsc, grid_clock_row_dsc);
@@ -534,9 +540,14 @@ void lv_btn_create_page_select_theam(lv_obj_t *parent)
 
     lv_obj_t *label_name = lv_label_create(parent);
     lv_obj_set_style_text_color(label_name, lv_color_hex(COLOUR_WHITE), 0);
-    lv_obj_set_style_text_font(label_name, &pingfang_18, 0);
-    lv_label_set_text(label_name, "主题");
-    lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 20, -20);
+    lv_obj_set_style_text_font(label_name, sys_set->sr_lang ? &SourceHanSansCN_Normal_18 : &SourceHanSansCN_Normal_20, 0);
+    if (sys_set->sr_lang) {
+        lv_label_set_text(label_name, "主题");
+        lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 20, -20);
+    } else {
+        lv_label_set_text(label_name, "Theme");
+        lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 25, -15);
+    }
 
     lv_obj_t *btn_opa = lv_btn_create(parent);
     lv_obj_remove_style_all(btn_opa);
@@ -554,9 +565,14 @@ void lv_btn_create_page_select_light(lv_obj_t *parent)
 
     lv_obj_t *label_name = lv_label_create(parent);
     lv_obj_set_style_text_color(label_name, lv_color_hex(COLOUR_BLACK), 0);
-    lv_obj_set_style_text_font(label_name, &pingfang_18, 0);
-    lv_label_set_text(label_name, "照明");
-    lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 20, -20);
+    lv_obj_set_style_text_font(label_name, sys_set->sr_lang ? &SourceHanSansCN_Normal_18 : &SourceHanSansCN_Normal_20, 0);
+    if (sys_set->sr_lang) {
+        lv_label_set_text(label_name, "照明");
+        lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 20, -20);
+    } else {
+        lv_label_set_text(label_name, "Light");
+        lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 25, -15);
+    }
 
     lv_obj_t *btn_opa = lv_btn_create(parent);
     lv_obj_remove_style_all(btn_opa);
@@ -574,9 +590,14 @@ void lv_btn_create_page_select_home(lv_obj_t *parent)
 
     lv_obj_t *label_name = lv_label_create(parent);
     lv_obj_set_style_text_color(label_name, lv_color_hex(COLOUR_WHITE), 0);
-    lv_obj_set_style_text_font(label_name, &pingfang_18, 0);
-    lv_label_set_text(label_name, "主页");
-    lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 20, -20);
+    lv_obj_set_style_text_font(label_name, sys_set->sr_lang ? &SourceHanSansCN_Normal_18 : &SourceHanSansCN_Normal_20, 0);
+    if (sys_set->sr_lang) {
+        lv_label_set_text(label_name, "主页");
+        lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 20, -20);
+    } else {
+        lv_label_set_text(label_name, "Home");
+        lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 25, -15);
+    }
 
     lv_obj_t *btn_opa = lv_btn_create(parent);
     lv_obj_remove_style_all(btn_opa);
@@ -594,9 +615,14 @@ void lv_btn_create_page_select_ac(lv_obj_t *parent)
 
     lv_obj_t *label_name = lv_label_create(parent);
     lv_obj_set_style_text_color(label_name, lv_color_hex(COLOUR_WHITE), 0);
-    lv_obj_set_style_text_font(label_name, &pingfang_18, 0);
-    lv_label_set_text(label_name, "空调");
-    lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 20, -20);
+    lv_obj_set_style_text_font(label_name, sys_set->sr_lang ? &SourceHanSansCN_Normal_18 : &SourceHanSansCN_Normal_20, 0);
+    if (sys_set->sr_lang) {
+        lv_label_set_text(label_name, "空调");
+        lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 20, -20);
+    } else {
+        lv_label_set_text(label_name, "AC");
+        lv_obj_align(label_name, LV_ALIGN_BOTTOM_MID, 25, -15);
+    }
 
     lv_obj_t *btn_opa = lv_btn_create(parent);
     lv_obj_remove_style_all(btn_opa);
@@ -606,31 +632,50 @@ void lv_btn_create_page_select_ac(lv_obj_t *parent)
     lv_obj_add_event_cb(btn_opa, btn_press_event_cb, LV_EVENT_SHORT_CLICKED, (void *)PAGE_NUM_AC);
 }
 
-void lv_btn_create_page_weather(lv_obj_t *parent)
+void lv_btn_create_page_weather1(lv_obj_t *parent)
 {
     lv_obj_t *little_icon_img = lv_img_create(parent);
     lv_img_set_src(little_icon_img, thream_set ? &icon_child_weather_warm : &icon_child_weather);
     lv_obj_align(little_icon_img, LV_ALIGN_CENTER, 0, -40);
 
-    lv_obj_t *label_temp = lv_label_create(parent);
-    lv_obj_set_style_text_color(label_temp, lv_color_hex(COLOUR_WHITE), 0);
-    lv_obj_set_style_text_font(label_temp, &helveticaneue_32, 0);
-    lv_label_set_text(label_temp, "25℃");
-    lv_obj_align(label_temp, LV_ALIGN_CENTER, 0, 30);
+    label_weather1_temp = lv_label_create(parent);
+    lv_obj_set_style_text_color(label_weather1_temp, lv_color_hex(COLOUR_WHITE), 0);
+    lv_obj_set_style_text_font(label_weather1_temp, &helveticaneue_32, 0);
+    lv_label_set_text(label_weather1_temp, "25℃");
+    lv_obj_align(label_weather1_temp, LV_ALIGN_CENTER, 0, 30);
 
-    lv_obj_t *label_name = lv_label_create(parent);
-    lv_obj_set_style_text_color(label_name, lv_color_hex(COLOUR_WHITE), 0);
-    lv_obj_set_style_text_font(label_name, &pingfang_18, 0);
-    lv_label_set_text(label_name, "天气");
-    lv_obj_align(label_name, LV_ALIGN_CENTER, 0, 60);
+    label_weather1_city = lv_label_create(parent);
+    lv_obj_set_style_text_color(label_weather1_city, lv_color_hex(COLOUR_WHITE), 0);
+    lv_obj_set_style_text_font(label_weather1_city, &SourceHanSansCN_Normal_20, 0);
+    lv_label_set_text(label_weather1_city, "上海");
+    lv_obj_align(label_weather1_city, LV_ALIGN_CENTER, 0, 60);
+}
+
+void lv_btn_create_page_weather3(lv_obj_t *parent)
+{
+    lv_obj_t *little_icon_img = lv_img_create(parent);
+    lv_img_set_src(little_icon_img, thream_set ? &icon_child_weather_warm : &icon_child_weather);
+    lv_obj_align(little_icon_img, LV_ALIGN_CENTER, 0, -40);
+
+    label_weather3_temp = lv_label_create(parent);
+    lv_obj_set_style_text_color(label_weather3_temp, lv_color_hex(COLOUR_WHITE), 0);
+    lv_obj_set_style_text_font(label_weather3_temp, &helveticaneue_32, 0);
+    lv_label_set_text(label_weather3_temp, "25℃");
+    lv_obj_align(label_weather3_temp, LV_ALIGN_CENTER, 0, 30);
+
+    label_weather3_city = lv_label_create(parent);
+    lv_obj_set_style_text_color(label_weather3_city, lv_color_hex(COLOUR_WHITE), 0);
+    lv_obj_set_style_text_font(label_weather3_city, &SourceHanSansCN_Normal_20, 0);
+    lv_label_set_text(label_weather3_city, "上海");
+    lv_obj_align(label_weather3_city, LV_ALIGN_CENTER, 0, 60);
 }
 
 void lv_btn_create_page_air_conditioner(lv_obj_t *parent)
 {
     lv_obj_t *label_name = lv_label_create(parent);
     lv_obj_set_style_text_color(label_name, lv_color_hex(COLOUR_WHITE), 0);
-    lv_obj_set_style_text_font(label_name, &pingfang_20, 0);
-    lv_label_set_text(label_name, "空调");
+    lv_obj_set_style_text_font(label_name, sys_set->sr_lang ? &SourceHanSansCN_Normal_26 : &SourceHanSansCN_Normal_20, 0);
+    lv_label_set_text(label_name, sys_set->sr_lang ? "空调" : "Air-conditioner");
     lv_obj_align(label_name, LV_ALIGN_OUT_TOP_LEFT, 20, 20);
 
     lv_obj_t *img_AC_BG = lv_img_create(parent);
@@ -723,7 +768,7 @@ void lv_create_nine_spaces(lv_obj_t *parent, uint8_t list)
                     lv_obj_center(btn_img);
                 }
 #else
-                if (false == thream_set) {
+                if (THEAM_SET_COOL == thream_set) {
                     if (&icon_160_light == (const lv_img_dsc_t *)(emoji_layout[list] + count)->img_src) {
                         lv_obj_set_style_bg_color(btn, lv_color_hex(0xb9d8ec), 0);
                     } else if (&icon_160_home == (const lv_img_dsc_t *)(emoji_layout[list] + count)->img_src) {
@@ -750,7 +795,7 @@ void lv_create_nine_spaces(lv_obj_t *parent, uint8_t list)
                 }
 #endif
             } else {
-                lv_obj_set_style_bg_color(btn, (false == thream_set) ? lv_color_hex(0xa8c6e5):lv_color_hex(0xefc190), 0);
+                lv_obj_set_style_bg_color(btn, (false == thream_set) ? lv_color_hex(0xa8c6e5) : lv_color_hex(0xefc190), 0);
             }
 
             lv_obj_set_grid_cell(btn,
@@ -830,20 +875,21 @@ static bool main_layer_enter_cb(void *create_layer)
         //lv_obj_remove_style_all(btn);
         lv_obj_set_style_border_width(tips_btn, 0, 0);
         lv_obj_set_style_pad_all(tips_btn, 0, 0);
-        lv_obj_set_size(tips_btn, 160, 40);
+        lv_obj_set_size(tips_btn, 300, 60);
         lv_obj_align(tips_btn, LV_ALIGN_TOP_MID, 0, 0);
         lv_obj_set_style_bg_color(tips_btn, lv_color_hex(COLOUR_GREY_4F), LV_PART_MAIN);
 
         tips_label = lv_label_create(tips_btn);
         lv_obj_set_style_text_color(tips_label, lv_color_hex(COLOUR_WHITE), 0);
-        lv_obj_set_style_text_font(tips_label, &pingfang_18, 0);
+        lv_obj_set_style_text_font(tips_label, sys_set->sr_lang ? &SourceHanSansCN_Normal_18 : &SourceHanSansCN_Normal_20, 0);
         lv_obj_center(tips_label);
-        lv_label_set_text(tips_label, "打开空调");
+        lv_label_set_text(tips_label, " ");
         lv_obj_add_flag(tips_btn, LV_OBJ_FLAG_HIDDEN);
     }
 
     feed_clock_time();
     update_time(NULL);
+    update_weather(NULL);
     set_time_out(&time_500ms, 500);
 
     return ret;
@@ -855,69 +901,61 @@ static bool main_layer_exit_cb(void *create_layer)
     return true;
 }
 
-void set_tips_info(const char *message)
+static void set_tips_info(const char *message)
 {
+    tips_delay = 14;
     lv_obj_clear_flag(tips_btn, LV_OBJ_FLAG_HIDDEN);
     lv_label_set_text(tips_label, message);
 }
 
-
-extern float heightCurrent;
-
 static void main_layer_timer_cb(lv_timer_t *tmr)
 {
     lv_event_info_t lvgl_event;
-    sys_param_t *param;
-    static uint8_t num;
 
     if (is_time_out(&time_500ms)) {
         update_time(NULL);
-        if (num) {
-            if (0 == (--num)) {
+        update_weather(NULL);
+        if (tips_delay) {
+            if (0 == (--tips_delay)) {
                 lv_obj_add_flag(tips_btn, LV_OBJ_FLAG_HIDDEN);
             }
-        } else {
-            // uint8_t distance[10] = {0};
-            // sprintf(distance, "%3.1f CM", heightCurrent);
-
-            // lv_label_set_text_fmt(tips_label, "%s", distance);
-            // ESP_LOGI(TAG, "%3.1f, %s", heightCurrent, distance);
         }
-        // lv_obj_set_tile_id(titleview_home, num++%2, 0, LV_ANIM_ON);
     }
 
     if (pdPASS == app_lvgl_get_event(&lvgl_event, 0)) {
         switch (lvgl_event.event) {
-        case LV_EVENT_LIGHT_ONOFF_SET:
-            ESP_LOGI(TAG, "light onoff set: %d", lvgl_event.event);
-            param = (sys_param_t * )lvgl_event.event_data;
-            light_set_onoff(param);
+
+        case LV_EVENT_I_AM_HERE:
+            set_tips_info(sys_set->sr_lang ? "请说" : "Say command");
             break;
 
+        case LV_EVENT_LIGHT_ON:
+            set_tips_info((const char *)lvgl_event.event_data);
+            light_set_onoff(true);
+            break;
+        case LV_EVENT_LIGHT_OFF:
+            set_tips_info((const char *)lvgl_event.event_data);
+            light_set_onoff(false);
+            break;
         case LV_EVENT_LIGHT_RGB_SET:
             ESP_LOGI(TAG, "light RGB set: %d", lvgl_event.event);
-            param = (sys_param_t * )lvgl_event.event_data;
             break;
 
         case LV_EVENT_AC_SET_ON:
             ac_set_onoff(true);
-            set_tips_info("打开空调");
-            num = 4;
+            set_tips_info((const char *)lvgl_event.event_data);
             break;
         case LV_EVENT_AC_SET_OFF:
             ac_set_onoff(false);
-            set_tips_info("关闭空调");
-            num = 4;
+            set_tips_info((const char *)lvgl_event.event_data);
             break;
         case LV_EVENT_AC_TEMP_ADD:
             ac_set_temp(true);
-            set_tips_info("升高温度");
-            num = 4;
+            set_tips_info((const char *)lvgl_event.event_data);
             break;
         case LV_EVENT_AC_TEMP_DEC:
             ac_set_temp(false);
-            set_tips_info("降低温度");
-            num = 4;
+            set_tips_info((const char *)lvgl_event.event_data);
             break;
 
         default:

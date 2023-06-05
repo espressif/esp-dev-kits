@@ -1,0 +1,12 @@
+idf_component_register(
+    SRCS 
+        "zlib/adler32.c" 
+        "zlib/crc32.c" 
+        "zlib/infback.c" 
+        "zlib/inffast.c"
+        "zlib/inflate.c" 
+        "zlib/inftrees.c" 
+        "zlib/zutil.c"
+    INCLUDE_DIRS 
+        zlib
+)
