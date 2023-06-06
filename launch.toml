@@ -1,40 +1,47 @@
 esp_toml_version = 1.0
 firmware_images_url = "https://dl.espressif.com/AE/esp-dev-kits/"
 
-supported_apps = ["usb_otg_fac_1_0_2", "lcd_ev_subboard2_480_480_v1_0", "lcd_ev_subboard3_800_480_v1_0", "lcd_ev_subboard2_480_480_usb_camera", "lcd_ev_subboard3_800_480_usb_camera", "c3_knob_lcd_mb_v0_1_0"]
+supported_apps = [
+                  "ESP32-S3-USB-OTG_fac_v1_0_2",
+                  "ESP32-S3-LCD-EV-Board_usb_camera",
+                  "ESP32-S3-LCD-EV-Board-2_usb_camera",
+                  "ESP32-S3-LCD-EV-Board_fac_v0_2_0",
+                  "ESP32-S3-LCD-EV-Board-2_fac_v0_5_0",
+                  "ESP32-C3-LCDkit_fac_v0_1_2"
+                  ]
 
-[usb_otg_fac_1_0_2]
+[ESP32-S3-USB-OTG_fac_v1_0_2]
 chipsets = ["ESP32-S3"]
 image.esp32-s3 = "usb_otg_fac_1_0_2.bin"
 android_app_url = ""
 ios_app_url = ""
 
-[lcd_ev_subboard2_480_480_v1_0]
-chipsets = ["ESP32-S3"]
-image.esp32-s3 = "lcd_ev_subboard2_480_480_v1_0.bin"
-android_app_url = ""
-ios_app_url = ""
-
-[lcd_ev_subboard3_800_480_v1_0]
-chipsets = ["ESP32-S3"]
-image.esp32-s3 = "lcd_ev_subboard3_800_480_v1_0.bin"
-android_app_url = ""
-ios_app_url = ""
-
-[lcd_ev_subboard2_480_480_usb_camera]
+[ESP32-S3-LCD-EV-Board_usb_camera]
 chipsets = ["ESP32-S3"]
 image.esp32-s3 = "lcd_ev_subboard2_480_480_usb_camera.bin"
 android_app_url = ""
 ios_app_url = ""
 
-[lcd_ev_subboard3_800_480_usb_camera]
+[ESP32-S3-LCD-EV-Board-2_usb_camera]
 chipsets = ["ESP32-S3"]
 image.esp32-s3 = "lcd_ev_subboard3_800_480_usb_camera.bin"
 android_app_url = ""
 ios_app_url = ""
 
-[c3_knob_lcd_mb_v0_1_0]
+[ESP32-C3-LCDkit_fac_v0_1_2]
 chipsets = ["ESP32-C3"]
-image.esp32-c3 = "c3_knob_lcd_mb_v0.1.0.bin"
+image.esp32-c3 = "C3_Knob_LCD_MB_v0.1.2.bin"
+android_app_url = ""
+ios_app_url = ""
+
+[ESP32-S3-LCD-EV-Board_fac_v0_2_0]
+chipsets = ["ESP32-S3"]
+image.esp32-s3 = "ESP32-S3-LCD-EV-Board_v0.2.0.bin"
+android_app_url = ""
+ios_app_url = ""
+
+[ESP32-S3-LCD-EV-Board-2_fac_v0_5_0]
+chipsets = ["ESP32-S3"]
+image.esp32-s3 = "ESP32-S3-LCD-EV-Board-2_v0.5.0.bin"
 android_app_url = ""
 ios_app_url = ""
