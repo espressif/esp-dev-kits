@@ -10,14 +10,15 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "esp_system.h"
-#include "esp_spi_flash.h"
 #include "esp_heap_caps.h"
 #include "nvs_flash.h"
 #include "driver/gpio.h"
 #include "esp_log.h"
 
+#include "app_audio.h"
+#include "settings.h"
+#include "lv_example_pub.h"
 #include "esp32_c3_lcd_ev_board.h"
-#include "ui/ui.h"
 
 static const char *TAG = "main";
 
@@ -183,14 +184,21 @@ void app_main(void)
         err = nvs_flash_init();
     }
     ESP_ERROR_CHECK(err);
+    ESP_ERROR_CHECK(settings_read_parameter_from_nvs());
 
     bsp_display_start();
 
     ESP_LOGI(TAG, "Display LVGL demo");
-    ESP_ERROR_CHECK(ui_init());
+    ui_obj_to_encoder_init();
+    lv_create_home(&boot_Layer);
+    lv_create_clock(&clock_screen_layer, TIME_ENTER_CLOCK_2MIN);
+    bsp_display_unlock();
 
     vTaskDelay(pdMS_TO_TICKS(500));
     bsp_display_backlight_on();
+
+    bsp_board_init();
+    audio_play_start();
 
 #if MEMORY_MONITOR
     sys_monitor_start();

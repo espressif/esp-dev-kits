@@ -4,22 +4,21 @@
  * SPDX-License-Identifier: CC0-1.0
  */
 
-#include <stdio.h>
-#include <time.h>
-#include "esp_err.h"
-#include "esp_log.h"
 #include "lvgl.h"
-#include "ui.h"
-#include "ui_clock.h"
+#include <stdio.h>
+
+#include "settings.h"
+#include "app_audio.h"
 
 #include "lv_example_pub.h"
-#include "lv_example_func.h"
 #include "lv_example_image.h"
+#include "esp32_c3_lcd_ev_board.h"
 
-static const char *TAG = "MENU_CLOCK";
+#define MIN_MOUTH_ZOOM      128
+#define MAX_MOUTH_ZOOM      365
 
-static bool clock_screen_layer_enter_cb(struct lv_layer_t *layer);
-static bool clock_screen_layer_exit_cb(struct lv_layer_t *layer);
+static bool clock_screen_layer_enter_cb(void *layer);
+static bool clock_screen_layer_exit_cb(void *layer);
 static void clock_screen_layer_timer_cb(lv_timer_t *tmr);
 
 lv_layer_t clock_screen_layer = {
@@ -37,47 +36,19 @@ static lv_obj_t *page;
 static lv_obj_t *img_face, *img_eye_bg, *img_eye, * img_mouth, *img_eye_fade;
 static lv_obj_t *img_eye_left, * img_eye_right;
 
-static time_out_count time_50ms, time_screen_off_1min;
-static time_out_count time_enter_clock = {
-    .timeOut = 0,
-    .time_base = 0,
-};
-
-void reload_screenOff_timer()
-{
-    reload_time_out(&time_enter_clock);
-}
-
-void enter_screenOff_immediate()
-{
-    time_enter_clock.time_base = 0;
-    LV_LOG_USER("");
-}
-
-void trigger_screenOff_timer(lv_layer_t *src_layer)
-{
-    if (0 == time_enter_clock.time_base == time_enter_clock.timeOut) {
-        set_time_out(&time_enter_clock, TIME_ENTER_CLOCK_2MIN);
-        LV_LOG_USER("time_enter_clock init");
-    }
-
-    if (is_time_out(&time_enter_clock)) {
-        reload_time_out(&time_screen_off_1min);
-        lv_func_goto_layer(&clock_screen_layer);
-    }
-}
+static time_out_count time_50ms;
 
 static void wakeup_event_cb(lv_event_t *e)
 {
     lv_event_code_t code = lv_event_get_code(e);
-    lv_obj_t *obj = lv_event_get_target(e);
 
+    ESP_LOGI("WAKEUP", "code:%d", code);
     if (LV_EVENT_FOCUSED == code) {
         lv_group_set_editing(lv_group_get_default(), true);
     } else if ((LV_EVENT_LONG_PRESSED == code) || (LV_EVENT_CLICKED == code) || (LV_EVENT_KEY == code)) {
         lv_indev_wait_release(lv_indev_get_next(NULL));
         ui_remove_all_objs_from_encoder_group();
-        lv_func_goto_layer(&main_Layer);
+        lv_func_goto_layer(&menu_layer);
     }
 }
 
@@ -85,6 +56,9 @@ static void set_mouth_zoom(void *img, int32_t v)
 {
     if (2 == flash_main_step) {
         lv_img_set_zoom(img, v);
+        if (MIN_MOUTH_ZOOM == v) {
+            // audio_continue_next();
+        }
     }
 }
 
@@ -131,8 +105,8 @@ void ui_flash_face_init(lv_obj_t *parent)
     lv_anim_set_var(&a, img_mouth);
     lv_anim_set_time(&a, 2000);
     lv_anim_set_exec_cb(&a, set_mouth_zoom);
-    lv_anim_set_values(&a, 128, 256);
-    lv_anim_set_playback_time(&a, 1000);
+    lv_anim_set_values(&a, MIN_MOUTH_ZOOM, MAX_MOUTH_ZOOM);
+    lv_anim_set_playback_time(&a, 2500);
     lv_anim_set_repeat_count(&a, LV_ANIM_REPEAT_INFINITE);
     lv_anim_start(&a);
 
@@ -143,29 +117,35 @@ void ui_flash_face_init(lv_obj_t *parent)
     ui_add_obj_to_encoder_group(page);
 }
 
-static bool clock_screen_layer_enter_cb(struct lv_layer_t *layer)
+static bool clock_screen_layer_enter_cb(void *layer)
 {
     bool ret = false;
 
-    if (NULL == layer->lv_obj_layer) {
+    LV_LOG_USER("");
+    lv_layer_t *create_layer = layer;
+    if (NULL == create_layer->lv_obj_layer) {
         ret = true;
 
-        layer->lv_obj_layer = lv_obj_create(lv_scr_act());
-        lv_obj_remove_style_all(layer->lv_obj_layer);
-        lv_obj_set_size(layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
+        create_layer->lv_obj_layer = lv_obj_create(lv_scr_act());
+        lv_obj_remove_style_all(create_layer->lv_obj_layer);
+        lv_obj_set_size(create_layer->lv_obj_layer, LV_HOR_RES, LV_VER_RES);
 
-        ui_flash_face_init(layer->lv_obj_layer);
+        ui_flash_face_init(create_layer->lv_obj_layer);
         set_time_out(&time_50ms, 50);
 
         flash_sub_step = 0;
         flash_main_step = 0;
     }
+    audio_force_quite(false);
+
     return ret;
 }
 
-static bool clock_screen_layer_exit_cb(struct lv_layer_t *layer)
+static bool clock_screen_layer_exit_cb(void *layer)
 {
     LV_LOG_USER("");
+    audio_force_quite(true);
+    return true;
 }
 
 static void set_anim_left_eye(void *obj, int32_t v)
@@ -184,9 +164,8 @@ static void set_anim_right_eye(void *obj, int32_t v)
 
 static void clock_screen_layer_timer_cb(lv_timer_t *tmr)
 {
-    int32_t isTmOut;
     static lv_anim_t anim_eye;
-
+    feed_clock_time();
     if (is_time_out(&time_50ms)) {
 
         switch (flash_main_step) {
@@ -246,6 +225,7 @@ static void clock_screen_layer_timer_cb(lv_timer_t *tmr)
             if (flash_sub_step++ > 40) { //0-4000
                 flash_sub_step = 0;
                 flash_main_step += 1;
+                // audio_handle_info(SOUND_TYPE_SNORE);
             }
             break;
         case 2:
@@ -255,14 +235,7 @@ static void clock_screen_layer_timer_cb(lv_timer_t *tmr)
                 lv_obj_align(img_eye_bg, LV_ALIGN_CENTER, 0, 0);
                 lv_obj_align(img_eye, LV_ALIGN_CENTER, 0, 0 + 5);
             }
-            if (flash_sub_step++ > 80 * 2) { //0-8000
-                flash_sub_step = 0;
-                flash_main_step = 0;
-            }
             break;
         }
-    }
-
-    if (is_time_out(&time_screen_off_1min)) {
     }
 }

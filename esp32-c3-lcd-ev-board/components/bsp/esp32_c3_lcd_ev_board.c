@@ -10,11 +10,16 @@
 #include "driver/spi_master.h"
 #include "esp_err.h"
 #include "esp_log.h"
+#include "esp_spiffs.h"
 #include "esp_lcd_panel_io.h"
 #include "esp_lcd_panel_vendor.h"
 #include "esp_lcd_panel_ops.h"
+#include "driver/rmt_tx.h"
+#include "led_strip.h"
+#include "led_strip_interface.h"
 
 #include "esp32_c3_lcd_ev_board.h"
+#include "esp_lcd_gc9a01.h"
 #include "iot_knob.h"
 #include "esp_lvgl_port.h"
 
@@ -55,6 +60,142 @@ static const char *TAG = "C3-LCD-EV-BOARD";
 #endif
 
 static lv_disp_t *disp;
+static led_strip_handle_t led_strip;
+static i2s_chan_handle_t i2s_tx_chan;
+
+/**
+ * @brief led configuration structure
+ *
+ * This configuration is used by default in bsp_led_init()
+ */
+led_strip_config_t strip_config = {
+    .strip_gpio_num = BSP_RGB_CTRL,
+    .max_leds = 1,
+    .led_pixel_format = LED_PIXEL_FORMAT_GRB,
+    .led_model = LED_MODEL_WS2812,
+    .flags.invert_out = false,
+};
+
+led_strip_rmt_config_t rmt_config = {
+    .clk_src = RMT_CLK_SRC_DEFAULT,
+    .resolution_hz = 10 * 1000 * 1000,
+    .flags.with_dma = false,
+};
+
+esp_err_t bsp_led_init()
+{
+    ESP_LOGI(TAG, "BLINK_GPIO setting %d", strip_config.strip_gpio_num);
+
+    ESP_ERROR_CHECK(led_strip_new_rmt_device(&strip_config, &rmt_config, &led_strip));
+    led_strip_set_pixel(led_strip, 0, 0x00, 0x00, 0x00);
+    led_strip_refresh(led_strip);
+
+    return ESP_OK;
+}
+
+esp_err_t bsp_led_RGB_set(uint8_t r, uint8_t g, uint8_t b)
+{
+    esp_err_t ret = ESP_OK;
+    uint32_t index = 0;
+
+    ret |= led_strip_set_pixel(led_strip, index, r, g, b);
+    ret |= led_strip_refresh(led_strip);
+    return ret;
+}
+
+esp_err_t bsp_audio_write(void *audio_buffer, size_t len, size_t *bytes_written, uint32_t timeout_ms)
+{
+    esp_err_t ret = ESP_OK;
+    ret = i2s_channel_write(i2s_tx_chan, (char *)audio_buffer, len, bytes_written, timeout_ms);
+    return ret;
+}
+
+esp_err_t bsp_audio_reconfig_clk(uint32_t rate, uint32_t bits_cfg, i2s_slot_mode_t ch)
+{
+    esp_err_t ret = ESP_OK;
+
+    i2s_pdm_tx_config_t pdm_cfg = {
+        .clk_cfg = I2S_PDM_TX_CLK_DEFAULT_CONFIG(rate),
+        .slot_cfg = I2S_PDM_TX_SLOT_DEFAULT_CONFIG((i2s_data_bit_width_t)bits_cfg, (i2s_slot_mode_t)ch),
+        .gpio_cfg = BSP_I2S_GPIO_CFG,
+    };
+
+    ret |= i2s_channel_disable(i2s_tx_chan);
+    ret |= i2s_channel_reconfig_pdm_tx_clock(i2s_tx_chan, &pdm_cfg.clk_cfg);
+    ret |= i2s_channel_reconfig_pdm_tx_slot(i2s_tx_chan, &pdm_cfg.slot_cfg);
+    ret |= i2s_channel_enable(i2s_tx_chan);
+
+    vTaskDelay(pdMS_TO_TICKS(10));
+    return ret;
+}
+
+static esp_err_t bsp_audio_init(const i2s_pdm_tx_config_t *i2s_config, i2s_chan_handle_t *tx_channel)
+{
+    /* Setup I2S peripheral */
+    i2s_chan_config_t chan_cfg = I2S_CHANNEL_DEFAULT_CONFIG(I2S_NUM_0, I2S_ROLE_MASTER);
+    chan_cfg.auto_clear = true; // Auto clear the legacy data in the DMA buffer
+    BSP_ERROR_CHECK_RETURN_ERR(i2s_new_channel(&chan_cfg, tx_channel, NULL));
+
+    /* Setup I2S channels */
+    const i2s_pdm_tx_config_t pdm_cfg_default = BSP_I2S_DUPLEX_MONO_CFG(44100);
+    const i2s_pdm_tx_config_t *p_i2s_cfg = &pdm_cfg_default;
+    if (i2s_config != NULL) {
+        p_i2s_cfg = i2s_config;
+    }
+
+    if (tx_channel != NULL) {
+        BSP_ERROR_CHECK_RETURN_ERR(i2s_channel_init_pdm_tx_mode(*tx_channel, p_i2s_cfg));
+        BSP_ERROR_CHECK_RETURN_ERR(i2s_channel_enable(*tx_channel));
+    }
+
+#if HARDWARE_V1_0
+    const gpio_config_t pa_io_config = {
+        .pin_bit_mask = BIT64(BSP_I2S_CTRL),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_up_en = GPIO_PULLUP_ENABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE
+    };
+    gpio_config(&pa_io_config);
+    gpio_set_level(BSP_I2S_CTRL, 1);
+#endif
+
+    return ESP_OK;
+}
+
+
+esp_err_t bsp_spiffs_mount(void)
+{
+    esp_vfs_spiffs_conf_t conf = {
+        .base_path = CONFIG_BSP_SPIFFS_MOUNT_POINT,
+        .partition_label = CONFIG_BSP_SPIFFS_PARTITION_LABEL,
+        .max_files = CONFIG_BSP_SPIFFS_MAX_FILES,
+#ifdef CONFIG_BSP_SPIFFS_FORMAT_ON_MOUNT_FAIL
+        .format_if_mount_failed = true,
+#else
+        .format_if_mount_failed = false,
+#endif
+    };
+
+    esp_err_t ret_val = esp_vfs_spiffs_register(&conf);
+
+    BSP_ERROR_CHECK_RETURN_ERR(ret_val);
+
+    size_t total = 0, used = 0;
+    ret_val = esp_spiffs_info(conf.partition_label, &total, &used);
+    if (ret_val != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to get SPIFFS partition information (%s)", esp_err_to_name(ret_val));
+    } else {
+        ESP_LOGI(TAG, "Partition size: total: %d, used: %d", total, used);
+    }
+
+    return ret_val;
+}
+
+esp_err_t bsp_spiffs_unmount(void)
+{
+    return esp_vfs_spiffs_unregister(CONFIG_BSP_SPIFFS_PARTITION_LABEL);
+}
 
 static void encoder_read(lv_indev_drv_t *indev_drv, lv_indev_data_t *data)
 {
@@ -196,14 +337,14 @@ static esp_err_t bsp_display_brightness_init(void)
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .channel = LCD_LEDC_CH,
         .intr_type = LEDC_INTR_DISABLE,
-        .timer_sel = 1,
+        .timer_sel = LEDC_TIMER_1,
         .duty = 0,
         .hpoint = 0
     };
     const ledc_timer_config_t LCD_backlight_timer = {
         .speed_mode = LEDC_LOW_SPEED_MODE,
         .duty_resolution = LCD_LEDC_DUTY_RES,
-        .timer_num = 1,
+        .timer_num = LEDC_TIMER_1,
         .freq_hz = 5000,
         .clk_cfg = LEDC_AUTO_CLK
     };
@@ -222,7 +363,9 @@ esp_err_t bsp_display_brightness_set(int brightness_percent)
     if (brightness_percent < 0) {
         brightness_percent = 0;
     }
-
+#if HARDWARE_V1_0
+    brightness_percent = 100 - brightness_percent;
+#endif
     ESP_LOGD(TAG, "Setting LCD backlight: %d%%", brightness_percent);
     uint32_t duty_cycle = (BIT(LCD_LEDC_DUTY_RES) * (brightness_percent)) / 100;
     BSP_ERROR_CHECK_RETURN_ERR(ledc_set_duty(LEDC_LOW_SPEED_MODE, LCD_LEDC_CH, duty_cycle));
@@ -285,4 +428,21 @@ esp_err_t bsp_button_init(const bsp_button_t btn)
 bool bsp_button_get(const bsp_button_t btn)
 {
     return !(bool)gpio_get_level(btn);
+}
+
+esp_err_t bsp_board_init(void)
+{
+    ESP_ERROR_CHECK(bsp_led_init());
+
+    ESP_ERROR_CHECK(bsp_spiffs_mount());
+
+    /* Configure I2S peripheral */
+    i2s_pdm_tx_config_t pdm_cfg = {
+        .clk_cfg = I2S_PDM_TX_CLK_DEFAULT_CONFIG(44100),
+        .slot_cfg = I2S_PDM_TX_SLOT_DEFAULT_CONFIG(I2S_DATA_BIT_WIDTH_16BIT, I2S_SLOT_MODE_MONO),
+        .gpio_cfg = BSP_I2S_GPIO_CFG,
+    };
+    ESP_ERROR_CHECK(bsp_audio_init(&pdm_cfg, &i2s_tx_chan));
+
+    return ESP_OK;
 }
