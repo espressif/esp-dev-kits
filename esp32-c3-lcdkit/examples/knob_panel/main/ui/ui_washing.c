@@ -185,6 +185,8 @@ static void func_anim_ready_cb(lv_anim_t *a)
 
 static void washing_event_cb(lv_event_t *e)
 {
+    static uint8_t forbidden_sec_trigger = false;
+
     lv_event_code_t code = lv_event_get_code(e);
 
     if (LV_EVENT_FOCUSED == code) {
@@ -222,24 +224,27 @@ static void washing_event_cb(lv_event_t *e)
         }
 
     } else if (LV_EVENT_LONG_PRESSED == code) {
+        forbidden_sec_trigger = true;
         if (WASH_MODE_STANDBY == wash_mode) {
             lv_indev_wait_release(lv_indev_get_next(NULL));
             ui_remove_all_objs_from_encoder_group();
             lv_func_goto_layer(&menu_layer);
         } else if ((WASH_MODE_RUN == wash_mode) || (WASH_MODE_PAUSE == wash_mode)) {
             wash_mode = WASH_MODE_EOC;
-        } else if (WASH_MODE_STANDBY == wash_mode) {
+        } else if (WASH_MODE_EOC == wash_mode) {
             wash_mode = WASH_MODE_STANDBY;
         }
     } else if (LV_EVENT_CLICKED == code) {
-        if (WASH_MODE_STANDBY == wash_mode) {
-            wash_mode = WASH_MODE_RUN;
-        } else if (WASH_MODE_RUN == wash_mode) {
-            wash_mode = WASH_MODE_PAUSE;
-        } else if (WASH_MODE_PAUSE == wash_mode) {
-            wash_mode = WASH_MODE_RUN;
-        } else if (WASH_MODE_EOC == wash_mode) {
-            wash_mode = WASH_MODE_STANDBY;
+        if(false == forbidden_sec_trigger) {
+            if (WASH_MODE_STANDBY == wash_mode) {
+                wash_mode = WASH_MODE_RUN;
+            } else if (WASH_MODE_RUN == wash_mode) {
+                wash_mode = WASH_MODE_PAUSE;
+            } else if (WASH_MODE_PAUSE == wash_mode) {
+                wash_mode = WASH_MODE_RUN;
+            }
+        } else {
+            forbidden_sec_trigger = false;
         }
     }
 }
