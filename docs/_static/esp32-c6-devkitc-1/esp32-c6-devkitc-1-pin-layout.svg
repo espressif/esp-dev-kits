@@ -1090,6 +1090,19 @@
        simplifyindividualpaths="false"
        simplifyJustCoalesce="false"
        lpeversion="0" />
+    <inkscape:path-effect
+       effect="simplify"
+       id="path-effect214740-1-4"
+       is_visible="true"
+       steps="1"
+       threshold="0.5"
+       smooth_angles="360"
+       helper_size="0"
+       simplify_individual_paths="false"
+       simplify_just_coalesce="false"
+       simplifyindividualpaths="false"
+       simplifyJustCoalesce="false"
+       lpeversion="0" />
   </defs>
   <sodipodi:namedview
      id="base"
@@ -1098,16 +1111,16 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.9789838"
-     inkscape:cx="258.46599"
-     inkscape:cy="218.29386"
+     inkscape:zoom="1.5454531"
+     inkscape:cx="275.32379"
+     inkscape:cy="44.6471"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="2062"
      inkscape:window-height="1242"
-     inkscape:window-x="571"
-     inkscape:window-y="94"
+     inkscape:window-x="498"
+     inkscape:window-y="66"
      inkscape:window-maximized="0"
      units="px"
      inkscape:document-rotation="0"
@@ -1729,60 +1742,6 @@
       </g>
     </g>
     <g
-       id="g214639-3-35"
-       transform="translate(-5.6036627,-1.7897093)">
-      <g
-         id="g37709-5-2-98"
-         transform="matrix(0.12942423,0,0,0.12942423,28.36958,-441.32348)">
-        <path
-           style="fill:none;stroke:#000000;stroke-width:2.2402;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 414.43185,33.100753 c -2.25038,8.398313 -4.90321,8.394283 -7.15244,0"
-           id="path1177-7-65-4-6-6-91"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="cc" />
-        <path
-           style="fill:none;stroke:#000000;stroke-width:2.2402;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 400.12697,33.100753 c 2.2503,-8.398304 4.90321,-8.394275 7.15244,0"
-           id="path1177-265-8-6-4-2"
-           inkscape:connector-curvature="0"
-           sodipodi:nodetypes="cc" />
-        <path
-           style="fill:none;stroke:#000000;stroke-width:2.2402;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 390.35618,33.100753 h 9.77079"
-           id="path1206-87-0-4-5-84"
-           inkscape:connector-curvature="0" />
-        <path
-           style="fill:none;stroke:#000000;stroke-width:2.2402;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           d="m 414.43185,33.100753 h 9.77071"
-           id="path1206-9-96-4-0-2-01"
-           inkscape:connector-curvature="0" />
-      </g>
-      <g
-         transform="matrix(0.10599886,0,0,0.10359635,-38.11143,-358.79076)"
-         id="g27290-0-3-08"
-         style="fill:#000000;fill-opacity:0.995192">
-        <rect
-           style="opacity:1;fill:#000000;fill-opacity:0.995192;stroke:none;stroke-width:3.33465;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
-           id="rect815-5-04-2-4-8-14"
-           width="25.63138"
-           height="16.856289"
-           x="1080.2367"
-           y="-763.75085"
-           ry="6.9891944" />
-        <text
-           xml:space="preserve"
-           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1638px;line-height:1.25;font-family:'Noto Sans SC';-inkscape-font-specification:'Noto Sans SC';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.995192;stroke:none;stroke-width:0.279094"
-           x="1093.3203"
-           y="-749.81525"
-           id="text819-6-104-9-6-9-95"><tspan
-             sodipodi:role="line"
-             id="tspan817-2-87-6-2-5-90"
-             x="1093.3203"
-             y="-749.81525"
-             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.885px;font-family:'Noto Sans SC';-inkscape-font-specification:'Noto Sans SC Bold';text-align:center;text-anchor:middle;fill:#000000;fill-opacity:0.995192;stroke-width:0.279094">20</tspan></text>
-      </g>
-    </g>
-    <g
        id="g214646-7-4"
        transform="translate(-5.6036697,-36.6036)">
       <path
@@ -1882,6 +1841,41 @@
            id="text27304-6-7-3"><tspan
              sodipodi:role="line"
              id="tspan27302-4-4-19"
+             x="1093.3203"
+             y="-749.81525"
+             style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.885px;font-family:'Noto Sans SC';-inkscape-font-specification:'Noto Sans SC Bold';text-align:center;text-anchor:middle;fill:#000000;fill-opacity:0.995192;stroke-width:0.279094">21</tspan></text>
+      </g>
+    </g>
+    <g
+       id="g214646-7-48-8"
+       transform="translate(-5.8273484,-3.5605445)">
+      <path
+         inkscape:original-d="m 77.91908,-435.27297 h 5.698628"
+         inkscape:path-effect="#path-effect214740-1-4"
+         inkscape:connector-curvature="0"
+         id="path1460-3-5-6-9-1-1-3"
+         d="m 77.91908,-435.27297 c 1.899543,0 3.799085,0 5.698628,0"
+         style="fill:#000000;fill-opacity:0.995192;stroke:#000000;stroke-width:0.289936;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1" />
+      <g
+         id="g27306-8-7-8-9"
+         transform="matrix(0.10599886,0,0,0.10359635,-38.111423,-357.02429)"
+         style="fill:#000000;fill-opacity:0.995192">
+        <rect
+           style="opacity:1;fill:#000000;fill-opacity:0.995192;stroke:none;stroke-width:3.33465;stroke-linecap:round;stroke-miterlimit:4;stroke-dasharray:none;stroke-opacity:1"
+           id="rect27300-30-0-5-0"
+           width="25.63138"
+           height="16.856289"
+           x="1080.2367"
+           y="-763.75085"
+           ry="6.9891944" />
+        <text
+           xml:space="preserve"
+           style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-size:11.1638px;line-height:1.25;font-family:'Noto Sans SC';-inkscape-font-specification:'Noto Sans SC';letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:0.995192;stroke:none;stroke-width:0.279094"
+           x="1093.3203"
+           y="-749.81525"
+           id="text27304-6-7-3-5"><tspan
+             sodipodi:role="line"
+             id="tspan27302-4-4-19-2"
              x="1093.3203"
              y="-749.81525"
              style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-size:14.885px;font-family:'Noto Sans SC';-inkscape-font-specification:'Noto Sans SC Bold';text-align:center;text-anchor:middle;fill:#000000;fill-opacity:0.995192;stroke-width:0.279094">21</tspan></text>
