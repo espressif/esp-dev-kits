@@ -358,7 +358,7 @@ After the development board is powered on, press the rotary encoder switch and R
 Hardware Revision Details
 =========================
 
-No previous revisions.
+- ESP32-C3-LCD-Ev-Board: This older-version board is an engineering sample and is minimally maintained by Espressif. For historical documentation for this board, please refer to :doc:`ESP32-C3-LCD-Ev-Board User Guide <user_guide_c3_lcd_ev_board>`.
 
 
 Sample Request
@@ -385,3 +385,8 @@ Related Documents
 -  `2415 Voice Cavity Horn <../../_static/esp32-c3-lcdkit/datasheets/方形2415音腔喇叭规格书-2P1.25-20MM.pdf>`__
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
+
+.. toctree::
+    :hidden:
+
+    user_guide_c3_lcd_ev_board
