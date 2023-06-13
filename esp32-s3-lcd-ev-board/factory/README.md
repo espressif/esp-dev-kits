@@ -16,7 +16,11 @@ Programmed by [smart_panel](../examples/smart_panel/).
 
 The [patch](./patch/release5.0_psram_octal_120m.patch) is intended to achieve the best performance of RGB LCD by using the **PSRAM Octal 120 MHz** feature. The patch is only used for the **release/v5.0** branch of ESP-IDF. For the **master** branch, the PSRAM Octal 120 MHz feature can be directly used by enabling the `IDF_EXPERIMENTAL_FEATURES` option.
 
-**Note: The PSRAM Octal 120 MHz feature has temperature risks and cannot guarantee normal functioning with a temperature higher than 65 degrees Celsius.**
+**Note: The PSRAM Octal 120 MHz feature is an experimental feature and it has temperature risks as below.**
+  * Cannot guarantee normal functioning with a temperature higher than 65 degrees Celsius.
+  * Temperature changes can also cause the crash of accessing to PSRAM/Flash, see [here](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-guides/flash_psram_config.html#all-supported-modes-and-speeds) for more details.
+
+## How to use patch
 
 Please make sure your IDF project is clean (use `git status` to check), then the patch can be applied by following commands:
 

@@ -358,7 +358,7 @@ C6 模组兼容性设计
 硬件版本
 ================
 
-无历史版本。
+- ESP32-C3-LCD-Ev-Board：该版本为工程样品，乐鑫有限维护。有关此版本开发板的历史文档，请参见 :doc:`ESP32-C3-LCD-Ev-Board 用户指南 <user_guide_c3_lcd_ev_board>`。
 
 
 样品获取
@@ -385,3 +385,8 @@ ESP32-C3 具有成本优势和行业领先的低功耗性能，适用于构建�
 -  `2415 音腔喇叭 <../../_static/esp32-c3-lcdkit/datasheets/方形2415音腔喇叭规格书-2P1.25-20MM.pdf>`__
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
+
+.. toctree::
+    :hidden:
+
+    user_guide_c3_lcd_ev_board
