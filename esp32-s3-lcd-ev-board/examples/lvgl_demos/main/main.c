@@ -41,7 +41,7 @@ void app_main(void)
     // lv_demo_stress();       /* A stress test for LVGL */
     // lv_demo_benchmark();    /* A demo to measure the performance of LVGL or to compare different settings */
 
-    /* Here're two UI demos created by Squareline Studio. They can only run with subboard1(800x480) */
+    /* Here're two UI demos created by Squareline Studio. They can only run with subboard3(800x480) */
 #if CONFIG_BSP_LCD_SUB_BOARD_800_480
     // ui_printer_init();         /* A demo to show virtual printer */
 #ifndef CONFIG_BSP_DISPLAY_LVGL_AVOID_TEAR

@@ -18,15 +18,24 @@
 #include "usb_stream.h"
 #include "bsp/esp-bsp.h"
 
+/* Due to this function will cause screen drift when PSRAM is 80M, it's only aviable with 120M PSRAM */
+#if CONFIG_SPIRAM_SPEED_120M
 /* Transfer uvc frame to wifi http */
 #define ENABLE_UVC_WIFI_XFER            (1)
+#endif
 
 /* Print log about SRAM and PSRAM memory */
 // #define LOG_MEM_INFO    (1)
 
-#define DEMO_UVC_FRAME_WIDTH            (BSP_LCD_H_RES)
-#define DEMO_UVC_FRAME_HEIGHT           (BSP_LCD_V_RES)
-#define DEMO_UVC_XFER_BUFFER_SIZE       (78 * 1024)     //Double buffer
+#if CONFIG_BSP_LCD_SUB_BOARD_480_480
+#define DEMO_UVC_FRAME_WIDTH            (480)
+#define DEMO_UVC_FRAME_HEIGHT           (320)
+#define DEMO_UVC_XFER_BUFFER_SIZE       (88 * 1024)     //Double buffer
+#elif CONFIG_BSP_LCD_SUB_BOARD_800_480
+#define DEMO_UVC_FRAME_WIDTH            (800)
+#define DEMO_UVC_FRAME_HEIGHT           (480)
+#define DEMO_UVC_XFER_BUFFER_SIZE       (88 * 1024)     //Double buffer
+#endif
 
 #if ENABLE_UVC_WIFI_XFER
 #include "app_wifi.h"
@@ -52,8 +61,16 @@ static void camera_frame_cb(uvc_frame_t *frame, void *ptr);
 
 void app_main(void)
 {
-    lcd_panel = bsp_lcd_init(NULL);
+    void *lcd_usr_data = NULL;
+#if CONFIG_BSP_LCD_SUB_BOARD_480_480
+    ESP_ERROR_CHECK(bsp_i2c_init());
+    /* Sub board 2 with 480x480 uses io expander to configure LCD */
+    lcd_usr_data = (void *)bsp_io_expander_init();
+    assert(lcd_usr_data);
+#endif
+    lcd_panel = bsp_lcd_init(lcd_usr_data);
     assert(lcd_panel);
+
 #if CONFIG_BSP_LCD_RGB_BUFFER_NUMS == 1
     esp_lcd_rgb_panel_get_frame_buffer(lcd_panel, CONFIG_BSP_LCD_RGB_BUFFER_NUMS, (void **)&lcd_frame_buf[0]);
 #elif CONFIG_BSP_LCD_RGB_BUFFER_NUMS == 2
@@ -98,7 +115,7 @@ void app_main(void)
     uvc_config_t uvc_config = {
         .frame_width = DEMO_UVC_FRAME_WIDTH,
         .frame_height = DEMO_UVC_FRAME_HEIGHT,
-        .frame_interval = FPS2INTERVAL(15),
+        .frame_interval = FRAME_INTERVAL_FPS_30,
         .xfer_buffer_size = DEMO_UVC_XFER_BUFFER_SIZE,
         .xfer_buffer_a = xfer_buffer_a,
         .xfer_buffer_b = xfer_buffer_b,
