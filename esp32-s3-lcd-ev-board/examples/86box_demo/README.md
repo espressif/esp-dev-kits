@@ -1,6 +1,6 @@
 # 86-box Demo Example
 
-A GUI demo designed for control panel which is usually used fo wall-mounted 86 type box.
+A GUI demo designed for control panel (480x480) which is usually used fo wall-mounted 86 type box.
 
 **Note: This example is only applicable to 480 x 480 LCD.**
 
@@ -10,13 +10,13 @@ Please first read the [User Guide](https://docs.espressif.com/projects/espressif
 
 ### Hardware Required
 
-* An ESP32-S3-LCD-EV-Board development board with subboard2(480x480)
+* An ESP32-S3-LCD-EV-Board development board with subboard2 (480x480)
 * An USB Type-C cable for Power supply and programming
 * A Speaker
 
 ### Build and Flash
 
-1. **The project configure PSRAM with Octal 120M by default**. Please see [here](../../factory/README.md#idf-patch) to enable `PSRAM Octal 120M` feature.
+1. **The project configure PSRAM with 120M DDR(Octal) by default**. Please see [here](../../README.md#psram-120m-ddr) for more details.
 2. Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 (To exit the serial monitor, type ``Ctrl-]``.)

@@ -210,9 +210,9 @@ ESP32-S3-LCD-EV-Board 的开发框架为 `ESP-IDF <https://github.com/espressif/
 
 .. note::
 
-  - ESP-IDF 的版本要求在 v5.0 及以上，推荐使用 release/v5.0 分支开发。
+  - ESP-IDF 的版本要求在 v5.0 及以上，推荐使用 release/v5.1 分支开发。
   - ESP32-S3 RGB 驱动仅支持 16 位 RGB565 接口和 8 位 RGB888 接口。
-  - 通过补丁使 ESP-IDF 支持 120 MHz 的 8 位 PSRAM 配置，请参考 :dev-kits:`此例<esp32-s3-lcd-ev-board/factory>`。
+  - 为了使 ESP-IDF 支持 120 MHz DDR 的 PSRAM 配置，请参考 :dev-kits:`此处<esp32-s3-lcd-ev-board/factory>`。
 
 
 应用程序开发

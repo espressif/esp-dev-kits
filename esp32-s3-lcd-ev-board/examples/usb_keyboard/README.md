@@ -8,13 +8,13 @@ Please first read the [User Guide](https://docs.espressif.com/projects/espressif
 
 ### Hardware Required
 
-* An ESP32-S3-LCD-EV-Board development board with subboard1(800x480) or subboard2(480x480)
+* An ESP32-S3-LCD-EV-Board development board with subboard3 (800x480) or subboard2 (480x480)
 * At least one USB Type-C cable for Power supply, programming and USB communication.
 
 ### Configurations
 
 Run `idf.py menuconfig` and go to `Board Support Package`:
-* `BSP_LCD_SUB_BOARD`: Choose a LCD subboard according to hardware. Default use subboard1(800x480).
+* `BSP_LCD_SUB_BOARD`: Choose a LCD subboard according to hardware. Default use subboard3 (800x480).
 * More configurations see BSP's [README](https://github.com/espressif/esp-bsp/tree/master/esp32_s3_lcd_ev_board#bsp-esp32-s3-lcd-ev-board).
 
 ### Build and Flash

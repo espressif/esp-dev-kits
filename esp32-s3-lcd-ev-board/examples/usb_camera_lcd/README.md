@@ -2,7 +2,7 @@
 
 An example for using LCD display video which captured from USB camera.
 
-* Transfer uvc frame to wifi http if `ENABLE_UVC_WIFI_XFER` is set to `1`, the real-time image can be fetched through Wi-Fi softAP (ssid: ESP32S3-UVC, http: 192.168.4.1)
+* Transfer uvc frame to wifi http if `ENABLE_UVC_WIFI_XFER` is set to `1`, the real-time image can be fetched through Wi-Fi softAP (ssid: ESP32S3-UVC, http: 192.168.4.1). Due to this function will cause screen drift when PSRAM is 80M, it's only aviable with 120M PSRAM.
 * Print log about SRAM and PSRAM memory if `LOG_MEM_INFO` is set to `1`, includes `Biggest/Free/Total` three types.
 
 ## How to use example
@@ -11,9 +11,15 @@ Please first read the [User Guide](https://docs.espressif.com/projects/espressif
 
 ### Hardware Required
 
-* An ESP32-S3-LCD-EV-Board development board with subboard 1 (800x480 LCD)
-* An USB camera that can output 800x480 resolution image
+* An ESP32-S3-LCD-EV-Board development board with subboard3 (800x480) or subboard2 (480x480)
+* An USB camera that can output 800x480 or 480x320 resolution image
 * An USB Type-C cable for Power supply and programming (Please connect to UART port instead of USB port)
+
+### Configurations
+
+Run `idf.py menuconfig` and go to `Board Support Package`:
+* `BSP_LCD_SUB_BOARD`: Choose a LCD subboard according to hardware. Default use subboard3 (800x480).
+* More configurations see BSP's [README](https://github.com/espressif/esp-bsp/tree/master/esp32_s3_lcd_ev_board#bsp-esp32-s3-lcd-ev-board).
 
 ### Hardware Connection
 
@@ -25,7 +31,7 @@ Please first read the [User Guide](https://docs.espressif.com/projects/espressif
 
 ### Build and Flash
 
-1. The project configure PSRAM with Octal 80M by default. **For best performance**, please see [here](../../factory/README.md#idf-patch) to enable `PSRAM Octal 120M` feature. Then configure the project by the following commands:
+1. The project configure PSRAM with 80M Octal by default. **For best performance**, please configure PSRAM with 120M DDR(Octal) by the following commands. see [here](../../README.md#psram-120m-ddr) for more details.
     ```
     rm -rf build sdkconfig sdkconfig.old
     idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.psram_octal_120m" reconfigure

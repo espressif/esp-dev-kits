@@ -210,9 +210,9 @@ The ESP32-S3-LCD-EV-Board development framework is `ESP-IDF <https://github.com/
 
 .. note::
 
-  - ESP-IDF v5.0 and above are recommended for development.
+  - ESP-IDF v5.1 and above are recommended for development.
   - ESP32-S3 RGB driver only supports the 16-bit RGB565 and 8-bit RGB888 interface.
-  - To configure ESP-IDF with the 120 MHz octal PSRAM using patches, please see :dev-kits:`here<esp32-s3-lcd-ev-board/factory>`.
+  - To enable ESP-IDF with the 120 MHz DDR PSRAM, please see :dev-kits:`here<esp32-s3-lcd-ev-board>`.
 
 
 Start Application Development

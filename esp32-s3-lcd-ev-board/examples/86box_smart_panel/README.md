@@ -21,7 +21,7 @@ Run `idf.py menuconfig`, then modify the below optional configurations:
 
 ### Build and Flash
 
-1. **The project configure PSRAM with Octal 120M by default**. Please see [here](../../factory/README.md#idf-patch) to enable `PSRAM Octal 120M` feature.
+1. **The project configure PSRAM with 120M DDR(Octal) by default**. Please see [here](../../README.md#psram-120m-ddr) for more details.
 2. Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 (To exit the serial monitor, type ``Ctrl-]``.)
