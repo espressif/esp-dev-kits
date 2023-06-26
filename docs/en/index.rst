@@ -36,9 +36,9 @@ Supported Development Boards
 ============================   ===========================
        **ESP8684 Development Boards**
 ----------------------------------------------------------
- |ESP8684-DevKitM-1|_
+ |ESP8684-DevKitM-1|_            |ESP8684-DevKitC-02|_
 ----------------------------   ---------------------------
- `ESP8684-DevKitM-1`_
+ `ESP8684-DevKitM-1`_            `ESP8684-DevKitC-02`_
 ============================   ===========================
 
 ============================   ===========================
@@ -117,6 +117,9 @@ Supported Development Boards
 .. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
 .. _ESP8684-DevKitM-1: esp8684/esp8684-devkitm-1/index.html
 
+.. |ESP8684-DevKitC-02| image:: ../_static/esp8684-devkitc-02/esp8684-devkitc-02-v1.0-isometric.png
+.. _ESP8684-DevKitC-02: esp8684/esp8684-devkitc-02/index.html
+
 .. |ESP32-C3-LCDkit| image:: ../_static/esp32-c3-lcdkit/esp32-c3-lcdkit-isometric-raw.png
 .. _ESP32-C3-LCDkit: esp32c3/esp32-c3-lcdkit/index.html
 
@@ -164,6 +167,7 @@ Related
    :caption: ESP8684 Boards
 
    ESP8684-DevKitM-1 <esp8684/esp8684-devkitm-1/index>
+   ESP8684-DevKitC-02 <esp8684/esp8684-devkitc-02/index>
 
 .. toctree::
    :hidden:
