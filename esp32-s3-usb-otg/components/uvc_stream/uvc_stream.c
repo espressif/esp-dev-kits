@@ -25,7 +25,6 @@
 #include "soc/gpio_pins.h"
 #include "soc/gpio_sig_map.h"
 #include "esp_rom_gpio.h"
-#include "hal/usbh_ll.h"
 #include "hcd.h"
 #include "usb/usb_types_stack.h"
 #include "usb_private.h"

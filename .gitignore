@@ -83,7 +83,12 @@ flake8_output.txt
 
 # ESP-IDF default build directory name
 build
+build_esp*/
+build_linux*/
+size_info.txt
 
 # lock files for examples and components
 dependencies.lock
 
+# managed_components for examples
+managed_components

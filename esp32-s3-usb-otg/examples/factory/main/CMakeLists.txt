@@ -6,3 +6,8 @@ idf_component_register(
 )
 
 spiffs_create_partition_image(storage ../spiffs_image FLASH_IN_PROJECT)
+
+target_compile_options(${COMPONENT_LIB} PRIVATE 
+                                        -Wno-unused-variable
+                                        -Wno-unused-function
+                                        -Wno-incompatible-pointer-types)
