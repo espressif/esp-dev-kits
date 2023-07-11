@@ -1,0 +1,101 @@
+menu "Bridge Configuration"
+
+    menu "USB Setting"
+    config BRIDGE_USB_VID
+        hex "USB vendor ID"
+        default 0x303A
+
+    config BRIDGE_USB_PID
+        hex "USB product ID"
+        default 0x1002
+
+    config BRIDGE_MANUFACTURER
+        string "USB bridge manufacturer"
+        default "Espressif Systems Co. Ltd."
+
+    config BRIDGE_PRODUCT_NAME
+        string "USB product name"
+        default "ESP USB Bridge"
+
+    config BRIDGE_MSC_VOLUME_LABEL
+        string "Volume label shown in the MSC disc"
+        default "ESPPROG_MSC"
+        help
+            Volume label shown in the MSC disc. Max lenght is 11 ASCII characters.
+    endmenu
+
+    menu "GPIO Setting"
+    config BRIDGE_GPIO_BOOT
+        int "GPIO pin for the BOOT signal"
+        default 9
+
+    config BRIDGE_GPIO_RST
+        int "GPIO pin for the RESET signal"
+        default 8
+
+    config BRIDGE_GPIO_RXD
+        int "GPIO pin for the RxD signal"
+        default 40
+
+    config BRIDGE_GPIO_TXD
+        int "GPIO pin for the TxD signal"
+        default 41
+
+    config BRIDGE_GPIO_TDI
+        int "GPIO pin for the target TDI signal"
+        default 3
+
+    config BRIDGE_GPIO_TDO
+        int "GPIO pin for the target TDO signal"
+        default 2
+
+    config BRIDGE_GPIO_TCK
+        int "GPIO pin for the target TCK signal"
+        default 4
+
+    config BRIDGE_GPIO_TMS
+        int "GPIO pin for the target TMS signal"
+        default 5
+
+    config BRIDGE_GPIO_SWITCH_BUTTON
+        int "GPIO pin for the switch button"
+        default 0
+    endmenu
+
+    menu "LED Setting"
+    config BRIDGE_MODE_WIRED_HUE
+        int "Wired mode's ws2812 Hue"
+        range 0 360
+        default 270
+        help
+            270 is Purple
+
+    config BRIDGE_MODE_WIRELESS_HOST_HUE
+        int "Wireless host mode's ws2812 Hue"
+        range 0 360
+        default 200
+        help
+            100 is Blue
+    
+    config BRIDGE_MODE_WIRELESS_SLAVE_HUE
+        int "Wireless slave mode's ws2812 Hue"
+        range 0 360
+        default 130
+        help
+            130 is Green
+
+    config BRIDGE_MODE_ERROR_HUE
+        int "Error mode's ws2812 Hue"
+        range 0 360
+        default 360
+        help
+            360 is Red
+    endmenu
+
+    config BRIDGE_SUPPORT_WIRELESS
+        bool "Support wireless mode"
+        default y
+        help
+            Enable wireless mode support. If disabled, the wireless mode will can't be used.
+
+endmenu

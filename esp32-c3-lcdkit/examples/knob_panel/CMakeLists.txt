@@ -4,6 +4,10 @@ cmake_minimum_required(VERSION 3.5)
 
 set(EXTRA_COMPONENT_DIRS  ../../components)
 
-add_compile_options(-fdiagnostics-color=always -DLV_LVGL_H_INCLUDE_SIMPLE -Wno-format -Wno-implicit-fallthrough -Wno-unused-local-typedefs)
+add_compile_options(-fdiagnostics-color=always -DLV_LVGL_H_INCLUDE_SIMPLE
+                    -Wno-format
+                    -Wno-implicit-fallthrough
+                    -Wno-unused-local-typedefs
+                    -Wno-ignored-qualifiers)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 project(c3_knob_panel)

@@ -15,3 +15,8 @@ set(COMPONENT_EMBED_FILES
 
 
 register_component()
+
+target_compile_options(${COMPONENT_LIB} PRIVATE
+                                        -Wno-discarded-qualifiers
+                                        -Wno-unused-variable
+                                        -Wno-incompatible-pointer-types)

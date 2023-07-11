@@ -4,5 +4,10 @@ cmake_minimum_required(VERSION 3.5)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 
-add_compile_options(-fdiagnostics-color=always)
+add_compile_options(-fdiagnostics-color=always
+                    -Wno-attributes
+                    -Wno-unused-variable
+                    -Wno-unused-function
+                    -Wno-incompatible-pointer-types
+                    -Wno-ignored-qualifiers)
 project(86box_demo)

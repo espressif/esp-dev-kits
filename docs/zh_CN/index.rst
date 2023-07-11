@@ -46,6 +46,10 @@ esp-dev-kits
   |ESP32-S3-USB-OTG|_           |ESP32-S3-LCD-EV-Board|_
 ----------------------------   ---------------------------
  `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
+----------------------------   ---------------------------
+  |ESP32-S3-USB-Bridge|_
+----------------------------   ---------------------------
+ `ESP32-S3-USB-Bridge`_
 ============================   ===========================
 
 ============================   ===========================
@@ -113,6 +117,9 @@ esp-dev-kits
 .. |ESP32-S3-LCD-EV-Board| image:: ../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
 .. _ESP32-S3-LCD-EV-Board: esp32s3/esp32-s3-lcd-ev-board/index.html
 
+.. |ESP32-S3-USB-Bridge| image:: ../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge.png
+.. _ESP32-S3-USB-Bridge: esp32s3/esp32-s3-usb-bridge/index.html
+
 .. |ESP8684-DevKitM-1| image:: ../_static/esp8684-devkitm-1/esp8684-devkitm-1-v0.1-isometric.png
 .. _ESP8684-DevKitM-1: esp8684/esp8684-devkitm-1/index.html
 
@@ -174,6 +181,7 @@ esp-dev-kits
 
    ESP32-S3-USB-OTG <esp32s3/esp32-s3-usb-otg/index>
    ESP32-S3-LCD-EV-Board <esp32s3/esp32-s3-lcd-ev-board/index>
+   ESP32-S3-USB-Bridge <esp32s3/esp32-s3-usb-bridge/index>
 
 .. toctree::
    :hidden:

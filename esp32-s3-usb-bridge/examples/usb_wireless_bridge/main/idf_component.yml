@@ -1,0 +1,9 @@
+## IDF Component Manager Manifest File
+dependencies:
+  espressif/esp-serial-flasher: "~0.0.7"
+  espressif/button: "~2.5.0"
+  espressif/led_indicator: "~0.4.0"
+  espressif/esp-now: "~2.3.0"
+  espressif/tinyusb: "^0.14.1"
+  idf:
+    version: ">=5.0"

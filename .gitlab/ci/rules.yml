@@ -1,0 +1,131 @@
+############
+# Patterns #
+############
+
+# build system, if changed, build all apps
+.patterns-build_system: &patterns-build_system
+  - "tools/build_apps.py"
+
+# build folder, in the alphabetic order
+.patterns-esp32_c3_lcdkit: &patterns-esp32_c3_lcdkit
+  - "esp32-c3-lcd-kit/**/*"
+
+.patterns-esp32_s2_hmi_devkit_1: &patterns-esp32_s2_hmi_devkit_1
+  - "esp32-s2-hmi-devkit-1/**/*"
+
+.patterns-esp32_s2_kaluga_1: &patterns-esp32_s2_kaluga_1
+  - "esp32-s2-kaluga-1/**/*"
+
+.patterns-esp32_s2_touch_devkit_1: &patterns-esp32_s2_touch_devkit_1
+  - "esp32-s2-touch-devkit-1/**/*"
+
+.patterns-esp32_s3_lcd_ev_board: &patterns-esp32_s3_lcd_ev_board
+  - "esp32-s3-lcd-ev-board/**/*"
+
+.patterns-esp32_s3_usb_bridge: &patterns-esp32_s3_usb_bridge
+  - "esp32-s3-usb-bridge/**/*"
+
+.patterns-esp32_s3_usb_otg: &patterns-esp32_s3_usb_otg
+  - "esp32-s3-usb-otg/**/*"
+
+# docs folder, in the alphabetic order
+.patterns-docs: &patterns-docs
+  - "docs/**/*"
+
+.patterns-docs_md: &patterns-docs_md
+  - "**/*.md"
+
+# Reserved
+# .patterns-docs_inc: &patterns-docs_inc
+
+.patterns-yml: &patterns-yml
+  - "**/*.yml"
+
+##############
+# if anchors #
+##############
+.if-protected: &if-protected
+  if: '($CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_BRANCH =~ /^release\/v/ || $CI_COMMIT_TAG =~ /^v\d+\.\d+(\.\d+)?($|-)/)'
+
+.if-dev-push: &if-dev-push
+  if: '$CI_COMMIT_REF_NAME != "master" && $CI_COMMIT_BRANCH !~ /^release\/v/ && $CI_COMMIT_TAG !~ /^v\d+\.\d+(\.\d+)?($|-)/ && ($CI_PIPELINE_SOURCE == "push" || $CI_PIPELINE_SOURCE == "merge_request_event")'
+
+##################
+# Auto Generated #
+##################
+.if-label-build: &if-label-build
+  if: '$CI_MERGE_REQUEST_LABELS =~ /^(?:[^,\n\r]+,)*build(?:,[^,\n\r]+)*$/i'
+
+# rules for development board
+.rules:build:esp32_c3_lcdkit:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-esp32_c3_lcdkit
+
+.rules:build:esp32_s2_hmi_devkit_1:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-esp32_s2_hmi_devkit_1
+
+.rules:build:esp32_s2_kaluga_1:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-esp32_s2_kaluga_1
+
+.rules:build:esp32_s2_touch_devkit_1:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-esp32_s2_touch_devkit_1
+
+.rules:build:esp32_s3_lcd_ev_board:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-esp32_s3_lcd_ev_board
+
+.rules:build:esp32_s3_usb_bridge:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-esp32_s3_usb_bridge
+
+.rules:build:esp32_s3_usb_otg:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-esp32_s3_usb_otg
+
+# For others
+.rules:build:docs:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-docs

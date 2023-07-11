@@ -5,5 +5,7 @@ cmake_minimum_required(VERSION 3.5)
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 
 #add_compile_options(-fdiagnostics-color=always -Wno-pointer-sign -Wno-format)
-add_compile_options(-fdiagnostics-color=always -Wno-format)
+add_compile_options(-fdiagnostics-color=always 
+                    -Wno-format
+                    -Wno-ignored-qualifiers)
 project(86box_emoji)

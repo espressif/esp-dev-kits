@@ -32,3 +32,8 @@ list(APPEND iclds "jpeg-9a" "include")
 
 idf_component_register(SRCS "avifile.c" "vidoplayer.c" "jpegd2.c" "${srcs}"
                     INCLUDE_DIRS "${iclds}")
+
+                    
+target_compile_options(${COMPONENT_LIB} PRIVATE 
+                                        -Wno-incompatible-pointer-types
+                                        -Wno-shift-negative-value)

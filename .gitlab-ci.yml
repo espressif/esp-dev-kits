@@ -1,6 +1,22 @@
 stages:
+  - build_doc
   - build
   - deploy
+
+workflow:
+  rules:
+    # Disable those non-protected push triggered pipelines
+    - if: '$CI_COMMIT_REF_NAME != "master" && $CI_COMMIT_BRANCH !~ /^release\/v/ && $CI_COMMIT_TAG !~ /^v\d+\.\d+(\.\d+)?($|-)/ && $CI_PIPELINE_SOURCE == "push"'
+      when: never
+    # when running merged result pipelines, it would create a temp commit id. use $CI_MERGE_REQUEST_SOURCE_BRANCH_SHA instead of $CI_COMMIT_SHA.
+    # Please use PIPELINE_COMMIT_SHA at all places that require a commit sha
+    - if: $CI_OPEN_MERGE_REQUESTS != null
+      variables:
+        PIPELINE_COMMIT_SHA: $CI_MERGE_REQUEST_SOURCE_BRANCH_SHA
+    - if: $CI_OPEN_MERGE_REQUESTS == null
+      variables:
+        PIPELINE_COMMIT_SHA: $CI_COMMIT_SHA
+    - when: always
 
 variables:
   PYTHON_VER: 3.6.13
@@ -20,209 +36,8 @@ before_script:
   - git submodule update --init --recursive --force
   - export LC_ALL="C.UTF-8" # Add UTF-8 support
 
-.setup_idf: &setup_idf
-  # TODO: IDF_VERSION maybe a commit id, use `git fetch` rather than `git clone -b`
-  - cd /opt/esp/idf/
-  - git branch
-
-.build_examples_template: &build_examples_template
-  stage: build
-  tags:
-    - build
-
-.build_lcd_board_examples_script: &build_lcd_board_examples_script
-  - cd $CI_PROJECT_DIR/$BOARD_NAME/examples
-  - EXAMPLES=$(ls ./)
-  - echo Build $(BOARD_NAME) Examples - $(EXAMPLES)
-  - for EXAMPLE in $EXAMPLES; do
-  - cd $EXAMPLE
-  - echo Building $EXAMPLE ...
-  - idf.py fullclean
-  - git submodule update -f --init --recursive .
-  - idf.py build
-  - echo Build Complete for $EXAMPLE
-  - cd ..
-  - done
-
-.build_esp32_c3_lcdkit_template:
-  stage: build
-  tags:
-    - build
-  script:
-    - *build_lcd_board_examples_script
-
-.build_esp32_s3_lcd_ev_board_template:
-  stage: build
-  tags:
-    - build
-  before_script:
-    - *setup_idf
-  script:
-    - *build_lcd_board_examples_script
-
-build_kaluga_demo_cmake:
-  image: espressif/idf:release-v4.3
-  <<: *build_examples_template
-  script:
-    - cd esp32-s2-kaluga-1
-    - cd examples/camera
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-    - cd examples/lcd
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-    - cd examples/touch
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-    - cd examples/adc_button
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-    - cd examples/touch_audio
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-    - cd examples/web_tts
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-
-build_hmi_demo_cmake:
-  image: espressif/idf:release-v4.3
-  <<: *build_examples_template
-  script:
-    - cd esp32-s2-hmi-devkit-1
-    - cd examples/audio/audio_record
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../../
-    - cd examples/audio/music_player
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../../
-    - cd examples/get-started/hello_world
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../../
-    - cd examples/get-started/led_blink
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../../
-    - cd examples/get-started/provision
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../../
-    - cd examples/sensors
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-    - cd examples/storage/sdcard_fatfs
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../../
-    - cd examples/storage/usb_msc
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../../
-    - cd examples/power
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-    - cd examples/smart-panel
-    - idf.py fullclean
-    - idf.py set-target esp32s2
-    - idf.py build
-    - cd ../../
-
-build_esp32_c3_lcdkit:
-  variables:
-    BOARD_NAME: "esp32-c3-lcdkit"
-  extends: .build_esp32_c3_lcdkit_template
-  image: espressif/idf:release-v5.0
-
-build_esp32_s3_lcd_ev_board:
-  variables:
-    BOARD_NAME: "esp32-s3-lcd-ev-board"
-  extends: .build_esp32_s3_lcd_ev_board_template
-  image: espressif/idf:release-v5.1
-
-build_docs:
-  stage: build
-  image: $CI_DOCKER_REGISTRY/esp-idf-doc-env:v7
-  tags:
-    - build_docs
-  artifacts:
-    when: always
-    paths:
-      # English version of documentation
-      - docs/en/doxygen-warning-log.txt
-      - docs/en/sphinx-warning-log.txt
-      - docs/en/sphinx-warning-log-sanitized.txt
-      - docs/en/_build/html
-      # Chinese version of documentation
-      - docs/zh_CN/doxygen-warning-log.txt
-      - docs/zh_CN/sphinx-warning-log.txt
-      - docs/zh_CN/sphinx-warning-log-sanitized.txt
-      - docs/zh_CN/_build/html
-    expire_in: 1 week
-  script:
-    - source /opt/pyenv/activate && pyenv global 3.6.10
-    - pip install "setuptools<57.5.0"
-    - pip install "funcparserlib==0.3.6"
-    - /opt/pyenv/pyenv-1.2.16/versions/3.6.10/bin/python -m pip install --user -r docs/requirements.txt
-    - cd docs
-    - ./check_lang_folder_sync.sh
-    - cd en
-    - make gh-linkcheck
-    - make html
-    - ../check_doc_warnings.sh
-    - cd ../zh_CN
-    - make gh-linkcheck
-    - make html
-    - ../check_doc_warnings.sh
-
-push_master_to_github:
-  stage: deploy
-  only:
-    - master
-    - /^release\/v/
-#  when: on_success
-  image: $CI_DOCKER_REGISTRY/esp32-ci-env
-  variables:
-    GIT_STRATEGY: clone
-    GITHUB_PUSH_REFS: refs/remotes/origin/release refs/remotes/origin/master
-  before_script:
-    - echo "skip default before_script"
-  script:
-    - mkdir -p ~/.ssh
-    - chmod 700 ~/.ssh
-    - echo -n $GH_PUSH_KEY >> ~/.ssh/id_rsa_base64
-    - base64 --decode --ignore-garbage ~/.ssh/id_rsa_base64 > ~/.ssh/id_rsa
-    - chmod 600 ~/.ssh/id_rsa
-    - echo -e "Host github.com\n\tStrictHostKeyChecking no\n" >> ~/.ssh/config
-    - git remote add github git@github.com:espressif/esp-dev-kits.git
-    # What the next line of script does: goes through the list of refs for all branches we push to github,
-    # generates a snippet of shell which is evaluated. The snippet checks CI_BUILD_REF against the SHA
-    # (aka objectname) at tip of each branch, and if any SHAs match then it checks out the local branch
-    # and then pushes that ref to a corresponding github branch
-    #
-    # NB: In gitlab 9.x, CI_BUILD_REF was deprecated. New name is CI_COMMIT_REF. If below command suddenly
-    # generates bash syntax errors, this is probably why.
-    - eval $(git for-each-ref --shell bash --format 'if [ $CI_BUILD_REF == %(objectname) ]; then git checkout -B %(refname:strip=3); git push --follow-tags github %(refname:strip=3); fi;' $GITHUB_PUSH_REFS)
+include:
+  - '.gitlab/ci/build.yml'
+  - '.gitlab/ci/docs.yml'
+  - '.gitlab/ci/deploy.yml'
+  - '.gitlab/ci/rules.yml'
