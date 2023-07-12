@@ -1,7 +1,7 @@
 ESP-Module-Prog-SUB-01&04
 =========================
 
-:link_to_translation:`en:[English]`
+:link_to_translation:`zh_CN:[中文]`
 
 ESP-Module-Prog-SUB-01&04 is an Espressif flashing subboard designed specifically for modules. It can be used to flash modules without soldering the module to the power supply and signal lines.
 

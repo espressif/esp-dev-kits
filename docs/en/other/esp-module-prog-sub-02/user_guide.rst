@@ -2,7 +2,7 @@
 ESP-Module-Prog-SUB-02
 ======================
 
-:link_to_translation:`en: [English]`
+:link_to_translation:`zh_CN:[中文]`
 
 This user guide will help you get started with ESP-Module-Prog-SUB-02 and will also provide more in-depth information. For detailed information about the mainboard and the other subboard, please click the links below and check the corresponding user guides.
 
