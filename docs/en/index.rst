@@ -8,7 +8,6 @@ This is the documentation for `esp-dev-kits <https://github.com/espressif/esp-de
 
 Supported Development Boards
 ----------------------------------------
-
 ============================   ===========================
        **ESP32-H2 Development Boards**
 ----------------------------------------------------------
@@ -72,6 +71,14 @@ Supported Development Boards
 ============================   ===========================
        **Other Boards**
 ----------------------------------------------------------
+ |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
+----------------------------   ---------------------------
+ `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
+----------------------------   ---------------------------
+ |ESP-Module-Prog-SUB-02|_     |ESP-Module-Prog-SUB-01&04|
+----------------------------   ---------------------------
+ `ESP-Module-Prog-SUB-02`_     `ESP-Module-Prog-SUB-01&04`_
+----------------------------   ---------------------------
  |ESP-Prog|_
 ----------------------------   ---------------------------
  `ESP-Prog`_
@@ -136,12 +143,23 @@ Supported Development Boards
 .. |ESP32-C6-DevKitM-1| image:: ../_static/esp32-c6-devkitm-1/esp32-c6-devkitm-1-isometric.png
 .. _ESP32-C6-DevKitM-1: esp32c6/esp32-c6-devkitm-1/index.html
 
-.. |ESP-Prog| image:: ../_static/esp-prog/modules.png
+.. |ESP-Prog| image:: ../_static/esp-prog/three_dimension.png
 .. _ESP-Prog: other/esp-prog/index.html
 
 .. |ESP32-H2-DevKitM-1| image:: ../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45.png
 .. _ESP32-H2-DevKitM-1: esp32h2/esp32-h2-devkitm-1/index.html
 
+.. |ESP-Module-Prog-1| image:: ../_static/esp-module-prog-1-r/esp-module-prog-1.png
+.. _ESP-Module-Prog-1: other/esp-module-prog-1-r/index.html
+
+.. |ESP-Module-Prog-1R| image:: ../_static/esp-module-prog-1-r/esp-module-prog-1r.png
+.. _ESP-Module-Prog-1R: other/esp-module-prog-1-r/index.html
+
+.. |ESP-Module-Prog-SUB-01&04| image:: ../_static/esp-module-prog-sub-01&04/esp-module-prog-sub-0104.png
+.. _ESP-Module-Prog-SUB-01&04: other/esp-module-prog-sub-01&04/index.html
+
+.. |ESP-Module-Prog-SUB-02| image:: ../_static/esp-module-prog-sub-02/esp-module-prog-sub-02.png
+.. _ESP-Module-Prog-SUB-02: other/esp-module-prog-sub-02/index.html
 
 Related
 ~~~~~~~~~~~~~~~~
@@ -201,6 +219,9 @@ Related
    :caption: Other Boards
 
    ESP-Prog <other/esp-prog/index>
+   ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
+   ESP-Module-Prog-SUB-01&04 <other/esp-module-prog-sub-01&04/index>
+   ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
 .. toctree::
    :hidden:
