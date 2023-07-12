@@ -2,7 +2,7 @@
 ESP-Module-Prog-1(R)
 ====================
 
-:link_to_translation:`en: [English]`
+:link_to_translation:`zh_CN:[中文]`
 
 This user guide will help you get started with ESP-Module-Prog-1(R) and will also provide more in-depth information.
 
