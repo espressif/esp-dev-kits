@@ -33,9 +33,9 @@ ESP-Module-Prog-SUB-01&04 is an Espressif flashing subboard designed specificall
 .. _fitting-modules-of-prog-0104:
 
 - ESP-Module-Prog-SUB-01&04 fits the following Espressif modules:
-   - ESP8684-WROOM-01
+   - ESP8685-WROOM-01
    - ESP8684-WROOM-01C
-   - ESP8684-WROOM-04
+   - ESP8685-WROOM-04
    - ESP8684-WROOM-04C
 
 For information about the above modules, please refer to `Espressif Series Modules <https://www.espressif.com/en/products/modules?id=ESP32>`_.

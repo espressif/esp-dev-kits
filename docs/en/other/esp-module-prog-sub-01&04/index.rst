@@ -11,7 +11,7 @@ ESP-Module-Prog-SUB-01&04 is an Espressif flashing subboard designed specificall
 
 For detailed information about the mainboards, please refer to :doc:`../esp-module-prog-1-r/user_guide`.
 
-ESP-Module-Prog-SUB-01&04 supports specific modules for the ESP8684-WROOM series. For details about the fitting modules, please refer to the :ref:`fitting module list <fitting-modules-of-prog-0104>`.
+ESP-Module-Prog-SUB-01&04 supports specific modules for the ESP8684-WROOM and ESP8685-WROOM series. For details about the fitting modules, please refer to the :ref:`fitting module list <fitting-modules-of-prog-0104>`.
 
 .. toctree::
     :maxdepth: 2
