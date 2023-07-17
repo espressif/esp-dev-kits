@@ -443,16 +443,6 @@ void tud_resume_cb(void)
     ESP_LOGI(TAG, "%s", __FUNCTION__);
 }
 
-// Invoked when sent REPORT successfully to host
-// Application can use this to send the next report
-// Note: For composite reports, report[0] is report ID
-void tud_hid_report_complete_cb(uint8_t instance, uint8_t const *report, uint8_t len)
-{
-    (void) instance;
-    (void) len;
-
-}
-
 // Invoked when received GET_REPORT control request
 // Application must fill buffer report's content and return its length.
 // Return zero will cause the stack to STALL request
