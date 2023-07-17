@@ -33,9 +33,9 @@ ESP-Module-Prog-SUB-01&04 是专为模组设计的烧录子板，无需将模组
 .. _fitting-modules-of-prog-0104:
 
 - ESP-Module-Prog-SUB-01&04 适配的乐鑫模组如下：
-   - ESP8684-WROOM-01
+   - ESP8685-WROOM-01
    - ESP8684-WROOM-01C
-   - ESP8684-WROOM-04
+   - ESP8685-WROOM-04
    - ESP8684-WROOM-04C
 
 有关上述模组的详细信息，请参考 `乐鑫系列模组 <https://www.espressif.com/zh-hans/products/modules?id=ESP32>`_。
