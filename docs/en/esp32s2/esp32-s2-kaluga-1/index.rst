@@ -5,7 +5,7 @@ ESP32-S2-Kaluga-1
 
 The ESP32-S2-Kaluga-1 kit v1.3 is a development kit by Espressif.
 
-Application examples for this kit can be found at :dev-kits:`Examples <esp32-s2-kaluga-1/examples>`.
+Application examples for this kit can be found at :project:`Examples <esp32-s2-kaluga-1/examples>`.
 
 .. toctree::
     :maxdepth: 2

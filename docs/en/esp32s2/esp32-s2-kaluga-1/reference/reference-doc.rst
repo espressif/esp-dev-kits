@@ -16,6 +16,6 @@ Datasheet
 -------------
 
 - `ESP32-S2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`_
-- LCD ST7789：:dev-kits:`esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf`
-- Camera OV2640：:dev-kits:`esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf`
-- Audio ES8311：:dev-kits:`esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf`
+- `LCD ST7789 <../../../_static/esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf>`_
+- `Camera OV2640 <../../../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf>`_
+- `Audio ES8311 <../../../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf>`_

@@ -138,17 +138,17 @@ Project Options
 
 Various examples are provided for ESP32-S2-HMI-DevKit-1 as shown below:
 
-- Printing "Hello world!" on screen: :dev-kits:`esp32-s2-hmi-devkit-1/examples/get-started/hello_world`
-- Blinking WS2812 LED and showing the color on screen: :dev-kits:`esp32-s2-hmi-devkit-1/examples/get-started/led_blink`
-- Starting a UI to configure Wi-Fi credential: :dev-kits:`esp32-s2-hmi-devkit-1/examples/get-started/provision`
-- Acquiring audio with ADC from the output of analog MIC: :dev-kits:`esp32-s2-hmi-devkit-1/examples/audio/audio_record`
-- Playing music: :dev-kits:`esp32-s2-hmi-devkit-1/examples/audio/music_player`
-- Shutting down selected board area into a deep sleep: :dev-kits:`esp32-s2-hmi-devkit-1/examples/examples/power`
-- Using Freetype to render fonts: :dev-kits:`esp32-s2-hmi-devkit-1/examples/freetype`
-- Using on-board sensors: :dev-kits:`esp32-s2-hmi-devkit-1/examples/sensors`
-- Using smart panel: :dev-kits:`esp32-s2-hmi-devkit-1/examples/smart-panel`
-- Viewing files on SD card: :dev-kits:`esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs`
-- USB flash disk: :dev-kits:`esp32-s2-hmi-devkit-1/examples/storage/usb_msc`
+- Printing "Hello world!" on screen: :project:`esp32-s2-hmi-devkit-1/examples/get-started/hello_world`
+- Blinking WS2812 LED and showing the color on screen: :project:`esp32-s2-hmi-devkit-1/examples/get-started/led_blink`
+- Starting a UI to configure Wi-Fi credential: :project:`esp32-s2-hmi-devkit-1/examples/get-started/provision`
+- Acquiring audio with ADC from the output of analog MIC: :project:`esp32-s2-hmi-devkit-1/examples/audio/audio_record`
+- Playing music: :project:`esp32-s2-hmi-devkit-1/examples/audio/music_player`
+- Shutting down selected board area into a deep sleep: :project:`esp32-s2-hmi-devkit-1/examples/power`
+- Using Freetype to render fonts: :project:`esp32-s2-hmi-devkit-1/examples/freetype`
+- Using on-board sensors: :project:`esp32-s2-hmi-devkit-1/examples/sensors`
+- Using smart panel: :project:`esp32-s2-hmi-devkit-1/examples/smart-panel`
+- Viewing files on SD card: :project:`esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs`
+- USB flash disk: :project:`esp32-s2-hmi-devkit-1/examples/storage/usb_msc`
 
 You can configure project options by entering ``idf.py menuconfig`` in each example directory.
 

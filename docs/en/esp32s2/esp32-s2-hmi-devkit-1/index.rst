@@ -5,7 +5,7 @@ ESP32-S2-HMI-DevKit-1
 
 ESP32-S2-HMI-DevKit-1 has been specifically designed for human-machine interfaces in smart-home automation controllers, smart speakers with display, smart alarm clocks, etc.
 
-Application examples for this board can be found at :dev-kits:`Examples <esp32-s2-hmi-devkit-1/examples>`.
+Application examples for this board can be found at :project:`Examples <esp32-s2-hmi-devkit-1/examples>`.
 
 .. toctree::
     :maxdepth: 2

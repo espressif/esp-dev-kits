@@ -142,7 +142,7 @@ ESP32-S3-USB-OTG 上电前，请首先确认开发板完好无损。
 工程选项
 ^^^^^^^^
 
-我们为 ESP32-S3-USB-OTG 开发板提供了应用示例，存放在 :dev-kits:`Examples <esp32-s3-usb-otg/examples>` 文件夹中。
+我们为 ESP32-S3-USB-OTG 开发板提供了应用示例，存放在 :project:`Examples <esp32-s3-usb-otg/examples>` 文件夹中。
 
 您可以在示例目录下，输入 ``idf.py menuconfig`` 配置工程选项。
 
@@ -312,7 +312,7 @@ LCD 接口
 
    LCD 接口电路图
 
-请注意，该接口支持连接 SPI 接口屏幕，该开发板使用的屏幕型号为 :dev-kits:` ST7789 <esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`，``LCD_BL`` (GPIO9) 可用于控制屏幕背光。
+请注意，该接口支持连接 SPI 接口屏幕，该开发板使用的屏幕型号为 :project:` ST7789 <esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`，``LCD_BL`` (GPIO9) 可用于控制屏幕背光。
 
 SD 卡接口
 ~~~~~~~~~

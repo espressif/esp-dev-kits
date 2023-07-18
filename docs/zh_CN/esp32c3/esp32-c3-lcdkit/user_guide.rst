@@ -135,7 +135,7 @@ LCD 子板
 软件支持
 ----------------
 
-ESP32-C3-LCDkit 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :dev-kits:`Examples <esp32-c3-lcdkit/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
+ESP32-C3-LCDkit 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :project:`Examples <esp32-c3-lcdkit/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
 
 
 应用程序开发
@@ -377,6 +377,8 @@ ESP32-C3 具有成本优势和行业领先的低功耗性能，适用于构建�
 -  `ESP32-C3-LCDkit_MB PCB 布局图 <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-C6-LCDkit-MB_V1.1_20230418.pdf>`__
 -  `ESP32-C3-LCDkit_DB 原理图 <../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
 -  `ESP32-C3-LCDkit_DB PCB 布局图 <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
+-  `ESP32-C6-LCDkit_DB 原理图 <../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
+-  `ESP32-C6-LCDkit_DB PCB 布局图 <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
 -  `1.28_TFT_240x240_SPI_屏 <../../_static/esp32-c3-lcdkit/datasheets/1.28_TFT_240x240_SPI_屏.pdf>`__
 -  `红外发射器（IR67-21CTR8） <../../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IR67-21CTR8.PDF>`__
 -  `红外接收器（IRM-H638TTR2） <../../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IRM-H638TTR2.PDF>`__
