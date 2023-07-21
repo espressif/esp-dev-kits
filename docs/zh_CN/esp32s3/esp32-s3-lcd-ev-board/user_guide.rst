@@ -206,13 +206,13 @@ LCD 子板
 软件支持
 ----------------
 
-ESP32-S3-LCD-EV-Board 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :dev-kits:`Examples <esp32-s3-lcd-ev-board/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
+ESP32-S3-LCD-EV-Board 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :project:`Examples <esp32-s3-lcd-ev-board/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
 
 .. note::
 
   - ESP-IDF 的版本要求在 v5.0 及以上，推荐使用 release/v5.1 分支开发。
   - ESP32-S3 RGB 驱动仅支持 16 位 RGB565 接口和 8 位 RGB888 接口。
-  - 为了使 ESP-IDF 支持 120 MHz DDR 的 PSRAM 配置，请参考 :dev-kits:`此处<esp32-s3-lcd-ev-board/factory>`。
+  - 为了使 ESP-IDF 支持 120 MHz DDR 的 PSRAM 配置，请参考 :project:`此处<esp32-s3-lcd-ev-board/factory>`。
 
 
 应用程序开发

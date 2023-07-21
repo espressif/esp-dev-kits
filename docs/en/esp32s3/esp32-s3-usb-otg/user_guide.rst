@@ -143,7 +143,7 @@ Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/l
 Project Option
 ^^^^^^^^^^^^^^
 
-An example is provided for ESP32-S3-USB-OTG under the folder :dev-kits:`Examples <esp32-s3-usb-otg/examples>`.
+An example is provided for ESP32-S3-USB-OTG under the folder :project:`Examples <esp32-s3-usb-otg/examples>`.
 
 You can configure project options by entering ``idf.py menuconfig`` in the example directory.
 
@@ -315,7 +315,7 @@ LCD Interface
 
    LCD Interface Circuit (click to enlarge)
 
-Please note that this interface supports connecting SPI interface screens. The screen controller used by this development board is :dev-kits:` ST7789 <esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`, and ``LCD_BL`` (GPIO9) can be used to control the screen backlight.
+Please note that this interface supports connecting SPI interface screens. The screen controller used by this development board is :project:` ST7789 <esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`, and ``LCD_BL`` (GPIO9) can be used to control the screen backlight.
 
 SD Card Interface
 ~~~~~~~~~~~~~~~~~

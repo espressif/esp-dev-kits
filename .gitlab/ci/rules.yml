@@ -129,3 +129,15 @@
       changes: *patterns-build_system
     - <<: *if-dev-push
       changes: *patterns-docs
+
+.rules:deploy:docs_preview:
+  rules:
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-docs
+
+.rules:deploy:docs_production:
+  rules:
+    - <<: *if-protected

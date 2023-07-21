@@ -89,7 +89,7 @@ ESP32-S3-USB-Bridge 的主要组件和连接方式如下图所示。
    * - ESP32-S3-MINI-1-N4R2 模组
      - ESP32-S3-MINI-1-N4R2 模组是一款通用型 Wi-Fi + 低功耗蓝牙 MCU 模组，搭载 ESP32-S3 系列芯片，内置 4 MB flash 以及 2 MB PSRAM。除具有丰富的外设接口外，模组还拥有强大的神经网络运算能力和信号处理能力，适用于 AIoT 领域的多种应用场景。
    * - TX/RX 指示灯
-     - 用于指示串口数据的收发状态。 
+     - 用于指示串口数据的收发状态。
    * - 扩展连接器
      - 可供连接的 JTAG 引脚，串口引脚，TX/RX 引脚，Boot 引脚，Reset 引脚，以及系统电压引脚。
    * - Reset 按键
@@ -123,7 +123,7 @@ ESP32-S3-USB-Bridge 的主要组件和连接方式如下图所示。
 软件支持
 ----------------
 
-ESP32-S3-USB-Bridge 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :dev-kits:`Examples <esp32-s3-usb-bridge/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
+ESP32-S3-USB-Bridge 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :project:`Examples <esp32-s3-usb-bridge/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
 
 .. note::
 

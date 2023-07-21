@@ -206,13 +206,13 @@ The mainboard can be used together with three different kinds of subboards:
 Software Support
 ----------------
 
-The ESP32-S3-LCD-EV-Board development framework is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :dev-kits:`Examples<esp32-s3-lcd-ev-board/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
+The ESP32-S3-LCD-EV-Board development framework is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :project:`Examples<esp32-s3-lcd-ev-board/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
 
 .. note::
 
   - ESP-IDF v5.1 and above are recommended for development.
   - ESP32-S3 RGB driver only supports the 16-bit RGB565 and 8-bit RGB888 interface.
-  - To enable ESP-IDF with the 120 MHz DDR PSRAM, please see :dev-kits:`here<esp32-s3-lcd-ev-board>`.
+  - To enable ESP-IDF with the 120 MHz DDR PSRAM, please see :project:`here<esp32-s3-lcd-ev-board>`.
 
 
 Start Application Development

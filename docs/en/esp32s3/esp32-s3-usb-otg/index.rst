@@ -5,7 +5,7 @@ ESP32-S3-USB-OTG
 
 ESP32-S3-USB-OTG is a development board that focuses on USB-OTG function verification and application development.
 
-Application examples for this board can be found at :dev-kits:`Examples <esp32-s3-usb-otg/examples>`.
+Application examples for this board can be found at :project:`Examples <esp32-s3-usb-otg/examples>`.
 
 .. toctree::
     :maxdepth: 2

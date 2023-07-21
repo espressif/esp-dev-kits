@@ -25,14 +25,14 @@ sed -r 's:\x1B\[[0-9;]*[mK]::g' sphinx-warning-log.txt | \
 # format is to display only lines new or changed in second argument
 DIFF_FORMAT="--unchanged-line-format= --old-line-format= --new-line-format=%L"
 
-SPHINX_WARNINGS=$(diff $DIFF_FORMAT ../sphinx-known-warnings.txt sphinx-warning-log-sanitized.txt)
+SPHINX_WARNINGS=$(diff $DIFF_FORMAT ../../../sphinx-known-warnings.txt sphinx-warning-log-sanitized.txt)
 if ! [ -z "$SPHINX_WARNINGS" ]; then
     echo "$STARS"
     echo "Build failed due to new/different Sphinx warnings:"
     echo "$SPHINX_WARNINGS"
     echo "$STARS"
     RESULT=1
-    echo "(Check files ../sphinx-known-warnings.txt and sphinx-warning-log.txt for full details.)"
+    echo "(Check files ../../../sphinx-known-warnings.txt and sphinx-warning-log.txt for full details.)"
 fi
 
 exit $RESULT

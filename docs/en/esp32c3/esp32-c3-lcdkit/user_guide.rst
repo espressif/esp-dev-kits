@@ -135,7 +135,7 @@ The **ESP32-C3-LCDkit_DB** subboard supports a 1.28" LCD screen with SPI interfa
 Software Support
 ----------------
 
-The ESP32-C3-LCDkit development framework is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-C3-LCDkit under the folder :dev-kits:`Examples <esp32-c3-lcdkit/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
+The ESP32-C3-LCDkit development framework is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-C3-LCDkit under the folder :project:`Examples <esp32-c3-lcdkit/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
 
 
 Start Application Development
@@ -377,6 +377,8 @@ Related Documents
 -  `ESP32-C3-LCDkit_MB PCB Layout <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-C6-LCDkit-MB_V1.1_20230418.pdf>`__
 -  `ESP32-C3-LCDkit_DB Schematics <../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
 -  `ESP32-C3-LCDkit_DB PCB Layout <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
+-  `ESP32-C6-LCDkit_DB Schematics <../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
+-  `ESP32-C6-LCDkit_DB PCB Layout <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
 -  `1.28_TFT_240x240_SPI_Display <../../_static/esp32-c3-lcdkit/datasheets/1.28_TFT_240x240_SPI_屏.pdf>`__
 -  `Infrared Transmitter (IR67-21CTR8) <../../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IR67-21CTR8.PDF>`__
 -  `Infrared Receiver（IRM-H638TTR2） <../../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IRM-H638TTR2.PDF>`__
