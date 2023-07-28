@@ -1,4 +1,5 @@
 stages:
+  - pre_check
   - build_doc
   - build
   - deploy
@@ -23,6 +24,7 @@ variables:
   BATCH_BUILD: "1"
   V: "0"
   IDF_CI_BUILD: "1"
+  DEV_KITS_PATH: "$CI_PROJECT_DIR"
 
 before_script:
   # add gitlab ssh key
@@ -37,6 +39,7 @@ before_script:
   - export LC_ALL="C.UTF-8" # Add UTF-8 support
 
 include:
+  - '.gitlab/ci/pre_check.yml'
   - '.gitlab/ci/build.yml'
   - '.gitlab/ci/docs.yml'
   - '.gitlab/ci/deploy.yml'

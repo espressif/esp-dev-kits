@@ -121,6 +121,15 @@
       changes: *patterns-esp32_s3_usb_otg
 
 # For others
+.rules:pre_check:readme:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-docs_md
+
 .rules:build:docs:
   rules:
     - <<: *if-protected

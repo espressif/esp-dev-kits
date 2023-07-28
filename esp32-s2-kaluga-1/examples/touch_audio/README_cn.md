@@ -25,10 +25,10 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
 1. 将 SW3[ 8 ] 和 SW4[ 2、4、6、8 ] 的拨码开关打开（ ON ），即主板左下角两组拨码开关，如下图：
 
  **ESP32\_S2\_Kaluga-1\_v1.3**: 将拨码开关的 T7、T8、T10、T12、T14打开（ ON ）。
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_audio_1.jpg" width = "650" alt="image 1-1" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_audio_1.jpg" width = "650" alt="image 1-1" align=center /></div>
 
 2. 将 GPIO45 上预留的两个管脚短接，如下图：
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>
 
 3. 将触摸板和音频板接入主板中。如下图：
 
@@ -44,7 +44,7 @@ PIN| PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN | GUARD | SHIELD
 
 PIN | I2S_MCLK | I2S_SCLK | I2S_LCLK | I2S_DOUT | I2S_DSIN | PA_EN | I2C_SCL | I2C_SDA
  ---|---|---|---|---|---|---|---|---|
- GPIO | 35 | 18 | 17 | 12 | 46 | 10 | 7 | 8 
+ GPIO | 35 | 18 | 17 | 12 | 46 | 10 | 7 | 8
 
 
 #### 1.2.2 ESP32\_S2\_Kaluga-1\_v1.1 硬件连接
@@ -53,7 +53,7 @@ PIN | I2S_MCLK | I2S_SCLK | I2S_LCLK | I2S_DOUT | I2S_DSIN | PA_EN | I2C_SCL | I
 
 2. 将 GPIO45 上预留的两个管脚短接，如下图：
 
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>
 
 3. 将触摸板和音频板接入主板中。并将 audio 板子的 1SDO 接至 GPIO36, SDA 接至 GPIO37。
 
@@ -79,7 +79,7 @@ idf.py set-target esp32s2 menuconfig
 * 设置 `Example Configuration`-> `WS2812 GPIO`: 配置 LED 灯的 GPIO 管脚。
 * 设置 `Example Configuration`-> `touch pad type` & `audio pad type` :选择子板版本。
 * 设置 `Example Configuration`-> `WIFI config` :打开 WIFI 配置。
-  
+
 ### 1.4 构建和烧录
 
 #### 1.4.1 烧入音频文件
@@ -164,8 +164,8 @@ I (473) DRV8311: ES8311 in Slave mode
 
 I (483) DRV8311: ES8311 in I2S Format
 
-I (483) gpio: GPIO[0]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
-I (483) gpio: GPIO[10]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
+I (483) gpio: GPIO[0]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (483) gpio: GPIO[10]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
 I (493) DRV8311: SET: volume:127
 
 I (503) I2S: DMA Malloc info, datalen=blocksize=1024, dma_buf_count=6
@@ -198,9 +198,9 @@ I (633) DRV8311: SET: volume:127
   * 未插入 `audio` 板子和喇叭。
   * 分区表未设置或设置错误。
   * 音频相关的拨码开关没有正确打开（ ON ）。
-  
+
 ## 2 附录
 
 * [ESP32-S2 技术规格书](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf)
-* [ESP32-S2-Kaluga-1 主板](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
-* [ESP-LyraP-TOUCHA 触摸板](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP-LYRAP-TOUCHA_V1.1_20200325A.pdf)
+* [ESP32-S2-Kaluga-1 主板](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
+* [ESP-LyraP-TOUCHA 触摸板](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP-LYRAP-TOUCHA_V1.1_20200325A.pdf)

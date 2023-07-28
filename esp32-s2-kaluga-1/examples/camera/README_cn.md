@@ -19,15 +19,15 @@
 1. 将 SW3 和 SW4 的拨码开关**全部打开（ ON ）**，即主板左下角两组拨码开关，如下图：
 * 高级：如果想使用部分触摸板  管脚，只需将触摸板相关拨码开关关闭( OFF )，详情请参阅主板和触摸板原理图。
 
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_1.jpg" width = "450" alt="image 1-2" align=center /></div>
 
 2. 将显示屏插入主板双排排针的内侧一排（注意：不要在显示屏和主板之间接入音频板），如下图:
 
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_lcd_1.jpg" width = "450" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_lcd_1.jpg" width = "450" alt="image 1-2" align=center /></div>
 
 3. 将摄像头插入主板，如下图:
 
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_2.jpg" width = "450" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_2.jpg" width = "450" alt="image 1-2" align=center /></div>
 
 * ESP32_S2_Kaluga-1 LCD 管脚分配
 
@@ -39,7 +39,7 @@ LCD PIN|MISO|MOSI|CLK|CS|D_C|RST|BCKL(BLCT)|
 
 CAMERA PIN|XCLK|PCLK|VSYNC|HSYNC|D2|D3|D4|D5|D6|D7|D8|D9|
 ---|---| ---|---| ---|---| ---|---|---|---|---|---|---|
-**GPIO** |1|0|2|3|46|45|41|42|39|40|21|38 
+**GPIO** |1|0|2|3|46|45|41|42|39|40|21|38
 
 * ESP32_S2_kaluga-1_v1.2 Camera 管脚分配
 
@@ -133,15 +133,15 @@ I (501) spiram: Reserving pool of 32K of internal memory for DMA/internal alloca
 I (562) spi_flash: detected chip: generic
 I (562) spi_flash: flash io: qio
 I (562) cpu_start: Starting scheduler on PRO CPU.
-I (565) gpio: GPIO[6]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
-I (565) gpio: GPIO[11]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
-I (575) gpio: GPIO[13]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
-I (585) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0 
+I (565) gpio: GPIO[6]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (565) gpio: GPIO[11]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (575) gpio: GPIO[13]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
+I (585) gpio: GPIO[16]| InputEn: 0| OutputEn: 1| OpenDrain: 0| Pullup: 0| Pulldown: 0| Intr:0
 I (595) lcd: lcd_buffer_size: 2048, lcd_dma_size: 1024, lcd_dma_node_cnt: 2
 
 I (905) lcd: lcd init ok
 
-I (905) gpio: GPIO[2]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 1| Intr:2 
+I (905) gpio: GPIO[2]| InputEn: 1| OutputEn: 0| OpenDrain: 0| Pullup: 1| Pulldown: 1| Intr:2
 I (905) cam: cam_xclk_pin setup
 
 I (905) cam: cam_buffer_size: 7680, cam_dma_size: 3840, cam_dma_node_cnt: 2, cam_total_cnt: 40
@@ -169,6 +169,6 @@ I (1015) main: camera init done
 ## 2 附录
 
 * [ESP32-S2 技术规格书](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf)
-* [ESP32-S2-Kaluga-1 主板](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
-* [ESP-LyraP-CAM 摄像头](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP-LYRAP-CAM_V1_20200302.pdf)
-* [ESP-LyraP-LCD32 显示屏](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)
+* [ESP32-S2-Kaluga-1 主板](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
+* [ESP-LyraP-CAM 摄像头](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP-LYRAP-CAM_V1_20200302.pdf)
+* [ESP-LyraP-LCD32 显示屏](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)

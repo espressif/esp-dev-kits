@@ -17,12 +17,12 @@
 
 1. 将 SW3 和 SW4 的拨码开关全部打开（ ON ），即主板左下角两组拨码开关，如下图：
 * 高级：如果想使用部分触摸板 GPIO 管脚，只需将触摸板相关拨码开关关闭OFF，详情请参阅主板和触摸板原理图。
-  
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
+
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_camera_1.jpg" width = "650" alt="image 1-2" align=center /></div>
 
 2. 将显示屏插入主板双排排针的内侧一排，如下图:
 
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_lcd_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_lcd_1.jpg" width = "650" alt="image 1-2" align=center /></div>
 
 * ESP32_S2_kaluga-1_v1.1 LCD 管脚分配
 
@@ -127,5 +127,5 @@ I (737) LCD: ST7789V initialization.
 ## 2 附录
 
 * [ESP32-S2 技术规格书](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf)
-* [ESP32-S2-Kaluga-1 主板原理图](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
-* [ESP-LyraP-LCD32 显示屏原理图](../../../docs/zh_CN/esp32s2/esp32-s2-kaluga-1/hw/schematics/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)
+* [ESP32-S2-Kaluga-1 主板原理图](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
+* [ESP-LyraP-LCD32 显示屏原理图](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)

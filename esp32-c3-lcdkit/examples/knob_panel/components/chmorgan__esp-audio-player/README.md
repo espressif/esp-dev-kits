@@ -10,7 +10,7 @@
 
 ## Who is this for?
 
-Decode only audio playback on esp32 series of chips, where the features and footprint of esp-adf are not 
+Decode only audio playback on esp32 series of chips, where the features and footprint of esp-adf are not
 necessary.
 
 ## What about esp-adf?

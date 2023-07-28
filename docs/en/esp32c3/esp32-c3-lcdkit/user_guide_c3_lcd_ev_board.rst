@@ -89,7 +89,7 @@ The key components of the board are described in a counter-clockwise direction.
    * - LED
      - Supports configuring the RGB LED display to indicate status or behavior.
    * - ESP-Prog Connector
-     - Connects the Program interface of `ESP-Prog <https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/other/esp-prog/user_guide.html>`_ for firmware download and debugging via a 1.27 mm pitch connector.
+     - Connects the Program interface of `ESP-Prog <https://docs.espressif.com/projects/esp-dev-kits/en/latest/other/esp-prog/user_guide.html>`_ for firmware download and debugging via a 1.27 mm pitch connector.
    * - Power Switch
      - Power Toggle ON/OFF: Toggle ON to power on the board and OFF to power off the board.
    * - USB-to-USB Port

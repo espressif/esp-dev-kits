@@ -7,7 +7,7 @@ An example for using LCD display video which captured from USB camera.
 
 ## How to use example
 
-Please first read the [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-Board to learn about its software and hardware information.
+Please first read the [User Guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-Board to learn about its software and hardware information.
 
 ### Hardware Required
 
@@ -27,7 +27,7 @@ Run `idf.py menuconfig` and go to `Board Support Package`:
 | ------ | ------ |
 | GPIO20 | GPIO19 |
 
-**Note:** If the camera is connected to the USB port, diode D1 needs to be short-circuited. About this, please check [Power Supply over USB](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#power-supply-over-usb) part in board's schematic.
+**Note:** If the camera is connected to the USB port, diode D1 needs to be short-circuited. About this, please check [Power Supply over USB](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#power-supply-over-usb) part in board's schematic.
 
 ### Build and Flash
 
