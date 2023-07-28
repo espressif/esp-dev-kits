@@ -2,7 +2,7 @@
 
 ## User Guide
 
-* ESP32-S3-USB-OTG - [English](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-usb-otg/user_guide.html) / [中文](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-usb-otg/user_guide.html)
+* ESP32-S3-USB-OTG - [English](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-usb-otg/user_guide.html) / [中文](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-usb-otg/user_guide.html)
 
 ## Examples
 

@@ -4,7 +4,7 @@ A GUI Demo designed for knob panel which has the voice playback function.
 
 ## How to use example
 
-Please first read the [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcdkit/user_guide.html) of the ESP32-C3-LCDkit to learn about its software and hardware information.
+Please first read the [User Guide](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcdkit/user_guide.html) of the ESP32-C3-LCDkit to learn about its software and hardware information.
 
 ### Hardware Required
 

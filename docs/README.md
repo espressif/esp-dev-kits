@@ -1,6 +1,6 @@
 # Documentation Source Folder
 
-This folder contains source files of **ESP-IDF documentation** available in [English](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/index.html) and [中文](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/index.html).
+This folder contains source files of **ESP-IDF documentation** available in [English](https://docs.espressif.com/projects/esp-dev-kits/en/latest/index.html) and [中文](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/index.html).
 
 The sources do not render well in GitHub and some information is not visible at all.
 
@@ -8,8 +8,8 @@ Use actual documentation generated within about 20 minutes on each commit:
 
 # Hosted Documentation
 
-* English: https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/index.html
-* 中文: https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/index.html
+* English: https://docs.espressif.com/projects/esp-dev-kits/en/latest/index.html
+* 中文: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/index.html
 
 The above URLs are all for the master branch latest version.
 

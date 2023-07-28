@@ -89,7 +89,7 @@ ESP32-C3-LCD-Ev-Board 开发板由主板和子板组成。
    * - LED
      - 具有 RGB 三色显示功能，可供用户配置用来做状态行为指示。
    * - ESP-Prog 连接器
-     - 通过 1.27 mm 间距的连接器可以连接 `ESP-Prog <https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/other/esp-prog/user_guide.html>`_ 的 Program 接口，用于固件下载与调试。
+     - 通过 1.27 mm 间距的连接器可以连接 `ESP-Prog <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/other/esp-prog/user_guide.html>`_ 的 Program 接口，用于固件下载与调试。
    * - 电源开关
      - 电源拨动开/关：向 ON 拨动开启开发板电源，向 OFF 拨动关闭开发板电源。
    * - USB-to-USB 端口

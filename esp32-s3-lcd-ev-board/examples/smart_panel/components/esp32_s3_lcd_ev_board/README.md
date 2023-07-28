@@ -2,9 +2,9 @@
 
 [![Component Registry](https://components.espressif.com/components/espressif/esp32_s3_lcd_ev_board/badge.svg)](https://components.espressif.com/components/espressif/esp32_s3_lcd_ev_board)
 
-* [User Guide](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html)
+* [User Guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html)
 
-![](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/_images/esp32-s3-lcd-ev-board-isometric-raw.png)
+![](https://docs.espressif.com/projects/esp-dev-kits/en/latest/_images/esp32-s3-lcd-ev-board-isometric-raw.png)
 
 ESP32-S3-LCD-EV-BOARD is a development board for evaluating and verifying ESP32-S3 screen interactive applications. It has the functions of touch screen interaction and voice interaction. The development board has the following characteristics:
 

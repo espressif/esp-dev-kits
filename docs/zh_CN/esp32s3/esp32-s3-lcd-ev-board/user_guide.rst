@@ -570,14 +570,14 @@ ESP32-S3-LCD-EV-Board 回声参考信号源有两路兼容设计，一路是 Cod
 -  `ESP32-S3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf>`__
 -  `ESP32-S3-WROOM-1 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_cn.pdf>`__
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-LCD-EV-Board-MB 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_EV_Board_MB_V1.1_20220713.pdf>`__
--  `ESP32-S3-LCD-EV-Board-MB PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_MB_V1.0_20220610.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB1 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB1 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB2 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB2_V1.0_20220615.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB2 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB2_V1.1_20220708.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB3 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD_Ev_Board_SUB3_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD_Ev_Board_SUB3_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-MB_V1.4_20230321.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-MB_V1.4_20230321.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB1 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB1 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB2 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.2_20230509.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB2 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.4_202230509.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB3 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf>`__
 -  `TCA9554 规格书 <https://www.ti.com/lit/gpn/tca9554>`__
 -  `ES7210 规格书 <http://www.everest-semi.com/pdf/ES7210%20PB.pdf>`__
 -  `ES8311 规格书 <http://www.everest-semi.com/pdf/ES8311%20PB.pdf>`__
