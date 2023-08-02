@@ -43,6 +43,12 @@ Run `idf.py menuconfig` and go to `Board Support Package`:
 
 See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for full steps to configure and use ESP-IDF to build projects.
 
+## Example Output
+
+The following animation is a demonstration of the development board running the example.
+
+![usb_msc_file_sys](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_usb_msc_file_sys.gif)
+
 ## Troubleshooting
 
 * Program build failure

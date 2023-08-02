@@ -43,6 +43,12 @@
 
 请参阅[入门指南](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html)了解配置和使用 ESP-IDF 构建项目的完整步骤。
 
+## 示例输出
+
+下面的动画是开发板运行示例的实际效果。
+
+![usb_msc_file_sys](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_usb_msc_file_sys.gif)
+
 ## 故障排除
 
 * 程序构建失败

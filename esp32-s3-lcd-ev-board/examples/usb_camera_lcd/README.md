@@ -1,4 +1,4 @@
-# USB Cemera LCD Example
+# USB Camera LCD Example
 
 An example for using LCD display video which captured from USB camera.
 
@@ -41,6 +41,14 @@ Run `idf.py menuconfig` and go to `Board Support Package`:
 (To exit the serial monitor, type ``Ctrl-]``.)
 
 See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for full steps to configure and use ESP-IDF to build projects.
+
+## Example Output
+
+The following animations show the example running on different development boards.
+
+![usb_camera_lcd_480_480](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_usb_camera_lcd_480_480.gif)
+
+![usb_camera_lcd_800_480](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_usb_camera_lcd_800_480.gif)
 
 ## Troubleshooting
 
