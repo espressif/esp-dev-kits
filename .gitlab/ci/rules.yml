@@ -29,6 +29,9 @@
   - "esp32-s3-usb-otg/**/*"
 
 # docs folder, in the alphabetic order
+.patterns-toml: &patterns-toml
+  - "**/*.toml"
+
 .patterns-docs: &patterns-docs
   - "docs/**/*"
 
@@ -129,6 +132,8 @@
       changes: *patterns-build_system
     - <<: *if-dev-push
       changes: *patterns-docs_md
+    - <<: *if-dev-push
+      changes: *patterns-toml
 
 .rules:build:docs:
   rules:
