@@ -7,3 +7,13 @@ check_readme_links:
   allow_failure: true
   script:
     - python ${CI_PROJECT_DIR}/tools/ci/check_readme_links.py
+
+check_launchpad_apps:
+  extends:
+    - .rules:pre_check:launchpad
+  stage: pre_check
+  image: python:3.9
+  tags: ["build", "amd64", "internet"]
+  script:
+    - pip install toml
+    - python ${CI_PROJECT_DIR}/tools/ci/check_launchpad.py

@@ -30,13 +30,16 @@
 
 # docs folder, in the alphabetic order
 .patterns-toml: &patterns-toml
-  - "**/*.toml"
+  - "*.toml"
 
 .patterns-docs: &patterns-docs
   - "docs/**/*"
 
 .patterns-docs_md: &patterns-docs_md
   - "**/*.md"
+
+.patterns-py: &patterns-py
+  - "tools/ci/*.py"
 
 # Reserved
 # .patterns-docs_inc: &patterns-docs_inc
@@ -134,6 +137,19 @@
       changes: *patterns-docs_md
     - <<: *if-dev-push
       changes: *patterns-toml
+    - <<: *if-dev-push
+      changes: *patterns-py
+
+.rules:pre_check:launchpad:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-toml
+    - <<: *if-dev-push
+      changes: *patterns-py
 
 .rules:build:docs:
   rules:
