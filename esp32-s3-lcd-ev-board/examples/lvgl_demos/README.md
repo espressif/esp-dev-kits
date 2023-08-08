@@ -37,7 +37,7 @@ See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/l
 
 The following animations show the example running on different development boards.
 
-![lvgl_demos_480_480](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_lvgl_demos_480_480.gif)
+![lvgl_demos_480_480](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_lvgl_demos_480_480_2.gif)
 
 ![lvgl_demos_800_480](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_lvgl_demos_800_480.gif)
 

@@ -48,7 +48,7 @@ The following animations show the example running on different development board
 
 ![usb_camera_lcd_480_480](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_usb_camera_lcd_480_480.gif)
 
-![usb_camera_lcd_800_480](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_usb_camera_lcd_800_480.gif)
+![usb_camera_lcd_800_480](https://dl.espressif.com/AE/esp-dev-kits/s3-lcd-ev-board_examples_usb_camera_lcd_800_480_2.gif)
 
 ## Troubleshooting
 
