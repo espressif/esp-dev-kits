@@ -14,7 +14,7 @@ The following examples are developed under the ESP-IDF **release/v5.1** branch:
 * [Smart Panel](./examples/smart_panel/)
 * [USB Keyboard](./examples/usb_keyboard/)
 * [USB Camera](./examples/usb_camera_lcd/)
-* [USB file System](./examples/usb_msc_file_sys/)
+* [USB File System](./examples/usb_msc_file_sys/)
 
 ## Released Bin
 
