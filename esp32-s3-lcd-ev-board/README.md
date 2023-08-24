@@ -18,7 +18,7 @@ The following examples are developed under the ESP-IDF **release/v5.1** branch:
 
 ## Released Bin
 
-* [Factory Bin](./factory/bin/ESP32-S3-LCD-EV-Board_fac_v0_2_0.bin) for ESP32-S3-LCD-EV-Board (Subboard2 480x480)
+* [Factory Bin](./factory/bin/ESP32-S3-LCD-EV-Board_fac_v0_3_0.bin) for ESP32-S3-LCD-EV-Board (Subboard2 480x480)
 * [Factory Bin](./factory/bin/ESP32-S3-LCD-EV-Board-2_fac_v0_5_0.bin) for ESP32-S3-LCD-EV-Board-2 (Subboard3 800x480)
 
 ## PSRAM 120M DDR
