@@ -25,7 +25,7 @@
 #endif
 
 /* Print log about SRAM and PSRAM memory */
-// #define LOG_MEM_INFO    (1)
+#define LOG_MEM_INFO    (0)
 
 #if CONFIG_BSP_LCD_SUB_BOARD_480_480
 #define DEMO_UVC_FRAME_WIDTH            (480)
@@ -144,6 +144,11 @@ void app_main(void)
 #if LOG_MEM_INFO
     static char buffer[128];    /* Make sure buffer is enough for `sprintf` */
     while (1) {
+        /**
+         * It's not recommended to frequently use functions like `heap_caps_get_free_size()` to obtain memory information
+         * in practical applications, especially when the application extensively uses `malloc()` to dynamically allocate
+         * a significant number of memory blocks. The frequent interrupt disabling may potentially lead to issues with other functionalities.
+         */
         sprintf(buffer, "   Biggest /     Free /    Total\n"
                 "\t  SRAM : [%8d / %8d / %8d]\n"
                 "\t PSRAM : [%8d / %8d / %8d]",
