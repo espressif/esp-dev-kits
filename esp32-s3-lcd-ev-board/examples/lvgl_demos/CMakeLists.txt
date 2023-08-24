@@ -9,7 +9,6 @@ add_compile_options(-fdiagnostics-color=always
                     -Wno-attributes
                     -Wno-unused-variable
                     -Wno-unused-function
-                    -Wno-incompatible-pointer-types
                     -Wno-ignored-qualifiers)
 
 project(lvgl_demos)
