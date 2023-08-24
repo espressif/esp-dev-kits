@@ -4,7 +4,7 @@
 
 Programmed by [86box_smart_panel](../examples/86box_smart_panel/).
 
-* [ESP32-S3-LCD-EV-Board_fac_v0_2_0.bin](./bin/ESP32-S3-LCD-EV-Board_fac_v0_2_0.bin)
+* [ESP32-S3-LCD-EV-Board_fac_v0_3_0.bin](./bin/ESP32-S3-LCD-EV-Board_fac_v0_3_0.bin)
 
 ## For ESP32-S3-LCD-EV-Board-2 (Subboard3 800x480)
 
