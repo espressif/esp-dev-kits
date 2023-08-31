@@ -26,19 +26,13 @@ extern "C" {
 /**********************
  * GLOBAL PROTOTYPES
  **********************/
-LV_IMG_DECLARE(icon_clock);
-LV_IMG_DECLARE(icon_fans);
 LV_IMG_DECLARE(icon_light);
-LV_IMG_DECLARE(icon_player);
-LV_IMG_DECLARE(icon_weather);
 LV_IMG_DECLARE(icon_washing);
 LV_IMG_DECLARE(icon_thermostat);
 LV_IMG_DECLARE(icon_washing_ns);
 LV_IMG_DECLARE(icon_thermostat_ns);
 LV_IMG_DECLARE(icon_light_ns);
 
-LV_IMG_DECLARE(img_weather);
-LV_IMG_DECLARE(img_bg);
 LV_IMG_DECLARE(espressif_logo);
 
 LV_IMG_DECLARE(light_close_bg)

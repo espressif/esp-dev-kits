@@ -14,7 +14,7 @@
 
 #include "lv_example_pub.h"
 #include "lv_example_image.h"
-#include "esp32-c3-lcdkit.h"
+#include "bsp/esp-bsp.h"
 
 static const char *TAG = "factory";
 
@@ -403,7 +403,7 @@ static void lv_create_test_LED(lv_obj_t *factory_bg, uint8_t event)
         lv_obj_align(label_guide, LV_ALIGN_CENTER, 0, -30);
         lv_label_set_text(label_guide, "左旋:暗\n右旋:亮\n按下:下一步");
 
-        bsp_led_RGB_set(light, light, light);
+        bsp_led_rgb_set(light, light, light);
     } else {
         audio_handle_info(SOUND_TYPE_KNOB);
     }
@@ -415,16 +415,16 @@ static void lv_create_test_LED(lv_obj_t *factory_bg, uint8_t event)
                 light -= 10;
             }
             ESP_LOGI(TAG, "pwm:%d", light);
-            bsp_led_RGB_set(light, light, light);
+            bsp_led_rgb_set(light, light, light);
         } else if (LV_KEY_RIGHT == event) {
             if (light < 200) {
                 light += 10;
             }
             ESP_LOGI(TAG, "pwm:%d", light);
-            bsp_led_RGB_set(light, light, light);
+            bsp_led_rgb_set(light, light, light);
         } else if (LV_KEY_DOWN == event) {
             factory_sub_step++;
-            bsp_led_RGB_set(0x00, 0x00, 0x00);
+            bsp_led_rgb_set(0x00, 0x00, 0x00);
             lv_obj_align(label_guide, LV_ALIGN_CENTER, 0, -20);
             lv_label_set_text(label_guide, "LED正常?");
             lv_create_rst_select(obj_BG);

@@ -8,7 +8,7 @@ Note: There is an older-version board called **ESP32-C3-LCD-Ev-Board**. It is an
 
 ## Examples
 
-The following examples are developed under the ESP-IDF **release/v5.0** branch:
+The following examples are developed under the ESP-IDF **release/v5.1** branch:
 
 * [knob_panel](./examples/knob_panel/)
 

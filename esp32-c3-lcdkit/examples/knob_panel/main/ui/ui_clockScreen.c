@@ -12,7 +12,7 @@
 
 #include "lv_example_pub.h"
 #include "lv_example_image.h"
-#include "esp32-c3-lcdkit.h"
+#include "bsp/esp-bsp.h"
 
 #define MIN_MOUTH_ZOOM      128
 #define MAX_MOUTH_ZOOM      365

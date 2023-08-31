@@ -18,7 +18,7 @@
 #include "app_audio.h"
 #include "settings.h"
 #include "lv_example_pub.h"
-#include "esp32-c3-lcdkit.h"
+#include "bsp/esp-bsp.h"
 
 static const char *TAG = "main";
 
@@ -173,6 +173,14 @@ static void sys_monitor_start(void)
     ESP_ERROR_CHECK_WITHOUT_ABORT((pdPASS == ret_val) ? ESP_OK : ESP_FAIL);
 }
 #endif
+
+
+esp_err_t bsp_board_init(void)
+{
+    ESP_ERROR_CHECK(bsp_led_init());
+    ESP_ERROR_CHECK(bsp_spiffs_mount());
+    return ESP_OK;
+}
 
 void app_main(void)
 {
