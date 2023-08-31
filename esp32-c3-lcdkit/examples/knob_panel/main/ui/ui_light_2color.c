@@ -9,7 +9,7 @@
 
 #include "lv_example_pub.h"
 #include "lv_example_image.h"
-#include "esp32-c3-lcdkit.h"
+#include "bsp/esp-bsp.h"
 
 static bool light_2color_layer_enter_cb(void *layer);
 static bool light_2color_layer_exit_cb(void *layer);
@@ -172,7 +172,7 @@ static bool light_2color_layer_enter_cb(void *layer)
 static bool light_2color_layer_exit_cb(void *layer)
 {
     LV_LOG_USER("");
-    bsp_led_RGB_set(0x00, 0x00, 0x00);
+    bsp_led_rgb_set(0x00, 0x00, 0x00);
     return true;
 }
 
@@ -193,7 +193,7 @@ static void light_2color_layer_timer_cb(lv_timer_t *tmr)
             } else {
                 RGB_color = (0xFF * light_xor.light_pwm / 100) << 16 | (0xFF * light_xor.light_pwm / 100) << 8 | (0x33 * light_xor.light_pwm / 100) << 0;
             }
-            bsp_led_RGB_set((RGB_color >> 16) & 0xFF, (RGB_color >> 8) & 0xFF, (RGB_color >> 0) & 0xFF);
+            bsp_led_rgb_set((RGB_color >> 16) & 0xFF, (RGB_color >> 8) & 0xFF, (RGB_color >> 0) & 0xFF);
 
             lv_obj_add_flag(img_light_pwm_100, LV_OBJ_FLAG_HIDDEN);
             lv_obj_add_flag(img_light_pwm_75, LV_OBJ_FLAG_HIDDEN);

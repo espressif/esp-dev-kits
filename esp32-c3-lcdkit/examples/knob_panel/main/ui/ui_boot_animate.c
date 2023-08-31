@@ -14,7 +14,7 @@
 #include "settings.h"
 #include "lv_example_pub.h"
 #include "lv_example_image.h"
-#include "esp32-c3-lcdkit.h"
+#include "bsp/esp-bsp.h"
 
 #ifndef PI
 #define PI  (3.14159f)

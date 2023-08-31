@@ -11,7 +11,7 @@
 #include "esp_check.h"
 #include "nvs_flash.h"
 #include "nvs.h"
-#include "esp32-c3-lcdkit.h"
+#include "bsp/esp-bsp.h"
 #include "settings.h"
 
 static const char *TAG = "settings";

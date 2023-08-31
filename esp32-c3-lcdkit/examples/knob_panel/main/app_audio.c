@@ -17,14 +17,16 @@
 #include "esp_spiffs.h"
 #include "esp_vfs.h"
 
-#include "esp_alc.h"
 #include "app_audio.h"
 #include "audio_player.h"
-#include "esp32-c3-lcdkit.h"
+#include "bsp/esp-bsp.h"
 
 static const char *TAG = "app_audio";
 
-static void *volume_handle;
+static esp_codec_dev_handle_t play_dev_handle;
+
+static esp_err_t bsp_audio_reconfig_clk(uint32_t rate, uint32_t bits_cfg, i2s_slot_mode_t ch);
+static esp_err_t bsp_audio_write(void *audio_buffer, size_t len, size_t *bytes_written, uint32_t timeout_ms);
 
 esp_err_t audio_force_quite(bool ret)
 {
@@ -35,9 +37,6 @@ esp_err_t app_audio_write(void *audio_buffer, size_t len, size_t *bytes_written,
 {
     esp_err_t ret = ESP_OK;
 
-    int result = alc_volume_setup_process(audio_buffer, len, 1, volume_handle, 10);
-    // ESP_LOGE(TAG, "len:%d. %d", len, result);
-    // ESP_ERROR_CHECK(alc_volume_setup_process(audio_buffer, len, 1, volume_handle, 5));
     if (bsp_audio_write(audio_buffer, len, bytes_written, 1000) != ESP_OK) {
         ESP_LOGE(TAG, "Write Task: i2s write failed");
         ret = ESP_FAIL;
@@ -110,19 +109,47 @@ static void audio_callback(audio_player_cb_ctx_t *ctx)
     }
 }
 
+static esp_err_t bsp_audio_reconfig_clk(uint32_t rate, uint32_t bits_cfg, i2s_slot_mode_t ch)
+{
+    esp_err_t ret = ESP_OK;
+
+    esp_codec_dev_sample_info_t fs = {
+        .sample_rate = rate,
+        .channel = ch,
+        .bits_per_sample = bits_cfg,
+    };
+
+    ret = esp_codec_dev_close(play_dev_handle);
+    ret = esp_codec_dev_open(play_dev_handle, &fs);
+    return ret;
+}
+
+static esp_err_t bsp_audio_write(void *audio_buffer, size_t len, size_t *bytes_written, uint32_t timeout_ms)
+{
+    esp_err_t ret = ESP_OK;
+    ret = esp_codec_dev_write(play_dev_handle, audio_buffer, len);
+    *bytes_written = len;
+    return ret;
+}
+
+static void bsp_codec_init()
+{
+    play_dev_handle = bsp_audio_codec_speaker_init();
+    assert((play_dev_handle) && "play_dev_handle not initialized");
+}
+
 esp_err_t audio_play_start()
 {
     esp_err_t ret = ESP_OK;
-    volume_handle = alc_volume_setup_open();
-    if (volume_handle == NULL) {
-        ESP_LOGE(TAG, "Failed to create ALC handle. (line %d)", __LINE__);
-    }
 
-    audio_player_config_t config = { .mute_fn = app_mute_function,
-                                     .write_fn = app_audio_write,
-                                     .clk_set_fn = bsp_audio_reconfig_clk,
-                                     .priority = 5
-                                   };
+    bsp_codec_init();
+
+    audio_player_config_t config = {
+        .mute_fn = app_mute_function,
+        .write_fn = app_audio_write,
+        .clk_set_fn = bsp_audio_reconfig_clk,
+        .priority = 5
+    };
     ESP_ERROR_CHECK(audio_player_new(config));
     audio_player_callback_register(audio_callback, NULL);
     return ret;
