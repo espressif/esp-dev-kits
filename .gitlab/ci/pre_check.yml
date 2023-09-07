@@ -1,6 +1,4 @@
 check_readme_links:
-  extends:
-    - .rules:pre_check:readme
   stage: pre_check
   image: python:3.9
   tags: ["build", "amd64", "internet"]
