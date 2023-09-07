@@ -64,6 +64,8 @@ deploy_docs_production:
   extends:
     - .deploy_docs_template
     - .rules:deploy:docs_production
+  needs: 
+    - push_master_to_github
   variables:
     TYPE: "production"
     DOCS_BUILD_DIR: "${CI_PROJECT_DIR}/docs/_build/"
