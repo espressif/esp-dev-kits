@@ -8,6 +8,7 @@ push_master_to_github:
     - master
     - /^release\/v/
 #  when: on_success
+  dependencies: []
   image: $CI_DOCKER_REGISTRY/esp32-ci-env
   variables:
     GIT_STRATEGY: clone
@@ -64,8 +65,6 @@ deploy_docs_production:
   extends:
     - .deploy_docs_template
     - .rules:deploy:docs_production
-  needs: 
-    - push_master_to_github
   variables:
     TYPE: "production"
     DOCS_BUILD_DIR: "${CI_PROJECT_DIR}/docs/_build/"
