@@ -242,7 +242,7 @@ J3
 管脚布局
 ^^^^^^^^
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-v1.2_pinlayout_20230303.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-v1.2_pinlayout_20230911.png
     :align: center
     :scale: 42%
     :alt: ESP32-H2-DevKitM-1
