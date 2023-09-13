@@ -1020,11 +1020,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
-     inkscape:zoom="12.925588"
-     inkscape:cx="366.52104"
-     inkscape:cy="197.66992"
+     inkscape:zoom="3.0061459"
+     inkscape:cx="244.33279"
+     inkscape:cy="297.72341"
      inkscape:document-units="px"
-     inkscape:current-layer="layer1"
+     inkscape:current-layer="g14928"
      showgrid="false"
      inkscape:window-width="2560"
      inkscape:window-height="1332"
@@ -5934,54 +5934,56 @@
          transform="translate(-1.0583333,-5.2916663)"><tspan
            x="3.870492"
            y="-411.78793"
-           id="tspan22186"><tspan
+           id="tspan14895"><tspan
              style="font-weight:bold;font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22184">ESP32-H2 Specs
+             id="tspan14893">ESP32-H2 Specs
 </tspan></tspan><tspan
            x="3.870492"
            y="-408.71342"
-           id="tspan22190"><tspan
+           id="tspan14899"><tspan
              style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22188">32-bit RISC-V single-core @96MHz
+             id="tspan14897">32-bit RISC-V single-core @96MHz
 </tspan></tspan><tspan
            x="3.870492"
            y="-405.6389"
-           id="tspan22194"><tspan
+           id="tspan14903"><tspan
              style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22192">IEEE 802.15.4 supporting Thread and Zigbee
+             id="tspan14901">IEEE 802.15.4 supporting Thread and Zigbee
 </tspan></tspan><tspan
            x="3.870492"
            y="-402.56437"
-           id="tspan22198"><tspan
+           id="tspan14907"><tspan
              style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22196">Bluetooth ® Low Energy supporting Bluetooth 5 and </tspan></tspan><tspan
+             id="tspan14905">Bluetooth ® Low Energy supporting Bluetooth 5 and </tspan></tspan><tspan
            x="3.870492"
            y="-399.48985"
-           id="tspan22202"><tspan
+           id="tspan14911"><tspan
              style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22200">Bluetooth mesh
+             id="tspan14909">Bluetooth mesh
 </tspan></tspan><tspan
            x="3.870492"
            y="-396.41533"
-           id="tspan22206"><tspan
+           id="tspan14917"><tspan
              style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22204">128 KB SRAM, 320 KB ROM, 4 KB LP Memory, 2/4 MB Flash
+             id="tspan14913">320</tspan><tspan
+             style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
+             id="tspan14915"> KB SRAM, 128 KB ROM, 4 KB LP Memory, 2/4 MB Flash
 </tspan></tspan><tspan
            x="3.870492"
            y="-393.3408"
-           id="tspan22210"><tspan
+           id="tspan14921"><tspan
              style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22208">19 GPIOs, 3x SPI, 2x UART, 2x I2C, 1x I2S, RMT, LEDPWM, </tspan></tspan><tspan
+             id="tspan14919">19 GPIOs, 3x SPI, 2x UART, 2x I2C, 1x I2S, RMT, LEDPWM, </tspan></tspan><tspan
            x="3.870492"
            y="-390.26628"
-           id="tspan22214"><tspan
+           id="tspan14925"><tspan
              style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22212">MCPWM, PCNT, TWAI, USB Serial/JTAG, GDMA, ETM, </tspan></tspan><tspan
+             id="tspan14923">MCPWM, PCNT, TWAI, USB Serial/JTAG, GDMA, ETM, </tspan></tspan><tspan
            x="3.870492"
            y="-387.19175"
-           id="tspan22218"><tspan
+           id="tspan14929"><tspan
              style="font-size:2.29404px;font-family:'Ubuntu Mono';-inkscape-font-specification:'Ubuntu Mono'"
-             id="tspan22216">PARLIO, SAR ADC, Temp Sensor, Timers
+             id="tspan14927">PARLIO, SAR ADC, Temp Sensor, Timers
 </tspan></tspan></text>
     </g>
     <g
