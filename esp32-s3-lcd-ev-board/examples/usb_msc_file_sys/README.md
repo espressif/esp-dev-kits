@@ -1,6 +1,6 @@
 # USB File System
 
-This example demonstrates how to use USB HOST on ESP32-S2/S3 to read and write files on a USB flash drive. You can use the development board `ESP32-S3-LCD-EV-Board-2` to connect to a USB flash drive and display its contents on the screen.
+This example demonstrates how to use USB HOST on ESP32-S2/S3 to read and write files on a USB flash drive. You can use the development board `ESP32-S3-LCD-EV-Board` or `ESP32-S3-LCD-EV-Board-2` to connect to a USB flash drive and display its contents on the screen.
 
 Currently supported file formats for preview are:
 * JPG
@@ -17,15 +17,9 @@ Please first read the [User Guide](https://docs.espressif.com/projects/espressif
 
 ### Hardware Requirements
 
-* An `ESP32-S3-LCD-EV-Board` development board with sub board3 (800x480).
+* An `ESP32-S3-LCD-EV-Board (480x480)` or `ESP32-S3-LCD-EV-Board-2 (800x480)` development board.
 * A USB flash drive with a capacity less than 32GB.
 * A USB Type-C cable for power supply and programming (please connect to the UART port instead of the USB port).
-
-### Configurations
-
-Run `idf.py menuconfig` and go to `Board Support Package`:
-* `BSP_LCD_SUB_BOARD`: Choose an LCD subboard according to hardware. Default use sub board3 (800x480).
-* More configurations see the BSP's [README](https://github.com/espressif/esp-bsp/tree/master/esp32_s3_lcd_ev_board#bsp-esp32-s3-lcd-ev-board).
 
 ### Hardware Connection
 

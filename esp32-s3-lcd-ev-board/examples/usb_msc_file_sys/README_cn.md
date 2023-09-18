@@ -1,6 +1,6 @@
 # U 盘文件系统
 
-本例程展示了 esp32s2/s3 使用 USB HOST 读写 U 盘的操作，可以使用开发板 `ESP32-S3-LCD-EV-Board-2` 连接 U 盘，通过屏幕显示 U 盘中的文件.
+本例程展示了 esp32s2/s3 使用 USB HOST 读写 U 盘的操作，可以使用开发板 `ESP32-S3-LCD-EV-Board` 或者 `ESP32-S3-LCD-EV-Board-2` 连接 U 盘，通过屏幕显示 U 盘中的文件.
 
 目前支持预览的文件：
 * JPG
@@ -17,15 +17,9 @@
 
 ### 硬件需求
 
-* 一块带有子板3（800x480）的 `ESP32-S3-LCD-EV-Board` 开发板。
-* 一个小于 32GB 的U盘。
-* 一根USB Type-C电缆用于供电和编程（请连接到UART端口，而不是USB端口）
-
-### 配置
-
-运行 `idf.py menuconfig` 并进入 `Board Support Package`（BSP）：
-* `BSP_LCD_SUB_BOARD`：根据硬件选择一个 LCD 子板。默认使用 subboard3（800x480）。
-* 更多配置请参考 `BSP` 的[README](https://github.com/espressif/esp-bsp/tree/master/esp32_s3_lcd_ev_board#bsp-esp32-s3-lcd-ev-board)。
+* `ESP32-S3-LCD-EV-Board（480x480）`或 `ESP32-S3-LCD-EV-Board-2（800x480）`开发板。
+* 一个小于 32GB 的 U 盘。
+* 一根 USB Type-C 电缆用于供电和编程（请连接到 UART 端口，而不是 USB 端口）
 
 ### 硬件连接
 

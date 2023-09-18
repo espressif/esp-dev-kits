@@ -9,5 +9,4 @@ void ui_HomePage_screen_init(void)
 {
     ui_HomePage = lv_obj_create(NULL);
     lv_obj_clear_flag(ui_HomePage, LV_OBJ_FLAG_SCROLLABLE);      /// Flags
-
 }
