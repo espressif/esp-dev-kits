@@ -105,6 +105,7 @@ void ui_control_display(void)
     lv_obj_t *path_label = lv_file_explorer_get_path_label(g_file_explorer);
     const char *path = lv_label_get_text(path_label);
     char final_sel_fn[strlen(sel_fn) + strlen(path) + 1 + 1];
+    memset(final_sel_fn, 0, sizeof(final_sel_fn));
     strncpy(final_sel_fn, path + 4, strlen(path)-4);
     if (path[strlen(path) - 1] != '/') {
         strcat(final_sel_fn, "/");
