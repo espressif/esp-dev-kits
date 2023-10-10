@@ -10,8 +10,8 @@
 #include <freertos/task.h>
 #include "ui.h"
 #include "bsp/esp-bsp.h"
+#include "bsp_board_extra.h"
 #include "app_msc.h"
-#include "app_audio.h"
 
 void app_main()
 {
@@ -28,6 +28,7 @@ void app_main()
     msc_init();
 
     /* Initialize audio */
-    audio_init();
+    bsp_extra_codec_init();
+    bsp_extra_player_init(NULL);
 
 }

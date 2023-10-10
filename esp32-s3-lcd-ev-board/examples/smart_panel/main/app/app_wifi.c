@@ -23,31 +23,7 @@
 #include "app_weather.h"
 #include "settings.h"
 
-/* The examples use WiFi configuration that you can set via project configuration menu
-
-   If you'd rather not, just change the below entries to strings with
-   the config you want - ie #define EXAMPLE_WIFI_SSID "mywifissid"
-*/
-
 #define EXAMPLE_ESP_MAXIMUM_RETRY  10
-
-#if CONFIG_ESP_WIFI_AUTH_OPEN
-#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_OPEN
-#elif CONFIG_ESP_WIFI_AUTH_WEP
-#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WEP
-#elif CONFIG_ESP_WIFI_AUTH_WPA_PSK
-#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA_PSK
-#elif CONFIG_ESP_WIFI_AUTH_WPA2_PSK
-#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA2_PSK
-#elif CONFIG_ESP_WIFI_AUTH_WPA_WPA2_PSK
-#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA_WPA2_PSK
-#elif CONFIG_ESP_WIFI_AUTH_WPA3_PSK
-#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA3_PSK
-#elif CONFIG_ESP_WIFI_AUTH_WPA2_WPA3_PSK
-#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WPA2_WPA3_PSK
-#elif CONFIG_ESP_WIFI_AUTH_WAPI_PSK
-#define ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD WIFI_AUTH_WAPI_PSK
-#endif
 
 /* FreeRTOS event group to signal when we are connected*/
 static EventGroupHandle_t s_wifi_event_group;
@@ -129,14 +105,6 @@ static void wifi_scan(void)
 
     for (int i = 0; (i < DEFAULT_SCAN_LIST_SIZE) && (i < ap_count); i++) {
         ESP_LOGI(TAG, "SSID \t\t%s", ap_info[i].ssid);
-        /*
-        ESP_LOGI(TAG, "RSSI \t\t%d", ap_info[i].rssi);
-        print_auth_mode(ap_info[i].authmode);
-        if (ap_info[i].authmode != WIFI_AUTH_WEP) {
-            print_cipher_type(ap_info[i].pairwise_cipher, ap_info[i].group_cipher);
-        }
-        ESP_LOGI(TAG, "Channel \t\t%d\n", ap_info[i].primary);
-        */
     }
 
     if (ap_count && (ESP_OK == ret)) {
@@ -230,17 +198,7 @@ static void wifi_init_sta(void)
                     NULL,
                     &instance_got_ip));
 
-    wifi_config_t wifi_config = {
-        .sta = {
-            .ssid = DEFAULT_ESP_WIFI_SSID,
-            .password = DEFAULT_ESP_WIFI_PASS,
-            /* Setting a password implies station will connect to all security modes including WEP/WPA.
-             * However these modes are deprecated and not advisable to be used. Incase your Access point
-             * doesn't support WPA2, these mode can be enabled by commenting below line */
-            //.threshold.authmode = ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD,
-            //.sae_pwe_h2e = 2,
-        },
-    };
+    wifi_config_t wifi_config;
 
     sys_param_t *sys_param = settings_get_parameter();
     memcpy(wifi_config.sta.ssid, sys_param->ssid, sizeof(wifi_config.sta.ssid));
@@ -251,26 +209,6 @@ static void wifi_init_sta(void)
     ESP_ERROR_CHECK(esp_wifi_start() );
     ESP_LOGI(TAG, "wifi_init_sta finished.%s:%d, %s:%d", \
              wifi_config.sta.ssid, sys_param->ssid_len, wifi_config.sta.password, sys_param->password_len);
-
-    /* Waiting until either the connection is established (WIFI_CONNECTED_BIT) or connection failed for the maximum
-     * number of re-tries (WIFI_FAIL_BIT). The bits are set by event_handler() (see above) */
-    // EventBits_t bits = xEventGroupWaitBits(s_wifi_event_group,
-    //                                        WIFI_CONNECTED_BIT | WIFI_FAIL_BIT,
-    //                                        pdFALSE,
-    //                                        pdFALSE,
-    //                                        portMAX_DELAY);
-
-    /* xEventGroupWaitBits() returns the bits before the call returned, hence we can test which event actually
-     * happened. */
-    // if (bits & WIFI_CONNECTED_BIT) {
-    //     ESP_LOGI(TAG, "connected to ap SSID:%s password:%s",
-    //              wifi_config.sta.ssid, wifi_config.sta.password);
-    // } else if (bits & WIFI_FAIL_BIT) {
-    //     ESP_LOGI(TAG, "Failed to connect to SSID:%s, password:%s",
-    //              wifi_config.sta.ssid, wifi_config.sta.password);
-    // } else {
-    //     ESP_LOGE(TAG, "UNEXPECTED EVENT");
-    // }
 }
 
 static void network_task(void *args)

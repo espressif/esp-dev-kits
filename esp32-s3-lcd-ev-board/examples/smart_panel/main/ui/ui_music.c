@@ -10,9 +10,8 @@
 #include "ui_main.h"
 #include "main.h"
 
-#include "bsp_board.h"
+#include "bsp_board_extra.h"
 #include "audio_player.h"
-#include "file_iterator.h"
 #include "bsp/esp-bsp.h"
 
 static const char *TAG = "ui_music";
@@ -87,7 +86,7 @@ static void audio_cb(audio_player_cb_ctx_t *ctx)
 
         bsp_display_lock(0);
         char filename[256];
-        file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+        file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
         file_iterator_get_full_path_from_index(file_iterator, file_iterator_get_index(file_iterator), filename, sizeof(filename));
         lv_label_set_text(label_music_name, (char *)filename + strlen("/spiffs/"));
         if (lrc) {
@@ -119,7 +118,7 @@ static void audio_cb(audio_player_cb_ctx_t *ctx)
 static void play_present()
 {
     char filename[128];
-    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
     file_iterator_get_full_path_from_index(file_iterator, file_iterator_get_index(file_iterator), filename, sizeof(filename));
     if (strstr(filename, "lrc")) {
         file_iterator_next(file_iterator);
@@ -274,7 +273,7 @@ void ui_music_init(void *data)
 
     size_t list_len = 0;
     char filename[128];
-    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
     list_len = file_iterator_get_count(file_iterator);
     for (size_t i = 0; i < list_len; i++) {
 
@@ -334,9 +333,7 @@ static void slider_volume_cb(lv_obj_t *obj, lv_event_t event)
     if (LV_EVENT_VALUE_CHANGED == event) {
         int v = lv_slider_get_value(obj);
         ESP_LOGI(TAG, "volume=%d", v);
-
-        bsp_codec_config_t *codec_handle = bsp_board_get_codec_handle();
-        codec_handle->volume_set_fn(v, NULL);
+        bsp_extra_codec_volume_set(v, NULL);
     }
 }
 
@@ -350,7 +347,7 @@ static void btn_list_cb(lv_obj_t *obj, lv_event_t event)
 
 static void btn_file_list_cb(lv_obj_t *obj, lv_event_t event)
 {
-    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
 
     if (LV_EVENT_RELEASED == event) {
         lv_obj_t *btn = obj;
@@ -380,7 +377,7 @@ static void btn_play_pause_cb(lv_obj_t *obj, lv_event_t event)
 
 static void btn_prev_next_cb(lv_obj_t *obj, lv_event_t event)
 {
-    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
 
     if (LV_EVENT_RELEASED == event) {
         if (btn_prev == obj) {

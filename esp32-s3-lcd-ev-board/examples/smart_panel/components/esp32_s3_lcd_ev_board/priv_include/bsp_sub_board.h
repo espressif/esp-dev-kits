@@ -1,55 +1,35 @@
 /*
- * SPDX-FileCopyrightText: 2022 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- * SPDX-License-Identifier: CC0-1.0
+ * SPDX-License-Identifier: Apache-2.0
  */
+#ifndef BSP_SUB_BOARD_H
+#define BSP_SUB_BOARD_H
 
-#pragma once
-
-#include "esp_err.h"
-#include "esp_lcd_types.h"
-#include "esp_lcd_touch.h"
+#include "bsp/esp32_s3_lcd_ev_board.h"
 
 #ifdef __cplusplus
 extern "C" {
 #endif
 
-/**
- * @brief LCD transmit done callback function type
- *
- */
-typedef bool (*bsp_lcd_trans_done_cb_t)(esp_lcd_panel_handle_t handle);
+typedef enum {
+    SUB_BOARD_TYPE_UNKNOW = 0,
+    SUB_BOARD_TYPE_2_480_480,
+    SUB_BOARD_TYPE_3_800_480,
+} bsp_sub_board_type_t;
 
 /**
- * @brief Init LCD panel
- *
- * @param[in] arg: User data/function, pass NULL if don't need
- *
- * @return Pointer to LCD panel handle, or NULL if error occurs
- */
-esp_lcd_panel_handle_t bsp_lcd_init(void *arg);
-
-/**
- * @brief Register a callback function which will be called when LCD finish refreshing
- *
- * @param[in] callback: The function to be registered. It should return true if need to yield, otherwise return false
+ * @brief Get sub-board type
  *
  * @return
- *      - ESP_OK:               Succsee
- *      - ESP_ERR_INVALID_ARG:  Callback function should be placed in IRAM, use `IRAM_ATTR` to define it
+ *      - SUB_BOARD_TYPE_UNKNOW: Unknow sub-board
+ *      - SUB_BOARD_TYPE_2_480_480: Sub-board 2 with 480x480 LCD (GC9503), Touch (FT5x06)
+ *      - SUB_BOARD_TYPE_3_800_480: Sub-board 3 with 800x480 LCD (ST7262), Touch (GT1151)
  */
-esp_err_t bsp_lcd_register_trans_done_callback(bsp_lcd_trans_done_cb_t callback);
-
-/**
- * @brief Init touch panel
- *
- * @note This function should be called after I2C bus is initialized
- *
- * @return Pointer to touch handle, or NULL if error occurs
- *
- */
-esp_lcd_touch_handle_t bsp_touch_panel_init(void);
+bsp_sub_board_type_t bsp_sub_board_get_type(void);
 
 #ifdef __cplusplus
 }
+#endif
+
 #endif

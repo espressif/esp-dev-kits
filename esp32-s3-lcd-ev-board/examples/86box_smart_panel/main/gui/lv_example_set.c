@@ -12,7 +12,7 @@
 #include "esp_wifi.h"
 #include "app_wifi.h"
 #include "settings.h"
-#include "lv_main.h"
+#include "main.h"
 
 #include "lv_example_pub.h"
 #include "lv_example_image.h"

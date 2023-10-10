@@ -1,11 +1,17 @@
 dependencies:
-  es7210:
+  button:
     public: true
-    version: ^1
-  es8311:
+    version: ^2.5
+  esp_codec_dev:
     public: true
     version: ^1
   esp_io_expander_tca9554:
+    public: true
+    version: ^1
+  esp_lcd_gc9503:
+    public: true
+    version: ^1
+  esp_lcd_panel_io_additions:
     public: true
     version: ^1
   esp_lcd_touch_ft5x06:
@@ -16,11 +22,12 @@ dependencies:
     version: ^1
   idf:
     version: '>=5.0'
-  lvgl/lvgl:
-    public: true
-    version: ^7.11.0
-description: Board Support Package for ESP32-S3-LCD-EV-BOARD
+  # lvgl/lvgl:
+  #   public: true
+  #   version: ^8
+  lvgl/lvgl: "^7.11.0"
+description: Board Support Package for ESP32-S3-LCD-EV-Board
 targets:
 - esp32s3
 url: https://github.com/espressif/esp-bsp/tree/master/esp32_s3_lcd_ev_board
-version: 1.0.4
+version: 2.0.0

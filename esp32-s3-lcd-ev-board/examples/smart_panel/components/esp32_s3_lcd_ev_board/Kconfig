@@ -26,19 +26,55 @@ menu "Board Support Package"
             default 100000
     endmenu
 
+    menu "SPIFFS - Virtual File System"
+        config BSP_SPIFFS_FORMAT_ON_MOUNT_FAIL
+            bool "Format SPIFFS if mounting fails"
+            default n
+            help
+                Format SPIFFS if it fails to mount the filesystem.
+
+        config BSP_SPIFFS_MOUNT_POINT
+            string "SPIFFS mount point"
+            default "/spiffs"
+            help
+                Mount point of SPIFFS in the Virtual File System.
+
+        config BSP_SPIFFS_PARTITION_LABEL
+            string "Partition label of SPIFFS"
+            default "storage"
+            help
+                Partition label which stores SPIFFS.
+
+        config BSP_SPIFFS_MAX_FILES
+            int "Max files supported for SPIFFS VFS"
+            default 5
+            help
+                Supported max files for SPIFFS in the Virtual File System.
+    endmenu
+
     menu "LCD"
         choice BSP_LCD_SUB_BOARD
-            prompt "Select Sub board"
-            default BSP_LCD_SUB_BOARD_800_480
+            prompt "Select Target Sub board"
+            default BSP_LCD_SUB_BOARD_NONE
+            help
+                Select the sub-board of the LCD. If there are no specific requirements for the sub board, please select "Not specifying a sub board".
+
+            config BSP_LCD_SUB_BOARD_NONE
+                bool "Not specifying a sub board"
             config BSP_LCD_SUB_BOARD_480_480
                 bool "Sub board 2 with 480x480 RGB LCD"
             config BSP_LCD_SUB_BOARD_800_480
                 bool "Sub board 3 with 800x480 RGB LCD"
         endchoice
 
+        config BSP_LCD_SUB_BOARD_TYPE
+            int
+            default 0 if BSP_LCD_SUB_BOARD_NONE
+            default 1 if BSP_LCD_SUB_BOARD_480_480
+            default 2 if BSP_LCD_SUB_BOARD_800_480
+
         config BSP_LCD_RGB_BUFFER_NUMS
             int "Set number of frame buffers"
-            depends on BSP_LCD_SUB_BOARD_480_480 || BSP_LCD_SUB_BOARD_800_480
             default 1
             range 1 3
             help
@@ -46,7 +82,6 @@ menu "Board Support Package"
 
         choice BSP_LCD_RGB_REFRESH_MODE
             prompt "Select the refresh mode for RGB LCD"
-            depends on BSP_LCD_SUB_BOARD_480_480 || BSP_LCD_SUB_BOARD_800_480
             default BSP_LCD_RGB_REFRESH_AUTO
             config BSP_LCD_RGB_REFRESH_AUTO
                 bool "Auto refresh mode"
@@ -125,6 +160,30 @@ menu "Board Support Package"
             config BSP_DISPLAY_LVGL_DIRECT_MODE
                 bool "Direct mode"
         endchoice
+
+        choice BSP_DISPLAY_LVGL_ROTATION
+            depends on BSP_DISPLAY_LVGL_AVOID_TEAR
+            depends on BSP_LCD_RGB_BUFFER_NUMS = 3
+            prompt "Select rotation"
+            default BSP_DISPLAY_LVGL_ROTATION_NONE
+            config BSP_DISPLAY_LVGL_ROTATION_NONE
+                bool "Rotation 0"
+            config BSP_DISPLAY_LVGL_ROTATION_90
+                bool "Rotation 90"
+            config BSP_DISPLAY_LVGL_ROTATION_180
+                bool "Rotation 180"
+            config BSP_DISPLAY_LVGL_ROTATION_270
+                bool "Rotation 270"
+            help
+                Rotate screen when avoid tearing effect is enabled. Need to set BSP_LCD_RGB_BUFFER_NUMS to 3.
+        endchoice
+
+        config BSP_DISPLAY_LVGL_ROTATION_DEGREE
+            int
+            default 0 if BSP_DISPLAY_LVGL_ROTATION_NONE
+            default 1 if BSP_DISPLAY_LVGL_ROTATION_90
+            default 2 if BSP_DISPLAY_LVGL_ROTATION_180
+            default 3 if BSP_DISPLAY_LVGL_ROTATION_270
 
         choice BSP_DISPLAY_LVGL_BUF_CAPS
             depends on !BSP_DISPLAY_LVGL_AVOID_TEAR

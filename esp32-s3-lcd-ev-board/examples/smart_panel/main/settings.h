@@ -8,8 +8,8 @@
 
 #include "app_sr.h"
 
-#define DEFAULT_ESP_WIFI_SSID      CONFIG_ESP_WIFI_SSID
-#define DEFAULT_ESP_WIFI_PASS      CONFIG_ESP_WIFI_PASSWORD
+// #define DEFAULT_ESP_WIFI_SSID      CONFIG_ESP_WIFI_SSID
+// #define DEFAULT_ESP_WIFI_PASS      CONFIG_ESP_WIFI_PASSWORD
 
 typedef struct {
     bool need_hint;

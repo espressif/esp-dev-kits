@@ -13,14 +13,14 @@
 
 #include "ui_main.h"
 
-#include "bsp_board.h"
+#include "bsp_board_extra.h"
 #include "bsp/esp-bsp.h"
 #include "settings.h"
 
 #include "app_wifi.h"
 #include "app_weather.h"
 
-#define LOG_MEM_INFO    0
+#define LOG_MEM_INFO    1
 
 static char *TAG = "app_main";
 
@@ -44,21 +44,19 @@ void app_main(void)
     bsp_spiffs_mount();
 
     bsp_i2c_init();
+    bsp_extra_led_init();
+    bsp_extra_codec_init();
+    bsp_extra_player_init(BSP_SPIFFS_MOUNT_POINT"/Music");
+
     bsp_display_start();
-    bsp_board_init();
 
-    ESP_LOGI(TAG, "Display LVGL demo");
-    sys_param_t *sys_set = settings_get_parameter();
-    // sys_set->need_hint = true;
-    // sys_set->demo_gui = false;
-    // sys_set->sr_enable = true;
-
-    bsp_audio_player_init();
     app_weather_start();
     app_network_start();
 
+    ESP_LOGI(TAG, "Display LVGL demo");
     ui_main();
 
+    sys_param_t *sys_set = settings_get_parameter();
     while (true == sys_set->need_hint) {
         vTaskDelay(pdMS_TO_TICKS(1000));
     }
@@ -72,7 +70,7 @@ void app_main(void)
 
 #if LOG_MEM_INFO
     static char buffer[128];    /* Make sure buffer is enough for `sprintf` */
-    while (0) {
+    while (1) {
         /**
          * It's not recommended to frequently use functions like `heap_caps_get_free_size()` to obtain memory information
          * in practical applications, especially when the application extensively uses `malloc()` to dynamically allocate

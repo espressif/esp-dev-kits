@@ -232,17 +232,7 @@ static void wifi_init_sta(void)
                     NULL,
                     &instance_got_ip));
 
-    wifi_config_t wifi_config = {
-        .sta = {
-            .ssid = DEFAULT_ESP_WIFI_SSID,
-            .password = DEFAULT_ESP_WIFI_PASS,
-            /* Setting a password implies station will connect to all security modes including WEP/WPA.
-             * However these modes are deprecated and not advisable to be used. Incase your Access point
-             * doesn't support WPA2, these mode can be enabled by commenting below line */
-            //.threshold.authmode = ESP_WIFI_SCAN_AUTH_MODE_THRESHOLD,
-            //.sae_pwe_h2e = 2,
-        },
-    };
+    wifi_config_t wifi_config;
 
     sys_param_t *sys_param = settings_get_parameter();
     memcpy(wifi_config.sta.ssid, sys_param->ssid, sizeof(wifi_config.sta.ssid));

@@ -1,9 +1,10 @@
-/**
- * @file lv_port_fs_templ.h
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
+ * SPDX-License-Identifier: Apache-2.0
  */
 
- /*Copy this file as "lv_port_fs.h" and set this value to "1" to enable content*/
+/*Copy this file as "lv_port_fs.h" and set this value to "1" to enable content*/
 #if 1
 
 #ifndef LV_PORT_FS_TEMPL_H

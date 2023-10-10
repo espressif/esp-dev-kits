@@ -9,7 +9,7 @@
 #include <sys/time.h>
 #include "settings.h"
 
-#include "bsp_board.h"
+#include "bsp_board_extra.h"
 #include "app_weather.h"
 
 #include "lv_example_pub.h"
@@ -152,9 +152,9 @@ static time_out_count time_500ms;
 
 static void light_set_rgb(lv_color16_t color_set, uint8_t brightness)
 {
-    bsp_led_set_rgb(0, brightness * color_set.ch.red * 255 / 63 / 100,
-                    brightness * color_set.ch.green * 255 / 63 / 100,
-                    brightness * color_set.ch.blue * 255 / 63 / 100);
+    bsp_extra_led_set_rgb(0, brightness * color_set.ch.red * 255 / 63 / 100,
+                          brightness * color_set.ch.green * 255 / 63 / 100,
+                          brightness * color_set.ch.blue * 255 / 63 / 100);
 }
 
 

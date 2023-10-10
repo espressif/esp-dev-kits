@@ -5,7 +5,7 @@
  */
 
 #include "ui_main.h"
-#include "bsp_board.h"
+#include "bsp_board_extra.h"
 
 /* UI function declaration */
 ui_func_desc_t ui_led_func = {
@@ -281,11 +281,11 @@ static void led_color_update(void)
     if (led_on) {
         color = lv_color_hsv_to_rgb(lv_cpicker_get_hue(_color_sel), lv_slider_get_value(_slider_saturation), lv_slider_get_value(_slider_brightness));
 #if LV_COLOR_16_SWAP == 0
-        bsp_led_set_rgb(0, color.ch.red << 3, color.ch.green << 2, color.ch.blue << 3);
+        bsp_extra_led_set_rgb(0, color.ch.red << 3, color.ch.green << 2, color.ch.blue << 3);
 #else
-        bsp_led_set_rgb(0, color.ch.red << 3, (color.ch.green_h << 3 | color.ch.green_l) << 2, color.ch.blue << 3);
+        bsp_extra_led_set_rgb(0, color.ch.red << 3, (color.ch.green_h << 3 | color.ch.green_l) << 2, color.ch.blue << 3);
 #endif
     } else {
-        bsp_led_set_rgb(0, 0, 0, 0);
+        bsp_extra_led_set_rgb(0, 0, 0, 0);
     }
 }

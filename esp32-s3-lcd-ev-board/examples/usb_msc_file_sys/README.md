@@ -59,6 +59,8 @@ The following animation is a demonstration of the development board running the 
         2. Short press the "RST(SW1)" button.
         3. Release the "BOOT(SW2)" button.
         4. Upload the program and reset.
+* Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed
+    * If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
 
 ## Technical Support and Feedback
 

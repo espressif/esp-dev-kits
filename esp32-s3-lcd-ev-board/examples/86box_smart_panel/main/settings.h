@@ -8,8 +8,6 @@
 
 #include "app_sr.h"
 
-// #define DEFAULT_ESP_WIFI_SSID      "esp-office-2.4G"
-// #define DEFAULT_ESP_WIFI_PASS      "1qazxsw2"
 #define DEFAULT_ESP_WIFI_SSID      "wifi_ssid"
 #define DEFAULT_ESP_WIFI_PASS      "wifi_passwd"
 typedef struct {

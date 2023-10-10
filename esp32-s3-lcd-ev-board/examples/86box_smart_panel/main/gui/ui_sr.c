@@ -5,7 +5,7 @@
  */
 
 #include "esp_log.h"
-#include "bsp_board.h"
+#include "bsp_board_extra.h"
 #include "lvgl.h"
 
 #include "lv_example_pub.h"
@@ -224,7 +224,7 @@ void ui_sr_anim_start(lv_obj_t *parent)
     lv_obj_t *img = lv_img_create(btn_reset);
     lv_img_set_src(img, &hand_down);
     lv_obj_align(img, LV_ALIGN_CENTER, 0, 0);
-    
+
 
     lv_create_display_reboot(parent);
 
@@ -254,12 +254,12 @@ void sr_anim_set_text(char *text)
 static void update_reboot_step(void)
 {
     if (false == lv_obj_has_flag(bg_factory_reset, LV_OBJ_FLAG_HIDDEN)) {
-        if (reboot_wait_time/10) {
+        if (reboot_wait_time / 10) {
 
             char reboot_info[30] = {0};
             lv_obj_t *label_reboot = lv_obj_get_child(bg_factory_reset, 0);
 
-            sprintf(reboot_info, "Rebooting  %d sec", reboot_wait_time/10);
+            sprintf(reboot_info, "Rebooting  %d sec", reboot_wait_time / 10);
             reboot_wait_time--;
             lv_label_set_text(label_reboot, reboot_info);
         } else {
