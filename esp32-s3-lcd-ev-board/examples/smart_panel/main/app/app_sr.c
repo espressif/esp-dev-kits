@@ -30,7 +30,7 @@
 #include "app_sr_handler.h"
 #include "model_path.h"
 
-#include "bsp_board.h"
+#include "bsp_board_extra.h"
 #include "bsp/esp-bsp.h"
 #include "settings.h"
 
@@ -136,8 +136,7 @@ static void audio_feed_task(void *arg)
         }
 
         /* Read audio data from I2S bus */
-        bsp_codec_config_t *codec_handle = bsp_board_get_codec_handle();
-        codec_handle->i2s_read_fn((char *)audio_buffer, audio_chunksize * I2S_CHANNEL_NUM * sizeof(int16_t), &bytes_read, portMAX_DELAY);
+        bsp_extra_i2s_read((char *)audio_buffer, audio_chunksize * I2S_CHANNEL_NUM * sizeof(int16_t), &bytes_read, portMAX_DELAY);
 
         /* Save audio data to file if record enabled */
         if (g_sr_data->b_record_en && (NULL != g_sr_data->fp)) {

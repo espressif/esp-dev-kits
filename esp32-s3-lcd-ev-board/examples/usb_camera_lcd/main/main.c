@@ -17,6 +17,7 @@
 #include "esp_painter.h"
 #include "usb_stream.h"
 #include "bsp/esp-bsp.h"
+#include "bsp/display.h"
 
 /* Due to this function will cause screen drift when PSRAM is 80M, it's only aviable with 120M PSRAM */
 #if CONFIG_SPIRAM_SPEED_120M
@@ -27,15 +28,7 @@
 /* Print log about SRAM and PSRAM memory */
 #define LOG_MEM_INFO    (0)
 
-#if CONFIG_BSP_LCD_SUB_BOARD_480_480
-#define DEMO_UVC_FRAME_WIDTH            (480)
-#define DEMO_UVC_FRAME_HEIGHT           (320)
-#define DEMO_UVC_XFER_BUFFER_SIZE       (88 * 1024)     //Double buffer
-#elif CONFIG_BSP_LCD_SUB_BOARD_800_480
-#define DEMO_UVC_FRAME_WIDTH            (800)
-#define DEMO_UVC_FRAME_HEIGHT           (480)
-#define DEMO_UVC_XFER_BUFFER_SIZE       (88 * 1024)     //Double buffer
-#endif
+#define EXAMPLE_UVC_XFER_BUFFER_SIZE       (88 * 1024)     //Double buffer
 
 #if ENABLE_UVC_WIFI_XFER
 #include "app_wifi.h"
@@ -61,25 +54,7 @@ static void camera_frame_cb(uvc_frame_t *frame, void *ptr);
 
 void app_main(void)
 {
-#if CONFIG_BSP_LCD_SUB_BOARD_480_480
-    // For the newest version sub board, we need to set `BSP_LCD_VSYNC` to high before initialize LCD
-    // It's a requirement of the LCD module and will be added into BSP in the future
-    gpio_config_t io_conf = {};
-    io_conf.pin_bit_mask = BIT64(BSP_LCD_VSYNC);
-    io_conf.mode = GPIO_MODE_OUTPUT;
-    io_conf.pull_up_en = true;
-    gpio_config(&io_conf);
-    gpio_set_level(BSP_LCD_VSYNC, 1);
-#endif
-
-    void *lcd_usr_data = NULL;
-#if CONFIG_BSP_LCD_SUB_BOARD_480_480
-    ESP_ERROR_CHECK(bsp_i2c_init());
-    /* Sub board 2 with 480x480 uses io expander to configure LCD */
-    lcd_usr_data = (void *)bsp_io_expander_init();
-    assert(lcd_usr_data);
-#endif
-    lcd_panel = bsp_lcd_init(lcd_usr_data);
+    ESP_ERROR_CHECK(bsp_display_new(NULL, &lcd_panel, NULL));
     assert(lcd_panel);
 
 #if CONFIG_BSP_LCD_RGB_BUFFER_NUMS == 1
@@ -91,13 +66,16 @@ void app_main(void)
 #endif
     draw_buf_index = CONFIG_BSP_LCD_RGB_BUFFER_NUMS - 1;
 
+    uint16_t uvc_frame_w = BSP_LCD_H_RES;
+    uint16_t uvc_frame_h = (BSP_LCD_H_RES == 480) ? 320 : BSP_LCD_V_RES;
+
     esp_painter_config_t painter_config = {
         .brush.color = COLOR_RGB565_RED,
         .canvas = {
             .x = 0,
             .y = 0,
-            .width = BSP_LCD_H_RES,
-            .height = BSP_LCD_V_RES,
+            .width = uvc_frame_w,
+            .height = uvc_frame_h,
         },
         .default_font = &esp_painter_basic_font_24,
         .piexl_color_byte = 2,
@@ -114,23 +92,23 @@ void app_main(void)
 #endif
 
     /* Malloc double buffer for usb payload, xfer_buffer_size >= frame_buffer_size*/
-    uint8_t *xfer_buffer_a = (uint8_t *)malloc(DEMO_UVC_XFER_BUFFER_SIZE);
+    uint8_t *xfer_buffer_a = (uint8_t *)malloc(EXAMPLE_UVC_XFER_BUFFER_SIZE);
     assert(xfer_buffer_a != NULL);
-    uint8_t *xfer_buffer_b = (uint8_t *)malloc(DEMO_UVC_XFER_BUFFER_SIZE);
+    uint8_t *xfer_buffer_b = (uint8_t *)malloc(EXAMPLE_UVC_XFER_BUFFER_SIZE);
     assert(xfer_buffer_b != NULL);
 
     /* Malloc frame buffer for a jpeg frame*/
-    uint8_t *frame_buffer = (uint8_t *)malloc(DEMO_UVC_XFER_BUFFER_SIZE);
+    uint8_t *frame_buffer = (uint8_t *)malloc(EXAMPLE_UVC_XFER_BUFFER_SIZE);
     assert(frame_buffer != NULL);
 
     uvc_config_t uvc_config = {
-        .frame_width = DEMO_UVC_FRAME_WIDTH,
-        .frame_height = DEMO_UVC_FRAME_HEIGHT,
+        .frame_width = uvc_frame_w,
+        .frame_height = uvc_frame_h,
         .frame_interval = FRAME_INTERVAL_FPS_30,
-        .xfer_buffer_size = DEMO_UVC_XFER_BUFFER_SIZE,
+        .xfer_buffer_size = EXAMPLE_UVC_XFER_BUFFER_SIZE,
         .xfer_buffer_a = xfer_buffer_a,
         .xfer_buffer_b = xfer_buffer_b,
-        .frame_buffer_size = DEMO_UVC_XFER_BUFFER_SIZE,
+        .frame_buffer_size = EXAMPLE_UVC_XFER_BUFFER_SIZE,
         .frame_buffer = frame_buffer,
         .frame_cb = &camera_frame_cb,
         .frame_cb_arg = NULL,

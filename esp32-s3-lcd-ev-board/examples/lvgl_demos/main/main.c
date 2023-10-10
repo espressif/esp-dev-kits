@@ -20,17 +20,6 @@ static char *TAG = "app_main";
 
 void app_main(void)
 {
-#if CONFIG_BSP_LCD_SUB_BOARD_480_480
-    // For the newest version sub board, we need to set `BSP_LCD_VSYNC` to high before initialize LCD
-    // It's a requirement of the LCD module and will be added into BSP in the future
-    gpio_config_t io_conf = {};
-    io_conf.pin_bit_mask = BIT64(BSP_LCD_VSYNC);
-    io_conf.mode = GPIO_MODE_OUTPUT;
-    io_conf.pull_up_en = true;
-    gpio_config(&io_conf);
-    gpio_set_level(BSP_LCD_VSYNC, 1);
-#endif
-
     bsp_i2c_init();
     lv_disp_t *disp = bsp_display_start();
 
@@ -44,6 +33,10 @@ void app_main(void)
 #endif
 
     ESP_LOGI(TAG, "Display LVGL demo");
+    /**
+     * To avoid errors caused by multiple tasks simultaneously accessing LVGL,
+     * should acquire a lock before operating on LVGL.
+     */
     bsp_display_lock(0);
 
     /* Here're four internal demos of LVGL. They can run with all subboards */
@@ -53,14 +46,13 @@ void app_main(void)
     // lv_demo_benchmark();    /* A demo to measure the performance of LVGL or to compare different settings */
 
     /* Here're two UI demos created by Squareline Studio. They can only run with subboard3(800x480) */
-#if CONFIG_BSP_LCD_SUB_BOARD_800_480
     // ui_printer_init();         /* A demo to show virtual printer */
 #ifndef CONFIG_BSP_DISPLAY_LVGL_AVOID_TEAR
     // bsp_display_rotate(disp, LV_DISP_ROT_90);   /* Rotate screen from 800*480 to 480*800, it can't work with anti-tearing function */
     // ui_tuner_init();                            /* A demo to show virtual tuner */
 #endif
-#endif
 
+    /* Release the lock */
     bsp_display_unlock();
 
 #if LOG_MEM_INFO

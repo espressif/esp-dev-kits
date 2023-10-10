@@ -8,11 +8,12 @@
 #include "freertos/task.h"
 #include "freertos/queue.h"
 
-#include "bsp/esp-bsp.h"
 #include "lv_example_pub.h"
 #include "lv_example_image.h"
 
-#include "lv_demos.h"
+#include "bsp/esp-bsp.h"
+#include "bsp_board_extra.h"
+
 #include "audio_player.h"
 #include "file_iterator.h"
 #include "lv_demo_music.h"
@@ -46,7 +47,7 @@ static bool show_music_layer_enter_cb(void *layer)
         lv_obj_remove_style_all(create_layer->lv_obj_layer);
         lv_obj_set_size(create_layer->lv_obj_layer, BSP_LCD_H_RES, BSP_LCD_V_RES);
 
-        file_iterator = get_file_iterator_instance();
+        file_iterator = bsp_extra_get_file_instance();
         assert(file_iterator != NULL);
         lv_demo_music(create_layer->lv_obj_layer);
     }

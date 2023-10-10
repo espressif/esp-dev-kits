@@ -1,3 +1,8 @@
+/*
+ * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: CC0-1.0
+ */
 /**
  * @file lv_demo_music_main.c
  *
@@ -6,9 +11,8 @@
 /*********************
  *      INCLUDES
  *********************/
-#include "lv_demos.h"
+#include "bsp_board_extra.h"
 #include "audio_player.h"
-#include "file_iterator.h"
 
 #include "lv_example_pub.h"
 #include "lv_example_image.h"
@@ -119,7 +123,7 @@ static void play_index(int index)
     ESP_LOGI(TAG, "play_index(%d)", index);
 
     char filename[128];
-    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
     int retval = file_iterator_get_full_path_from_index(file_iterator, index, filename, sizeof(filename));
     if (retval == 0) {
         ESP_LOGE(TAG, "unable to retrieve filename");
@@ -332,7 +336,7 @@ lv_obj_t *_lv_demo_music_main_create(lv_obj_t *parent)
 void _lv_demo_music_album_next(bool next)
 {
     uint32_t id = track_id;
-    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
 
     if (next) {
         ESP_LOGI(TAG, "btn next");
@@ -361,7 +365,7 @@ void _lv_demo_music_album_next(bool next)
 
 void _lv_demo_music_play(uint32_t id)
 {
-    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
     uint8_t current = file_iterator_get_index(file_iterator);
     LV_LOG_USER("play:%d, current:%d", id, current);
     if (current != id) {
@@ -395,7 +399,7 @@ void _lv_demo_music_resume(void)
 
     lv_obj_add_state(play_obj, LV_STATE_CHECKED);
 
-    file_iterator_instance_t *file_iterator = get_file_iterator_instance();
+    file_iterator_instance_t *file_iterator = bsp_extra_get_file_instance();
     play_index(file_iterator_get_index(file_iterator));
 }
 

@@ -14,18 +14,14 @@ Please first read the [User Guide](https://docs.espressif.com/projects/esp-dev-k
 
 ### Configurations
 
-Run `idf.py menuconfig` and go to `Board Support Package`:
-* `BSP_LCD_SUB_BOARD`: Choose a LCD subboard according to hardware. Default use subboard3 (800x480).
-* More configurations see BSP's [README](https://github.com/espressif/esp-bsp/tree/master/esp32_s3_lcd_ev_board#bsp-esp32-s3-lcd-ev-board).
-
-**Note**: When anti-tearing funciton is enabled, the screen does not support software rotation like calling `bsp_display_rotate()` or setting software rotation through LVGL.
+Run `idf.py menuconfig` and go to `Board Support Package`.
 
 ### Build and Flash
 
 1. The project configure PSRAM with 80M Octal by default. **For best performance**, please configure PSRAM with 120M DDR(Octal) by the following commands. see [here](../../README.md#psram-120m-ddr) for more details.
     ```
     rm -rf build sdkconfig sdkconfig.old
-    idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.psram_octal_120m" reconfigure
+    idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.test.psram_120m_ddr" reconfigure
     ```
 2. Run `idf.py -p PORT build flash monitor` to build, flash and monitor the project.
 
@@ -45,13 +41,13 @@ The following animations show the example running on different development board
 
 ### Test Environment
 
-|          Item          |                          Value                          |
-| :--------------------: | :-----------------------------------------------------: |
-| Configuration of PSRAM |                       Octal, 120M                       |
-| Configuration of Flash |                        QIO, 120M                        |
-|    Version of LVGL     |                         v8.3.0                          |
-|   Test Demo of LVGL    |                      Music player                       |
-|  Basic Configurations  | sdkconfig.defaults, sdkconfig.defaults.psram_octal_120m |
+|          Item          |                       Value                       |
+| :--------------------: | :-----------------------------------------------: |
+| Configuration of PSRAM |                    Octal, 120M                    |
+| Configuration of Flash |                     QIO, 120M                     |
+|    Version of LVGL     |                      v8.3.9                       |
+|   Test Demo of LVGL    |                   Music player                    |
+|  Basic Configurations  | sdkconfig.defaults, sdkconfig.test.psram_120m_ddr |
 
 ### Description of Buffering Mode
 
@@ -63,11 +59,13 @@ The following animations show the example running on different development board
 |     Mode4      |   Direct-mode with two frame-size PSRAM buffers   |  sdkconfig.test.direct_mode   |
 |     Mode5      | Full-refresh with three frame-size PSRAM buffers  | sdkconfig.test.full_refresh_2 |
 
-**Note:** To test the above modes, run the following commands to configure project (take `Mode4` as an example):
+**Notes:**
+1. To test the above modes, run the following commands to configure project (take `Mode4` as an example):
 ```
 rm -rf build sdkconfig sdkconfig.old
-idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.psram_octal_120m;sdkconfig.test.direct_mode" reconfigure
+idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.test.psram_120m_ddr;sdkconfig.test.direct_mode" reconfigure
 ```
+2. `Mode 3-5` enable the [RGB Bounce Buffer](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/api-reference/peripherals/lcd.html#bounce-buffer-with-single-psram-frame-buffer) feature.
 
 ### Average FPS with 480x480
 
@@ -75,9 +73,9 @@ idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.psram_octal_
 | :------------: | :---------: |
 |     Mode1      |     30      |
 |     Mode2      |     25      |
-|     Mode3      |     24      |
+|     Mode3      |     23      |
 |     Mode4      |     26      |
-|     Mode5      |     30      |
+|     Mode5      |     26      |
 
 ### Average FPS with 800x480
 
@@ -85,9 +83,9 @@ idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.psram_octal_
 | :------------: | :---------: |
 |     Mode1      |     27      |
 |     Mode2      |     21      |
-|     Mode3      |     21      |
-|     Mode4      |     23      |
-|     Mode5      |     25      |
+|     Mode3      |     15      |
+|     Mode4      |     19      |
+|     Mode5      |     20      |
 
 ## Troubleshooting
 
@@ -106,6 +104,8 @@ idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.psram_octal_
         2. short press "RST(SW1)" button
         3. release "BOOT(SW2)".
         4. upload program and reset
+* Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed
+    * If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
 
 ## Technical support and feedback
 

@@ -9,8 +9,7 @@
 
 #include "app_sr_handler.h"
 #include "ui_main.h"
-#include "bsp_board.h"
-#include "bsp_board.h"
+#include "bsp_board_extra.h"
 #include "settings.h"
 
 static const char *TAG = "GUIDE";
@@ -224,7 +223,7 @@ static void ui_update_reboot_step(void)
             reboot_wait_time--;
             lv_label_set_text(label_reboot, reboot_info);
         } else {
-            bsp_led_set_rgb(0, 0, 0, 0);
+            bsp_extra_led_set_rgb(0, 0, 0, 0);
             esp_restart();
         }
     }
@@ -251,11 +250,11 @@ static void ui_sr_timer_cb(lv_task_t *task)
             break;
 
         case LV_EVENT_LIGHT_ON:
-            bsp_led_set_rgb(0, 50, 50, 50);
+            bsp_extra_led_set_rgb(0, 50, 50, 50);
             set_tips_info((const char *)lvgl_event.event_data);
             break;
         case LV_EVENT_LIGHT_OFF:
-            bsp_led_set_rgb(0, 0, 0, 0);
+            bsp_extra_led_set_rgb(0, 0, 0, 0);
             set_tips_info((const char *)lvgl_event.event_data);
             break;
         case LV_EVENT_AC_SET_ON:

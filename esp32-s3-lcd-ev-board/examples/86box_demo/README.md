@@ -40,6 +40,8 @@ Run the example, you can achieve a smooth graphic operation experience, for exam
         2. short press "RST(SW1)" button
         3. release "BOOT(SW2)".
         4. upload program and reset
+* Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed
+    * If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
 
 ## Technical support and feedback
 

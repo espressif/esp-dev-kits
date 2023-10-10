@@ -17,6 +17,9 @@
 
 static const char *TAG = "settings";
 
+#define DEFAULT_ESP_WIFI_SSID      "wifi_ssid"
+#define DEFAULT_ESP_WIFI_PASS      "wifi_passwd"
+
 #define NAME_SPACE "sys_param"
 #define KEY "param"
 
@@ -35,16 +38,6 @@ esp_err_t settings_factory_reset(void)
     ESP_LOGW(TAG, "Set to default");
     memcpy(&g_sys_param, &g_default_sys_param, sizeof(sys_param_t));
 
-    // wifi_config_t wifi_cfg;
-    // if (esp_wifi_get_config(WIFI_IF_STA, &wifi_cfg) != ESP_OK) {
-    //     ESP_LOGW(TAG, "ssid|password:[%s:%s]", DEFAULT_ESP_WIFI_SSID, DEFAULT_ESP_WIFI_PASS);
-    //     memcpy(&g_sys_param.ssid[0], DEFAULT_ESP_WIFI_SSID, strlen(DEFAULT_ESP_WIFI_SSID));
-    //     memcpy(&g_sys_param.password[0], DEFAULT_ESP_WIFI_PASS, strlen(DEFAULT_ESP_WIFI_PASS));
-    // } else {
-    //     memcpy(&g_sys_param.ssid[0], wifi_cfg.sta.ssid, sizeof(wifi_cfg.sta.ssid) - 1);
-    //     memcpy(&g_sys_param.password[0], wifi_cfg.sta.password, sizeof(wifi_cfg.sta.password) - 1);
-    //     ESP_LOGI(TAG, "ssid|password:[%s:%s]", wifi_cfg.sta.ssid, wifi_cfg.sta.password);
-    // }
     ESP_LOGW(TAG, "ssid|password:[%s:%s]", DEFAULT_ESP_WIFI_SSID, DEFAULT_ESP_WIFI_PASS);
     memcpy(&g_sys_param.ssid[0], DEFAULT_ESP_WIFI_SSID, strlen(DEFAULT_ESP_WIFI_SSID));
     memcpy(&g_sys_param.password[0], DEFAULT_ESP_WIFI_PASS, strlen(DEFAULT_ESP_WIFI_PASS));

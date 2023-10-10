@@ -269,7 +269,6 @@ esp_err_t ui_call_stack_push(ui_func_desc_t *func)
     if (call_stack_index <= call_stack_size - 1) {
         memcpy(&call_stack[call_stack_index], func, sizeof(call_stack_type_t));
         call_stack_index++;
-        ESP_LOGI(TAG, "push : %s", func->name);
     } else {
         ESP_LOGE(TAG, "Call stack full");
         return ESP_ERR_NO_MEM;
@@ -289,7 +288,6 @@ static esp_err_t ui_call_stack_pop(ui_func_desc_t *func)
     if (0 != call_stack_index) {
         call_stack_index--;
         memcpy(func, &call_stack[call_stack_index], sizeof(call_stack_type_t));
-        ESP_LOGI(TAG, "pop : %s", func->name);
     } else {
         ESP_LOGE(TAG, "Call queue empty");
         return ESP_FAIL;
@@ -343,7 +341,6 @@ void ui_show(ui_func_desc_t *ui, ui_show_mode_t mode)
 
     switch (mode) {
     case UI_SHOW_OVERRIDE:
-        ESP_LOGI(TAG, "overWrite");
         ui_call_stack_pop(&ui_now);
         ui_now.hide(NULL);
         ui->show(NULL);
@@ -351,14 +348,12 @@ void ui_show(ui_func_desc_t *ui, ui_show_mode_t mode)
         ui_call_stack_push(ui);
         break;
     case UI_SHOW_PEDDING:
-        ESP_LOGI(TAG, "pedding");
         ui_call_stack_peek(&ui_now);
         ui_now.hide(NULL);
         ui->show(NULL);
         ui_call_stack_push(ui);
         break;
     case UI_SHOW_BACKPORT:
-        ESP_LOGI(TAG, "backport");
         ui_call_stack_pop(&ui_now);
         ui_now.hide(NULL);
         ui_call_stack_peek(&ui_now);

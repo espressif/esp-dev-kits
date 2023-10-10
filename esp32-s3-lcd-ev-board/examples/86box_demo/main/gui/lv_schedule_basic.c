@@ -26,8 +26,6 @@ static time_out_count time_enter_clock = {
     .time_base = 0,
 };
 
-extern void memory_monitor();
-
 bool is_time_out(time_out_count *tm)
 {
     int32_t isTmOut;
@@ -133,9 +131,6 @@ void lv_func_goto_layer(lv_layer_t *dst_layer)
             lv_func_create_layer(dst_layer);
         } else {
             LV_LOG_INFO("%s != NULL", dst_layer->lv_obj_name);
-        }
-        if (current_layer) {
-            memory_monitor();
         }
         current_layer = dst_layer;
     }

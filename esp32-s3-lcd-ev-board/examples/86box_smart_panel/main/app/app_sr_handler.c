@@ -14,7 +14,7 @@
 
 #include "lv_example_pub.h"
 
-#include "bsp_board.h"
+#include "bsp_board_extra.h"
 #include "bsp/esp-bsp.h"
 #include "app_sr_handler.h"
 #include "settings.h"
@@ -62,7 +62,6 @@ static esp_err_t sr_echo_play(audio_segment_t audio)
 
     uint8_t *audio_buffer = NULL;
     sys_param_t *param = settings_get_parameter();
-    bsp_codec_config_t *codec_handle = bsp_board_get_codec_handle();
 
     char *files[2][4] = {
         {"echo_en_wake.wav", "echo_en_ok.wav", "echo_en_end.wav", "echo_en_wake.wav"},
@@ -104,10 +103,10 @@ static esp_err_t sr_echo_play(audio_segment_t audio)
     }
 
     bsp_audio_poweramp_enable(true); // turn off the speaker to avoid play some noise
-    codec_handle->volume_set_fn(80, NULL);
-    codec_handle->mute_set_fn(false);
-    codec_handle->i2s_reconfig_clk_fn(wav_head.SampleRate, wav_head.BitsPerSample, wav_head.NumChannels);
-    ESP_LOGI(TAG, "frame_rate= %" PRIi32 ", ch=%d, width=%d", wav_head.SampleRate, wav_head.NumChannels, wav_head.BitsPerSample);
+    bsp_extra_codec_volume_set(80, NULL);
+    bsp_extra_codec_mute_set(false);
+    bsp_extra_codec_set_fs(wav_head.SampleRate, wav_head.BitsPerSample, wav_head.NumChannels);
+    ESP_LOGD(TAG, "frame_rate= %" PRIi32 ", ch=%d, width=%d", wav_head.SampleRate, wav_head.NumChannels, wav_head.BitsPerSample);
 
     size_t cnt;
     do {
@@ -116,7 +115,7 @@ static esp_err_t sr_echo_play(audio_segment_t audio)
         if (len <= 0) {
             break;
         } else {
-            if (codec_handle->i2s_write_fn(audio_buffer, len, &cnt, 1000) != ESP_OK) {
+            if (bsp_extra_i2s_write(audio_buffer, len, &cnt, 1000) != ESP_OK) {
                 ESP_LOGI(TAG, "Write Task: i2s write failed");
             }
         }

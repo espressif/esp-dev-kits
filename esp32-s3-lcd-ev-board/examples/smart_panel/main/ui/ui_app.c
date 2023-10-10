@@ -168,7 +168,6 @@ static void update_wifi_list(lv_obj_t *parent)
 
         do {
             list_cn = lv_list_get_size(parent);
-            ESP_LOGI(TAG, "list_cn:%02d, [%s]", list_cn, "busy delete");
             for (int i = 0; i < list_cn; i++) {
                 lv_list_remove(parent, i);
             }
@@ -183,7 +182,6 @@ static void update_wifi_list(lv_obj_t *parent)
         if (WIFI_SCAN_UPDATE == scan_result.scan_done) {
             do {
                 list_cn = lv_list_get_size(parent);
-                ESP_LOGI(TAG, "list_cn:%02d, [%s]", list_cn, "update delete");
                 for (int i = 0; i < list_cn; i++) {
                     lv_list_remove(parent, i);
                 }
@@ -244,7 +242,7 @@ static void update_wifi_list(lv_obj_t *parent)
             lv_obj_t *label_enter = lv_label_create(list_btn, NULL);
             lv_obj_set_style_local_text_font(label_enter, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &lv_font_montserrat_16);
             lv_label_set_text(label_enter, LV_SYMBOL_RIGHT);
-            lv_obj_align(label_enter, NULL, LV_ALIGN_OUT_RIGHT_MID, 0, 0);
+            lv_obj_align(label_enter, NULL, LV_ALIGN_IN_RIGHT_MID, 0, 0);
         }
 
         list_cn = lv_list_get_size(parent);
