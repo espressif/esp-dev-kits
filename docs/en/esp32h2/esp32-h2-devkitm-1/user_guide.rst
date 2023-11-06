@@ -94,7 +94,7 @@ Required Hardware
 Software Setup
 ^^^^^^^^^^^^^^
 
-Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html>`_, where Section `Installation Step by Step <Installation Step by Step>`_ will quickly help you set up the development environment and then flash an application example onto your ESP32-H2-DevKitM-1.
+Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/index.html>`_, where Section `Installation <https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/index.html#get-started-step-by-step>`_ will quickly help you set up the development environment and then flash an application example onto your ESP32-H2-DevKitM-1.
 
 
 Contents and Packaging

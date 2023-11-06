@@ -94,7 +94,7 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 软件设置
 ^^^^^^^^
 
-请前往 `快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html>`_ 的 `详细安装步骤 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html>`_ 小节查看如何快速设置开发环境，将应用程序烧录至您的开发板。
+请前往 `快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32h2/get-started/index.html>`_ 的 `安装 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32h2/get-started/index.html#get-started-step-by-step>`_ 小节查看如何快速设置开发环境，将应用程序烧录至您的开发板。
 
 
 内含组件和包装
