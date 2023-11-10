@@ -1,12 +1,12 @@
 # ESP32-S3-USB-Bridge
 
-该项目基于 ESP USB Bridge 二次开发，增加了通过 ESPNOW 烧录和串口通信的功能。点击了解 [ESP USB Bridge](https://github.com/espressif/esp-usb-bridge#readmehttps://github.com/espressif/esp-usb-bridge#readme)
+该项目基于 ESP USB Bridge 二次开发，增加了通过 ESP-NOW 烧录和串口通信的功能。点击了解 [ESP USB Bridge](https://github.com/espressif/esp-usb-bridge#readmehttps://github.com/espressif/esp-usb-bridge#readme)
 
 ## 硬件
 
 * ESP32-S2/ESP32-S3 开发板
-    * ESP32-S3-USB-Bridge
-    * ESP32-S3-DevkitC-1
+    * ESP32-S3-USB-Bridge - [用户指南](../../../docs/en/esp32s3/esp32-s3-usb-bridge/user_guide.rst)
+    * ESP32-S3-DevkitC-1 - [用户指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html)
 * 用于下载和编程的 USB 数据线
 
 ## 烧录
@@ -65,7 +65,7 @@ Note: 数据传输可靠性与 WIFI 环境是否良好有关
         idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.esp32-s3-usb-bridge" reconfigure
     ```
 
-2. 运行 `idf.py -p PORT flash monitor` 去编译烧录监视目标设备. 
+2. 运行 `idf.py -p PORT flash monitor` 去编译烧录监视目标设备。
     **注意：对于 ESP32-S3-USB-Bridge 开发板，需要按住 ESP32-S3 Boot 按键，重新上电才能烧录。**
 
     <div style="display: flex; justify-content: center;">

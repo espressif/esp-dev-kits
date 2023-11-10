@@ -1,12 +1,12 @@
 # ESP32-S3-USB-Bridge
 
-This project is based on the ESP USB Bridge with additional features for flashing via ESPNOW and serial communication. Click to learn more about [ESP USB Bridge](https://github.com/espressif/esp-usb-bridge#readme).
+This project is based on the ESP USB Bridge with additional features for flashing via ESP-NOW and serial communication. Click to learn more about [ESP USB Bridge](https://github.com/espressif/esp-usb-bridge#readme).
 
 ## Hardware
 
 * ESP32-S2/ESP32-S3 Development Board
-    * ESP32-S3-USB-Bridge
-    * ESP32-S3-DevkitC-1
+    * ESP32-S3-USB-Bridge - [User Guide](../../../docs/en/esp32s3/esp32-s3-usb-bridge/user_guide.rst)
+    * ESP32-S3-DevkitC-1 - [User Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html)
 * USB cable for programming and downloading
 
 ## Flashing
@@ -65,8 +65,8 @@ Binding and Unbinding in Wireless Mode:
         idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.esp32-s3-usb-bridge" reconfigure
     ```
 
-2. Run `idf.py -p PORT flash monitor` to compile, flash, and monitor the target device. 
-    
+2. Run `idf.py -p PORT flash monitor` to compile, flash, and monitor the target device.
+
     **Note: For the ESP32-S3-USB-Bridge development board, press and hold the ESP32-S3 Boot button and then power on the board to enable flashing.**
 
     <div style="display: flex; justify-content: center;">

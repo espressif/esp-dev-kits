@@ -8,36 +8,38 @@ ESP32-S3-USB-Bridge
 
 本指南包括如下内容：
 
-- `开发板概述`_：简要介绍了开发板的软件和硬件。
-- `应用程序开发`_：介绍了应用程序开发过程中的软硬件设置。
-- `硬件参考`_：详细介绍了开发板的硬件。
-- `硬件版本`_：暂无历史版本。
-- `样品获取`_：如何获取样品。
-- `相关文档`_：列出了相关文档的链接。
+- `开发板概述`_：简要介绍了开发板的软件和硬件
+- `应用程序开发`_：介绍了应用程序开发过程中的软硬件设置
+- `硬件参考`_：详细介绍了开发板的硬件
+- `硬件版本`_：暂无历史版本
+- `样品获取`_：如何获取样品
+- `相关文档`_：列出了相关文档的链接
 
 
 开发板概述
 ============
 
-ESP32-S3-USB-Bridge 是一款基于 ESP32-S3 芯片的开发板，用于在计算机和目标芯片之间建立桥接。它可以模拟成为 USB 复合设备，支持多种桥接功能，并额外支持无线功能：
+ESP32-S3-USB-Bridge 是一款基于 ESP32-S3 芯片的开发板。
 
-- **USB 转 UART 桥接**：通过 USB 转 UART 桥接，实现计算机与目标芯片的串口数据收发。
-- **JTAG 桥接**：通过 JTAG 桥接，实现计算机与目标芯片之间双向传输 JTAG 通信。
-- **MSC 存储设备**：可以将 UF2 固件文件拖放到开发板的 USB 存储设备中，实现固件升级。
-- **无线桥接**：通过 ESPNOW ，支持无线烧录，无线串口数据收发。
+- 使用 `usb_wireless_bridge <https://github.com/espressif/esp-dev-kits/tree/master/esp32-s3-usb-bridge/examples/usb_wireless_bridge>`_ 例程可在计算机和目标芯片之间建立桥接。它可以模拟 USB 复合设备，支持多种功能：
+
+  - **USB 转 UART 桥接**：通过 USB 转 UART 桥接，实现计算机与目标芯片的串口数据收发。
+  - **JTAG 适配器**：通过 JTAG 桥接，实现计算机与目标芯片之间双向传输 JTAG 通信。
+  - **MSC 存储设备**：通过将 UF2 固件文件拖放到开发板的 USB 存储设备中，实现固件升级。
+  - **无线桥接**：通过 ESP-NOW，实现无线烧录以及无线串口数据收发。
 
 .. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge.png
     :align: center
-    :scale: 30%
-    :alt: ESP32-S3-USB-Bridge 开发板
+    :scale: 35%
+    :alt: ESP32-S3-USB-Bridge Type-C 连接
 
-    ESP32-S3-USB-Bridge 开发板
+    ESP32-S3-USB-Bridge Type-C 连接
 
 此外，开发板还支持 USB Type-A 接口，更换方便。
 
 .. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge-typea.png
     :align: center
-    :scale: 30%
+    :scale: 25%
     :alt: ESP32-S3-USB-Bridge Type-A 连接
 
     ESP32-S3-USB-Bridge Type-A 连接
@@ -47,9 +49,9 @@ ESP32-S3-USB-Bridge 是一款基于 ESP32-S3 芯片的开发板，用于在计�
 
 该开发板具有以下特性：
 
--  **嵌入式模组：** 板载 ESP32-S3-MINI-1 模组，内置 4 MB flash 以及 2 MB PSRAM
--  **指示灯：** 板载一颗 WS2812 指示灯，以及两颗串口数据指示灯
--  **USB：** 板载 USB 转 UART 芯片，并且支持 USB Type-C 接口下载调试
+-  **嵌入式模组**：板载 ESP32-S3-MINI-1 模组，内置 4 MB flash 以及 2 MB PSRAM
+-  **指示灯**：板载一颗 WS2812 指示灯，以及两颗串口数据指示灯
+-  **USB**：板载 USB 转 UART 桥接器及 JTAG 适配器，支持 USB Type-C 接口下载调试
 
 
 功能框图
@@ -59,20 +61,20 @@ ESP32-S3-USB-Bridge 的主要组件和连接方式如下图所示。
 
 .. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge-block-diagram.png
     :align: center
-    :scale: 55%
+    :scale: 90%
     :alt: ESP32-S3-USB-Bridge 功能框图（点击放大）
 
     ESP32-S3-USB-Bridge 功能框图（点击放大）
 
 
-开发板介绍
+组件介绍
 -----------
 
-**ESP32-S3-USB-Bridge** 开发板较为小巧，尺寸为 23.3 mm * 31.5 mm。其集成了 ESP32-S3-WROOM-1 模组，并提供了 12 个外接接口。
+**ESP32-S3-USB-Bridge** 开发板较为小巧，尺寸为 23.3 mm * 31.5 mm。其集成了 ESP32-S3-MINI-1 模组，并提供了 12 个外接接口。
 
-.. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge-fornt-instruction.png
+.. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge-front-instruction.png
     :align: center
-    :scale: 40%
+    :scale: 60%
     :alt: ESP32-S3-USB-Bridge - 正面（点击放大）
 
     ESP32-S3-USB-Bridge - 正面（点击放大）
@@ -91,17 +93,17 @@ ESP32-S3-USB-Bridge 的主要组件和连接方式如下图所示。
    * - TX/RX 指示灯
      - 用于指示串口数据的收发状态。
    * - 扩展连接器
-     - 可供连接的 JTAG 引脚，串口引脚，TX/RX 引脚，Boot 引脚，Reset 引脚，以及系统电压引脚。
+     - 可供连接的 JTAG 管脚、串口管脚、TX/RX 管脚、Boot 管脚、Reset 管脚以及系统电压管脚。
    * - Reset 按键
-     - 此按键连接目标芯片的 Reset 按键，与模组的 IO8 相连，单击此按钮，可以复位目标芯片。
-   * - USB 接口
+     - 此按键连接目标芯片的 Reset 按键，与模组的 IO8 相连。单独按下此按钮，可以复位目标芯片。
+   * - USB 转 USB 接口
      - 为整个系统提供电源。该端口用于 PC 端与 ESP32-S3-MINI-1 模组的 USB 通信。
    * - Boot 按键
-     - 此按键连接目标芯片的 Boot 按键，与模组的 IO9 相连，长按此按键再按 Reset 键可启动固件上传模式，然后便可通过串口或 USB 上传固件。
+     - 此按键连接目标芯片的 Boot 按键，与模组的 IO9 相连。长按 Boot 键时，再按 Reset 键可启动固件上传模式，然后便可通过串口或 USB 上传固件。
 
 .. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge-back-instruction.png
     :align: center
-    :scale: 40%
+    :scale: 55%
     :alt: ESP32-S3-USB-Bridge - 背面（点击放大）
 
     ESP32-S3-USB-Bridge - 背面（点击放大）
@@ -117,7 +119,7 @@ ESP32-S3-USB-Bridge 的主要组件和连接方式如下图所示。
    * - 模组 Boot 按键
      - 此按键连接模组的 IO0 按键，长按此按键再重新给开发板上电，即可让开发板处于下载模式，上传新固件。
    * - WS2812
-     - 与模组的 IO42 相连，用于指示开发板当前的状态
+     - 与模组的 IO42 相连，用于指示开发板当前的状态。
 
 
 软件支持
@@ -127,7 +129,7 @@ ESP32-S3-USB-Bridge 的开发框架为 `ESP-IDF <https://github.com/espressif/es
 
 .. note::
 
-  - 目前支持的 IDF 版本： release/5.0
+  - 目前支持的 ESP-IDF 版本为 release/5.0。
   - 请不要按住模组自身的 Boot 按键后上下电，防止默认固件被替换。
 
 
@@ -157,7 +159,7 @@ ESP32-S3-USB-Bridge 的开发框架为 `ESP-IDF <https://github.com/espressif/es
 
 1. 插入 USB 数据线，分别连接 PC 与开发板 USB 口。
 2. 确保开发板处于下载模式。
-3. 指示灯亮起，烧录完成
+3. 指示灯亮起，烧录完成。
 
 硬件设置完成，接下来可以进行软件设置。
 
@@ -165,7 +167,7 @@ ESP32-S3-USB-Bridge 的开发框架为 `ESP-IDF <https://github.com/espressif/es
 软件设置
 --------
 
-了解如何快速设置开发环境，请前往 `快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html>`__ `安装 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html#get-started-step-by-step>`__。
+请前往 `快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html>`_ 的 `详细安装步骤 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-how-to-get-esp-idf>`_ 小节查看如何快速设置开发环境。
 
 了解开发应用程序的更多软件信息，请查看 `软件支持`_。
 
@@ -179,9 +181,9 @@ ESP32-S3-USB-Bridge 的开发框架为 `ESP-IDF <https://github.com/espressif/es
 GPIO 分配列表
 -------------
 
-下表为 ESP32-S3-MINI-1 模组管脚的 GPIO 分配列表，用于控制开发板的特定组件或功能。
+下表为 ESP32-S3-MINI-1 模组管脚以及外接接口的 GPIO 分配列表，用于控制开发板以及外接目标芯片的特定组件或功能。
 
-.. list-table:: ESP32-S3-MINI-1 GPIO 分配
+.. list-table:: ESP32-S3-MINI-1 管脚及外接接口 GPIO 分配
    :header-rows: 1
    :widths: 20 20 50
 
@@ -196,40 +198,44 @@ GPIO 分配列表
      - 供电
    * - 3
      - IO0
-     - 模组 Boot 按键
+     - 模组 Boot 按键，用于进入下载模式，以及作为按键输入管脚
    * - 4
      - IO2
-     - JTAG 引脚 TDO
+     - JTAG 管脚 TDO，用于测试数据输出
    * - 5
      - IO3
-     - JTAG 引脚 TDI
+     - JTAG 管脚 TDI，用于测试数据输入
    * - 6
      - IO4
-     - JTAG 引脚 TCK
+     - JTAG 管脚 TCK，用于同步测试数据传输
    * - 7
      - IO5
-     - JTAG 引脚 TMS
+     - JTAG 管脚 TMS，用于测试模式选择
    * - 8
      - IO8
-     - 连接目标芯片的 RTS 引脚
+     - 连接目标芯片的 Reset 管脚，按下为低电平
    * - 9
      - IO9
-     - 连接目标芯片的 Reset 引脚
+     - 连接目标芯片的 Boot 管脚，按下为低电平
    * - 10
      - IO19
-     - USB_D-
+     - 与 USB_D- 接口相连
    * - 11
      - IO20
-     - USB_D+
+     - 与 USB_D+ 接口相连
    * - 12
      - IO40
-     - RX
+     - RX，用于连接目标芯片的 UART TX 管脚
    * - 13
      - IO41
-     - TX
+     - TX，用于连接目标芯片的 UART RX 管脚
    * - 14
      - IO42
-     - WS2812 控制引脚
+     - WS2812 控制管脚
+
+.. note::
+
+  管脚 3-14 为开发板提供的外接接口。除上表所列内容外，所有引出 IO 均可作为其他用处，其中 GPIO5 和 GPIO8 与外部按键相连。
 
 
 供电说明
@@ -244,7 +250,7 @@ USB 供电
 
 .. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge-usb-typea.png
     :align: center
-    :scale: 40%
+    :scale: 35%
     :alt: ESP32-S3-USB-Bridge -Type-A 电源供电
 
     ESP32-S3-USB-Bridge - Type-A 电源供电
@@ -253,7 +259,7 @@ USB 供电
 
 .. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge-usb-typec.png
     :align: center
-    :scale: 40%
+    :scale: 35%
     :alt: ESP32-S3-USB-Bridge - Type-C 电源供电
 
     ESP32-S3-USB-Bridge - Type-C 电源供电
@@ -266,7 +272,7 @@ ESP32-S3-USB-Bridge 可以将 5 V 转化为 3.3 V 供模组使用。
 
 .. figure:: ../../../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge-power.png
     :align: center
-    :scale: 40%
+    :scale: 100%
     :alt: ESP32-S3-USB-Bridge - 电压转换
 
     ESP32-S3-USB-Bridge - 电压转换
@@ -278,9 +284,7 @@ ESP32-S3-USB-Bridge 可以将 5 V 转化为 3.3 V 供模组使用。
 自动下载
 ^^^^^^^^
 
-可以通过下面方式使开发板进入下载模式：
-
-- 按下模组 Boot 按键后重新上电，松开模组 Boot 按键。
+按下模组 Boot 按键后重新上电，随后松开模组 Boot 按键，即可使开发板进入下载模式。
 
 
 硬件版本
@@ -292,7 +296,7 @@ ESP32-S3-USB-Bridge 可以将 5 V 转化为 3.3 V 供模组使用。
 样品获取
 ================
 
-此开发板已开源至立创开源硬件平台 `ESP32-S3-USB-Bridge <https://oshwhub.com/esp-college/esp32s3_usb_flash_tool>`_。如有需要，请自行打样。
+此开发板已开源至 `立创开源硬件平台 <https://oshwhub.com/esp-college/esp32s3_usb_flash_tool>`_。如有需要，请自行打样。
 
 
 相关文档
@@ -301,7 +305,7 @@ ESP32-S3-USB-Bridge 可以将 5 V 转化为 3.3 V 供模组使用。
 -  `ESP32-S3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf>`__
 -  `ESP32-S3-MINI-1 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_cn.pdf>`__
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-USB-Bridge 原理图 <../../_static/esp32-s3-usb-bridge/schematics/PCB_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf>`__
--  `ESP32-S3-USB-Bridge PCB 布局图 <../../_static/esp32-s3-usb-bridge/schematics/SCH_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf>`__
+-  `ESP32-S3-USB-Bridge PCB 布局图 <../../_static/esp32-s3-usb-bridge/schematics/PCB_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf>`__
+-  `ESP32-S3-USB-Bridge 原理图 <../../_static/esp32-s3-usb-bridge/schematics/SCH_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf>`__
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
