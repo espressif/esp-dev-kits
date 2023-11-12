@@ -42,7 +42,7 @@ static const char *TAG = "Board";
 static esp_adc_cal_characteristics_t *adc1_chars = NULL;
 static const adc_unit_t BOARD_ADC_UNIT = ADC_UNIT_1;
 static const adc_bits_width_t BOARD_ADC_WIDTH = ADC_WIDTH_MAX-1;
-static const adc_atten_t BOARD_ADC_ATTEN = ADC_ATTEN_DB_11;
+static const adc_atten_t BOARD_ADC_ATTEN = ADC_ATTEN_DB_12;
 #endif
 
 static bool s_board_is_init = false;
@@ -187,7 +187,7 @@ static esp_err_t board_gpio_init(void)
     io_conf.pin_bit_mask = BOARD_IO_PIN_SEL_INPUT;
     //configure GPIO with the given settings
     ret = gpio_config(&io_conf);
-    
+
     if (ret == ESP_OK) {
         s_board_gpio_is_init = true;
     }

@@ -23,6 +23,7 @@ IGNORE_WARNINGS = [
     r'DeprecationWarning: pkg_resources is deprecated as an API. See https://setuptools.pypa.io/en/latest/pkg_resources.html',
     r'The smallest app partition is nearly full',
     r'managed_components/lvgl__lvgl/src/extra/libs/png/lv_png.c',
+    r'managed_components/lvgl__lvgl/src/extra/libs/png/lv_png.c',
 ]
 
 def _get_idf_version():

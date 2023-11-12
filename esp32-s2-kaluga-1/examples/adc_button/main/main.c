@@ -28,7 +28,7 @@
 static const adc_channel_t channel = ADC_CHANNEL_5;     /*!< PIO7 if ADC1, GPIO17 if ADC2 */
 static const adc_bits_width_t width = ADC_WIDTH_BIT_13;
 
-static const adc_atten_t atten = ADC_ATTEN_DB_11;
+static const adc_atten_t atten = ADC_ATTEN_DB_12;
 static const adc_unit_t unit = ADC_UNIT_1;
 static xQueueHandle adc_queue = NULL;
 led_strip_t *strip;
