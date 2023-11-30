@@ -235,6 +235,7 @@ ESP32-C6-DevKitC-1 v1.2
 
 - For boards with the PW number of and after PW-2023-02-0139 (on and after February 2023), J5 is changed from straight headers to curved headers.
 - For boards with the PW number of and after PW-2023-07-XXXX (on and after July 2023), multi-point calibration is performed on ADC instead of two-point calibration, and the measurement range and accuracy are illustrated in `ESP32-C6 Datasheet`_ > Section ADC Characteristics. For boards with eariler PW number, please `ask our sales team <https://www.espressif.com/en/contact-us/sales-questions>`_ to provide the actual range and accuracy according to batch.
+- For boards with the PW number of and after PW-2023-07-0440 (on and after July 2023), to optimize the WS2812 driving circuit, the resistance of R29 is updated from 4.7 kΩ to 10 kΩ, and the resistance of R6 is updated from 10 kΩ to 3.3 kΩ. For details, see `ESP32-C6-DevKitC-1 Schematic v1.3`_.
 
 .. note::
 
@@ -249,15 +250,18 @@ Related Documents
 =================
 * `ESP32-C6 Datasheet`_ (PDF)
 * `ESP32-C6-WROOM-1 Datasheet`_ (PDF)
-* `ESP32-C6-DevKitC-1 Schematic <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.2.pdf>`_ (PDF)
+* `ESP32-C6-DevKitC-1 Schematic v1.3`_ (PDF) - Applies to boards of and after PW-2023-07-0440
+* `ESP32-C6-DevKitC-1 Schematic v1.2`_ (PDF) - Applies to boards before PW-2023-07-0440
 * `ESP32-C6-DevKitC-1 PCB Layout <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-pcb-layout_v1.2.pdf>`_ (PDF)
 * `ESP32-C6-DevKitC-1 Dimensions <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.pdf>`_ (PDF)
-* `ESP32-C6-DevKitC-1 Dimensions source file <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.dxf>`_ (DXF)
+* `ESP32-C6-DevKitC-1 Dimensions source file <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
 .. _ESP32-C6 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf
 .. _ESP32-C6-WROOM-1 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_en.pdf
+.. _ESP32-C6-DevKitC-1 Schematic v1.3: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.3.pdf
+.. _ESP32-C6-DevKitC-1 Schematic v1.2: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.2.pdf
 
 .. toctree::
     :hidden:
