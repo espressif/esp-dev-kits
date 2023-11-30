@@ -239,7 +239,7 @@ Related Documents
 * `ESP32-C6-DevKitM-1 Schematic <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF)
 * `ESP32-C6-DevKitM-1 PCB Layout <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-pcb-layout.pdf>`_ (PDF)
 * `ESP32-C6-DevKitM-1 Dimensions <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.pdf>`_ (PDF)
-* `ESP32-C6-DevKitM-1 Dimensions source file <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.dxf>`_ (DXF)
+* `ESP32-C6-DevKitM-1 Dimensions source file <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
