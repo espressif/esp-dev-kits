@@ -52,3 +52,7 @@ pdf_file_prefix = u'esp-dev-kits'
 # The name of an image file (relative to this directory) to place at the top of
 # the title page.
 latex_logo = "../_static/espressif2.pdf"
+
+# Measurement ID for Google Analytics
+
+google_analytics_id = 'G-6GCDQQ87G0'
