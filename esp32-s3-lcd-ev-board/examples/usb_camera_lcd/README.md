@@ -2,7 +2,7 @@
 
 An example for using LCD display video which captured from USB camera.
 
-* Transfer uvc frame to wifi http if `ENABLE_UVC_WIFI_XFER` is set to `1`, the real-time image can be fetched through Wi-Fi softAP (ssid: ESP32S3-UVC, http: 192.168.4.1). Due to this function will cause screen drift when PSRAM is 80M, it's only aviable with 120M PSRAM.
+* Transfer uvc frame to wifi http if `ENABLE_UVC_WIFI_XFER` is set to `1`, the real-time image can be fetched through Wi-Fi softAP (ssid: ESP32S3-UVC, http: 192.168.4.1).
 * Print log about SRAM and PSRAM memory if `LOG_MEM_INFO` is set to `1`, includes `Biggest/Free/Total` three types.
 
 ## How to use example

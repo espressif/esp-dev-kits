@@ -19,11 +19,8 @@
 #include "bsp/esp-bsp.h"
 #include "bsp/display.h"
 
-/* Due to this function will cause screen drift when PSRAM is 80M, it's only aviable with 120M PSRAM */
-#if CONFIG_SPIRAM_SPEED_120M
 /* Transfer uvc frame to wifi http */
 #define ENABLE_UVC_WIFI_XFER            (1)
-#endif
 
 /* Print log about SRAM and PSRAM memory */
 #define LOG_MEM_INFO    (0)
