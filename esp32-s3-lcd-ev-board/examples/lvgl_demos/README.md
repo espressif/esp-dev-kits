@@ -18,7 +18,7 @@ Run `idf.py menuconfig` and go to `Board Support Package`.
 
 ### Build and Flash
 
-1. The project configure PSRAM with 80M Octal by default. **For best performance**, please configure PSRAM with 120M DDR(Octal) by the following commands. see [here](../../README.md#psram-120m-ddr) for more details.
+1. The project configure PSRAM with 80M Octal by default. **Only for boards with ESP32-S3-WROOM-1-N16R8 can enable PSRAM 120M DDR(Octal) feature by the following commands**, see [here](../../README.md#psram-120m-ddr) for more details.
     ```
     rm -rf build sdkconfig sdkconfig.old
     idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.test.psram_120m_ddr" reconfigure
@@ -43,23 +43,26 @@ The following animations show the example running on different development board
 
 |          Item          |                       Value                       |
 | :--------------------: | :-----------------------------------------------: |
+|      Module Type       |              ESP32-S3-WROOM-1-N16R8               |
 | Configuration of PSRAM |                    Octal, 120M                    |
 | Configuration of Flash |                     QIO, 120M                     |
-|    Version of LVGL     |                      v8.3.9                       |
+|     Version of IDF     |                      v5.1.2                       |
+|    Version of LVGL     |                      v8.3.11                      |
 |   Test Demo of LVGL    |                   Music player                    |
 |  Basic Configurations  | sdkconfig.defaults, sdkconfig.test.psram_120m_ddr |
 
 ### Description of Buffering Mode
 
-| Buffering Mode |                    Description                    |    Special Configurations     |
-| :------------: | :-----------------------------------------------: | :---------------------------: |
-|     Mode1      | One buffer with 100-line heights in internal SRAM |               *               |
-|     Mode2      |   One buffer with frame-size in internal PSRAM    |  sdkconfig.test.psram_buffer  |
-|     Mode3      |  Full-refresh with two frame-size PSRAM buffers   | sdkconfig.test.full_refresh_1 |
-|     Mode4      |   Direct-mode with two frame-size PSRAM buffers   |  sdkconfig.test.direct_mode   |
-|     Mode5      | Full-refresh with three frame-size PSRAM buffers  | sdkconfig.test.full_refresh_2 |
+| Buffering Mode |                    Description                    |          Special Configurations           |
+| :------------: | :-----------------------------------------------: | :---------------------------------------: |
+|     Mode1      | One buffer with 100-line heights in internal SRAM |                     *                     |
+|     Mode2      |   One buffer with frame-size in internal PSRAM    |        sdkconfig.test.psram_buffer        |
+|     Mode3      | Full-refresh with double frame-size PSRAM buffers | sdkconfig.test.full_refresh_double_buffer |
+|     Mode4      | Direct-mode with double frame-size PSRAM buffers  |        sdkconfig.test.direct_mode         |
+|     Mode5      | Full-refresh with triple frame-size PSRAM buffers | sdkconfig.test.full_refresh_triple_buffer |
 
 **Notes:**
+
 1. To test the above modes, run the following commands to configure project (take `Mode4` as an example):
 ```
 rm -rf build sdkconfig sdkconfig.old
@@ -71,31 +74,26 @@ idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.test.psram_120m_ddr;s
 
 | Buffering Mode | Average FPS |
 | :------------: | :---------: |
-|     Mode1      |     30      |
+|     Mode1      |     29      |
 |     Mode2      |     25      |
-|     Mode3      |     23      |
+|     Mode3      |     24      |
 |     Mode4      |     26      |
-|     Mode5      |     26      |
+|     Mode5      |     27      |
 
 ### Average FPS with 800x480
 
 | Buffering Mode | Average FPS |
 | :------------: | :---------: |
-|     Mode1      |     27      |
+|     Mode1      |     26      |
 |     Mode2      |     21      |
-|     Mode3      |     15      |
-|     Mode4      |     19      |
-|     Mode5      |     20      |
+|     Mode3      |     18      |
+|     Mode4      |     22     |
+|     Mode5      |     22      |
 
 ## Troubleshooting
 
 * Program build failure
-    * Error message with `error: static assertion failed: "FLASH and PSRAM Mode configuration are not supported"`: Please modify the combination configuration of Flash (in `Serial flasher config`) and PSRAM (in `SPI RAM config`) like below.
-        |   Flash   |    PSRAM    |
-        | :-------: | :---------: |
-        | QIO, 80M  | Octal, 80M  |
-        | QIO, 120M | Octal, 120M |
-    * Error message with `error: 'esp_lcd_rgb_panel_config_t' has no member named 'num_fbs'`: Please update the branch (release/v5.0 or master) of ESP-IDF.
+    * Error message with `error: static assertion failed: "FLASH and PSRAM Mode configuration are not supported"`: Please check [documentation](https://docs.espressif.com/projects/esp-idf/en/release-v5.1/esp32s3/api-guides/flash_psram_config.html#all-supported-modes-and-speeds) to make sure the flash and PSRAM mode configuration is correct.
 * Program upload failure
     * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
     * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
@@ -104,8 +102,10 @@ idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.test.psram_120m_ddr;s
         2. short press "RST(SW1)" button
         3. release "BOOT(SW2)".
         4. upload program and reset
-* Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed
-    * If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
+* Program runtime failure
+    * Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed: If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
+    * Warning message with `W (xxx) lcd_panel.io.3wire_spi: Delete but keep CS line inactive`: This is a normal message, please ignore it.
+    * Get stuck in the boot process: Only for boards with `ESP32-S3-WROOM-1-N16R8` can enable PSRAM 120M DDR(Octal) feature. Please set the PSRAM configuration to 80M DDR(Octal) in the menuconfig when using boards with `ESP32-S3-WROOM-1-N16R16V`.
 
 ## Technical support and feedback
 

@@ -101,11 +101,13 @@ static esp_err_t sr_echo_play(audio_segment_t audio)
         goto EXIT;
     }
 
-    bsp_audio_poweramp_enable(true); // turn off the speaker to avoid play some noise
-    bsp_extra_codec_volume_set(80, NULL);
-    bsp_extra_codec_mute_set(false);
     bsp_extra_codec_set_fs(wav_head.SampleRate, wav_head.BitsPerSample, wav_head.NumChannels);
     ESP_LOGD(TAG, "frame_rate= %" PRIi32 ", ch=%d, width=%d", wav_head.SampleRate, wav_head.NumChannels, wav_head.BitsPerSample);
+
+    bsp_extra_codec_mute_set(true);
+    bsp_extra_codec_mute_set(false);
+    bsp_extra_codec_volume_set(80, NULL);
+    vTaskDelay(pdMS_TO_TICKS(50));
 
     size_t cnt;
     do {
@@ -121,7 +123,6 @@ static esp_err_t sr_echo_play(audio_segment_t audio)
     } while (1);
 
 EXIT:
-    bsp_audio_poweramp_enable(false);
     fclose(fd);
     if (audio_buffer) {
         free(audio_buffer);

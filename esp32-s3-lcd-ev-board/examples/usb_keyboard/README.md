@@ -42,10 +42,11 @@ Run the example, you will see a GUI of USB keyboard. The board includes most com
         2. short press "RST(SW1)" button
         3. release "BOOT(SW2)".
         4. upload program and reset
-* PC can't get key from the development board
-    * Make sure the board connected with USB port.
-* Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed
-    * If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
+* Program runtime failure
+    * PC can't get key from the development board: Make sure the board connected with USB port.
+    * Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed: If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
+    * Warning message with `W (xxx) lcd_panel.io.3wire_spi: Delete but keep CS line inactive`: This is a normal message, please ignore it.
+    * Get stuck in the boot process: Only for boards with `ESP32-S3-WROOM-1-N16R8` can enable PSRAM 120M DDR(Octal) feature. Please set the PSRAM configuration to 80M DDR(Octal) in the menuconfig when using boards with `ESP32-S3-WROOM-1-N16R16V`.
 
 ## Technical support and feedback
 

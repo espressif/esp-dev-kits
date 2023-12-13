@@ -9,6 +9,7 @@ set(EXTRA_COMPONENT_DIRS
 # The following line can be removed after LVGL update to v8.3.5.
 add_compile_options(-Wno-format
                     -fdiagnostics-color=always
+                    -Wno-incompatible-pointer-types
                     -Wno-unused-variable
                     -Wno-ignored-qualifiers)
 

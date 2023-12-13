@@ -31,7 +31,12 @@ Please first read the [User Guide](https://docs.espressif.com/projects/espressif
 
 ### Build and Flash
 
-1. Run `idf.py -p PORT flash monitor` to build, flash, and monitor the project. **Note that it must be connected to the UART port instead of the USB port.**
+1. The project configure PSRAM with 80M Octal by default. **Only for boards with ESP32-S3-WROOM-1-N16R8 can enable PSRAM 120M DDR(Octal) feature by the following commands**, see [here](../../README.md#psram-120m-ddr) for more details.
+    ```
+    rm -rf build sdkconfig sdkconfig.old
+    idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.test.psram_120m_ddr" reconfigure
+    ```
+2. Run `idf.py -p PORT flash monitor` to build, flash, and monitor the project. **Note that it must be connected to the UART port instead of the USB port.**
 
 (To exit the serial monitor, type `Ctrl-]`.)
 
@@ -46,11 +51,7 @@ The following animation is a demonstration of the development board running the 
 ## Troubleshooting
 
 * Program build failure
-    * Error message with `error: static assertion failed: "FLASH and PSRAM Mode configuration are not supported"`: Please modify the combination configuration of Flash (in `Serial flasher config`) and PSRAM (in `SPI RAM config`) like below.
-        |   Flash   |    PSRAM    |  IDF Version   |
-        | :-------: | :---------: | -------------- |
-        | QIO, 120M | Octal, 120M | >=release/v5,1 |
-    * Error message with `error: 'esp_lcd_rgb_panel_config_t' has no member named 'num_fbs'`: Please update the branch (release/v5.0 or master) of ESP-IDF.
+    * Error message with `error: static assertion failed: "FLASH and PSRAM Mode configuration are not supported"`: Please check [documentation](https://docs.espressif.com/projects/esp-idf/en/release-v5.1/esp32s3/api-guides/flash_psram_config.html#all-supported-modes-and-speeds) to make sure the flash and PSRAM mode configuration is correct.
 * Program upload failure
     * Hardware connection is not correct: run `idf.py -p PORT monitor`, and reboot your board to see if there are any output logs.
     * The baud rate for downloading is too high: lower your baud rate in the `menuconfig` menu, and try again.
@@ -59,8 +60,10 @@ The following animation is a demonstration of the development board running the 
         2. Short press the "RST(SW1)" button.
         3. Release the "BOOT(SW2)" button.
         4. Upload the program and reset.
-* Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed
-    * If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
+* Program runtime failure
+    * Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed: If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
+    * Warning message with `W (xxx) lcd_panel.io.3wire_spi: Delete but keep CS line inactive`: This is a normal message, please ignore it.
+    * Get stuck in the boot process: Only for boards with `ESP32-S3-WROOM-1-N16R8` can enable PSRAM 120M DDR(Octal) feature. Please set the PSRAM configuration to 80M DDR(Octal) in the menuconfig when using boards with `ESP32-S3-WROOM-1-N16R16V`.
 
 ## Technical Support and Feedback
 

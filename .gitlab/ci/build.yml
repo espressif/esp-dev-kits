@@ -120,8 +120,6 @@ build_esp32_s3_lcd_ev_board:
         IMAGE: espressif/idf:release-v5.1
       - EXAMPLE_DIR: esp32-s3-lcd-ev-board/examples/usb_keyboard
         IMAGE: espressif/idf:release-v5.1
-      - EXAMPLE_DIR: esp32-s3-lcd-ev-board/examples/usb_scan_gun_demo
-        IMAGE: espressif/idf:release-v5.1
       - EXAMPLE_DIR: esp32-s3-lcd-ev-board/examples/usb_msc_file_sys
         IMAGE: espressif/idf:release-v5.1
   variables:
