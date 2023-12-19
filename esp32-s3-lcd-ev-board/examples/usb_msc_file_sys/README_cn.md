@@ -31,7 +31,13 @@
 
 ### 构建和烧录
 
-1. 运行 `idf.py -p PORT flash monitor` 来构建、烧录和监视项目。**请注意，必须连接到 UART 端口而不是 USB 端口。**
+
+1. 默认情况下，该项目将 PSRAM 配置为 80M Octal 模式。**只有搭载 ESP32-S3-WROOM-1-N16R8 模组的开发板可以通过以下命令启用 PSRAM 120M DDR（Octal）功能**，详细信息请参见[此处](../../README.md#psram-120m-ddr)。
+    ```
+    rm -rf build sdkconfig sdkconfig.old
+    idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.test.psram_120m_ddr" reconfigure
+    ```
+2. 运行 `idf.py -p PORT flash monitor` 来构建、烧录和监视项目。**请注意，必须连接到 UART 端口而不是 USB 端口。**
 
 （要退出串行监视器，请键入 "Ctrl-]"。）
 
@@ -59,8 +65,10 @@
         2. 短按一下 "RST(SW1)" 按钮。
         3. 松开 "BOOT(SW2)" 按钮。
         4. 上传程序并重启。
-* 子板 2 屏幕（480x480）上显示异常，背光亮起但没有显示图像
-    * 如果日志级别配置为“Debug”或更低，请同时增加日志输出的波特率（例如，2000000）。
+* 程序运行失败
+    * 子板2屏幕（480x480）显示异常，背光亮起但没有显示图像：如果日志级别配置为"Debug"或更低，请同时增加日志输出的波特率（例如，2000000）。
+    * 带有 `W (xxx) lcd_panel.io.3wire_spi: Delete but keep CS line inactive` 的警告消息：这是正常的消息，请忽略。
+    * 引导过程中卡住：只有搭载 `ESP32-S3-WROOM-1-N16R8` 芯片的开发板可以启用 PSRAM 120M DDR（Octal）功能。当使用搭载 `ESP32-S3-WROOM-1-N16R16V` 芯片的开发板时，请在 menuconfig 中将 PSRAM 配置设置为 80M DDR（Octal）。
 
 ## 技术支持和反馈
 

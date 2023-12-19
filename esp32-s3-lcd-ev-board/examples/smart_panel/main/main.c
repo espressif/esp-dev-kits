@@ -20,7 +20,7 @@
 #include "app_wifi.h"
 #include "app_weather.h"
 
-#define LOG_MEM_INFO    1
+#define LOG_MEM_INFO    0
 
 static char *TAG = "app_main";
 
@@ -64,6 +64,7 @@ void app_main(void)
     if (sys_set->sr_enable) {
         ESP_LOGI(TAG, "speech recognition Enable");
         app_sr_start(false);
+        bsp_audio_poweramp_enable(true);
     } else {
         ESP_LOGI(TAG, "speech recognition Disable");
     }

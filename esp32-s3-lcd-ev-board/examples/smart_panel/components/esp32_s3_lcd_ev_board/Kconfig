@@ -124,6 +124,13 @@ menu "Board Support Package"
             help
                 The Board Support Package will create a task that will periodically handle LVGL operation in lv_timer_handler().
 
+        config BSP_DISPLAY_LVGL_TASK_CORE_ID
+            int "LVGL task pinned core ID"
+            default -1
+            range -1 1
+            help
+                Core to pin LVGL task. -1 means no pinning.
+
         config BSP_DISPLAY_LVGL_TASK_DELAY
             int "LVGL task minimum delay time (ms)"
             default 10
@@ -131,7 +138,7 @@ menu "Board Support Package"
             help
                 Minimum delay time for LVGL task. It should be larger if the task watchdog is triggered frequently.
 
-        config BSP_DISPLAY_LVGL_TASK_STACK_SIZE
+        config BSP_DISPLAY_LVGL_TASK_STACK_SIZE_KB
             int "LVGL task stack size (KB)"
             default 4
             help

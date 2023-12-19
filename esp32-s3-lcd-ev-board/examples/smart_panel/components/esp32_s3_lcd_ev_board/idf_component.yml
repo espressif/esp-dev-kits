@@ -1,7 +1,7 @@
 dependencies:
   button:
     public: true
-    version: ^3
+    version: '>=2.5,<4.0'
   esp_codec_dev:
     public: true
     version: ^1
@@ -9,8 +9,12 @@ dependencies:
     public: true
     version: ^1
   esp_lcd_gc9503:
+    matches:
+    - if: idf_version <5.1.2
+      version: ^1
+    - if: idf_version >=5.1.2
+      version: ^3
     public: true
-    version: ^1
   esp_lcd_panel_io_additions:
     public: true
     version: ^1
@@ -21,13 +25,13 @@ dependencies:
     public: true
     version: ^1
   idf:
-    version: '>=5.0'
-  # lvgl/lvgl:
-  #   public: true
-  #   version: ^8
-  lvgl/lvgl: "^7.11.0"
+    version: '>=5.0.1'
+  lvgl/lvgl:
+    public: true
+    # version: ^8
+    version: '^7.11.0'
 description: Board Support Package for ESP32-S3-LCD-EV-Board
 targets:
 - esp32s3
-url: https://github.com/espressif/esp-bsp/tree/master/esp32_s3_lcd_ev_board
-version: 2.0.0
+url: https://github.com/espressif/esp-bsp/tree/master/bsp/esp32_s3_lcd_ev_board
+version: 2.1.0

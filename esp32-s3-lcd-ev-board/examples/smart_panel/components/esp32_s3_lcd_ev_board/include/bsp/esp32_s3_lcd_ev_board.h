@@ -31,6 +31,10 @@
 #define BSP_I2C_SCL             (GPIO_NUM_18)
 #define BSP_I2C_SDA             (GPIO_NUM_8)
 
+// Pins for board using ESP32-S3-WROOM-1-N16R16V
+#define BSP_I2C_SCL_R16         (GPIO_NUM_48)
+#define BSP_I2C_SDA_R16         (GPIO_NUM_47)
+
 /* Audio */
 #define BSP_I2S_SCLK            (GPIO_NUM_16)
 #define BSP_I2S_MCLK            (GPIO_NUM_5)
@@ -61,6 +65,10 @@
 #define BSP_LCD_SUB_BOARD_2_3_DATA13    (GPIO_NUM_42)
 #define BSP_LCD_SUB_BOARD_2_3_DATA14    (GPIO_NUM_2)
 #define BSP_LCD_SUB_BOARD_2_3_DATA15    (GPIO_NUM_1)
+
+// Pins for board using ESP32-S3-WROOM-1-N16R16V
+#define BSP_LCD_SUB_BOARD_2_3_DATA6_R16 (GPIO_NUM_8)
+#define BSP_LCD_SUB_BOARD_2_3_DATA7_R16 (GPIO_NUM_18)
 
 #define BSP_LCD_SUB_BOARD_2_SPI_CS      (IO_EXPANDER_PIN_NUM_1)
 #define BSP_LCD_SUB_BOARD_2_SPI_SCK     (IO_EXPANDER_PIN_NUM_2)
@@ -282,7 +290,8 @@ esp_err_t bsp_audio_poweramp_enable(bool enable);
 #define BSP_LCD_SUB_BOARD_2_H_RES     (480)
 #define BSP_LCD_SUB_BOARD_2_V_RES     (480)
 
-#define SUB_BOARD2_800_480_PANEL_60HZ_RGB_TIMING()  GC9503_480_480_PANEL_60HZ_RGB_TIMING()
+#define SUB_BOARD2_480_480_PANEL_60HZ_RGB_TIMING()  GC9503_480_480_PANEL_60HZ_RGB_TIMING()
+#define SUB_BOARD2_480_480_PANEL_SCL_ACTIVE_EDGE    (0)     // Rising edge, 1: Falling edge
 
 #define BSP_LCD_SUB_BOARD_3_H_RES     (800)
 #define BSP_LCD_SUB_BOARD_3_V_RES     (480)

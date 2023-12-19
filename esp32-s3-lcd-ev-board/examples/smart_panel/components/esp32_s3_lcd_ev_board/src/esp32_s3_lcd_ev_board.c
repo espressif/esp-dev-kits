@@ -24,6 +24,7 @@
 #include "bsp/touch.h"
 #include "bsp_err_check.h"
 #include "bsp_lvgl_port.h"
+#include "bsp_probe.h"
 
 #define BSP_ES7210_CODEC_ADDR   (0x82)
 
@@ -79,7 +80,13 @@ esp_err_t bsp_i2c_init(void)
         return ESP_OK;
     }
 
-    const i2c_config_t i2c_conf = {
+    bsp_module_type_t module_type = bsp_probe_module_type();
+    if (module_type == MODULE_TYPE_UNKNOW) {
+        ESP_LOGE(TAG, "Unknow module type");
+        return ESP_FAIL;
+    }
+
+    i2c_config_t i2c_conf = {
         .mode = I2C_MODE_MASTER,
         .sda_io_num = BSP_I2C_SDA,
         .sda_pullup_en = GPIO_PULLUP_DISABLE,
@@ -87,6 +94,11 @@ esp_err_t bsp_i2c_init(void)
         .scl_pullup_en = GPIO_PULLUP_DISABLE,
         .master.clk_speed = CONFIG_BSP_I2C_CLK_SPEED_HZ
     };
+    // To compatible with ESP32-S3-WROOM-N16R16V module
+    if (module_type == MODULE_TYPE_R16) {
+        i2c_conf.sda_io_num = BSP_I2C_SDA_R16;
+        i2c_conf.scl_io_num = BSP_I2C_SCL_R16;
+    }
     BSP_ERROR_CHECK_RETURN_ERR(i2c_param_config(BSP_I2C_NUM, &i2c_conf));
     BSP_ERROR_CHECK_RETURN_ERR(i2c_driver_install(BSP_I2C_NUM, i2c_conf.mode, 0, 0, 0));
 

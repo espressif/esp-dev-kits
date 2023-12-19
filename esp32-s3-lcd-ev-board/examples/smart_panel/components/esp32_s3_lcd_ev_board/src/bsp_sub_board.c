@@ -4,7 +4,6 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-#include "driver/i2c.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "freertos/semphr.h"
@@ -22,19 +21,24 @@
 
 #include "sdkconfig.h"
 #include "bsp_err_check.h"
-#include "bsp_sub_board.h"
+#include "bsp_probe.h"
 #include "bsp/display.h"
 #include "bsp/esp32_s3_lcd_ev_board.h"
 #include "bsp/touch.h"
 
+#if ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 1, 2)
+#warning "Due to significant updates of the RGB LCD drivers, it's recommended to develop using ESP-IDF v5.1.2 or later"
+#endif
+
+#if CONFIG_ESP32S3_DATA_CACHE_LINE_64B && !(CONFIG_SPIRAM_SPEED_120M || CONFIG_BSP_LCD_RGB_BOUNCE_BUFFER_MODE)
+#warning "Enabling the `ESP32S3_DATA_CACHE_LINE_64B` configuration when the PSRAM speed is not set to 120MHz (`SPIRAM_SPEED_120M`) and the LCD is not in bounce buffer mode (`BSP_LCD_RGB_BOUNCE_BUFFER_MODE`) may result in screen drift, please enable `ESP32S3_DATA_CACHE_LINE_32B` instead"
+#endif
+
 static const char *TAG = "bsp_sub_board";
-static bsp_sub_board_type_t sub_board_type = SUB_BOARD_TYPE_UNKNOW;
 static bsp_display_trans_done_cb_t trans_done = NULL;
 #if CONFIG_BSP_LCD_RGB_REFRESH_MANUALLY
 static TaskHandle_t lcd_task_handle = NULL;
 #endif
-
-static esp_err_t detect_sub_board_type(void);
 
 /**************************************************************************************************
  *
@@ -73,11 +77,31 @@ static void lcd_task(void *arg)
 
 esp_err_t bsp_display_new(const bsp_display_config_t *config, esp_lcd_panel_handle_t *ret_panel, esp_lcd_panel_io_handle_t *ret_io)
 {
+#if ESP_IDF_VERSION < ESP_IDF_VERSION_VAL(5, 1, 2)
+    ESP_LOGW(TAG, "Due to significant updates of the RGB LCD drivers, it's recommended to develop using ESP-IDF v5.1.2 or later");
+#endif
+
+#if CONFIG_ESP32S3_DATA_CACHE_LINE_64B && !(CONFIG_SPIRAM_SPEED_120M || CONFIG_BSP_LCD_RGB_BOUNCE_BUFFER_MODE)
+    ESP_LOGW(TAG, "Enabling the `ESP32S3_DATA_CACHE_LINE_64B` configuration when the PSRAM speed is not set to 120MHz \
+(`SPIRAM_SPEED_120M`) and the LCD is not in bounce buffer mode (`BSP_LCD_RGB_BOUNCE_BUFFER_MODE`) may result in screen \
+drift, please enable `ESP32S3_DATA_CACHE_LINE_32B` instead");
+#endif
+
     esp_io_expander_handle_t expander = NULL;
     esp_lcd_panel_handle_t panel_handle = NULL;
     esp_lcd_panel_io_handle_t io_handle = NULL;
 
-    BSP_ERROR_CHECK_RETURN_ERR(detect_sub_board_type());
+    bsp_module_type_t module_type = bsp_probe_module_type();
+    if (module_type == MODULE_TYPE_UNKNOW) {
+        ESP_LOGE(TAG, "Unknow module type");
+        return ESP_FAIL;
+    }
+
+    bsp_sub_board_type_t sub_board_type = bsp_probe_sub_board_type();
+    if (sub_board_type == SUB_BOARD_TYPE_UNKNOW) {
+        ESP_LOGE(TAG, "Unknow sub-board type");
+        return ESP_FAIL;
+    }
 
     switch (sub_board_type) {
     case SUB_BOARD_TYPE_2_480_480: {
@@ -102,11 +126,16 @@ esp_err_t bsp_display_new(const bsp_display_config_t *config, esp_lcd_panel_hand
             .sda_expander_pin = BSP_LCD_SUB_BOARD_2_SPI_SDO,
             .io_expander = expander,
         };
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 1, 2)
+        esp_lcd_panel_io_3wire_spi_config_t io_config = GC9503_PANEL_IO_3WIRE_SPI_CONFIG(
+                    line_config, SUB_BOARD2_480_480_PANEL_SCL_ACTIVE_EDGE);
+#else
         esp_lcd_panel_io_3wire_spi_config_t io_config = GC9503_PANEL_IO_3WIRE_SPI_CONFIG(line_config);
+#endif
         BSP_ERROR_CHECK_RETURN_ERR(esp_lcd_new_panel_io_3wire_spi(&io_config, &io_handle));
 
         ESP_LOGI(TAG, "Initialize RGB panel");
-        esp_lcd_rgb_panel_config_t panel_conf = {
+        esp_lcd_rgb_panel_config_t rgb_conf = {
             .clk_src = LCD_CLK_SRC_PLL160M,
             .psram_trans_align = 64,
             .data_width = 16,
@@ -134,23 +163,45 @@ esp_err_t bsp_display_new(const bsp_display_config_t *config, esp_lcd_panel_hand
                 BSP_LCD_SUB_BOARD_2_3_DATA14,
                 BSP_LCD_SUB_BOARD_2_3_DATA15,
             },
-            .timings = SUB_BOARD2_800_480_PANEL_60HZ_RGB_TIMING(),
+            .timings = SUB_BOARD2_480_480_PANEL_60HZ_RGB_TIMING(),
             .flags.fb_in_psram = 1,
 #if CONFIG_BSP_LCD_RGB_REFRESH_MANUALLY
             .flags.refresh_on_demand = 1,
 #endif
-#if CONFIG_BSP_LCD_RGB_BUFFER_NUMS == 2
-            .flags.double_fb = 1,
-#elif CONFIG_BSP_LCD_RGB_BUFFER_NUMS == 3
-            .num_fbs = 3,
-#endif
+            .num_fbs = CONFIG_BSP_LCD_RGB_BUFFER_NUMS,
 #if CONFIG_BSP_LCD_RGB_BOUNCE_BUFFER_MODE
             .bounce_buffer_size_px = BSP_LCD_SUB_BOARD_2_H_RES * CONFIG_BSP_LCD_RGB_BOUNCE_BUFFER_HEIGHT,
 #endif
         };
+        // To compatible with ESP32-S3-WROOM-N16R16V module
+        if (module_type == MODULE_TYPE_R16) {
+            rgb_conf.data_gpio_nums[6] = BSP_LCD_SUB_BOARD_2_3_DATA6_R16;
+            rgb_conf.data_gpio_nums[7] = BSP_LCD_SUB_BOARD_2_3_DATA7_R16;
+        }
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 1, 2)
+        gc9503_vendor_config_t vendor_config = {
+            .rgb_config = &rgb_conf,
+            .flags = {
+                .mirror_by_cmd = 0,
+                .auto_del_panel_io = 1,
+            },
+        };
+        const esp_lcd_panel_dev_config_t panel_conf = {
+            .reset_gpio_num = -1,
+            .rgb_ele_order = LCD_RGB_ELEMENT_ORDER_RGB,
+            .bits_per_pixel = 18,
+            .vendor_config = &vendor_config,
+        };
         BSP_ERROR_CHECK_RETURN_ERR(esp_lcd_new_panel_gc9503(io_handle, &panel_conf, &panel_handle));
+#else
+        BSP_ERROR_CHECK_RETURN_ERR(esp_lcd_new_panel_gc9503(io_handle, &rgb_conf, &panel_handle));
+#endif
         esp_lcd_rgb_panel_event_callbacks_t cbs = {
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 1, 2) && CONFIG_BSP_LCD_RGB_BOUNCE_BUFFER_MODE
+            .on_bounce_frame_finish = rgb_lcd_on_vsync_event,
+#else
             .on_vsync = rgb_lcd_on_vsync_event,
+#endif
         };
         esp_lcd_rgb_panel_register_event_callbacks(panel_handle, &cbs, NULL);
         break;
@@ -190,18 +241,23 @@ esp_err_t bsp_display_new(const bsp_display_config_t *config, esp_lcd_panel_hand
 #if CONFIG_BSP_LCD_RGB_REFRESH_MANUALLY
             .flags.refresh_on_demand = 1,
 #endif
-#if CONFIG_BSP_LCD_RGB_BUFFER_NUMS == 2
-            .flags.double_fb = 1,
-#elif CONFIG_BSP_LCD_RGB_BUFFER_NUMS == 3
-            .num_fbs = 3,
-#endif
+            .num_fbs = CONFIG_BSP_LCD_RGB_BUFFER_NUMS,
 #if CONFIG_BSP_LCD_RGB_BOUNCE_BUFFER_MODE
             .bounce_buffer_size_px = BSP_LCD_SUB_BOARD_3_H_RES * CONFIG_BSP_LCD_RGB_BOUNCE_BUFFER_HEIGHT,
 #endif
         };
+        // To compatible with ESP32-S3-WROOM-N16R16V module
+        if (module_type == MODULE_TYPE_R16) {
+            panel_conf.data_gpio_nums[6] = BSP_LCD_SUB_BOARD_2_3_DATA6_R16;
+            panel_conf.data_gpio_nums[7] = BSP_LCD_SUB_BOARD_2_3_DATA7_R16;
+        }
         BSP_ERROR_CHECK_RETURN_ERR(esp_lcd_new_rgb_panel(&panel_conf, &panel_handle));
         esp_lcd_rgb_panel_event_callbacks_t cbs = {
+#if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 1, 2) && CONFIG_BSP_LCD_RGB_BOUNCE_BUFFER_MODE
+            .on_bounce_frame_finish = rgb_lcd_on_vsync_event,
+#else
             .on_vsync = rgb_lcd_on_vsync_event,
+#endif
         };
         esp_lcd_rgb_panel_register_event_callbacks(panel_handle, &cbs, NULL);
         break;
@@ -252,7 +308,11 @@ esp_err_t bsp_touch_new(const bsp_touch_config_t *config, esp_lcd_touch_handle_t
     esp_lcd_panel_io_handle_t tp_io_handle = NULL;
     esp_lcd_touch_handle_t tp_handle = NULL;
 
-    BSP_ERROR_CHECK_RETURN_ERR(detect_sub_board_type());
+    bsp_sub_board_type_t sub_board_type = bsp_probe_sub_board_type();
+    if (sub_board_type == SUB_BOARD_TYPE_UNKNOW) {
+        ESP_LOGE(TAG, "Unknow sub-board type");
+        return ESP_FAIL;
+    }
 
     switch (sub_board_type) {
     case SUB_BOARD_TYPE_2_480_480: {
@@ -316,6 +376,12 @@ esp_err_t bsp_touch_new(const bsp_touch_config_t *config, esp_lcd_touch_handle_t
  **************************************************************************************************/
 uint16_t bsp_display_get_h_res(void)
 {
+    bsp_sub_board_type_t sub_board_type = bsp_probe_sub_board_type();
+    if (sub_board_type == SUB_BOARD_TYPE_UNKNOW) {
+        ESP_LOGE(TAG, "Unknow sub-board type");
+        return ESP_FAIL;
+    }
+
     switch (sub_board_type) {
     case SUB_BOARD_TYPE_2_480_480:
         return BSP_LCD_SUB_BOARD_2_H_RES;
@@ -329,6 +395,12 @@ uint16_t bsp_display_get_h_res(void)
 
 uint16_t bsp_display_get_v_res(void)
 {
+    bsp_sub_board_type_t sub_board_type = bsp_probe_sub_board_type();
+    if (sub_board_type == SUB_BOARD_TYPE_UNKNOW) {
+        ESP_LOGE(TAG, "Unknow sub-board type");
+        return ESP_FAIL;
+    }
+
     switch (sub_board_type) {
     case SUB_BOARD_TYPE_2_480_480:
         return BSP_LCD_SUB_BOARD_2_V_RES;
@@ -338,56 +410,4 @@ uint16_t bsp_display_get_v_res(void)
         ESP_LOGE(TAG, "Failed to get vertical resolution, unknow sub-board");
         return 0;
     }
-}
-
-bsp_sub_board_type_t bsp_sub_board_get_type(void)
-{
-    return sub_board_type;
-}
-
-static esp_err_t detect_sub_board_type(void)
-{
-    if (sub_board_type != SUB_BOARD_TYPE_UNKNOW) {
-        return ESP_OK;
-    }
-
-    BSP_ERROR_CHECK_RETURN_ERR(bsp_i2c_init());
-
-    uint8_t tp_address[] = {
-        ESP_LCD_TOUCH_IO_I2C_FT5x06_ADDRESS,
-        ESP_LCD_TOUCH_IO_I2C_GT1151_ADDRESS,
-    };
-    uint8_t i = 0;
-    i2c_cmd_handle_t cmd;
-    bsp_sub_board_type_t detect_type = SUB_BOARD_TYPE_UNKNOW;
-    while (i < sizeof(tp_address)) {
-        cmd = i2c_cmd_link_create();
-        i2c_master_start(cmd);
-        i2c_master_write_byte(cmd, (tp_address[i] << 1) | I2C_MASTER_WRITE, true);
-        i2c_master_stop(cmd);
-        if (i2c_master_cmd_begin(BSP_I2C_NUM, cmd, pdMS_TO_TICKS(20)) == ESP_OK) {
-            if (tp_address[i] == ESP_LCD_TOUCH_IO_I2C_FT5x06_ADDRESS) {
-                ESP_LOGI(TAG, "Detect sub_board2 with 480x480 LCD (GC9503), Touch (FT5x06)");
-                detect_type = SUB_BOARD_TYPE_2_480_480;
-            } else if (tp_address[i] == ESP_LCD_TOUCH_IO_I2C_GT1151_ADDRESS) {
-                ESP_LOGI(TAG, "Detect sub_board3 with 800x480 LCD (ST7262), Touch (GT1151)");
-                detect_type = SUB_BOARD_TYPE_3_800_480;
-            }
-        }
-        i2c_cmd_link_delete(cmd);
-        if (detect_type != SUB_BOARD_TYPE_UNKNOW) {
-            break;
-        }
-        i++;
-    }
-
-    ESP_RETURN_ON_FALSE(detect_type != SUB_BOARD_TYPE_UNKNOW, ESP_ERR_INVALID_STATE, TAG,
-                        "Failed to detect sub_board type, please check the hardware connection");
-    if (CONFIG_BSP_LCD_SUB_BOARD_TYPE) {
-        ESP_RETURN_ON_FALSE(detect_type == CONFIG_BSP_LCD_SUB_BOARD_TYPE, ESP_ERR_INVALID_STATE, TAG,
-                            "Sub_board type mismatch, please check the software configuration and hardware connection");
-    }
-    sub_board_type = detect_type;
-
-    return ESP_OK;
 }
