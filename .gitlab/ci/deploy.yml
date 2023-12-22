@@ -74,3 +74,57 @@ deploy_docs_production:
     DOCS_DEPLOY_SERVER_USER: "$DOCS_PROD_SERVER_USER"
     DOCS_DEPLOY_PATH: "$DOCS_PROD_PATH"
     DOCS_DEPLOY_URL_BASE: "$DOCS_PROD_URL_BASE"
+
+pack-upload_files:
+  stage: deploy
+  image: espressif/idf:release-v5.1
+  tags: ['build']
+  needs:
+    - job: "build_esp32_c3_lcdkit"
+      artifacts: true
+      optional: false
+    - job: "build_esp32_s3_lcd_ev_board"
+      artifacts: true
+      optional: false
+    - job: "build_esp32_s3_usb_bridge"
+      artifacts: true
+      optional: false
+    - job: "build_esp32_s3_usb_otg"
+      artifacts: true
+      optional: false
+    - job: "build_esp32_s2_kaluga_1"
+      artifacts: true
+      optional: false
+  artifacts:
+    when: always
+    paths:
+      - binaries/
+    expire_in: 1 week
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "master"
+  script:
+    - pip install rtoml ruamel.yaml --upgrade
+    - pip install idf_build_apps
+    - idf-build-apps find --p . --recursive -t all -o output.json --manifest-file .build-rules.yml
+    - echo "Merging binaries and generating config.toml..."
+    - python ${CI_PROJECT_DIR}/tools/generateFiles.py output.json
+
+include:
+  - project: 'ae_group/test-related/ae_upload_dl'
+    # Use ref to specify the branch name (etc: ref: 'feat/add_esp-dev-kits')
+    file: 'trigger.yml'
+
+upload-dl-trigger:
+  needs:
+    - job: "pack-upload_files"
+      artifacts: false
+      optional: false
+  rules:
+    - if: $CI_COMMIT_REF_NAME == "master"
+  environment:
+    name: esp-dev-kits_launchpad
+    url: https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml
+  variables:
+    SOURCE_PROJECT_TOKEN: ${ACCESS_TOKEN}
+    # Use TRIGGER_REPO_REF to specify the branch name (etc: TRIGGER_REPO_REF: 'feat/add_esp-dev-kits')
+    # Use UPLOAD_TO_DBG_DIR to specify the directory name (etc: UPLOAD_TO_DBG_DIR: '1')

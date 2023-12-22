@@ -47,7 +47,7 @@ def get_cmake_apps(
 ):  # type: (List[str], str, List[str]) -> List[App]
     idf_ver = _get_idf_version()
     apps = find_apps(
-        paths,
+        paths,  
         recursive=True,
         target=target,
         build_dir=f'{idf_ver}/build_@t_@w',
@@ -58,6 +58,7 @@ def get_cmake_apps(
         preserve=True,
         default_build_targets=default_build_targets,
         manifest_files=[
+            str(Path(PROJECT_ROOT)/'.build-rules.yml'),
         ],
     )
     return apps
