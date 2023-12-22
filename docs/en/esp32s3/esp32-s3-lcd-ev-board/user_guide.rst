@@ -1,8 +1,12 @@
-=====================
-ESP32-S3-LCD-EV-Board
-=====================
+==========================
+ESP32-S3-LCD-EV-Board v1.5
+==========================
 
 :link_to_translation:`zh_CN:[中文]`
+
+.. note::
+
+  Please check the version number of your ESP32-S3-LCD-EV-Board-MB indicated by the silk marking on the back. For boards of the v1.5 version, please refer to this user guide. For boards of the v1.4 and below versions, please refer to :doc:`user_guide_v1.4`.
 
 This user guide will help you get started with ESP32-S3-LCD-EV-Board and will also provide more in-depth information.
 
@@ -30,7 +34,7 @@ ESP32-S3-LCD-EV-Board is an ESP32-S3-based development board with a touchscreen.
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_800x480.png
     :align: center
-    :scale: 50%
+    :scale: 45%
     :alt: ESP32-S3-LCD-EV-Board-2 with 800x480 LCD
 
     ESP32-S3-LCD-EV-Board-2 with 800x480 LCD
@@ -41,7 +45,7 @@ Feature List
 
 The main features of the board are listed below:
 
-- **Module Embedded:** ESP32-S3-WROOM-1 module with 16 MB flash and 8 MB PSRAM
+- **Module Embedded:** ESP32-S3-WROOM-1 module with 16 MB flash and 16 MB PSRAM
 - **Display:** Compatibility with various subboards and support for displays with ``RGB``, ``8080``, ``SPI``, and ``I2C`` interfaces. Please refer to `LCD Subboards`_ for more information
 - **Audio:** Audio Codec + ADC amplifier and dual microphones
 - **USB:** USB to serial port chip plus USB Type-C download/debug
@@ -71,9 +75,9 @@ Mainboard
 
 **ESP32-S3-LCD-EV-Board-MB** is the core of the kit, which integrates the ESP32-S3-WROOM-1 module and provides ports for connection to the LCD subboard.
 
-.. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-layout-front.png
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-mb-v1.5-layout-front.png
     :align: center
-    :scale: 70%
+    :scale: 80%
     :alt: ESP32-S3-LCD-EV-Board - Front (Click to Enlarge)
 
     ESP32-S3-LCD-EV-Board-MB - Front (Click to Enlarge)
@@ -87,8 +91,8 @@ The key components of the board are described in a counter-clockwise direction.
 
    * - Key Component
      - Description
-   * - ESP32-S3-WROOM-1-N16R8 Module
-     - ESP32-S3-WROOM-1-N16R8 is a generic Wi-Fi + Bluetooth LE MCU module that is built around the ESP32-S3 series of SoCs. It is integrated with 16 MB flash and 8 MB PSRAM. On top of a rich set of peripherals, the acceleration for neural network computing and signal processing workloads provided by the SoC makes the module an ideal choice for a wide variety of application scenarios related to AI and Artificial Intelligence of Things (AIoT).
+   * - ESP32-S3-WROOM-1-N16R16V Module
+     - ESP32-S3-WROOM-1-N16R16V is a generic Wi-Fi + Bluetooth LE MCU module that is built around the ESP32-S3 series of SoCs. It is integrated with 16 MB flash and 16 MB PSRAM. On top of a rich set of peripherals, the acceleration for neural network computing and signal processing workloads provided by the SoC makes the module an ideal choice for a wide variety of application scenarios related to Artificial Intelligence of Things (AIoT).
    * - Reset Button
      - Press this button to reset the system.
    * - Boot Button
@@ -136,7 +140,7 @@ The mainboard can be used together with three different kinds of subboards:
      - LCD Driver (Interface)
      - Touch Driver
      - Available Development Boards
-   * - ESP32-S3-LCD-EV-Board-SUB1
+   * - ESP32-S3-LCD-EV-Board-SUB1 v1.0
      - 0.96
      - 128 x 64
      - `SSD1315 <../../_static/esp32-s3-lcd-ev-board/datasheets/0.96_128x64/SSD1315.pdf>`_ (I2C)
@@ -148,7 +152,7 @@ The mainboard can be used together with three different kinds of subboards:
      - `ST7789V <../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/ST7789V_SPEC_V1.0.pdf>`_ (SPI)
      - `XTP2046 <../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/XPT2046_user_manual.pdf>`_
      - Not Available
-   * - ESP32-S3-LCD-EV-Board-SUB2
+   * - ESP32-S3-LCD-EV-Board-SUB2 v1.5
      - 3.50
      - 480 x 320
      - `ST7796S <../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/ST7796S_SPEC_V1.0.pdf>`_ (8080)
@@ -160,7 +164,7 @@ The mainboard can be used together with three different kinds of subboards:
      - `GC9503CV <../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/GC9503NP_DataSheet_V1.7.pdf>`_ (RGB)
      - `FT5x06 <https://www.displayfuture.com/Display/datasheet/controller/FT5x06.pdf>`_
      - `ESP32-S3-LCD-EV-Board <https://www.aliexpress.us/item/3256804584611152.html?spm=5261.ProductManageOnline.0.0.541f4edfMsfGnH&gatewayAdapt=glo2usa4itemAdapt&_randl_shipto=US>`_
-   * - ESP32-S3-LCD-EV-Board-SUB3
+   * - ESP32-S3-LCD-EV-Board-SUB3 v1.3
      - 4.30
      - 800 x 480
      - `ST7262E43 <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/ST7262E43_V0.1_201905.pdf>`_ (RGB)
@@ -179,7 +183,7 @@ The mainboard can be used together with three different kinds of subboards:
 
     ESP32-S3-LCD-EV-Board-SUB2 - Front (Click to Enlarge)
 
-.. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-back.png
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub2-v1.4-back.png
     :align: center
     :scale: 50%
     :alt: ESP32-S3-LCD-EV-Board-SUB2 - Back (Click to Enlarge)
@@ -195,24 +199,12 @@ The mainboard can be used together with three different kinds of subboards:
 
     ESP32-S3-LCD-EV-Board-SUB3 - Front (Click to Enlarge)
 
-.. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-back.png
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/esp32-s3-lcd-ev-board-sub3-v1.3-back.png
     :align: center
-    :scale: 50%
+    :scale: 60%
     :alt: ESP32-S3-LCD-EV-Board-SUB3 - Back (Click to Enlarge)
 
     ESP32-S3-LCD-EV-Board-SUB3 - Back (Click to Enlarge)
-
-
-Software Support
-----------------
-
-The ESP32-S3-LCD-EV-Board development framework is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :project:`Examples<esp32-s3-lcd-ev-board/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
-
-.. note::
-
-  - ESP-IDF v5.1 and above are recommended for development.
-  - ESP32-S3 RGB driver only supports the 16-bit RGB565 and 8-bit RGB888 interface.
-  - To enable ESP-IDF with the 120 MHz DDR PSRAM, please see :project:`here<esp32-s3-lcd-ev-board>`.
 
 
 Start Application Development
@@ -255,9 +247,14 @@ Now the board is ready for software setup.
 Software Setup
 --------------
 
+The development framework of ESP32-S3-LCD-EV-Board is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :project:`Examples <esp32-s3-lcd-ev-board/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
+
 To learn how to quickly set up your development environment, please go to `Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html>`__ > `Installation <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html#get-started- step-by-step>`__.
 
-For more software information on developing applications, please go to `Software Support`_.
+.. note::
+
+  - ESP-IDF v5.1.2 is required. It is recommended to use the latest release/v5.1 branch for development.
+  - For more information about developing LCD applications, please refer to `ESP-IoT-Solution Programming Guide <https://docs.espressif.com/projects/esp-iot-solution/en/latest/display/lcd/index.html>`__.
 
 
 Hardware Reference
@@ -310,10 +307,10 @@ The table below provides the allocation of GPIOs exposed on terminals of ESP32-S
      - LCD_DE
    * - 11
      - IO18
-     - I2C_SCL
+     - LCD_DATA7
    * - 12
      - IO8
-     - I2C_SDA
+     - LCD_DATA6
    * - 13
      - IO19
      - USB_D-
@@ -349,10 +346,10 @@ The table below provides the allocation of GPIOs exposed on terminals of ESP32-S
      - LCD_DATA5
    * - 24
      - IO47
-     - LCD_DATA6
+     - I2C_SDA
    * - 25
      - IO48
-     - LCD_DATA7
+     - I2C_SCL
    * - 26
      - IO45
      - LCD_DATA8
@@ -555,7 +552,22 @@ There are two ways to put the development board into the download mode.
 Hardware Revision Details
 =========================
 
-No previous revisions.
+ESP32-S3-LCD-EV-Board v1.5
+--------------------------
+
+- The following pins are re-allocated for the ESP32-S3-WROOM-1-N16R16V module:
+
+  - ``I2C_SCL``: from ``IO18`` to ``IO48``
+  - ``I2C_SDA``: from ``IO8`` to ``IO47``
+  - ``LCD_DATA6``: from ``IO47`` to ``IO8``
+  - ``LCD_DATA7``: from ``IO48`` to ``IO18``
+
+- Level-shifting circuits are added to ``IO47`` and ``IO48`` for converting the 1.8 V logic level to a 3.3 V logic level.
+
+ESP32-S3-LCD-EV-Board v1.4
+--------------------------
+
+- :doc:`Initial Release <user_guide_v1.4>`
 
 
 Sample Request
@@ -570,16 +582,14 @@ Related Documents
 -  `ESP32-S3 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf>`__
 -  `ESP32-S3-WROOM-1 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_en.pdf>`__
 -  `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-LCD-EV-Board-MB Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-MB_V1.4_20230321.pdf>`__
--  `ESP32-S3-LCD-EV-Board-MB PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-MB_V1.4_20230321.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-MB_V1.5_20231009.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-MB_V1.5_20231009.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB1 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB1 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB2 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.2_20230509.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB2 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.4_202230509.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB2 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.3_20231010.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-SUB2 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.5_20231010.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf>`__
 -  `TCA9554 Datasheet <https://www.ti.com/lit/gpn/tca9554>`__
--  `ES7210 Datasheet <http://www.everest-semi.com/pdf/ES7210%20PB.pdf>`__
--  `ES8311 Datasheet <http://www.everest-semi.com/pdf/ES8311%20PB.pdf>`__
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
