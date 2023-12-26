@@ -75,9 +75,9 @@ esp-dev-kits
 ============================   ===========================
        **ESP32 系列开发板**
 ----------------------------------------------------------
- |ESP32-LCDKit|_
+ |ESP32-DevKitC|_                |ESP32-LCDKit|_
 ----------------------------   ---------------------------
- `ESP32-LCDKit`_
+ `ESP32-DevKitC`_                `ESP32-LCDKit`_
 ============================   ===========================
 
 ============================   ===========================
@@ -128,6 +128,11 @@ esp-dev-kits
                   :height: 230px
                   :width: 400px
 .. _ESP32-LCDKit: esp32/esp32-lcdkit/index.html
+
+.. |ESP32-DevKitC| image:: ../_static/esp32-devkitc/esp32-devkitc-board.png
+                  :height: 230px
+                  :width: 400px
+.. _ESP32-DevKitC: esp32/esp32-devkitc/index.html
 
 .. |ESP32-S2-HMI-DevKit-1| image:: ../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-3d-v1.0.png
 .. _ESP32-S2-HMI-DevKit-1: esp32s2/esp32-s2-hmi-devkit-1/index.html
@@ -252,6 +257,7 @@ esp-dev-kits
    :caption: ESP32 系列开发板
 
    ESP32-LCDKit <esp32/esp32-lcdkit/index>
+   ESP32-DevKitC <esp32/esp32-devkitc/index>
 
 .. toctree::
    :hidden:
