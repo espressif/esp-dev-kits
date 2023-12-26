@@ -6,6 +6,17 @@ A GUI Demo designed for knob panel which has the voice playback function.
 
 Please first read the [User Guide](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c3/esp32-c3-lcdkit/user_guide.html) of the ESP32-C3-LCDkit to learn about its software and hardware information.
 
+The example can be directly flashed to the board by [ESP Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml).
+
+<a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml&app=knob_panel">
+    <img alt="Try it with ESP Launchpad" src="https://espressif.github.io/esp-launchpad/assets/try_with_launchpad.png" width="200" height="56">
+</a>
+
+### ESP-IDF Required
+
+* The ESP-IDF v5.0 or later is required to use this example. For using the branch of ESP-IDF, the latest branch `release/v5.1` is recommended. For using the tag of ESP-IDF, the tag `v5.1.2` or later is recommended.
+* Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html) to set up the development environment.
+
 ### Hardware Required
 
 * An ESP32-C3-LCDkit development board with subboard and speaker
@@ -34,6 +45,8 @@ See the [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/l
         2. short press "REST(SW3)" button
         3. release the knob
         4. upload program and reset
+* Program runtime failure
+    * Error message with `i2s_common: i2s_channel_disable : the channel has not been enabled yet`: This is a normal message, please ignore it.
 
 ## Technical support and feedback
 

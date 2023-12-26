@@ -13,7 +13,16 @@
 
 请首先阅读 `ESP32-S3-LCD-EV-Board` 的[用户指南](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board)，了解有关其软件和硬件信息的内容。
 
-* idf_version: >= release/v5.1
+本例程可通过 [ESP Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml) 直接烧录到开发板。
+
+<a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml&app=usb_msc_file_sys">
+    <img alt="Try it with ESP Launchpad" src="https://espressif.github.io/esp-launchpad/assets/try_with_launchpad.png" width="200" height="56">
+</a>
+
+### ESP-IDF 要求
+
+* 使用此示例需要 ESP-IDF v5.1.0 或更高版本。如果使用 ESP-IDF 的分支，推荐最新的 `release/v5.1` 分支。如果使用 ESP-IDF 的标签，请推荐使用 `v5.1.2` 或更高版本的标签。
+* 请按照 [ESP-IDF 编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html) 设置开发环境。
 
 ### 硬件需求
 
@@ -67,8 +76,8 @@
         4. 上传程序并重启。
 * 程序运行失败
     * 子板2屏幕（480x480）显示异常，背光亮起但没有显示图像：如果日志级别配置为"Debug"或更低，请同时增加日志输出的波特率（例如，2000000）。
+    * 启动过程中卡住：ESP32-S3-LCD-EV-Board 的最新版本（v1.5），搭载 `ESP32-S3-WROOM-1-N16R16V` 模块，目前不支持 PSRAM 120M DDR（Octal）功能。
     * 带有 `W (xxx) lcd_panel.io.3wire_spi: Delete but keep CS line inactive` 的警告消息：这是正常的消息，请忽略。
-    * 引导过程中卡住：只有搭载 `ESP32-S3-WROOM-1-N16R8` 芯片的开发板可以启用 PSRAM 120M DDR（Octal）功能。当使用搭载 `ESP32-S3-WROOM-1-N16R16V` 芯片的开发板时，请在 menuconfig 中将 PSRAM 配置设置为 80M DDR（Octal）。
 
 ## 技术支持和反馈
 

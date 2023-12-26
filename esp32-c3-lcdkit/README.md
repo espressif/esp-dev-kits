@@ -8,10 +8,10 @@ Note: There is an older-version board called **ESP32-C3-LCD-Ev-Board**. It is an
 
 ## Examples
 
-The following examples are developed under the ESP-IDF **release/v5.1** branch:
+The following examples are developed under the ESP-IDF **release/v5.1** branch and can be directly flashed to the board by [ESP Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml).
 
 * [knob_panel](./examples/knob_panel/)
 
 ## Released Bin
 
-* [Factory Bin](./factory/)
+* [Factory Bin](https://dl.espressif.com/AE/esp-dev-kits/knob_panel-esp32-c3-lcdkit-esp32c3-v5.1.bin) programmed with the [factory](./examples/knob_panel/) example.

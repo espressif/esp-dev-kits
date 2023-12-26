@@ -8,6 +8,17 @@ A GUI demo designed for control panel (480x480) which is usually used fo wall-mo
 
 Please first read the [User Guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board) of the ESP32-S3-LCD-EV-Board to learn about its software and hardware information.
 
+The example can be directly flashed to the board by [ESP Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml).
+
+<a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml&app=86box_demo">
+    <img alt="Try it with ESP Launchpad" src="https://espressif.github.io/esp-launchpad/assets/try_with_launchpad.png" width="200" height="56">
+</a>
+
+### ESP-IDF Required
+
+* The ESP-IDF v5.0.1 or later is required to use this example. For using the branch of ESP-IDF, the latest branch `release/v5.1` is recommended. For using the tag of ESP-IDF, the tag `v5.1.2` or later is recommended.
+* Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html) to set up the development environment.
+
 ### Hardware Required
 
 * An ESP32-S3-LCD-EV-Board development board with subboard2 (480x480)
@@ -16,7 +27,11 @@ Please first read the [User Guide](https://docs.espressif.com/projects/esp-dev-k
 
 ### Build and Flash
 
-1. The project configure PSRAM with 80M DDR(Octal) by default. **Only for boards with ESP32-S3-WROOM-1-N16R8 can enable PSRAM 120M DDR(Octal) feature**, see [here](../../README.md#psram-120m-ddr) for more details.
+1. The project configure PSRAM with 80M DDR(Octal) by default. **Only for the version v1.4 and older boards with ESP32-S3-WROOM-1-N16R8 can enable PSRAM 120M DDR(Octal) feature by the following commands**, see [here](../../README.md#psram-120m-ddr) for more details.
+    ```
+    rm -rf build sdkconfig sdkconfig.old
+    idf.py -D SDKCONFIG_DEFAULTS="sdkconfig.defaults;sdkconfig.defaults.psram_120m_ddr" reconfigure
+    ```
 2. Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
 (To exit the serial monitor, type ``Ctrl-]``.)
@@ -41,8 +56,9 @@ Run the example, you can achieve a smooth graphic operation experience, for exam
         4. upload program and reset
 * Program runtime failure
     * Abnormal display on the sub-board2 screen (480x480), backlight is on but there is no image displayed: If the log level is configured as "Debug" or lower, please also increase the baud rate of log output as well (e.g., 2000000).
+    * Get stuck in the boot process: The latest version (v1.5) of the ESP32-S3-LCD-EV-Board, equipped with the `ESP32-S3-WROOM-1-N16R16V` module, does not currently support the PSRAM 120M DDR(Octal) feature.
+    * Error message with `i2s_common: i2s_channel_disable : the channel has not been enabled yet`: This is a normal message, please ignore it.
     * Warning message with `W (xxx) lcd_panel.io.3wire_spi: Delete but keep CS line inactive`: This is a normal message, please ignore it.
-    * Get stuck in the boot process: Only for boards with `ESP32-S3-WROOM-1-N16R8` can enable PSRAM 120M DDR(Octal) feature. Please set the PSRAM configuration to 80M DDR(Octal) in the menuconfig when using boards with `ESP32-S3-WROOM-1-N16R16V`.
 
 ## Technical support and feedback
 
