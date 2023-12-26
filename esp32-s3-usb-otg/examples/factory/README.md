@@ -9,6 +9,12 @@ Please use ESP-IDF [release/v4.4](https://github.com/espressif/esp-idf/tree/rele
 
 ## How to use example
 
+The example can be directly flashed to the board by [ESP Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml).
+
+<a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml&app=factory">
+    <img alt="Try it with ESP Launchpad" src="https://espressif.github.io/esp-launchpad/assets/try_with_launchpad.png" width="200" height="56">
+</a>
+
 ### Hardware Required
 
 * An ESP32-S3-USB-OTG development board

@@ -12,5 +12,4 @@
 
 ## Released Bin
 
-* [Factory bin](./examples/factory/factory_bin)
-
+* [Factory Bin](https://dl.espressif.com/AE/esp-dev-kits/factory-esp32-s3-usb-otg-esp32s3-v4.4.bin) programmed with the [factory](./examples/factory/) example.
