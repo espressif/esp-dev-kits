@@ -116,7 +116,6 @@ The following table starts with the Yellow LED on the left, and introduces the m
 -  **Subboard:** ESP32-S3-USB-OTG-SUB mount the 1.3-inch LCD screen
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_sub.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 50%
    :figclass: align-center
@@ -226,7 +225,6 @@ There are three power supply methods for the development board:
    -  Set ``BOOST_EN`` to high level, and set the battery switch to ON. You should solder a 1-Serial lithium battery (3.7 V ~ 4.2 V) to the power solder joint reserved on the back of the motherboard first. This mode can supply power to the ``USB HOST`` interface at the same time. The battery interface description is as follows:
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/pic_board_battery_lable.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 65%
    :figclass: align-center
@@ -244,7 +242,6 @@ The ``USB HOST`` interface (Type-A female port) can supply power to the connecte
    2. Power is supplied through the lithium battery, and the 3.6 V ~ 4.2 V voltage of the lithium battery is boosted to 5 V through the Boost circuit. The working status of Boost IC can be controlled by BOOST_EN/GPIO13, set high to enable Boost.
 
 .. figure:: ../../../_static/esp32-s3-usb-otg/sch_boost_circuit.png
-   :align: center
    :alt: ESP32-S3-USB-OTG
    :scale: 50%
    :figclass: align-center
@@ -355,7 +352,7 @@ Pin Layout
      - Description
    * - 1
      - GPIO18
-     - USB_SEL: Used to switch the USB interface. When high level, the USB_HOST interface is enabled. When low level, the USB_DEV interface is enabled.
+     - USB_SEL: Used to switch the USB interface. When high level, the USB_HOST interface is enabled. When low level (default), the USB_DEV interface is enabled.
    * - 2
      - GPIO19
      - Connect with USB D-.

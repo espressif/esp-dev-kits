@@ -352,7 +352,7 @@ GPIO 分配
      - 说明
    * - 1
      - GPIO18
-     - USB_SEL：用于切换 USB 接口，低电平时候，USB_HOST 接口使能。高电平时候，USB_DEV 接口使能。
+     - USB_SEL：用于切换 USB 接口，高电平时，USB_HOST 接口使能。低电平时（默认），USB_DEV 接口使能。
    * - 2
      - GPIO19
      - 与 USB_D- 接口相连。
