@@ -10,7 +10,7 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 
 板上模组的大部分管脚均已引出至开发板两侧排针，开发人员可根据实际需求，轻松通过跳线连接多种外围设备，同时也可将开发板插在面包板上使用。
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45-20230303.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45.png
     :align: center
     :alt: ESP32-H2-DevKitM-1（板载 ESP32-H2-MINI-1 模组）
 
@@ -35,7 +35,7 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 
 .. _user-guide-H2-devkitm-1-board-front:
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_callouts_20230303.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_callouts.png
     :align: center
     :alt: ESP32-H2-DevKitM-1 - 正面
 
@@ -71,7 +71,10 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
      - 可寻址 RGB 发光二极管，由 GPIO8 驱动。
    * - J5
      - 用于测量电流，详见章节 `测量电流`_ 。
+   * - 32.768 kHz 晶振 [A]_
+     - ESP32-H2 支持外置 32.768 kHz 作为低功耗时钟。使用外部低功耗时钟源是为了使时间更准确，从而降低平均功耗，但对于功能没有任何影响。
 
+.. [A] 生产工单号为 PW-2024-02-0362 之前的开发板默认不上件 32.768 kHz 晶振。
 
 开始开发应用
 -------------
@@ -111,7 +114,7 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 
    * - 订购代码
      - 搭载模组
-     - Flash [A]_
+     - Flash [B]_
      - PSRAM
      - 天线
    * - ESP32-H2-DevKitM-1-N4
@@ -125,7 +128,7 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
      - 0 MB
      - 外部天线连接器
 
-.. [A] flash 封装在芯片内部。
+.. [B] flash 封装在芯片内部。
 
 零售订单
 ^^^^^^^^
@@ -151,7 +154,7 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 
 ESP32-H2-DevKitM-1 的主要组件和连接方式如下图所示。
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/ESP32-H2-DevKitM-1_v1.0_SystemBlock_20220610.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.0_systemblock.png
     :align: center
     :alt: ESP32-H2-DevKitM-1
     :width: 700
@@ -168,6 +171,7 @@ ESP32-H2-DevKitM-1 的主要组件和连接方式如下图所示。
 - 5V 和 G (GND) 排针供电
 - 3V3 和 G (GND) 排针供电
 
+.. _user-guide-h2-devkitm-1-current:
 
 测量电流
 ^^^^^^^^
@@ -242,7 +246,7 @@ J3
 管脚布局
 ^^^^^^^^
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-v1.2_pinlayout_20230911.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-v1.2_pinlayout.png
     :align: center
     :scale: 42%
     :alt: ESP32-H2-DevKitM-1
@@ -253,7 +257,11 @@ J3
 硬件版本
 ============
 
-无历史版本。
+- 生产工单号为 PW-2024-02-0362 及之后（2024 年 2 月当月或之后）的开发板，32.768 KHz 晶振默认贴片，同时此处与周围排针连接的串联电阻更新为不贴片。为优化电路，UART_RXD 上的串联电阻 R7 更新为 470 Ω。
+
+.. 注解::
+
+  生产工单号可在批量订单大纸板箱包装的物料标签中找到。
 
 
 相关文档
@@ -261,9 +269,10 @@ J3
 
 - `ESP32-H2 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-H2-MINI-1/1U 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_cn.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 原理图 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics_20230306.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 PCB 布局图 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout_20221122.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 尺寸图 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension_20230303.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 尺寸图源文件 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension_20230303.dxf>`_ (DXF)
+- `ESP32-H2-DevKitM-1 原理图 v1.3  <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.3_schematics.pdf>`_ (PDF) - 适用于 PW-2024-02-0362 及之后的开发板
+- `ESP32-H2-DevKitM-1 原理图 v1.2  <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics.pdf>`_ (PDF) - 适用于 PW-2024-02-0362 之前的开发板
+- `ESP32-H2-DevKitM-1 PCB 布局图 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf>`_ (PDF)
+- `ESP32-H2-DevKitM-1 尺寸图 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.pdf>`_ (PDF)
+- `ESP32-H2-DevKitM-1 尺寸图源文件 <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.dxf>`_ (DXF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
