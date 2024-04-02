@@ -1,4 +1,4 @@
-set(COMPONENT_SRCS "main.c")
+set(COMPONENT_SRCS "main.c" INCLUDE_DIRS include)
 
 register_component()
 
