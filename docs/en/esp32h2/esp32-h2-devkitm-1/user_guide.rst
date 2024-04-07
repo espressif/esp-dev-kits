@@ -10,7 +10,7 @@ ESP32-H2-DevKitM-1 is an entry-level development board based on Bluetooth® Low 
 
 Most of the I/O pins on the ESP32-H2-MINI-1/1U module are broken out to the pin headers on both sides of this board for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-H2-DevKitM-1 on a breadboard.
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45-20230303.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45.png
     :align: center
     :alt: ESP32-H2-DevKitM-1 (with ESP32-H2-MINI-1 on board)
 
@@ -35,7 +35,7 @@ Description of Components
 
 .. _user-guide-H2-devkitm-1-board-front:
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_callouts_20230303.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_callouts.png
     :align: center
     :alt: ESP32-H2-DevKitM-1 - Front
 
@@ -70,8 +70,11 @@ The description of components starts from the ESP32-H2-MINI-1/1U module on the l
    * - RGB LED
      - Addressable RGB LED, driven by GPIO8.
    * - J5
-     - Used for current measurement. See details in Section :ref:`user-guide-c6-devkitc-1-v1-current`.
+     - Used for current measurement. See details in Section :ref:`user-guide-h2-devkitm-1-current`.
+   * - 32.768 kHz Crystal [A]_
+     - ESP32-H2 supports an external 32.768 kHz crystal to act as the Low-Power clock. This external Low-Power clock source enhances timing accuracy and consequently decreases average power consumption, without impacting functionality.   
 
+.. [A] Boards with the PW number before PW-2024-02-0362 (before February 2024) does not populate a 32.768 kHz crystal by default.
 
 Start Application Development
 -----------------------------
@@ -111,7 +114,7 @@ The development board has a variety of variants to choose from, as shown in the 
 
    * - Ordering Code
      - On-board Module
-     - Flash [A]_
+     - Flash [B]_
      - PSRAM
      - Antenna
    * - ESP32-H2-DevKitM-1-N4
@@ -125,7 +128,7 @@ The development board has a variety of variants to choose from, as shown in the 
      - 0 MB
      - External antenna connector
 
-.. [A] The flash is integrated in the chip's package.
+.. [B] The flash is integrated in the chip's package.
 
 Retail Orders
 ^^^^^^^^^^^^^
@@ -151,7 +154,7 @@ Block Diagram
 
 The block diagram below shows the components of ESP32-H2-DevKitM-1 and their interconnections.
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/ESP32-H2-DevKitM-1_v1.0_SystemBlock_20220610.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.0_systemblock.png
     :align: center
     :alt: ESP32-H2-DevKitM-1
     :width: 650
@@ -168,6 +171,7 @@ There are three mutually exclusive ways to provide power to the board:
 - 5V and GND pin headers
 - 3V3 and GND pin headers
 
+.. _user-guide-h2-devkitm-1-current:
 
 Current Measurement
 -------------------
@@ -242,7 +246,7 @@ For more information about pin description, please see `ESP32-H2 Datasheet`_.
 Pin Layout
 ^^^^^^^^^^^
 
-.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-v1.2_pinlayout_20230911.png
+.. figure:: ../../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-v1.2_pinlayout.png
     :align: center
     :scale: 42%
     :alt: ESP32-H2-DevKitM-1
@@ -253,17 +257,21 @@ Pin Layout
 Hardware Revision Details
 =========================
 
-No previous versions available.
+- For boards with the PW number of and after PW-2024-02-0362 (on and after February 2024), the 32.768 kHz crystal is populated by default, while the series resistor connected here to the surrounding pins is updated to not populated. To optimize the circuit, the series resistor R7 on the UART_RXD has been updated to 470 Ω.
 
+.. note::
+
+  The PW number can be found in the product label on the large cardboard boxes for wholesale orders.
 
 Related Documents
 =================
 
 - `ESP32-H2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_en.pdf>`_ (PDF)
 - `ESP32-H2-MINI-1/1U Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 Schematics <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics_20230306.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 PCB Layout <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout_20221122.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 Dimensions <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension_20230303.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 Dimensions source file <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension_20230303.dxf>`_ (DXF)
+- `ESP32-H2-DevKitM-1 Schematics v1.3 (Applies to boards of and after PW-2024-02-0362) <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.3_schematics.pdf>`_ (PDF)
+- `ESP32-H2-DevKitM-1 Schematics v1.2 (Applies to boards before PW-2024-02-0362) <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics.pdf>`_ (PDF)
+- `ESP32-H2-DevKitM-1 PCB Layout <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf>`_ (PDF)
+- `ESP32-H2-DevKitM-1 Dimensions <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.pdf>`_ (PDF)
+- `ESP32-H2-DevKitM-1 Dimensions source file <../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.dxf>`_ (DXF)
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
