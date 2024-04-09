@@ -21,12 +21,18 @@
 #include "lcd.h"
 #include "esp_camera.h"
 #include "board.h"
+#include "fonts.h"
 
 static const char *TAG = "main";
 
 #define IMAGE_MAX_SIZE (100 * 1024)/**< The maximum size of a single picture in the boot animation */
 #define IMAGE_WIDTH    320 /*!< width of jpeg file */
-#define IMAGE_HIGHT    240 /*!< height of jpeg file */
+#define IMAGE_HEIGHT    240 /*!< height of jpeg file */
+
+#define CHAR_WIDTH 8
+#define CHAR_HEIGHT 8
+#define FONT_WIDTH 8
+#define CHAR_SPACING 4
 
 /**
  * @brief rgb -> rgb565
@@ -59,7 +65,7 @@ void esp_photo_display(void)
     size_t total = 0, used = 0;
     ESP_ERROR_CHECK(esp_spiffs_info(NULL, &total, &used));
 
-    uint8_t *rgb565 = malloc(IMAGE_WIDTH * IMAGE_HIGHT * 2);
+    uint8_t *rgb565 = malloc(IMAGE_WIDTH * IMAGE_HEIGHT * 2);
     if (NULL == rgb565) {
         ESP_LOGE(TAG, "can't alloc memory for rgb565 buffer");
         return;
@@ -79,8 +85,8 @@ void esp_photo_display(void)
     fclose(fd);
 
     jpg2rgb565(buf, read_bytes, rgb565, JPG_SCALE_NONE);
-    lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HIGHT - 1);
-    lcd_write_data(rgb565, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
+    lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HEIGHT - 1);
+    lcd_write_data(rgb565, IMAGE_WIDTH * IMAGE_HEIGHT * sizeof(uint16_t));
     free(buf);
     free(rgb565);
     vTaskDelay(2000 / portTICK_RATE_MS);
@@ -89,12 +95,12 @@ void esp_photo_display(void)
 void esp_color_display(void)
 {
     ESP_LOGI(TAG, "LCD color test....");
-    uint16_t *data_buf = (uint16_t *)heap_caps_calloc(IMAGE_WIDTH * IMAGE_HIGHT, sizeof(uint16_t), MALLOC_CAP_SPIRAM);
+    uint16_t *data_buf = (uint16_t *)heap_caps_calloc(IMAGE_WIDTH * IMAGE_HEIGHT, sizeof(uint16_t), MALLOC_CAP_SPIRAM);
 
     while (1) {
         uint16_t color = color565(0, 0, 0);
 
-        for (int r = 0,  j = 0; j < IMAGE_HIGHT; j++) {
+        for (int r = 0,  j = 0; j < IMAGE_HEIGHT; j++) {
             if (j % 8 == 0) {
                 color = color565(r++, 0, 0);
             }
@@ -104,11 +110,11 @@ void esp_color_display(void)
             }
         }
 
-        lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HIGHT - 1);
-        lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
+        lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HEIGHT - 1);
+        lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HEIGHT * sizeof(uint16_t));
         vTaskDelay(2000 / portTICK_RATE_MS);
 
-        for (int g = 0,  j = 0; j < IMAGE_HIGHT; j++) {
+        for (int g = 0,  j = 0; j < IMAGE_HEIGHT; j++) {
             if (j % 8 == 0) {
                 color = color565(0, g++, 0);
             }
@@ -118,11 +124,11 @@ void esp_color_display(void)
             }
         }
 
-        lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HIGHT - 1);
-        lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
+        lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HEIGHT - 1);
+        lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HEIGHT * sizeof(uint16_t));
         vTaskDelay(2000 / portTICK_RATE_MS);
 
-        for (int b = 0,  j = 0; j < IMAGE_HIGHT; j++) {
+        for (int b = 0,  j = 0; j < IMAGE_HEIGHT; j++) {
             if (j % 8 == 0) {
                 color = color565(0, 0, b++);
             }
@@ -132,11 +138,91 @@ void esp_color_display(void)
             }
         }
 
-        lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HIGHT - 1);
-        lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HIGHT * sizeof(uint16_t));
+        lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HEIGHT - 1);
+        lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HEIGHT * sizeof(uint16_t));
         vTaskDelay(2000 / portTICK_RATE_MS);
 
     }
+}
+
+void drawChar(uint16_t *data_buf, int x, int y, char character, uint16_t color) {
+    // Convert to uppercase
+    character = toupper(character);
+
+    // Check for valid character range
+    if (character >= 'A' && character <= 'Z') {
+        int charIndex = character - 'A';
+        for (int col = 0; col < CHAR_WIDTH; col++) {
+            for (int row = 0; row < CHAR_HEIGHT; row++) {
+                if ((fontData[charIndex][col] >> row) & 0x01) {
+                    data_buf[(x + col) + IMAGE_WIDTH * (y + row)] = color;
+                }
+            }
+        }
+    }
+}
+
+void display_characters_digits() {
+    // Allocate buffer for LCD data
+    uint16_t *data_buf = (uint16_t *)malloc(IMAGE_WIDTH * IMAGE_HEIGHT * sizeof(uint16_t));
+
+    // Check if memory allocation was successful
+    if (data_buf == NULL) {
+        ESP_LOGE(TAG, "Memory allocation failed");
+        return; // Exit the function if allocation fails
+    }
+
+    // Clear buffer with background color
+    for (int j = 0; j < IMAGE_HEIGHT; j++) {
+        for (int i = 0; i < IMAGE_WIDTH; i++) {
+            // White background
+            data_buf[i + IMAGE_WIDTH * j] = color565(255, 255, 255);
+        }
+    }
+
+    // Display characters using fontDataMap
+    int x = 10;
+    int y = 230;
+
+    const char characters[] = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
+    for (size_t i = 0; i < sizeof(characters) - 1; ++i) {
+        char c = characters[i];
+        const uint8_t* charData = getCharData(c);
+        for (int col = 0; col < 5; col++) {
+            for (int row = 0; row < 7; row++) {
+                if ((charData[col] >> row) & 0x01) {
+                    data_buf[(x + col) + IMAGE_WIDTH * (y + row)] = color565(0, 0, 0); // Black color
+                }
+            }
+        }
+        y -= 6;
+    }
+
+    // Display digits using fontDataMap
+    x = 40;
+    y = 230;
+
+    const char digits[] = "0123456789";
+    for (size_t i = 0; i < sizeof(digits) - 1; ++i) {
+        char c = digits[i];
+        const uint8_t* charData = getCharData(c);
+        for (int col = 0; col < 5; col++) {
+            for (int row = 0; row < 7; row++) {
+                if ((charData[col] >> row) & 0x01) {
+                    data_buf[(x + col) + IMAGE_WIDTH * (y + row)] = color565(0, 0, 0); // Black color
+                }
+            }
+        }
+        y -= 6;
+    }
+
+    // Display the data on the LCD
+    lcd_set_index(0, 0, IMAGE_WIDTH - 1, IMAGE_HEIGHT - 1);
+    lcd_write_data((uint8_t *)data_buf, IMAGE_WIDTH * IMAGE_HEIGHT * sizeof(uint16_t));
+
+    // Free the allocated memory
+    free(data_buf);
+    vTaskDelay(4000 / portTICK_RATE_MS);
 }
 
 void app_main()
@@ -161,6 +247,8 @@ void app_main()
 
     lcd_init(&lcd_config);
 
+    /*Display whole characters and digits*/
+    display_characters_digits();
     /*< Show a picture */
     esp_photo_display();
     /*< RGB display */
