@@ -99,8 +99,8 @@ static void wifi_scan(void)
     app_wifi_state_set(WIFI_SCAN_BUSY);
 
     esp_err_t ret = esp_wifi_scan_start(NULL, true);
-    ESP_ERROR_CHECK(esp_wifi_scan_get_ap_records(&number, ap_info));
     ESP_ERROR_CHECK(esp_wifi_scan_get_ap_num(&ap_count));
+    ESP_ERROR_CHECK(esp_wifi_scan_get_ap_records(&number, ap_info));
     ESP_LOGI(TAG, "Total APs scanned = %u, ret:%d", ap_count, ret);
 
     for (int i = 0; (i < DEFAULT_SCAN_LIST_SIZE) && (i < ap_count); i++) {
