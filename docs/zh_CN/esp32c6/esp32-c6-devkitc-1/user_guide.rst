@@ -236,6 +236,7 @@ ESP32-C6-DevKitC-1 v1.2
 - 生产工单号为 PW-2023-02-0139 及之后（2023 年 2 月当月或之后）的开发板，J5 排针由直针改为弯针。
 - 生产工单号为 PW-2023-07-XXXX 及之后（2023 年 7 月当月或之后）的开发板，ADC 由两点校准改为多点校准，具体量程和精度请参考 `ESP32-C6 技术规格书`_ > 章节 ADC 特性。早于该日期的开发板，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`_ 根据批次提供实际量程和精度。
 - 生产工单号为 PW-2023-07-0440 及之后（2023 年 7 月当月或之后）的开发板，为优化 WS2812 驱动电路，R29 电阻值由 4.7 kΩ 更新为 10 kΩ，R6 电阻值由 10 kΩ 更新为 3.3 kΩ，详见 `ESP32-C6-DevKitC-1 原理图 v1.3`_。
+- 生产工单号为 PW-2024-03-0595 和 PW-2024-03-0921（2024 年 3 月当月或之后）的开发板，为优化电路，UART_RXD 上的电阻 R7 电阻值由 0 Ω 更新为 470 Ω，详见 `ESP32-C6-DevKitC-1 原理图 v1.4`_。
 
 .. 注解::
 
@@ -250,6 +251,7 @@ ESP32-C6-DevKitC-1 v1.1
 ========
 * `ESP32-C6 技术规格书`_ (PDF)
 * `ESP32-C6-WROOM-1 技术规格书`_ (PDF)
+* `ESP32-C6-DevKitC-1 原理图 v1.4`_ (PDF) - 适用于 PW-2024-03-0595、PW-2024-03-0921 及之后的开发板
 * `ESP32-C6-DevKitC-1 原理图 v1.3`_ (PDF) - 适用于 PW-2023-07-0440 及之后的开发板
 * `ESP32-C6-DevKitC-1 原理图 v1.2`_ (PDF) - 适用于 PW-2023-07-0440 之前的开发板
 * `ESP32-C6-DevKitC-1 PCB 布局图 <../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-pcb-layout_v1.2.pdf>`_ (PDF)
@@ -260,6 +262,7 @@ ESP32-C6-DevKitC-1 v1.1
 
 .. _ESP32-C6 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_cn.pdf
 .. _ESP32-C6-WROOM-1 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_cn.pdf
+.. _ESP32-C6-DevKitC-1 原理图 v1.4: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.4.pdf
 .. _ESP32-C6-DevKitC-1 原理图 v1.3: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.3.pdf
 .. _ESP32-C6-DevKitC-1 原理图 v1.2: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.2.pdf
 
