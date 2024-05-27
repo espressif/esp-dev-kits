@@ -59,9 +59,9 @@ Supported Development Boards
 ============================   ===========================
        **ESP32-S2 Development Boards**
 ----------------------------------------------------------
- |ESP32-S2-Kaluga-1|_
+ |ESP32-S2-DevKitC-1|_            |ESP32-S2-DevKitM-1|_
 ----------------------------   ---------------------------
- `ESP32-S2-Kaluga-1`_
+ `ESP32-S2-DevKitC-1`_            `ESP32-S2-DevKitM-1`_
 ============================   ===========================
 
 ============================   ===========================
@@ -98,8 +98,17 @@ Supported Development Boards
  |ESP32-MeshKit-Sense|_         |ESP32-S2-Touch-DevKit-1|_
 ----------------------------   ---------------------------
  `ESP32-MeshKit-Sense`_         `ESP32-S2-Touch-DevKit-1`_
+----------------------------   ---------------------------
+ |ESP32-S2-Kaluga-1|_
+----------------------------   ---------------------------
+ `ESP32-S2-Kaluga-1`_
 ============================   ===========================
 
+.. |ESP32-S2-DevKitC-1| image:: ../_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-isometric.png
+.. _ESP32-S2-DevKitC-1: esp32s2/esp32-s2-devkitc-1/index.html
+
+.. |ESP32-S2-DevKitM-1| image:: ../_static/esp32-s2-devkitm-1/esp32-s2-devkitm-1-v1-isometric.png
+.. _ESP32-S2-DevKitM-1: esp32s2/esp32-s2-devkitm-1/index.html
 
 .. |ESP32-Sense-Kit| image:: ../_static/esp32-sense-kit/touch_eb_overview.jpg
 .. _ESP32-Sense-Kit: esp32/esp32-sense-kit/index.html
@@ -214,7 +223,8 @@ Related
    :hidden:
    :caption: ESP32-S2 Boards
 
-   ESP32-S2-Kaluga-1 <esp32s2/esp32-s2-kaluga-1/index>
+   ESP32-S2-DevKitC-1 <esp32s2/esp32-s2-devkitc-1/index>
+   ESP32-S2-DevKitM-1 <esp32s2/esp32-s2-devkitm-1/index>
 
 .. toctree::
    :hidden:
@@ -239,6 +249,7 @@ Related
    ESP32-Sense-Kit <esp32/esp32-sense-kit/index>
    ESP32-S2-Touch-Devkit-1 <esp32s2/esp32-s2-touch-devkit-1/index>
    ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
+   ESP32-S2-Kaluga-1 <esp32s2/esp32-s2-kaluga-1/index>
 
 .. toctree::
    :hidden:
