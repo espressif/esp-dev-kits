@@ -1,16 +1,8 @@
-// Copyright 2019-2021 Espressif Systems (Shanghai) PTE LTD
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/*
+ * SPDX-FileCopyrightText: 2019-2024 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
 #include <stdio.h>
 #include <string.h>
@@ -32,7 +24,7 @@
 #include "st7789.h"
 #include "screen_driver.h"
 #include "display_printf.h"
-#include "uvc_stream.h"
+#include "usb_stream.h"
 #include "jpegd2.h"
 #include "bsp_esp32_s3_usb_otg_ev.h"
 #include "app.h"
@@ -59,46 +51,23 @@ users need to get params from camera descriptors from PC side,
 eg. run `lsusb -v` in linux,
 then hardcode the related MACROS below
 */
-#define DESCRIPTOR_CONFIGURATION_INDEX 1
-#define DESCRIPTOR_FORMAT_MJPEG_INDEX  2
-
-#define DESCRIPTOR_FRAME_640_480_INDEX 1
-#define DESCRIPTOR_FRAME_480_320_INDEX 2
-#define DESCRIPTOR_FRAME_352_288_INDEX 3
-#define DESCRIPTOR_FRAME_320_240_INDEX 4
-#define DESCRIPTOR_FRAME_160_120_INDEX 5
-
 #define DESCRIPTOR_FRAME_5FPS_INTERVAL  2000000
 #define DESCRIPTOR_FRAME_10FPS_INTERVAL 1000000
 #define DESCRIPTOR_FRAME_15FPS_INTERVAL 666666
 #define DESCRIPTOR_FRAME_30FPS_INTERVAL 333333
-
-#define DESCRIPTOR_STREAM_INTERFACE_INDEX   1
-#define DESCRIPTOR_STREAM_INTERFACE_ALT_MPS_128 1
-#define DESCRIPTOR_STREAM_INTERFACE_ALT_MPS_256 2
-#define DESCRIPTOR_STREAM_INTERFACE_ALT_MPS_512 3
-#define DESCRIPTOR_STREAM_INTERFACE_ALT_MPS_600 4
-
-#define DESCRIPTOR_STREAM_ISOC_ENDPOINT_ADDR 0x81
 
 /* Demo Related MACROS */
 #ifdef CONFIG_SIZE_320_240
 #define DEMO_FRAME_WIDTH 320
 #define DEMO_FRAME_HEIGHT 240
 #define DEMO_XFER_BUFFER_SIZE (35 * 1024) //Double buffer
-#define DEMO_FRAME_INDEX DESCRIPTOR_FRAME_320_240_INDEX
 #define DEMO_FRAME_INTERVAL DESCRIPTOR_FRAME_15FPS_INTERVAL
 #elif CONFIG_SIZE_160_120
 #define DEMO_FRAME_WIDTH 160
 #define DEMO_FRAME_HEIGHT 120
 #define DEMO_XFER_BUFFER_SIZE (20 * 1024) //Double buffer
-#define DEMO_FRAME_INDEX DESCRIPTOR_FRAME_160_120_INDEX
 #define DEMO_FRAME_INTERVAL DESCRIPTOR_FRAME_30FPS_INTERVAL
 #endif
-
-/* max packet size of esp32-s2 is 1*512, bigger is not supported*/
-#define DEMO_ISOC_EP_MPS 512
-#define DEMO_ISOC_INTERFACE_ALT DESCRIPTOR_STREAM_INTERFACE_ALT_MPS_512
 
 #ifdef CONFIG_BOOT_ANIMATION
 #define BOOT_ANIMATION_MAX_SIZE (45 * 1024)
@@ -113,8 +82,8 @@ static bool s_lcd_inited = false;
 static TaskHandle_t s_task_hdl = NULL;
 QueueHandle_t g_usb_camera_queue_hdl = NULL;
 
-#define EVENT_TASK_KILL_BIT_0	( 1 << 0 )
-#define EVENT_TASK_KILLED_BIT_1	( 1 << 1 )
+#define EVENT_TASK_KILL_BIT_0   ( 1 << 0 )
+#define EVENT_TASK_KILLED_BIT_1 ( 1 << 1 )
 static EventGroupHandle_t s_event_group_hdl = NULL;
 
 static void *_malloc(size_t size)
@@ -138,17 +107,17 @@ static void frame_cb(uvc_frame_t *frame, void *ptr)
     assert(ptr);
     uint8_t *lcd_buffer = (uint8_t *)(ptr);
     ESP_LOGV(TAG, "callback! frame_format = %d, seq = %u, width = %d, height = %d, length = %u, ptr = %d",
-            frame->frame_format, frame->sequence, frame->width, frame->height, frame->data_bytes, (int) ptr);
+             frame->frame_format, frame->sequence, frame->width, frame->height, frame->data_bytes, (int) ptr);
 
     switch (frame->frame_format) {
-        case UVC_FRAME_FORMAT_MJPEG:
-            mjpegdraw(frame->data, frame->data_bytes, lcd_buffer, CONFIG_LCD_BUF_WIDTH, CONFIG_LCD_BUF_HIGHT, board_lcd_draw_image, 240, 240);
-            vTaskDelay(10 / portTICK_PERIOD_MS); /* add delay to free cpu to other tasks */
-            break;
-        default:
-            ESP_LOGW(TAG, "Format not supported");
-            assert(0);
-            break;
+    case UVC_FRAME_FORMAT_MJPEG:
+        mjpegdraw(frame->data, frame->data_bytes, lcd_buffer, CONFIG_LCD_BUF_WIDTH, CONFIG_LCD_BUF_HIGHT, board_lcd_draw_image, 240, 240);
+        // vTaskDelay(10 / portTICK_PERIOD_MS); /* add delay to free cpu to other tasks */
+        break;
+    default:
+        ESP_LOGW(TAG, "Format not supported");
+        assert(0);
+        break;
     }
 }
 
@@ -222,22 +191,16 @@ void usb_camera_task(void *pvParameters)
     users need to get params from camera descriptors from PC side,
     eg. run `lsusb -v` in linux, then modify related MACROS */
     uvc_config_t uvc_config = {
-        .dev_speed = USB_SPEED_FULL,
-        .configuration = DESCRIPTOR_CONFIGURATION_INDEX,
-        .format_index = DESCRIPTOR_FORMAT_MJPEG_INDEX,
         .frame_width = DEMO_FRAME_WIDTH,
         .frame_height = DEMO_FRAME_HEIGHT,
-        .frame_index = DEMO_FRAME_INDEX,
         .frame_interval = DEMO_FRAME_INTERVAL,
-        .interface = DESCRIPTOR_STREAM_INTERFACE_INDEX,
-        .interface_alt = DEMO_ISOC_INTERFACE_ALT,
-        .isoc_ep_addr = DESCRIPTOR_STREAM_ISOC_ENDPOINT_ADDR,
-        .isoc_ep_mps = DEMO_ISOC_EP_MPS,
         .xfer_buffer_size = DEMO_XFER_BUFFER_SIZE,
         .xfer_buffer_a = xfer_buffer_a,
         .xfer_buffer_b = xfer_buffer_b,
         .frame_buffer_size = DEMO_XFER_BUFFER_SIZE,
         .frame_buffer = frame_buffer,
+        .frame_cb = frame_cb,
+        .frame_cb_arg = (void *)(lcd_buffer),
     };
 
     /* pre-config UVC driver with params from known USB Camera Descriptors*/
@@ -248,29 +211,31 @@ void usb_camera_task(void *pvParameters)
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "uvc streaming config failed");
     } else {
-        uvc_streaming_start(frame_cb, (void *)(lcd_buffer));
+        usb_streaming_start();
     }
 
     hmi_event_t current_event;
     while (!(xEventGroupGetBits(s_event_group_hdl) & EVENT_TASK_KILL_BIT_0)) {
-        if(xQueueReceive(g_usb_camera_queue_hdl, &current_event, portMAX_DELAY) != pdTRUE) continue;
+        if (xQueueReceive(g_usb_camera_queue_hdl, &current_event, portMAX_DELAY) != pdTRUE) {
+            continue;
+        }
         switch (current_event.id) {
-            case BTN_CLICK_MENU:
-                break;
-            case BTN_CLICK_UP:
-                break;
-            case BTN_CLICK_DOWN:
-                break;
-            case BTN_CLICK_OK:
-                break;
-            default:
-                break;
+        case BTN_CLICK_MENU:
+            break;
+        case BTN_CLICK_UP:
+            break;
+        case BTN_CLICK_DOWN:
+            break;
+        case BTN_CLICK_OK:
+            break;
+        default:
+            break;
         }
     };
     QueueHandle_t queue_hdl = g_usb_camera_queue_hdl;
     g_usb_camera_queue_hdl = NULL;
     vQueueDelete(queue_hdl);
-    uvc_streaming_stop();
+    usb_streaming_stop();
     free(lcd_buffer);
     free(xfer_buffer_a);
     free(xfer_buffer_b);
@@ -286,7 +251,9 @@ void usb_camera_task(void *pvParameters)
 
 void usb_camera_init(void)
 {
-    if (s_task_hdl != NULL) return;
+    if (s_task_hdl != NULL) {
+        return;
+    }
     s_event_group_hdl = xEventGroupCreate();
     xEventGroupClearBits(s_event_group_hdl, EVENT_TASK_KILL_BIT_0 | EVENT_TASK_KILLED_BIT_1);
     xTaskCreate(usb_camera_task, "camera", 4096, (void *)s_event_group_hdl, TASK_APP_PRIO_MIN, &s_task_hdl);
@@ -295,7 +262,9 @@ void usb_camera_init(void)
 
 void usb_camera_deinit(void)
 {
-    if (s_task_hdl == NULL) return;
+    if (s_task_hdl == NULL) {
+        return;
+    }
     xEventGroupSetBits(s_event_group_hdl, EVENT_TASK_KILL_BIT_0);
     xEventGroupWaitBits(s_event_group_hdl, EVENT_TASK_KILLED_BIT_1, true, true, portMAX_DELAY);
     vEventGroupDelete(s_event_group_hdl);
