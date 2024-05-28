@@ -3,7 +3,7 @@ ESP32-S3-USB-OTG
 
 :link_to_translation:`en:[English]`
 
-ESP32-S3-USB-OTG 是一款侧重于 USB-OTG 功能验证和应用开发的开发板，基于 ESP32-S3 SoC，支持 Wi-Fi 和 BLE 5.0 无线功能，支持 USB 主机和 USB 从机功能。可用于开发无线存储设备，Wi-Fi 网卡，LTE MiFi，多媒体设备，虚拟键鼠等应用。该开发板具有以下特性：
+ESP32-S3-USB-OTG 是一款侧重于 USB-OTG 功能验证和应用开发的开发板，基于 ESP32-S3 SoC，支持 Wi-Fi 和 BLE 5.0 无线功能，支持 USB 主机和 USB 从机功能。可用于开发无线存储设备、Wi-Fi 网卡、LTE MiFi、多媒体设备、虚拟键鼠等应用。该开发板具有以下特性：
 
 -  板载 ESP32-S3-MINI-1-N8 模组，内置 8 MB flash
 -  板载 USB Type-A 主机和从机接口，内置接口切换电路
