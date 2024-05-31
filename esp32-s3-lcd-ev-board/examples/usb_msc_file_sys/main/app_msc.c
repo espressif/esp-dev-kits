@@ -15,7 +15,6 @@
 #include "msc_host_vfs.h"
 #include "esp_private/usb_phy.h"
 #include "usb/usb_host.h"
-#include "hal/usb_hal.h"
 #include "app_ui_control.h"
 
 static const char *TAG = "app_msc";
@@ -141,19 +140,19 @@ esp_err_t msc_init(void)
     usb_flags = xEventGroupCreate();
     assert(usb_flags);
 
-    const usb_host_config_t host_config = { 
+    const usb_host_config_t host_config = {
         .skip_phy_setup = false,
         .intr_flags = 0,
     };
     ESP_ERROR_CHECK(usb_host_install(&host_config));
-    
+
     task_created = xTaskCreate(handle_usb_events, "usb_events", 2048, NULL, 2, NULL);
     assert(task_created);
 
     const msc_host_driver_config_t msc_config = {
         .create_backround_task = true,
         .task_priority = 5,
-        .stack_size = 3*1024,
+        .stack_size = 3 * 1024,
         .core_id = 1,
         .callback = msc_event_cb,
     };

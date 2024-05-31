@@ -1,7 +1,7 @@
 ## IDF Component Manager Manifest File
 dependencies:
   chmorgan/esp-audio-player: "^1.0.5"
-  espressif/esp32_s3_lcd_ev_board: "^2"
+  espressif/esp32_s3_lcd_ev_board: "2.1.*"
   usb_host_msc: "1.0.4"
   lvgl/lvgl: "~8.3.0"
   idf: ">=5.1.0"
