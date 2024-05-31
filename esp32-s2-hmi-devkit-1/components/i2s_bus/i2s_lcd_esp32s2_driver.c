@@ -1,16 +1,8 @@
-// Copyright 2015-2020 Espressif Systems (Shanghai) PTE LTD
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/*
+ * SPDX-FileCopyrightText: 2015-2024 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
 #include "sdkconfig.h"
 #if CONFIG_IDF_TARGET_ESP32S2
@@ -97,7 +89,7 @@ static void lcd_dma_set_int(lcd_cam_obj_t *lcd_cam_obj)
         lcd_cam_obj->lcd.dma[x].empty = (uint32_t)&lcd_cam_obj->lcd.dma[(x + 1) % lcd_cam_obj->lcd.dma_node_cnt];
     }
     lcd_cam_obj->lcd.dma[lcd_cam_obj->lcd.dma_half_node_cnt - 1].empty = (uint32_t)NULL;
-    lcd_cam_obj->lcd.dma[lcd_cam_obj->lcd.dma_node_cnt - 1].empty = (uint32_t)NULL; 
+    lcd_cam_obj->lcd.dma[lcd_cam_obj->lcd.dma_node_cnt - 1].empty = (uint32_t)NULL;
 }
 
 static void lcd_dma_set_left(lcd_cam_obj_t *lcd_cam_obj, int pos, size_t len)
@@ -222,7 +214,6 @@ static esp_err_t i2s_lcd_reg_config(i2s_dev_t *i2s_dev, uint16_t data_width, uin
     i2s_dev->conf.tx_msb_right = 1;
     i2s_dev->conf.tx_dma_equal = 1;
 
-    i2s_dev->conf1.tx_pcm_bypass = 1;
     i2s_dev->conf1.tx_stop_en = 1;
 
     i2s_dev->conf2.lcd_en = 1;
@@ -232,7 +223,6 @@ static esp_err_t i2s_lcd_reg_config(i2s_dev_t *i2s_dev, uint16_t data_width, uin
     i2s_dev->fifo_conf.tx_fifo_mod_force_en = 1;
     i2s_dev->fifo_conf.tx_data_num = 32;
     i2s_dev->fifo_conf.tx_fifo_mod = 2;
-    i2s_dev->fifo_conf.tx_24msb_en = 0;
 
     i2s_dev->lc_conf.out_rst  = 1;
     i2s_dev->lc_conf.out_rst  = 0;
