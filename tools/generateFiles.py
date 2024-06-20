@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
+# SPDX-FileCopyrightText: 2023-2024 Espressif Systems (Shanghai) CO LTD
 #
 # SPDX-License-Identifier: Apache-2.0
 
@@ -34,19 +34,15 @@ current_app = App(None)
 
 # Regex to get the app_dir
 def get_app_dir(line):
-    return re.search(r'App\s*([^,]*),', line).group(1) if re.search(r'App\s*([^,]*),', line) else None
+    return re.search(r'"app_dir"\s*:"([^,]*)",', line).group(1) if re.search(r'"app_dir"\s*:([^,]*)",', line) else None
 
 # Regex to get the target
 def get_target(line):
-    return re.search(r'target\s*([^,]*),', line).group(1) if re.search(r'target\s*([^,]*),', line) else None
-
-# Regex to get the kit
-def get_kit(line):
-    return re.search(r'config\s*([^,]*),', line).group(1) if re.search(r'config\s*([^,]*),', line) else None
+    return re.search(r'"target"\s*:"([^,]*)",', line).group(1) if re.search(r'"target"\s*:"([^,]*)",', line) else None
 
 # Regex to get the kit
 def get_sdkconfig(line):
-    return re.search(r'sdkconfig\s*\(([^,]*)\)', line).group(1) if re.search(r'config\s*\(([^,]*)\)', line) else None
+    return re.search(r'"config_name"\s*:"([^,]*)",', line).group(1) if re.search(r'"config_name"\s*:"([^,]*)",', line) else None
 
 def find_build_dir(
     app_path: str,
@@ -129,7 +125,7 @@ def squash_json(input_str):
             current_app = App(app)
 
         current_app.app_version = find_app_version(current_app.app_dir)
-        build_dir = find_build_dir(current_app.app_dir, get_target(line), get_sdkconfig(line))
+        build_dir = find_build_dir(current_app.app_dir, get_target(line), get_sdkconfig(line) if get_sdkconfig(line) else 'default')
         for dir in build_dir:
             build_info_dict = {}
             build_info_dict['target'] = get_target(line)
