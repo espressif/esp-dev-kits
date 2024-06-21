@@ -67,7 +67,7 @@ ESP32-S3-LCD-EV-Board 的主要组件和连接方式如下图所示。
 组件介绍
 -----------
 
-ESP32-S3-LCD-EV-Board 开发板由主板和子板组成。
+ESP32-S3-LCD-EV-Board 开发板由主板和子板组成，此外还可以选配一块 USB Type-A 转接板。
 
 
 主板
@@ -206,6 +206,31 @@ LCD 子板
 
     ESP32-S3-LCD-EV-Board-SUB3 - 反面（点击放大）
 
+USB Type-A 转接板
+^^^^^^^^^^^^^^^^^^
+
+通过连接 USB Type-A 转接板，主板可作为 USB Host 连接 USB 设备。
+
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board-USB-Adapter.png
+    :align: center
+    :scale: 50%
+    :alt: USB Type-A 转接板 v1.1 - 正面（点击放大）
+
+    USB Type-A 转接板 v1.1 - 正面（点击放大）
+
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board-USB-Adapter2.png
+    :align: center
+    :scale: 60%
+    :alt: USB Type-A 转接板 v1.1 - 与主板连接（点击放大）
+
+    USB Type-A 转接板 v1.1 - 与主板连接（点击放大）
+
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board-USB-Adapter3.png
+    :align: center
+    :scale: 60%
+    :alt: USB Type-A 转接板 v1.1 - 连接 USB 设备（点击放大）
+
+    USB Type-A 转接板 v1.1 - 连接 USB 设备（点击放大）
 
 应用程序开发
 ======================
@@ -573,7 +598,7 @@ ESP32-S3-LCD-EV-Board v1.4
 样品获取
 ================
 
-此开发板适用于评估高性能的 `智能屏方案 <https://www.espressif.com/zh-hans/solutions/hmi/smart-displays>`_。如有需要，请前往 `乐鑫官方淘宝商城 <https://item.taobao.com/item.htm?spm=a1z10.5-c.w4002-8715811636.23.4bc567d8eBiLiI&id=680580609719>`_ 进行采购。
+此开发板及转接板适用于评估高性能的 `智能屏方案 <https://www.espressif.com/zh-hans/solutions/hmi/smart-displays>`_。如有需要，请前往 `乐鑫官方淘宝商城 <https://item.taobao.com/item.htm?spm=a1z10.5-c.w4002-8715811636.23.4bc567d8eBiLiI&id=680580609719>`_ 进行采购。
 
 
 相关文档
@@ -590,6 +615,8 @@ ESP32-S3-LCD-EV-Board v1.4
 -  `ESP32-S3-LCD-EV-Board-SUB2 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.5_20231010.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-USB-Adapter 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-USB-Adapter PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
 -  `TCA9554 规格书 <https://www.ti.com/lit/gpn/tca9554>`__
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
