@@ -1,16 +1,8 @@
-// Copyright 2020-2021 Espressif Systems (Shanghai) PTE LTD
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-
-//     http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
+/*
+ * SPDX-FileCopyrightText: 2020-2024 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
 
 #include <stdio.h>
 #include "driver/gpio.h"
@@ -41,7 +33,7 @@ static const char *TAG = "Board";
 #define NO_OF_SAMPLES   16          //Multisampling
 static esp_adc_cal_characteristics_t *adc1_chars = NULL;
 static const adc_unit_t BOARD_ADC_UNIT = ADC_UNIT_1;
-static const adc_bits_width_t BOARD_ADC_WIDTH = ADC_WIDTH_MAX-1;
+static const adc_bits_width_t BOARD_ADC_WIDTH = ADC_WIDTH_MAX - 1;
 static const adc_atten_t BOARD_ADC_ATTEN = ADC_ATTEN_DB_12;
 #endif
 
@@ -136,7 +128,7 @@ static esp_err_t board_spi_bus_init(void)
         .miso_io_num = BOARD_IO_SPI2_MISO,
         .mosi_io_num = BOARD_IO_SPI2_MOSI,
         .sclk_io_num = BOARD_IO_SPI2_SCK,
-        .max_transfer_sz = BOARD_LCD_WIDTH * BOARD_LCD_HEIGHT * 2+64,
+        .max_transfer_sz = BOARD_LCD_WIDTH * BOARD_LCD_HEIGHT * 2 + 64,
     };
     s_spi2_bus_handle = spi_bus_create(SPI2_HOST, &bus2_conf);
     BOARD_CHECK(s_spi2_bus_handle != NULL, "spi_bus2 creat failed", ESP_FAIL);
@@ -434,18 +426,18 @@ esp_err_t iot_board_init(void)
     BOARD_CHECK(ret == ESP_OK, "lcd init failed", ret);
 
     ret = board_sdcard_init();
-    if (ret != ESP_OK){
+    if (ret != ESP_OK) {
         ESP_LOGW(TAG, "No sdcard found, or sdcard init failed");
     };
     s_board_is_init = true;
-    ESP_LOGI(TAG,"Board Info: %s", iot_board_get_info());
-    ESP_LOGI(TAG,"Board Init Done ...");
+    ESP_LOGI(TAG, "Board Info: %s", iot_board_get_info());
+    ESP_LOGI(TAG, "Board Init Done ...");
     return ESP_OK;
 }
 
 esp_err_t iot_board_deinit(void)
 {
-    if(!s_board_is_init) {
+    if (!s_board_is_init) {
         return ESP_OK;
     }
 
@@ -469,7 +461,7 @@ esp_err_t iot_board_deinit(void)
     BOARD_CHECK(ret == ESP_OK, "spi de-init failed", ret);
 
     s_board_is_init = false;
-    ESP_LOGI(TAG," Board Deinit Done ...");
+    ESP_LOGI(TAG, " Board Deinit Done ...");
     return ESP_OK;
 }
 
@@ -481,8 +473,7 @@ bool iot_board_is_init(void)
 board_res_handle_t iot_board_get_handle(board_res_id_t id)
 {
     board_res_handle_t handle;
-    switch (id)
-    {
+    switch (id) {
     case BOARD_I2C0_ID:
         handle = (board_res_handle_t)s_i2c0_bus_handle;
         break;
@@ -517,9 +508,9 @@ board_res_handle_t iot_board_get_handle(board_res_id_t id)
     return handle;
 }
 
-char* iot_board_get_info()
+char *iot_board_get_info()
 {
-    static char* info = BOARD_NAME;
+    static char *info = BOARD_NAME;
     return info;
 }
 
@@ -583,7 +574,7 @@ float iot_board_get_battery_voltage(void)
 esp_err_t iot_board_button_register_cb(board_res_handle_t btn_handle, button_event_t event, button_cb_t cb)
 {
     BOARD_CHECK(btn_handle != NULL, "invalid button handle", ESP_ERR_INVALID_ARG);
-    return iot_button_register_cb((board_res_handle_t)btn_handle, event, cb);
+    return iot_button_register_cb((board_res_handle_t)btn_handle, event, cb, NULL);
 }
 
 esp_err_t iot_board_button_unregister_cb(board_res_handle_t btn_handle, button_event_t event)
@@ -595,17 +586,16 @@ esp_err_t iot_board_button_unregister_cb(board_res_handle_t btn_handle, button_e
 esp_err_t iot_board_usb_set_mode(usb_mode_t mode)
 {
     BOARD_CHECK(s_board_is_init == true, "board not inited", ESP_FAIL);
-    switch (mode)
-    {
-        case USB_DEVICE_MODE:
-            gpio_set_level(BOARD_IO_USB_SEL, false); //USB_SEL
-            break;
-        case USB_HOST_MODE:
-            gpio_set_level(BOARD_IO_USB_SEL, true); //USB_SEL
-            break;
-        default:
-            assert(0);
-            break;
+    switch (mode) {
+    case USB_DEVICE_MODE:
+        gpio_set_level(BOARD_IO_USB_SEL, false); //USB_SEL
+        break;
+    case USB_HOST_MODE:
+        gpio_set_level(BOARD_IO_USB_SEL, true); //USB_SEL
+        break;
+    default:
+        assert(0);
+        break;
     }
     return ESP_OK;
 }
@@ -623,16 +613,16 @@ usb_mode_t iot_board_usb_get_mode(void)
     return USB_DEVICE_MODE;
 }
 
-static int s_led_io[BOARD_LED_NUM]={BOARD_IO_LED_1, BOARD_IO_LED_2};
-static int s_led_polarity[BOARD_LED_NUM]={BOARD_LED_POLARITY_1, BOARD_LED_POLARITY_2};
-static bool s_led_state[BOARD_LED_NUM]={0};
+static int s_led_io[BOARD_LED_NUM] = {BOARD_IO_LED_1, BOARD_IO_LED_2};
+static int s_led_polarity[BOARD_LED_NUM] = {BOARD_LED_POLARITY_1, BOARD_LED_POLARITY_2};
+static bool s_led_state[BOARD_LED_NUM] = {0};
 
 esp_err_t iot_board_led_set_state(int gpio_num, bool if_on)
 {
     int i = 0;
 
-    for (i = 0; i < BOARD_LED_NUM; i++){
-        if (s_led_io[i]==gpio_num) {
+    for (i = 0; i < BOARD_LED_NUM; i++) {
+        if (s_led_io[i] == gpio_num) {
             break;
         }
     }
@@ -652,7 +642,7 @@ esp_err_t iot_board_led_set_state(int gpio_num, bool if_on)
 
 esp_err_t iot_board_led_all_set_state(bool if_on)
 {
-    for (size_t i = 0; i < BOARD_LED_NUM; i++){
+    for (size_t i = 0; i < BOARD_LED_NUM; i++) {
         iot_board_led_set_state(s_led_io[i], if_on);
     }
     return ESP_OK;
@@ -662,8 +652,8 @@ esp_err_t iot_board_led_toggle_state(int gpio_num)
 {
     int i = 0;
 
-    for (i = 0; i < BOARD_LED_NUM; i++){
-        if (s_led_io[i]==gpio_num) {
+    for (i = 0; i < BOARD_LED_NUM; i++) {
+        if (s_led_io[i] == gpio_num) {
             break;
         }
     }
@@ -673,7 +663,7 @@ esp_err_t iot_board_led_toggle_state(int gpio_num)
         return ESP_FAIL;
     }
 
-    s_led_state[i]=!s_led_state[i];
+    s_led_state[i] = !s_led_state[i];
     iot_board_led_set_state(gpio_num, s_led_state[i]);
     return ESP_OK;
 }
