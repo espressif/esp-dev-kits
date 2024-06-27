@@ -613,10 +613,12 @@ ESP32-S3-LCD-EV-Board v1.4
 -  `ESP32-S3-LCD-EV-Board-SUB1 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB2 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.3_20231010.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB2 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.5_20231010.pdf>`__
+-  `3.95_480x480_RGB_Display 屏幕规格书 <../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/3.95_480x480_ZXT395HYC005P.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-USB-Adapter 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-USB-Adapter PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
 -  `TCA9554 规格书 <https://www.ti.com/lit/gpn/tca9554>`__
+-  `4.3_800x480_RGB_Display 屏幕规格书 <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/WKS43229_SPEC_V0.0.pdf>`__
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
