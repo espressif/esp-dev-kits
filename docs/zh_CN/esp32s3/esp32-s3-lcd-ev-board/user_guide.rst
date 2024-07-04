@@ -67,7 +67,7 @@ ESP32-S3-LCD-EV-Board 的主要组件和连接方式如下图所示。
 组件介绍
 -----------
 
-ESP32-S3-LCD-EV-Board 开发板由主板和子板组成，此外还可以选配一块 USB Type-A 转接板。
+ESP32-S3-LCD-EV-Board 开发板由主板和子板（子板类型请查看 `LCD 子板`_）组成，此外还可以选配一块 USB Type-A 转接板。
 
 
 主板
@@ -110,9 +110,9 @@ ESP32-S3-LCD-EV-Board 开发板由主板和子板组成，此外还可以选配�
    * - USB-to-UART 端口
      - 为整个系统提供电源（USB-to-USB 端口和 USB-to-UART 端口两者选一）。建议使用至少 5V/2A 电源适配器供电，保证供电稳定。该端口用于 PC 端与 ESP32-S3-WROOM-1 模组的串口通信。
    * - 左侧麦克风
-     - 板载麦克风，连接至 ADC。
+     - 板载麦克风，连接至音频模数转换器。
    * - 右侧麦克风
-     - 板载麦克风，连接至 ADC。
+     - 板载麦克风，连接至音频模数转换器。
    * - 音频模数转换器
      - `ES7210 <http://www.everest-semi.com/pdf/ES7210%20PB.pdf>`_ 是一款用于麦克风阵列应用的高性能、低功耗 4 通道音频模数转换器，同时具备声学回声消除 (AEC) 功能，非常适合音乐和语音应用。
    * - USB-to-UART 桥接器
@@ -616,8 +616,8 @@ ESP32-S3-LCD-EV-Board v1.4
 -  `3.95_480x480_RGB_Display 屏幕规格书 <../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/3.95_480x480_ZXT395HYC005P.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf>`__
--  `ESP32-S3-LCD-EV-Board-USB-Adapter 原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
--  `ESP32-S3-LCD-EV-Board-USB-Adapter PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
+-  `ESP32-S3-LCD-EV-Board USB 转接板原理图 <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
+-  `ESP32-S3-LCD-EV-Board USB 转接板 PCB 布局图 <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
 -  `TCA9554 规格书 <https://www.ti.com/lit/gpn/tca9554>`__
 -  `4.3_800x480_RGB_Display 屏幕规格书 <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/WKS43229_SPEC_V0.0.pdf>`__
 

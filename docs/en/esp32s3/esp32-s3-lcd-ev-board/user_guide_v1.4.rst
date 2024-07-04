@@ -67,7 +67,7 @@ The block diagram below shows the components of ESP32-S3-LCD-EV-Board and their 
 Description of Components
 -------------------------
 
-The ESP32-S3-LCD-EV-Board development board consists of a mainboard and a subboard.
+The ESP32-S3-LCD-EV-Board development board consists of a mainboard and a subboard (see `LCD Subboards`_ for options). Additionally, it allows for a selection of a USB Type-A adapter.
 
 
 Mainboard
@@ -110,11 +110,11 @@ The key components of the board are described in a counter-clockwise direction.
    * - USB-to-UART Port
      - Provides power to the entire system (choose either USB-to-USB or USB-to-UART port). It is recommended to use at least a 5V/2A power adapter to ensure stable power supply. Used for serial communication between the PC side and the ESP32-S3-WROOM-1 module.
    * - Left Microphone
-     - On-board microphone, connected to ADC.
+     - On-board microphone, connected to Audio ADC Chip.
    * - Right Microphone
-     - On-board microphone, connected to ADC.
+     - On-board microphone, connected to Audio ADC Chip.
    * - Audio ADC Chip
-     - `ES7210 <http://www.everest-semi.com/pdf/ES7210%20PB.pdf>` is a high performance, low power 4-channel audio ADC for applications of microphone arrays. Featuring Acoustic Echo Cancellation (AEC), it is an ideal choice for music and voice applications.
+     - `ES7210 <http://www.everest-semi.com/pdf/ES7210%20PB.pdf>`_ is a high performance, low power 4-channel audio ADC for applications of microphone arrays. Featuring Acoustic Echo Cancellation (AEC), it is an ideal choice for music and voice applications.
    * - USB-to-UART Bridge Controller
      - CP2102N, the single-chip USB-to-UART bridge controller, provides up to 3 Mbps connection for software download and debugging.
    * - Audio Codec Chip
@@ -206,6 +206,31 @@ The mainboard can be used together with three different kinds of subboards:
 
     ESP32-S3-LCD-EV-Board-SUB3 - Back (Click to Enlarge)
 
+USB Type-A Adapter
+^^^^^^^^^^^^^^^^^^^^^
+
+With the USB Type-A adapter, the mainboard can serve as a USB host for connection to USB devices.
+
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board-USB-Adapter.png
+    :align: center
+    :scale: 50%
+    :alt: USB Type-A Adapter v1.1 - Front (Click to Enlarge)
+
+    USB Type-A Adapter v1.1 - Front (Click to Enlarge)
+
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board-USB-Adapter2.png
+    :align: center
+    :scale: 60%
+    :alt: USB Type-A Adapter v1.1 - Connected to the Mainboard (Click to Enlarge)
+
+    USB Type-A Adapter v1.1 - Connected to the Mainboard (Click to Enlarge)
+
+.. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board-USB-Adapter3.png
+    :align: center
+    :scale: 60%
+    :alt: USB Type-A Adapter v1.1 - Connected to USB Devices (Click to Enlarge)
+
+    USB Type-A Adapter v1.1 - Connected to USB Devices (Click to Enlarge)
 
 Start Application Development
 =============================
@@ -558,7 +583,7 @@ No previous revisions.
 Sample Request
 ==============
 
-This development board is suitable for evaluating Espressif's high-performance `HMI Smart Displays Solution <https://www.espressif.com/en/solutions/hmi/smart-displays>`_. For placing orders, please proceed to the Espressif `Online Shop <https://www.aliexpress.us/item/3256804584611152.html?spm=5261.ProductManageOnline.0.0.541f4edfMsfGnH&gatewayAdapt=glo2usa4itemAdapt&_randl_shipto=US>`_.
+This development board with the USB Type-A adapter is suitable for evaluating Espressif's high-performance `HMI Smart Displays Solution <https://www.espressif.com/en/solutions/hmi/smart-displays>`_. For placing orders, please proceed to the Espressif `Online Shop <https://www.aliexpress.us/item/3256804584611152.html?spm=5261.ProductManageOnline.0.0.541f4edfMsfGnH&gatewayAdapt=glo2usa4itemAdapt&_randl_shipto=US>`_.
 
 
 Related Documents
@@ -575,6 +600,8 @@ Related Documents
 -  `ESP32-S3-LCD-EV-Board-SUB2 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.4_202230509.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf>`__
+-  `ESP32-S3-LCD-EV-Board USB Adapter Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
+-  `ESP32-S3-LCD-EV-Board USB Adapter PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
 -  `TCA9554 Datasheet <https://www.ti.com/lit/gpn/tca9554>`__
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
