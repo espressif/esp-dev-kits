@@ -588,8 +588,10 @@ Related Documents
 -  `ESP32-S3-LCD-EV-Board-SUB1 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB2 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.3_20231010.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB2 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.5_20231010.pdf>`__
+-  `3.95_480x480_RGB_Display Specification <../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/3.95_480x480_ZXT395HYC005P.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf>`__
 -  `ESP32-S3-LCD-EV-Board-SUB3 PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf>`__
 -  `TCA9554 Datasheet <https://www.ti.com/lit/gpn/tca9554>`__
+-  `4.3_800x480_RGB_Display Specification <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/WKS43229_SPEC_V0.0.pdf>`__
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
