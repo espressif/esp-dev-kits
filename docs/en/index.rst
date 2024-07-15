@@ -8,6 +8,14 @@ This is the documentation for `esp-dev-kits <https://github.com/espressif/esp-de
 
 Supported Development Boards
 ----------------------------------------
+=============================   ===========================
+       **ESP32-P4 Development Boards**
+-----------------------------------------------------------
+|ESP32-P4-Function-EV-Board|_
+-----------------------------   ---------------------------
+`ESP32-P4-Function-EV-Board`_
+=============================   ===========================
+
 ============================   ===========================
        **ESP32-H2 Development Boards**
 ----------------------------------------------------------
@@ -168,6 +176,9 @@ Supported Development Boards
 .. |ESP32-H2-DevKitM-1| image:: ../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1-45.png
 .. _ESP32-H2-DevKitM-1: esp32h2/esp32-h2-devkitm-1/index.html
 
+.. |ESP32-P4-Function-EV-Board| image:: ../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric.png
+.. _ESP32-P4-Function-EV-Board: esp32p4/esp32-p4-function-ev-board/index.html
+
 .. |ESP-Module-Prog-1| image:: ../_static/esp-module-prog-1-r/esp-module-prog-1.png
 .. _ESP-Module-Prog-1: other/esp-module-prog-1-r/index.html
 
@@ -207,6 +218,12 @@ Related
    :caption: ESP32-H2 Boards
 
    ESP32-H2-DevKitM-1 <esp32h2/esp32-h2-devkitm-1/index>
+
+.. toctree::
+   :hidden:
+   :caption: ESP32-P4 Boards
+
+   ESP32-P4-Function-EV-Board <esp32p4/esp32-p4-function-ev-board/index>
 
 .. toctree::
    :hidden:
