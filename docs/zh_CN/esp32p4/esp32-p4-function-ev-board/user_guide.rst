@@ -178,16 +178,39 @@ ESP32-P4-Function-EV-Board 的包装盒中包含以下可选配件：
 
 1. 用短铜柱将开发板固定在 LCD 屏幕适配板中心的四个螺母柱上。
 2. 用屏幕排线（**反向线序**）连接 LCD 屏幕适配板的 J3 排针和开发板的 MIPI DSI 连接器。LCD 屏幕适配板已与 LCD 连接。
-3. 用杜邦线将 LCD 屏幕适配板 J6 排针的 RST_LCD 引脚连接到开发板 J1 排针的 GPIO22 引脚。使用时 RST_LCD 由 ESP32-P4 芯片控制，具体引脚可由软件设置，默认为 GPIO22。
-4. 推荐使用外接 USB 供电连接 LCD 屏幕适配板 J1 排针对屏幕供电。如果条件不允许，也可以在开发板供电充足的情况下，使用杜邦线将 LCD 屏幕适配板的 5V 与 GND 管脚连接到开发板的 J1 排针的 5V 与 GND 引脚。
-5. 将长铜柱固定在 LCD 屏幕适配板四周的四个螺母柱上，可以将 LCD 立放。
+3. 用杜邦线将 LCD 屏幕适配板 J6 排针的 RST_LCD 引脚连接到开发板 J1 排针的 GPIO27 引脚。使用时 RST_LCD 由 ESP32-P4 芯片控制，具体引脚可由软件设置，默认为 GPIO27。
+4. 用杜邦线将 LCD 屏幕适配板 J6 排针的 PWM 引脚连接到开发板 J1 排针的 GPIO26 引脚。使用时 PWM 由 ESP32-P4 芯片控制，具体引脚可由软件设置，默认为 GPIO26。
+5. 推荐使用外接 USB 供电连接 LCD 屏幕适配板 J1 排针对屏幕供电。如果条件不允许，也可以在开发板供电充足的情况下，使用杜邦线将 LCD 屏幕适配板的 5V 与 GND 管脚连接到开发板的 J1 排针的 5V 与 GND 引脚。
+6. 将长铜柱固定在 LCD 屏幕适配板四周的四个螺母柱上，可以将 LCD 立放。
 
-摄像头、摄像头排线（**同向线序**）以及摄像头适配板已经连接好。如需使用摄像头，请将摄像头排线连到开发板的 MIPI CSI 连接器。
+连接关系如下表所示：
+
+.. list-table::
+  :widths: 20 20
+  :header-rows: 1
+
+  * - LCD 屏幕适配板
+    - 开发板
+  * - J3 排针
+    - MIPI DSI 连接器
+  * - J6 排针 RST_LCD 引脚
+    - J1 排针 GPIO27 引脚
+  * - J6 排针 PWM 引脚
+    - J1 排针 GPIO26 引脚
+  * - J6 排针 5V 引脚
+    - J1 排针 5V 引脚
+  * - J6 排针 GND 引脚
+    - J1 排针 GND 引脚
+
+**注意**：
+
+- 如果使用外接 USB 供电连接 LCD 屏幕适配板，则不需要连接 5V 和 GND 引脚。
+- 如需使用摄像头，请将摄像头排线（**同向线序**）连接至摄像头适配板和开发板的 MIPI CSI 连接器。
 
 软件设置
 ^^^^^^^^
 
-请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。
+请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。开发板应用示例存放在 `Examples <esp32-p4-function-ev-board/examples>`__ 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
 
 硬件参考
 ========
@@ -293,5 +316,9 @@ J1
 * `显示屏规格书 <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf>`_ (PDF)
 * `显示屏驱动芯片 EK73217BCGA 规格书 <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK73217BCGA_datasheet.pdf>`_ (PDF)
 * `显示屏驱动芯片 EK79007AD 规格书 <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf>`_ (PDF)
+* `显示屏适配板原理图 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf>`_ (PDF)
+* `显示屏适配板 PCB 布局图 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-pcb-layout.pdf>`_ (PDF)
+* `摄像头适配板原理图 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf>`_ (PDF)
+* `摄像头适配板 PCB 布局图 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf>`_ (PDF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
