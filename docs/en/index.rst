@@ -79,9 +79,9 @@ Supported Development Boards
 ----------------------------   ---------------------------
  `ESP32-DevKitC`_                `ESP32-PICO-DevKitM-2`_
 ----------------------------   ---------------------------
- |ESP32-LCDKit|_
+ |ESP32-LCDKit|_                  |ESP32-Ethernet-Kit|_
 ----------------------------   ---------------------------
- `ESP32-LCDKit`_
+ `ESP32-LCDKit`_                 `ESP32-Ethernet-Kit`_
 ============================   ===========================
 
 ============================   ===========================
@@ -203,6 +203,9 @@ Supported Development Boards
 .. |ESP32-PICO-DevKitM-2| image:: ../_static/esp32-pico-devkitm-2/esp32-pico-devkitm-2-overview.png
 .. _ESP32-PICO-DevKitM-2: esp32/esp32-pico-devkitm-2/index.html
 
+.. |ESP32-Ethernet-Kit| image:: ../_static/esp32-ethernet-kit/esp32-ethernet-kit-v1.2-overview.png
+.. _ESP32-Ethernet-Kit: esp32/esp32-ethernet-kit/index.html
+
 Related
 ~~~~~~~~~~~~~~~~
 
@@ -266,6 +269,7 @@ Related
    ESP32-DevKitC <esp32/esp32-devkitc/index>
    ESP32-PICO-DevKitM-2 <esp32/esp32-pico-devkitm-2/index>
    ESP32-LCDKit <esp32/esp32-lcdkit/index>
+   ESP32-Ethernet-Kit <esp32/esp32-ethernet-kit/index>
 
 .. toctree::
    :hidden:
