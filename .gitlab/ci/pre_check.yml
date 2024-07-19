@@ -5,3 +5,23 @@ check_readme_links:
   allow_failure: true
   script:
     - python ${CI_PROJECT_DIR}/tools/ci/check_readme_links.py
+
+check_doc_links:
+  stage: pre_check
+  image: $ESP_DOCS_ENV_IMAGE
+  tags: [check_doc_links]
+  variables:
+    DOCS_DIR: $CI_PROJECT_DIR/docs
+  allow_failure: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'  # Run for all changes to a merge request's source branch
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH       # Run for all changes to the default branch
+  script:
+    - cd docs
+    - cd $DOCS_DIR
+    - pip install -r requirements.txt
+    - build-docs -t $DOCTGT -l $DOCLANG linkcheck
+  parallel:
+    matrix:
+      - DOCLANG: ["en", "zh_CN"]
+        DOCTGT: ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5', 'esp32c61', 'other']
