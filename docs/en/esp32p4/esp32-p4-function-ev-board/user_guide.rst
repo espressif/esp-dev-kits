@@ -178,16 +178,41 @@ To connect the LCD, follow these steps:
 
 1. Secure the development board to the LCD adapter board by attaching the short copper standoffs (8 mm in length) to the four standoff posts at the center of the LCD adapter board.
 2. Connect the J3 header of the LCD adapter board to the MIPI DSI connector on the ESP32-P4-Function-EV-Board using the LCD ribbon cable (**reverse direction**). Note that the LCD adapter board is already connected to the LCD.
-3. Use a DuPont wire to connect the RST_LCD pin of the J6 header of the LCD adapter board to the GPIO22 pin of the J1 header on the ESP32-P4-Function-EV-Board. The RST_LCD pin can be configured via software, with GPIO22 set as the default.
-4. It is recommended to power the LCD by connecting a USB cable to the J1 header of the LCD adapter board. If this is not feasible, connect the 5V and GND pins of the LCD adapter board to corresponding pins on the J1 header of the ESP32-P4-Function-EV-Board, provided that the development board has sufficient power supply.
-5. Attach the long copper standoffs (20 mm in length) to the four standoff posts on the periphery of the LCD adapter board to allow the LCD to stand upright.
+3. Use a DuPont wire to connect the RST_LCD pin of the J6 header of the LCD adapter board to the GPIO27 pin of the J1 header on the ESP32-P4-Function-EV-Board. The RST_LCD pin can be configured via software, with GPIO27 set as the default.
+4. Use a DuPont wire to connect the PWM pin of the J6 header of the LCD adapter board to the GPIO26 pin of the J1 header on the ESP32-P4-Function-EV-Board. The PWM pin can be configured via software, with GPIO26 set as the default.
+5. It is recommended to power the LCD by connecting a USB cable to the J1 header of the LCD adapter board. If this is not feasible, connect the 5V and GND pins of the LCD adapter board to corresponding pins on the J1 header of the ESP32-P4-Function-EV-Board, provided that the development board has sufficient power supply.
+6. Attach the long copper standoffs (20 mm in length) to the four standoff posts on the periphery of the LCD adapter board to allow the LCD to stand upright.
 
-The camera, the camera ribbon cable (**forward direction**), and camera adapter board are pre-connected. To use the camera, connect the camera ribbon cable to the MIPI CSI connector of the development board.
+In summary, the LCD adapter board and ESP32-P4-Function-EV-Board are connected via the following pins:
+
+.. list-table::
+  :widths: 20 20
+  :header-rows: 1
+
+  * - LCD Adapter Board
+    - ESP32-P4-Function-EV
+  * - J3 header
+    - MIPI DSI connector
+  * - RST_LCD pin of J6 header
+    - GPIO27 pin of J1 header
+  * - PWM pin of J6 header
+    - GPIO26 pin of J1 header
+  * - 5V pin of J6 header
+    - 5V pin of J1 header
+  * - GND pin of J6 header
+    - GND pin of J1 header
+
+.. note::
+
+  - If you power the LCD adapter board by connecting a USB cable to its J1 header, you do not need to connect its 5V and GND pins to the corresponding pins on the development board.
+  - To use the camera, connect the camera adapter board to the MIPI CSI connector on the development board using the camera ribbon cable (**forward direction**).
 
 Software Setup
 ^^^^^^^^^^^^^^
 
-Please proceed to `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html>`__, which will quickly help you set up the development environment then flash an application example onto your board.
+To set up your development environment and flash an application example onto your board, please follow the instructions in `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html>`__.
+
+You can find examples for ESP32-P4-Function-EV by accessing :project:`Examples <esp32-p4-function-ev-board/examples>`. To configure project options, enter ``idf.py menuconfig`` in the example directory.
 
 Hardware Reference
 ==================
@@ -293,5 +318,9 @@ Related Documents
 * `Display Datasheet <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf>`_ (PDF)
 * `Datasheet of display driver chip EK73217BCGA <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK73217BCGA_datasheet.pdf>`_ (PDF)
 * `Datasheet of display driver chip EK79007AD <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf>`_ (PDF)
+* `LCD Adapter Board Schematic <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf>`_ (PDF)
+* `LCD Adapter Board PCB Layout <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-pcb-layout.pdf>`_ (PDF)
+* `Camera Adapter Board Schematic <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf>`_ (PDF)
+* `Camera Adapter Board PCB Layout <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf>`_ (PDF)
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

@@ -190,7 +190,7 @@ ESP32-P4-Function-EV-Board 的包装盒中包含以下可选配件：
   :header-rows: 1
 
   * - LCD 屏幕适配板
-    - 开发板
+    - ESP32-P4-Function-EV
   * - J3 排针
     - MIPI DSI 连接器
   * - J6 排针 RST_LCD 引脚
@@ -202,15 +202,17 @@ ESP32-P4-Function-EV-Board 的包装盒中包含以下可选配件：
   * - J6 排针 GND 引脚
     - J1 排针 GND 引脚
 
-**注意**：
+.. 注解::
 
-- 如果使用外接 USB 供电连接 LCD 屏幕适配板，则不需要连接 5V 和 GND 引脚。
-- 如需使用摄像头，请将摄像头排线（**同向线序**）连接至摄像头适配板和开发板的 MIPI CSI 连接器。
+  - 如果使用外接 USB 供电连接 LCD 屏幕适配板，则不需要连接 5V 和 GND 引脚。
+  - 如需使用摄像头，请将摄像头排线（**同向线序**）连接至摄像头适配板和开发板的 MIPI CSI 连接器。
 
 软件设置
 ^^^^^^^^
 
-请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。开发板应用示例存放在 `Examples <esp32-p4-function-ev-board/examples>`__ 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
+请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。
+
+开发板应用示例存放在 :project:`Examples <esp32-p4-function-ev-board/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 即可配置工程选项。
 
 硬件参考
 ========
