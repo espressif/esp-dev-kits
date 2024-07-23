@@ -1,12 +1,12 @@
-===========================
-ESP32-S2-Kaluga-1 套件 v1.3
-===========================
+=============================
+ESP32-S2-Kaluga-1 套件 v1.2
+=============================
 
 :link_to_translation:`en:[English]`
 
-更早版本：:doc:`user_guide_v1.2`
+最新版本：:doc:`user_guide`
 
-ESP32-S2-Kaluga-1 v1.3 是一款来自乐鑫的开发套件，主要可用于以下目的：
+ESP32-S2-Kaluga-1 v1.2 是一款来自乐鑫的开发套件，主要可用于以下目的：
 
 - 展示 ESP32-S2 芯片的人机交互功能
 - 为用户提供基于 ESP32-S2 的人机交互应用开发工具
@@ -18,7 +18,6 @@ ESP32-S2 的功能强大，应用场景非常丰富。对于初学者来说，�
 - **工业自动化设备**：无线控制与机器人技术、智能照明、HVAC 控制设备等
 - **零售和餐饮业**：POS 机和服务机器人
 
-.. Image of v1.2 is used as there are no visual changes
 
 .. figure:: https://dl.espressif.com/dl/schematics/pictures/esp32-s2-kaluga-1-kit-v1.0-3d.png
     :align: center
@@ -36,12 +35,12 @@ ESP32-S2-Kaluga-1 套件包括以下几个开发板：
 - 主板：*ESP32-S2-Kaluga-1*
 - 扩展板：
 
-  - :doc:`user-guide-esp-lyrat-8311a_v1.3` - 音频播放器
+  - :doc:`user-guide-esp-lyrat-8311a_v1.2` - 音频播放器
   - :doc:`user-guide-esp-lyrap-toucha-v1.1` - 触摸板
-  - :doc:`user-guide-esp-lyrap-lcd32-v1.2` - 3.2" LCD 屏
-  - :doc:`user-guide-esp-lyrap-cam-v1.1` - 摄像头
+  - :doc:`user-guide-esp-lyrap-lcd32-v1.1` - 3.2" LCD 屏
+  - :doc:`user-guide-esp-lyrap-cam-v1.0` - 摄像头
 
-由于 ESP32-S2 的管脚复用，部分扩展板的兼容性有所限制，具体请见 :ref:`user-guide-esp32-s2-kaluga-1-kit-ext-board-compatibility`。
+由于 ESP32-S2 的管脚复用，部分扩展板的兼容性有所限制，具体请见 :ref:`user-guide-esp32-s2-kaluga-1-kit-v1.2-ext-board-compatibility`。
 
 本文档主要介绍 **ESP32-S2-Kaluga-1 主板** 及其与扩展板的交互。更多有关具体扩展板的信息，请点击相应的链接。
 
@@ -49,7 +48,7 @@ ESP32-S2-Kaluga-1 套件包括以下几个开发板：
 
 - `快速入门`_：提供 ESP32-S2-Kaluga-1 的简要概述及必须了解的硬件和软件信息。
 - `硬件参考`_：提供 ESP32-S2-Kaluga-1 的详细硬件信息。
-- `硬件修订历史`_：提供该开发版的“修订历史”、“已知问题”以及此前版本开发板的用户指南链接。
+- `硬件修订历史`_：提供该开发板的“修订历史”、“已知问题”以及此开发板之前版本的用户指南链接。
 - `相关文档`_：提供相关文档的链接。
 
 
@@ -72,10 +71,10 @@ ESP32-S2-Kaluga-1 主板配备了多个连接器，可用于连接相应扩展�
 - LCD FPC 连接器（尚无可用官方配套扩展板）
 - I2C FPC 连接器（尚无可用官方配套扩展板）
 
-.. figure:: https://dl.espressif.com/dl/schematics/pictures/esp32s2-kaluga-1-v1.3-3d.png
+.. figure:: https://dl.espressif.com/dl/schematics/pictures/esp32-s2-kaluga-1-v1.2-3d.png
     :align: center
-    :width: 3089px
-    :height: 2335px
+    :width: 2631px
+    :height: 1966px
     :scale: 25%
     :alt: ESP32-S2-Kaluga-1
     :figclass: align-center
@@ -107,7 +106,7 @@ ESP32-S2-Kaluga-1 主板配备了多个连接器，可用于连接相应扩展�
 组件描述
 --------
 
-.. figure:: https://dl.espressif.com/dl/schematics/pictures/esp32-s2-kaluga-1-v1.3-layout-front.png
+.. figure:: https://dl.espressif.com/dl/schematics/pictures/esp32-s2-kaluga-1-v1.2-layout-front.png
     :align: center
     :width: 934px
     :height: 645px
@@ -116,16 +115,6 @@ ESP32-S2-Kaluga-1 主板配备了多个连接器，可用于连接相应扩展�
     :figclass: align-center
 
     ESP32-S2-Kaluga-1 - 正面（点击放大）
-
-.. figure:: https://dl.espressif.com/dl/schematics/pictures/esp32-s2-kaluga-1-v1.3-layout-back.png
-    :align: center
-    :width: 934px
-    :height: 600px
-    :scale: 70%
-    :alt: ESP32-S2-Kaluga-1 - 反面
-    :figclass: align-center
-
-    ESP32-S2-Kaluga-1 - 反面（点击放大）
 
 
 下表将从左边的 ESP32-S2 模组开始，以顺时针顺序介绍上图中的主要组件。
@@ -214,7 +203,7 @@ ESP32-S2-Kaluga-1 上电前，请首先确认开发板完好无损。
 3. 打开 **电源开关** 时，**电源 LED 指示灯** 应点亮。
 
 
-.. _user-guide-esp32-s2-kaluga-1-kit-software-setup:
+.. _user-guide-esp32-s2-kaluga-1-kit-v1.2-software-setup:
 
 软件设置
 ^^^^^^^^
@@ -223,8 +212,6 @@ ESP32-S2-Kaluga-1 上电前，请首先确认开发板完好无损。
 
 你还可以点击 `这里 <https://github.com/espressif/esp-dev-kits/tree/master/esp32-s2-kaluga-1>`_，获取有关 ESP32-S2-Kaluga-1 套件编程指南与应用示例的更多内容。
 
-你可以在 `乐鑫组件注册表 <https://components.espressif.com>`_ 中下载板级支持包 (BSP)。
-
 
 内容和包装
 ----------
@@ -232,17 +219,7 @@ ESP32-S2-Kaluga-1 上电前，请首先确认开发板完好无损。
 零售订单
 ^^^^^^^^
 
-每一个零售 ESP32-S2-Kaluga-1 开发套件均有独立包装。
-
-.. figure:: https://dl.espressif.com/dl/schematics/pictures/esp32s2-kaluga-1-kit-v1.3-package-3d.png
-    :align: center
-    :alt: ESP32-S2-Kaluga-1 - 包装
-    :figclass: align-center
-
-    ESP32-S2-Kaluga-1 - 包装
-
-
-内含以下部分：
+每一个零售 ESP32-S2-Kaluga-1 开发套件均有独立包装，内含以下部分：
 
 - 主板
     - ESP32-S2-Kaluga-1
@@ -275,8 +252,6 @@ ESP32-S2-Kaluga-1 开发套件的批发包装为纸板箱。
 功能框图
 --------
 
-.. Image of v1.2 is used as there are no visual changes
-
 ESP32-S2-Kaluga-1 的主要组件和连接方式如下图所示。
 
 .. figure:: https://dl.espressif.com/dl/schematics/pictures/esp32-s2-kaluga-1-v1.2-block-diagram.png
@@ -298,7 +273,7 @@ ESP32-S2-Kaluga-1 的主要组件和连接方式如下图所示。
 - 3V3 / GND 管脚供电
 
 
-.. _user-guide-esp32-s2-kaluga-1-kit-ext-board-compatibility:
+.. _user-guide-esp32-s2-kaluga-1-kit-v1.2-ext-board-compatibility:
 
 扩展板的兼容性
 --------------
@@ -306,41 +281,41 @@ ESP32-S2-Kaluga-1 的主要组件和连接方式如下图所示。
 如需同时使用多块扩展板，请首先查看以下兼容性信息：
 
 .. list-table::
-   :widths: 20 15 33 32
+   :widths: 20 10 30 40
    :header-rows: 1
 
    * - 扩展板组合
      - 复用接口或管脚
      - 无法运行原因
      - 解决方案
-   * - 8311A v1.3 + CAM v1.1
-     - I2S 控制器
-     - ESP32-S2 仅有 1 个 I2S 接口，但这两个开发板均需使用 ESP32-S2 的 I2S 接口进行通信（ESP-LyraT-8311A 使用标准模式；ESP-LyraP-CAM 使用 Camera 协议）。
-     - 采用分时复用；或另外选择一款可以通过其他 GPIOs 或 DAC 连接的音频扩展板。
-   * - TouchA v1.1 + LCD32 v1.2
+   * - 8311A v1.2 + CAM v1.0
+     - I2S 控制、IO46
+     - ESP32-S2 仅有 1 个 I2S 接口，但这两个开发板均需使用 ESP32-S2 的 I2S 接口进行通信（ESP-LyraT-8311A 使用标准模式；ESP-LyraP-CAM 使用 Camera 协议）。如两个扩展板同时复用 IO46，ESP-LyraP-CAM 的正常使用将受到干扰。
+     - 暂无解决方法。
+   * - TouchA v1.1 + LCD32 v1.1
      - IO11、IO6
-     - 由于管脚 IO11 复用，导致无法触发触摸动作；ESP-LyraP-LCD32 则由于其 BLCT 管脚已与 IO6 断开，因此不受影响。
-     - 不要初始化 ESP-LyraP-TouchA 扩展板的 IO11 (NETWORK) 管脚；或者配置 ESP-LyraP-LCD32 扩展板的 BLCT 管脚为 `-1` （相当于不使用 BLCT）。
-   * - 8311A v1.3 + LCD32 v1.2
+     - ESP-LyraP-TouchA 因管脚 IO11 复用，导致无法触发触摸动作；ESP-LyraP-LCD32 因 BK (BLCT) 管脚连接至 IO6 管脚复用，因此也无法使用。
+     - 不要初始化 ESP-LyraP-TouchA 扩展板的 IO11 (NETWORK) 和 IO6 (PHOTO) 管脚。
+   * - 8311A v1.2 + LCD32 v1.1
      - IO6
-     - 配置 ESP-LyraP-LCD32 扩展板的 BK 管脚为 `-1` （相当于不使用 BK）。
-     - ESP32-S2-Kaluga-1 的 BLCT 管脚将从 IO6 断开。
-   * - TouchA v1.1 + 8311A v1.3
+     - 这两款扩展板可以同时使用，但由于 ESP32-S2-Kaluga-1 的 BK (BLCT) 管脚已连接至 IO6，因此，ESP-LyraT-8311A 的 BT_ADC 管脚和 6 个按钮均无法使用。
+     - 用户也可通过以下配置使用 ESP-LyraT-8311A 的 BT_ADC 管脚：移除 ESP-LyraP-LCD32 扩展板上的 R39，将 R41 换为 100 欧，并将 BLCT_L 开关打开。注意，此配置将导致用户无法通过软件控制显示屏的背光亮度。
+   * - TouchA v1.1 + 8311A v1.2
      - ESP-LyraT-8311A 的 BT_ADC 管脚
-     - ESP-LyraT-8311A 在初始化 6 个按钮时需要使用 BT_ADC 管脚，而 ESP-LyraP-TouchA 在完成触摸动作时也需要使用 BT_ADC 管脚。
-     - 如需使用 ESP-LyraT-8311A 的 6 个按钮，则不要初始化 ESP-LyraP-TouchA 的 IO6 (PHOTO) 管脚。
-   * - TouchA v1.1 + CAM v1.1
+     - 这两款扩展板可以同时使用。然而，当 ESP-LyraT-8311A 的 BT_ADC 管脚用于初始化扩展板的 6 个按钮时，ESP-LyraP-TouchA 无法成功触发。
+     - 如果计划使用 ESP-LyraT-8311A 的 BT_ADC 管脚，请不要初始化 ESP-LyraP-TouchA 扩展板的 IO6 管脚 (PHOTO)。
+   * - TouchA v1.1 + CAM v1.0
      - IO1、IO2、IO3
      - 由于管脚复用无法同时使用。
      - 不要初始化 ESP-LyraP-TouchA 的 IO1 (VOL_UP)、IO2 (PLAY) 和 IO3 (VOL_DOWN)。
-   * - TouchA v1.1 + LCD32 v1.2 + CAM v1.1
-     - IO1、IO2、IO3、IO11
+   * - TouchA v1.1 + LCD32 v1.1 + CAM v1.0
+     - IO1、IO2、IO3、IO6、IO11
      - 由于管脚复用无法同时使用。
-     - 不要初始化 ESP-LyraP-TouchA 的 IO1 (VOL_UP)、IO2 (PLAY)、IO3 (VOL_DOWN) 和 IO11 (NETWORK)。
-   * - TouchA v1.1 + LCD32 v1.2 + 8311A v1.3
+     - **解决方案 1**：不要初始化 ESP-LyraP-TouchA 扩展板的 IO1 (VOL_UP)、IO2 (PLAY)、IO3 (VOL_DOWN)、IO6 (PHOTO) 和 IO11 (NETWORK)。 **解决方案 2**：用户也可通过以下配置正常初始化 IO6 (PHOTO)：移除 ESP-LyraP-LCD32 扩展板上的 R39，将 R41 换为 100 欧，并将 BLCT_L 开关打开。注意，此配置将导致用户无法通过软件控制显示屏的背光亮度。
+   * - TouchA v1.1 + LCD32 v1.1 + 8311A v1.2
      - IO6、IO11
-     - 如果使用 ESP-LyraT-8311A 的 BT_ADC 管脚初始化开发板的 6 个按钮，其他扩展板则无法使用 IO6 和 IO11。
-     - 不要初始化 ESP-LyraP-TouchA 的 IO11 (NETWORK)。此外，如果需要使用 BT_ADC，则不要初始化 IO6 (PHOTO)。
+     - IO11 管脚复用导致无法同时使用；IO6 管脚复用导致 ESP-LyraT-8311A 的 BT_ADC 管脚无法使用，因此无法初始化该扩展板的 6 个按钮。
+     - **解决方法 1**：不要初始化 ESP-LyraP-TouchA 扩展板的 IO6 (PHOTO) 和 IO11 (NETWORK)。注意，此时 ESP-LyraT-8311A 的 6 个按钮依然无法使用。**解决方法 2**：移除 ESP-LyraP-LCD32 扩展板上的 R39，将 R41 换为 100 欧，并将 BLCT_L 开关打开。不要初始化 ESP-LyraP-TouchA 的 IO11 (NETWORK)。如果希望使用 ESP-LyraT-8311A 的 6 个按钮，则也不要初始化 IO6 (PHOTO)。
 
 另外，所有扩展板和 `JTAG 接口 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/api-guides/jtag-debugging/tips-and-quirks.html#jtag-debugging-tip-jtag-pins-reconfigured>`_ 共用管脚 IO39、IO40、IO41 和 IO42。因此，以下情况可能会干扰 JTAG 操作：
 
@@ -348,27 +323,39 @@ ESP32-S2-Kaluga-1 的主要组件和连接方式如下图所示。
 * 调试正在使用扩展板的应用程序
 
 
+已知问题
+========
+
+.. list-table::
+   :widths: 22 24 32 22
+   :header-rows: 1
+
+   * - 问题硬件
+     - 描述
+     - 主要原因
+     - 解决方法
+   * - ESP-LyraP-CAM v1.0、管脚 IO45、管脚 IO46
+     - 当 ESP-LyraP-CAM v1.0 连接至主板时，可能导致主板无法烧录固件。
+     - 开发板上电时，strapping 管脚 IO45 和 IO46 的上电时序错误，导致开发板无法正常启动。
+     - 主板烧录固件时，不应连接该扩展板。
+   * - ESP-LyraP-CAM v1.0、管脚 IO45、管脚 IO46
+     - 使用 Reset 复位按键重启开发板可能无法达到期望结果。
+     - 开发板上电时，strapping 管脚 IO45 和 IO46 的上电时序错误，导致开发板无法正常启动。
+     - v1.2 暂无解决方法。该问题已经在 ESP32-S2-Kaluga-1 V1.3 中进行了修复。
+   * - ESP-LyraT-8311A v1.2、管脚 IO46
+     - 当 ESP-LyraT-8311A v1.2 连接至主板时，可能导致主板无法烧录固件。
+     - 开发板上电时，strapping 管脚 IO46 的上电时序错误，导致开发板无法正常启动。
+     - 主板烧录固件时，不应连接该扩展板。
+   * - ESP-LyraT-8311A v1.2、管脚 IO46
+     - 使用 Reset 复位按键重启开发板可能无法达到期望结果。
+     - 开发板上电时，strapping 管脚 IO46 的上电时序错误，导致开发板无法正常启动。
+     - v1.2 暂无解决方法。该问题已经在 ESP32-S2-Kaluga-1 V1.3 中进行了修复。
+
+
 硬件修订历史
 ============
 
-ESP32-S2-Kaluga-1 Kit v1.3
---------------------------
-
-* 以下管脚已重新分配，以解决固件烧录问题：
-
-  * Camera D2：GPIO36
-  * Camera D3：GPIO37
-  * AU_I2S1_SDI：GPIO34
-  * AU_WAKE_INT：GPIO46
-
-* RGB 已移动至开发板边缘
-* 所有 dip 开关均移动至开发板的反面，从而便利用户操作
-
-
-ESP32-S2-Kaluga-1 Kit v1.2
---------------------------
-
-:doc:`首次发布 <user_guide_v1.2>`
+尚无版本升级历史。
 
 
 相关文档
@@ -377,17 +364,17 @@ ESP32-S2-Kaluga-1 Kit v1.2
 .. toctree::
     :hidden:
 
-    user_guide_v1.2.rst
-    user-guide-esp-lyrap-cam-v1.1
-    user-guide-esp-lyrap-lcd32-v1.2
-    user-guide-esp-lyrat-8311a_v1.3
+    user-guide-esp-lyrap-cam-v1.0
+    user-guide-esp-lyrap-lcd32-v1.1
+    user-guide-esp-lyrap-toucha-v1.1
+    user-guide-esp-lyrat-8311a_v1.2
 
 - `ESP32-S2 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-S2-WROVER 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
 - `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
 - `JTAG 调试 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/api-guides/jtag-debugging/index.html>`_
-- `ESP32-S2-Kaluga-1 原理图 <https://dl.espressif.com/dl/schematics/ESP32-S2-Kaluga-1_V1_3_SCH_20200526A.pdf>`_ (PDF)
-- `ESP32-S2-Kaluga-1 PCB 布局图 <https://dl.espressif.com/dl/schematics/ESP32-S2-Kaluga-1_V1_3_PCB_20200526AE.pdf>`_ (PDF)
-- `ESP32-S2-Kaluga-1 管脚映射 <https://dl.espressif.com/dl/schematics/ESP32-S2-Kaluga-1_V1.3-Pin-Mapping-v0.1.xlsx>`_ (Excel)
+- `ESP32-S2-Kaluga-1 原理图 <https://dl.espressif.com/dl/schematics/ESP32-S2-Kaluga-1_V1_2_SCH_20200424A.pdf>`_ (PDF)
+- `ESP32-S2-Kaluga-1 PCB 布局图 <https://dl.espressif.com/dl/schematics/ESP32-S2-Kaluga-1_V1_2_PCB_20200325AF.pdf>`_ (PDF)
+- `ESP32-S2-Kaluga-1 管脚映射 <https://dl.espressif.com/dl/schematics/ESP32-S2-Kaluga-1_V1.2_Pin-Mapping.xlsx>`_ (Excel)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。
