@@ -3,7 +3,7 @@ esp-dev-kits
 
 :link_to_translation:`en:[English]`
 
-该仓库为 `esp-dev-kits <https://github.com/espressif/esp-dev-kits>`_ 的文档。
+本仓库提供了 `esp-dev-kits <https://github.com/espressif/esp-dev-kits>`_ 的文档。
 
 
 开发板
@@ -75,13 +75,17 @@ esp-dev-kits
 ============================   ===========================
        **ESP32 Development Boards**
 ----------------------------------------------------------
- |ESP32-DevKitC|_                |ESP32-PICO-DevKitM-2|_
+ |ESP32-DevKitC|_                |ESP32-PICO-KIT-1|_
 ----------------------------   ---------------------------
- `ESP32-DevKitC`_                `ESP32-PICO-DevKitM-2`_
+ `ESP32-DevKitC`_                `ESP32-PICO-KIT-1`_
 ----------------------------   ---------------------------
- |ESP32-LCDKit|_                 |ESP32-Ethernet-Kit|_
+ |ESP32-PICO-DevKitM-2|_          |ESP32-LCDKit|_
 ----------------------------   ---------------------------
- `ESP32-LCDKit`_                 `ESP32-Ethernet-Kit`_
+ `ESP32-PICO-DevKitM-2`_          `ESP32-LCDKit`_
+----------------------------   ---------------------------
+ |ESP32-Ethernet-Kit|_
+----------------------------   ---------------------------
+`ESP32-Ethernet-Kit`_
 ============================   ===========================
 
 ============================   ===========================
@@ -206,6 +210,10 @@ esp-dev-kits
 .. |ESP32-Ethernet-Kit| image:: ../_static/esp32-ethernet-kit/esp32-ethernet-kit-v1.2-overview.png
 .. _ESP32-Ethernet-Kit: esp32/esp32-ethernet-kit/index.html
 
+.. |ESP32-PICO-KIT-1| image:: ../_static/esp32-pico-kit-1/esp32-pico-kit-1-overview.png
+.. _ESP32-PICO-KIT-1: esp32/esp32-pico-kit-1/index.html
+
+
 相关文档
 ~~~~~~~~~~~~~~~~
 
@@ -267,9 +275,11 @@ esp-dev-kits
    :caption: ESP32 系列开发板
 
    ESP32-DevKitC <esp32/esp32-devkitc/index>
+   ESP32-PICO-KIT-1 <esp32/esp32-pico-kit-1/index>
    ESP32-PICO-DevKitM-2 <esp32/esp32-pico-devkitm-2/index>
    ESP32-LCDKit <esp32/esp32-lcdkit/index>
    ESP32-Ethernet-Kit <esp32/esp32-ethernet-kit/index>
+
 
 .. toctree::
    :hidden:

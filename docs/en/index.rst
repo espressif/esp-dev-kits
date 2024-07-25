@@ -75,13 +75,17 @@ Supported Development Boards
 ============================   ===========================
        **ESP32 Development Boards**
 ----------------------------------------------------------
- |ESP32-DevKitC|_                |ESP32-PICO-DevKitM-2|_
+ |ESP32-DevKitC|_                 |ESP32-PICO-KIT-1|_
 ----------------------------   ---------------------------
- `ESP32-DevKitC`_                `ESP32-PICO-DevKitM-2`_
+ `ESP32-DevKitC`_                 `ESP32-PICO-KIT-1`_
 ----------------------------   ---------------------------
- |ESP32-LCDKit|_                  |ESP32-Ethernet-Kit|_
+ |ESP32-PICO-DevKitM-2|_          |ESP32-LCDKit|_
 ----------------------------   ---------------------------
- `ESP32-LCDKit`_                 `ESP32-Ethernet-Kit`_
+ `ESP32-PICO-DevKitM-2`_          `ESP32-LCDKit`_
+----------------------------   ---------------------------
+ |ESP32-Ethernet-Kit|_
+----------------------------   ---------------------------
+ `ESP32-Ethernet-Kit`_
 ============================   ===========================
 
 ============================   ===========================
@@ -206,6 +210,10 @@ Supported Development Boards
 .. |ESP32-Ethernet-Kit| image:: ../_static/esp32-ethernet-kit/esp32-ethernet-kit-v1.2-overview.png
 .. _ESP32-Ethernet-Kit: esp32/esp32-ethernet-kit/index.html
 
+.. |ESP32-PICO-KIT-1| image:: ../_static/esp32-pico-kit-1/esp32-pico-kit-1-overview.png
+.. _ESP32-PICO-KIT-1: esp32/esp32-pico-kit-1/index.html
+
+
 Related
 ~~~~~~~~~~~~~~~~
 
@@ -267,6 +275,7 @@ Related
    :caption: ESP32 Boards
 
    ESP32-DevKitC <esp32/esp32-devkitc/index>
+   ESP32-PICO-KIT-1 <esp32/esp32-pico-kit-1/index>
    ESP32-PICO-DevKitM-2 <esp32/esp32-pico-devkitm-2/index>
    ESP32-LCDKit <esp32/esp32-lcdkit/index>
    ESP32-Ethernet-Kit <esp32/esp32-ethernet-kit/index>
