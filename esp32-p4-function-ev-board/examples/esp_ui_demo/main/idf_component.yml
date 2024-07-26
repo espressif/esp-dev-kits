@@ -1,0 +1,13 @@
+## IDF Component Manager Manifest File
+dependencies:
+  espressif/esp_wifi_remote:
+    version: "0.*"
+    
+  espressif/esp_hosted:
+    version: "0.*"
+
+  espressif/esp-ui:
+    version: "0.1.*"
+
+  espressif/esp-ui-phone_1024_600_stylesheet:
+    version: "0.1.*"
