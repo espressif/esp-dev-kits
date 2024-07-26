@@ -126,6 +126,6 @@ ESP-LyraP-CAM v1.0
 
 - `ESP-LyraP-CAM 原理图 <https://dl.espressif.com/dl/schematics/ESP-LyraP-CAM_V1.1_SCH_20200511A.pdf>`_ (PDF)
 - `ESP-LyraP-CAM PCB 布局图 <https://dl.espressif.com/dl/schematics/ESP-LyraP-CAM_V1.1_PCB_20200511AA.pdf>`_ (PDF)
-- `Camera OV2640 <../../../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf>`_ (PDF)
+- `Camera OV2640 <../../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf>`_ (PDF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。

@@ -146,6 +146,6 @@ Related Documents
 
 - `ESP-LyraT-8311A Schematic <https://dl.espressif.com/dl/schematics/ESP-LyraT-8311A_V1_2_SCH_20200421A.pdf>`_ (PDF)
 - `ESP-LyraT-8311A PCB Layout <https://dl.espressif.com/dl/schematics/ESP-LyraT-8311A_V1_2_PCB_20200324AA.pdf>`_ (PDF)
-- `Audio ES8311 <../../../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf>`_ (PDF)
+- `Audio ES8311 <../../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf>`_ (PDF)
 
 For other design documentation for the board, please contact us at sales@espressif.com.

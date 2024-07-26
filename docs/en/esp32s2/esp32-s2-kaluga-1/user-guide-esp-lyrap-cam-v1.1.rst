@@ -126,6 +126,6 @@ Related Documents
 
 - `ESP-LyraP-CAM Schematic <https://dl.espressif.com/dl/schematics/ESP-LyraP-CAM_V1.1_SCH_20200511A.pdf>`_ (PDF)
 - `ESP-LyraP-CAM PCB Layout <https://dl.espressif.com/dl/schematics/ESP-LyraP-CAM_V1.1_PCB_20200511AA.pdf>`_ (PDF)
-- `Camera OV2640 <../../../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf>`_ (PDF)
+- `Camera OV2640 <../../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf>`_ (PDF)
 
 For other design documentation for the board, please contact us at sales@espressif.com.
