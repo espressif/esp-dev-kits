@@ -55,11 +55,11 @@ Supported Development Boards
 ============================   ===========================
        **ESP32-S3 Development Boards**
 ----------------------------------------------------------
-  |ESP32-S3-USB-OTG|_           |ESP32-S3-LCD-EV-Board|_
+ |ESP32-S3-USB-OTG|_            |ESP32-S3-LCD-EV-Board|_
 ----------------------------   ---------------------------
  `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
 ----------------------------   ---------------------------
-  |ESP32-S3-USB-Bridge|_
+ |ESP32-S3-USB-Bridge|_
 ----------------------------   ---------------------------
  `ESP32-S3-USB-Bridge`_
 ============================   ===========================
@@ -75,9 +75,13 @@ Supported Development Boards
 ============================   ===========================
        **ESP32 Development Boards**
 ----------------------------------------------------------
- |ESP32-DevKitC|_                |ESP32-LCDKit|_
+ |ESP32-DevKitC|_                |ESP32-PICO-DevKitM-2|_
 ----------------------------   ---------------------------
- `ESP32-DevKitC`_                `ESP32-LCDKit`_ 
+ `ESP32-DevKitC`_                `ESP32-PICO-DevKitM-2`_
+----------------------------   ---------------------------
+ |ESP32-LCDKit|_
+----------------------------   ---------------------------
+ `ESP32-LCDKit`_
 ============================   ===========================
 
 ============================   ===========================
@@ -196,6 +200,9 @@ Supported Development Boards
 .. |ESP-Module-Prog-SUB-02| image:: ../_static/esp-module-prog-sub-02/esp-module-prog-sub-02.png
 .. _ESP-Module-Prog-SUB-02: other/esp-module-prog-sub-02/index.html
 
+.. |ESP32-PICO-DevKitM-2| image:: ../_static/esp32-pico-devkitm-2/esp32-pico-devkitm-2-overview.png
+.. _ESP32-PICO-DevKitM-2: esp32/esp32-pico-devkitm-2/index.html
+
 Related
 ~~~~~~~~~~~~~~~~
 
@@ -256,8 +263,9 @@ Related
    :hidden:
    :caption: ESP32 Boards
 
-   ESP32-LCDKit <esp32/esp32-lcdkit/index>
    ESP32-DevKitC <esp32/esp32-devkitc/index>
+   ESP32-PICO-DevKitM-2 <esp32/esp32-pico-devkitm-2/index>
+   ESP32-LCDKit <esp32/esp32-lcdkit/index>
 
 .. toctree::
    :hidden:
