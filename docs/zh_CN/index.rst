@@ -115,9 +115,9 @@ esp-dev-kits
 ----------------------------   ---------------------------
  `ESP32-MeshKit-Sense`_         `ESP32-S2-Touch-DevKit-1`_
 ----------------------------   ---------------------------
- |ESP32-S2-Kaluga-1|_
+ |ESP32-S2-Kaluga-1|_           |ESP-WROVER-KIT|_
 ----------------------------   ---------------------------
- `ESP32-S2-Kaluga-1`_
+ `ESP32-S2-Kaluga-1`_           `ESP-WROVER-KIT`_
 ============================   ===========================
 
 .. |ESP32-S2-DevKitC-1| image:: ../_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-isometric.png
@@ -216,6 +216,8 @@ esp-dev-kits
 .. |ESP32-PICO-KIT| image:: ../_static/esp32-pico-kit/esp32-pico-kit-v4.1-f-layout.jpeg
 .. _ESP32-PICO-KIT: esp32/esp32-pico-kit/index.html
 
+.. |ESP-WROVER-KIT| image:: ../_static/esp-wrover-kit/esp-wrover-kit-v4.1-layout-front.png
+.. _ESP-WROVER-KIT: esp32/esp-wrover-kit/index.html
 
 相关文档
 ~~~~~~~~~~~~~~~~
@@ -302,6 +304,7 @@ esp-dev-kits
    ESP32-S2-Touch-Devkit-1 <esp32s2/esp32-s2-touch-devkit-1/index>
    ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
    ESP32-S2-Kaluga-1 <esp32s2/esp32-s2-kaluga-1/index>
+   ESP-WROVER-KIT <esp32/esp-wrover-kit/index>
 
 .. toctree::
    :hidden:
