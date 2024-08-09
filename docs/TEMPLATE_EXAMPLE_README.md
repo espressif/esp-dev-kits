@@ -36,7 +36,7 @@ _Describe the way to clone the repository._
 To start from the examples in esp-dev-kits, clone the repository to the local PC by running the following commands in the terminal:
 
 ```
-git clone --recursive https://gitlab.espressif.cn:6688/ae_group/esp-dev-kits.git
+git clone --recursive https://github.com/espressif/esp-dev-kits.git
 ```
 
 
@@ -99,7 +99,7 @@ _This section is optional. If there are any problems or errors which many users 
 
 Please use the following feedback channels:
 
-- For technical queries, go to the [esp32.com](https://esp32.com/viewforum.php?f=20) forum.
+- For technical queries, go to the [esp32.com](https://esp32.com/viewforum.php?f=22) forum.
 - For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-dev-kits/issues).
 
 We will get back to you as soon as possible.
