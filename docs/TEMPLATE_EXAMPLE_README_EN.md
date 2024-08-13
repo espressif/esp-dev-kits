@@ -24,9 +24,9 @@ _If any other items are needed, such as server, Bluetooth device, app, second ch
 
 ### ESP-IDF Required
 
-_Specify the IDF branch recommended or required by the example. Take the following statement as a reference._
+_Specify the ESP-IDF branch recommended or required by the example. Take the following statement as a reference._
 
-- This example supports IDF release/v[x.y] and later branches. By default, it runs on IDF release/v[x.y].
+- This example supports ESP-IDF release/v[x.y] and later branches. By default, it runs on ESP-IDF release/v[x.y].
 - Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) to set up the development environment. **We highly recommend** you [Build Your First Project](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#build-your-first-project) to get familiar with ESP-IDF and make sure the environment is set up correctly.
 
 ### Get the esp-dev-kits Repository
@@ -44,11 +44,11 @@ git clone --recursive https://github.com/espressif/esp-dev-kits.git
 
 - _Describe important items to configure in menuconfig, such as long file name support for FatFs, selection of compatible audio board, chip type, PSRAM clock, and Wi-Fi/LwIP parameters. Below is an example._
 
-  Run ``idf.py menuconfig`` and modify the QWeather and Wi-Fi configuration:
+    Run ``idf.py menuconfig`` and modify the QWeather and Wi-Fi configuration:
 
-  ```
-  menuconfig > QWeather > QWEATHER_REQUEST_KEY
-  ```
+    ```
+    menuconfig > QWeather > QWEATHER_REQUEST_KEY
+    ```
 
 - _Describe the configuration of other software if required, such as specifying a patch._
 
