@@ -619,6 +619,6 @@ Related Documents
 -  `ESP32-S3-LCD-EV-Board USB Adapter Schematics <../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
 -  `ESP32-S3-LCD-EV-Board USB Adapter PCB Layout <../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
 -  `TCA9554 Datasheet <https://www.ti.com/lit/gpn/tca9554>`__
--  `4.3_800x480_RGB_Display Specification <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/WKS43229_SPEC_V0.0.pdf>`__
+-  `4.3_800x480_RGB_Display Specification <../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/WKS43246_SPEC_V0.0.pdf>`__
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

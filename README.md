@@ -31,6 +31,12 @@ Click one of the development boards shown below to set up and start using esp-de
 
 ### Supported Development Boards
 
+**ESP32-P4 Development Boards**
+
+|<div style="width: 150pt">Board</div>|Picture|Description|
+|:----:|:----:|:----|
+| [ESP32-P4-Function-EV-Board](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-function-ev-board/index.html)| [<img src="docs/_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric.png" alt ="ESP32-P4-Function-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-function-ev-board/index.html) | ESP32-P4-Function-EV-Board is a multimedia development board based on the ESP32-P4 chip. ESP32-P4 chip features a dual-core 400 MHz RISC-V processor and supports up to 32 MB PSRAM. In addition, ESP32-P4 supports USB 2.0 specification, MIPI-CSI/DSI, H264 Encoder, and various other peripherals. With all of its outstanding features, the board is an ideal choice for developing low-cost, high-performance, low-power network-connected audio and video products. |
+
 **ESP32-C3 Development Boards**
 
 |<div style="width: 150pt">Board</div>|Picture|Description|
