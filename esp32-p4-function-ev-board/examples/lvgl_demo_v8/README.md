@@ -5,9 +5,9 @@
 
 This example demonstrates how to port LVGL v8 and conduct performance testing using LVGL's built-in demos.
 
-## How to Use the Example
+## Getting Started
 
-### Hardware Required
+### Prerequisites
 
 * An ESP32-P4-Function-EV-Board.
 * A 7-inch 1024 x 600 LCD screen powered by the [EK79007](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf) IC, accompanied by a 32-pin FPC connection [adapter board](../../docs/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf) ([LCD Specifications](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf)).
@@ -26,11 +26,18 @@ This example demonstrates how to port LVGL v8 and conduct performance testing us
     * **Step 3**. Use a USB-C cable to connect the `USB-UART` port to a PC (Used for power supply and viewing serial output).
     * **Step 4**. Turn on the power switch of the board.
 
-### Configure the project
+### ESP-IDF Required
+
+* This example supports IDF release/v5.3 and later branches. By default, it runs on IDF release/v5.3.
+* Please follow the ESP-IDF Programming Guide to set up the development environment. We highly recommend you Build Your First Project to get familiar with ESP-IDF and make sure the environment is set up correctly.
+
+### Configuration
 
 Run `idf.py menuconfig` and go to `Board Support Package`.
 
-### Build and Flash
+## How to Use the Example
+
+### Build and Flash the Example
 
 Run `idf.py -p PORT flash monitor` to build, flash and monitor the project.
 
