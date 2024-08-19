@@ -31,6 +31,12 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 
 ### 支持开发板
 
+**ESP32-P4 系列开发板**
+
+|<div style="width: 150pt">开发板</div> |图片|描述|
+|:----:|:----:|:----|
+| [ESP32-P4-Function-EV-Board](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-function-ev-board/index.html)| [<img src="docs/_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric.png" alt ="ESP32-P4-Function-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-function-ev-board/index.html) | ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板。ESP32-P4 搭载双核 400 MHz RISC-V 处理器，支持最大 32 MB PSRAM。此外，ESP32-P4 支持 USB 2.0 标准, MIPI-CSI/DSI, H264 Encoder 等多种外设，可满足客户对低成本、高性能、低功耗的多媒体产品的开发需求。|
+
 **ESP32-C3 系列开发板**
 
 |<div style="width: 150pt">开发板</div> |图片|描述|

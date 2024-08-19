@@ -248,7 +248,7 @@ If the USB cable used for debugging cannot provide enough current, you can conne
 Header Block
 -------------
 
-The tables below provide the **Name** and **Function** of the pin header J1 of the board. The pin header names are shown in Figure :ref:`user-guide-esp32-p4-function-ev-board-front`. The numbering is the same as in the `ESP32-P4-Function-EV-Board Schematic <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics.pdf>`_.
+The tables below provide the **Name** and **Function** of the pin header J1 of the board. The pin header names are shown in Figure :ref:`user-guide-esp32-p4-function-ev-board-front`. The numbering is the same as in the `ESP32-P4-Function-EV-Board Schematic <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics.pdf>`_.
 
 J1
 ^^^
@@ -309,18 +309,18 @@ No previous versions available.
 Related Documents
 =================
 
-* `ESP32-P4-Function-EV-Board Schematic <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics.pdf>`_ (PDF)
-* `ESP32-P4-Function-EV-Board PCB Layout <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-pcb-layout.pdf>`_ (PDF)
-* `ESP32-P4-Function-EV-Board Dimensions <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.pdf>`_ (PDF)
-* `ESP32-P4-Function-EV-Board Dimensions source file <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
-* `1.0K-GT-15PB Specification <../../_static/esp32-p4-function-ev-board/schematics/1.0K-GT-15PB_specification.pdf>`_ (PDF)
-* `Camera Datasheet <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/camera_datasheet.pdf>`_ (PDF)
-* `Display Datasheet <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf>`_ (PDF)
-* `Datasheet of display driver chip EK73217BCGA <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK73217BCGA_datasheet.pdf>`_ (PDF)
-* `Datasheet of display driver chip EK79007AD <../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf>`_ (PDF)
-* `LCD Adapter Board Schematic <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf>`_ (PDF)
-* `LCD Adapter Board PCB Layout <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-pcb-layout.pdf>`_ (PDF)
-* `Camera Adapter Board Schematic <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf>`_ (PDF)
-* `Camera Adapter Board PCB Layout <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf>`_ (PDF)
+* `ESP32-P4-Function-EV-Board Schematic <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics.pdf>`_ (PDF)
+* `ESP32-P4-Function-EV-Board PCB Layout <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-pcb-layout.pdf>`_ (PDF)
+* `ESP32-P4-Function-EV-Board Dimensions <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.pdf>`_ (PDF)
+* `ESP32-P4-Function-EV-Board Dimensions source file <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+* `1.0K-GT-15PB Specification <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/1.0K-GT-15PB_specification.pdf>`_ (PDF)
+* `Camera Datasheet <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/camera_display_datasheet/camera_datasheet.pdf>`_ (PDF)
+* `Display Datasheet <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf>`_ (PDF)
+* `Datasheet of display driver chip EK73217BCGA <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK73217BCGA_datasheet.pdf>`_ (PDF)
+* `Datasheet of display driver chip EK79007AD <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf>`_ (PDF)
+* `LCD Adapter Board Schematic <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf>`_ (PDF)
+* `LCD Adapter Board PCB Layout <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-pcb-layout.pdf>`_ (PDF)
+* `Camera Adapter Board Schematic <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf>`_ (PDF)
+* `Camera Adapter Board PCB Layout <https://docs.espressif.com/projects/esp-dev-kits/en/latest/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf>`_ (PDF)
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
