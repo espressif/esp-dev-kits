@@ -355,9 +355,9 @@ Header J3
 
 管脚布局
 """"""""""""
-.. figure:: ../../../_static/esp32-pico-kit-1/esp32-pico-kit-1-pinout.png
+.. figure:: ../../../_static/esp32-pico-kit-1/esp32-pico-kit-1-pin-layout.png
     :align: center
-    :scale: 50%
+    :scale: 45%
     :alt: ESP32-PICO-KIT-1 管脚布局
     :figclass: align-center
 

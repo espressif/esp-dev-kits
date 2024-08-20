@@ -11,7 +11,7 @@ This particular description covers ESP32-PICO-KIT v4 and v4.1. The difference is
 What You Need
 -------------
 
-* :ref:`ESP32-PICO-KIT mini development board <get-started-pico-kit-v4-board-front>`
+* :ref:`ESP32-PICO-KIT mini development board <esp32-pico-kit-overview>`
 * USB 2.0 A to Micro B cable
 * Computer running Windows, Linux, or macOS
 
@@ -40,6 +40,16 @@ All the IO signals and system power on ESP32-PICO-D4 are led out to two rows of 
 
     1. There are two versions of ESP32-PICO-KIT boards, respectively with male headers and female headers. In this guide, the male header version is taken as an example.
     2. The 2 x 3 pads not populated with pin headers are connected to the flash memory embedded in the ESP32-PICO-D4 SiP module. For more details, see module's datasheet in `Related Documents`_.
+
+.. _esp32-pico-kit-overview:
+
+.. figure:: ../../../_static/esp32-pico-kit/esp32-pico-kit-overview.png
+    :align: center
+    :scale: 40%
+    :alt: ESP32-Pico-Kit
+    :figclass: align-center
+
+    ESP32-Pico-Kit (click to enlarge)
 
 
 Functionality Overview

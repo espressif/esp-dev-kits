@@ -213,7 +213,7 @@ esp-dev-kits
 .. |ESP32-PICO-KIT-1| image:: ../_static/esp32-pico-kit-1/esp32-pico-kit-1-overview.png
 .. _ESP32-PICO-KIT-1: esp32/esp32-pico-kit-1/index.html
 
-.. |ESP32-PICO-KIT| image:: ../_static/esp32-pico-kit/esp32-pico-kit-v4.1-f-layout.jpeg
+.. |ESP32-PICO-KIT| image:: ../_static/esp32-pico-kit/esp32-pico-kit-overview.png
 .. _ESP32-PICO-KIT: esp32/esp32-pico-kit/index.html
 
 .. |ESP-WROVER-KIT| image:: ../_static/esp-wrover-kit/esp-wrover-kit-v4.1-layout-front.png
