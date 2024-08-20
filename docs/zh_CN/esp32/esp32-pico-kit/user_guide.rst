@@ -11,7 +11,7 @@ ESP32-PICO-KIT v4/v4.1
 准备工作
 --------
 
-* :ref:`ESP32-PICO-KIT 迷你开发板 <get-started-pico-kit-v4-board-front>`
+* :ref:`ESP32-PICO-KIT 迷你开发板 <esp32-pico-kit-overview>`
 * USB 2.0 线（A 型转 Micro-B 型）
 * PC（Windows、Linux 或 macOS）
 
@@ -40,6 +40,16 @@ ESP32-PICO-KIT 集成了 USB 转 UART 桥接电路，允许开发人员直接通
 
     1. ESP32-PICO-D4 开发板目前有两种版本，分别采用排针与排母。本指南默认以排针版本为例。
     2. 每排未引出至排针的 3 个管脚已连接至 ESP32-PICO-D4 SiP 模组的内置 flash 模块。更多信息，请见 `相关文档`_ 中的模组技术规格书。
+
+.. _esp32-pico-kit-overview:
+
+.. figure:: ../../../_static/esp32-pico-kit/esp32-pico-kit-overview.png
+    :align: center
+    :scale: 40%
+    :alt: ESP32-Pico-Kit
+    :figclass: align-center
+
+    ESP32-Pico-Kit（点击放大）
 
 
 功能概述
