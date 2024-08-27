@@ -62,19 +62,19 @@ extern "C" void app_main(void)
     assert(smart_gadget != nullptr && "Failed to create phone app squareline");
     assert((phone->installApp(smart_gadget) >= 0) && "Failed to install phone app squareline");
 
-    Calculator *calculator = new Calculator();
+    Calculator *calculator = new Calculator(true, true);
     assert(calculator != nullptr && "Failed to create calculator");
     assert((phone->installApp(calculator) >= 0) && "Failed to begin calculator");
 
-    MusicPlayer *music_player = new MusicPlayer();
+    MusicPlayer *music_player = new MusicPlayer(true, true);
     assert(music_player != nullptr && "Failed to create music_player");
     assert((phone->installApp(music_player) >= 0) && "Failed to begin music_player");
 
-    AppSettings *app_settings = new AppSettings();
+    AppSettings *app_settings = new AppSettings(true, true);
     assert(app_settings != nullptr && "Failed to create app_settings");
     assert((phone->installApp(app_settings) >= 0) && "Failed to begin app_settings");
 
-    Game2048 *game_2048 = new Game2048();
+    Game2048 *game_2048 = new Game2048(true, true);
     assert(game_2048 != nullptr && "Failed to create game_2048");
     assert((phone->installApp(game_2048) >= 0) && "Failed to begin game_2048");
 

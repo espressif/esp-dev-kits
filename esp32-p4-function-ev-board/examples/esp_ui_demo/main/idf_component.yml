@@ -7,7 +7,7 @@ dependencies:
     version: "0.*"
 
   espressif/esp-ui:
-    version: "0.1.*"
+    version: "0.2.*"
 
   espressif/esp-ui-phone_1024_600_stylesheet:
-    version: "0.1.*"
+    version: "0.2.*"
