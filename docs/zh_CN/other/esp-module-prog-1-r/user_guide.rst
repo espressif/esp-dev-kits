@@ -66,8 +66,7 @@ ESP-Module-Prog-1(R) 是专为模组设计的烧录底板，搭载模组后，�
        * ESP32-C6-WROOM-1
        * ESP32-C6-WROOM-1U
    * - ESP-Module-Prog-1R:
-     - * ESP32-WROVER (PCB & IPEX)
-       * ESP32-WROVER-B
+     - * ESP32-WROVER-B
        * ESP32-WROVER-IB
        * ESP32-WROVER-E
        * ESP32-WROVER-IE
