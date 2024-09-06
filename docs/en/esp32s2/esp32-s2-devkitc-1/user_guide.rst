@@ -116,7 +116,7 @@ The development board has a variety of variants to choose from, as shown in the 
    :widths: 41 24 9 8 18
 
    * - Ordering Code
-     - On-board Module [#]_
+     - On-board Module
      - Flash
      - PSRAM
      - Antenna
@@ -134,29 +134,26 @@ The development board has a variety of variants to choose from, as shown in the 
      - 8 MB
      - 2 MB
      - External antenna connector
-   * - ESP32-S2-DevKitC-1
-     - ESP32-S2-SOLO
+   * - ESP32-S2-DevKitC-1 (EOL)
+     - ESP32-S2-SOLO (EOL)
      - 4 MB
      - ---
      - PCB on-board antenna
-   * - ESP32-S2-DevKitC-1U
-     - ESP32-S2-SOLO-U
+   * - ESP32-S2-DevKitC-1U (EOL)
+     - ESP32-S2-SOLO-U (EOL)
      - 4 MB
      - ---
      - External antenna connector
-   * - ESP32-S2-DevKitC-1R
-     - ESP32-S2-SOLO
+   * - ESP32-S2-DevKitC-1R (EOL)
+     - ESP32-S2-SOLO (EOL)
      - 4 MB
      - 2 MB
      - PCB on-board antenna
-   * - ESP32-S2-DevKitC-1RU
-     - ESP32-S2-SOLO-U
+   * - ESP32-S2-DevKitC-1RU (EOL)
+     - ESP32-S2-SOLO-U (EOL)
      - 4 MB
      - 2 MB
      - External antenna connector
-
-.. [#] The ESP32-S2-SOLO-2 and ESP32-S2-SOLO-2U modules use chip revision v1.0, and the rest use chip revision v0.0. For more information about chip revisions, please refer to `ESP32-S2 Series SoC Errata`_.
-
 
 Retail Orders
 ^^^^^^^^^^^^^
