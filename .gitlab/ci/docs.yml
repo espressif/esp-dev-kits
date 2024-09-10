@@ -11,10 +11,11 @@ variables:
     - cd docs
     - ./check_lang_folder_sync.sh
     - python -m pip install -r requirements.txt
-    - build-docs -bs $DOC_BUILDERS -l $DOCLANG build
+    - build-docs -t $DOCTGT -bs $DOC_BUILDERS -l $DOCLANG build
   parallel:
     matrix:
       - DOCLANG: ["en", "zh_CN"]
+        DOCTGT: ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5']
 
 build_docs_html:
   extends:

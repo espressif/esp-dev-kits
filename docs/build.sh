@@ -1,1 +1,0 @@
-build-docs -bs html
