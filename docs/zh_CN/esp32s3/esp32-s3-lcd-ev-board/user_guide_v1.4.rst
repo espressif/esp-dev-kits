@@ -8,6 +8,8 @@ ESP32-S3-LCD-EV-Board v1.4
 
   请查看主板 ESP32-S3-LCD-EV-Board-MB 背面的丝印版本号，以确认您的开发板版本。对于 v1.4 及以下版本的开发板，请参考当前用户指南；对于 v1.5 版本的开发板，请参考 :doc:`user_guide`。
 
+  除非另有说明，本文中的 ESP32-S3-LCD-EV-Board 同时指 **ESP32-S3-LCD-EV-Board** 和 **ESP32-S3-LCD-EV-Board-2** 两款开发板。
+
 本指南将帮助您快速上手 ESP32-S3-LCD-EV-Board，并提供该款开发板的详细信息。
 
 本指南包括如下内容：
@@ -23,7 +25,12 @@ ESP32-S3-LCD-EV-Board v1.4
 开发板概述
 ===================
 
-ESP32-S3-LCD-EV-Board 是一款基于 ESP32-S3 芯片的屏幕交互开发板，通过搭配不同类型的 LCD 子板，可以驱动 IIC、SPI、8080 以及 RGB 接口的 LCD 显示屏。同时它还搭载双麦克风阵列，支持语音识别和近/远场语音唤醒，具有触摸屏交互和语音交互功能，满足用户对多种不同分辨率以及接口的触摸屏应用产品的开发需求。目前支持两款开发板：搭配 480x480 LCD 的 ESP32-S3-LCD-EV-Board 和 搭配 800x480 LCD 的 ESP32-S3-LCD-EV-Board-2。
+ESP32-S3-LCD-EV-Board 是一款基于 ESP32-S3 芯片的屏幕交互开发板，通过搭配不同类型的 LCD 子板，可以驱动 IIC、SPI、8080 以及 RGB 接口的 LCD 显示屏。同时它还搭载双麦克风阵列，支持语音识别和近/远场语音唤醒，具有触摸屏交互和语音交互功能，满足用户对多种不同分辨率以及接口的触摸屏应用产品的开发需求。
+
+目前支持两款开发板：
+
+- 搭配 480x480 LCD 的 ESP32-S3-LCD-EV-Board
+- 搭配 800x480 LCD 的 ESP32-S3-LCD-EV-Board-2
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
     :align: center
