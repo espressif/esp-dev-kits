@@ -8,6 +8,8 @@ ESP32-S3-LCD-EV-Board v1.4
 
   Please check the version number of your ESP32-S3-LCD-EV-Board-MB indicated by the silk marking on the back. For boards of the v1.4 and below versions, please refer to this user guide. For boards of the v1.5 version, please refer to :doc:`user_guide`.
 
+  Unless otherwise stated, the ESP32-S3-LCD-EV-Board in this document refers to both **ESP32-S3-LCD-EV-Board** and **ESP32-S3-LCD-EV-Board-2**.
+
 This user guide will help you get started with ESP32-S3-LCD-EV-Board and will also provide more in-depth information.
 
 The document consists of the following sections:
@@ -23,7 +25,12 @@ The document consists of the following sections:
 Board Overview
 ==============
 
-ESP32-S3-LCD-EV-Board is an ESP32-S3-based development board with a touchscreen. Together with different subboards, ESP32-S3-LCD-EV-Board can drive LCDs with IIC, SPI, 8080, and RGB interfaces. It houses dual array microphones, supports voice recognition and near/far-field voice wake-up, and features screen and voice interaction. The board caters to development needs for touchscreen products with different resolutions and interfaces. Currently, we have two boards available: ESP32-S3-LCD-EV-Board with 480x480 LCD and ESP32-S3-LCD-EV-Board-2 with 800x480 LCD.
+ESP32-S3-LCD-EV-Board is an ESP32-S3-based development board with a touchscreen. Together with different subboards, ESP32-S3-LCD-EV-Board can drive LCDs with IIC, SPI, 8080, and RGB interfaces. It houses dual array microphones, supports voice recognition and near/far-field voice wake-up, and features screen and voice interaction. The board caters to development needs for touchscreen products with different resolutions and interfaces. 
+
+Currently, we have two boards available:
+
+- ESP32-S3-LCD-EV-Board with 480x480 LCD
+- ESP32-S3-LCD-EV-Board-2 with 800x480 LCD
 
 .. figure:: ../../../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
     :align: center
