@@ -116,7 +116,7 @@ ESP32-S2-DevKitC-1 是一款入门级开发板，具备完整的 Wi-Fi 功能。
    :widths: 35 25 10 10 20
 
    * - 订购代码
-     - 搭载模组 [#]_
+     - 搭载模组
      - Flash
      - PSRAM
      - 天线
@@ -134,29 +134,34 @@ ESP32-S2-DevKitC-1 是一款入门级开发板，具备完整的 Wi-Fi 功能。
      - 8 MB
      - 2 MB
      - 外部天线连接器
-   * - ESP32-S2-DevKitC-1
+   * - ESP32-S2-DevKitC-1（停产）
      - ESP32-S2-SOLO
+
+       （停产）
      - 4 MB
      - ---
      - PCB 板载天线
-   * - ESP32-S2-DevKitC-1U
+   * - ESP32-S2-DevKitC-1U（停产）
      - ESP32-S2-SOLO-U
+
+       （停产）
      - 4 MB
      - ---
      - 外部天线连接器
-   * - ESP32-S2-DevKitC-1R
+   * - ESP32-S2-DevKitC-1R（停产）
      - ESP32-S2-SOLO
+
+       （停产）
      - 4 MB
      - 2 MB
      - PCB 板载天线
-   * - ESP32-S2-DevKitC-1RU
+   * - ESP32-S2-DevKitC-1RU（停产）
      - ESP32-S2-SOLO-U
+
+       （停产）
      - 4 MB
      - 2 MB
      - 外部天线连接器
-
-.. [#] ESP32-S2-SOLO-2 和 ESP32-S2-SOLO-2U 模组使用 v1.0 版本芯片，其余模组使用 v0.0 版本芯片。更多关于芯片版本的信息，请参考 `《ESP32-S2 系列芯片勘误表》`_。
-
 
 零售订单
 ^^^^^^^^

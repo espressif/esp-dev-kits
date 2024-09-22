@@ -48,48 +48,52 @@ ESP32-S2-DevKitM-1 是乐鑫一款入门级开发板。板上模组大部分管�
    :widths: 30 30 10 10 20
 
    * - 订购代码
-     - 搭载模组 [#]_
+     - 搭载模组
      - Flash
      - PSRAM
      - 天线
    * - ESP32-S2-DevKitM-1-N4R2
-     - ESP32-S2-MINI-1-2
+     - ESP32-S2-MINI-2
 
        （推荐）
      - 4 MB
      - 2 MB
      - PCB 板载天线
    * - ESP32-S2-DevKitM-1U-N4R2
-     - ESP32-S2-MINI-1-2U
+     - ESP32-S2-MINI-2U
 
        （推荐）
      - 4 MB
      - 2 MB
      - 外部天线连接器
-   * - ESP32-S2-DevKitM-1
+   * - ESP32-S2-DevKitM-1（停产）
      - ESP32-S2-MINI-1
+
+       （停产）
      - 4 MB
      - ---
      - PCB 板载天线
-   * - ESP32-S2-DevKitM-1U
+   * - ESP32-S2-DevKitM-1U（停产）
      - ESP32-S2-MINI-1U
+
+       （停产）
      - 4 MB
      - ---
      - 外部天线连接器
-   * - ESP32-S2-DevKitM-1R
+   * - ESP32-S2-DevKitM-1R（停产）
      - ESP32-S2-MINI-1
+
+       （停产）
      - 4 MB
      - 2 MB
      - PCB 板载天线
-   * - ESP32-S2-DevKitM-1RU
+   * - ESP32-S2-DevKitM-1RU（停产）
      - ESP32-S2-MINI-1U
+
+       （停产）
      - 4 MB
      - 2 MB
      - 外部天线连接器
-
-
-.. [#] ESP32-S2-MINI-2 和 ESP32-S2-MINI-2U 模组使用 v1.0 版本芯片，其余模组使用 v0.0 版本芯片。更多关于芯片版本的信息，请参考 `《ESP32-S2 系列芯片勘误表》`_。
-
 
 零售订单
 ^^^^^^^^
