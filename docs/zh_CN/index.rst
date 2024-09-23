@@ -91,17 +91,21 @@ esp-dev-kits
 ============================   ===========================
        **ESP32 系列开发板**
 ----------------------------------------------------------
- |ESP32-DevKitC|_                 |ESP32-PICO-KIT-1|_
+ |ESP32-DevKitC|_                |ESP32-DevKitM-1|_
 ----------------------------   ---------------------------
- `ESP32-DevKitC`_                 `ESP32-PICO-KIT-1`_
+ `ESP32-DevKitC`_                `ESP32-DevKitM-1`_
 ----------------------------   ---------------------------
- |ESP32-PICO-DevKitM-2|_          |ESP32-LCDKit|_
+ |ESP32-PICO-KIT-1|_             |ESP32-PICO-DevKitM-2|_
 ----------------------------   ---------------------------
- `ESP32-PICO-DevKitM-2`_          `ESP32-LCDKit`_
+ `ESP32-PICO-KIT-1`_             `ESP32-PICO-DevKitM-2`_
 ----------------------------   ---------------------------
- |ESP32-Ethernet-Kit|_            |ESP32-PICO-KIT|_
+ |ESP32-LCDKit|_                 |ESP32-Ethernet-Kit|_
 ----------------------------   ---------------------------
- `ESP32-Ethernet-Kit`_            `ESP32-PICO-KIT`_
+ `ESP32-LCDKit`_                 `ESP32-Ethernet-Kit`_
+----------------------------   ---------------------------
+ |ESP32-PICO-KIT|_
+----------------------------   ---------------------------
+ `ESP32-PICO-KIT`_
 ============================   ===========================
 
 ============================   ===========================
@@ -241,6 +245,10 @@ esp-dev-kits
 .. |ESP-WROVER-KIT| image:: ../_static/esp-wrover-kit/esp-wrover-kit-v4.1-layout-front.png
 .. _ESP-WROVER-KIT: esp32/esp-wrover-kit/index.html
 
+.. |ESP32-DevKitM-1| image:: ../_static/esp32-devkitm-1/esp32-DevKitM-1-isometric.png
+.. _ESP32-DevKitM-1: esp32/esp32-devkitm-1/index.html
+
+
 相关文档
 ~~~~~~~~~~~~~~~~
 
@@ -315,6 +323,7 @@ esp-dev-kits
    :caption: ESP32 系列开发板
 
    ESP32-DevKitC <esp32/esp32-devkitc/index>
+   ESP32_DevKitM-1 <esp32/esp32-devkitm-1/index>
    ESP32-PICO-KIT-1 <esp32/esp32-pico-kit-1/index>
    ESP32-PICO-DevKitM-2 <esp32/esp32-pico-devkitm-2/index>
    ESP32-LCDKit <esp32/esp32-lcdkit/index>

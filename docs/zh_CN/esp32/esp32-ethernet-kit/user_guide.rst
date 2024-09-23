@@ -83,7 +83,7 @@ ESP32-Ethernet-Kit 开发板的主要组件和连接方式如下。
 
 下表将从图片右上角开始，以顺时针顺序介绍图中的主要组件。
 
-.. list-table:: 表格1  组件介绍
+.. list-table:: 表格 1 组件介绍
   :widths: 40 150
   :header-rows: 1
 
