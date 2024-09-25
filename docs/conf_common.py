@@ -106,7 +106,7 @@ project_slug = 'esp-dev-kits'
 
 # Contains info used for constructing target and version selector
 # Can also be hosted externally, see esp-idf for example
-versions_url = './_static/docs_version.js'
+versions_url = './_static/js/docs_version.js'
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
