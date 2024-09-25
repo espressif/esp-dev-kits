@@ -24,7 +24,7 @@ html_context['github_user'] = 'espressif'
 html_context['github_repo'] = 'esp-dev-kits'
 
 languages = ['en', 'zh_CN']
-idf_targets = ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5']
+idf_targets = ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5', 'esp32c61']
 
 ESP32_DOCS = ['esp32/esp-wrover-kit/*.rst',
               'esp32/esp32-devkitc/*.rst',
@@ -61,6 +61,8 @@ ESP32C6_DOCS = ['esp32c6/esp32-c6-devkitc-1/*.rst',
                 'other/esp-module-prog-1-r/*.rst',
                 'other/esp-module-prog-sub-02/*.rst',
                 'other/esp-module-prog-sub-01&04/*.rst'
+                ]
+ESP32C61_DOCS = ['esp32c61/esp32-c61-devkitc-1/*.rst',
                 ]
 ESP32H2_DOCS = ['esp32h2/esp32-h2-devkitm-1/*.rst',
                 'other/esp-module-prog-1-r/*.rst',
@@ -102,7 +104,8 @@ conditional_include_dict = {'esp32':ESP32_DOCS,
                             'esp32s3':ESP32S3_DOCS,
                             'esp32h2':ESP32H2_DOCS,
                             'esp32p4':ESP32P4_DOCS,
-                            'esp32c5':ESP32C5_DOCS
+                            'esp32c5':ESP32C5_DOCS,
+                            'esp32c61':ESP32C61_DOCS
                             }
 
 project_homepage = 'https://github.com/espressif/esp-dev-kits'
