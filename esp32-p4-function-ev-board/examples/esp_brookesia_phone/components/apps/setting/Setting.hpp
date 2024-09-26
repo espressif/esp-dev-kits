@@ -37,12 +37,14 @@ private:
         UI_ABOUT_SETTING_INDEX,
         UI_MAX_INDEX,
     } SettingScreenIndex_t;
+
     typedef enum {
-        WIFI_SIGNAL_STRENGTH_GOOD = 3,
-        WIFI_SIGNAL_STRENGTH_MODERATE = 2,
+        WIFI_SIGNAL_STRENGTH_NONE = 0,
         WIFI_SIGNAL_STRENGTH_WEAK = 1,
-        WIFI_SIGNAL_STRENGTH_NONE = 0
+        WIFI_SIGNAL_STRENGTH_MODERATE = 2,
+        WIFI_SIGNAL_STRENGTH_GOOD = 3,
     } WifiSignalStrengthLevel_t;
+
     typedef enum {
         WIFI_CONNECT_HIDE = 0,
         WIFI_CONNECT_RUNNING,

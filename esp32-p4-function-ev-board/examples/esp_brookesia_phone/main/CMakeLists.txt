@@ -10,9 +10,7 @@ target_compile_options(
         -DLV_USE_DEMO_MUSIC
 )
 
-# If want to use custom memory allocation functions, refer to the following macros:
 if(CONFIG_ESP_BROOKESIA_MEMORY_USE_CUSTOM)
-    # Get the exact component name
     idf_build_get_property(build_components BUILD_COMPONENTS)
     foreach(COMPONENT ${build_components})
         if(COMPONENT MATCHES "esp-brookesia" OR COMPONENT MATCHES "espressif__esp-brookesia")
@@ -21,14 +19,12 @@ if(CONFIG_ESP_BROOKESIA_MEMORY_USE_CUSTOM)
         endif()
     endforeach()
 
-    # Get the component library
     if(TARGET_COMPONENT STREQUAL "")
         message(FATAL_ERROR "Component 'esp-brookesia' not found.")
     else()
         idf_component_get_property(ESP_BROOKESIA_LIB ${TARGET_COMPONENT} COMPONENT_LIB)
     endif()
 
-    # Add the custom memory allocation functions
     target_compile_options(
         ${ESP_BROOKESIA_LIB}
         PUBLIC

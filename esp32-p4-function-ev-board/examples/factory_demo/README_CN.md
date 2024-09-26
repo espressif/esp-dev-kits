@@ -1,86 +1,82 @@
 # Factory Demo
 
-[中文版本](./README_CN.md)
+[英文版本](./README.md)
 
-This example, based on [ESP_Brookesia](https://github.com/espressif/esp-brookesia), demonstrates an Android-like interface that includes many different applications. The example utilizes the development board's MIPI-DSI, MIPI-CSI, SD card slot, ESP32-C6, and audio interfaces. Based on this example, the ESP32-P4-Function-EV-Board can be used to experience the performance of the ESP32-P4.
+该示例基于 [ESP_Brookesia](https://github.com/espressif/esp-brookesia)，展示了一个类似于安卓的界面，其中包含了许多不同的应用程序。该示例利用了开发板的 MIPI-DSI 接口、MIPI-CSI 接口、SD 卡槽、ESP32-C6 和音频接口。基于此示例，可以使用 ESP32-P4-Function-EV-Board 来体验 ESP32-P4 的性能。
 
+## 快速入门
 
-## Getting Started
+### 准备工作
 
+* 一块 ESP32-P4-Function-EV-Board 开发板。
+* 一块由 [EK79007](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf) 芯片驱动的 7 英寸 1024 x 600 LCD 屏幕，配有 32 针 FPC 连接 [适配板](../../docs/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf) ([LCD 规格](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf))。
+* 一款由 SC2336 芯片驱动的 MIPI-CSI 摄像头，配有 32 针 FPC 连接的 [适配板]((../../docs/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf)) ([摄像头规格](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/camera_datasheet.pdf))。
+* 用于供电和编程的 USB-C 电缆。
+* 请参考以下步骤进行连接：
+    * **步骤 1**. 根据下表，将屏幕适配板背面的引脚连接到开发板的相应引脚。
 
-### Prerequisites
-
-* An ESP32-P4-Function-EV-Board.
-* A 7-inch 1024 x 600 LCD screen powered by the [EK79007](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf) IC, accompanied by a 32-pin FPC connection [adapter board](../../docs/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf) ([LCD Specifications](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf)).
-* A MIPI-CSI camera powered by the SC2336 IC, accompanied by a 32-pin FPC connection [adapter board](../../docs/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf) ([Camera Specifications](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/camera_datasheet.pdf)).
-* A USB-C cable for power supply and programming.
-* Please refer to the following steps for the connection:
-    * **Step 1**. According to the table below, connect the pins on the back of the screen adapter board to the corresponding pins on the development board.
-
-        | Screen Adapter Board | ESP32-P4-Function-EV-Board |
+        | 屏幕适配板            | ESP32-P4-Function-EV-Board |
         | -------------------- | -------------------------- |
-        | 5V (any one)         | 5V (any one)               |
-        | GND (any one)        | GND (any one)              |
+        | 5V（任意一个）        | 5V（任意一个）              |
+        | GND（任意一个）       | GND（任意一个）             |
         | PWM                  | GPIO26                     |
         | LCD_RST              | GPIO27                     |
 
-    * **Step 2**. Connect the FPC of LCD through the `MIPI_DSI` interface.
-    * **Step 3**. Connect the FPC of Camera through the `MIPI_CSI` interface.
-    * **Step 4**. Use a USB-C cable to connect the `USB-UART` port to a PC (Used for power supply and viewing serial output).
-    * **Step 5**. Turn on the power switch of the board.
+    * **步骤 2**. 通过 `MIPI_DSI` 接口连接 LCD 的 FPC。
+    * **步骤 3**. 通过 `MIPI_CSI` 接口连接 Camera 的 FPC。
+    * **步骤 4**. 使用 USB-C 电缆将 `USB-UART` 端口连接到 PC（用于供电和查看串行输出）。
+    * **步骤 5**. 打开开发板的电源开关。
 
+### ESP-IDF 要求
 
-### ESP-IDF Required
+- 此示例支持 ESP-IDF release/v5.3 及以上版本。默认情况下，在 ESP-IDF release/v5.3 上运行。
+- 请参照 [ESP-IDF 编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html) 设置开发环境。**强烈推荐** 通过 [编译第一个工程](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#id8) 来熟悉 ESP-IDF，并确保环境设置正确。
 
-- This example supports ESP-IDF release/v5.3 and later branches. By default, it runs on ESP-IDF release/v5.3.
-- Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) to set up the development environment. **We highly recommend** you [Build Your First Project](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#build-your-first-project) to get familiar with ESP-IDF and make sure the environment is set up correctly.
+### 获取 esp-dev-kits 仓库
 
-### Get the esp-dev-kits Repository
-
-To start from the examples in esp-dev-kits, clone the repository to the local PC by running the following commands in the terminal:
+在编译 esp-dev-kits 仓库中的示例之前，请先在终端中运行以下命令，将该仓库克隆到本地：
 
 ```
 git clone --recursive https://github.com/espressif/esp-dev-kits.git
 ```
 
+### 配置
 
-### Configuration
 
-Run ``idf.py menuconfig`` and go to ``Board Support Package(ESP32-P4)``:
+运行 ``idf.py menuconfig`` 并修改 ``Board Support Package(ESP32-P4)`` 配置：
 
 ```
 menuconfig > Component config > Board Support Package
 ```
 
+## 如何使用示例
 
-## How to Use the Example
 
+### 编译和烧录示例
 
-### Build and Flash the Example
+运行 `esptool.py --port PORT write_flash 0 p4_factory_v14_031.bin` 烧录项目.
 
-Run `esptool.py --port PORT write_flash 0 p4_factory_v14_031.bin` to flash the project.
+输入``Ctrl-]`` 可退出串口监视。
 
-To exit the serial monitor, type ``Ctrl-]``.
+有关配置和使用 ESP-IDF 来编译项目的完整步骤，请参阅 [ESP-IDF 快速入门指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html) 。
 
-See the [ESP-IDF Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for full steps to configure and use ESP-IDF to build projects.
+### 注意
+要体验视频播放功能，请将 MJPEG 格式的视频保存在 SD 卡上，并将 SD 卡插入 SD 卡槽。**目前仅支持 MJPEG 格式的视频**。插入 SD 卡后，视频播放应用将自动出现在界面上
 
-### Note
-To experience video playback, save MJPEG format videos on an SD card and insert the SD card into the SD card slot. **Currently, only MJPEG format videos are supported**. After inserting the SD card, the video playback app will automatically appear on the interface.
-
-#### Video Format Conversion
-* Install ffmpeg.
+#### 视频格式转换
+* 安装 ffmpeg.
 ```
     sudo apt update
     sudo apt install ffmpeg
 ```
-* Use ffmpeg to convert video.
+* 使用 ffmpeg 转换视频.
 ```
    ffmpeg -i YOUR_INPUT_FILE_NAME.mp4 -vcodec mjpeg -q:v 2 -vf "scale=1024:600" -acodec copy YOUR_OUTPUT_FILE_NAME.mjpeg
 ```
 
-### Example Output
+### 示例输出
 
-- The complete log is as follows:
+- 完整日志如下所示：
 
     ```c
     I (27) boot: ESP-IDF v5.4-dev-2166-g4eebfc4165 2nd stage bootloader
@@ -167,19 +163,19 @@ To experience video playback, save MJPEG format videos on an SD card and insert 
     I (2331) transport: Add ESP-Hosted channel IF[1]: S[0] Tx[0x4800d500] Rx[0x4801a032]
     ...
     ```
+## 故障排除
 
-## Troubleshooting
+- 屏幕背光暗淡：可能是由于 R12 电阻焊接不良造成的。
+- 屏幕不亮：可能是杜邦线连接不良。
+- 屏幕逐渐变白：这表明屏幕排线存在问题。
+- 无法打开相机：这可能是由于相机 FPC 连接不当造成的
 
-- Screen backlight dim: It might be due to poor soldering of the R12 resistor.
-- Screen not lighting up: It could be due to a poor connection with the Dupont wire.
-- Screen gradually turning white: It indicates that there is an issue with the screen ribbon cable..
-- Unable to turn on the camera: This might be due to an improper connection of the camera FPC.
+## 技术支持与反馈
 
-## Technical Support and Feedback
+请通过以下渠道进行反馈：
 
-Please use the following feedback channels:
+- 有关技术问题，请访问 [esp32.com](https://esp32.com/viewforum.php?f=22) 论坛。
+- 有关功能请求或错误报告，请创建新的 [GitHub 问题](https://github.com/espressif/esp-dev-kits/issues)。
 
-- For technical queries, go to the [esp32.com](https://esp32.com/viewforum.php?f=22) forum.
-- For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-dev-kits/issues).
 
-We will get back to you as soon as possible.
+我们会尽快回复。
