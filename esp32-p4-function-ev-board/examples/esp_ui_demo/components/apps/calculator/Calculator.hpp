@@ -1,9 +1,9 @@
 #pragma once
 
 #include "lvgl.h"
-#include "esp_ui.hpp"
+#include "esp_brookesia.hpp"
 
-class Calculator: public ESP_UI_PhoneApp
+class Calculator: public ESP_Brookesia_PhoneApp
 {
 public:
 	Calculator(bool use_status_bar = true, bool use_navigation_bar = false);

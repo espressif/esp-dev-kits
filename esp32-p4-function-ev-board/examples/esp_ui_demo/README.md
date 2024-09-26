@@ -3,9 +3,9 @@
 
 # ESP-UI Demo
 
-This example, based on ESP_UI, demonstrates an Android-like interface that includes many different applications.
+This example, based on ESP_Brookesia, demonstrates an Android-like interface that includes many different applications.
 
-[ESP-UI](https://github.com/espressif/esp-ui) is a UI runtime framework based on LVGL, designed to provide a consistent UI development experience for screens of various sizes and shapes.
+[ESP-UI](https://github.com/espressif/esp-brookesia) is a UI runtime framework based on LVGL, designed to provide a consistent UI development experience for screens of various sizes and shapes.
 
 ## Getting Started
 

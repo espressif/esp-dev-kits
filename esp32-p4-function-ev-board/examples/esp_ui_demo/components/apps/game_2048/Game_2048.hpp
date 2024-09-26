@@ -3,7 +3,7 @@
 #include "nvs.h"
 #include "lvgl.h"
 #include "bsp_board_extra.h"
-#include "esp_ui.hpp"
+#include "esp_brookesia.hpp"
 
 typedef struct {
 	// Index of row
@@ -13,7 +13,7 @@ typedef struct {
 	int weight;
 } cell_weight_t;
 
-class Game2048: public ESP_UI_PhoneApp
+class Game2048: public ESP_Brookesia_PhoneApp
 {
 public:
 	Game2048(bool use_status_bar = false, bool use_navigation_bar = true);
@@ -77,5 +77,5 @@ private:
     lv_obj_t *_remove_ready_cells[4][4];
     lv_obj_t *_foreground_grid;
     lv_color_t  _cell_colors[11];
-    const ESP_UI_Gesture *_gesture;
+    const ESP_Brookesia_Gesture *_gesture;
 };

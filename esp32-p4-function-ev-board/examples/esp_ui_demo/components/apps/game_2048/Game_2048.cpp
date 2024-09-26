@@ -57,9 +57,9 @@ LV_IMG_DECLARE(img_game2048_week);
 LV_IMG_DECLARE(img_game2048_hello);
 
 Game2048::Game2048(bool use_status_bar, bool use_navigation_bar):
-    ESP_UI_PhoneApp(
-        ESP_UI_CORE_APP_DATA_DEFAULT("2048 Game", &img_app_2048, true),
-        ESP_UI_PHONE_APP_DATA_DEFAULT(&img_app_2048, use_status_bar, use_navigation_bar)
+    ESP_Brookesia_PhoneApp(
+        ESP_BROOKESIA_CORE_APP_DATA_DEFAULT("2048 Game", &img_app_2048, true),
+        ESP_BROOKESIA_PHONE_APP_DATA_DEFAULT(&img_app_2048, use_status_bar, use_navigation_bar)
         ),                 // auto_resize_visual_area
     _is_paused(false),
     _height(0),
@@ -309,8 +309,8 @@ bool Game2048::init(void)
 {
     esp_err_t err = ESP_OK;
 
-    ESP_UI_Phone *phone = getPhone();
-    ESP_UI_PhoneManager& manager = phone->getManager();
+    ESP_Brookesia_Phone *phone = getPhone();
+    ESP_Brookesia_PhoneManager& manager = phone->getManager();
     _gesture = manager.getGesture();
 
     if (bsp_extra_player_init() != ESP_OK) {
@@ -1100,7 +1100,7 @@ void Game2048::new_game_event_cb(lv_event_t *e)
 void Game2048::motion_event_cb(lv_event_t *e)
 {
     int score;
-    ESP_UI_GestureInfo_t *type = (ESP_UI_GestureInfo_t *)lv_event_get_param(e);
+    ESP_Brookesia_GestureInfo_t *type = (ESP_Brookesia_GestureInfo_t *)lv_event_get_param(e);
     Game2048 *app= (Game2048 *)lv_event_get_user_data(e);
 
     if (app->_is_paused) {
@@ -1109,19 +1109,19 @@ void Game2048::motion_event_cb(lv_event_t *e)
 
     if (!anim_running_flag) {
         switch (type->direction) {
-            case ESP_UI_GESTURE_DIR_UP:
+            case ESP_BROOKESIA_GESTURE_DIR_UP:
                 // printf(NULL, "up");
                 score = app->moveUp();
                 break;
-            case ESP_UI_GESTURE_DIR_DOWN:
+            case ESP_BROOKESIA_GESTURE_DIR_DOWN:
                 // printf(NULL, "down");
                 score = app->moveDown();
                 break;
-            case ESP_UI_GESTURE_DIR_LEFT:
+            case ESP_BROOKESIA_GESTURE_DIR_LEFT:
                 // printf(NULL, "left");
                 score = app->moveLeft();
                 break;
-            case ESP_UI_GESTURE_DIR_RIGHT:
+            case ESP_BROOKESIA_GESTURE_DIR_RIGHT:
                 // printf(NULL, "right");
                 score = app->moveRight();
                 break;

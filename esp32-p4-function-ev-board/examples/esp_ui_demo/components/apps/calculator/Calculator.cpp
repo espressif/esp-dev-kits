@@ -25,9 +25,9 @@ static const char *keyboard_map[] = {
 };
 
 Calculator::Calculator(bool use_status_bar, bool use_navigation_bar):
-    ESP_UI_PhoneApp(
-        ESP_UI_CORE_APP_DATA_DEFAULT("Calculator", &img_app_calculator, true),
-        ESP_UI_PHONE_APP_DATA_DEFAULT(&img_app_calculator, use_status_bar, use_navigation_bar)
+    ESP_Brookesia_PhoneApp(
+        ESP_BROOKESIA_CORE_APP_DATA_DEFAULT("Calculator", &img_app_calculator, true),
+        ESP_BROOKESIA_PHONE_APP_DATA_DEFAULT(&img_app_calculator, use_status_bar, use_navigation_bar)
     )
 {
 }

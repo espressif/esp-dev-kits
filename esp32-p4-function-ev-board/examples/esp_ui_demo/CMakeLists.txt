@@ -11,4 +11,4 @@ set(EXTRA_COMPONENT_DIRS
 add_compile_options(-Wno-format
                     -Wno-unused-variable
                     -Wno-missing-field-initializers)
-project(esp_ui_demo)
+project(esp_brookesia_demo)

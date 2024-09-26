@@ -12,7 +12,7 @@ extern "C" {
 
     #include "lvgl.h"
 
-#include "esp_ui.h"
+#include "esp_brookesia.h"
 // SCREEN: ui_ScreenSettingMain
 void ui_ScreenSettingMain_screen_init(void);
 extern lv_obj_t *ui_ScreenSettingMain;
