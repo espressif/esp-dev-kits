@@ -414,7 +414,7 @@ esp-dev-kits 文档
 
 .. toctree::
    :hidden:
-   :caption: 相关资源
+   :caption: 相关资源与法律声明
 
    相关文档和资源 <resources>
-   贡献指南 <contribute/contributions_guide>
+   免责声明和版权公告 <disclaimer-and-copyright>
