@@ -11,9 +11,9 @@
 #include "esp_event.h"
 #include "esp_wifi.h"
 #include "lvgl.h"
-#include "esp_ui.hpp"
+#include "esp_brookesia.hpp"
 
-class AppSettings: public ESP_UI_PhoneApp {
+class AppSettings: public ESP_Brookesia_PhoneApp {
 public:
     AppSettings(bool use_status_bar = true, bool use_navigation_bar = true);
     ~AppSettings();
@@ -37,12 +37,14 @@ private:
         UI_ABOUT_SETTING_INDEX,
         UI_MAX_INDEX,
     } SettingScreenIndex_t;
+
     typedef enum {
-        WIFI_SIGNAL_STRENGTH_GOOD = 3,
-        WIFI_SIGNAL_STRENGTH_MODERATE = 2,
+        WIFI_SIGNAL_STRENGTH_NONE = 0,
         WIFI_SIGNAL_STRENGTH_WEAK = 1,
-        WIFI_SIGNAL_STRENGTH_NONE = 0
+        WIFI_SIGNAL_STRENGTH_MODERATE = 2,
+        WIFI_SIGNAL_STRENGTH_GOOD = 3,
     } WifiSignalStrengthLevel_t;
+
     typedef enum {
         WIFI_CONNECT_HIDE = 0,
         WIFI_CONNECT_RUNNING,
@@ -101,6 +103,6 @@ private:
     lv_obj_t *_img_wifi_connect;
     std::array<lv_obj_t *, UI_MAX_INDEX> _screen_list;
     std::map<std::string, int32_t> _nvs_param_map;
-    const ESP_UI_StatusBar *status_bar; 
-    const ESP_UI_RecentsScreen *backstage;
+    const ESP_Brookesia_StatusBar *status_bar; 
+    const ESP_Brookesia_RecentsScreen *backstage;
 };

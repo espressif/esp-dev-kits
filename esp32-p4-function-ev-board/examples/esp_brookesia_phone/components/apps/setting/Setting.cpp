@@ -21,7 +21,7 @@
 #include "Setting.hpp"
 #include "app_sntp.h"
 
-#include "esp_ui_versions.h"
+#include "esp_brookesia_versions.h"
 
 #define ENABLE_DEBUG_LOG                (0)
 
@@ -111,9 +111,9 @@ extern lv_obj_t *ui_Date;
 extern lv_obj_t *ui_Clock_Number;
 
 AppSettings::AppSettings(bool use_status_bar, bool use_navigation_bar):
-    ESP_UI_PhoneApp(
-        ESP_UI_CORE_APP_DATA_DEFAULT("Settings", &img_app_setting, false),
-        ESP_UI_PHONE_APP_DATA_DEFAULT(&img_app_setting, use_status_bar, use_navigation_bar)
+    ESP_Brookesia_PhoneApp(
+        ESP_BROOKESIA_CORE_APP_DATA_DEFAULT("Settings", &img_app_setting, false),
+        ESP_BROOKESIA_PHONE_APP_DATA_DEFAULT(&img_app_setting, use_status_bar, use_navigation_bar)
     ),                  // auto_resize_visual_area
     _is_ui_resumed(false),
     _is_ui_del(true),
@@ -186,8 +186,8 @@ bool AppSettings::close(void)
 
 bool AppSettings::init(void)
 {
-    ESP_UI_Phone *phone = getPhone();
-    ESP_UI_PhoneHome& home = phone->getHome();
+    ESP_Brookesia_Phone *phone = getPhone();
+    ESP_Brookesia_PhoneHome& home = phone->getHome();
     status_bar = home.getStatusBar();
     backstage = home.getRecentsScreen();
 
@@ -344,7 +344,7 @@ void AppSettings::extraUiInit(void)
     lv_obj_add_event_cb(ui_ScreenSettingVolume, onScreenLoadEventCallback, LV_EVENT_SCREEN_LOADED, this);
 
     /* About */
-    lv_label_set_text(ui_LabelPanelPanelScreenSettingAbout4, "ESP_UI");
+    lv_label_set_text(ui_LabelPanelPanelScreenSettingAbout4, "ESP_Brookesia");
     lv_obj_add_flag(ui_ButtonScreenSettingAboutReturn, LV_OBJ_FLAG_HIDDEN);
     // Record the screen index and install the screen loaded event callback
     _screen_list[UI_ABOUT_SETTING_INDEX] = ui_ScreenSettingAbout;
@@ -357,7 +357,7 @@ void AppSettings::extraUiInit(void)
     lv_obj_set_x( ui_LabelPanelPanelScreenSettingAbout2, 167 );
 
     char char_ui_version[20];
-    snprintf(char_ui_version, sizeof(char_ui_version), "v%d.%d.%d", ESP_UI_CONF_VER_MAJOR, ESP_UI_CONF_VER_MINOR, ESP_UI_CONF_VER_PATCH);
+    snprintf(char_ui_version, sizeof(char_ui_version), "v%d.%d.%d", ESP_BROOKESIA_CONF_VER_MAJOR, ESP_BROOKESIA_CONF_VER_MINOR, ESP_BROOKESIA_CONF_VER_PATCH);
     lv_label_set_text(ui_LabelPanelPanelScreenSettingAbout6, char_ui_version);
 }
 
@@ -838,7 +838,7 @@ void AppSettings::onKeyboardScreenSettingVerificationClickedEventCallback(lv_eve
     AppSettings *app = (AppSettings *)lv_event_get_user_data(e);
     lv_obj_t *target = lv_event_get_target(e);
 
-    ESP_UI_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
+    ESP_BROOKESIA_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
 
     lv_keyboard_set_textarea(target, ui_TextAreaScreenSettingVerificationPassword);
 
@@ -861,7 +861,7 @@ void AppSettings::onScreenLoadEventCallback( lv_event_t * e)
     AppSettings *app = (AppSettings *)lv_event_get_user_data(e);
     SettingScreenIndex_t last_scr_index = app->_screen_index;
 
-    ESP_UI_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
+    ESP_BROOKESIA_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
 
     for (int i = 0; i < UI_MAX_INDEX; i++) {
         if (app->_screen_list[i] == lv_event_get_target(e)) {
@@ -886,7 +886,7 @@ void AppSettings::onSwitchPanelScreenSettingWiFiSwitchValueChangeEventCallback( 
     lv_state_t state = lv_obj_get_state(ui_SwitchPanelScreenSettingWiFiSwitch);
 
     AppSettings *app = (AppSettings *)lv_event_get_user_data(e);
-    ESP_UI_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
+    ESP_BROOKESIA_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
 
     if (state & LV_STATE_CHECKED) {
         app->_nvs_param_map[NVS_KEY_WIFI_ENABLE] = true;
@@ -936,7 +936,7 @@ void AppSettings::onSwitchPanelScreenSettingBLESwitchValueChangeEventCallback( l
     lv_state_t state = lv_obj_get_state(ui_SwitchPanelScreenSettingBLESwitch);
 
     AppSettings *app = (AppSettings *)lv_event_get_user_data(e);
-    ESP_UI_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
+    ESP_BROOKESIA_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
 
     if (state & LV_STATE_CHECKED) {
         app->_nvs_param_map[NVS_KEY_WIFI_ENABLE] = true;
@@ -954,7 +954,7 @@ void AppSettings::onSliderPanelVolumeSwitchValueChangeEventCallback( lv_event_t 
     int volume = lv_slider_get_value(ui_SliderPanelScreenSettingVolumeSwitch);
 
     AppSettings *app = (AppSettings *)lv_event_get_user_data(e);
-    ESP_UI_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
+    ESP_BROOKESIA_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
 
     if (volume != app->_nvs_param_map[NVS_KEY_AUDIO_VOLUME]) {
         if ((bsp_extra_codec_volume_set(volume, NULL) != ESP_OK) && (bsp_extra_codec_volume_get() != volume)) {
@@ -974,7 +974,7 @@ void AppSettings::onSliderPanelLightSwitchValueChangeEventCallback( lv_event_t *
     brightness = lv_slider_get_value(ui_SliderPanelScreenSettingLightSwitch1);
 
     AppSettings *app = (AppSettings *)lv_event_get_user_data(e);
-    ESP_UI_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
+    ESP_BROOKESIA_CHECK_NULL_GOTO(app, end, "Invalid app pointer");
 
     if (brightness != app->_nvs_param_map[NVS_KEY_DISPLAY_BRIGHTNESS]) {
         // if ((bsp_display_brightness_set(brightness) != ESP_OK) && (bsp_display_brightness_get() != brightness)) {

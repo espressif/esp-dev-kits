@@ -7,9 +7,9 @@
 
 #include "lvgl.h"
 #include "file_iterator.h"
-#include "esp_ui.hpp"
+#include "esp_brookesia.hpp"
 
-class MusicPlayer: public ESP_UI_PhoneApp {
+class MusicPlayer: public ESP_Brookesia_PhoneApp {
 public:
     MusicPlayer(bool use_status_bar = true, bool use_navigation_bar = false);
     ~MusicPlayer();

@@ -12,8 +12,7 @@
 #include "bsp/display.h"
 #include "bsp_board_extra.h"
 
-#include "esp_ui.hpp"
-#include "esp_ui_phone_1024_600_stylesheet.h"
+#include "esp_brookesia.hpp"
 #include "app_examples/phone/squareline/src/phone_app_squareline.hpp"
 #include "apps.h"
 
@@ -48,13 +47,13 @@ extern "C" void app_main(void)
 
     bsp_display_lock(0);
 
-    ESP_UI_Phone *phone = new ESP_UI_Phone();
+    ESP_Brookesia_Phone *phone = new ESP_Brookesia_Phone();
     assert(phone != nullptr && "Failed to create phone");
 
-    ESP_UI_PhoneStylesheet_t *phone_stylesheet = new ESP_UI_PhoneStylesheet_t ESP_UI_PHONE_1024_600_DARK_STYLESHEET();
-    ESP_UI_CHECK_NULL_EXIT(phone_stylesheet, "Create phone stylesheet failed");
-    ESP_UI_CHECK_FALSE_EXIT(phone->addStylesheet(*phone_stylesheet), "Add phone stylesheet failed");
-    ESP_UI_CHECK_FALSE_EXIT(phone->activateStylesheet(*phone_stylesheet), "Activate phone stylesheet failed");
+    ESP_Brookesia_PhoneStylesheet_t *phone_stylesheet = new ESP_Brookesia_PhoneStylesheet_t ESP_BROOKESIA_PHONE_1024_600_DARK_STYLESHEET();
+    ESP_BROOKESIA_CHECK_NULL_EXIT(phone_stylesheet, "Create phone stylesheet failed");
+    ESP_BROOKESIA_CHECK_FALSE_EXIT(phone->addStylesheet(*phone_stylesheet), "Add phone stylesheet failed");
+    ESP_BROOKESIA_CHECK_FALSE_EXIT(phone->activateStylesheet(*phone_stylesheet), "Activate phone stylesheet failed");
 
     assert(phone->begin() && "Failed to begin phone");
 

@@ -8,8 +8,8 @@
 
 The following examples are developed under the ESP-IDF **release/v5.3** branch
 
-* [Factory Demo](./examples/factory_demo/)  (The code will be gradually updated and released in the [ESP-UI demo](./examples/esp_ui_demo/))
-* [ESP-UI Demo](./examples/esp_ui_demo/)
+* [Factory Demo](./examples/factory_demo/)  (The code will be gradually updated and released in the [ESP-Brookesia Phone](./examples/esp_brookesia_phone/))
+* [ESP-Brookesia Phone](./examples/esp_brookesia_phone/)
 * [LVGL Demos v8](./examples/lvgl_demo_v8/)
 * [LVGL Demos v9](./examples/lvgl_demo_v9/)
 

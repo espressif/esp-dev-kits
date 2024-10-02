@@ -1,75 +1,70 @@
 # LVGL Demo v8
 
-[中文版本](./README_CN.md)
+[英文版本](./README.md)
 
-This example demonstrates how to port LVGL v8 and conduct performance testing using LVGL's built-in demos. The example utilizes the development board's MIPI-DSI interface. Based on this example, applications based on LVGL v8 can be developed.
+该示例演示了如何移植 LVGL v8 并使用 LVGL 内置的示例进行性能测试。该示例使用了开发板的 MIPI-DSI 接口。基于此示例，可以开发基于 LVGL v8 的应用。
 
+## 快速入门
 
-## Getting Started
+### 准备工作
 
+* 一块 ESP32-P4-Function-EV-Board 开发板。
+* 一块由 [EK79007](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf) 芯片驱动的 7 英寸 1024 x 600 LCD 屏幕，配有 32 针 FPC 连接 [适配板](../../docs/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf) ([LCD 规格](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf))。
+* 用于供电和编程的 USB-C 电缆。
+* 请参考以下步骤进行连接：
+    * **步骤 1**. 根据下表，将屏幕适配板背面的引脚连接到开发板的相应引脚。
 
-### Prerequisites
-
-* An ESP32-P4-Function-EV-Board.
-* A 7-inch 1024 x 600 LCD screen powered by the [EK79007](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf) IC, accompanied by a 32-pin FPC connection [adapter board](../../docs/_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf) ([LCD Specifications](../../docs/_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf)).
-* A USB-C cable for power supply and programming.
-* Please refer to the following steps for the connection:
-    * **Step 1**. According to the table below, connect the pins on the back of the screen adapter board to the corresponding pins on the development board.
-
-        | Screen Adapter Board | ESP32-P4-Function-EV-Board |
+        | 屏幕适配板            | ESP32-P4-Function-EV-Board |
         | -------------------- | -------------------------- |
-        | 5V (any one)         | 5V (any one)               |
-        | GND (any one)        | GND (any one)              |
+        | 5V（任意一个）        | 5V（任意一个）              |
+        | GND（任意一个）       | GND（任意一个）             |
         | PWM                  | GPIO26                     |
         | LCD_RST              | GPIO27                     |
 
-    * **Step 2**. Connect the FPC of LCD through the `MIPI_DSI` interface.
-    * **Step 3**. Use a USB-C cable to connect the `USB-UART` port to a PC (Used for power supply and viewing serial output).
-    * **Step 4**. Turn on the power switch of the board.
+    * **步骤 2**. 通过 `MIPI_DSI` 接口连接 LCD 的 FPC。
+    * **步骤 3**. 使用 USB-C 电缆将 `USB-UART` 端口连接到 PC（用于供电和查看串行输出）。
+    * **步骤 4**. 打开开发板的电源开关。
 
+### ESP-IDF 要求
 
-### ESP-IDF Required
+- 此示例支持 ESP-IDF release/v5.3 及以上版本。默认情况下，在 ESP-IDF release/v5.3 上运行。
+- 请参照 [ESP-IDF 编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html) 设置开发环境。**强烈推荐** 通过 [编译第一个工程](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#id8) 来熟悉 ESP-IDF，并确保环境设置正确。
 
-- This example supports ESP-IDF release/v5.3 and later branches. By default, it runs on ESP-IDF release/v5.3.
-- Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) to set up the development environment. **We highly recommend** you [Build Your First Project](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#build-your-first-project) to get familiar with ESP-IDF and make sure the environment is set up correctly.
+### 获取 esp-dev-kits 仓库
 
-### Get the esp-dev-kits Repository
-
-To start from the examples in esp-dev-kits, clone the repository to the local PC by running the following commands in the terminal:
+在编译 esp-dev-kits 仓库中的示例之前，请先在终端中运行以下命令，将该仓库克隆到本地：
 
 ```
 git clone --recursive https://github.com/espressif/esp-dev-kits.git
 ```
 
+### 配置
 
-### Configuration
 
-Run ``idf.py menuconfig`` and go to ``Board Support Package(ESP32-P4)``:
+运行 ``idf.py menuconfig`` 并修改 ``Board Support Package(ESP32-P4)`` 配置：
 
 ```
 menuconfig > Component config > Board Support Package
 ```
 
+## 如何使用示例
 
-## How to Use the Example
 
+### 编译和烧录示例
 
-### Build and Flash the Example
-
-Build the project and flash it to the board, then run monitor tool to view serial output (replace `PORT` with your board's serial port name):
+编译项目并将其烧录到开发板上，运行监视工具可查看串行端口输出（将 `PORT` 替换为所用开发板的串行端口名）：
 
 ```c
 idf.py -p PORT flash monitor
 ```
 
-To exit the serial monitor, type ``Ctrl-]``.
+输入``Ctrl-]`` 可退出串口监视。
 
-See the [ESP-IDF Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) for full steps to configure and use ESP-IDF to build projects.
+有关配置和使用 ESP-IDF 来编译项目的完整步骤，请参阅 [ESP-IDF 快速入门指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html) 。
 
+### 示例输出
 
-### Example Output
-
-- The complete log is as follows:
+- 完整日志如下所示：
 
     ```c
     I (25) boot: ESP-IDF v5.4-dev-2167-gdef35b1ca7-dirty 2nd stage bootloader
@@ -160,11 +155,12 @@ See the [ESP-IDF Getting Started Guide](https://docs.espressif.com/projects/esp-
     ...
     ```
 
-## Technical Support and Feedback
+## 技术支持与反馈
 
-Please use the following feedback channels:
+请通过以下渠道进行反馈：
 
-- For technical queries, go to the [esp32.com](https://esp32.com/viewforum.php?f=22) forum.
-- For a feature request or bug report, create a [GitHub issue](https://github.com/espressif/esp-dev-kits/issues).
+- 有关技术问题，请访问 [esp32.com](https://esp32.com/viewforum.php?f=22) 论坛。
+- 有关功能请求或错误报告，请创建新的 [GitHub 问题](https://github.com/espressif/esp-dev-kits/issues)。
 
-We will get back to you as soon as possible.
+
+我们会尽快回复。

@@ -6,8 +6,5 @@ dependencies:
   espressif/esp_hosted:
     version: "0.*"
 
-  espressif/esp-ui:
-    version: "0.2.*"
-
-  espressif/esp-ui-phone_1024_600_stylesheet:
-    version: "0.2.*"
+  espressif/esp-brookesia:
+    version: "0.3.*"
