@@ -71,6 +71,10 @@ Supported Development Boards
 ============================   ===========================
        **ESP32-S3 Development Boards**
 ----------------------------------------------------------
+ |ESP32-S3-DevKitC-1|_            |ESP32-S3-DevKitM-1|_
+----------------------------   ---------------------------
+ `ESP32-S3-DevKitC-1`_            `ESP32-S3-DevKitM-1`_
+----------------------------   ---------------------------
  |ESP32-S3-USB-OTG|_            |ESP32-S3-LCD-EV-Board|_
 ----------------------------   ---------------------------
  `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
@@ -170,6 +174,12 @@ Supported Development Boards
 
 .. |ESP32-S2-Touch-DevKit-1| image:: ../_static/esp32-s2-touch-devkit-1/motherboard.png
 .. _ESP32-S2-Touch-DevKit-1: esp32s2/esp32-s2-touch-devkit-1/index.html
+
+.. |ESP32-S3-DevKitC-1| image:: ../_static/esp32-s3-devkitc-1/esp32-s3-devkitc-1-v1-isometric.png
+.. _ESP32-S3-DevKitC-1: esp32s3/esp32-s3-devkitc-1/index.html
+
+.. |ESP32-S3-DevKitM-1| image:: ../_static/esp32-s3-devkitm-1/esp32-s3-devkitm-1-v1-isometric.png
+.. _ESP32-S3-DevKitM-1: esp32s3/esp32-s3-devkitm-1/index.html
 
 .. |ESP32-S3-USB-OTG| image:: ../_static/esp32-s3-usb-otg/pic_product_esp32_s3_otg.png
                       :height: 230px
@@ -307,6 +317,8 @@ Related
    :hidden:
    :caption: ESP32-S3 Boards
 
+   ESP32-S3-DevKitC-1 <esp32s3/esp32-s3-devkitc-1/index>
+   ESP32-S3-DevKitM-1 <esp32s3/esp32-s3-devkitm-1/index>
    ESP32-S3-USB-OTG <esp32s3/esp32-s3-usb-otg/index>
    ESP32-S3-LCD-EV-Board <esp32s3/esp32-s3-lcd-ev-board/index>
    ESP32-S3-USB-Bridge <esp32s3/esp32-s3-usb-bridge/index>
