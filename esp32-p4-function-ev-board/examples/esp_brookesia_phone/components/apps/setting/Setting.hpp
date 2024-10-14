@@ -15,7 +15,7 @@
 
 class AppSettings: public ESP_Brookesia_PhoneApp {
 public:
-    AppSettings(bool use_status_bar = true, bool use_navigation_bar = true);
+    AppSettings();
     ~AppSettings();
 
     bool run(void);

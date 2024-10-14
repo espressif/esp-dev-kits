@@ -1,0 +1,7 @@
+menu "Example Configurations"
+    config EXAMPLE_ENABLE_SD_CARD
+        bool "Enable SD Card"
+        default n
+        help 
+            Enabling this option will initialize the SD card, so the SD card needs to be inserted into the slot. Additionally, if using the Video Player example, an MJPEG format video must be saved on the SD card.
+endmenu

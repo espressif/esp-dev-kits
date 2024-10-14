@@ -24,11 +24,8 @@ static const char *keyboard_map[] = {
     "0", ".", "=", ""
 };
 
-Calculator::Calculator(bool use_status_bar, bool use_navigation_bar):
-    ESP_Brookesia_PhoneApp(
-        ESP_BROOKESIA_CORE_APP_DATA_DEFAULT("Calculator", &img_app_calculator, true),
-        ESP_BROOKESIA_PHONE_APP_DATA_DEFAULT(&img_app_calculator, use_status_bar, use_navigation_bar)
-    )
+Calculator::Calculator():
+    ESP_Brookesia_PhoneApp("Calculator", &img_app_calculator, true)
 {
 }
 

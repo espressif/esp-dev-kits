@@ -11,7 +11,7 @@
 
 class MusicPlayer: public ESP_Brookesia_PhoneApp {
 public:
-    MusicPlayer(bool use_status_bar = true, bool use_navigation_bar = false);
+    MusicPlayer();
     ~MusicPlayer();
 
     bool run(void);

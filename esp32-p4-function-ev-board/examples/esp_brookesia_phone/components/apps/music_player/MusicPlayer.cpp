@@ -21,11 +21,8 @@ LV_IMG_DECLARE(img_app_music_player);
 
 static const char *TAG = "MusicPlayer";
 
-MusicPlayer::MusicPlayer(bool use_status_bar, bool use_navigation_bar):
-    ESP_Brookesia_PhoneApp(
-        ESP_BROOKESIA_CORE_APP_DATA_DEFAULT("Music Player", &img_app_music_player, true),
-        ESP_BROOKESIA_PHONE_APP_DATA_DEFAULT(&img_app_music_player, use_status_bar, use_navigation_bar)
-    ), // auto_resize_visual_area
+MusicPlayer::MusicPlayer():
+    ESP_Brookesia_PhoneApp("Music Player", &img_app_music_player, true), // auto_resize_visual_area
     _file_iterator(NULL)
 {
 }

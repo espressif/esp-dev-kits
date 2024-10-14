@@ -6,13 +6,12 @@
 
 ## Examples
 
-The following examples are developed under the ESP-IDF **release/v5.3** branch
+The following examples are developed under the ESP-IDF **release/v5.4** branch. The [ESP-Brookesia Phone](./examples/esp_brookesia_phone/) is the factory firmware of the development board.
 
-* [Factory Demo](./examples/factory_demo/)  (The code will be gradually updated and released in the [ESP-Brookesia Phone](./examples/esp_brookesia_phone/))
 * [ESP-Brookesia Phone](./examples/esp_brookesia_phone/)
 * [LVGL Demos v8](./examples/lvgl_demo_v8/)
 * [LVGL Demos v9](./examples/lvgl_demo_v9/)
 
 ## Factory Bin
 
-* [Factory Bin](https://dl.espressif.com/AE/esp-dev-kits/p4_factory_v14_031.bin) for ESP32-P4-Function-EV-Board, programmed with the [Factory Demo](./examples/factory_demo/) example.
+* [Factory Bin](https://dl.espressif.com/AE/esp-dev-kits/p4_factory_v14_100.bin) for ESP32-P4-Function-EV-Board, programmed with the [Factory Demo](./examples/esp_brookesia_phone/) example.

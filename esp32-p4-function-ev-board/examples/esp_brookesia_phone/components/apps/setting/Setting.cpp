@@ -110,11 +110,8 @@ extern lv_obj_t *ui_Sec;
 extern lv_obj_t *ui_Date;
 extern lv_obj_t *ui_Clock_Number;
 
-AppSettings::AppSettings(bool use_status_bar, bool use_navigation_bar):
-    ESP_Brookesia_PhoneApp(
-        ESP_BROOKESIA_CORE_APP_DATA_DEFAULT("Settings", &img_app_setting, false),
-        ESP_BROOKESIA_PHONE_APP_DATA_DEFAULT(&img_app_setting, use_status_bar, use_navigation_bar)
-    ),                  // auto_resize_visual_area
+AppSettings::AppSettings():
+    ESP_Brookesia_PhoneApp("Settings", &img_app_setting, false),                  // auto_resize_visual_area
     _is_ui_resumed(false),
     _is_ui_del(true),
     _screen_index(UI_MAIN_SETTING_INDEX),
