@@ -185,12 +185,6 @@ esp-dev-kits Documentation
 .. |ESP32-S2-DevKitM-1| image:: ../_static/esp32-s2-devkitm-1/esp32-s2-devkitm-1-v1-isometric.png
 .. _ESP32-S2-DevKitM-1: esp32s2/esp32-s2-devkitm-1/index.html
 
-.. |ESP32-Sense-Kit| image:: ../_static/esp32-sense-kit/touch_eb_overview.jpg
-.. _ESP32-Sense-Kit: esp32/esp32-sense-kit/index.html
-
-.. |ESP32-MeshKit-Sense| image:: ../_static/esp32-meshkit-sensor/esp32-meshkit-sensor.png
-.. _ESP32-MeshKit-Sense: esp32/esp32-meshkit-sensor/index.html
-
 .. |ESP32-LCDKit| image:: ../_static/esp32-lcdkit/esp32-lcdkit-board.png
                   :height: 230px
                   :width: 400px
@@ -200,15 +194,6 @@ esp-dev-kits Documentation
                   :height: 230px
                   :width: 400px
 .. _ESP32-DevKitC: esp32/esp32-devkitc/index.html
-
-.. |ESP32-S2-HMI-DevKit-1| image:: ../_static/esp32-s2-hmi-devkit-1/esp32-s2-hmi-devkit-1-3d-v1.0.png
-.. _ESP32-S2-HMI-DevKit-1: esp32s2/esp32-s2-hmi-devkit-1/index.html
-
-.. |ESP32-S2-Kaluga-1| image:: ../_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png
-.. _ESP32-S2-Kaluga-1: esp32s2/esp32-s2-kaluga-1/index.html
-
-.. |ESP32-S2-Touch-DevKit-1| image:: ../_static/esp32-s2-touch-devkit-1/motherboard.png
-.. _ESP32-S2-Touch-DevKit-1: esp32s2/esp32-s2-touch-devkit-1/index.html
 
 .. |ESP32-S3-DevKitC-1| image:: ../_static/esp32-s3-devkitc-1/esp32-s3-devkitc-1-v1-isometric.png
 .. _ESP32-S3-DevKitC-1: esp32s3/esp32-s3-devkitc-1/index.html
