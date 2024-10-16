@@ -152,27 +152,31 @@ esp-dev-kits 文档
 .. only:: esp32
 
    ============================   ===========================
-         **{IDF_TARGET_NAME} 系列开发板**
+         **{IDF_TARGET_NAME} Development Boards**
    ----------------------------------------------------------
-   |ESP32-DevKitC|_                 |ESP32-PICO-KIT-1|_
+   |ESP32-DevKitC|_                |ESP32-DevKitM-1|_
    ----------------------------   ---------------------------
-   `ESP32-DevKitC`_                 `ESP32-PICO-KIT-1`_
+   `ESP32-DevKitC`_                `ESP32-DevKitM-1`_
    ----------------------------   ---------------------------
-   |ESP32-PICO-DevKitM-2|_          |ESP32-LCDKit|_
+   |ESP32-PICO-KIT-1|_             |ESP32-PICO-DevKitM-2|_
    ----------------------------   ---------------------------
-   `ESP32-PICO-DevKitM-2`_          `ESP32-LCDKit`_
+   `ESP32-PICO-KIT-1`_             `ESP32-PICO-DevKitM-2`_
    ----------------------------   ---------------------------
-   |ESP32-Ethernet-Kit|_            |ESP32-PICO-KIT|_
+   |ESP32-LCDKit|_                 |ESP32-Ethernet-Kit|_
    ----------------------------   ---------------------------
-   `ESP32-Ethernet-Kit`_            `ESP32-PICO-KIT`_
+   `ESP32-LCDKit`_                 `ESP32-Ethernet-Kit`_
+   ----------------------------   ---------------------------
+   |ESP32-PICO-KIT|_              |ESP-Prog|_
+   ----------------------------   ---------------------------
+   `ESP32-PICO-KIT`_              `ESP-Prog`_
    ----------------------------   ---------------------------
    |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
    ----------------------------   ---------------------------
    `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
    ----------------------------   ---------------------------
-   |ESP-Module-Prog-SUB-02|_      |ESP-Prog|_
+   |ESP-Module-Prog-SUB-02|_      
    ----------------------------   ---------------------------
-   `ESP-Module-Prog-SUB-02`_      `ESP-Prog`_
+   `ESP-Module-Prog-SUB-02`_     
    ============================   ===========================
 
 .. |ESP32-S2-DevKitC-1| image:: ../_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-isometric.png
@@ -395,6 +399,7 @@ esp-dev-kits 文档
       :caption: {IDF_TARGET_NAME} 系列开发板
 
       ESP32-DevKitC <esp32/esp32-devkitc/index>
+      ESP32-DevKitM-1 <esp32/esp32-devkitm-1/index>
       ESP32-PICO-KIT-1 <esp32/esp32-pico-kit-1/index>
       ESP32-PICO-DevKitM-2 <esp32/esp32-pico-devkitm-2/index>
       ESP32-LCDKit <esp32/esp32-lcdkit/index>
