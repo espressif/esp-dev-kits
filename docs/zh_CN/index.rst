@@ -142,6 +142,10 @@ esp-dev-kits
  |ESP32-S2-Kaluga-1|_           |ESP-WROVER-KIT|_
 ----------------------------   ---------------------------
  `ESP32-S2-Kaluga-1`_           `ESP-WROVER-KIT`_
+----------------------------   ---------------------------
+ |ESP32-S2-Saola-1|_
+----------------------------   ---------------------------
+ `ESP32-S2-Saola-1`_
 ============================   ===========================
 
 .. |ESP32-S2-DevKitC-1| image:: ../_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-isometric.png
@@ -149,6 +153,9 @@ esp-dev-kits
 
 .. |ESP32-S2-DevKitM-1| image:: ../_static/esp32-s2-devkitm-1/esp32-s2-devkitm-1-v1-isometric.png
 .. _ESP32-S2-DevKitM-1: esp32s2/esp32-s2-devkitm-1/index.html
+
+.. |ESP32-S2-Saola-1| image:: ../_static/esp32-s2-saola-1/esp32-s2-saola-1-v1.2-isometric.png
+.. _ESP32-S2-Saola-1: esp32s2/esp32-s2-saola-1/index.html
 
 .. |ESP32-Sense-Kit| image:: ../_static/esp32-sense-kit/touch_eb_overview.jpg
 .. _ESP32-Sense-Kit: esp32/esp32-sense-kit/index.html
@@ -361,6 +368,7 @@ esp-dev-kits
    ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
    ESP32-S2-Kaluga-1 <esp32s2/esp32-s2-kaluga-1/index>
    ESP-WROVER-KIT <esp32/esp-wrover-kit/index>
+   ESP32-S2-Saola-1 <esp32s2/esp32-s2-saola-1/index>
 
 .. toctree::
    :hidden:
