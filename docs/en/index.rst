@@ -342,7 +342,7 @@ Related
    :caption: ESP32 Boards
 
    ESP32-DevKitC <esp32/esp32-devkitc/index>
-   ESP32_DevKitM-1 <esp32/esp32-devkitm-1/index>
+   ESP32-DevKitM-1 <esp32/esp32-devkitm-1/index>
    ESP32-PICO-KIT-1 <esp32/esp32-pico-kit-1/index>
    ESP32-PICO-DevKitM-2 <esp32/esp32-pico-devkitm-2/index>
    ESP32-LCDKit <esp32/esp32-lcdkit/index>
