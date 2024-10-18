@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2022-2023 Espressif Systems (Shanghai) CO LTD
+/* SPDX-FileCopyrightText: 2022-2024 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -7,7 +7,7 @@
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
 #include "tusb.h"
-#include "hal/usb_hal.h"
+#include "esp_private/usb_phy.h"
 #include "soc/usb_periph.h"
 #include "tusb.h"
 #include "esp_log.h"
@@ -37,7 +37,7 @@ enum {
     ITF_NUM_TOTAL
 };
 
-static const char* TAG = "app_tusb";
+static const char *TAG = "app_tusb";
 
 static const tusb_desc_device_t descriptor_config = {
     .bLength = sizeof(descriptor_config),
@@ -166,30 +166,6 @@ uint16_t const *tud_descriptor_string_cb(const uint8_t index, const uint16_t lan
     return _desc_str;
 }
 
-static void configure_pins(usb_hal_context_t *usb)
-{
-    /* usb_periph_iopins currently configures USB_OTG as USB Device.
-     * Introduce additional parameters in usb_hal_context_t when adding support
-     * for USB Host.
-     */
-    for (const usb_iopin_dsc_t *iopin = usb_periph_iopins; iopin->pin != -1; ++iopin) {
-        if ((usb->use_external_phy) || (iopin->ext_phy_only == 0)) {
-            gpio_pad_select_gpio(iopin->pin);
-            if (iopin->is_output) {
-                gpio_matrix_out(iopin->pin, iopin->func, false, false);
-            } else {
-                gpio_matrix_in(iopin->pin, iopin->func, false);
-                gpio_pad_input_enable(iopin->pin);
-            }
-            gpio_pad_unhold(iopin->pin);
-        }
-    }
-    if (!usb->use_external_phy) {
-        gpio_set_drive_capability(USBPHY_DM_NUM, GPIO_DRIVE_CAP_3);
-        gpio_set_drive_capability(USBPHY_DP_NUM, GPIO_DRIVE_CAP_3);
-    }
-}
-
 static void tusb_device_task(void *pvParameters)
 {
     while (1) {
@@ -204,11 +180,14 @@ void app_tusb_init(void)
     periph_module_reset(PERIPH_USB_MODULE);
     periph_module_enable(PERIPH_USB_MODULE);
 
-    usb_hal_context_t hal = {
-        .use_external_phy = false
+    // Configure USB PHY
+    usb_phy_handle_t phy_hdl;
+    usb_phy_config_t phy_conf = {
+        .controller = USB_PHY_CTRL_OTG,
+        .otg_mode = USB_OTG_MODE_DEVICE,
+        .target = USB_PHY_TARGET_INT,
     };
-    usb_hal_init(&hal);
-    configure_pins(&hal);
+    usb_new_phy(&phy_conf, &phy_hdl);
     tusb_init();
 
     xTaskCreate(tusb_device_task, "tusb_device_task", 4 * 1024, NULL, 5, NULL);
