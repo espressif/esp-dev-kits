@@ -1,4 +1,4 @@
-ESP32-S2-DevKitC-1
+ESP32-S3-DevKitC-1
 ==================
 
 :link_to_translation:`zh_CN:[中文]`
