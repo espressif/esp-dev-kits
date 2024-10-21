@@ -53,7 +53,7 @@ The key components of the board are described in a clockwise direction.
    * - Key Component
      - Description
    * - ESP32-C61-WROOM-1
-     - ESP32-C61-WROOM-1 is a general-purpose module supporting Wi-Fi 6 in 2.4 GHz band and Bluetooth 5. Built around the ESP32-C61 chip, this module comes with a PCB antenna and offers up to 8 MB SPI flash and 2 MB PSRAM.
+     - ESP32-C61-WROOM-1 is a general-purpose module supporting Wi-Fi 6 in 2.4 GHz band and Bluetooth 5. Built around the ESP32-C61HR2 chip, this module comes with a PCB antenna and offers up to 8 MB SPI flash and 2 MB PSRAM.
    * - Pin Header
      - All available GPIO pins (except for the SPI bus for flash and PSRAM) are broken out to the pin headers on the board.
    * - 5 V to 3.3 V LDO
