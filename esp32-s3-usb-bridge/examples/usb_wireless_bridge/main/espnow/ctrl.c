@@ -15,17 +15,17 @@
 #include "espnow_storage.h"
 #include "espnow_ctrl.h"
 
-#define ESPNOW_BIND_LIST_MAX_SIZE  1
+#define BIND_LIST_MAX_SIZE  1
 
 typedef struct {
     int8_t rssi;
     uint32_t timestamp;
     size_t size;
-    espnow_ctrl_bind_info_t data[ESPNOW_BIND_LIST_MAX_SIZE];
+    espnow_ctrl_bind_info_t data[BIND_LIST_MAX_SIZE];
 } espnow_bindlist_t;
 
 static espnow_bindlist_t g_bindlist = {0};
-static const char* TAG = "espnow_ctrl";
+static const char *TAG = "espnow_ctrl";
 
 static bool _ctrl_responder_is_bindlist(const uint8_t *mac, espnow_attribute_t initiator_attribute)
 {
@@ -53,7 +53,7 @@ esp_err_t ctrl_responder_get_bindlist(espnow_ctrl_bind_info_t *list, size_t *siz
 
 esp_err_t ctrl_responder_set_bindlist(const espnow_ctrl_bind_info_t *info)
 {
-    if (g_bindlist.size >= ESPNOW_BIND_LIST_MAX_SIZE) {
+    if (g_bindlist.size >= BIND_LIST_MAX_SIZE) {
         return ESP_FAIL;
     }
 
@@ -88,7 +88,7 @@ esp_err_t ctrl_responder_remove_bindlist(const espnow_ctrl_bind_info_t *info)
 }
 
 static esp_err_t _ctrl_responder_bind_process(uint8_t *src_addr, void *data,
-                      size_t size, wifi_pkt_rx_ctrl_t *rx_ctrl)
+        size_t size, wifi_pkt_rx_ctrl_t *rx_ctrl)
 {
     ESP_PARAM_CHECK(src_addr);
     ESP_PARAM_CHECK(data);
@@ -98,18 +98,18 @@ static esp_err_t _ctrl_responder_bind_process(uint8_t *src_addr, void *data,
     espnow_ctrl_data_t *ctrl_data = (espnow_ctrl_data_t *)data;
     if (ctrl_data->responder_value_b) {
         ESP_LOGD(TAG, "bind, esp_log_timestamp: %"PRIu32", timestamp: %"PRIu32", rssi: %d, rssi: %d",
-                    esp_log_timestamp(), g_bindlist.timestamp, rx_ctrl->rssi, g_bindlist.rssi);
+                 esp_log_timestamp(), g_bindlist.timestamp, rx_ctrl->rssi, g_bindlist.rssi);
 
         if (esp_log_timestamp() < g_bindlist.timestamp && rx_ctrl->rssi > g_bindlist.rssi) {
             ESP_LOGD("control_func", "addr: "MACSTR", initiator_type: %d, initiator_value: %d",
-                        MAC2STR(src_addr), ctrl_data->initiator_attribute >> 8, ctrl_data->initiator_attribute & 0xff);
+                     MAC2STR(src_addr), ctrl_data->initiator_attribute >> 8, ctrl_data->initiator_attribute & 0xff);
 
-            if (!_ctrl_responder_is_bindlist(src_addr, ctrl_data->initiator_attribute) && g_bindlist.size < ESPNOW_BIND_LIST_MAX_SIZE) {
+            if (!_ctrl_responder_is_bindlist(src_addr, ctrl_data->initiator_attribute) && g_bindlist.size < BIND_LIST_MAX_SIZE) {
                 g_bindlist.data[g_bindlist.size].initiator_attribute = ctrl_data->initiator_attribute;
                 memcpy(g_bindlist.data[g_bindlist.size].mac, src_addr, 6);
 
                 esp_event_post(ESP_EVENT_ESPNOW, ESP_EVENT_ESPNOW_CTRL_BIND,
-                                g_bindlist.data + g_bindlist.size, sizeof(espnow_ctrl_bind_info_t), 0);
+                               g_bindlist.data + g_bindlist.size, sizeof(espnow_ctrl_bind_info_t), 0);
 
                 g_bindlist.size++;
                 espnow_storage_set("bindlist", &g_bindlist, sizeof(g_bindlist));
@@ -117,7 +117,7 @@ static esp_err_t _ctrl_responder_bind_process(uint8_t *src_addr, void *data,
         }
     } else {
         if (_ctrl_responder_is_bindlist(src_addr, ctrl_data->initiator_attribute)) {
-            ESP_LOGD(TAG,"unbind, addr: "MACSTR", esp_log_timestamp: %"PRIu32", timestamp: %"PRIu32", rssi: %d, rssi: %d", MAC2STR(src_addr),
+            ESP_LOGD(TAG, "unbind, addr: "MACSTR", esp_log_timestamp: %"PRIu32", timestamp: %"PRIu32", rssi: %d, rssi: %d", MAC2STR(src_addr),
                         esp_log_timestamp(), g_bindlist.timestamp, rx_ctrl->rssi, g_bindlist.rssi);
 
             for (int i = 0; i < g_bindlist.size; ++i) {
