@@ -16,7 +16,7 @@ typedef struct {
 class Game2048: public ESP_Brookesia_PhoneApp
 {
 public:
-	Game2048(bool use_status_bar = false, bool use_navigation_bar = true);
+	Game2048();
 	~Game2048();
 
     bool run(void);

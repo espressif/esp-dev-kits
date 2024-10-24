@@ -56,11 +56,8 @@ LV_IMG_DECLARE(img_game2048_normal);
 LV_IMG_DECLARE(img_game2048_week);
 LV_IMG_DECLARE(img_game2048_hello);
 
-Game2048::Game2048(bool use_status_bar, bool use_navigation_bar):
-    ESP_Brookesia_PhoneApp(
-        ESP_BROOKESIA_CORE_APP_DATA_DEFAULT("2048 Game", &img_app_2048, true),
-        ESP_BROOKESIA_PHONE_APP_DATA_DEFAULT(&img_app_2048, use_status_bar, use_navigation_bar)
-        ),                 // auto_resize_visual_area
+Game2048::Game2048():
+    ESP_Brookesia_PhoneApp("2048 Game", &img_app_2048, true),
     _is_paused(false),
     _height(0),
     _width(0),

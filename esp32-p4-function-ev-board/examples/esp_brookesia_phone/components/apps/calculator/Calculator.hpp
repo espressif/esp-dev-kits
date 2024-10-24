@@ -6,7 +6,7 @@
 class Calculator: public ESP_Brookesia_PhoneApp
 {
 public:
-	Calculator(bool use_status_bar = true, bool use_navigation_bar = false);
+	Calculator();
 	~Calculator();
 
     bool run(void);
