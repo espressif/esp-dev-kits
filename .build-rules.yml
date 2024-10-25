@@ -7,6 +7,10 @@ examples/esp32-c3-lcdkit:
   enable:
     - if: IDF_TARGET == "esp32c3"
 
+examples/esp32-p4-function-ev-board:
+  enable:
+    - if: IDF_TARGET == "esp32p4"
+
 examples/esp32-s2-hmi-devkit-1:
   enable:
     - if: IDF_TARGET == "esp32s2"
