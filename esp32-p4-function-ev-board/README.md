@@ -15,3 +15,9 @@ The following examples are developed under the ESP-IDF **release/v5.4** branch. 
 ## Factory Bin
 
 * [Factory Bin](https://dl.espressif.com/AE/esp-dev-kits/p4_factory_v14_100.bin) for ESP32-P4-Function-EV-Board, programmed with the [Factory Demo](./examples/esp_brookesia_phone/) example.
+
+<a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif2022.github.io/ESP32-P4-Function-EV-Board/launchpad.toml">
+    <img alt="Try it with ESP Launchpad" src="https://dl.espressif.com/AE/esp-dev-kits/new_launchpad.png" width="316" height="100">
+</a>
+
+Experience more examples instantly with the ESP-LaunchPad.
