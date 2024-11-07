@@ -98,7 +98,7 @@ ESP32-C5-DevKitC-1 是一款入门级开发板，使用通用型模组 ESP32-C5-
 软件设置
 ^^^^^^^^
 
-请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c6/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。
+请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c5/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。
 
 
 .. ESP-AT 固件支持

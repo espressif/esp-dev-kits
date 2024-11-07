@@ -98,7 +98,7 @@ Required Hardware
 Software Setup
 ^^^^^^^^^^^^^^
 
-Please proceed to `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32c6/get-started/index.html>`__, which will help you set up the development environment quickly and then flash an application example onto your board.
+Please proceed to `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/get-started/index.html>`__, which will help you set up the development environment quickly and then flash an application example onto your board.
 
 
 .. ESP-AT Support
