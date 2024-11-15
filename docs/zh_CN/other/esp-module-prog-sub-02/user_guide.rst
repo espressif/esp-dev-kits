@@ -40,6 +40,7 @@ ESP-Module-Prog-SUB-02 是专为模组设计的烧录子板，无需将模组与
    - ESP32-C3-WROOM-02U
    - ESP8684-WROOM-02C
    - ESP8684-WROOM-02UC
+   - ESP32-H2-WROOM-02C
 
 有关上述模组的详细信息，请参考 `乐鑫系列模组 <https://www.espressif.com/zh-hans/products/modules?id=ESP32>`_。
 
