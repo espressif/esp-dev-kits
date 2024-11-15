@@ -3,13 +3,25 @@ esp-dev-kits Documentation
 
 :link_to_translation:`zh_CN:[中文]`
 
-.. only:: html
+.. only:: not other
 
-   This document provides detailed user guides and examples for {IDF_TARGET_NAME} series development boards. To switch to a different SoC target, choose target from the dropdown in the upper left.
+   .. only:: html
 
-.. only:: latex
+      This document provides detailed user guides and examples for {IDF_TARGET_NAME} series development boards. To switch to a different SoC target, choose target from the dropdown in the upper left.
 
-   This document provides detailed user guides and examples for {IDF_TARGET_NAME} series development boards.
+   .. only:: latex
+
+      This document provides detailed user guides and examples for {IDF_TARGET_NAME} series development boards.
+
+.. only:: other
+
+   .. only:: html
+
+      This document provides detailed user guides for Espressif debugging and flashing boards that fit different SoCs. To switch to a specific SoC target, choose target from the dropdown in the upper left.
+
+   .. only:: latex
+
+      This document provides detailed user guides for Espressif debugging and flashing boards that fit different SoCs.
 
 .. only:: esp32c2
 
@@ -44,13 +56,9 @@ esp-dev-kits Documentation
    ============================   ===========================
          **{IDF_TARGET_NAME} Development Boards**
    ----------------------------------------------------------
-   |ESP32-H2-DevKitM-1|_          |ESP-Module-Prog-SUB-02|_
+   |ESP32-H2-DevKitM-1|_
    ----------------------------   ---------------------------
-   `ESP32-H2-DevKitM-1`_          `ESP-Module-Prog-SUB-02`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
+   `ESP32-H2-DevKitM-1`_
    ============================   ===========================
 
 .. only:: esp32c3
@@ -62,13 +70,9 @@ esp-dev-kits Documentation
    ----------------------------   ---------------------------
    `ESP32-C3-DevKitC-02`_          `ESP32-C3-DevKitM-1`_
    ----------------------------   ---------------------------
-   |ESP32-C3-LCDkit|_             |ESP-Prog|_
+   |ESP32-C3-LCDkit|_
    ----------------------------   ---------------------------
-   `ESP32-C3-LCDkit`_             `ESP-Prog`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-SUB-02|_      |ESP-Module-Prog-SUB-01&04|
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-SUB-02`_      `ESP-Module-Prog-SUB-01&04`_
+   `ESP32-C3-LCDkit`_
    ============================   ===========================
 
 .. only:: esp32c6
@@ -79,10 +83,6 @@ esp-dev-kits Documentation
    |ESP32-C6-DevKitC-1|_          |ESP32-C6-DevKitM-1|_
    ----------------------------   ---------------------------
    `ESP32-C6-DevKitC-1`_          `ESP32-C6-DevKitM-1`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
    ============================   ===========================
 
 .. only:: esp32c61
@@ -103,10 +103,6 @@ esp-dev-kits Documentation
    |ESP8684-DevKitM-1|_            |ESP8684-DevKitC-02|_
    ----------------------------   ---------------------------
    `ESP8684-DevKitM-1`_            `ESP8684-DevKitC-02`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-SUB-02|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-SUB-02`_
    ============================   ===========================
 
 .. only:: esp32s3
@@ -122,13 +118,9 @@ esp-dev-kits Documentation
    ----------------------------   ---------------------------
    `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
    ----------------------------   ---------------------------
-   |ESP32-S3-USB-Bridge|_         |ESP-Prog|_
+   |ESP32-S3-USB-Bridge|_
    ----------------------------   ---------------------------
-   `ESP32-S3-USB-Bridge`_         `ESP-Prog`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
+   `ESP32-S3-USB-Bridge`_
    ============================   ===========================
 
 .. only:: esp32s2
@@ -139,14 +131,6 @@ esp-dev-kits Documentation
    |ESP32-S2-DevKitC-1|_            |ESP32-S2-DevKitM-1|_
    ----------------------------   ---------------------------
    `ESP32-S2-DevKitC-1`_            `ESP32-S2-DevKitM-1`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
-   ----------------------------   ---------------------------
-   |ESP-Prog|_
-   ----------------------------   ---------------------------
-   `ESP-Prog`_
    ============================   ===========================
 
 .. only:: esp32
@@ -166,17 +150,27 @@ esp-dev-kits Documentation
    ----------------------------   ---------------------------
    `ESP32-LCDKit`_                 `ESP32-Ethernet-Kit`_
    ----------------------------   ---------------------------
-   |ESP32-PICO-KIT|_              |ESP-Prog|_
+   |ESP32-PICO-KIT|_
    ----------------------------   ---------------------------
-   `ESP32-PICO-KIT`_              `ESP-Prog`_
+   `ESP32-PICO-KIT`_
+   ============================   ===========================
+
+.. only:: other
+
+   ============================   ===========================
+         **Debugging and Flashing Development Boards**
+   ----------------------------------------------------------
+   |ESP-Prog|_                     |ESP-Module-Prog-1|_
    ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
+   `ESP-Prog`_                     `ESP-Module-Prog-1`_  
    ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
+   |ESP-Module-Prog-1R|_           |ESP-Module-Prog-SUB-02|_
    ----------------------------   ---------------------------
-   |ESP-Module-Prog-SUB-02|_      
+   `ESP-Module-Prog-1R`_           `ESP-Module-Prog-SUB-02`_ 
    ----------------------------   ---------------------------
-   `ESP-Module-Prog-SUB-02`_     
+   |ESP-Module-Prog-SUB-01&04|_
+   ----------------------------   ---------------------------
+   `ESP-Module-Prog-SUB-01&04`_
    ============================   ===========================
 
 .. |ESP32-S2-DevKitC-1| image:: ../_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-isometric.png
@@ -285,9 +279,6 @@ esp-dev-kits Documentation
       ESP32-C3-DevKitC-02 <esp32c3/esp32-c3-devkitc-02/index>
       ESP32-C3-DevKitM-1 <esp32c3/esp32-c3-devkitm-1/index>
       ESP32-C3-LCDkit <esp32c3/esp32-c3-lcdkit/index>
-      ESP-Prog <other/esp-prog/index>
-      ESP-Module-Prog-SUB-01&04 <other/esp-module-prog-sub-01&04/index>
-      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
 .. only:: esp32c6
 
@@ -297,7 +288,6 @@ esp-dev-kits Documentation
 
       ESP32-C6-DevKitC-1 <esp32c6/esp32-c6-devkitc-1/index>
       ESP32-C6-DevKitM-1 <esp32c6/esp32-c6-devkitm-1/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
 
 .. only:: esp32c61
 
@@ -314,8 +304,6 @@ esp-dev-kits Documentation
       :caption: {IDF_TARGET_NAME} Boards
 
       ESP32-H2-DevKitM-1 <esp32h2/esp32-h2-devkitm-1/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
-      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
 .. only:: esp32p4
 
@@ -341,7 +329,6 @@ esp-dev-kits Documentation
 
       ESP8684-DevKitM-1 <esp8684/esp8684-devkitm-1/index>
       ESP8684-DevKitC-02 <esp8684/esp8684-devkitc-02/index>
-      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
 .. only:: esp32s3
 
@@ -354,8 +341,6 @@ esp-dev-kits Documentation
       ESP32-S3-USB-OTG <esp32s3/esp32-s3-usb-otg/index>
       ESP32-S3-LCD-EV-Board <esp32s3/esp32-s3-lcd-ev-board/index>
       ESP32-S3-USB-Bridge <esp32s3/esp32-s3-usb-bridge/index>
-      ESP-Prog <other/esp-prog/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
 
 .. only:: esp32s2
 
@@ -365,8 +350,6 @@ esp-dev-kits Documentation
 
       ESP32-S2-DevKitC-1 <esp32s2/esp32-s2-devkitc-1/index>
       ESP32-S2-DevKitM-1 <esp32s2/esp32-s2-devkitm-1/index>
-      ESP-Prog <other/esp-prog/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
 
    .. toctree::
       :hidden:
@@ -390,9 +373,6 @@ esp-dev-kits Documentation
       ESP32-LCDKit <esp32/esp32-lcdkit/index>
       ESP32-Ethernet-Kit <esp32/esp32-ethernet-kit/index>
       ESP32-PICO-KIT <esp32/esp32-pico-kit/index>
-      ESP-Prog <other/esp-prog/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
-      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
    .. toctree::
       :hidden:
@@ -401,6 +381,17 @@ esp-dev-kits Documentation
       ESP32-Sense-Kit <esp32/esp32-sense-kit/index>
       ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
       ESP-WROVER-KIT <esp32/esp-wrover-kit/index>
+
+.. only:: other
+
+   .. toctree::
+      :hidden:
+      :caption: Debugging and Flashing Boards
+
+      ESP-Prog <other/esp-prog/index>
+      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
+      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
+      ESP-Module-Prog-SUB-01&04 <other/esp-module-prog-sub-01&04/index>
 
 .. toctree::
    :hidden:

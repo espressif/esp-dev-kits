@@ -3,13 +3,25 @@ esp-dev-kits 文档
 
 :link_to_translation:`en:[English]`
 
-.. only:: html
+.. only:: not other
 
-   该文档详细介绍了 {IDF_TARGET_NAME} 系列开发板的用户指南和示例。如需查看其他芯片的开发板用户指南和示例，请在页面左上角的下拉列表中选择相应芯片进行切换。
+   .. only:: html
 
-.. only:: latex
+      该文档详细介绍了 {IDF_TARGET_NAME} 系列开发板的用户指南和示例。如需查看其他芯片的开发板用户指南和示例，请在页面左上角的下拉列表中选择相应芯片进行切换。
 
-   该文档详细介绍了 {IDF_TARGET_NAME} 系列开发板的用户指南和示例。
+   .. only:: latex
+
+      该文档详细介绍了 {IDF_TARGET_NAME} 系列开发板的用户指南和示例。
+
+.. only:: other
+
+   .. only:: html
+
+      该文档详细介绍了乐鑫调试和烧录开发板的用户指南，开发板适配不同的芯片。如需查看某一特定芯片的开发板用户指南和示例，请在页面左上角的下拉列表中选择相应芯片进行切换。
+
+   .. only:: latex
+
+      该文档详细介绍了乐鑫调试和烧录开发板的用户指南，开发板适配不同的芯片。
 
 .. only:: esp32c2
 
@@ -44,13 +56,9 @@ esp-dev-kits 文档
    ============================   ===========================
          **{IDF_TARGET_NAME} 系列开发板**
    ----------------------------------------------------------
-   |ESP32-H2-DevKitM-1|_          |ESP-Module-Prog-SUB-02|_
+   |ESP32-H2-DevKitM-1|_
    ----------------------------   ---------------------------
-   `ESP32-H2-DevKitM-1`_          `ESP-Module-Prog-SUB-02`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
+   `ESP32-H2-DevKitM-1`_
    ============================   ===========================
 
 .. only:: esp32c3
@@ -62,13 +70,9 @@ esp-dev-kits 文档
    ----------------------------   ---------------------------
    `ESP32-C3-DevKitC-02`_          `ESP32-C3-DevKitM-1`_
    ----------------------------   ---------------------------
-   |ESP32-C3-LCDkit|_             |ESP-Prog|_
+   |ESP32-C3-LCDkit|_ 
    ----------------------------   ---------------------------
-   `ESP32-C3-LCDkit`_             `ESP-Prog`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-SUB-02|_      |ESP-Module-Prog-SUB-01&04|
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-SUB-02`_      `ESP-Module-Prog-SUB-01&04`_
+   `ESP32-C3-LCDkit`_ 
    ============================   ===========================
 
 .. only:: esp32c6
@@ -79,10 +83,6 @@ esp-dev-kits 文档
    |ESP32-C6-DevKitC-1|_          |ESP32-C6-DevKitM-1|_
    ----------------------------   ---------------------------
    `ESP32-C6-DevKitC-1`_          `ESP32-C6-DevKitM-1`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
    ============================   ===========================
 
 .. only:: esp32c61
@@ -103,10 +103,6 @@ esp-dev-kits 文档
    |ESP8684-DevKitM-1|_            |ESP8684-DevKitC-02|_
    ----------------------------   ---------------------------
    `ESP8684-DevKitM-1`_            `ESP8684-DevKitC-02`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-SUB-02|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-SUB-02`_
    ============================   ===========================
 
 .. only:: esp32s3
@@ -122,13 +118,9 @@ esp-dev-kits 文档
    ----------------------------   ---------------------------
    `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
    ----------------------------   ---------------------------
-   |ESP32-S3-USB-Bridge|_         |ESP-Prog|_
+   |ESP32-S3-USB-Bridge|_
    ----------------------------   ---------------------------
-   `ESP32-S3-USB-Bridge`_         `ESP-Prog`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
+   `ESP32-S3-USB-Bridge`_
    ============================   ===========================
 
 .. only:: esp32s2
@@ -139,20 +131,12 @@ esp-dev-kits 文档
    |ESP32-S2-DevKitC-1|_            |ESP32-S2-DevKitM-1|_
    ----------------------------   ---------------------------
    `ESP32-S2-DevKitC-1`_            `ESP32-S2-DevKitM-1`_
-   ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
-   ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
-   ----------------------------   ---------------------------
-   |ESP-Prog|_
-   ----------------------------   ---------------------------
-   `ESP-Prog`_
    ============================   ===========================
 
 .. only:: esp32
 
    ============================   ===========================
-         **{IDF_TARGET_NAME} Development Boards**
+         **{IDF_TARGET_NAME} 系列开发板**
    ----------------------------------------------------------
    |ESP32-DevKitC|_                |ESP32-DevKitM-1|_
    ----------------------------   ---------------------------
@@ -166,17 +150,27 @@ esp-dev-kits 文档
    ----------------------------   ---------------------------
    `ESP32-LCDKit`_                 `ESP32-Ethernet-Kit`_
    ----------------------------   ---------------------------
-   |ESP32-PICO-KIT|_              |ESP-Prog|_
+   |ESP32-PICO-KIT|_
    ----------------------------   ---------------------------
-   `ESP32-PICO-KIT`_              `ESP-Prog`_
+   `ESP32-PICO-KIT`_
+   ============================   ===========================
+
+.. only:: other
+
+   ============================   ===========================
+         **调试和烧录开发板**
+   ----------------------------------------------------------
+   |ESP-Prog|_                     |ESP-Module-Prog-1|_
    ----------------------------   ---------------------------
-   |ESP-Module-Prog-1|_           |ESP-Module-Prog-1R|_
+   `ESP-Prog`_                     `ESP-Module-Prog-1`_  
    ----------------------------   ---------------------------
-   `ESP-Module-Prog-1`_           `ESP-Module-Prog-1R`_
+   |ESP-Module-Prog-1R|_           |ESP-Module-Prog-SUB-02|_
    ----------------------------   ---------------------------
-   |ESP-Module-Prog-SUB-02|_      
+   `ESP-Module-Prog-1R`_           `ESP-Module-Prog-SUB-02`_ 
    ----------------------------   ---------------------------
-   `ESP-Module-Prog-SUB-02`_     
+   |ESP-Module-Prog-SUB-01&04|_
+   ----------------------------   ---------------------------
+   `ESP-Module-Prog-SUB-01&04`_
    ============================   ===========================
 
 .. |ESP32-S2-DevKitC-1| image:: ../_static/esp32-s2-devkitc-1/esp32-s2-devkitc-1-v1-isometric.png
@@ -285,9 +279,6 @@ esp-dev-kits 文档
       ESP32-C3-DevKitC-02 <esp32c3/esp32-c3-devkitc-02/index>
       ESP32-C3-DevKitM-1 <esp32c3/esp32-c3-devkitm-1/index>
       ESP32-C3-LCDkit <esp32c3/esp32-c3-lcdkit/index>
-      ESP-Prog <other/esp-prog/index>
-      ESP-Module-Prog-SUB-01&04 <other/esp-module-prog-sub-01&04/index>
-      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
 .. only:: esp32c6
 
@@ -297,7 +288,6 @@ esp-dev-kits 文档
 
       ESP32-C6-DevKitC-1 <esp32c6/esp32-c6-devkitc-1/index>
       ESP32-C6-DevKitM-1 <esp32c6/esp32-c6-devkitm-1/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
 
 .. only:: esp32c61
 
@@ -314,8 +304,6 @@ esp-dev-kits 文档
       :caption: {IDF_TARGET_NAME} 系列开发板
 
       ESP32-H2-DevKitM-1 <esp32h2/esp32-h2-devkitm-1/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
-      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
 .. only:: esp32p4
 
@@ -341,7 +329,6 @@ esp-dev-kits 文档
 
       ESP8684-DevKitM-1 <esp8684/esp8684-devkitm-1/index>
       ESP8684-DevKitC-02 <esp8684/esp8684-devkitc-02/index>
-      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
 .. only:: esp32s3
 
@@ -354,8 +341,6 @@ esp-dev-kits 文档
       ESP32-S3-USB-OTG <esp32s3/esp32-s3-usb-otg/index>
       ESP32-S3-LCD-EV-Board <esp32s3/esp32-s3-lcd-ev-board/index>
       ESP32-S3-USB-Bridge <esp32s3/esp32-s3-usb-bridge/index>
-      ESP-Prog <other/esp-prog/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
 
 .. only:: esp32s2
 
@@ -365,8 +350,6 @@ esp-dev-kits 文档
 
       ESP32-S2-DevKitC-1 <esp32s2/esp32-s2-devkitc-1/index>
       ESP32-S2-DevKitM-1 <esp32s2/esp32-s2-devkitm-1/index>
-      ESP-Prog <other/esp-prog/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
 
    .. toctree::
       :hidden:
@@ -390,9 +373,6 @@ esp-dev-kits 文档
       ESP32-LCDKit <esp32/esp32-lcdkit/index>
       ESP32-Ethernet-Kit <esp32/esp32-ethernet-kit/index>
       ESP32-PICO-KIT <esp32/esp32-pico-kit/index>
-      ESP-Prog <other/esp-prog/index>
-      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
-      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
 
    .. toctree::
       :hidden:
@@ -401,6 +381,17 @@ esp-dev-kits 文档
       ESP32-Sense-Kit <esp32/esp32-sense-kit/index>
       ESP32-MeshKit-Sense <esp32/esp32-meshkit-sensor/index>
       ESP-WROVER-KIT <esp32/esp-wrover-kit/index>
+
+.. only:: other
+
+   .. toctree::
+      :hidden:
+      :caption: 调试和烧录开发板
+
+      ESP-Prog <other/esp-prog/index>
+      ESP-Module-Prog-1(R) <other/esp-module-prog-1-r/index>
+      ESP-Module-Prog-SUB-02 <other/esp-module-prog-sub-02/index>
+      ESP-Module-Prog-SUB-01&04 <other/esp-module-prog-sub-01&04/index>
 
 .. toctree::
    :hidden:

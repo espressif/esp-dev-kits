@@ -24,7 +24,7 @@ html_context['github_user'] = 'espressif'
 html_context['github_repo'] = 'esp-dev-kits'
 
 languages = ['en', 'zh_CN']
-idf_targets = ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5', 'esp32c61']
+idf_targets = ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5', 'esp32c61', 'other']
 
 ESP32_DOCS = ['esp32/esp-wrover-kit/*.rst',
               'esp32/esp32-devkitc/*.rst',
@@ -35,40 +35,21 @@ ESP32_DOCS = ['esp32/esp-wrover-kit/*.rst',
               'esp32/esp32-pico-devkitm-2/*.rst',
               'esp32/esp32-pico-kit/*.rst',
               'esp32/esp32-pico-kit-1/*.rst',
-              'esp32/esp32-sense-kit/*.rst',
-              'other/esp-module-prog-1-r/*.rst',
-              'other/esp-module-prog-sub-02/*.rst',
-              'other/esp-module-prog-sub-01&04/*.rst',
-              'other/esp-prog/*.rst',
-              'other/esp-prog/reference/*.rst'
+              'esp32/esp32-sense-kit/*.rst'
               ]
 ESP32C2_DOCS = ['esp8684/esp8684-devkitc-02/*.rst',
-                'esp8684/esp8684-devkitm-1/*.rst',
-                'other/esp-module-prog-1-r/*.rst',
-                'other/esp-module-prog-sub-02/*.rst',
-                'other/esp-module-prog-sub-01&04/*.rst'
+                'esp8684/esp8684-devkitm-1/*.rst'
                 ]
 ESP32C3_DOCS = ['esp32c3/esp32-c3-devkitc-02/*.rst',
                 'esp32c3/esp32-c3-devkitm-1/*.rst',
-                'esp32c3/esp32-c3-lcdkit/*.rst',
-                'other/esp-module-prog-1-r/*.rst',
-                'other/esp-module-prog-sub-02/*.rst',
-                'other/esp-module-prog-sub-01&04/*.rst',
-                'other/esp-prog/*.rst',
-                'other/esp-prog/reference/*.rst'
+                'esp32c3/esp32-c3-lcdkit/*.rst'
                 ]
 ESP32C6_DOCS = ['esp32c6/esp32-c6-devkitc-1/*.rst',
-                'esp32c6/esp32-c6-devkitm-1/*.rst',
-                'other/esp-module-prog-1-r/*.rst',
-                'other/esp-module-prog-sub-02/*.rst',
-                'other/esp-module-prog-sub-01&04/*.rst'
+                'esp32c6/esp32-c6-devkitm-1/*.rst'
                 ]
 ESP32C61_DOCS = ['esp32c61/esp32-c61-devkitc-1/*.rst',
                 ]
-ESP32H2_DOCS = ['esp32h2/esp32-h2-devkitm-1/*.rst',
-                'other/esp-module-prog-1-r/*.rst',
-                'other/esp-module-prog-sub-02/*.rst',
-                'other/esp-module-prog-sub-01&04/*.rst'
+ESP32H2_DOCS = ['esp32h2/esp32-h2-devkitm-1/*.rst'
                 ]
 ESP32P4_DOCS = ['esp32p4/esp32-p4-function-ev-board/*.rst'
                 ]
@@ -80,25 +61,21 @@ ESP32S2_DOCS = ['esp32s2/esp32-s2-devkitc-1/*.rst',
                 'esp32s2/esp32-s2-hmi-devkit-1/reference/*.rst',
                 'esp32s2/esp32-s2-kaluga-1/*.rst',
                 'esp32s2/esp32-s2-touch-devkit-1/*.rst',
-                'esp32s2/esp32-s2-saola-1/*.rst',
-                'other/esp-module-prog-1-r/*.rst',
-                'other/esp-module-prog-sub-02/*.rst',
-                'other/esp-module-prog-sub-01&04/*.rst',
-                'other/esp-prog/*.rst',
-                'other/esp-prog/reference/*.rst'
+                'esp32s2/esp32-s2-saola-1/*.rst'
                 ]
 ESP32S3_DOCS = ['esp32s3/esp32-s3-devkitc-1/*.rst',
                 'esp32s3/esp32-s3-devkitm-1/*.rst',
                 'esp32s3/esp32-s3-lcd-ev-board/*.rst',
                 'esp32s3/esp32-s3-usb-bridge/*.rst',
-                'esp32s3/esp32-s3-usb-otg/*.rst',
-                'other/*.rst',
-                'other/esp-module-prog-1-r/*.rst',
-                'other/esp-module-prog-sub-02/*.rst',
-                'other/esp-module-prog-sub-01&04/*.rst',
-                'other/esp-prog/*.rst',
-                'other/esp-prog/reference/*.rst'
+                'esp32s3/esp32-s3-usb-otg/*.rst'
                 ]
+OTHER_DOCS = ['other/*.rst',
+              'other/esp-module-prog-1-r/*.rst',
+              'other/esp-module-prog-sub-02/*.rst',
+              'other/esp-module-prog-sub-01&04/*.rst',
+              'other/esp-prog/*.rst',
+              'other/esp-prog/reference/*.rst'
+              ]
 
 conditional_include_dict = {'esp32':ESP32_DOCS,
                             'esp32c2':ESP32C2_DOCS,
@@ -109,7 +86,8 @@ conditional_include_dict = {'esp32':ESP32_DOCS,
                             'esp32h2':ESP32H2_DOCS,
                             'esp32p4':ESP32P4_DOCS,
                             'esp32c5':ESP32C5_DOCS,
-                            'esp32c61':ESP32C61_DOCS
+                            'esp32c61':ESP32C61_DOCS,
+                            'other':OTHER_DOCS
                             }
 
 project_homepage = 'https://github.com/espressif/esp-dev-kits'
