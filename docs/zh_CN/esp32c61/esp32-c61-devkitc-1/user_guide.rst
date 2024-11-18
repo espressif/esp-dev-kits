@@ -53,7 +53,7 @@ ESP32-C61-DevKitC-1 是一款入门级开发板，使用通用型模组 ESP32-C6
    * - 主要组件
      - 介绍
    * - ESP32-C61-WROOM-1
-     - ESP32-C61-WROOM-1 是一款通用型模组，支持 2.4 GHz Wi-Fi 6 和 蓝牙 5。该款模组内置 ESP32-C61 芯片，采用 PCB 板载天线，配置高达 8 MB SPI flash 和 2 MB PSRAM。
+     - ESP32-C61-WROOM-1 是一款通用型模组，支持 2.4 GHz Wi-Fi 6 和 蓝牙 5。该款模组内置 ESP32-C61HR2 芯片，采用 PCB 板载天线，配置高达 8 MB SPI flash 和 2 MB PSRAM。
    * - Pin Header（排针）
      - 所有可用 GPIO 管脚（除 flash 和 PSRAM 的 SPI 总线）均已引出至开发板的排针。
    * - 5 V to 3.3 V LDO（5 V 转 3.3 V LDO）
