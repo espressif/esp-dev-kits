@@ -40,6 +40,7 @@ ESP-Module-Prog-SUB-02 is an Espressif flashing subboard designed specifically f
    - ESP32-C3-WROOM-02U
    - ESP8684-WROOM-02C
    - ESP8684-WROOM-02UC
+   - ESP32-H2-WROOM-02C
 
 For information about the above modules, please refer to `Espressif Series Modules <https://www.espressif.com/en/products/modules?id=ESP32>`_.
 
