@@ -11,7 +11,7 @@ ESP-Module-Prog-SUB-02 is an Espressif flashing subboard designed specifically f
 
 For detailed information about the mainboards, please refer to :doc:`../esp-module-prog-1-r/user_guide`.
 
-ESP-Module-Prog-SUB-02 supports specific modules for the ESP-WROOM, ESP32-C3-WROOM, and ESP8684-WROOM series. For details about the fitting modules, please refer to the :ref:`fitting module list <fitting-modules-of-prog-02>`.
+ESP-Module-Prog-SUB-02 supports specific modules for the ESP-WROOM, ESP32-C3-WROOM, ESP8684-WROOM, and ESP32-H2-WROOM series. For details about the fitting modules, please refer to the :ref:`fitting module list <fitting-modules-of-prog-02>`.
 
 .. toctree::
     :maxdepth: 2

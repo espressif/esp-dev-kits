@@ -11,7 +11,7 @@ ESP-Module-Prog-SUB-02 是专为模组设计的烧录子板，无需将模组与
 
 有关底板的详细信息，请参见 :doc:`../esp-module-prog-1-r/user_guide`。
 
-ESP-Module-Prog-SUB-02 用于适配部分 ESP-WROOM、ESP32-C3-WROOM 及 ESP8684-WROOM 系列模组，请参见 :ref:`适配模组列表 <fitting-modules-of-prog-02>`。
+ESP-Module-Prog-SUB-02 用于适配部分 ESP-WROOM、ESP32-C3-WROOM、ESP8684-WROOM 及 ESP32-H2-WROOM 系列模组，请参见 :ref:`适配模组列表 <fitting-modules-of-prog-02>`。
 
 .. toctree::
     :maxdepth: 2
