@@ -21,7 +21,7 @@ ESP32-S3-USB-Bridge
 
 ESP32-S3-USB-Bridge 是一款基于 ESP32-S3 芯片的开发板。
 
-- 使用 `usb_wireless_bridge <https://github.com/espressif/esp-dev-kits/tree/master/esp32-s3-usb-bridge/examples/usb_wireless_bridge>`_ 例程可在计算机和目标芯片之间建立桥接。它可以模拟 USB 复合设备，支持多种功能：
+- 使用 `usb_wireless_bridge <https://github.com/espressif/esp-dev-kits/tree/master/examples/esp32-s3-usb-bridge/examples/usb_wireless_bridge>`_ 例程可在计算机和目标芯片之间建立桥接。它可以模拟 USB 复合设备，支持多种功能：
 
   - **USB 转 UART 桥接**：通过 USB 转 UART 桥接，实现计算机与目标芯片的串口数据收发。
   - **JTAG 适配器**：通过 JTAG 桥接，实现计算机与目标芯片之间双向传输 JTAG 通信。
@@ -125,7 +125,7 @@ ESP32-S3-USB-Bridge 的主要组件和连接方式如下图所示。
 软件支持
 ----------------
 
-ESP32-S3-USB-Bridge 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :project:`Examples <esp32-s3-usb-bridge/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
+ESP32-S3-USB-Bridge 的开发框架为 `ESP-IDF <https://github.com/espressif/esp-idf>`_。ESP-IDF 是基于 FreeRTOS 的乐鑫 SoC 开发框架，具有众多组件，包括 LCD、ADC、RMT、SPI 等。开发板应用示例存放在 :project:`Examples <examples/esp32-s3-usb-bridge/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 可以配置工程选项。
 
 .. note::
 

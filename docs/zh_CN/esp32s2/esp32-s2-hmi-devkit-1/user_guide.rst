@@ -138,17 +138,17 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
 
 我们为 ESP32-S2-HMI-DevKit-1 开发板提供了丰富示例，如下所示：
 
-- 在屏幕上打印 "Hello world!"：:project:`esp32-s2-hmi-devkit-1/examples/get-started/hello_world`
-- 使 WS2812 LED 灯闪烁并在屏幕上显示颜色：:project:`esp32-s2-hmi-devkit-1/examples/get-started/led_blink`
-- 启动交互界面以配置 Wi-Fi 凭证： :project:`esp32-s2-hmi-devkit-1/examples/get-started/provision`
-- 利用 ADC 从模拟 MIC 获取音频：:project:`esp32-s2-hmi-devkit-1/examples/audio/audio_record`
-- 播放音乐：:project:`esp32-s2-hmi-devkit-1/examples/audio/music_player`
-- 使特定区域进入 Deep-sleep 模式：:project:`esp32-s2-hmi-devkit-1/examples/power`
-- 使用 Freetype 渲染字体：:project:`esp32-s2-hmi-devkit-1/examples/freetype`
-- 使用板载传感器：:project:`esp32-s2-hmi-devkit-1/examples/sensors`
-- 使用智慧触摸板：:project:`esp32-s2-hmi-devkit-1/examples/smart-panel`
-- 查看 SD 卡上的文件：:project:`esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs`
-- USB flash disk：:project:`esp32-s2-hmi-devkit-1/examples/storage/usb_msc`
+- 在屏幕上打印 "Hello world!"：:project:`examples/esp32-s2-hmi-devkit-1/examples/get-started/hello_world`
+- 使 WS2812 LED 灯闪烁并在屏幕上显示颜色：:project:`examples/esp32-s2-hmi-devkit-1/examples/get-started/led_blink`
+- 启动交互界面以配置 Wi-Fi 凭证： :project:`examples/esp32-s2-hmi-devkit-1/examples/get-started/provision`
+- 利用 ADC 从模拟 MIC 获取音频：:project:`examples/esp32-s2-hmi-devkit-1/examples/audio/audio_record`
+- 播放音乐：:project:`examples/esp32-s2-hmi-devkit-1/examples/audio/music_player`
+- 使特定区域进入 Deep-sleep 模式：:project:`examples/esp32-s2-hmi-devkit-1/examples/power`
+- 使用 Freetype 渲染字体：:project:`examples/esp32-s2-hmi-devkit-1/examples/freetype`
+- 使用板载传感器：:project:`examples/esp32-s2-hmi-devkit-1/examples/sensors`
+- 使用智慧触摸板：:project:`examples/esp32-s2-hmi-devkit-1/examples/smart-panel`
+- 查看 SD 卡上的文件：:project:`examples/esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs`
+- USB flash disk：:project:`examples/esp32-s2-hmi-devkit-1/examples/storage/usb_msc`
 
 您可以在各示例目录下，输入 ``idf.py menuconfig`` 配置工程选项。
 
@@ -169,7 +169,7 @@ ESP32-S2-HMI-DevKit-1 面向 GUI 应用场景设计，可实现智能家居交�
 ESP-IDF 版本依赖
 ^^^^^^^^^^^^^^^^
 
-``esp32-s2-hmi-devkit-1/examples/storage/usb_msc`` 需要在 IDF v4.3 下进行编译，其它示例程序可以在 IDF v4.2 及以后版本进行编译。
+``examples/esp32-s2-hmi-devkit-1/examples/storage/usb_msc`` 需要在 IDF v4.3 下进行编译，其它示例程序可以在 IDF v4.2 及以后版本进行编译。
 
 
 

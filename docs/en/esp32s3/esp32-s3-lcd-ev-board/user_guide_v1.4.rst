@@ -279,7 +279,7 @@ Now the board is ready for software setup.
 Software Setup
 --------------
 
-The development framework of ESP32-S3-LCD-EV-Board is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :project:`Examples <esp32-s3-lcd-ev-board/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
+The development framework of ESP32-S3-LCD-EV-Board is `ESP-IDF <https://github.com/espressif/esp-idf>`_. ESP-IDF is a FreeRTOS-based SoC development framework with a bunch of components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :project:`Examples <examples/esp32-s3-lcd-ev-board/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
 
 To learn how to quickly set up your development environment, please go to `Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html>`__ > `Installation <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html#get-started- step-by-step>`__.
 

@@ -142,7 +142,7 @@ Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/l
 Project Option
 ^^^^^^^^^^^^^^
 
-An example is provided for ESP32-S3-USB-OTG under the folder :project:`Examples <esp32-s3-usb-otg/examples>`.
+An example is provided for ESP32-S3-USB-OTG under the folder :project:`Examples <examples/esp32-s3-usb-otg/examples>`.
 
 You can configure project options by entering ``idf.py menuconfig`` in the example directory.
 

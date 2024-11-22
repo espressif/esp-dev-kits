@@ -142,7 +142,7 @@ ESP32-S3-USB-OTG 上电前，请首先确认开发板完好无损。
 工程选项
 ^^^^^^^^
 
-我们为 ESP32-S3-USB-OTG 开发板提供了应用示例，存放在 :project:`Examples <esp32-s3-usb-otg/examples>` 文件夹中。
+我们为 ESP32-S3-USB-OTG 开发板提供了应用示例，存放在 :project:`Examples <examples/esp32-s3-usb-otg/examples>` 文件夹中。
 
 您可以在示例目录下，输入 ``idf.py menuconfig`` 配置工程选项。
 

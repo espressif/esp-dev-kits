@@ -212,7 +212,7 @@ ESP32-P4-Function-EV-Board 的包装盒中包含以下可选配件：
 
 请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。
 
-开发板应用示例存放在 :project:`Examples <esp32-p4-function-ev-board/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 即可配置工程选项。
+开发板应用示例存放在 :project:`Examples <examples/esp32-p4-function-ev-board/examples>` 中，在示例目录下输入 ``idf.py menuconfig`` 即可配置工程选项。
 
 硬件参考
 ========

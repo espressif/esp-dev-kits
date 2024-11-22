@@ -3,7 +3,7 @@
 
 :link_to_translation:`en: [English]`
 
-ESP32-S2-HMI-DevKit-1 支持音频播放与采集。您可以在 ``esp32-s2-hmi-devkit-1/examples/audio/`` 目录下找到音频播放和采集的示例。
+ESP32-S2-HMI-DevKit-1 支持音频播放与采集。您可以在 ``examples/esp32-s2-hmi-devkit-1/examples/audio/`` 目录下找到音频播放和采集的示例。
 
 音频播放
 ------------

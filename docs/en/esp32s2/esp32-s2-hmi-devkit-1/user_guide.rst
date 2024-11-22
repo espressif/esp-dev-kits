@@ -138,17 +138,17 @@ Project Options
 
 Various examples are provided for ESP32-S2-HMI-DevKit-1 as shown below:
 
-- Printing "Hello world!" on screen: :project:`esp32-s2-hmi-devkit-1/examples/get-started/hello_world`
-- Blinking WS2812 LED and showing the color on screen: :project:`esp32-s2-hmi-devkit-1/examples/get-started/led_blink`
-- Starting a UI to configure Wi-Fi credential: :project:`esp32-s2-hmi-devkit-1/examples/get-started/provision`
-- Acquiring audio with ADC from the output of analog MIC: :project:`esp32-s2-hmi-devkit-1/examples/audio/audio_record`
-- Playing music: :project:`esp32-s2-hmi-devkit-1/examples/audio/music_player`
-- Shutting down selected board area into a deep sleep: :project:`esp32-s2-hmi-devkit-1/examples/power`
-- Using Freetype to render fonts: :project:`esp32-s2-hmi-devkit-1/examples/freetype`
-- Using on-board sensors: :project:`esp32-s2-hmi-devkit-1/examples/sensors`
-- Using smart panel: :project:`esp32-s2-hmi-devkit-1/examples/smart-panel`
-- Viewing files on SD card: :project:`esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs`
-- USB flash disk: :project:`esp32-s2-hmi-devkit-1/examples/storage/usb_msc`
+- Printing "Hello world!" on screen: :project:`examples/esp32-s2-hmi-devkit-1/examples/get-started/hello_world`
+- Blinking WS2812 LED and showing the color on screen: :project:`examples/esp32-s2-hmi-devkit-1/examples/get-started/led_blink`
+- Starting a UI to configure Wi-Fi credential: :project:`examples/esp32-s2-hmi-devkit-1/examples/get-started/provision`
+- Acquiring audio with ADC from the output of analog MIC: :project:`examples/esp32-s2-hmi-devkit-1/examples/audio/audio_record`
+- Playing music: :project:`examples/esp32-s2-hmi-devkit-1/examples/audio/music_player`
+- Shutting down selected board area into a deep sleep: :project:`examples/esp32-s2-hmi-devkit-1/examples/power`
+- Using Freetype to render fonts: :project:`examples/esp32-s2-hmi-devkit-1/examples/freetype`
+- Using on-board sensors: :project:`examples/esp32-s2-hmi-devkit-1/examples/sensors`
+- Using smart panel: :project:`examples/esp32-s2-hmi-devkit-1/examples/smart-panel`
+- Viewing files on SD card: :project:`examples/esp32-s2-hmi-devkit-1/examples/storage/sdcard_fatfs`
+- USB flash disk: :project:`examples/esp32-s2-hmi-devkit-1/examples/storage/usb_msc`
 
 You can configure project options by entering ``idf.py menuconfig`` in each example directory.
 
@@ -169,7 +169,7 @@ In each example folder, we have provided a default configuration file named ``sd
 ESP-IDF Version Dependencies
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The ``esp32-s2-hmi-devkit-1/examples/storage/usb_msc`` example needs to be built in IDF v4.3, while other examples can be built in IDF v4.2 and later versions.
+The ``examples/esp32-s2-hmi-devkit-1/examples/storage/usb_msc`` example needs to be built in IDF v4.3, while other examples can be built in IDF v4.2 and later versions.
 
 **Notice:** Due to strict regulation on battery export, for deliveries outside of China mainland, we are shipping ESP32-S2-HMI-DevKit-1 without the battery. As a substitute, you can use the iPhone 5 replacement battery (the connector type is non-standard). The battery capacity is not critical.
 

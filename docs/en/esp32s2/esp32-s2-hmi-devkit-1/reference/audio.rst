@@ -3,7 +3,7 @@ Audio
 
 :link_to_translation:`zh_CN:[中文]`
 
-The ESP32-S2-HMI-DevKit-1 development board supports audio playback and recording. You can find such examples under the ``esp32-s2-hmi-devkit-1/examples/audio/`` directory.
+The ESP32-S2-HMI-DevKit-1 development board supports audio playback and recording. You can find such examples under the ``examples/esp32-s2-hmi-devkit-1/examples/audio/`` directory.
 
 Audio Playback
 ---------------

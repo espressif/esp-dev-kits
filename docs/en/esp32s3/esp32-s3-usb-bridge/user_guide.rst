@@ -21,7 +21,7 @@ Board Overview
 
 ESP32-S3-USB-Bridge is a development board based on ESP32-S3.
 
-- The `usb_wireless_bridge <https://github.com/espressif/esp-dev-kits/tree/master/esp32-s3-usb-bridge/examples/usb_wireless_bridge>`_ example can be used to establish a bridge between a computer and the target chip. It can emulate a USB composite device and supports multiple functions:
+- The `usb_wireless_bridge <https://github.com/espressif/esp-dev-kits/tree/master/examples/esp32-s3-usb-bridge/examples/usb_wireless_bridge>`_ example can be used to establish a bridge between a computer and the target chip. It can emulate a USB composite device and supports multiple functions:
 
   - **USB-to-UART Bridge**: realizes serial data transmission and reception between the computer and the target chip.
   - **JTAG Adapter**: realizes duplex JTAG communication between the computer and the target chip.
@@ -125,7 +125,7 @@ The key components of the board are described in a clockwise direction.
 Software Support
 ----------------
 
-Development of applications for ESP32-S3-USB-Bridge can be done using `ESP-IDF <https://github.com/espressif/esp-idf>`_ framework. ESP-IDF is a FreeRTOS-based SoC development framework with several components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :project:`Examples <esp32-s3-usb-bridge/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
+Development of applications for ESP32-S3-USB-Bridge can be done using `ESP-IDF <https://github.com/espressif/esp-idf>`_ framework. ESP-IDF is a FreeRTOS-based SoC development framework with several components including LCD, ADC, RMT, and SPI. An example is provided for ESP32-S3-LCD-EV-Board under the folder :project:`Examples <examples/esp32-s3-usb-bridge/examples>`. You can configure project options by entering ``idf.py menuconfig`` in the example directory.
 
 .. note::
 

@@ -212,7 +212,7 @@ Software Setup
 
 To set up your development environment and flash an application example onto your board, please follow the instructions in `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html>`__.
 
-You can find examples for ESP32-P4-Function-EV by accessing :project:`Examples <esp32-p4-function-ev-board/examples>`. To configure project options, enter ``idf.py menuconfig`` in the example directory.
+You can find examples for ESP32-P4-Function-EV by accessing :project:`Examples <examples/esp32-p4-function-ev-board/examples>`. To configure project options, enter ``idf.py menuconfig`` in the example directory.
 
 Hardware Reference
 ==================
