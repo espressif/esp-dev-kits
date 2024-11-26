@@ -1,0 +1,10 @@
+{% extends '!breadcrumbs.html' %}
+{% block breadcrumbs_aside %}
+    <style>
+        .download-pdf {
+            float: right;
+            margin-right: 20px;
+        }
+    </style>
+    <a href="{{ pathto('', 1) }}{{ pdf_file }}.pdf" class="download-pdf fa fa-file-pdf-o"> {{ _('Download PDF') }}</a>
+{% endblock %}
