@@ -9,6 +9,7 @@
 #include "esp_err.h"
 #include "linux/videodev2.h"
 #include "esp_video_device.h"
+#include "driver/i2c_master.h"
 
 #ifdef __cplusplus
 extern "C" {
@@ -133,6 +134,15 @@ esp_err_t app_video_stream_task_stop(int video_fd);
  * @return ESP_OK on success.
  */
 esp_err_t app_video_register_frame_operation_cb(app_video_frame_operation_cb_t operation_cb);
+
+/**
+ * @brief Wait for the video stream to stop.
+ *
+ * Blocks the current task until the video stream task has stopped.
+ *
+ * @return ESP_OK on success.
+ */
+esp_err_t app_video_stream_wait_stop(void);
 
 #ifdef __cplusplus
 }

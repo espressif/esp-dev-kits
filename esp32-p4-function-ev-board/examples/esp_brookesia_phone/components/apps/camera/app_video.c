@@ -25,6 +25,11 @@ static const char *TAG = "app_video";
 #define VIDEO_TASK_STACK_SIZE           (4 * 1024)
 #define VIDEO_TASK_PRIORITY             (4)
 
+typedef enum {
+    VIDEO_TASK_DELETE = BIT(0),
+    VIDEO_TASK_DELETE_DONE = BIT(1),
+} video_event_id_t;
+
 typedef struct {
     uint8_t *camera_buffer[MAX_BUFFER_COUNT];
     size_t camera_buf_size;
@@ -34,7 +39,7 @@ typedef struct {
     uint8_t camera_mem_mode;
     app_video_frame_operation_cb_t user_camera_video_frame_operation_cb;
     TaskHandle_t video_stream_task_handle;
-    bool video_task_delete;
+    EventGroupHandle_t video_event_group;
 } app_video_t;
 
 static app_video_t app_camera_video;
@@ -330,6 +335,8 @@ static inline esp_err_t video_stream_stop(int video_fd)
         goto errout;
     }
 
+    xEventGroupSetBits(app_camera_video.video_event_group, VIDEO_TASK_DELETE_DONE);
+
     return ESP_OK;
 
 errout:
@@ -347,8 +354,8 @@ static void video_stream_task(void *arg)
 
         ESP_ERROR_CHECK(video_free_video_frame(video_fd));
 
-        if(app_camera_video.video_task_delete) {
-            app_camera_video.video_task_delete = false;
+        if(xEventGroupGetBits(app_camera_video.video_event_group) & VIDEO_TASK_DELETE) {
+            xEventGroupClearBits(app_camera_video.video_event_group, VIDEO_TASK_DELETE);
             ESP_ERROR_CHECK(video_stream_stop(video_fd));
             vTaskDelete(NULL);
         }
@@ -358,6 +365,11 @@ static void video_stream_task(void *arg)
 
 esp_err_t app_video_stream_task_start(int video_fd, int core_id)
 {
+    if(app_camera_video.video_event_group == NULL) {
+        app_camera_video.video_event_group = xEventGroupCreate();
+    }
+    xEventGroupClearBits(app_camera_video.video_event_group, VIDEO_TASK_DELETE_DONE);
+
     video_stream_start(video_fd);
 
     BaseType_t result = xTaskCreatePinnedToCore(video_stream_task, "video stream task", VIDEO_TASK_STACK_SIZE, &video_fd, VIDEO_TASK_PRIORITY, &app_camera_video.video_stream_task_handle, core_id);
@@ -376,7 +388,7 @@ errout:
 
 esp_err_t app_video_stream_task_stop(int video_fd)
 {
-    app_camera_video.video_task_delete = true;
+    xEventGroupSetBits(app_camera_video.video_event_group, VIDEO_TASK_DELETE);
 
     return ESP_OK;
 }
@@ -384,6 +396,15 @@ esp_err_t app_video_stream_task_stop(int video_fd)
 esp_err_t app_video_register_frame_operation_cb(app_video_frame_operation_cb_t operation_cb)
 {
     app_camera_video.user_camera_video_frame_operation_cb = operation_cb;
+
+    return ESP_OK;
+}
+
+esp_err_t app_video_stream_wait_stop(void)
+{
+    xEventGroupWaitBits(app_camera_video.video_event_group, VIDEO_TASK_DELETE_DONE, pdTRUE, pdTRUE, portMAX_DELAY);
+
+    ESP_LOGI(TAG, "Video Stream Task Stopped Done");
 
     return ESP_OK;
 }
