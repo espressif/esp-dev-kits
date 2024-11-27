@@ -308,13 +308,13 @@ No previous versions available.
 
 .. note::
 
-  The current version of the development board is v1.4, and the next version, v1.5, is in the verification stage. `ESP32-P4-Function-EV-Board Schematic v1.5 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.pdf>`_ has been uploaded for your reference.
+  The current version of the development board is v1.4, and the next version, v1.5, is in the verification stage. `ESP32-P4-Function-EV-Board Schematic v1.5.1 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.1.pdf>`_ has been uploaded for your reference.
 
 Related Documents
 =================
 
 * `ESP32-P4-Function-EV-Board Schematic <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics.pdf>`_ (PDF)
-* `ESP32-P4-Function-EV-Board Schematic v1.5 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.pdf>`_ (PDF)
+* `ESP32-P4-Function-EV-Board Schematic v1.5.1 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.1.pdf>`_ (PDF)
 * `ESP32-P4-Function-EV-Board PCB Layout <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-pcb-layout.pdf>`_ (PDF)
 * `ESP32-P4-Function-EV-Board Dimensions <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.pdf>`_ (PDF)
 * `ESP32-P4-Function-EV-Board Dimensions source file <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
