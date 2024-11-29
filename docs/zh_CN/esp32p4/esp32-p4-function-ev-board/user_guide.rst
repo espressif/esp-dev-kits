@@ -308,13 +308,13 @@ J1
 
 .. 注解::
 
-  当前开发板的版本为 v1.4，下一版本为 v1.5 正在验证阶段。 `ESP32-P4-Function-EV-Board 原理图 v1.5 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.pdf>`_ 已上传以供参考。
+  当前开发板的版本为 v1.4，下一版本为 v1.5 正在验证阶段。 `ESP32-P4-Function-EV-Board 原理图 v1.5.1 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.1.pdf>`_ 已上传以供参考。
 
 相关文档
 ========
 
 * `ESP32-P4-Function-EV-Board 原理图 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics.pdf>`_ (PDF)
-* `ESP32-P4-Function-EV-Board 原理图 v1.5 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.pdf>`_ (PDF)
+* `ESP32-P4-Function-EV-Board 原理图 v1.5.1 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.1.pdf>`_ (PDF)
 * `ESP32-P4-Function-EV-Board PCB 布局图 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-pcb-layout.pdf>`_ (PDF)
 * `ESP32-P4-Function-EV-Board 尺寸图 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.pdf>`_ (PDF)
 * `ESP32-P4-Function-EV-Board 尺寸图源文件 <../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
