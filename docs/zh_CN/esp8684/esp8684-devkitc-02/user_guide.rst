@@ -164,7 +164,7 @@ ESP8684-DevKitC-02 的主要组件和连接方式如下图所示。
 ----
 
 
-下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-esp8684-devkitc-02-v1.0-board-front` 所示，排针的序号与 `开发板原理图 <../../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-schematics_V1.0>`_ (PDF) 一致。
+下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-esp8684-devkitc-02-v1.0-board-front` 所示，排针的序号与 `开发板原理图 <../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-schematics_V1.0.pdf>`_ (PDF) 一致。
 
 J1
 ^^^
