@@ -22,8 +22,11 @@
 
 #include "bsp/esp-bsp.h"
 
+#include "esp_lcd_touch_gt911.h"
+
 #include "app_video.h"
 #include "app_pedestrian_detect.h"
+#include "app_humanface_detect.h"
 #include "app_camera_pipeline.hpp"
 #include "Camera.hpp"
 #include "ui/ui.h"
@@ -32,7 +35,7 @@
 
 #define CAMERA_INIT_TASK_WAIT_MS            (1000)
 #define DETECT_NUM_MAX                      (10)
-#define FPS_PRINT                           (0)
+#define FPS_PRINT                           (1)
 
 using namespace std;
 
@@ -40,6 +43,7 @@ typedef enum {
     CAMERA_EVENT_TASK_RUN = BIT(0),
     CAMERA_EVENT_DELETE = BIT(1),
     CAMERA_EVENT_PED_DETECT = BIT(2),
+    CAMERA_EVENT_HUMAN_DETECT = BIT(3),
 } camera_event_id_t;
 
 LV_IMG_DECLARE(img_app_camera);
@@ -48,10 +52,11 @@ static const char *TAG = "Camera";
 
 // AI detection variables
 static void **detect_buf;
-static int detect_num;
-static int detect_bound[DETECT_NUM_MAX][4];
+static vector<vector<int>> detect_bound;
+static vector<vector<int>> detect_keypoints;
 static std::list<dl::detect::result_t> detect_results;
 static PedestrianDetect **ped_detect = NULL;
+static HumanFaceDetect **hum_detect = NULL;
 static pipeline_handle_t feed_pipeline;
 static pipeline_handle_t detect_pipeline;
 
@@ -100,6 +105,10 @@ bool Camera::run(void)
     ped_detect = get_pedestrian_detect();
     *ped_detect = new PedestrianDetect();
     assert(*ped_detect != NULL);
+    
+    hum_detect = get_humanface_detect();
+    *hum_detect = new HumanFaceDetect();
+    assert(*hum_detect != NULL);
 
     xTaskCreatePinnedToCore((TaskFunction_t)camera_dectect_task, "Camera Detect", 1024 * 8, this, 5, &_detect_task_handle, 1);
 
@@ -163,12 +172,21 @@ bool Camera::run(void)
 
         if (xEventGroupGetBits(camera_event_group) & CAMERA_EVENT_PED_DETECT) {
             xEventGroupClearBits(camera_event_group, CAMERA_EVENT_PED_DETECT);
+            xEventGroupSetBits(camera_event_group, CAMERA_EVENT_HUMAN_DETECT);
+            lv_label_set_text(btn_label, "    Face \n   Detect");
+
+            lv_obj_add_flag(ui_ButtonCameraShotBtn, LV_OBJ_FLAG_HIDDEN);
+            lv_obj_add_flag(ui_PanelCameraShotControlBg, LV_OBJ_FLAG_HIDDEN);
+            lv_obj_add_flag(camera->_img_album, LV_OBJ_FLAG_HIDDEN);
+            camera->_screen_index = SCREEN_CAMERA_AI;
+        } else if (xEventGroupGetBits(camera_event_group) & CAMERA_EVENT_HUMAN_DETECT) {
+            xEventGroupClearBits(camera_event_group, CAMERA_EVENT_HUMAN_DETECT);
             lv_label_set_text(btn_label, "  Normal \n   Detect");
 
             lv_obj_clear_flag(ui_ButtonCameraShotBtn, LV_OBJ_FLAG_HIDDEN);
             lv_obj_clear_flag(ui_PanelCameraShotControlBg, LV_OBJ_FLAG_HIDDEN);
             lv_obj_clear_flag(camera->_img_album, LV_OBJ_FLAG_HIDDEN);
-            camera->_screen_index = SCREEN_CAMERA_AI;
+            camera->_screen_index = SCREEN_CAMERA_SHOT;
         } else {
             xEventGroupSetBits(camera_event_group, CAMERA_EVENT_PED_DETECT);
             lv_label_set_text(btn_label, "Pedestrian \n   Detect");
@@ -176,8 +194,9 @@ bool Camera::run(void)
             lv_obj_add_flag(ui_ButtonCameraShotBtn, LV_OBJ_FLAG_HIDDEN);
             lv_obj_add_flag(ui_PanelCameraShotControlBg, LV_OBJ_FLAG_HIDDEN);
             lv_obj_add_flag(camera->_img_album, LV_OBJ_FLAG_HIDDEN);
-            camera->_screen_index = SCREEN_CAMERA_SHOT;
+            camera->_screen_index = SCREEN_CAMERA_AI;
         }
+
     }, LV_EVENT_CLICKED, this);
 
     return true;
@@ -209,8 +228,14 @@ bool Camera::close(void)
     xEventGroupSetBits(camera_event_group, CAMERA_EVENT_TASK_RUN);
     xEventGroupSetBits(camera_event_group, CAMERA_EVENT_DELETE);
     xEventGroupClearBits(camera_event_group, CAMERA_EVENT_PED_DETECT);
+    xEventGroupClearBits(camera_event_group, CAMERA_EVENT_HUMAN_DETECT);
     
     app_video_stream_task_stop(_camera_ctlr_handle);
+    app_video_stream_wait_stop();
+
+    if (*hum_detect) {
+        delete *hum_detect;
+    }
 
     if (_img_album_buffer) {
         heap_caps_free(_img_album_buffer);
@@ -226,11 +251,18 @@ bool Camera::init(void)
     xEventGroupClearBits(camera_event_group, CAMERA_EVENT_TASK_RUN);
     xEventGroupClearBits(camera_event_group, CAMERA_EVENT_DELETE);
     xEventGroupClearBits(camera_event_group, CAMERA_EVENT_PED_DETECT);
+    xEventGroupClearBits(camera_event_group, CAMERA_EVENT_HUMAN_DETECT);
 
     i2c_master_bus_handle_t i2c_bus_handle = bsp_i2c_get_handle();
     esp_err_t ret = app_video_main(i2c_bus_handle);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "video main init failed with error 0x%x", ret);
+
+        if (ESP_OK == i2c_master_probe(i2c_bus_handle, ESP_LCD_TOUCH_IO_I2C_GT911_ADDRESS, 100) || ESP_OK == i2c_master_probe(i2c_bus_handle, ESP_LCD_TOUCH_IO_I2C_GT911_ADDRESS_BACKUP, 100)) {
+            ESP_LOGI(TAG, "gt911 touch found");
+        } else {
+            ESP_LOGE(TAG, "Touch not found");
+        }
     }
 
     // Open the video device
@@ -418,6 +450,22 @@ static void camera_video_frame_operation(uint8_t *camera_buf, uint8_t camera_buf
 {
     xEventGroupWaitBits(camera_event_group, CAMERA_EVENT_TASK_RUN, pdFALSE, pdTRUE, portMAX_DELAY);
 
+    auto process_results = [&](const auto& results, bool process_keypoints) {
+        detect_keypoints.clear();
+        detect_bound.clear();
+        for (const auto& res : results) {
+            const auto& box = res.box;
+            if (box.size() >= 4 && std::any_of(box.begin(), box.end(), [](int v) { return v != 0; })) {
+                detect_bound.push_back(std::move(box));
+
+                if (process_keypoints && res.keypoint.size() >= 10 &&
+                    std::any_of(res.keypoint.begin(), res.keypoint.end(), [](int v) { return v != 0; })) {
+                    detect_keypoints.push_back(std::move(res.keypoint));
+                }
+            }
+        }
+    };
+
     if (xEventGroupGetBits(camera_event_group) & CAMERA_EVENT_PED_DETECT) {
         camera_pipeline_buffer_element *p = camera_pipeline_get_queued_element(feed_pipeline);
         if (p) {
@@ -459,33 +507,40 @@ static void camera_video_frame_operation(uint8_t *camera_buf, uint8_t camera_buf
         camera_pipeline_buffer_element *detect_element = camera_pipeline_recv_element(detect_pipeline, 0);
 
         if (detect_element) {
-            detect_num = 0;
-            for(const auto &res : *(detect_element->detect_results)) {
-                if (res.box.size() >= 4) {
-                    if (std::any_of(res.box.begin(), res.box.end(), [](int v){ return v != 0; })) {
-                        detect_bound[detect_num][0] = res.box[0];
-                        detect_bound[detect_num][1] = res.box[1];
-                        detect_bound[detect_num][2] = res.box[2];
-                        detect_bound[detect_num][3] = res.box[3];
-                        detect_num++;
-                    }
-                }
-            }
+            process_results(*(detect_element->detect_results), false);
+
             camera_pipeline_queue_element_index(detect_pipeline, detect_element->index);
         }
 
-        for (int i = 0; i < detect_num; i++) {
-            if (std::any_of(detect_bound[i], detect_bound[i] + 4, [](int v){ return v != 0; })) {
+        for (int i = 0; i < detect_bound.size(); i++) {
+            if (detect_bound[i].size() >= 4 && std::any_of(detect_bound[i].begin(), detect_bound[i].end(), [](int v) { return v != 0; })) {
                 draw_rectangle_rgb((uint16_t *)camera_buf, camera_buf_hes, camera_buf_ves, 
-                    detect_bound[i][0], detect_bound[i][1], detect_bound[i][2], detect_bound[i][3], 
-                    0, 0, 255, 0, 0, 3);
+                                detect_bound[i][0], detect_bound[i][1], detect_bound[i][2], detect_bound[i][3], 
+                                0, 0, 255, 0, 0, 3);
+            }
+        }
+    } else if (xEventGroupGetBits(camera_event_group) & CAMERA_EVENT_HUMAN_DETECT) {
+        detect_results = app_humanface_detect((uint16_t *)camera_buf, camera_buf_ves, camera_buf_hes);
+        
+        process_results(detect_results, true);
+        
+        for (int i = 0; i < detect_keypoints.size(); i++) {
+            if (detect_bound[i].size() >= 4 && std::any_of(detect_bound[i].begin(), detect_bound[i].end(), [](int v) { return v != 0; })) {
+                draw_rectangle_rgb((uint16_t *)camera_buf, camera_buf_hes, camera_buf_ves, 
+                                detect_bound[i][0], detect_bound[i][1], detect_bound[i][2], detect_bound[i][3], 
+                                0, 0, 255, 0, 0, 3);
+
+                if (detect_keypoints[i].size() >= 10) {
+                    draw_green_points((uint16_t *)camera_buf, detect_keypoints[i]);
+                }
             }
         }
     }
 
-    if (!(xEventGroupGetBits(camera_event_group) & CAMERA_EVENT_DELETE)) {
-        bsp_display_lock(0);
-        lv_canvas_set_buffer(ui_ImageCameraShotImage, camera_buf, camera_buf_hes, camera_buf_ves, LV_IMG_CF_TRUE_COLOR);
+    if (!(xEventGroupGetBits(camera_event_group) & CAMERA_EVENT_DELETE) && bsp_display_lock(100)) {
+        if(ui_ImageCameraShotImage) {
+            lv_canvas_set_buffer(ui_ImageCameraShotImage, camera_buf, camera_buf_hes, camera_buf_ves, LV_IMG_CF_TRUE_COLOR);
+        }
         lv_refr_now(NULL);
         bsp_display_unlock();
     }

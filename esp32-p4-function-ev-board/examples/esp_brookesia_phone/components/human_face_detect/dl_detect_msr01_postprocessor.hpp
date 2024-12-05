@@ -4,13 +4,13 @@
 namespace dl {
 namespace detect {
 template <typename feature_t>
-class PedestrianPostprocessor : public AnchorPointDetectPostprocessor {
+class MSR01Postprocessor : public AnchorBoxDetectPostprocessor {
 private:
     void parse_stage(TensorBase *score, TensorBase *box, const int stage_index);
 
 public:
     void postprocess() override;
-    using AnchorPointDetectPostprocessor::AnchorPointDetectPostprocessor;
+    using AnchorBoxDetectPostprocessor::AnchorBoxDetectPostprocessor;
 };
 } // namespace detect
 } // namespace dl
