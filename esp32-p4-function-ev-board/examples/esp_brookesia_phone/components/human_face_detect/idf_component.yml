@@ -4,4 +4,4 @@ description: human face detect model.
 url: https://github.com/espressif/esp-dl/tree/master/models/human_face_detect
 dependencies: 
   espressif/esp-dl:
-    version: "^3.0.0-rc.1"
+    version: "==3.0.0-rc.1"
