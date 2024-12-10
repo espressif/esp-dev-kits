@@ -333,9 +333,9 @@ Related Documents
 -  `ESP32-C3 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf>`__
 -  `ESP32-C3-MINI-1 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf>`__
 -  `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-C3-LCD_EV_Board-MB Schematics <../../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_EV_Board_MB_V1.0_20221212.pdf>`__
--  `ESP32-C3-LCD_EV_Board-MB PCB Layout <../../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_Ev_Board_MB_V1.0_20221213.pdf>`__
--  `ESP32-C3-LCD_EV_Board-DB Schematics <../../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_Ev_Board_DB_V1.0_20221207.pdf>`__
--  `ESP32-C3-LCD_EV_Board-DB PCB Layout <../../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_EV_Board_DB_V1.0_20221213.pdf>`__
+-  `ESP32-C3-LCD_EV_Board-MB Schematics <../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_EV_Board_MB_V1.0_20221212.pdf>`__
+-  `ESP32-C3-LCD_EV_Board-MB PCB Layout <../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_Ev_Board_MB_V1.0_20221213.pdf>`__
+-  `ESP32-C3-LCD_EV_Board-DB Schematics <../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_Ev_Board_DB_V1.0_20221207.pdf>`__
+-  `ESP32-C3-LCD_EV_Board-DB PCB Layout <../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_EV_Board_DB_V1.0_20221213.pdf>`__
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

@@ -164,7 +164,7 @@ ESP8684-DevKitM-1 的主要组件和连接方式如下图所示。
 ----
 
 
-下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-esp8684-devkitm-1-v1.1-board-front` 所示，排针的序号与 `开发板原理图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.1.pdf>`_ (PDF) 一致。
+下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-esp8684-devkitm-1-v1.1-board-front` 所示，排针的序号与 `开发板原理图 <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.1.pdf>`_ (PDF) 一致。
 
 J1
 ^^^
@@ -249,10 +249,10 @@ J3
 ========
 
 - `ESP8684 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp8684_datasheet_cn.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 原理图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 PCB 布局图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 尺寸图 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 尺寸图源文件 <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.1.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+- `ESP8684-DevKitM-1 原理图 <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 PCB 布局图 <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 尺寸图 <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 尺寸图源文件 <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.1.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。

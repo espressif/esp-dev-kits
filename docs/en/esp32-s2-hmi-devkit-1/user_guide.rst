@@ -285,9 +285,9 @@ Related Documents
 
 - `ESP32-S2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`_ (PDF)
 - `ESP32-S2-WROVER Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_en.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 Schematic <../../_static/esp32-s2-hmi-devkit-1/schematics/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 PCB Layout <../../_static/esp32-s2-hmi-devkit-1/schematics/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 Dimensions <../../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 Dimensions Source File <../../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+- `ESP32-S2-HMI-DevKit-1 Schematic <../_static/esp32-s2-hmi-devkit-1/schematics/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 PCB Layout <../_static/esp32-s2-hmi-devkit-1/schematics/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 Dimensions <../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf>`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 Dimensions Source File <../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

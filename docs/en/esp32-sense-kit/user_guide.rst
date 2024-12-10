@@ -232,13 +232,13 @@ Related Resources
 
 -  **Schematic**
 
-   -  `ESP32-Sense-Kit Mainboard Schematic <../../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
-   -  `ESP32-Sense-Kit Subboard Schematic <../../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
+   -  `ESP32-Sense-Kit Mainboard Schematic <../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
+   -  `ESP32-Sense-Kit Subboard Schematic <../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
 
 -  **PCB Layout**
 
-   -  `ESP32-Sense-Kit Mainboard PCB Layout <../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
-   -  `ESP32-Sense-Kit Subboard PCB Layout <../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
+   -  `ESP32-Sense-Kit Mainboard PCB Layout <../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
+   -  `ESP32-Sense-Kit Subboard PCB Layout <../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
 
 -  **Set up Software Environment**
 

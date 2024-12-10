@@ -164,7 +164,7 @@ Header Block
 -------------
 
 
-The two tables below provide the **Name** and **Function** of the pins on both sides of the board (J1 and J3). The pin names are shown in :ref:`user-guide-esp8684-devkitc-02-v1.0-board-front`. The numbering is the same as in the `Board Schematic <../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-schematics_V1.0.pdf>`_ (PDF).
+The two tables below provide the **Name** and **Function** of the pins on both sides of the board (J1 and J3). The pin names are shown in :ref:`user-guide-esp8684-devkitc-02-v1.0-board-front`. The numbering is the same as in the `Board Schematic <../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-schematics_V1.0.pdf>`_ (PDF).
 
 J1
 ^^^
@@ -240,10 +240,10 @@ Related Documents
 =================
 
 - `ESP8684 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp8684_datasheet_en.pdf>`_ (PDF)
-- `ESP8684-DevKitC-02 Schematic <../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-schematics_V1.0.pdf>`_ (PDF)
-- `ESP8684-DevKitC-02 PCB layout <../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-pcb-layout_V1.0.pdf>`_ (PDF)
-- `ESP8684-DevKitC-02 Dimensions <../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-dimensions_V1.0.pdf>`_ (PDF)
-- `ESP8684-DevKitC-02 Dimensions source file <../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-dimensions_source_V1.0.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+- `ESP8684-DevKitC-02 Schematic <../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-schematics_V1.0.pdf>`_ (PDF)
+- `ESP8684-DevKitC-02 PCB layout <../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-pcb-layout_V1.0.pdf>`_ (PDF)
+- `ESP8684-DevKitC-02 Dimensions <../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-dimensions_V1.0.pdf>`_ (PDF)
+- `ESP8684-DevKitC-02 Dimensions source file <../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-dimensions_source_V1.0.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

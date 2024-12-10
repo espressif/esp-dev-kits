@@ -230,13 +230,13 @@ ESP32 IoT Solution 工程下的 `ESP32-Sense 项目 <https://github.com/espressi
 
 - **原理图**
 
-  - `ESP32-Sense-kit 主板原理图 <../../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
-  - `ESP32-Sense-kit 子板原理图 <../../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
+  - `ESP32-Sense-kit 主板原理图 <../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
+  - `ESP32-Sense-kit 子板原理图 <../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
 
 - **PCB 布局**
 
-  - `ESP32-Sense-kit 主板 PCB 布局 <../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
-  - `ESP32-Sense-kit 子板 PCB 布局 <../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
+  - `ESP32-Sense-kit 主板 PCB 布局 <../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
+  - `ESP32-Sense-kit 子板 PCB 布局 <../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
 
 - **开发环境**
 

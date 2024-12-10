@@ -162,7 +162,7 @@ ESP32-C6-DevKitM-1 的主要组件和连接方式如下图所示。
 排针 
 ---- 
 
-下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-c6-devkitm-1-v1-board-front` 所示，排针的序号与 `ESP32-C6-DevKitM-1 原理图 <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF) 一致。 
+下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-c6-devkitm-1-v1-board-front` 所示，排针的序号与 `ESP32-C6-DevKitM-1 原理图 <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF) 一致。 
 
 J1 
 ^^^ 
@@ -236,10 +236,10 @@ J3
 ========
 * `ESP32-C6 技术规格书`_ (PDF)
 * `ESP32-C6-MINI-1 技术规格书`_ (PDF)
-* `ESP32-C6-DevKitM-1 原理图 <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF)
-* `ESP32-C6-DevKitM-1 PCB 布局图 <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-pcb-layout.pdf>`_ (PDF)
-* `ESP32-C6-DevKitM-1 尺寸图 <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.pdf>`_ (PDF)
-* `ESP32-C6-DevKitM-1 尺寸图源文件 <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+* `ESP32-C6-DevKitM-1 原理图 <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF)
+* `ESP32-C6-DevKitM-1 PCB 布局图 <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-pcb-layout.pdf>`_ (PDF)
+* `ESP32-C6-DevKitM-1 尺寸图 <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.pdf>`_ (PDF)
+* `ESP32-C6-DevKitM-1 尺寸图源文件 <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 

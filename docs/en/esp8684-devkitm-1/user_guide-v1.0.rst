@@ -165,7 +165,7 @@ Header Block
 -------------
 
 
-The two tables below provide the **Name** and **Function** of the pins on both sides of the board (J1 and J3). The pin names are shown in :ref:`user-guide-esp8684-devkitm-1-v1-board-front`. The numbering is the same as in the `Board Schematic <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.pdf>`_ (PDF).
+The two tables below provide the **Name** and **Function** of the pins on both sides of the board (J1 and J3). The pin names are shown in :ref:`user-guide-esp8684-devkitm-1-v1-board-front`. The numbering is the same as in the `Board Schematic <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.pdf>`_ (PDF).
 
 J1
 ^^^
@@ -244,10 +244,10 @@ Related Documents
 =================
 
 
-- `ESP8684-DevKitM-1 Schematic <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 PCB layout <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 Dimensions <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.pdf>`_ (PDF)
-- `ESP8684-DevKitM-1 Dimensions source file <../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+- `ESP8684-DevKitM-1 Schematic <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 PCB layout <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 Dimensions <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.pdf>`_ (PDF)
+- `ESP8684-DevKitM-1 Dimensions source file <../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

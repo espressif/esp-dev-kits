@@ -155,6 +155,6 @@ ESP-LyraT-8311A v1.2
 
 - `ESP-LyraT-8311A 原理图 <https://dl.espressif.com/dl/schematics/ESP-LyraT-8311A_V1_3_SCH_20200522A.pdf>`_ (PDF)
 - `ESP-LyraT-8311A PCB 布局图 <https://dl.espressif.com/dl/schematics/ESP-LyraT-8311A_V1_3_PCB_20200522AA.pdf>`_ (PDF)
-- `Audio ES8311 <../../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf>`_ (PDF)
+- `Audio ES8311 <../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf>`_ (PDF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。

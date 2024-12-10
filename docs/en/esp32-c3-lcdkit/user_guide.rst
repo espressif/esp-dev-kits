@@ -373,18 +373,18 @@ Related Documents
 -  `ESP32-C3 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf>`__
 -  `ESP32-C3-MINI-1 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf>`__
 -  `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-C3-LCDkit_MB Schematics <../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-C6-LCDkit-MB_V1.1_20230417.pdf>`__
--  `ESP32-C3-LCDkit_MB PCB Layout <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-C6-LCDkit-MB_V1.1_20230418.pdf>`__
--  `ESP32-C3-LCDkit_DB Schematics <../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
--  `ESP32-C3-LCDkit_DB PCB Layout <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
--  `ESP32-C6-LCDkit_DB Schematics <../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
--  `ESP32-C6-LCDkit_DB PCB Layout <../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
--  `1.28_TFT_240x240_SPI_Display <../../_static/esp32-c3-lcdkit/datasheets/1.28_TFT_240x240_SPI_屏.pdf>`__
--  `Infrared Transmitter (IR67-21CTR8) <../../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IR67-21CTR8.PDF>`__
--  `Infrared Receiver（IRM-H638TTR2） <../../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IRM-H638TTR2.PDF>`__
--  `Audio Amplifier (NS4150) <../../_static/esp32-c3-lcdkit/datasheets/NS4150B.pdf>`__
--  `RGB LED (WS2812B) <../../_static/esp32-c3-lcdkit/datasheets/WS2812B-Mini-V3.pdf>`__
--  `2415 Voice Cavity Horn <../../_static/esp32-c3-lcdkit/datasheets/方形2415音腔喇叭规格书-2P1.25-20MM.pdf>`__
+-  `ESP32-C3-LCDkit_MB Schematics <../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-C6-LCDkit-MB_V1.1_20230417.pdf>`__
+-  `ESP32-C3-LCDkit_MB PCB Layout <../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-C6-LCDkit-MB_V1.1_20230418.pdf>`__
+-  `ESP32-C3-LCDkit_DB Schematics <../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
+-  `ESP32-C3-LCDkit_DB PCB Layout <../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
+-  `ESP32-C6-LCDkit_DB Schematics <../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
+-  `ESP32-C6-LCDkit_DB PCB Layout <../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
+-  `1.28_TFT_240x240_SPI_Display <../_static/esp32-c3-lcdkit/datasheets/1.28_TFT_240x240_SPI_屏.pdf>`__
+-  `Infrared Transmitter (IR67-21CTR8) <../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IR67-21CTR8.PDF>`__
+-  `Infrared Receiver（IRM-H638TTR2） <../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IRM-H638TTR2.PDF>`__
+-  `Audio Amplifier (NS4150) <../_static/esp32-c3-lcdkit/datasheets/NS4150B.pdf>`__
+-  `RGB LED (WS2812B) <../_static/esp32-c3-lcdkit/datasheets/WS2812B-Mini-V3.pdf>`__
+-  `2415 Voice Cavity Horn <../_static/esp32-c3-lcdkit/datasheets/方形2415音腔喇叭规格书-2P1.25-20MM.pdf>`__
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 

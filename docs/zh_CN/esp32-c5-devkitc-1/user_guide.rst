@@ -175,7 +175,7 @@ ESP32-C5-DevKitC-1 的主要组件和连接方式如下图所示。
 排针
 ----
 
-下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-c5-devkitc-1-board-front` 所示，排针的序号与 `ESP32-C5-DevKitC-1 原理图 <../../_static/esp32-c5-devkitc-1/schematics/SCH_ESP32-C5-DevkitC-1_V1.1_20240621.pdf>`__ (PDF) 一致。
+下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-c5-devkitc-1-board-front` 所示，排针的序号与 `ESP32-C5-DevKitC-1 原理图 <../_static/esp32-c5-devkitc-1/schematics/SCH_ESP32-C5-DevkitC-1_V1.1_20240621.pdf>`__ (PDF) 一致。
 
 
 J1
@@ -255,10 +255,10 @@ J3
 .. * `ESP32-C5 技术规格书`_ (PDF)
 .. * `ESP32-C5-WROOM-1 技术规格书`_ (PDF)
 
-* `ESP32-C5-DevKitC-1 原理图 <../../_static/esp32-c5-devkitc-1/schematics/SCH_ESP32-C5-DevkitC-1_V1.1_20240621.pdf>`_ (PDF)
-* `ESP32-C5-DevKitC-1 PCB 布局图 <../../_static/esp32-c5-devkitc-1/schematics/PCB_ESP32-C5-DevKitC-1_V1.1_20240621.pdf>`_ (PDF)
-* `ESP32-C5-DevKitC-1 尺寸图 <../../_static/esp32-c5-devkitc-1/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.pdf>`_ (PDF)
-* `ESP32-C5-DevKitC-1 尺寸图源文件 <../../_static/esp32-c5-devkitc-1/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+* `ESP32-C5-DevKitC-1 原理图 <../_static/esp32-c5-devkitc-1/schematics/SCH_ESP32-C5-DevkitC-1_V1.1_20240621.pdf>`_ (PDF)
+* `ESP32-C5-DevKitC-1 PCB 布局图 <../_static/esp32-c5-devkitc-1/schematics/PCB_ESP32-C5-DevKitC-1_V1.1_20240621.pdf>`_ (PDF)
+* `ESP32-C5-DevKitC-1 尺寸图 <../_static/esp32-c5-devkitc-1/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.pdf>`_ (PDF)
+* `ESP32-C5-DevKitC-1 尺寸图源文件 <../_static/esp32-c5-devkitc-1/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 

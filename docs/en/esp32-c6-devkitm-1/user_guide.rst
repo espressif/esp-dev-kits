@@ -162,7 +162,7 @@ The J5 headers on ESP32-C6-DevKitM-1 (see J5 in Figure :ref:`user-guide-c6-devki
 Header Block 
 ------------- 
 
-The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3). The pin header names are shown in Figure :ref:`user-guide-c6-devkitm-1-v1-board-front`. The numbering is the same as in the `ESP32-C6-DevKitM-1 Schematic <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF). 
+The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3). The pin header names are shown in Figure :ref:`user-guide-c6-devkitm-1-v1-board-front`. The numbering is the same as in the `ESP32-C6-DevKitM-1 Schematic <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF). 
 
 J1 
 ^^^ 
@@ -236,10 +236,10 @@ Related Documents
 =================
 * `ESP32-C6 Datasheet`_ (PDF)
 * `ESP32-C6-MINI-1 Datasheet`_ (PDF)
-* `ESP32-C6-DevKitM-1 Schematic <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF)
-* `ESP32-C6-DevKitM-1 PCB Layout <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-pcb-layout.pdf>`_ (PDF)
-* `ESP32-C6-DevKitM-1 Dimensions <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.pdf>`_ (PDF)
-* `ESP32-C6-DevKitM-1 Dimensions source file <../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+* `ESP32-C6-DevKitM-1 Schematic <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf>`_ (PDF)
+* `ESP32-C6-DevKitM-1 PCB Layout <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-pcb-layout.pdf>`_ (PDF)
+* `ESP32-C6-DevKitM-1 Dimensions <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.pdf>`_ (PDF)
+* `ESP32-C6-DevKitM-1 Dimensions source file <../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.dxf>`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 

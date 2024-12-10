@@ -247,5 +247,5 @@ APDS-9960 是一款集成 ALS、红外 LED 和接近检测器的光学模块和�
 相关文档
 -----------
 
-- `ESP32-MeshKit-Sense 原理图 <../../_static/esp32-meshkit-sense/schematics/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
-- `ESP32-MeshKit-Sense PCB 布局 <../../_static/esp32-meshkit-sense/schematics/ESP32-MeshKit-Sense_V1.1.pdf>`_
+- `ESP32-MeshKit-Sense 原理图 <../_static/esp32-meshkit-sense/schematics/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
+- `ESP32-MeshKit-Sense PCB 布局 <../_static/esp32-meshkit-sense/schematics/ESP32-MeshKit-Sense_V1.1.pdf>`_

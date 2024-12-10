@@ -150,6 +150,6 @@ ESP-LyraP-LCD32 v1.1
 
 - `ESP-LyraP-LCD32 原理图 <https://dl.espressif.com/dl/schematics/ESP-LyraP-LCD32_V1_2_SCH_20200522A.pdf>`_ (PDF)
 - `ESP-LyraP-LCD32 PCB 布局图 <https://dl.espressif.com/dl/schematics/ESP-LyraP-LCD32_V1_2_PCB_20200522AA.pdf>`_ (PDF)
-- `LCD ST7789 <../../_static/esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf>`_ (PDF)
+- `LCD ST7789 <../_static/esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf>`_ (PDF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。

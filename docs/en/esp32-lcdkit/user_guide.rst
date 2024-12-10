@@ -71,9 +71,9 @@ Functional Modules
 This section introduces the functional modules (interfaces) of
 ESP32-LCDKit and their hardware schematics.
 
-- `Schematic <../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `Schematic <../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
-- `PCB Layout <../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
+- `PCB Layout <../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
 
 ESP32 DevKitC Connection Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -139,5 +139,5 @@ The figure below shows the schematics for the SD-Card and DAC-Audio modules.
 Related Documents
 ---------------------
 
-- `ESP32-LCDKit Schematic <../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
-- `ESP32-LCDKit PCB Layout <../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `ESP32-LCDKit Schematic <../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
+- `ESP32-LCDKit PCB Layout <../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_

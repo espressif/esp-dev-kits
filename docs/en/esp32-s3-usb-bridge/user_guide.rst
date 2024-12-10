@@ -305,7 +305,7 @@ Related Documents
 -  `ESP32-S3 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_en.pdf>`__
 -  `ESP32-S3-MINI-1 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_en.pdf>`__
 -  `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-USB-Bridge PCB Layout <../../_static/esp32-s3-usb-bridge/schematics/PCB_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf>`__
--  `ESP32-S3-USB-Bridge Schematics <../../_static/esp32-s3-usb-bridge/schematics/SCH_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf>`__
+-  `ESP32-S3-USB-Bridge PCB Layout <../_static/esp32-s3-usb-bridge/schematics/PCB_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf>`__
+-  `ESP32-S3-USB-Bridge Schematics <../_static/esp32-s3-usb-bridge/schematics/SCH_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf>`__
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
