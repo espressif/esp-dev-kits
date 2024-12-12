@@ -8,25 +8,25 @@
 
 # build folder, in the alphabetic order
 .patterns-esp32_c3_lcdkit: &patterns-esp32_c3_lcdkit
-  - "esp32-c3-lcdkit/**/*"
+  - "examples/esp32-c3-lcdkit/**/*"
 
 .patterns-esp32_s2_hmi_devkit_1: &patterns-esp32_s2_hmi_devkit_1
-  - "esp32-s2-hmi-devkit-1/**/*"
+  - "examples/esp32-s2-hmi-devkit-1/**/*"
 
 .patterns-esp32_s2_kaluga_1: &patterns-esp32_s2_kaluga_1
-  - "esp32-s2-kaluga-1/**/*"
+  - "examples/esp32-s2-kaluga-1/**/*"
 
 .patterns-esp32_s2_touch_devkit_1: &patterns-esp32_s2_touch_devkit_1
-  - "esp32-s2-touch-devkit-1/**/*"
+  - "examples/esp32-s2-touch-devkit-1/**/*"
 
 .patterns-esp32_s3_lcd_ev_board: &patterns-esp32_s3_lcd_ev_board
-  - "esp32-s3-lcd-ev-board/**/*"
+  - "examples/esp32-s3-lcd-ev-board/**/*"
 
 .patterns-esp32_s3_usb_bridge: &patterns-esp32_s3_usb_bridge
-  - "esp32-s3-usb-bridge/**/*"
+  - "examples/esp32-s3-usb-bridge/**/*"
 
 .patterns-esp32_s3_usb_otg: &patterns-esp32_s3_usb_otg
-  - "esp32-s3-usb-otg/**/*"
+  - "examples/esp32-s3-usb-otg/**/*"
 
 # docs folder, in the alphabetic order
 .patterns-toml: &patterns-toml
