@@ -78,6 +78,7 @@ deploy_docs_production:
     DOCS_DEPLOY_SERVER_USER: "$DOCS_PROD_SERVER_USER"
     DOCS_DEPLOY_PATH: "$DOCS_PROD_PATH"
     DOCS_DEPLOY_URL_BASE: "$DOCS_PROD_URL_BASE"
+  timeout: 3h
 
 pack-upload_files:
   stage: deploy
