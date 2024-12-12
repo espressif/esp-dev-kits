@@ -97,9 +97,6 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 * 技术支持与反馈
     - 如果您发现了任何技术上的 bug 或有任何功能上的建议，请在 Github 中的 [Issues](https://github.com/espressif/esp-dev-kits/issues) 页面提交您的反馈。提交新 issue 前请先检查是否有已提交的重复 issue。
 
-* 贡献代码
-    - 如果您想要为 esp-dev-kits 贡献代码，请前往 [贡献代码](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/contribute/contributions_guide.html)。
-
 * 购买方式
     - 了解更多购买信息，请访问公司官方公众号 **乐鑫信息科技**。
     - 您可以借助 [ESP 产品选型工具](https://products.espressif.com/#/product-selector?names=) 选择合适的开发板。

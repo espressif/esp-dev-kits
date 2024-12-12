@@ -97,9 +97,6 @@ Click one of the development boards shown below to set up and start using esp-de
 * Technical Support and Feedback
     - Check the [Issues](https://github.com/espressif/esp-dev-kits/issues) section on github if you find a bug or have a feature request. Please check existing issues before opening a new one.
 
-* Contribution
-    - If you are interested in contributing to esp-dev-kits, please check the [Contributions Guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/contribute/contributions_guide.html).
-
 * Purchase
     - Visit our WeChat Account **espressif_systems** to learn more about how to buy our products.
     - If you need help in choosing a desired development board, [ESP Product Selector](https://products.espressif.com/#/product-selector?names=) is a place for you to visit.
