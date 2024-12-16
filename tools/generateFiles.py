@@ -80,7 +80,7 @@ def find_build_dir(
     """
 
     # list all idf versions
-    idf_version = ['4.3','4.4','5.0','5.1','5.2','5.3']
+    idf_version = ['4.3','4.4','5.0','5.1','5.2','5.3','5.4','5.5']
 
     check_dirs = []
     for i in idf_version:
