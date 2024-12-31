@@ -1,8 +1,3 @@
-:orphan:
-
-.. User guides of ESP-Module-Prog-1(R), ESP-Module-Prog-SUB-01&04, and ESP-Module-Prog-SUB-02 reference each other.
-.. :orphan: suppresses the "document isn't included in any toctree" warning, ensuring that only relevant guides for a target appear in the TOC while others are still built.
-
 ESP-Module-Prog-1(R)
 ====================
 
