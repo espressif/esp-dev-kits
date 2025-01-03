@@ -350,15 +350,7 @@ esp-dev-kits Documentation
 
       ESP32-S2-DevKitC-1 <esp32-s2-devkitc-1/index>
       ESP32-S2-DevKitM-1 <esp32-s2-devkitm-1/index>
-
-   .. toctree::
-      :hidden:
-      :caption: EOL (End of Life) Boards
-
-      ESP32-S2-HMI-DevKit-1 <esp32-s2-hmi-devkit-1/index>
-      ESP32-S2-Touch-Devkit-1 <esp32-s2-touch-devkit-1/index>
-      ESP32-S2-Kaluga-1 <esp32-s2-kaluga-1/index>
-      ESP32-S2-Saola-1 <esp32-s2-saola-1/index>
+      EOL (End of Life) Boards <eol/eol-boards>
 
 .. only:: esp32
 
@@ -373,14 +365,7 @@ esp-dev-kits Documentation
       ESP32-LCDKit <esp32-lcdkit/index>
       ESP32-Ethernet-Kit <esp32-ethernet-kit/index>
       ESP32-PICO-KIT <esp32-pico-kit/index>
-
-   .. toctree::
-      :hidden:
-      :caption: EOL (End of Life) Boards
-
-      ESP32-Sense-Kit <esp32-sense-kit/index>
-      ESP32-MeshKit-Sense <esp32-meshkit-sensor/index>
-      ESP-WROVER-KIT <esp-wrover-kit/index>
+      EOL (End of Life) Boards <eol/eol-boards>
 
 .. only:: other
 
