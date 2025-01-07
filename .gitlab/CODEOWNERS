@@ -3,77 +3,77 @@
 
 # User guide
 
-/docs/**/esp-module-prog-1-r/                @documentation/codeowners/esp32s3       @documentation/codeowners/hw
-/docs/**/esp-module-prog-sub-01&04/          @documentation/codeowners/esp32s3       @documentation/codeowners/hw
-/docs/**/esp-module-prog-sub-02/             @documentation/codeowners/esp32s3       @documentation/codeowners/hw
-/docs/**/esp-prog/                           @documentation/codeowners/esp32s3       @documentation/codeowners/hw
-/docs/**/esp32-c3-devkitc-02/                @documentation/codeowners/esp32c3       @documentation/codeowners/hw
-/docs/**/esp32-c3-devkitm-1/                 @documentation/codeowners/esp32c3       @documentation/codeowners/hw
-/docs/**/esp32-c3-lcdkit/                    @documentation/codeowners/esp32c3       @documentation/codeowners/hw @documentation/codeowners/ae
-/docs/**/esp32-c5-devkitc-1/                 @documentation/codeowners/esp32c5       @documentation/codeowners/hw
-/docs/**/esp32-c6-devkitc-1/                 @documentation/codeowners/esp32c6       @documentation/codeowners/hw
-/docs/**/esp32-c6-devkitm-1/                 @documentation/codeowners/esp32c6       @documentation/codeowners/hw
-/docs/**/esp32-c61-devkitc-1/                @documentation/codeowners/esp32c61      @documentation/codeowners/hw
-/docs/**/esp-wrover-kit/                     @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-devkitc/                      @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-devkitm-1/                    @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-ethernet-kit/                 @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-lcdkit/                       @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-meshkit-sensor/               @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-pico-devkitm-2/               @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-pico-kit/                     @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-pico-kit-1/                   @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-sense-kit/                    @documentation/codeowners/esp32         @documentation/codeowners/hw
-/docs/**/esp32-h2-devkitm-1/                 @documentation/codeowners/esp32h2       @documentation/codeowners/hw
-/docs/**/esp32-p4-function-ev-board/         @documentation/codeowners/esp32p4       @documentation/codeowners/hw @documentation/codeowners/ae
-/docs/**/esp32-s2-devkitc-1/                 @documentation/codeowners/esp32s2       @documentation/codeowners/hw
-/docs/**/esp32-s2-devkitm-1/                 @documentation/codeowners/esp32s2       @documentation/codeowners/hw
-/docs/**/esp32-s2-hmi-devkit-1/              @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
-/docs/**/esp32-s2-kaluga-1/                  @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
-/docs/**/esp32-s2-saola-1/                   @documentation/codeowners/esp32s2       @documentation/codeowners/hw
-/docs/**/esp32-s2-touch-devkit-1/            @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
-/docs/**/esp32-s3-devkitc-1/                 @documentation/codeowners/esp32s3       @documentation/codeowners/hw
-/docs/**/esp32-s3-devkitm-1/                 @documentation/codeowners/esp32s3       @documentation/codeowners/hw
-/docs/**/esp32-s3-lcd-ev-board/              @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
-/docs/**/esp32-s3-usb-bridge/                @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
-/docs/**/esp32-s3-usb-otg/                   @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
-/docs/**/esp8684-devkitc-02/                 @documentation/codeowners/esp32c2       @documentation/codeowners/hw
-/docs/**/esp8684-devkitm-1/                  @documentation/codeowners/esp32c2       @documentation/codeowners/hw
-/docs/_static/                               @documentation/codeowners/esp-dev-kits  @documentation/codeowners/hw
+/docs/*/esp-module-prog-1-r/                @documentation/codeowners/esp32s3       @documentation/codeowners/hw
+/docs/*/esp-module-prog-sub-01&04/          @documentation/codeowners/esp32s3       @documentation/codeowners/hw
+/docs/*/esp-module-prog-sub-02/             @documentation/codeowners/esp32s3       @documentation/codeowners/hw
+/docs/*/esp-prog/                           @documentation/codeowners/esp32s3       @documentation/codeowners/hw
+/docs/*/esp32-c3-devkitc-02/                @documentation/codeowners/esp32c3       @documentation/codeowners/hw
+/docs/*/esp32-c3-devkitm-1/                 @documentation/codeowners/esp32c3       @documentation/codeowners/hw
+/docs/*/esp32-c3-lcdkit/                    @documentation/codeowners/esp32c3       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp32-c5-devkitc-1/                 @documentation/codeowners/esp32c5       @documentation/codeowners/hw
+/docs/*/esp32-c6-devkitc-1/                 @documentation/codeowners/esp32c6       @documentation/codeowners/hw
+/docs/*/esp32-c6-devkitm-1/                 @documentation/codeowners/esp32c6       @documentation/codeowners/hw
+/docs/*/esp32-c61-devkitc-1/                @documentation/codeowners/esp32c61      @documentation/codeowners/hw
+/docs/*/esp-wrover-kit/                     @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-devkitc/                      @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-devkitm-1/                    @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-ethernet-kit/                 @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-lcdkit/                       @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-meshkit-sensor/               @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-pico-devkitm-2/               @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-pico-kit/                     @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-pico-kit-1/                   @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-sense-kit/                    @documentation/codeowners/esp32         @documentation/codeowners/hw
+/docs/*/esp32-h2-devkitm-1/                 @documentation/codeowners/esp32h2       @documentation/codeowners/hw
+/docs/*/esp32-p4-function-ev-board/         @documentation/codeowners/esp32p4       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp32-s2-devkitc-1/                 @documentation/codeowners/esp32s2       @documentation/codeowners/hw
+/docs/*/esp32-s2-devkitm-1/                 @documentation/codeowners/esp32s2       @documentation/codeowners/hw
+/docs/*/esp32-s2-hmi-devkit-1/              @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp32-s2-kaluga-1/                  @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp32-s2-saola-1/                   @documentation/codeowners/esp32s2       @documentation/codeowners/hw
+/docs/*/esp32-s2-touch-devkit-1/            @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp32-s3-devkitc-1/                 @documentation/codeowners/esp32s3       @documentation/codeowners/hw
+/docs/*/esp32-s3-devkitm-1/                 @documentation/codeowners/esp32s3       @documentation/codeowners/hw
+/docs/*/esp32-s3-lcd-ev-board/              @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp32-s3-usb-bridge/                @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp32-s3-usb-otg/                   @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp8684-devkitc-02/                 @documentation/codeowners/esp32c2       @documentation/codeowners/hw
+/docs/*/esp8684-devkitm-1/                  @documentation/codeowners/esp32c2       @documentation/codeowners/hw
+/docs/_static/                              @documentation/codeowners/esp-dev-kits  @documentation/codeowners/hw
 
 # Configuration
 
-/.gitlab/                                    @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/.github/                                    @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/tools/                                      @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-.build-rules.yml                             @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-.gitignore                                   @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-.gitlab-ci.yml                               @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-.pre-commit-config.yaml                      @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-check_copyright_config.yaml                  @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/Doxyfile                               @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/check_doc_warnings.sh                  @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/check_lang_folder_sync.sh              @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/conf_common.py                         @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/convert_to_rst.sh                      @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/requirements.txt                       @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/setuptools.requirements.txt            @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/sphinx-known-warnings.txt              @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/**/conf.py                             @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-/docs/**/Makefile                            @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/.gitlab/                                   @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/.github/                                   @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/tools/                                     @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+.build-rules.yml                            @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+.gitignore                                  @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+.gitlab-ci.yml                              @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+.pre-commit-config.yaml                     @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+check_copyright_config.yaml                 @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/Doxyfile                              @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/check_doc_warnings.sh                 @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/check_lang_folder_sync.sh             @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/conf_common.py                        @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/convert_to_rst.sh                     @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/requirements.txt                      @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/setuptools.requirements.txt           @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/sphinx-known-warnings.txt             @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/*/conf.py                             @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
+/docs/*/Makefile                            @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
 
 # README and document template
 
-README*.md                                   @documentation/codeowners/esp-dev-kits
-/docs/README.md                              @documentation/codeowners/esp-dev-kits
-/docs/TEMPLATE_EXAMPLE_README*.md            @documentation/codeowners/esp-dev-kits
-/docs/**/_templates/                         @documentation/codeowners/esp-dev-kits
-/docs/**/404.rst                             @documentation/codeowners/esp-dev-kits
-/docs/**/index.rst                           @documentation/codeowners/esp-dev-kits
-/docs/**/resources.rst                       @documentation/codeowners/esp-dev-kits
-/docs/**/disclaimer-and-copyright.rst        @documentation/codeowners/esp-dev-kits
+README*.md                                  @documentation/codeowners/esp-dev-kits
+/docs/README.md                             @documentation/codeowners/esp-dev-kits
+/docs/TEMPLATE_EXAMPLE_README*.md           @documentation/codeowners/esp-dev-kits
+/docs/*/_templates/                         @documentation/codeowners/esp-dev-kits
+/docs/*/404.rst                             @documentation/codeowners/esp-dev-kits
+/docs/*/index.rst                           @documentation/codeowners/esp-dev-kits
+/docs/*/resources.rst                       @documentation/codeowners/esp-dev-kits
+/docs/*/disclaimer-and-copyright.rst        @documentation/codeowners/esp-dev-kits
 
 # Example
 
-/examples/                                   @documentation/codeowners/ae
-.build-rules                                 @documentation/codeowners/ae
+/examples/                                  @documentation/codeowners/ae
+.build-rules                                @documentation/codeowners/ae
