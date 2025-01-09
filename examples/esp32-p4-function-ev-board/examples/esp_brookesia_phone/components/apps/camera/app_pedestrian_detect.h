@@ -16,7 +16,8 @@ std::list<dl::detect::result_t> app_pedestrian_detect(uint16_t *frame, int width
 extern "C" {
 #endif
 
-PedestrianDetect **get_pedestrian_detect();
+PedestrianDetect *get_pedestrian_detect();
+void delete_pedestrian_detect();
 
 void draw_rectangle_rgb(uint16_t *buffer, int width, int height, int x1, int y1, int x2, int y2, int x_offset, int y_offset, uint8_t r, uint8_t g, uint8_t b, int thickness);
 

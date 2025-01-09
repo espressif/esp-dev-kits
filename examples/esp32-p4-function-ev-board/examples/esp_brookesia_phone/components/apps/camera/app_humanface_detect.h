@@ -13,7 +13,8 @@ std::list<dl::detect::result_t> app_humanface_detect(uint16_t *frame, int width,
 extern "C" {
 #endif
 
-HumanFaceDetect **get_humanface_detect();
+HumanFaceDetect *get_humanface_detect();
+void delete_humanface_detect();
 
 #ifdef __cplusplus
 }
