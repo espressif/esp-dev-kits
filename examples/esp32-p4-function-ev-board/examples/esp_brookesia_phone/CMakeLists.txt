@@ -11,7 +11,19 @@ set(EXTRA_COMPONENT_DIRS
     ../common_components
     )
 
-add_compile_options(-Wno-format
-                    -Wno-unused-variable
-                    -Wno-missing-field-initializers)
-project(esp_brookesia_demo VERSION 1.0.0)
+set(CXX_COMPILE_OPTIONS
+    -Wno-deprecated-enum-enum-conversion
+    -Wno-write-strings
+)
+
+add_compile_options(
+    -Wno-format
+    -Wno-unused-variable
+    -Wno-missing-field-initializers
+    -Wno-unused-but-set-variable
+    -Wno-cast-function-type
+)
+
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-enum-enum-conversion")
+
+project(esp_brookesia_demo VERSION 1.0.1)

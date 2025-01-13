@@ -14,12 +14,30 @@ static HumanFaceDetect *detect = NULL;
 
 std::list<dl::detect::result_t> app_humanface_detect(uint16_t *frame, int width, int height)
 {
-    auto detect_results = detect->run(frame, {width, height, 3});
+    dl::image::img_t img;
+    img.data = frame;
+    img.width = width;
+    img.height = height;
+    img.pix_type = dl::image::DL_IMAGE_PIX_TYPE_RGB565;
+    
+    auto &detect_results = detect->run(img);
 
     return detect_results;
 }
 
-HumanFaceDetect **get_humanface_detect()
+HumanFaceDetect *get_humanface_detect()
 {
-    return &detect;
+    if (detect == NULL) {
+        detect = new HumanFaceDetect();
+    }
+
+    return detect;
+}
+
+void delete_humanface_detect()
+{
+    if (detect) {
+        delete detect;
+        detect = NULL;
+    }
 }
