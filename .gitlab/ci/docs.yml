@@ -7,11 +7,6 @@ variables:
   tags:
     - build_docs
   dependencies: []
-  script:
-    - cd docs
-    - ./check_lang_folder_sync.sh
-    - python -m pip install -r requirements.txt
-    - build-docs -t $DOCTGT -bs $DOC_BUILDERS -l $DOCLANG build
   parallel:
     matrix:
       - DOCLANG: ["en", "zh_CN"]
@@ -21,6 +16,13 @@ build_docs_html:
   extends:
     - .build_docs_template
     - .rules:build:docs
+  script:
+    - cd docs
+    - ./check_lang_folder_sync.sh
+    - python -m pip install -r requirements.txt
+    - ARTIFACT_URL="$CI_JOB_URL/artifacts/file/docs/_build/$DOCLANG/$DOCTGT/html/index.html"
+    - build-docs --skip-reqs-check -l $DOCLANG -t $DOCTGT
+    - echo "esp-dev-kits documentation preview in HTML is available at $ARTIFACT_URL"
   artifacts:
     when: always
     paths:
@@ -34,6 +36,13 @@ build_docs_pdf:
   extends:
     - .build_docs_template
     - .rules:build:docs
+  script:
+    - cd docs
+    - ./check_lang_folder_sync.sh
+    - python -m pip install -r requirements.txt
+    - build-docs --skip-reqs-check -l $DOCLANG -t $DOCTGT
+    - echo "esp-dev-kits documentation preview in PDF is available at:"
+    - echo "$CI_JOB_URL/artifacts/file/docs/_build/$DOCLANG/$DOCTGT/latex/build/esp-dev-kits-$DOCLANG-master-$DOCTGT.pdf"
   artifacts:
     when: always
     paths:
