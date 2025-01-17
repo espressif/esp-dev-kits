@@ -1583,3 +1583,55 @@ documents:
       scheduled_release_date:
       document_status: active
       document_classification: public
+########################################
+# 61 ESP-Prog-2 User Guide
+########################################
+    - document_name: ESP-Prog-2 User Guide
+      doc_id: 9227
+      translation_docid: 9225
+      chip_series: Other
+      product_name:
+        - ESP-Prog-2
+      product_name_old_website:
+        - ESP-Prog-2
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-06-06
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/other/esp-prog-2/user_guide.html
+      document_summary: This user guide will help you get started with ESP-Prog-2 and will also provide more in-depth information.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 62 ESP-Prog-2 用户指南
+########################################
+    - document_name: ESP-Prog-2 用户指南
+      doc_id: 9225
+      translation_docid: 9227
+      chip_series: Other
+      product_name:
+        - ESP-Prog-2
+      product_name_old_website:
+        - ESP-Prog-2
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-06-06
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/other/esp-prog-2/user_guide.html
+      document_summary: 本指南将帮助您快速上手 ESP-Prog-2，并提供该款开发板的详细信息。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public

@@ -99,7 +99,9 @@ OTHER_DOCS = ['*.rst',
               'esp-module-prog-sub-02/*.rst',
               'esp-module-prog-sub-01&04/*.rst',
               'esp-prog/*.rst',
-              'esp-prog/reference/*.rst'
+              'esp-prog/reference/*.rst',
+              'esp-prog-2/*.rst',
+              'esp-prog-2/reference/*.rst'
               ]
 
 conditional_include_dict = {'esp32':ESP32_DOCS,

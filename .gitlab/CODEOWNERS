@@ -1,4 +1,4 @@
-# This document specifies owners for each docuemnt in esp-dev-kits.
+# This document specifies owners for each document in esp-dev-kits.
 # For more CODEOWNERS examples and use cases, see https://github.com/espressif/esp-idf/blob/master/.gitlab/CODEOWNERS.
 
 # User guide
@@ -7,6 +7,7 @@
 /docs/*/esp-module-prog-sub-01&04/          @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp-module-prog-sub-02/             @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp-prog/                           @documentation/codeowners/esp32s3       @documentation/codeowners/hw
+/docs/*/esp-prog-2/                         @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp32-c3-devkitc-02/                @documentation/codeowners/esp32c3       @documentation/codeowners/hw
 /docs/*/esp32-c3-devkitm-1/                 @documentation/codeowners/esp32c3       @documentation/codeowners/hw
 /docs/*/esp32-c3-lcdkit/                    @documentation/codeowners/esp32c3       @documentation/codeowners/hw @documentation/codeowners/ae

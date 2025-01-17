@@ -139,7 +139,7 @@ ESP-Prog 使用简单方便，仅用一根 USB 线即可实现与电脑的连接
     - 一根用于 JTAG 1.27 mm 接口，连接 2*5-PIN 的牛角座。
     - 一根用于 PROG 1.27 mm 接口，连接 2*3-PIN 的牛角座。
 
-如果您订购了一批样品，根据零售商的不同，每块板子的独立包装会有所差异。
+如果您订购了一批样品，根据零售商的不同，每块开发板的独立包装会有所差异。
 
 零售订单请前往 https://www.espressif.com/zh-hans/company/contact/buy-a-sample。
 
