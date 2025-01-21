@@ -27,6 +27,7 @@ languages = ['en', 'zh_CN']
 idf_targets = ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5', 'esp32c61', 'other']
 
 ESP32_DOCS = ['*.rst',
+              'eol/*.rst',
               'esp-wrover-kit/*.rst',
               'esp32-devkitc/*.rst',
               'esp32-devkitm-1/*.rst',
@@ -64,6 +65,7 @@ ESP32C5_DOCS = ['*.rst',
                 'esp32-c5-devkitc-1/*.rst'
                 ]
 ESP32S2_DOCS = ['*.rst',
+                'eol/*.rst',
                 'esp32-s2-devkitc-1/*.rst',
                 'esp32-s2-devkitm-1/*.rst',
                 'esp32-s2-hmi-devkit-1/*.rst',
