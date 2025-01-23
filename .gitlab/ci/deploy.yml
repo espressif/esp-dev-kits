@@ -50,7 +50,10 @@ push_master_to_github:
     - add_doc_server_ssh_keys $DOCS_DEPLOY_PRIVATEKEY $DOCS_DEPLOY_SERVER $DOCS_DEPLOY_SERVER_USER
     - export GIT_VER=$(git describe --always)
     - pip install -r ${CI_PROJECT_DIR}/docs/requirements.txt
-    - deploy-docs
+    # Put the output in a logfile that will be used latter to post a comment in the MR
+    - mkdir -p logs
+    - deploy-docs | tee logs/doc-url.txt
+
 
 deploy_docs_preview:
   extends:
@@ -64,7 +67,26 @@ deploy_docs_preview:
     DOCS_DEPLOY_SERVER_USER: "$DOCS_PREVIEW_SERVER_USER"
     DOCS_DEPLOY_PATH: "$DOCS_PREVIEW_PATH"
     DOCS_DEPLOY_URL_BASE: "$DOCS_PREVIEW_URL_BASE"
+  artifacts:
+    when: always
+    paths:
+      - logs/doc-url.txt
+    expire_in: 4 days
   timeout: 3h
+
+post_links:
+  extends:
+    - .rules:deploy:post_links
+  stage: deploy
+  tags: [deploy_docs]
+  image: $ESP_DOCS_ENV_IMAGE
+  needs:
+    - deploy_docs_preview
+  script:
+    - pip install -r ${CI_PROJECT_DIR}/docs/deploy-docs-preview.requirements.txt
+    - ls -al logs
+    - python3 post-mr-note.py $GITLAB_MR_NOTE_TOKEN $CI_PROJECT_PATH $CI_MERGE_REQUEST_IID --url $GITLAB_URL
+
 
 deploy_docs_production:
   extends:
