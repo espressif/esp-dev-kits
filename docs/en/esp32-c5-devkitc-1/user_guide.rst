@@ -229,7 +229,7 @@ No.   Name       Type    Function
 .. [2] Used to drive the RGB LED.
 .. [3] MTMS, GPIO7, GPIO27, and GPIO28 are strapping pins of the ESP32-C5 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset.
 .. For description and application of the strapping pins, please refer to `ESP32-C5 Datasheet`_ > Section *Strapping Pins*.
-.. [4] In modules integrated with SPI SPRAM, this pin is already used for SPICS1 function, thus unavailable for external use. In modules without SPI PSRAM, this pin can be used as GPIO15.
+.. [4] In modules integrated with SPI PSRAM, this pin is already used for SPICS1 function, thus unavailable for external use. In modules without SPI PSRAM, this pin can be used as GPIO15.
 
 
 Pin Layout
