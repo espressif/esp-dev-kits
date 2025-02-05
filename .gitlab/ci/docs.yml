@@ -31,6 +31,7 @@ build_docs_html:
     expire_in: 4 days
   variables:
     DOC_BUILDERS: "html"
+  retry: 2
 
 build_docs_pdf:
   extends:
@@ -51,3 +52,4 @@ build_docs_pdf:
     expire_in: 4 days
   variables:
     DOC_BUILDERS: "latex"
+  retry: 2
