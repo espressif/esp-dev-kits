@@ -702,7 +702,7 @@ esp_err_t esp_lvgl_simple_player_del(void)
         return ESP_OK;
     }
 
-    if (player_task_handle != NULL) {
+    if (player_task_handle != 0) {
         esp_lvgl_simple_player_stop();
         if (esp_lvgl_simple_player_wait_task_stop(-1) != ESP_OK) {
             ESP_LOGE(TAG, "Player task stop timeout");
@@ -726,7 +726,7 @@ esp_err_t esp_lvgl_simple_player_wait_task_stop(int timeout_ms)
         return ESP_OK;
     }
 
-    if (player_task_handle == NULL) {
+    if (player_task_handle == 0) {
         return ESP_OK;
     }
 

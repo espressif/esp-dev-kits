@@ -15,7 +15,7 @@ typedef struct {
 } media_src_t;
 
 int media_src_storage_open(media_src_t *src);
-int media_src_storage_connect(media_src_t *src, char *uri);
+int media_src_storage_connect(media_src_t *src, const char *uri);
 int media_src_storage_disconnect(media_src_t *src);
 int media_src_storage_read(media_src_t *src, void *data, size_t len);
 int media_src_storage_seek(media_src_t *src, uint64_t position);
