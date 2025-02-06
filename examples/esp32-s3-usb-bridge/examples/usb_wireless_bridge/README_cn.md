@@ -5,8 +5,8 @@
 ## 硬件
 
 * ESP32-S2/ESP32-S3 开发板
-    * ESP32-S3-USB-Bridge - [用户指南](../../../docs/en/esp32s3/esp32-s3-usb-bridge/user_guide.rst)
-    * ESP32-S3-DevkitC-1 - [用户指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html)
+    * ESP32-S3-USB-Bridge - [用户指南](../../../../docs/zh_CN/esp32-s3-usb-bridge/user_guide.rst)
+    * ESP32-S3-DevkitC-1 - [用户指南](../../../../docs/zh_CN/esp32-s3-devkitc-1/user_guide.rst)
 * 用于下载和编程的 USB 数据线
 
 ## 烧录
@@ -74,7 +74,7 @@ Note: 数据传输可靠性与 WIFI 环境是否良好有关
 
     (退出 Monitor 请键入 ``Ctrl-]``.)
 
-查看 [Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html) 获取更多的帮助。
+查看 [快速入门](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/get-started/index.html) 获取更多的帮助。
 
 ## 技术支持和反馈
 

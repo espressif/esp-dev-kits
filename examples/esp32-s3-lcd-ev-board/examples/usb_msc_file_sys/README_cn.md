@@ -11,7 +11,7 @@
 
 ## 如何使用例程
 
-请首先阅读 `ESP32-S3-LCD-EV-Board` 的[用户指南](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board)，了解有关其软件和硬件信息的内容。
+请首先阅读 `ESP32-S3-LCD-EV-Board` 的[用户指南](https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#esp32-s3-lcd-ev-board)，了解有关其软件和硬件信息的内容。
 
 本例程可通过 [ESP Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml) 直接烧录到开发板。
 
@@ -36,7 +36,7 @@
 | ------ | ------ |
 | GPIO20 | GPIO19 |
 
-**注意：** 如果 U盘 连接到USB端口，需要短接二极管D1。有关详细信息，请查看[电源供应通过USB](https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#power-supply-over-usb)部分的原理图。
+**注意：** 如果 U盘 连接到USB端口，需要短接二极管D1。有关详细信息，请查看[电源供应通过USB](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html#usb)部分的原理图。
 
 ### 构建和烧录
 
@@ -50,7 +50,7 @@
 
 （要退出串行监视器，请键入 "Ctrl-]"。）
 
-请参阅[入门指南](https://docs.espressif.com/projects/esp-idf/en/latest/get-started/index.html)了解配置和使用 ESP-IDF 构建项目的完整步骤。
+请参阅[入门指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/get-started/index.html)了解配置和使用 ESP-IDF 构建项目的完整步骤。
 
 ## 示例输出
 

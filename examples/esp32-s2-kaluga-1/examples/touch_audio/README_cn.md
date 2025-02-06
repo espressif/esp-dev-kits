@@ -12,9 +12,9 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
 
 <table>
     <tr>
-        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
-        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraP-TOUCHA_V1.0.png" width="300"><p align=center>ESP-LyraP-TOUCHA 触摸板</p></td>
-        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraT-8311A-V1.0.png" width="300"><p align=center>ESP-LyraT-8311A 音频板</p></td>
+        <td ><img src="../../../../docs/_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
+        <td ><img src="../../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraP-TOUCHA_V1.0.png" width="300"><p align=center>ESP-LyraP-TOUCHA 触摸板</p></td>
+        <td ><img src="../../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraT-8311A-V1.0.png" width="300"><p align=center>ESP-LyraT-8311A 音频板</p></td>
     </tr>
 </table>
 
@@ -25,14 +25,14 @@ PHOTO | PLAY/PAUSE | NETWORK | RECORD | VOL_UP | VOL_DOWN |
 1. 将 SW3[ 8 ] 和 SW4[ 2、4、6、8 ] 的拨码开关打开（ ON ），即主板左下角两组拨码开关，如下图：
 
  **ESP32\_S2\_Kaluga-1\_v1.3**: 将拨码开关的 T7、T8、T10、T12、T14打开（ ON ）。
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_audio_1.jpg" width = "650" alt="image 1-1" align=center /></div>
+<div align="left"><img src="../../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_audio_1.jpg" width = "650" alt="image 1-1" align=center /></div>
 
 2. 将 GPIO45 上预留的两个管脚短接，如下图：
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>
+<div align="left"><img src="../../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>
 
 3. 将触摸板和音频板接入主板中。如下图：
 
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_audio_2.jpg" width = "650" alt="image 1-3" align=center /></div> </br></br>
+<div align="left"><img src="../../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_audio_2.jpg" width = "650" alt="image 1-3" align=center /></div> </br></br>
 
 * ESP32_S2_Kaluga-1_v1.2 Touch 管脚分配
 
@@ -53,7 +53,7 @@ PIN | I2S_MCLK | I2S_SCLK | I2S_LCLK | I2S_DOUT | I2S_DSIN | PA_EN | I2C_SCL | I
 
 2. 将 GPIO45 上预留的两个管脚短接，如下图：
 
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>
+<div align="left"><img src="../../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_touch_2.jpg" width = "650" alt="image 1-2" align=center /></div>
 
 3. 将触摸板和音频板接入主板中。并将 audio 板子的 1SDO 接至 GPIO36, SDA 接至 GPIO37。
 
@@ -202,5 +202,5 @@ I (633) DRV8311: SET: volume:127
 ## 2 附录
 
 * [ESP32-S2 技术规格书](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf)
-* [ESP32-S2-Kaluga-1 主板](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
-* [ESP-LyraP-TOUCHA 触摸板](../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP-LYRAP-TOUCHA_V1.1_20200325A.pdf)
+* [ESP32-S2-Kaluga-1 主板](../../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
+* [ESP-LyraP-TOUCHA 触摸板](../../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP-LYRAP-TOUCHA_V1.1_20200325A.pdf)

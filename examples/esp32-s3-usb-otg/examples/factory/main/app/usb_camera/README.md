@@ -1,6 +1,6 @@
 ## USB Camera LCD Display Demo 说明
 
-该示例程序代码仅用于 ESP32-S2 USB Host UVC 功能测试与评估，不建议基于此开发量产产品，原因和完整示例请查看 [esp-iot-solution/usb/uvc_stream]([../../README.md](https://github.com/espressif/esp-iot-solution/tree/usb/add_usb_solutions/components/usb/uvc_stream))
+该示例程序代码仅用于 ESP32-S2 USB Host UVC 功能测试与评估，不建议基于此开发量产产品，原因和完整示例请查看 [esp-iot-solution/usb/uvc_stream](https://github.com/espressif/esp-iot-solution/tree/usb/add_usb_solutions/components/usb/uvc_stream)
 
 * 支持 USB Camera 数据流获取和解析
 * 支持 JPEG 本地软件解码
