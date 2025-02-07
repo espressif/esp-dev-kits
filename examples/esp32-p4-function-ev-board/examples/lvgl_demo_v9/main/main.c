@@ -1,5 +1,8 @@
-#include "freertos/FreeRTOS.h"
-#include "freertos/task.h"
+/*
+ * SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ */
 #include "nvs_flash.h"
 #include "nvs.h"
 #include "esp_log.h"
