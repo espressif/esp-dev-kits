@@ -5,9 +5,9 @@
    viewBox="0 0 158.74999 111.125"
    version="1.1"
    id="svg8"
-   inkscape:version="1.3.2 (091e20e, 2023-11-25)"
+   inkscape:version="1.2 (dc2aeda, 2022-05-15)"
    sodipodi:docname="esp32-c5-devkitc-1-pin-layout.svg"
-   inkscape:export-filename="esp32-c5-devkitc-1-pin-layout.png"
+   inkscape:export-filename="../../../../../Desktop/esp32-c5-devkitc-1-pin-layout.png"
    inkscape:export-xdpi="256"
    inkscape:export-ydpi="256"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
@@ -1124,15 +1124,15 @@
      inkscape:pageopacity="1"
      inkscape:pageshadow="2"
      inkscape:zoom="4.2899999"
-     inkscape:cx="143.7063"
-     inkscape:cy="154.77856"
+     inkscape:cx="357.22612"
+     inkscape:cy="92.424245"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="true"
      inkscape:window-width="1776"
-     inkscape:window-height="1249"
-     inkscape:window-x="2973"
-     inkscape:window-y="84"
+     inkscape:window-height="1027"
+     inkscape:window-x="2064"
+     inkscape:window-y="25"
      inkscape:window-maximized="0"
      units="px"
      inkscape:document-rotation="0"
@@ -3405,7 +3405,7 @@
          y="-453.20602"
          x="109.03209"
          id="tspan817-36-23-3-6-2-6-2-3-7-12-4-7-0-8-11-2-152"
-         sodipodi:role="line">GPIO09</tspan></text>
+         sodipodi:role="line">GPIO9</tspan></text>
     <rect
        ry="0.72402716"
        y="-452.05518"
@@ -3424,7 +3424,7 @@
          y="-450.61154"
          x="109.09962"
          id="tspan817-36-23-3-6-2-6-2-3-7-12-4-7-0-8-11-2-152-6"
-         sodipodi:role="line">GPIO08</tspan></text>
+         sodipodi:role="line">GPIO8</tspan></text>
     <rect
        ry="0.72402716"
        y="-457.16785"
