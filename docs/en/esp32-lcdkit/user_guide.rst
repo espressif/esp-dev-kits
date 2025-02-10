@@ -68,12 +68,10 @@ Descriptions of PCB components are shown in the following table:
 Functional Modules
 ------------------------
 
-This section introduces the functional modules (interfaces) of
-ESP32-LCDKit and their hardware schematics.
+This section introduces the functional modules (interfaces) of ESP32-LCDKit and their hardware schematics.
 
-- `Schematic <../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
-
-- `PCB Layout <../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
+* `ESP32-LCDKit Schematic`_
+* `ESP32-LCDKit PCB Layout`_
 
 ESP32 DevKitC Connection Module
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -139,5 +137,12 @@ The figure below shows the schematics for the SD-Card and DAC-Audio modules.
 Related Documents
 ---------------------
 
-- `ESP32-LCDKit Schematic <../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
-- `ESP32-LCDKit PCB Layout <../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_
+.. only:: latex
+
+   Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
+
+* `ESP32-LCDKit Schematic`_
+* `ESP32-LCDKit PCB Layout`_
+
+.. _ESP32-LCDKit Schematic: ../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf
+.. _ESP32-LCDKit PCB Layout: ../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf

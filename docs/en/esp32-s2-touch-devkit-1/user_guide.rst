@@ -221,12 +221,12 @@ Related Documents
 Schematic
 ^^^^^^^^^^^^^^^
 
-- `ESP32-S2-Touch-Devkit-1 Motherboard Schematic <../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-MainBoard_V1.0_20210312.pdf>`_
-- `Button Subboard Schematic <../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Waterproof_V1.0_20210402.pdf>`_
-- `Slider Subboard Schematic <../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Slider_V1.0_20210401.pdf>`_
-- `Matrix Button Subboard Schematic <../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Matrix%20Button_V1.0_20210402.pdf>`_
-- `Touchpad Subboard Schematic <../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Touchpad_V1.0_20210406.pdf>`_
-- `Proximity Subboard Schematic <../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Proximity_V1.0_20210402.pdf>`_
+- `ESP32-S2-Touch-Devkit-1 Motherboard Schematic`_
+- `Button Subboard Schematic`_
+- `Slider Subboard Schematic`_
+- `Matrix Button Subboard Schematic`_
+- `Touchpad Subboard Schematic`_
+- `Proximity Subboard Schematic`_
 
 Other Documents
 ^^^^^^^^^^^^^^^^^^^^
@@ -235,3 +235,10 @@ Other Documents
 -  `ESP32-S2-MINI-1 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-1_esp32-s2-mini-1u_datasheet_en.pdf>`__
 -  `ESP32-S2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`__
 -  `ESP32-S2 Technical Reference Manual <https://www.espressif.com/sites/default/files/documentation/esp32-s2_technical_reference_manual_en.pdf>`__
+
+.. _ESP32-S2-Touch-Devkit-1 Motherboard Schematic: ../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-MainBoard_V1.0_20210312.pdf
+.. _Button Subboard Schematic: ../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Waterproof_V1.0_20210402.pdf
+.. _Slider Subboard Schematic: ../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Slider_V1.0_20210401.pdf
+.. _Matrix Button Subboard Schematic: ../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Matrix-Button_V1.0_20210402.pdf
+.. _Touchpad Subboard Schematic: ../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Touchpad_V1.0_20210406.pdf
+.. _Proximity Subboard Schematic: ../../_static/esp32-s2-touch-devkit-1/schematics/SCH_ESP-Touch-Kit-Proximity_V1.0_20210402.pdf

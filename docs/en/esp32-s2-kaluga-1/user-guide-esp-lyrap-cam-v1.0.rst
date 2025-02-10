@@ -110,8 +110,14 @@ No previous versions available.
 Related Documents
 =================
 
+.. only:: latex
+
+   Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
+
 - `ESP-LyraP-CAM Schematic <https://dl.espressif.com/dl/schematics/ESP-LyraP-CAM_V1.0_SCH_20200302.pdf>`_ (PDF)
 - `ESP-LyraP-CAM PCB Layout <https://dl.espressif.com/dl/schematics/ESP-LyraP-CAM_V1.0_PCB_20200302.pdf>`_ (PDF)
-- `Camera OV2640 <../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf>`_ (PDF)
+- `Camera OV2640`_ (PDF)
 
 For other design documentation for the board, please contact us at sales@espressif.com.
+
+.. _Camera OV2640: ../../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf

@@ -263,16 +263,25 @@ J3
 
   生产工单号可在批量订单大纸板箱包装的物料标签中找到。
 
-
 相关文档
 ========
 
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 - `ESP32-H2 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-H2-MINI-1/1U 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_cn.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 原理图 v1.3  <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.3_schematics.pdf>`_ (PDF) - 适用于 PW-2024-02-0362 及之后的开发板
-- `ESP32-H2-DevKitM-1 原理图 v1.2  <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics.pdf>`_ (PDF) - 适用于 PW-2024-02-0362 之前的开发板
-- `ESP32-H2-DevKitM-1 PCB 布局图 <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 尺寸图 <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 尺寸图源文件 <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.dxf>`_ (DXF)
+- `ESP32-H2-DevKitM-1 原理图 v1.3`_ (PDF) - 适用于 PW-2024-02-0362 及之后的开发板
+- `ESP32-H2-DevKitM-1 原理图 v1.2`_ (PDF) - 适用于 PW-2024-02-0362 之前的开发板
+- `ESP32-H2-DevKitM-1 PCB 布局图`_ (PDF)
+- `ESP32-H2-DevKitM-1 尺寸图`_ (PDF)
+- `ESP32-H2-DevKitM-1 尺寸图源文件`_ (DXF)
+
+.. _ESP32-H2-DevKitM-1 原理图 v1.3: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.3_schematics.pdf
+.. _ESP32-H2-DevKitM-1 原理图 v1.2: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics.pdf
+.. _ESP32-H2-DevKitM-1 PCB 布局图: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf
+.. _ESP32-H2-DevKitM-1 尺寸图: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.pdf
+.. _ESP32-H2-DevKitM-1 尺寸图源文件: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.dxf
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。

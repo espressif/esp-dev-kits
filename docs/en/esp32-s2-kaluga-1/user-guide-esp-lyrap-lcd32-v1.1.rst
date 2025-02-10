@@ -126,8 +126,14 @@ No previous versions available.
 Related Documents
 =================
 
+.. only:: latex
+
+   Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
+
 - `ESP-LyraP-LCD32 Schematic <https://dl.espressif.com/dl/schematics/ESP-LyraP-LCD32_V1_1_SCH_20200324A.pdf>`_ (PDF)
 - `ESP-LyraP-LCD32 PCB Layout <https://dl.espressif.com/dl/schematics/ESP-LyraP-LCD32_V1_1_PCB_20200324AC.pdf>`_ (PDF)
-- `LCD ST7789 <../_static/esp32-s2-kaluga-1/datasheet/LLCD_ST7789.pdf>`_ (PDF)
+- `LCD ST7789`_ (PDF)
 
 For other design documentation for the board, please contact us at sales@espressif.com.
+
+.. _LCD ST7789: ../../_static/esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf

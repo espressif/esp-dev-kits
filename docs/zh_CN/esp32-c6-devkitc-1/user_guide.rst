@@ -164,7 +164,7 @@ ESP32-C6-DevKitC-1 的主要组件和连接方式如下图所示。
 排针
 ----
 
-下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-c6-devkitc-1-v1.2-board-front` 所示，排针的序号与 `ESP32-C6-DevKitC-1 原理图 <../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.2.pdf>`_ (PDF) 一致。
+下表列出了开发板两侧排针（J1 和 J3）的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-c6-devkitc-1-v1.2-board-front` 所示，排针的序号与 `ESP32-C6-DevKitC-1 原理图 v1.2`_ (PDF) 一致。
 
 J1
 ^^^
@@ -249,14 +249,19 @@ ESP32-C6-DevKitC-1 v1.1
 
 相关文档
 ========
+
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 * `ESP32-C6 技术规格书`_ (PDF)
 * `ESP32-C6-WROOM-1 技术规格书`_ (PDF)
 * `ESP32-C6-DevKitC-1 原理图 v1.4`_ (PDF) - 适用于 PW-2024-03-0595、PW-2024-03-0921 及之后的开发板
 * `ESP32-C6-DevKitC-1 原理图 v1.3`_ (PDF) - 适用于 PW-2023-07-0440 及之后的开发板
 * `ESP32-C6-DevKitC-1 原理图 v1.2`_ (PDF) - 适用于 PW-2023-07-0440 之前的开发板
-* `ESP32-C6-DevKitC-1 PCB 布局图 <../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-pcb-layout_v1.2.pdf>`_ (PDF)
-* `ESP32-C6-DevKitC-1 尺寸图 <../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.pdf>`_ (PDF)
-* `ESP32-C6-DevKitC-1 尺寸图源文件 <../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+* `ESP32-C6-DevKitC-1 PCB 布局图`_ (PDF) 
+* `ESP32-C6-DevKitC-1 尺寸图`_ (PDF) 
+* `ESP32-C6-DevKitC-1 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
@@ -265,6 +270,9 @@ ESP32-C6-DevKitC-1 v1.1
 .. _ESP32-C6-DevKitC-1 原理图 v1.4: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.4.pdf
 .. _ESP32-C6-DevKitC-1 原理图 v1.3: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.3.pdf
 .. _ESP32-C6-DevKitC-1 原理图 v1.2: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.2.pdf
+.. _ESP32-C6-DevKitC-1 PCB 布局图: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-pcb-layout_v1.2.pdf
+.. _ESP32-C6-DevKitC-1 尺寸图: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.pdf
+.. _ESP32-C6-DevKitC-1 尺寸图源文件: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.dxf
 
 .. toctree::
     :hidden:

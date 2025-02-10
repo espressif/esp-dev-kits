@@ -144,8 +144,14 @@ No previous versions available.
 Related Documents
 =================
 
+.. only:: latex
+
+   Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
+
 - `ESP-LyraT-8311A Schematic <https://dl.espressif.com/dl/schematics/ESP-LyraT-8311A_V1_2_SCH_20200421A.pdf>`_ (PDF)
 - `ESP-LyraT-8311A PCB Layout <https://dl.espressif.com/dl/schematics/ESP-LyraT-8311A_V1_2_PCB_20200324AA.pdf>`_ (PDF)
-- `Audio ES8311 <../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf>`_ (PDF)
+- `Audio ES8311`_ (PDF)
 
 For other design documentation for the board, please contact us at sales@espressif.com.
+
+.. _Audio ES8311: ../../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf

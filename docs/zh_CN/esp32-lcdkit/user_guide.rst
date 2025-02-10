@@ -67,9 +67,8 @@ PCB 部件功能说明如下表所示：
 
 本章主要介绍各个功能模块（接口）的硬件实现，以及对这些模块的描述。
 
-- `原理图 <../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`__
-
-- `PCB Layout <../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`__
+* `ESP32-LCDKit 原理图`_
+* `ESP32-LCDKit PCB 布局`_
 
 ESP32 DevKitC 开发板连接模块
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -135,5 +134,12 @@ SD-Card、DAC-Audio 外设模块电路原理图如下所示：
 相关文档
 -----------
 
-- `ESP32-LCDKit 原理图 <../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf>`_
-- `ESP32-LCDKit PCB 布局 <../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf>`_
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
+* `ESP32-LCDKit 原理图`_
+* `ESP32-LCDKit 原理图`_
+
+.. _ESP32-LCDKit 原理图: ../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf
+.. _ESP32-LCDKit PCB 布局: ../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf
