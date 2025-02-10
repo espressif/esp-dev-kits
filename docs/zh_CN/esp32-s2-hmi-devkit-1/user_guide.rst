@@ -283,11 +283,20 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
 相关文档
 ========
 
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 - `ESP32-S2 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
 - `ESP32-S2-WROVER 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-wrover_esp32-s2-wrover-i_datasheet_cn.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 原理图 <../_static/esp32-s2-hmi-devkit-1/schematics/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 PCB 布局图 <../_static/esp32-s2-hmi-devkit-1/schematics/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 尺寸图 <../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf>`_ (PDF)
-- `ESP32-S2-HMI-DevKit-1 尺寸图源文件 <../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf>`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+- `ESP32-S2-HMI-DevKit-1 原理图`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 PCB 布局图`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 尺寸图`_ (PDF)
+- `ESP32-S2-HMI-DevKit-1 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
+
+.. _ESP32-S2-HMI-DevKit-1 原理图: ../../_static/esp32-s2-hmi-devkit-1/schematics/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf
+.. _ESP32-S2-HMI-DevKit-1 PCB 布局图: ../../_static/esp32-s2-hmi-devkit-1/schematics/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf
+.. _ESP32-S2-HMI-DevKit-1 尺寸图: ../../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf
+.. _ESP32-S2-HMI-DevKit-1 尺寸图源文件: ../../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf

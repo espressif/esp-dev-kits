@@ -144,8 +144,14 @@ ESP-LyraT-8311A 的主要组件和连接方式如下图所示。
 相关文档
 ========
 
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 - `ESP-LyraT-8311A 原理图 <https://dl.espressif.com/dl/schematics/ESP-LyraT-8311A_V1_2_SCH_20200421A.pdf>`_ (PDF)
 - `ESP-LyraT-8311A PCB 布局图 <https://dl.espressif.com/dl/schematics/ESP-LyraT-8311A_V1_2_PCB_20200324AA.pdf>`_ (PDF)
-- `Audio ES8311 <../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf>`_ (PDF)
+- `Audio ES8311`_ (PDF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。
+
+.. _Audio ES8311: ../../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf

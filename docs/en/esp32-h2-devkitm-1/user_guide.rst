@@ -266,12 +266,22 @@ Hardware Revision Details
 Related Documents
 =================
 
+.. only:: latex
+
+   Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
+
 - `ESP32-H2 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-h2_datasheet_en.pdf>`_ (PDF)
 - `ESP32-H2-MINI-1/1U Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-h2-mini-1_mini-1u_datasheet_en.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 Schematics v1.3 (Applies to boards of and after PW-2024-02-0362) <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.3_schematics.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 Schematics v1.2 (Applies to boards before PW-2024-02-0362) <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 PCB Layout <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 Dimensions <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.pdf>`_ (PDF)
-- `ESP32-H2-DevKitM-1 Dimensions source file <../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.dxf>`_ (DXF)
+- `ESP32-H2-DevKitM-1 Schematics v1.3 (Applies to boards of and after PW-2024-02-0362)`_ (PDF)
+- `ESP32-H2-DevKitM-1 Schematics v1.2 (Applies to boards before PW-2024-02-0362)`_ (PDF)
+- `ESP32-H2-DevKitM-1 PCB Layout`_ (PDF)
+- `ESP32-H2-DevKitM-1 Dimensions`_ (PDF)
+- `ESP32-H2-DevKitM-1 Dimensions source file`_ (DXF)
+
+.. _ESP32-H2-DevKitM-1 Schematics v1.3 (Applies to boards of and after PW-2024-02-0362): ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.3_schematics.pdf
+.. _ESP32-H2-DevKitM-1 Schematics v1.2 (Applies to boards before PW-2024-02-0362): ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics.pdf
+.. _ESP32-H2-DevKitM-1 PCB Layout: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf
+.. _ESP32-H2-DevKitM-1 Dimensions: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.pdf
+.. _ESP32-H2-DevKitM-1 Dimensions source file: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.dxf
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

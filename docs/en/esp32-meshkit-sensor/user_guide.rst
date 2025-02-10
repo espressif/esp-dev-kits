@@ -255,5 +255,12 @@ See `esp-mdf/examples/development_kit/sense <https://github.com/espressif/esp-md
 Related Documents
 --------------------
 
-- `ESP32-MeshKit-Sense Schematic <../_static/esp32-meshkit-sensor/schematics/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf>`_
-- `ESP32-MeshKit-Sense PCB Layout <../_static/esp32-meshkit-sensor/schematics/ESP32-MeshKit-Sense_V1.1.pdf>`_
+.. only:: latex
+
+   Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
+
+* `ESP32-MeshKit-Sense Schematic`_
+* `ESP32-MeshKit-Sense PCB Layout`_
+
+.. _ESP32-MeshKit-Sense Schematic: ../../_static/esp32-meshkit-sensor/schematics/ESP32-MESHKIT-SENSE_V1_1-0917A.pdf
+.. _ESP32-MeshKit-Sense PCB Layout: ../../_static/esp32-meshkit-sensor/schematics/ESP32-MeshKit-Sense_V1.1.pdf

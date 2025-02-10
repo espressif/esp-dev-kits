@@ -370,23 +370,40 @@ ESP32-C3 具有成本优势和行业领先的低功耗性能，适用于构建�
 相关文档
 ========
 
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 -  `ESP32-C3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_cn.pdf>`__
 -  `ESP32-C3-MINI-1 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_cn.pdf>`__
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-C3-LCDkit_MB 原理图 <../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-C6-LCDkit-MB_V1.1_20230417.pdf>`__
--  `ESP32-C3-LCDkit_MB PCB 布局图 <../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-C6-LCDkit-MB_V1.1_20230418.pdf>`__
--  `ESP32-C3-LCDkit_DB 原理图 <../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
--  `ESP32-C3-LCDkit_DB PCB 布局图 <../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf>`__
--  `ESP32-C6-LCDkit_DB 原理图 <../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
--  `ESP32-C6-LCDkit_DB PCB 布局图 <../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf>`__
--  `1.28_TFT_240x240_SPI_屏 <../_static/esp32-c3-lcdkit/datasheets/1.28_TFT_240x240_SPI_屏.pdf>`__
--  `红外发射器（IR67-21CTR8） <../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IR67-21CTR8.PDF>`__
--  `红外接收器（IRM-H638TTR2） <../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IRM-H638TTR2.PDF>`__
--  `音频功放（NS4150） <../_static/esp32-c3-lcdkit/datasheets/NS4150B.pdf>`__
--  `RGB LED（WS2812B） <../_static/esp32-c3-lcdkit/datasheets/WS2812B-Mini-V3.pdf>`__
--  `2415 音腔喇叭 <../_static/esp32-c3-lcdkit/datasheets/方形2415音腔喇叭规格书-2P1.25-20MM.pdf>`__
+-  `ESP32-C3-LCDkit_MB 原理图`_
+-  `ESP32-C3-LCDkit_MB PCB 布局图`_
+-  `ESP32-C3-LCDkit_DB 原理图`_
+-  `ESP32-C3-LCDkit_DB PCB 布局图`_
+-  `ESP32-C6-LCDkit_DB 原理图`_
+-  `ESP32-C6-LCDkit_DB PCB 布局图`_
+-  `1.28_TFT_240x240_SPI_屏`_
+-  `红外发射器（IR67-21CTR8）`_
+-  `红外接收器（IRM-H638TTR2）`_
+-  `音频功放（NS4150）`_
+-  `RGB LED（WS2812B）`_
+-  `2415 音腔喇叭`_
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
+
+.. _ESP32-C3-LCDkit_MB 原理图: ../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-C6-LCDkit-MB_V1.1_20230417.pdf
+.. _ESP32-C3-LCDkit_MB PCB 布局图: ../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-C6-LCDkit-MB_V1.1_20230418.pdf
+.. _ESP32-C3-LCDkit_DB 原理图: ../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf
+.. _ESP32-C3-LCDkit_DB PCB 布局图: ../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C3-LCDkit-DB_V1.0_20230329.pdf
+.. _ESP32-C6-LCDkit_DB 原理图: ../../_static/esp32-c3-lcdkit/schematics/SCH_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf
+.. _ESP32-C6-LCDkit_DB PCB 布局图: ../../_static/esp32-c3-lcdkit/schematics/PCB_ESP32-C6-LCDkit-DB_V1.0_20230403.pdf
+.. _1.28_TFT_240x240_SPI_屏: ../../_static/esp32-c3-lcdkit/datasheets/1.28_TFT_240x240_SPI_屏.pdf
+.. _红外发射器（IR67-21CTR8）: ../../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IR67-21CTR8.PDF
+.. _红外接收器（IRM-H638TTR2）: ../../_static/esp32-c3-lcdkit/datasheets/EVERLIGHT(亿光)_IRM-H638TTR2.PDF
+.. _音频功放（NS4150）: ../../_static/esp32-c3-lcdkit/datasheets/NS4150B.pdf
+.. _RGB LED（WS2812B）: ../../_static/esp32-c3-lcdkit/datasheets/WS2812B-Mini-V3.pdf
+.. _2415 音腔喇叭: ../../_static/esp32-c3-lcdkit/datasheets/方形2415音腔喇叭规格书-2P1.25-20MM.pdf
 
 .. toctree::
     :hidden:

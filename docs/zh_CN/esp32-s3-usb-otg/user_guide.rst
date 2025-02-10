@@ -464,9 +464,17 @@ GPIO 分配
 相关文档
 ------------
 
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 -  `ESP32-S3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf>`__ (PDF)
 -  `ESP32-S3-MINI-1/1U 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3-mini-1_mini-1u_datasheet_cn.pdf>`__ (PDF)
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-USB-OTG 原理图 <../_static/esp32-s3-usb-otg/schematics/SCH_ESP32-S3_USB_OTG.pdf>`__ (PDF)
--  `ESP32-S3-USB-OTG PCB 布局图 <../_static/esp32-s3-usb-otg/schematics/PCB_ESP32-S3_USB_OTG.pdf>`__ (PDF)
--  `ST7789VW 规格书 <../_static/esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf>`_ (PDF)
+-  `ESP32-S3-USB-OTG 原理图`_ (PDF)
+-  `ESP32-S3-USB-OTG PCB 布局图`_ (PDF)
+-  `ST7789VW 规格书`_ (PDF)
+
+.. _ESP32-S3-USB-OTG 原理图: ../../_static/esp32-s3-usb-otg/schematics/SCH_ESP32-S3_USB_OTG.pdf
+.. _ESP32-S3-USB-OTG PCB 布局图: ../../_static/esp32-s3-usb-otg/schematics/PCB_ESP32-S3_USB_OTG.pdf
+.. _ST7789VW 规格书: ../../_static/esp32-s3-usb-otg/datasheet/ST7789VW_datasheet.pdf

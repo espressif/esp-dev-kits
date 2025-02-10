@@ -181,7 +181,7 @@ ESP-Prog 的主要组件和连接方式如下图所示。
 排针
 -------------
 
-下列的两个表格提供了开发板两侧管脚（Program 接口和 JTAG 接口）的 **名称** 和 **功能**。管脚名称如 ESP-Prog 正面图所示，管脚编号与 `ESP-Prog 原理图 <../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF) 中一致。
+下列的两个表格提供了开发板两侧管脚（Program 接口和 JTAG 接口）的 **名称** 和 **功能**。管脚名称如 ESP-Prog 正面图所示，管脚编号与 `ESP-Prog 原理图`_ (PDF) 中一致。
 
 
 Program 接口
@@ -259,10 +259,16 @@ JTAG 接口
 相关文档
 =================
 
-- `ESP-Prog 原理图 <../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
-- `ESP-Prog PCB 布局图 <../_static/esp-prog/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
-- `ESP-Prog 尺寸图 <../_static/esp-prog/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+.. only:: latex
 
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
+* `ESP-Prog 原理图`_ (PDF)
+* `ESP-Prog PCB 布局图`_ (PDF)
+* `ESP-Prog 尺寸图`_ (PDF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
+.. _ESP-Prog 原理图: ../../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog PCB 布局图: ../../_static/esp-prog/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog 尺寸图: ../../_static/esp-prog/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf

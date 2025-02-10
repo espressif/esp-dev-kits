@@ -228,20 +228,24 @@ ESP32 IoT Solution 工程下的 `ESP32-Sense 项目 <https://github.com/espressi
 相关资源
 -----------
 
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 - **原理图**
 
-  - `ESP32-Sense-kit 主板原理图 <../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
-  - `ESP32-Sense-kit 子板原理图 <../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
+* `ESP32-Sense-kit 主板原理图`_
+* `ESP32-Sense-kit 子板原理图`_
 
 - **PCB 布局**
 
-  - `ESP32-Sense-kit 主板 PCB 布局 <../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
-  - `ESP32-Sense-kit 子板 PCB 布局 <../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
+* `ESP32-Sense-kit 主板 PCB 布局`_
+* `ESP32-Sense-kit 子板 PCB 布局`_
 
 - **开发环境**
 
   -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ 是 ESP32 平台的软件开发包。文档 `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ 介绍编译环境的搭建和软件开发包的使用说明。
-  -  `ESP-Prog <../../other/esp-prog/index.html>`__ 是 ESP32 调试工具，有下载和 Jtag 调试功能。
+  -  `ESP-Prog <../esp-prog/index.html>`__ 是 ESP32 调试工具，有下载和 Jtag 调试功能。
 
 - **ESP32 IoT 应用方案**
 
@@ -266,3 +270,8 @@ ESP32 IoT Solution 工程下的 `ESP32-Sense 项目 <https://github.com/espressi
 
   -  微信公众号： espressif_systems
   -  `商务咨询 <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__
+
+.. _ESP32-Sense-kit 主板原理图: ../../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf
+.. _ESP32-Sense-kit 子板原理图: ../../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf
+.. _ESP32-Sense-kit 主板 PCB 布局: ../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf
+.. _ESP32-Sense-kit 子板 PCB 布局: ../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf

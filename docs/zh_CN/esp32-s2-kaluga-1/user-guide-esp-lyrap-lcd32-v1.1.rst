@@ -126,8 +126,14 @@ ESP-LyraP-LCD32 的主要组件和连接方式如下图所示。
 相关文档
 ========
 
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 - `ESP-LyraP-LCD32 原理图 <https://dl.espressif.com/dl/schematics/ESP-LyraP-LCD32_V1_1_SCH_20200324A.pdf>`_ (PDF)
 - `ESP-LyraP-LCD32 PCB 布局图 <https://dl.espressif.com/dl/schematics/ESP-LyraP-LCD32_V1_1_PCB_20200324AC.pdf>`_ (PDF)
-- `LCD ST7789 <../_static/esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf>`_ (PDF)
+- `LCD ST7789`_ (PDF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。
+
+.. _LCD ST7789: ../../_static/esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf

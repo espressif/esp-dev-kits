@@ -230,20 +230,24 @@ Demo
 Related Resources
 --------------------
 
+.. only:: latex
+
+   Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
+
 -  **Schematic**
 
-   -  `ESP32-Sense-Kit Mainboard Schematic <../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf>`_
-   -  `ESP32-Sense-Kit Subboard Schematic <../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf>`_
+* `ESP32-Sense-Kit Mainboard Schematic`_
+* `ESP32-Sense-Kit Subboard Schematic`_
 
 -  **PCB Layout**
 
-   -  `ESP32-Sense-Kit Mainboard PCB Layout <../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf>`_
-   -  `ESP32-Sense-Kit Subboard PCB Layout <../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf>`_
+* `ESP32-Sense-Kit Mainboard PCB Layout`_
+* `ESP32-Sense-Kit Subboard PCB Layout`_
 
 -  **Set up Software Environment**
 
    -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ is the SDK for ESP32. You can refer to `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ for how to set up the ESP32 software environment.
-   -  `ESP-Prog <../../other/esp-prog/index.html>`__ is the debugger for ESP32 that features download and debugging functions.
+   -  `ESP-Prog <../esp-prog/index.html>`__ is the debugger for ESP32 that features download and debugging functions.
 
 -  **ESP32 IoT Solution**
 
@@ -268,3 +272,8 @@ Related Resources
 
    -  WeChat Account: espressif_systems.
    -  `Purchase consulting <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__.
+
+.. _ESP32-Sense-Kit Mainboard Schematic: ../../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf
+.. _ESP32-Sense-Kit Subboard Schematic: ../../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf
+.. _ESP32-Sense-Kit Mainboard PCB Layout: ../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf
+.. _ESP32-Sense-Kit Subboard PCB Layout: ../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf

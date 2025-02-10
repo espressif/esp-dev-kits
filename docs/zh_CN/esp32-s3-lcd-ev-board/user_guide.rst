@@ -150,32 +150,32 @@ LCD 子板
    * - ESP32-S3-LCD-EV-Board-SUB1 v1.0
      - 0.96
      - 128 x 64
-     - `SSD1315 <../_static/esp32-s3-lcd-ev-board/datasheets/0.96_128x64/SSD1315.pdf>`_ (I2C)
+     - `SSD1315`_ (I2C)
      - N/A
      - 无
    * -
      - 2.40
      - 320 x 240
-     - `ST7789V <../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/ST7789V_SPEC_V1.0.pdf>`_ (SPI)
-     - `XTP2046 <../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/XPT2046_user_manual.pdf>`_
+     - `ST7789V`_ (SPI)
+     - `XTP2046`_
      - 无
    * - ESP32-S3-LCD-EV-Board-SUB2 v1.5
      - 3.50
      - 480 x 320
-     - `ST7796S <../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/ST7796S_SPEC_V1.0.pdf>`_ (8080)
-     - `GT911 <../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/GT911_Datasheet_20130319.pdf>`_
+     - `ST7796S`_ (8080)
+     - `GT911`_
      - 无
    * -
      - 3.95
      - 480 x 480
-     - `GC9503CV <../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/GC9503NP_DataSheet_V1.7.pdf>`_ (RGB)
+     - `GC9503CV`_ (RGB)
      - `FT5x06 <https://www.displayfuture.com/Display/datasheet/controller/FT5x06.pdf>`_
      - `ESP32-S3-LCD-EV-Board <https://item.taobao.com/item.htm?spm=a1z10.5-c.w4002-8715811636.23.4bc567d8eBiLiI&id=680580609719>`_
    * - ESP32-S3-LCD-EV-Board-SUB3 v1.3
      - 4.30
      - 800 x 480
-     - `ST7262E43 <../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/ST7262E43_V0.1_201905.pdf>`_ (RGB)
-     - `GT1151 <../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/GT911.pdf>`_
+     - `ST7262E43`_ (RGB)
+     - `GT1151`_
      - `ESP32-S3-LCD-EV-Board-2 <https://item.taobao.com/item.htm?spm=a1z10.5-c.w4002-8715811636.23.4bc567d8eBiLiI&id=680580609719>`_
 
 
@@ -611,21 +611,46 @@ ESP32-S3-LCD-EV-Board v1.4
 相关文档
 ========
 
+.. only:: latex
+
+   请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
+
 -  `ESP32-S3 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3_datasheet_cn.pdf>`__
 -  `ESP32-S3-WROOM-1 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s3-wroom-1_wroom-1u_datasheet_cn.pdf>`__
 -  `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__
--  `ESP32-S3-LCD-EV-Board-MB 原理图 <../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-MB_V1.5_20231009.pdf>`__
--  `ESP32-S3-LCD-EV-Board-MB PCB 布局图 <../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-MB_V1.5_20231009.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB1 原理图 <../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB1 PCB 布局图 <../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB2 原理图 <../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.3_20231010.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB2 PCB 布局图 <../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.5_20231010.pdf>`__
--  `3.95_480x480_RGB_Display 屏幕规格书 <../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/3.95_480x480_ZXT395HYC005P.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB3 原理图 <../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf>`__
--  `ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图 <../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf>`__
--  `ESP32-S3-LCD-EV-Board USB 转接板原理图 <../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
--  `ESP32-S3-LCD-EV-Board USB 转接板 PCB 布局图 <../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf>`__
+-  `ESP32-S3-LCD-EV-Board-MB 原理图`_
+-  `ESP32-S3-LCD-EV-Board-MB PCB 布局图`_
+-  `ESP32-S3-LCD-EV-Board-SUB1 原理图`_
+-  `ESP32-S3-LCD-EV-Board-SUB1 PCB 布局图`_
+-  `ESP32-S3-LCD-EV-Board-SUB2 原理图`_
+-  `ESP32-S3-LCD-EV-Board-SUB2 PCB 布局图`_
+-  `3.95_480x480_RGB_Display 屏幕规格书`_
+-  `ESP32-S3-LCD-EV-Board-SUB3 原理图`_
+-  `ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图`_
+-  `ESP32-S3-LCD-EV-Board USB 转接板原理图`_
+-  `ESP32-S3-LCD-EV-Board USB 转接板 PCB 布局图`_
 -  `TCA9554 规格书 <https://www.ti.com/lit/gpn/tca9554>`__
--  `4.3_800x480_RGB_Display 屏幕规格书 <../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/WKS43246_SPEC_V0.0.pdf>`__
+-  `4.3_800x480_RGB_Display 屏幕规格书`_
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
+
+.. _SSD1315: ../../_static/esp32-s3-lcd-ev-board/datasheets/0.96_128x64/SSD1315.pdf
+.. _ST7796S: ../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/ST7796S_SPEC_V1.0.pdf
+.. _GT1151: ../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/GT911.pdf
+.. _GT911: ../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/GT911_Datasheet_20130319.pdf
+.. _ST7789V: ../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/ST7789V_SPEC_V1.0.pdf
+.. _ST7262E43: ../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/ST7262E43_V0.1_201905.pdf
+.. _XTP2046: ../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/XPT2046_user_manual.pdf
+.. _GC9503CV: ../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/GC9503NP_DataSheet_V1.7.pdf
+.. _ESP32-S3-LCD-EV-Board-MB 原理图: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-MB_V1.5_20231009.pdf
+.. _ESP32-S3-LCD-EV-Board-MB PCB 布局图: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-MB_V1.5_20231009.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB1 原理图: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB1 PCB 布局图: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB2 原理图: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.3_20231010.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB2 PCB 布局图: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.5_20231010.pdf
+.. _3.95_480x480_RGB_Display 屏幕规格书: ../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/3.95_480x480_ZXT395HYC005P.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB3 原理图: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB3 PCB 布局图: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf
+.. _ESP32-S3-LCD-EV-Board USB 转接板原理图: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf
+.. _ESP32-S3-LCD-EV-Board USB 转接板 PCB 布局图: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf
+.. _4.3_800x480_RGB_Display 屏幕规格书: ../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/WKS43246_SPEC_V0.0.pdf

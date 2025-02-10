@@ -181,7 +181,7 @@ There are three mutually exclusive ways to provide power to the board:
 Header Block
 -------------
 
-The two tables below provide the **Name** and **Function** of the pins on both sides of the board (Program Interface and JTAG Interface). The pin names are shown in the front view of the ESP-Prog board. The numbering is the same as in the `ESP-Prog Schematic <../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF).
+The two tables below provide the **Name** and **Function** of the pins on both sides of the board (Program Interface and JTAG Interface). The pin names are shown in the front view of the ESP-Prog board. The numbering is the same as in the `ESP-Prog Schematic`_ (PDF).
 
 
 Program Interface
@@ -259,11 +259,16 @@ JTAG Interface
 Related Documents
 =================
 
-- `ESP-Prog Schematic <../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
-- `ESP-Prog PCB Layout <../_static/esp-prog/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
-- `ESP-Prog Dimensions <../_static/esp-prog/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf>`_ (PDF)
+.. only:: latex
 
+   Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
+
+* `ESP-Prog Schematic`_ (PDF)
+* `ESP-Prog PCB Layout`_ (PDF)
+* `ESP-Prog Dimensions`_ (PDF)
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-
+.. _ESP-Prog Schematic: ../../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog PCB Layout: ../../_static/esp-prog/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog Dimensions: ../../_static/esp-prog/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf
