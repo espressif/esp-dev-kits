@@ -8,8 +8,8 @@
 
 <table>
     <tr>
-        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
-        <td ><img src="../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraT-8311A-V1.0.png" width="300"><p align=center>ESP-LyraT-8311A 音频板</p></td>
+        <td ><img src="../../../../docs/_static/esp32-s2-kaluga-1/ESP32-S2-Kaluga_V1.0_mainbody.png" width="300" ><p align=center>ESP32-S2-Kaluga-1 开发板</p></td>
+        <td ><img src="../../../../docs/_static/esp32-s2-kaluga-1/ESP-LyraT-8311A-V1.0.png" width="300"><p align=center>ESP-LyraT-8311A 音频板</p></td>
     </tr>
 </table>
 
@@ -50,7 +50,7 @@ idf.py -p PORT flash monitor
 3. 此时输入中文句子，点击 `Save..` 即可播放对应的中文音频。
 
 
-<div align="left"><img src="../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_web_tts_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
+<div align="left"><img src="../../../../docs/_static/esp32-s2-kaluga-1/kaluga_examples_web_tts_1.jpg" width = "650" alt="image 1-2" align=center /></div>  
 
 您还可以在串行监视器上看到以下输出日志:
 

@@ -2,7 +2,7 @@
 
 Blink WS2812 LED and show the color on screen.
 
-[WS2812](http://www.world-semi.com/Certifications/WS2812B.html) is a digital RGB LED which integrates a driver circuit and a single control wire. The protocol data format defined in WS2812 is compatible to that in RMT peripheral. This example will illustrate how to drive an WS2812 LED strip based on the RMT driver.
+WS2812 is a digital RGB LED which integrates a driver circuit and a single control wire. The protocol data format defined in WS2812 is compatible to that in RMT peripheral. This example will illustrate how to drive an WS2812 LED strip based on the RMT driver.
 
 ## How to Use Example
 

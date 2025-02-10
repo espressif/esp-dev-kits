@@ -29,19 +29,16 @@ from collections import defaultdict, namedtuple
 from pathlib import Path
 
 EXCLUDE_FOLDERS = [".git",
-                   "esp32-s2-touch-devkit-1",
-                   "esp32-s2-hmi-devkit-1"]
+                   "examples/esp32-s2-touch-devkit-1",
+                   "examples/esp32-s2-hmi-devkit-1"]
 
 INCLUDE_DOCS_LIST = ["README_CN.md",
                      "README.md"]
 
-EXCLUDE_DOCS_LIST = ["**/lvgl/**.md",
-                     "esp32-s3-usb-otg/components/uvc_stream/README.md",
-                     "esp32-c3-lcdkit/examples/knob_panel/components/chmorgan__esp-audio-player/README.md",
-                     "esp32-s3-usb-otg/examples/factory/main/app/usb_camera/README.md"]
+EXCLUDE_DOCS_LIST = []
 
 # The apple apps links are not accessible from the company network for some reason
-EXCLUDE_URL_LIST = ["https://docs.lvgl.io/master/porting/display.html?", "https://www.espressif.com/zh-hans/contact-us/sales-questions", "https://www.espressif.com/en/products/devkits", "http://www.espressif.com/en/company/contact/pre-sale-questions-crm"]
+EXCLUDE_URL_LIST = ["https://docs.lvgl.io/master/porting/display.html?", "https://www.espressif.com/zh-hans/contact-us/sales-questions", "https://www.espressif.com/en/products/devkits", "https://www.espressif.com/zh-hans/products/devkits", "http://www.espressif.com/en/company/contact/pre-sale-questions-crm", "https://www.freetype.org/freetype2/docs/tutorial/step1.html"]
 
 Link = namedtuple('Link', ['file', 'url'])
 

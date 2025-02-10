@@ -2,9 +2,9 @@ _Note that this is a template for an esp-dev-kits example README.md file. When u
 
 # _Example Title_
 
-_Link to Chinese Version_
+_Link to Chinese Version. Below is an example._
 
-[中文版本](./README_CN.md)
+[中文版本](./TEMPLATE_EXAMPLE_README_CN.md)
 
 _Introduce the functionality demonstrated by the example. The introduction should preferably answer the following questions:_
 - _What is this example? What does it do?_

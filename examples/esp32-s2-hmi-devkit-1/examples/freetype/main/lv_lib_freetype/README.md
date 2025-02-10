@@ -32,4 +32,4 @@ lv_label_set_text(label, "Hello world");
 
 ## Learn more
 - FreeType [tutorial](https://www.freetype.org/freetype2/docs/tutorial/step1.html) 
-- LVGL's [font interface](https://docs.lvgl.io/v7/en/html/overview/font.html#add-a-new-font-engine)
+- LVGL's [font interface](https://docs.lvgl.io/master/details/main-components/font.html#adding-a-new-font-engine)

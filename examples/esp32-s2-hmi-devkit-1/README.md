@@ -14,7 +14,3 @@
 * [Smart-Panel](./examples/smart-panel/)
 * [Storage](./examples/storage/)
 
-## Tools
-
-* [LVGL](./tools/lvgl/)
-

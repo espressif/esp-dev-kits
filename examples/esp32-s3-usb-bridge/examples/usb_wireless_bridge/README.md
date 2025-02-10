@@ -5,8 +5,8 @@ This project is based on the ESP USB Bridge with additional features for flashin
 ## Hardware
 
 * ESP32-S2/ESP32-S3 Development Board
-    * ESP32-S3-USB-Bridge - [User Guide](../../../docs/en/esp32s3/esp32-s3-usb-bridge/user_guide.rst)
-    * ESP32-S3-DevkitC-1 - [User Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/hw-reference/esp32s3/user-guide-devkitc-1.html)
+    * ESP32-S3-USB-Bridge - [User Guide](../../../../docs/en/esp32-s3-usb-bridge/user_guide.rst)
+    * ESP32-S3-DevkitC-1 - [User Guide](../../../../docs/en/esp32-s3-devkitc-1/user_guide.rst)
 * USB cable for programming and downloading
 
 ## Flashing
