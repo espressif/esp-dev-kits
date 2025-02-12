@@ -7,6 +7,9 @@ include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 set(EXTRA_COMPONENT_DIRS
     ../common_components
     )
-    
+
 add_compile_options(-Wno-format)
+add_compile_options(-Wno-ignored-qualifiers)
+add_compile_options(-Wno-attributes)
+add_compile_options(-Wno-unused-function)
 project(lvgl_demo_v9)

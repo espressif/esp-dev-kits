@@ -22,6 +22,7 @@ add_compile_options(
     -Wno-missing-field-initializers
     -Wno-unused-but-set-variable
     -Wno-cast-function-type
+    -Wno-ignored-qualifiers
 )
 
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wno-deprecated-enum-enum-conversion")

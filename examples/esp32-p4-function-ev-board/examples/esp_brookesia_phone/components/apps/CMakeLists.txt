@@ -10,7 +10,16 @@ idf_component_register(
 target_compile_options(
     ${COMPONENT_LIB}
     PRIVATE
+    $<$<COMPILE_LANGUAGE:C>:
         -Wno-format
         -Wno-incompatible-pointer-types
         -Wno-int-conversion
-        -DLV_LVGL_H_INCLUDE_SIMPLE)
+    >
+    $<$<COMPILE_LANGUAGE:CXX>:
+        -Wno-format
+        -Wno-conversion-null
+        -Wno-attributes
+        -Wno-write-strings
+    >
+    -DLV_LVGL_H_INCLUDE_SIMPLE
+)

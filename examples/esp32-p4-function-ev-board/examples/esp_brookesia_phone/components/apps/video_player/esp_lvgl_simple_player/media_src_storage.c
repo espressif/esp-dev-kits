@@ -119,7 +119,7 @@ int media_src_storage_open(media_src_t *src)
     return 0;
 }
 
-int media_src_storage_connect(media_src_t *src, char *uri)
+int media_src_storage_connect(media_src_t *src, const char *uri)
 {
     storage_src_t* m = (storage_src_t*)src->sub_src;
     if (m->fp) {

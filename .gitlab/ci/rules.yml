@@ -10,6 +10,9 @@
 .patterns-esp32_c3_lcdkit: &patterns-esp32_c3_lcdkit
   - "examples/esp32-c3-lcdkit/**/*"
 
+.patterns-esp32_p4_function_ev_board: &patterns-esp32_p4_function_ev_board
+  - "examples/esp32-p4-function-ev-board/**/*"
+
 .patterns-esp32_s2_hmi_devkit_1: &patterns-esp32_s2_hmi_devkit_1
   - "examples/esp32-s2-hmi-devkit-1/**/*"
 
@@ -63,6 +66,15 @@
   if: '$CI_MERGE_REQUEST_LABELS =~ /^(?:[^,\n\r]+,)*build(?:,[^,\n\r]+)*$/i'
 
 # rules for development board
+.rules:build:esp32_p4_function_ev_board:
+  rules:
+    - <<: *if-protected
+    - <<: *if-label-build
+    - <<: *if-dev-push
+      changes: *patterns-build_system
+    - <<: *if-dev-push
+      changes: *patterns-esp32_p4_function_ev_board
+
 .rules:build:esp32_c3_lcdkit:
   rules:
     - <<: *if-protected
