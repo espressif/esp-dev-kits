@@ -4,11 +4,11 @@ ESP-Module-Prog-1(R)
 
 :link_to_translation:`zh_CN:[中文]`
 
-This user guide will help you get started with ESP-Module-Prog-1(R) and will also provide more in-depth information.
+This user guide will help you get started with ESP-Module-Prog-1(R) and provide in-depth information of this board.
 
-ESP-Module-Prog-1 and ESP-Module-Prog-1R (R stands for WROVER) are two flashing mainboards produced by Espressif. They can be used to flash modules without soldering the module to the power supply and signal lines. The mainboard can be used independently or in combination with a subboard. Espressif supports two subboards: ESP-Module-Prog-SUB-02 and ESP-Module-Prog-SUB-01&04, which cannot be used independently and must be used in conjunction with any of the above-mentioned mainboards.
+ESP-Module-Prog-1 and ESP-Module-Prog-1R (R stands for WROVER) are two flashing mainboards produced by Espressif. These mainboards allow you to flash modules without the need for soldering to the power supply and signal lines. They can be used as standalone devices or in combination with a subboard. Espressif supports two subboards: ESP-Module-Prog-SUB-02 and ESP-Module-Prog-SUB-01&04, which cannot be used independently and must be used in conjunction with any of the above-mentioned mainboards.
 
-This user guide will introduce **ESP-Module-Prog-1(R) Mainboard**. For detailed information about the subboards, please click the links below and check the corresponding user guides.
+This user guide focuses on **ESP-Module-Prog-1(R) Mainboard**. For detailed information about the subboards, please click the links below and check the corresponding user guides.
 
   - :doc:`../esp-module-prog-sub-01&04/user_guide`
   - :doc:`../esp-module-prog-sub-02/user_guide`
