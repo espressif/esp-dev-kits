@@ -47,31 +47,54 @@ class PythonGitlabNotes():
 
 
     def collect_data(self):
-        series_links = {}
-        with open("logs/doc-url.txt", "r") as file:
-            for line in file:
-                if line.startswith('[document preview]'):
-                    tokens = line.split(']')
-                    desc_url = tokens[2]
-                    lang_chip_info = tokens[1]
-                    lang_chip = lang_chip_info.strip(']').strip('[').split('_')
+        """
+        Read document URLs from logs and organize them by language and chip series.
+        """
+        series_links_html = {}
+        series_links_pdf = {}
 
-                    if len(lang_chip) == 2:
-                        language = 'en'
-                        chip_series = lang_chip[1]
-                    elif len(lang_chip) == 3:
-                        language = 'zh_CN'
-                        chip_series = lang_chip[2]
-                    else:
-                        continue
+        try:
+            with open("logs/doc-url.txt", "r") as file:
+                for line in file:
+                    if line.startswith('[document preview]'):
+                        tokens = line.split(']')
+                        if len(tokens) < 3:
+                            continue
 
-                    language_links = series_links.get(chip_series, {})
-                    language_links[language] = desc_url
-                    series_links[chip_series] = language_links
+                        desc_url = tokens[2].strip()
+                        lang_chip_info = tokens[1].strip('[]')
+                        lang_chip = lang_chip_info.split('_')
 
-        self.series_links = series_links
-        print(series_links)  # Debugging line
+                        if len(lang_chip) == 2:
+                            language = 'en'
+                            chip_series = lang_chip[1]
+                        elif len(lang_chip) == 3:
+                            language = 'zh_CN'
+                            chip_series = lang_chip[2]
+                        else:
+                            continue  # Skip malformed lines
 
+                        # Construct new PDF URL
+                        pdf_url = desc_url.replace(
+                            "index.html",
+                            f"esp-dev-kits-{language}-master-{chip_series}.pdf"
+                        )
+
+                        # Store links
+                        if 'pdf' in pdf_url:
+                            series_links_pdf.setdefault(chip_series, {})[language] = pdf_url
+                        if 'html' in desc_url:
+                            series_links_html.setdefault(chip_series, {})[language] = desc_url
+        except FileNotFoundError:
+            print("Error: logs/doc-url.txt not found.")
+            sys.exit(1)
+
+        self.series_links_html = series_links_html
+        self.series_links_pdf = series_links_pdf
+
+        # Debugging line
+        print("HTML Links:", series_links_html)
+        print("PDF Links:", series_links_pdf)
 
     def prepare_note(self):
         """
@@ -80,27 +103,46 @@ class PythonGitlabNotes():
         note = "Documentation preview:\n\n"
 
         product_names = {
-            'esp32': 'ESP32',
-            'esp32s2': 'ESP32-S2',
-            'esp32s3': 'ESP32-S3',
-            'esp32c3': 'ESP32-C3',
-            'esp32c6': 'ESP32-C6',
-            'esp32h2': 'ESP32-H2',
-            'esp32c2': 'ESP32-C2',
-            'esp32p4': 'ESP32-P4',
-            'esp32c5': 'ESP32-C5',
-            'esp32c61': 'ESP32-C61',
-            'other': 'Other'
+            'esp32': 'ESP32', 'esp32s2': 'ESP32-S2', 'esp32s3': 'ESP32-S3',
+            'esp32c3': 'ESP32-C3', 'esp32c6': 'ESP32-C6', 'esp32h2': 'ESP32-H2',
+            'esp32c2': 'ESP32-C2', 'esp32p4': 'ESP32-P4', 'esp32c5': 'ESP32-C5',
+            'esp32c61': 'ESP32-C61', 'other': 'Other'
         }
 
-        for chip_series, language_links in self.series_links.items():
-            product_name = product_names.get(chip_series, chip_series.upper())
-            zh_cn_link = f"[esp-dev-kits 文档]({language_links.get('zh_CN', 'esp-dev-kits 文档')})"
-            en_link = f"[esp-dev-kits Documentation]({language_links.get('en', 'esp-dev-kits Documentation')})"
-            # Combine the links with a slash
-            note += f"- {product_name}: {zh_cn_link}/{en_link}\n"
+        # Process both HTML and PDF links
+        for chip_series, language_links_html in self.series_links_html.items():
+            product_name = product_names.get(chip_series, "Unknown")
+            note += f"- **{product_name}**\n"
 
+            # Append HTML link if available
+            if 'zh_CN' in language_links_html:
+                note += f"\t * HTML: [esp-dev-kits 文档]({language_links_html['zh_CN']})/"
+            else:
+                note += f"esp-dev-kits 文档/"
+            if 'en' in language_links_html:
+                note += f"[esp-dev-kits Documentation]({language_links_html['en']}) \n"
+            else:
+                note += "esp-dev-kits Documentation"
+
+            # Check if there are PDF links for the same chip series
+            if chip_series in self.series_links_pdf:
+                language_links_pdf = self.series_links_pdf[chip_series]
+                if 'zh_CN' in language_links_pdf:
+                    note += f"\t * PDF: [esp-dev-kits 文档]({language_links_pdf['zh_CN']})/"
+                else:
+                    note += f"esp-dev-kits 文档/"
+                if 'en' in language_links_pdf:
+                    note += f"[esp-dev-kits Documentation]({language_links_pdf['en']}) \n"
+                else:
+                    note += "esp-dev-kits Documentation"
+
+            note += "\n"
+
+
+        # Store the note in the instance variable
         self.note = note
+
+        # Print the note for debugging
         print(note)
 
     def post_note(self):

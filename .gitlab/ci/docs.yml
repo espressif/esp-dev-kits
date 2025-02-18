@@ -29,8 +29,6 @@ build_docs_html:
       - docs/_build/*/*/*.txt
       - docs/_build/*/*/html/*
     expire_in: 4 days
-  variables:
-    DOC_BUILDERS: "html"
   retry: 2
 
 build_docs_pdf:
@@ -41,15 +39,13 @@ build_docs_pdf:
     - cd docs
     - ./check_lang_folder_sync.sh
     - python -m pip install -r requirements.txt
-    - build-docs --skip-reqs-check -l $DOCLANG -t $DOCTGT
-    - echo "esp-dev-kits documentation preview in PDF is available at:"
-    - echo "$CI_JOB_URL/artifacts/file/docs/_build/$DOCLANG/$DOCTGT/latex/build/esp-dev-kits-$DOCLANG-master-$DOCTGT.pdf"
+    - build-docs --skip-reqs-check -bs latex -l $DOCLANG -t $DOCTGT
+    - ARTIFACT_URL="$CI_JOB_URL/artifacts/file/docs/_build/$DOCLANG/$DOCTGT/latex/build/esp-dev-kits-$DOCLANG-master-$DOCTGT.pdf"
+    - echo "esp-dev-kits documentation preview in PDF is available at $ARTIFACT_URL"
   artifacts:
     when: always
     paths:
       - docs/_build/*/*/latex/*
       - docs/_build/*/*/*.txt
     expire_in: 4 days
-  variables:
-    DOC_BUILDERS: "latex"
   retry: 2
