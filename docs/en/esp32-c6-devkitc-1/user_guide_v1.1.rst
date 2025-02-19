@@ -250,7 +250,7 @@ For further design documentation for the board, please contact us at `sales@espr
 
 .. _ESP32-C6 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf
 .. _ESP32-C6-WROOM-1 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf
-.. _ESP32-C6-DevKitC-1 Schematic: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics.pdf
-.. _ESP32-C6-DevKitC-1 PCB Layout: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-pcb-layout.pdf
-.. _ESP32-C6-DevKitC-1 Dimensions: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions.pdf
-.. _ESP32-C6-DevKitC-1 Dimensions source file: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions.dxf
+.. _ESP32-C6-DevKitC-1 Schematic: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-schematics.pdf
+.. _ESP32-C6-DevKitC-1 PCB Layout: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-pcb-layout.pdf
+.. _ESP32-C6-DevKitC-1 Dimensions: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-dimensions.pdf
+.. _ESP32-C6-DevKitC-1 Dimensions source file: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-dimensions.dxf

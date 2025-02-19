@@ -136,4 +136,4 @@ Related Documents
 
 For other design documentation for the board, please contact us at sales@espressif.com.
 
-.. _LCD ST7789: ../../_static/esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf
+.. _LCD ST7789: https://dl.espressif.com/dl/schematics/LCD_ST7789.pdf

@@ -251,7 +251,7 @@ J3
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
-.. _ESP8684-DevKitC-02 原理图: ../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-schematics_V1.0.pdf
-.. _ESP8684-DevKitC-02 PCB 布局图: ../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-pcb-layout_V1.0.pdf
-.. _ESP8684-DevKitC-02 尺寸图: ../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-dimensions_V1.0.pdf
-.. _ESP8684-DevKitC-02 尺寸图源文件: ../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-dimensions_source_V1.0.dxf
+.. _ESP8684-DevKitC-02 原理图: https://dl.espressif.com/dl/schematics/esp8684-devkitc-02-schematics_V1.0.pdf
+.. _ESP8684-DevKitC-02 PCB 布局图: https://dl.espressif.com/dl/schematics/esp8684-devkitc-02-pcb-layout_V1.0.pdf
+.. _ESP8684-DevKitC-02 尺寸图: https://dl.espressif.com/dl/schematics/esp8684-devkitc-02-dimensions_V1.0.pdf
+.. _ESP8684-DevKitC-02 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp8684-devkitc-02-dimensions_source_V1.0.dxf

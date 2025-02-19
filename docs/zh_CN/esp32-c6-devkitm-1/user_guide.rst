@@ -250,7 +250,7 @@ J3
 
 .. _ESP32-C6 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_cn.pdf
 .. _ESP32-C6-MINI-1 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6-mini-1_datasheet_cn.pdf
-.. _ESP32-C6-DevKitM-1 原理图: ../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-schematics.pdf
-.. _ESP32-C6-DevKitM-1 PCB 布局图: ../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-pcb-layout.pdf
-.. _ESP32-C6-DevKitM-1 尺寸图: ../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.pdf
-.. _ESP32-C6-DevKitM-1 尺寸图源文件: ../../_static/esp32-c6-devkitm-1/schematics/esp32-c6-devkitm-1-dimensions.dxf
+.. _ESP32-C6-DevKitM-1 原理图: https://dl.espressif.com/dl/schematics/esp32-c6-devkitm-1-schematics.pdf
+.. _ESP32-C6-DevKitM-1 PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-c6-devkitm-1-pcb-layout.pdf
+.. _ESP32-C6-DevKitM-1 尺寸图: https://dl.espressif.com/dl/schematics/esp32-c6-devkitm-1-dimensions.pdf
+.. _ESP32-C6-DevKitM-1 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp32-c6-devkitm-1-dimensions.dxf

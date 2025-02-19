@@ -273,7 +273,7 @@ Related Resources
    -  WeChat Account: espressif_systems.
    -  `Purchase consulting <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__.
 
-.. _ESP32-Sense-Kit Mainboard Schematic: ../../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf
-.. _ESP32-Sense-Kit Subboard Schematic: ../../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf
-.. _ESP32-Sense-Kit Mainboard PCB Layout: ../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf
-.. _ESP32-Sense-Kit Subboard PCB Layout: ../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf
+.. _ESP32-Sense-Kit Mainboard Schematic: https://dl.espressif.com/dl/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf
+.. _ESP32-Sense-Kit Subboard Schematic: https://dl.espressif.com/dl/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf
+.. _ESP32-Sense-Kit Mainboard PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf
+.. _ESP32-Sense-Kit Subboard PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf

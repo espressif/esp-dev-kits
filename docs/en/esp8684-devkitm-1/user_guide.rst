@@ -260,10 +260,10 @@ Related Documents
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-.. _ESP8684-DevKitM-1 Schematic: ../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-schematics_V1.1.pdf
-.. _ESP8684-DevKitM-1 PCB layout: ../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-pcb-layout_V1.1.pdf
-.. _ESP8684-DevKitM-1 Dimensions: ../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_V1.1.pdf
-.. _ESP8684-DevKitM-1 Dimensions source file: ../../_static/esp8684-devkitm-1/schematics/esp8684-devkitm-1-dimensions_source_V1.1.dxf
+.. _ESP8684-DevKitM-1 Schematic: https://dl.espressif.com/dl/schematics/esp8684-devkitm-1-schematics_V1.1.pdf
+.. _ESP8684-DevKitM-1 PCB layout: https://dl.espressif.com/dl/schematics/esp8684-devkitm-1-pcb-layout_V1.1.pdf
+.. _ESP8684-DevKitM-1 Dimensions: https://dl.espressif.com/dl/schematics/esp8684-devkitm-1-dimensions_V1.1.pdf
+.. _ESP8684-DevKitM-1 Dimensions source file: https://dl.espressif.com/dl/schematics/esp8684-devkitm-1-dimensions_source_V1.1.dxf
 
 .. toctree::
     :hidden:

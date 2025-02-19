@@ -262,13 +262,13 @@ J3
 * `ESP32-C5-DevKitC-1 原理图`_ (PDF) 
 * `ESP32-C5-DevKitC-1 PCB 布局图`_ (PDF) 
 * `ESP32-C5-DevKitC-1 尺寸图`_ (PDF) 
-* `ESP32-C5-DevKitC-1 尺寸图源文件`_(DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+* `ESP32-C5-DevKitC-1 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
 .. .. _ESP32-C5 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_cn.pdf
 .. .. _ESP32-C5-WROOM-1 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_cn.pdf
-.. _ESP32-C5-DevKitC-1 原理图: ../../_static/esp32-c5-devkitc-1/schematics/SCH_ESP32-C5-DevkitC-1_V1.1_20240621.pdf
-.. _ESP32-C5-DevKitC-1 PCB 布局图: ../../_static/esp32-c5-devkitc-1/schematics/PCB_ESP32-C5-DevKitC-1_V1.1_20240621.pdf
-.. _ESP32-C5-DevKitC-1 尺寸图: ../../_static/esp32-c5-devkitc-1/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.pdf
-.. _ESP32-C5-DevKitC-1 尺寸图源文件: ../../_static/esp32-c5-devkitc-1/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.dxf
+.. _ESP32-C5-DevKitC-1 原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-C5-DevkitC-1_V1.1_20240621.pdf
+.. _ESP32-C5-DevKitC-1 PCB 布局图: https://dl.espressif.com/dl/schematics/PCB_ESP32-C5-DevKitC-1_V1.1_20240621.pdf
+.. _ESP32-C5-DevKitC-1 尺寸图: https://dl.espressif.com/dl/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.pdf
+.. _ESP32-C5-DevKitC-1 尺寸图源文件: https://dl.espressif.com/dl/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.dxf
