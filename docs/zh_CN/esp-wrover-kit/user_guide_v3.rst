@@ -367,8 +367,9 @@ USB 供电                   使能 UART 通信
 
 * `ESP-WROVER-KIT v3 原理图`_ (PDF)
 * `《ESP32 技术规格书》 <https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_cn.pdf>`_ (PDF)
-* `《ESP32-WROVER 技术规格书》 <https://www.espressif.com/sites/default/files/documentation/esp32-wrover_datasheet_cn.pdf>`_ (PDF)
 * `《ESP32-WROOM-32 技术规格书》 <https://espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_cn.pdf>`_ (PDF)
+
+.. * `《ESP32-WROVER 技术规格书》 <https://www.espressif.com/sites/default/files/documentation/esp32-wrover_datasheet_cn.pdf>`_ (PDF)
 
 .. |jp7-ext_5v| image:: ../../_static/esp-wrover-kit/esp-wrover-kit-v3-jp7-ext_5v.png
 .. |jp7-usb_5v| image:: ../../_static/esp-wrover-kit/esp-wrover-kit-v3-jp7-usb_5v.png

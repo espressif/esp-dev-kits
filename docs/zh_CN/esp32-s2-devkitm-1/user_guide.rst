@@ -308,8 +308,7 @@ J3
 相关文档
 ========
 
-* `ESP32-S2 系列芯片 v1.0 版本技术规格书`_ (PDF)
-* `ESP32-S2 系列芯片 v0.0 版本技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf>`_ (PDF)
+* `ESP32-S2 系列芯片 v1.0 版本技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf>`_ (PDF)
 * `《ESP32-S2 系列芯片勘误表》`_ (PDF)
 * `《ESP32-S2-MINI-2 & ESP32-S2-MINI-2U 技术规格书》 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-2_esp32-s2-mini-2u_datasheet_cn.pdf>`_ (PDF)
 * `《ESP32-S2-MINI-1 & ESP32-S2-MINI-1U 技术规格书》 <https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-1_esp32-s2-mini-1u_datasheet_cn.pdf>`_ (PDF)
@@ -321,5 +320,4 @@ J3
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
 .. _不推荐用于新设计: https://www.espressif.com/zh-hans/products/longevity-commitment
-.. _ESP32-S2 系列芯片 v1.0 版本技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-s2-v1.0_datasheet_cn.pdf
 .. _《ESP32-S2 系列芯片勘误表》: https://espressif.com/sites/default/files/documentation/esp32-s2_errata_cn.pdf

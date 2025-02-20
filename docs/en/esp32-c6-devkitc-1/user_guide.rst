@@ -8,7 +8,7 @@ The older version: :doc:`user_guide_v1.1`
 
 This user guide will help you get started with ESP32-C6-DevKitC-1 and will also provide more in-depth information.
 
-ESP32-C6-DevKitC-1 is an entry-level development board based on `ESP32-C6-WROOM-1(U) <https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_en.pdf>`_, a general-purpose module with a 8 MB SPI flash. This board integrates complete Wi-Fi, Bluetooth LE, Zigbee, and Thread functions.
+ESP32-C6-DevKitC-1 is an entry-level development board based on `ESP32-C6-WROOM-1(U) <https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf>`_, a general-purpose module with a 8 MB SPI flash. This board integrates complete Wi-Fi, Bluetooth LE, Zigbee, and Thread functions.
 
 Most of the I/O pins are broken out to the pin headers on both sides for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-C6-DevKitC-1 on a breadboard.
 
@@ -266,7 +266,7 @@ Related Documents
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
 .. _ESP32-C6 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_en.pdf
-.. _ESP32-C6-WROOM-1 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_en.pdf
+.. _ESP32-C6-WROOM-1 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_wroom-1u_datasheet_en.pdf
 .. _ESP32-C6-DevKitC-1 Schematic v1.4: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.4.pdf
 .. _ESP32-C6-DevKitC-1 Schematic v1.3: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.3.pdf
 .. _ESP32-C6-DevKitC-1 Schematic v1.2: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.2.pdf
