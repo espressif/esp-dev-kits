@@ -247,7 +247,7 @@ Related Resources
 -  **Set up Software Environment**
 
    -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ is the SDK for ESP32. You can refer to `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ for how to set up the ESP32 software environment.
-   -  `ESP-Prog <../esp-prog/index.html>`__ is the debugger for ESP32 that features download and debugging functions.
+   -  `ESP-Prog <https://docs.espressif.com/projects/esp-dev-kits/en/latest/other/esp-prog/index.html>`__ is the debugger for ESP32 that features download and debugging functions.
 
 -  **ESP32 IoT Solution**
 

@@ -245,11 +245,11 @@ ESP32 IoT Solution 工程下的 `ESP32-Sense 项目 <https://github.com/espressi
 - **开发环境**
 
   -  `ESP-IDF <https://github.com/espressif/esp-idf>`__ 是 ESP32 平台的软件开发包。文档 `Get Started <https://docs.espressif.com/projects/esp-idf/en/stable/get-started/index.html>`__ 介绍编译环境的搭建和软件开发包的使用说明。
-  -  `ESP-Prog <../esp-prog/index.html>`__ 是 ESP32 调试工具，有下载和 Jtag 调试功能。
+  -  `ESP-Prog <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/other/esp-prog/index.html>`__ 是 ESP32 调试工具，有下载和 Jtag 调试功能。
 
 - **ESP32 IoT 应用方案**
 
-  -  `ESP32 IoT Solution <https://github.com/espressif/esp-iot-solution/tree/release/v1.1>`__ 基于 ESP-IDF 开发，包含多种应用解决方案。文档 `build-system-and-dependency <../../README.md#build-system-and-dependency>`__ 介绍了如何编译解决方案。
+  -  `ESP32 IoT Solution <https://github.com/espressif/esp-iot-solution/tree/release/v1.1>`__ 基于 ESP-IDF 开发，包含多种应用解决方案。
   -  `ESP32-Sense 项目工程 <https://github.com/espressif/esp-iot-solution/tree/release/v1.1/examples/touch_pad_evb>`__ 是 ESP32-Sense 开发套件对应的软件工程文件。下载程序到主板即可使用触摸功能。
 
 - **硬件手册**

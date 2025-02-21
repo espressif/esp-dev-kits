@@ -184,8 +184,9 @@ Related Documents
 
 * `ESP-WROVER-KIT v2 schematic`_ (PDF)
 * `ESP32 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf>`_ (PDF)
-* `ESP32-WROVER Datasheet <https://espressif.com/sites/default/files/documentation/esp32-wrover_datasheet_en.pdf>`_ (PDF)
 * `ESP32-WROOM-32 Datasheet <https://espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf>`_ (PDF)
+
+.. * `ESP32-WROVER Datasheet <https://espressif.com/sites/default/files/documentation/esp32-wrover_datasheet_en.pdf>`_ (PDF)
 
 .. |jp1-sd_io2| image:: ../../_static/esp-wrover-kit/wrover-jp1-sd_io2.png
 .. |jp1-both| image:: ../../_static/esp-wrover-kit/wrover-jp1-both.png

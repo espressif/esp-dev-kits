@@ -221,7 +221,7 @@ Software Setup
 
 Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html>`_, where Section `Installation <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html#get-started-step-by-step>`_ will quickly help you set up the development environment.
 
-The programming guide and application examples for your ESP32-S2-Kaluga-1 kit can be found in `esp-dev-kits <https://github.com/espressif/esp-dev-kits/tree/master/esp32-s2-kaluga-1>`_ repository on GitHub.
+The programming guide and application examples for your ESP32-S2-Kaluga-1 kit can be found in :project:`Examples <examples/esp32-s2-kaluga-1>` on GitHub.
 
 A Board Support Package can be found in `ESP Component Registry <https://components.espressif.com/component/espressif/esp32_s2_kaluga_kit>`_.
 

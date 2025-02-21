@@ -143,3 +143,5 @@ linkcheck_anchors = False
 
 linkcheck_exclude_documents = ['index',  # several false positives due to the way we link to different sections
                                 ]
+linkcheck_ignore = ['https://github.com/espressif/esp-dev-kits/tree/.*', # false positives due to the way we link to folder in the repo
+                    ]

@@ -300,8 +300,7 @@ This is the first revision of this board released.
 Related Documents
 =================
 
-* `ESP32-S2 Series Chip Revision v1.0 Datasheet`_ (PDF)
-* `ESP32-S2 Series Chip Revision v0.0 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`_ (PDF)
+* `ESP32-S2 Series Chip Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_en.pdf>`_ (PDF)
 * `ESP32-S2 Series SoC Errata`_ (PDF)
 * `ESP32-S2-MINI-2 & ESP32-S2-MINI-2U Module Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-2_esp32-s2-mini-2u_datasheet_en.pdf>`_ (PDF)
 * `ESP32-S2-MINI-1 & ESP32-S2-MINI-1U Module Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-s2-mini-1_esp32-s2-mini-1u_datasheet_en.pdf>`_ (PDF)
@@ -313,5 +312,4 @@ Related Documents
 For other design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
 .. _NRND: https://www.espressif.com/en/products/longevity-commitment?id=nrnd
-.. _ESP32-S2 Series Chip Revision v1.0 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-s2-v1.0_datasheet_en.pdf
 .. _ESP32-S2 Series SoC Errata: https://espressif.com/sites/default/files/documentation/esp32-s2_errata_en.pdf

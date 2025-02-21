@@ -367,8 +367,9 @@ Related Documents
 
 * `ESP-WROVER-KIT v3 schematic`_ (PDF)
 * `ESP32 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32_datasheet_en.pdf>`_ (PDF)
-* `ESP32-WROVER Datasheet <https://espressif.com/sites/default/files/documentation/esp32-wrover_datasheet_en.pdf>`_ (PDF)
 * `ESP32-WROOM-32 Datasheet <https://espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf>`_ (PDF)
+
+.. * `ESP32-WROVER Datasheet <https://espressif.com/sites/default/files/documentation/esp32-wrover_datasheet_en.pdf>`_ (PDF)
 
 .. |jp7-ext_5v| image:: ../../_static/esp-wrover-kit/esp-wrover-kit-v3-jp7-ext_5v.png
 .. |jp7-usb_5v| image:: ../../_static/esp-wrover-kit/esp-wrover-kit-v3-jp7-usb_5v.png

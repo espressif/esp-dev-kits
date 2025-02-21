@@ -210,7 +210,7 @@ ESP32-S2-Kaluga-1 上电前，请首先确认开发板完好无损。
 
 请前往 `快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/get-started/index.html>`_，在 `安装 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/get-started/index.html#get-started-step-by-step>`_ 一节查看如何快速设置开发环境。
 
-你还可以点击 `这里 <https://github.com/espressif/esp-dev-kits/tree/master/esp32-s2-kaluga-1>`_，获取有关 ESP32-S2-Kaluga-1 套件编程指南与应用示例的更多内容。
+你还可以点击 :project:`示例 <examples/esp32-s2-kaluga-1>`，获取有关 ESP32-S2-Kaluga-1 套件编程指南与应用示例的更多内容。
 
 
 内容和包装
