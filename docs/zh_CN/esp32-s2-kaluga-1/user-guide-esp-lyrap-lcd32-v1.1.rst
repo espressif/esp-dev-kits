@@ -136,4 +136,4 @@ ESP-LyraP-LCD32 的主要组件和连接方式如下图所示。
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。
 
-.. _LCD ST7789: ../../_static/esp32-s2-kaluga-1/datasheet/LCD_ST7789.pdf
+.. _LCD ST7789: https://dl.espressif.com/dl/schematics/LCD_ST7789.pdf

@@ -144,5 +144,5 @@ Related Documents
 * `ESP32-LCDKit Schematic`_
 * `ESP32-LCDKit PCB Layout`_
 
-.. _ESP32-LCDKit Schematic: ../../_static/esp32-lcdkit/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf
-.. _ESP32-LCDKit PCB Layout: ../../_static/esp32-lcdkit/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf
+.. _ESP32-LCDKit Schematic: https://dl.espressif.com/dl/schematics/SCH_ESP32-LCDKit_V1.1_20190218.pdf
+.. _ESP32-LCDKit PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-LCDKit_V1.1_20190218.pdf

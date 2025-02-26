@@ -120,4 +120,4 @@ Related Documents
 
 For other design documentation for the board, please contact us at sales@espressif.com.
 
-.. _Camera OV2640: ../../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf
+.. _Camera OV2640: https://dl.espressif.com/dl/schematics/Camera_OV2640.pdf

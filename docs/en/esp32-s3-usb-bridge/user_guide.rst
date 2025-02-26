@@ -314,5 +314,5 @@ Related Documents
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-.. _ESP32-S3-USB-Bridge PCB Layout: ../../_static/esp32-s3-usb-bridge/schematics/PCB_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf
-.. _ESP32-S3-USB-Bridge Schematics: ../../_static/esp32-s3-usb-bridge/schematics/SCH_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf
+.. _ESP32-S3-USB-Bridge PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf
+.. _ESP32-S3-USB-Bridge Schematics: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf

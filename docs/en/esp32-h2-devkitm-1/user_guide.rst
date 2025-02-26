@@ -278,10 +278,10 @@ Related Documents
 - `ESP32-H2-DevKitM-1 Dimensions`_ (PDF)
 - `ESP32-H2-DevKitM-1 Dimensions source file`_ (DXF)
 
-.. _ESP32-H2-DevKitM-1 Schematics v1.3 (Applies to boards of and after PW-2024-02-0362): ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.3_schematics.pdf
-.. _ESP32-H2-DevKitM-1 Schematics v1.2 (Applies to boards before PW-2024-02-0362): ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics.pdf
-.. _ESP32-H2-DevKitM-1 PCB Layout: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf
-.. _ESP32-H2-DevKitM-1 Dimensions: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.pdf
-.. _ESP32-H2-DevKitM-1 Dimensions source file: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.dxf
+.. _ESP32-H2-DevKitM-1 Schematics v1.3 (Applies to boards of and after PW-2024-02-0362): https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.3_schematics.pdf
+.. _ESP32-H2-DevKitM-1 Schematics v1.2 (Applies to boards before PW-2024-02-0362): https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_schematics.pdf
+.. _ESP32-H2-DevKitM-1 PCB Layout: https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf
+.. _ESP32-H2-DevKitM-1 Dimensions: https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.pdf
+.. _ESP32-H2-DevKitM-1 Dimensions source file: https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.dxf
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.

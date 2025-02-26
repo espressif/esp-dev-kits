@@ -314,5 +314,5 @@ ESP32-S3-USB-Bridge 可以将 5 V 转化为 3.3 V 供模组使用。
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
-.. _ESP32-S3-USB-Bridge PCB 布局图: ../../_static/esp32-s3-usb-bridge/schematics/PCB_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf
-.. _ESP32-S3-USB-Bridge 原理图: ../../_static/esp32-s3-usb-bridge/schematics/SCH_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf
+.. _ESP32-S3-USB-Bridge PCB 布局图: https://dl.espressif.com/dl/schematics/PCB_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf
+.. _ESP32-S3-USB-Bridge 原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-USB-Bridge-MB_V2.1_20230601.pdf

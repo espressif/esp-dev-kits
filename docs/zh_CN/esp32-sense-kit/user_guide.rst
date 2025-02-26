@@ -271,7 +271,7 @@ ESP32 IoT Solution 工程下的 `ESP32-Sense 项目 <https://github.com/espressi
   -  微信公众号： espressif_systems
   -  `商务咨询 <http://www.espressif.com/en/company/contact/pre-sale-questions-crm>`__
 
-.. _ESP32-Sense-kit 主板原理图: ../../_static/esp32-sense-kit/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf
-.. _ESP32-Sense-kit 子板原理图: ../../_static/esp32-sense-kit/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf
-.. _ESP32-Sense-kit 主板 PCB 布局: ../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf
-.. _ESP32-Sense-kit 子板 PCB 布局: ../../_static/esp32-sense-kit/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf
+.. _ESP32-Sense-kit 主板原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-Sense-Series-MainBoard.pdf
+.. _ESP32-Sense-kit 子板原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-SENSE-SERIES-SUBBOARD_0326.pdf
+.. _ESP32-Sense-kit 主板 PCB 布局: https://dl.espressif.com/dl/schematics/PCB_ESP32-Sense-Series-MainBoard_0327.pdf
+.. _ESP32-Sense-kit 子板 PCB 布局: https://dl.espressif.com/dl/schematics/PCB_ESP32-Sense-Series-SubBoard_0326.pdf

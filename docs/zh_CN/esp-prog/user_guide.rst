@@ -269,6 +269,6 @@ JTAG 接口
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
-.. _ESP-Prog 原理图: ../../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf
-.. _ESP-Prog PCB 布局图: ../../_static/esp-prog/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf
-.. _ESP-Prog 尺寸图: ../../_static/esp-prog/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog 原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog PCB 布局图: https://dl.espressif.com/dl/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog 尺寸图: https://dl.espressif.com/dl/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf

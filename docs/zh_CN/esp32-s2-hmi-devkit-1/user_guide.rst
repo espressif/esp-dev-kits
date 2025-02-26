@@ -296,7 +296,7 @@ ESP32-S2-HMI-DevKit-1 的主要组件和连接方式如下图所示。
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
-.. _ESP32-S2-HMI-DevKit-1 原理图: ../../_static/esp32-s2-hmi-devkit-1/schematics/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf
-.. _ESP32-S2-HMI-DevKit-1 PCB 布局图: ../../_static/esp32-s2-hmi-devkit-1/schematics/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf
-.. _ESP32-S2-HMI-DevKit-1 尺寸图: ../../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf
-.. _ESP32-S2-HMI-DevKit-1 尺寸图源文件: ../../_static/esp32-s2-hmi-devkit-1/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf
+.. _ESP32-S2-HMI-DevKit-1 原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-S2-HMI-DEVKIT-1_V1_1_20210526A.pdf
+.. _ESP32-S2-HMI-DevKit-1 PCB 布局图: https://dl.espressif.com/dl/schematics/Assemble_ESP32-S2-HMI-DevKit-1_V1.1_20210203.pdf
+.. _ESP32-S2-HMI-DevKit-1 尺寸图: https://dl.espressif.com/dl/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.pdf
+.. _ESP32-S2-HMI-DevKit-1 尺寸图源文件: https://dl.espressif.com/dl/schematics/PCB_ESP32-S2-HMI-DevKit-1_V1.1_20210202-2045.dxf

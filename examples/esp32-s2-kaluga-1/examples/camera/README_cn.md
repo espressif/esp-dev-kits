@@ -169,6 +169,6 @@ I (1015) main: camera init done
 ## 2 附录
 
 * [ESP32-S2 技术规格书](https://www.espressif.com/sites/default/files/documentation/esp32-s2_datasheet_cn.pdf)
-* [ESP32-S2-Kaluga-1 主板](../../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
-* [ESP-LyraP-CAM 摄像头](../../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP-LYRAP-CAM_V1_20200302.pdf)
-* [ESP-LyraP-LCD32 显示屏](../../../../docs/_static/esp32-s2-kaluga-1/schematics/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)
+* [ESP32-S2-Kaluga-1 主板](https://dl.espressif.com/dl/schematics/SCH_ESP32-S2-KALUGA-1_V1_2_20200325A.pdf)
+* [ESP-LyraP-CAM 摄像头](https://dl.espressif.com/dl/schematics/SCH_ESP-LYRAP-CAM_V1_20200302.pdf)
+* [ESP-LyraP-LCD32 显示屏](https://dl.espressif.com/dl/schematics/SCH_ESP-LYRAP-LCD32_V1_1_20200324A.pdf)

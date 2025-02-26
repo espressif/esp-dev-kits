@@ -267,12 +267,12 @@ ESP32-C6-DevKitC-1 v1.1
 
 .. _ESP32-C6 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_cn.pdf
 .. _ESP32-C6-WROOM-1 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_wroom-1u_datasheet_cn.pdf
-.. _ESP32-C6-DevKitC-1 原理图 v1.4: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.4.pdf
-.. _ESP32-C6-DevKitC-1 原理图 v1.3: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.3.pdf
-.. _ESP32-C6-DevKitC-1 原理图 v1.2: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-schematics_v1.2.pdf
-.. _ESP32-C6-DevKitC-1 PCB 布局图: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-pcb-layout_v1.2.pdf
-.. _ESP32-C6-DevKitC-1 尺寸图: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.pdf
-.. _ESP32-C6-DevKitC-1 尺寸图源文件: ../../_static/esp32-c6-devkitc-1/schematics/esp32-c6-devkitc-1-dimensions_v1.2.dxf
+.. _ESP32-C6-DevKitC-1 原理图 v1.4: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-schematics_v1.4.pdf
+.. _ESP32-C6-DevKitC-1 原理图 v1.3: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-schematics_v1.3.pdf
+.. _ESP32-C6-DevKitC-1 原理图 v1.2: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-schematics_v1.2.pdf
+.. _ESP32-C6-DevKitC-1 PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-pcb-layout_v1.2.pdf
+.. _ESP32-C6-DevKitC-1 尺寸图: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-dimensions_v1.2.pdf
+.. _ESP32-C6-DevKitC-1 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp32-c6-devkitc-1-dimensions_v1.2.dxf
 
 .. toctree::
     :hidden:

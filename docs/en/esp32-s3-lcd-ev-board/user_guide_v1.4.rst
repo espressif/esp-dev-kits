@@ -617,21 +617,21 @@ Related Documents
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-.. _SSD1315: ../../_static/esp32-s3-lcd-ev-board/datasheets/0.96_128x64/SSD1315.pdf
-.. _ST7796S: ../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/ST7796S_SPEC_V1.0.pdf
-.. _GT1151: ../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/GT911.pdf
-.. _GT911: ../../_static/esp32-s3-lcd-ev-board/datasheets/3.5_320x480/GT911_Datasheet_20130319.pdf
-.. _ST7789V: ../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/ST7789V_SPEC_V1.0.pdf
-.. _ST7262E43: ../../_static/esp32-s3-lcd-ev-board/datasheets/4.3_800x480/ST7262E43_V0.1_201905.pdf
-.. _XTP2046: ../../_static/esp32-s3-lcd-ev-board/datasheets/2.4_320x240/XPT2046_user_manual.pdf
-.. _GC9503CV: ../../_static/esp32-s3-lcd-ev-board/datasheets/3.95_480x480_SmartDisplay/GC9503NP_DataSheet_V1.7.pdf
-.. _ESP32-S3-LCD-EV-Board-MB Schematics: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-MB_V1.4_20230321.pdf
-.. _ESP32-S3-LCD-EV-Board-MB PCB Layout: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-MB_V1.4_20230321.pdf
-.. _ESP32-S3-LCD-EV-Board-SUB1 Schematics: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf
-.. _ESP32-S3-LCD-EV-Board-SUB1 PCB Layout: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf
-.. _ESP32-S3-LCD-EV-Board-SUB2 Schematics: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.2_20230509.pdf
-.. _ESP32-S3-LCD-EV-Board-SUB2 PCB Layout: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.4_20230509.pdf
-.. _ESP32-S3-LCD-EV-Board-SUB3 Schematics: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf
-.. _ESP32-S3-LCD-EV-Board-SUB3 PCB Layout: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf
-.. _ESP32-S3-LCD-EV-Board USB Adapter Schematics: ../../_static/esp32-s3-lcd-ev-board/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf
-.. _ESP32-S3-LCD-EV-Board USB Adapter PCB Layout: ../../_static/esp32-s3-lcd-ev-board/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf
+.. _SSD1315: https://dl.espressif.com/dl/schematics/SSD1315.pdf
+.. _ST7796S: https://dl.espressif.com/dl/schematics/ST7796S_SPEC_V1.0.pdf
+.. _GT1151: https://dl.espressif.com/dl/schematics/GT911.pdf
+.. _GT911: https://dl.espressif.com/dl/schematics/GT911_Datasheet_20130319.pdf
+.. _ST7789V: https://dl.espressif.com/dl/schematics/ST7789V_SPEC_V1.0.pdf
+.. _ST7262E43: https://dl.espressif.com/dl/schematics/ST7262E43_V0.1_201905.pdf
+.. _XTP2046: https://dl.espressif.com/dl/schematics/XPT2046_user_manual.pdf
+.. _GC9503CV: https://dl.espressif.com/dl/schematics/GC9503NP_DataSheet_V1.7.pdf
+.. _ESP32-S3-LCD-EV-Board-MB Schematics: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-LCD-Ev-Board-MB_V1.4_20230321.pdf
+.. _ESP32-S3-LCD-EV-Board-MB PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-S3-LCD-EV-Board-MB_V1.4_20230321.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB1 Schematics: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB1 PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB2 Schematics: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB2_V1.2_20230509.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB2 PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB2_V1.4_20230509.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB3 Schematics: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-LCD-EV-Board-SUB3_V1.1_20230315.pdf
+.. _ESP32-S3-LCD-EV-Board-SUB3 PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-S3-LCD-EV-Board-SUB3_V1.3_20230317.pdf
+.. _ESP32-S3-LCD-EV-Board USB Adapter Schematics: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf
+.. _ESP32-S3-LCD-EV-Board USB Adapter PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-S3-LCD-EV-Board-USB-Adapter_V1.1_20231001.pdf

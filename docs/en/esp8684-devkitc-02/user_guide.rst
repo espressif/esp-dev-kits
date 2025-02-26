@@ -251,7 +251,7 @@ Related Documents
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-.. _ESP8684-DevKitC-02 Schematic: ../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-schematics_V1.0.pdf
-.. _ESP8684-DevKitC-02 PCB layout: ../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-pcb-layout_V1.0.pdf
-.. _ESP8684-DevKitC-02 Dimensions: ../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-dimensions_V1.0.pdf
-.. _ESP8684-DevKitC-02 Dimensions source file: ../../_static/esp8684-devkitc-02/schematics/esp8684-devkitc-02-dimensions_source_V1.0.dxf
+.. _ESP8684-DevKitC-02 Schematic: https://dl.espressif.com/dl/schematics/esp8684-devkitc-02-schematics_V1.0.pdf
+.. _ESP8684-DevKitC-02 PCB layout: https://dl.espressif.com/dl/schematics/esp8684-devkitc-02-pcb-layout_V1.0.pdf
+.. _ESP8684-DevKitC-02 Dimensions: https://dl.espressif.com/dl/schematics/esp8684-devkitc-02-dimensions_V1.0.pdf
+.. _ESP8684-DevKitC-02 Dimensions source file: https://dl.espressif.com/dl/schematics/esp8684-devkitc-02-dimensions_source_V1.0.dxf

@@ -278,10 +278,10 @@ J3
 - `ESP32-H2-DevKitM-1 尺寸图`_ (PDF)
 - `ESP32-H2-DevKitM-1 尺寸图源文件`_ (DXF)
 
-.. _ESP32-H2-DevKitM-1 原理图 v1.3: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.3_schematics.pdf
-.. _ESP32-H2-DevKitM-1 原理图 v1.2: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_schematics.pdf
-.. _ESP32-H2-DevKitM-1 PCB 布局图: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf
-.. _ESP32-H2-DevKitM-1 尺寸图: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.pdf
-.. _ESP32-H2-DevKitM-1 尺寸图源文件: ../../_static/esp32-h2-devkitm-1/esp32-h2-devkitm-1_v1.2_dimension.dxf
+.. _ESP32-H2-DevKitM-1 原理图 v1.3: https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.3_schematics.pdf
+.. _ESP32-H2-DevKitM-1 原理图 v1.2: https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_schematics.pdf
+.. _ESP32-H2-DevKitM-1 PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_pcb_layout.pdf
+.. _ESP32-H2-DevKitM-1 尺寸图: https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.pdf
+.. _ESP32-H2-DevKitM-1 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp32-h2-devkitm-1_v1.2_dimension.dxf
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。

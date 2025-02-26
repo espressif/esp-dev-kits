@@ -163,4 +163,4 @@ Related Documents
 
 For other design documentation for the board, please contact us at sales@espressif.com.
 
-.. _Audio ES8311: ../../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf
+.. _Audio ES8311: https://dl.espressif.com/dl/schematics/Audio_ES8311.pdf

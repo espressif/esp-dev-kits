@@ -154,4 +154,4 @@ ESP-LyraT-8311A 的主要组件和连接方式如下图所示。
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。
 
-.. _Audio ES8311: ../../_static/esp32-s2-kaluga-1/datasheet/Audio_ES8311.pdf
+.. _Audio ES8311: https://dl.espressif.com/dl/schematics/Audio_ES8311.pdf

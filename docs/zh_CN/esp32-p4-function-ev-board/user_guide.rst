@@ -321,7 +321,7 @@ J1
 * `ESP32-P4-Function-EV-Board 原理图 v1.5.1`_ (PDF) 
 * `ESP32-P4-Function-EV-Board PCB 布局图`_ (PDF) 
 * `ESP32-P4-Function-EV-Board 尺寸图`_ (PDF) 
-* `ESP32-P4-Function-EV-Board 尺寸图源文件`_(DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+* `ESP32-P4-Function-EV-Board 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 * `1.0K-GT-15PB 规格书`_ (PDF) 
 * `摄像头规格书`_ (PDF) 
 * `显示屏规格书`_ (PDF) 
@@ -334,17 +334,17 @@ J1
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
-.. _ESP32-P4-Function-EV-Board 原理图: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics.pdf
-.. _ESP32-P4-Function-EV-Board 原理图 v1.5.1: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-schematics_v1.5.1.pdf
-.. _ESP32-P4-Function-EV-Board PCB 布局图: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-pcb-layout.pdf
-.. _ESP32-P4-Function-EV-Board 尺寸图: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.pdf
-.. _ESP32-P4-Function-EV-Board 尺寸图源文件: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-dimensions.dxf
-.. _1.0K-GT-15PB 规格书: ../../_static/esp32-p4-function-ev-board/schematics/1.0K-GT-15PB_specification.pdf
-.. _摄像头规格书: ../../_static/esp32-p4-function-ev-board/camera_display_datasheet/camera_datasheet.pdf
-.. _显示屏规格书: ../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_datasheet.pdf
-.. _显示屏驱动芯片 EK73217BCGA 规格书: ../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK73217BCGA_datasheet.pdf
-.. _显示屏驱动芯片 EK79007AD 规格书: ../../_static/esp32-p4-function-ev-board/camera_display_datasheet/display_driver_chip_EK79007AD_datasheet.pdf
-.. _显示屏适配板原理图: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf
-.. _显示屏适配板 PCB 布局图: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-lcd-subboard-pcb-layout.pdf
-.. _摄像头适配板原理图: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf
-.. _摄像头适配板 PCB 布局图: ../../_static/esp32-p4-function-ev-board/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf
+.. _ESP32-P4-Function-EV-Board 原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics.pdf
+.. _ESP32-P4-Function-EV-Board 原理图 v1.5.1: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics_v1.5.1.pdf
+.. _ESP32-P4-Function-EV-Board PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-pcb-layout.pdf
+.. _ESP32-P4-Function-EV-Board 尺寸图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.pdf
+.. _ESP32-P4-Function-EV-Board 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.dxf
+.. _1.0K-GT-15PB 规格书: https://dl.espressif.com/dl/schematics/1.0K-GT-15PB_specification.pdf
+.. _摄像头规格书: https://dl.espressif.com/dl/schematics/camera_datasheet.pdf
+.. _显示屏规格书: https://dl.espressif.com/dl/schematics/display_datasheet.pdf
+.. _显示屏驱动芯片 EK73217BCGA 规格书: https://dl.espressif.com/dl/schematics/display_driver_chip_EK73217BCGA_datasheet.pdf
+.. _显示屏驱动芯片 EK79007AD 规格书: https://dl.espressif.com/dl/schematics/display_driver_chip_EK79007AD_datasheet.pdf
+.. _显示屏适配板原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-lcd-subboard-schematics.pdf
+.. _显示屏适配板 PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-lcd-subboard-pcb-layout.pdf
+.. _摄像头适配板原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf
+.. _摄像头适配板 PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf

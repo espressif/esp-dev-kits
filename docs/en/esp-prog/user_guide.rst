@@ -269,6 +269,6 @@ Related Documents
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-.. _ESP-Prog Schematic: ../../_static/esp-prog/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf
-.. _ESP-Prog PCB Layout: ../../_static/esp-prog/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf
-.. _ESP-Prog Dimensions: ../../_static/esp-prog/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog Schematic: https://dl.espressif.com/dl/schematics/SCH_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-PROG_V2.1_20190709.pdf
+.. _ESP-Prog Dimensions: https://dl.espressif.com/dl/schematics/DIM_ESP32-PROG_V2.1_20190709.pdf

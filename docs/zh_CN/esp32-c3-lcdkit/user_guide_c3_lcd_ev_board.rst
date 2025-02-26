@@ -344,7 +344,7 @@ GPIO 分配列表
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
-.. _ESP32-C3-LCD_EV_Board-MB 原理图: ../../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_EV_Board_MB_V1.0_20221212.pdf
-.. _ESP32-C3-LCD_EV_Board-MB PCB 布局图: ../../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_Ev_Board_MB_V1.0_20221213.pdf
-.. _ESP32-C3-LCD_EV_Board-DB 原理图: ../../_static/esp32-c3-lcd-ev-board/schematics/SCH_ESP32-C3-LCD_Ev_Board_DB_V1.0_20221207.pdf
-.. _ESP32-C3-LCD_EV_Board-DB PCB 布局图: ../../_static/esp32-c3-lcd-ev-board/schematics/PCB_ESP32-C3-LCD_EV_Board_DB_V1.0_20221213.pdf
+.. _ESP32-C3-LCD_EV_Board-MB 原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-LCD_EV_Board_MB_V1.0_20221212.pdf
+.. _ESP32-C3-LCD_EV_Board-MB PCB 布局图: https://dl.espressif.com/dl/schematics/PCB_ESP32-C3-LCD_Ev_Board_MB_V1.0_20221213.pdf
+.. _ESP32-C3-LCD_EV_Board-DB 原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-LCD_Ev_Board_DB_V1.0_20221207.pdf
+.. _ESP32-C3-LCD_EV_Board-DB PCB 布局图: https://dl.espressif.com/dl/schematics/PCB_ESP32-C3-LCD_EV_Board_DB_V1.0_20221213.pdf

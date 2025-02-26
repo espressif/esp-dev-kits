@@ -120,4 +120,4 @@ ESP-LyraP-CAM 的主要组件和连接方式如下图所示。
 
 有关本开发板的更多设计文档，请联系我们的商务部门 sales@espressif.com。
 
-.. _Camera OV2640: ../../_static/esp32-s2-kaluga-1/datasheet/Camera_OV2640.pdf
+.. _Camera OV2640: https://dl.espressif.com/dl/schematics/Camera_OV2640.pdf
