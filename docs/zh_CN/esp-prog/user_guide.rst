@@ -147,7 +147,7 @@ ESP-Prog 使用简单方便，仅用一根 USB 线即可实现与电脑的连接
 批量订单
 ^^^^^^^^^^^^^^^^
 
-If you order in bulk, the boards come in large cardboard boxes.
+如批量购买，ESP-Prog 将以大纸板箱包装。
 
 批量订单请前往 https://www.espressif.com/zh-hans/contact-us/sales-questions。
 
