@@ -27,6 +27,7 @@ languages = ['en', 'zh_CN']
 idf_targets = ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5', 'esp32c61', 'other']
 
 ESP32_DOCS = ['*.rst',
+              'index/esp32-index.inc',
               'eol/*.rst',
               'esp-wrover-kit/*.rst',
               'esp32-devkitc/*.rst',
@@ -40,31 +41,39 @@ ESP32_DOCS = ['*.rst',
               'esp32-sense-kit/*.rst'
               ]
 ESP32C2_DOCS = ['*.rst',
+                'index/esp32c2-index.inc',
                 'esp8684-devkitc-02/*.rst',
                 'esp8684-devkitm-1/*.rst'
                 ]
 ESP32C3_DOCS = ['*.rst',
+                'index/esp32c3-index.inc',
                 'esp32-c3-devkitc-02/*.rst',
                 'esp32-c3-devkitm-1/*.rst',
                 'esp32-c3-lcdkit/*.rst'
                 ]
 ESP32C6_DOCS = ['*.rst',
+                'index/esp32c6-index.inc',
                 'esp32-c6-devkitc-1/*.rst',
                 'esp32-c6-devkitm-1/*.rst'
                 ]
 ESP32C61_DOCS = ['*.rst',
+                 'index/esp32c61-index.inc',
                  'esp32-c61-devkitc-1/*.rst',
                 ]
 ESP32H2_DOCS = ['*.rst',
+                'index/esp32h2-index.inc',
                 'esp32-h2-devkitm-1/*.rst'
                 ]
 ESP32P4_DOCS = ['*.rst',
+                'index/esp32p4-index.inc',
                 'esp32-p4-function-ev-board/*.rst'
                 ]
 ESP32C5_DOCS = ['*.rst',
+                'index/esp32c5-index.inc',
                 'esp32-c5-devkitc-1/*.rst'
                 ]
 ESP32S2_DOCS = ['*.rst',
+                'index/esp32s2-index.inc',
                 'eol/*.rst',
                 'esp32-s2-devkitc-1/*.rst',
                 'esp32-s2-devkitm-1/*.rst',
@@ -75,6 +84,7 @@ ESP32S2_DOCS = ['*.rst',
                 'esp32-s2-saola-1/*.rst'
                 ]
 ESP32S3_DOCS = ['*.rst',
+                'index/esp32s3-index.inc',
                 'esp32-s3-devkitc-1/*.rst',
                 'esp32-s3-devkitm-1/*.rst',
                 'esp32-s3-lcd-ev-board/*.rst',
@@ -82,6 +92,7 @@ ESP32S3_DOCS = ['*.rst',
                 'esp32-s3-usb-otg/*.rst'
                 ]
 OTHER_DOCS = ['*.rst',
+              'index/other-index.inc',
               'esp-module-prog-1-r/*.rst',
               'esp-module-prog-sub-02/*.rst',
               'esp-module-prog-sub-01&04/*.rst',
