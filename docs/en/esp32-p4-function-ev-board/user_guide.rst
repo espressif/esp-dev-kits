@@ -308,7 +308,7 @@ No previous versions available.
 
 .. note::
 
-  The current version of the development board is v1.4, and the next version, v1.5, is in the verification stage. `ESP32-P4-Function-EV-Board Schematic v1.5.1`_ has been uploaded for your reference.
+  The current version of the development board is v1.4, and the next version, v1.5, is in the verification stage. `ESP32-P4-Function-EV-Board Schematic v1.5.2`_ has been uploaded for your reference.
 
 Related Documents
 =================
@@ -317,25 +317,25 @@ Related Documents
 
    Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
 
-* `ESP32-P4-Function-EV-Board Schematic`_ (PDF) 
-* `ESP32-P4-Function-EV-Board Schematic v1.5.1`_ (PDF) 
-* `ESP32-P4-Function-EV-Board PCB Layout`_ (PDF) 
-* `ESP32-P4-Function-EV-Board Dimensions`_ (PDF) 
+* `ESP32-P4-Function-EV-Board Schematic`_ (PDF)
+* `ESP32-P4-Function-EV-Board Schematic v1.5.2`_ (PDF)
+* `ESP32-P4-Function-EV-Board PCB Layout`_ (PDF)
+* `ESP32-P4-Function-EV-Board Dimensions`_ (PDF)
 * `ESP32-P4-Function-EV-Board Dimensions source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
-* `1.0K-GT-15PB Specification`_ (PDF) 
-* `Camera Datasheet`_ (PDF) 
-* `Display Datasheet`_ (PDF) 
-* `Datasheet of display driver chip EK73217BCGA`_ (PDF) 
-* `Datasheet of display driver chip EK79007AD`_ (PDF) 
-* `LCD Adapter Board Schematic`_ (PDF) 
-* `LCD Adapter Board PCB Layout`_ (PDF) 
-* `Camera Adapter Board Schematic`_ (PDF) 
-* `Camera Adapter Board PCB Layout`_ (PDF) 
+* `1.0K-GT-15PB Specification`_ (PDF)
+* `Camera Datasheet`_ (PDF)
+* `Display Datasheet`_ (PDF)
+* `Datasheet of display driver chip EK73217BCGA`_ (PDF)
+* `Datasheet of display driver chip EK79007AD`_ (PDF)
+* `LCD Adapter Board Schematic`_ (PDF)
+* `LCD Adapter Board PCB Layout`_ (PDF)
+* `Camera Adapter Board Schematic`_ (PDF)
+* `Camera Adapter Board PCB Layout`_ (PDF)
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
 .. _ESP32-P4-Function-EV-Board Schematic: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics.pdf
-.. _ESP32-P4-Function-EV-Board Schematic v1.5.1: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics_v1.5.1.pdf
+.. _ESP32-P4-Function-EV-Board Schematic v1.5.2: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics_v1.5.2.pdf
 .. _ESP32-P4-Function-EV-Board PCB Layout: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-pcb-layout.pdf
 .. _ESP32-P4-Function-EV-Board Dimensions: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.pdf
 .. _ESP32-P4-Function-EV-Board Dimensions source file: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.dxf
