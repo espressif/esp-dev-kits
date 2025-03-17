@@ -30,3 +30,7 @@ latex_documents = [
   ('index', 'ReadtheDocsTemplate.tex', u'esp-dev-kits',
    u'2016 - {}, Espressif Systems (Shanghai) CO., LTD'.format(current_year), 'manual'),
 ]
+
+# Chatbot widget
+html_js_files = ['js/chatbot_widget.js']
+html_css_files = ['js/chatbot_widget.css']
