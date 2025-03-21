@@ -308,7 +308,7 @@ J1
 
 .. 注解::
 
-  当前开发板的版本为 v1.4，下一版本为 v1.5 正在验证阶段。 `ESP32-P4-Function-EV-Board 原理图 v1.5.1`_ 已上传以供参考。
+  当前开发板的版本为 v1.4，下一版本为 v1.5 正在验证阶段。 `ESP32-P4-Function-EV-Board 原理图 v1.5.2`_ 已上传以供参考。
 
 相关文档
 ========
@@ -317,25 +317,25 @@ J1
 
    请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
 
-* `ESP32-P4-Function-EV-Board 原理图`_ (PDF) 
-* `ESP32-P4-Function-EV-Board 原理图 v1.5.1`_ (PDF) 
-* `ESP32-P4-Function-EV-Board PCB 布局图`_ (PDF) 
-* `ESP32-P4-Function-EV-Board 尺寸图`_ (PDF) 
+* `ESP32-P4-Function-EV-Board 原理图`_ (PDF)
+* `ESP32-P4-Function-EV-Board 原理图 v1.5.2`_ (PDF)
+* `ESP32-P4-Function-EV-Board PCB 布局图`_ (PDF)
+* `ESP32-P4-Function-EV-Board 尺寸图`_ (PDF)
 * `ESP32-P4-Function-EV-Board 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
-* `1.0K-GT-15PB 规格书`_ (PDF) 
-* `摄像头规格书`_ (PDF) 
-* `显示屏规格书`_ (PDF) 
-* `显示屏驱动芯片 EK73217BCGA 规格书`_ (PDF) 
-* `显示屏驱动芯片 EK79007AD 规格书`_ (PDF) 
-* `显示屏适配板原理图`_ (PDF) 
-* `显示屏适配板 PCB 布局图`_ (PDF) 
-* `摄像头适配板原理图`_ (PDF) 
-* `摄像头适配板 PCB 布局图`_ (PDF) 
+* `1.0K-GT-15PB 规格书`_ (PDF)
+* `摄像头规格书`_ (PDF)
+* `显示屏规格书`_ (PDF)
+* `显示屏驱动芯片 EK73217BCGA 规格书`_ (PDF)
+* `显示屏驱动芯片 EK79007AD 规格书`_ (PDF)
+* `显示屏适配板原理图`_ (PDF)
+* `显示屏适配板 PCB 布局图`_ (PDF)
+* `摄像头适配板原理图`_ (PDF)
+* `摄像头适配板 PCB 布局图`_ (PDF)
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
 .. _ESP32-P4-Function-EV-Board 原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics.pdf
-.. _ESP32-P4-Function-EV-Board 原理图 v1.5.1: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics_v1.5.1.pdf
+.. _ESP32-P4-Function-EV-Board 原理图 v1.5.2: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics_v1.5.2.pdf
 .. _ESP32-P4-Function-EV-Board PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-pcb-layout.pdf
 .. _ESP32-P4-Function-EV-Board 尺寸图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.pdf
 .. _ESP32-P4-Function-EV-Board 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.dxf
