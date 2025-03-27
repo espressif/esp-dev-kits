@@ -30,3 +30,6 @@ latex_documents = [
   ('index', 'ReadtheDocsTemplate.tex', u'esp-dev-kits',
    u'2016 - {} 乐鑫信息科技（上海）股份有限公司'.format(current_year), 'manual'),
 ]
+
+# Chatbot widget
+html_js_files = ['js/chatbot_widget_cn.js']
