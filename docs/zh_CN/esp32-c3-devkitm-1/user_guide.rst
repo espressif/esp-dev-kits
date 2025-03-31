@@ -222,7 +222,6 @@ J3
 相关文档
 ========
 
-* `使用 ESP32-C3 构建安全高性价比的互联设备 <http://c3.espressif.com/>`_
 * `ESP32-C3 技术规格书`_ (PDF)
 * `ESP32-C3-MINI-1 规格书`_ (PDF)
 * `ESP32-C3-DevKitM-1 原理图 <https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-DEVKITM-1_V1_20200915A.pdf>`_ (PDF)

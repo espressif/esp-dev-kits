@@ -222,7 +222,6 @@ No previous versions available.
 Related Documents
 =================
 
-* `Build Secure and Cost-effective Connected Devices with ESP32-C3 <http://c3.espressif.com/>`_
 * `ESP32-C3 Datasheet`_ (PDF)
 * `ESP32-C3-MINI-1 Datasheet`_ (PDF)
 * `ESP32-C3-DevKitM-1 Schematic <https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-DEVKITM-1_V1_20200915A.pdf>`_ (PDF)

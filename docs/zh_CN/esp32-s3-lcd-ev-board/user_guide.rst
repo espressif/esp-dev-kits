@@ -641,7 +641,7 @@ ESP32-S3-LCD-EV-Board v1.4
 .. _ST7789V: https://dl.espressif.com/dl/schematics/ST7789V_SPEC_V1.0.pdf
 .. _ST7262E43: https://dl.espressif.com/dl/schematics/ST7262E43_V0.1_201905.pdf
 .. _XTP2046: https://dl.espressif.com/dl/schematics/XPT2046_user_manual.pdf
-.. _GC9503CV: https://dl.espressif.com/dl/schematics/GC9503NP_DataSheet_V1.7.pdf
+.. _GC9503CV: https://dl.espressif.com/AE/esp-dev-kits/GC9503CV%20DataSheet%20V1.2.pdf
 .. _ESP32-S3-LCD-EV-Board-MB 原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-LCD-Ev-Board-MB_V1.5_20231009.pdf
 .. _ESP32-S3-LCD-EV-Board-MB PCB 布局图: https://dl.espressif.com/dl/schematics/PCB_ESP32-S3-LCD-EV-Board-MB_V1.5_20231009.pdf
 .. _ESP32-S3-LCD-EV-Board-SUB1 原理图: https://dl.espressif.com/dl/schematics/SCH_ESP32-S3-LCD-Ev-Board-SUB1_V1.0_20220617.pdf
