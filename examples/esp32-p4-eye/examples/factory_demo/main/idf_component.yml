@@ -1,0 +1,18 @@
+dependencies:
+  esp32_p4_eye:
+    path: "../../common_components/esp32_p4_eye"
+
+  espressif/esp_tinyusb:
+    version: "1.4.*"
+
+  espressif/esp_audio_codec:
+    version: "2.2.*"
+    public: true
+
+  espressif/esp_muxer:
+    version: "1.1.*"
+    public: true
+
+  espressif/esp_h264:
+    version: "==1.0.3"
+    public: true

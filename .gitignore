@@ -29,6 +29,7 @@ GPATH
 **/sdkconfig
 **/sdkconfig.old
 **/build
+**/.cache
 **/.idea
 
 # Doc build artifacts

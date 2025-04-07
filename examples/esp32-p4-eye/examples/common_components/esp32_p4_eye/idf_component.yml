@@ -1,0 +1,31 @@
+version: "0.0.1"
+description: Board Support Package (BSP) for ESP32-P4-EYE
+url: https://github.com/espressif/esp-bsp/tree/master/bsp/esp32_p4_eye
+
+targets:
+  - esp32p4
+
+tags:
+  - bsp  
+
+dependencies:
+  idf: ">=5.4"
+  lvgl/lvgl: "^8"
+
+  espressif/esp_lvgl_port:
+    version: "^2"
+    public: true
+
+  button:
+    version: ">=2.5,<4.0"
+    public: true
+
+  esp_codec_dev:
+    version: "^1"
+    public: true
+
+  esp_video:
+    version: "0.9.*"
+    public: true
+
+  espressif/knob: "^1.0.0"
