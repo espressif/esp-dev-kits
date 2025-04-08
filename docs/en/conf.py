@@ -32,5 +32,4 @@ latex_documents = [
 ]
 
 # Chatbot widget
-html_js_files = ['js/chatbot_widget.js']
-html_css_files = ['js/chatbot_widget.css']
+html_js_files = ['js/chatbot_widget_en.js']
