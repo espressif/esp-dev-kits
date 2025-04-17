@@ -66,7 +66,8 @@ ESP32H2_DOCS = ['*.rst',
                 ]
 ESP32P4_DOCS = ['*.rst',
                 'index/esp32p4-index.inc',
-                'esp32-p4-function-ev-board/*.rst'
+                'esp32-p4-function-ev-board/*.rst',
+                'esp32-p4-eye/*.rst'
                 ]
 ESP32C5_DOCS = ['*.rst',
                 'index/esp32c5-index.inc',
@@ -157,3 +158,4 @@ linkcheck_exclude_documents = ['index',  # several false positives due to the wa
                                 ]
 linkcheck_ignore = ['https://github.com/espressif/esp-dev-kits/tree/.*', # false positives due to the way we link to folder in the repo
                     ]
+

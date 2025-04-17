@@ -35,7 +35,6 @@ esp-dev-kits 文档
 
    .. include:: index/{IDF_TARGET_PATH_NAME}-index.inc
 
-
 .. toctree::
    :hidden:
    :caption: 相关资源与法律声明
