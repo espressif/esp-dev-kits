@@ -477,8 +477,8 @@ esp_err_t bsp_display_new(const bsp_display_config_t *config, esp_lcd_panel_hand
         .spi_mode = 3,
         .trans_queue_depth = 10,
     };
-    if(io_config.pclk_hz == 80 * 1000 * 1000) {
-        ESP_LOGW(TAG, "If the pixel clock is set to 80 MHz, you need to temporarily apply the patch 0001-fix-spi-default-clock-source.patch. For details on how to apply the patch, please refer to the README.");
+    if(io_config.pclk_hz != 20 * 1000 * 1000) {
+        ESP_LOGW(TAG, "If the pixel clock is not set to 20 MHz, you need to temporarily apply the patch 0001-fix-spi-default-clock-source.patch. For details on how to apply the patch, please refer to the README.");
     }
     ESP_GOTO_ON_ERROR(esp_lcd_new_panel_io_spi((esp_lcd_spi_bus_handle_t)BSP_LCD_SPI_NUM, &io_config, ret_io), err, TAG, "New panel IO failed");
 
