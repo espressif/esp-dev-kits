@@ -6,22 +6,170 @@ variables:
   stage: build_doc
   tags:
     - build_docs
-  dependencies: []
+  before_script:
+    - |
+      # Define the list of known targets
+      KNOWN_TARGETS=("esp32" "esp32s2" "esp32s3" "esp32c3" "esp32c6" "esp32h2" "esp32c2" "esp32p4" "esp32c5" "esp32c61" "other")
+
+      echo "CI_COMMIT_SHA=$CI_COMMIT_SHA"
+      echo "CI_COMMIT_SHA=$CI_MERGE_REQUEST_DIFF_BASE_SHA"
+
+      # Get the list of changed files
+      CHANGED_FILES=$(git diff --name-only $CI_MERGE_REQUEST_DIFF_BASE_SHA $CI_COMMIT_SHA)
+      echo "Changed files:"
+      echo "$CHANGED_FILES"
+
+      # Initialize variables
+      MODIFIED_DOCTGT=()
+      declare -A TARGET_CHECKED_GLOBAL
+
+      for file in $CHANGED_FILES; do
+          echo ">> Processing file: $file"
+
+          declare -A PER_FILE_CHECKED=()
+          MATCHED_TARGETS=()
+
+          # Step 1: For general documentation, build all targets
+          if [[ "$file" =~ ^docs/(en|zh_CN)/[^/]+\.rst$ && ! "$file" =~ ^docs/(en|zh_CN)/[^/]+/ ]]; then
+              echo "  - General doc matched (top-level RST)"
+              for t in "${KNOWN_TARGETS[@]}"; do
+                  MATCHED_TARGETS+=("$t")
+                  PER_FILE_CHECKED["$t"]=1
+              done
+          else
+              # Step 2: For specific documentation, match specific targets
+              file_no_hyphen="${file//-/}"
+              matched_specific=false
+              echo "  - Normal doc. Hyphen-stripped path: $file_no_hyphen"
+
+              for target in "${KNOWN_TARGETS[@]}"; do
+                  [[ "$target" == "esp32" ]] && continue
+                  if [[ "$file_no_hyphen" =~ $target ]]; then
+                      echo "    + Matched specific target: $target"
+                      [[ -z "${PER_FILE_CHECKED["$target"]}" ]] && MATCHED_TARGETS+=("$target") && PER_FILE_CHECKED["$target"]=1
+                      matched_specific=true
+                  fi
+              done
+
+              if ! $matched_specific && [[ "$file_no_hyphen" =~ esp32 ]]; then
+                  echo "    + No specific match, fallback to esp32"
+                  [[ -z "${PER_FILE_CHECKED["esp32"]}" ]] && MATCHED_TARGETS+=("esp32") && PER_FILE_CHECKED["esp32"]=1
+              fi
+          fi
+
+          # Step 3: Handle exceptions
+          if [[ "$file" == *"esp-wrover-kit"* ]]; then
+              echo "  - Exception: matched esp-wrover-kit → esp32"
+              [[ -z "${PER_FILE_CHECKED["esp32"]}" ]] && MATCHED_TARGETS+=("esp32") && PER_FILE_CHECKED["esp32"]=1
+          fi
+          if [[ "$file" == *"esp8684"* ]]; then
+              echo "  - Exception: matched esp8684 → esp32c2"
+              [[ -z "${PER_FILE_CHECKED["esp32c2"]}" ]] && MATCHED_TARGETS+=("esp32c2") && PER_FILE_CHECKED["esp32c2"]=1
+          fi
+          if [[ "$file" == *"esp-module-prog"* || "$file" == *"esp-prog"* ]]; then
+              echo "  - Exception: matched esp-module-prog or esp-prog → other"
+              [[ -z "${PER_FILE_CHECKED["other"]}" ]] && MATCHED_TARGETS+=("other") && PER_FILE_CHECKED["other"]=1
+          fi
+          if [[ "$file" == *"eol"* ]]; then
+              echo "  - Exception: matched 'eol' → esp32 + esp32s2"
+              [[ -z "${PER_FILE_CHECKED["esp32"]}" ]] && MATCHED_TARGETS+=("esp32") && PER_FILE_CHECKED["esp32"]=1
+              [[ -z "${PER_FILE_CHECKED["esp32s2"]}" ]] && MATCHED_TARGETS+=("esp32s2") && PER_FILE_CHECKED["esp32s2"]=1
+          fi
+
+          # Step 4: Build all targets if 1) "build" label is present, or 2) commit to master
+          if [[ ",$CI_MERGE_REQUEST_LABELS," =~ ,build, || "$CI_COMMIT_REF_NAME" == "master" ]]; then
+            echo "Build label or commit to master detected. Building docs for all targets ..."
+            for t in "${KNOWN_TARGETS[@]}"; do
+                [[ -z "${PER_FILE_CHECKED["$t"]}" ]] && MATCHED_TARGETS+=("$t") && PER_FILE_CHECKED["$t"]=1
+            done
+          fi
+
+          echo "  = Matched targets for file: ${MATCHED_TARGETS[*]}"
+
+          for t in "${MATCHED_TARGETS[@]}"; do
+              if [[ -z "${TARGET_CHECKED_GLOBAL["$t"]}" ]]; then
+                  MODIFIED_DOCTGT+=("$t")
+                  TARGET_CHECKED_GLOBAL["$t"]=1
+              else
+                  echo "  - Skipped already added globally: $t"
+              fi
+          done
+      done
+
+      echo "==== Final Output ===="
+      echo "MODIFIED_DOCTGT=${MODIFIED_DOCTGT[*]}"
+      export MODIFIED_DOCTGT="${MODIFIED_DOCTGT[*]}"
   parallel:
     matrix:
       - DOCLANG: ["en", "zh_CN"]
-        DOCTGT: ['esp32', 'esp32s2', 'esp32s3', 'esp32c3', 'esp32c6', 'esp32h2', 'esp32c2', 'esp32p4', 'esp32c5', 'esp32c61', 'other']
+
+.build_docs_matrix:
+  extends: .build_docs_template
+  parallel:
+    matrix:
+      - DOCLANG: "en"
+        DOCTGT: "esp32"
+      - DOCLANG: "en"
+        DOCTGT: "esp32s2"
+      - DOCLANG: "en"
+        DOCTGT: "esp32s3"
+      - DOCLANG: "en"
+        DOCTGT: "esp32c3"
+      - DOCLANG: "en"
+        DOCTGT: "esp32c6"
+      - DOCLANG: "en"
+        DOCTGT: "esp32h2"
+      - DOCLANG: "en"
+        DOCTGT: "esp32c2"
+      - DOCLANG: "en"
+        DOCTGT: "esp32p4"
+      - DOCLANG: "en"
+        DOCTGT: "esp32c5"
+      - DOCLANG: "en"
+        DOCTGT: "esp32c61"
+      - DOCLANG: "en"
+        DOCTGT: "other"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32s2"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32s3"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32c3"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32c6"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32h2"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32c2"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32p4"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32c5"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "esp32c61"
+      - DOCLANG: "zh_CN"
+        DOCTGT: "other"
 
 build_docs_html:
   extends:
-    - .build_docs_template
     - .rules:build:docs
+    - .build_docs_matrix
   script:
     - cd docs
     - ./check_lang_folder_sync.sh
     - python -m pip install -r requirements.txt
+    - echo $MODIFIED_DOCTGT
+    - |
+      if [[ " $MODIFIED_DOCTGT " =~ " $DOCTGT " ]]; then
+        echo ">>> Building HTML docs for target: $DOCTGT lang: $DOCLANG"
+        build-docs --skip-reqs-check -l $DOCLANG -t $DOCTGT
+      else
+        echo ">>> Skipping build for target: $DOCTGT"
+        exit 0
+      fi
     - ARTIFACT_URL="$CI_JOB_URL/artifacts/file/docs/_build/$DOCLANG/$DOCTGT/html/index.html"
-    - build-docs --skip-reqs-check -l $DOCLANG -t $DOCTGT
     - echo "esp-dev-kits documentation preview in HTML is available at $ARTIFACT_URL"
   artifacts:
     when: always
@@ -33,13 +181,21 @@ build_docs_html:
 
 build_docs_pdf:
   extends:
-    - .build_docs_template
     - .rules:build:docs
+    - .build_docs_matrix
   script:
     - cd docs
     - ./check_lang_folder_sync.sh
     - python -m pip install -r requirements.txt
-    - build-docs --skip-reqs-check -bs latex -l $DOCLANG -t $DOCTGT
+    - echo $MODIFIED_DOCTGT
+    - |
+      if [[ " $MODIFIED_DOCTGT " =~ " $DOCTGT " ]]; then
+        echo ">>> Building PDF docs for target: $DOCTGT lang: $DOCLANG"
+        build-docs --skip-reqs-check -bs latex -l $DOCLANG -t $DOCTGT
+      else
+        echo ">>> Skipping build for target: $DOCTGT"
+        exit 0
+      fi
     - ARTIFACT_URL="$CI_JOB_URL/artifacts/file/docs/_build/$DOCLANG/$DOCTGT/latex/build/esp-dev-kits-$DOCLANG-master-$DOCTGT.pdf"
     - echo "esp-dev-kits documentation preview in PDF is available at $ARTIFACT_URL"
   artifacts:
