@@ -23,13 +23,35 @@ variables:
       MODIFIED_DOCTGT=()
       declare -A TARGET_CHECKED_GLOBAL
 
+      # Step 1: Build all targets if 1) "build" label is present, or 2) commit to master
+      echo "CI_COMMIT_REF_NAME=$CI_COMMIT_REF_NAME"
+
+      if [[ ",$CI_MERGE_REQUEST_LABELS," =~ ,build, || "$CI_COMMIT_REF_NAME" == "master" ]]; then
+        echo "Build label or commit to master detected. Building docs for all targets ..."
+        declare -A PER_FILE_CHECKED=()  # Declare as associative array here
+        MATCHED_TARGETS=()  # Initialize to avoid unexpected values
+        for t in "${KNOWN_TARGETS[@]}"; do
+            if [[ -z "${PER_FILE_CHECKED["$t"]}" ]]; then
+                MATCHED_TARGETS+=("$t")
+                PER_FILE_CHECKED["$t"]=1
+            fi
+        done
+        # Add matched targets to MODIFIED_DOCTGT
+        for t in "${MATCHED_TARGETS[@]}"; do
+            if [[ -z "${TARGET_CHECKED_GLOBAL["$t"]}" ]]; then
+                MODIFIED_DOCTGT+=("$t")
+                TARGET_CHECKED_GLOBAL["$t"]=1
+            fi
+        done
+      fi
+
       for file in $CHANGED_FILES; do
           echo ">> Processing file: $file"
 
           declare -A PER_FILE_CHECKED=()
           MATCHED_TARGETS=()
 
-          # Step 1: For general documentation, build all targets
+          # Step 2: For general documentation, build all targets
           if [[ "$file" =~ ^docs/(en|zh_CN)/[^/]+\.rst$ && ! "$file" =~ ^docs/(en|zh_CN)/[^/]+/ ]]; then
               echo "  - General doc matched (top-level RST)"
               for t in "${KNOWN_TARGETS[@]}"; do
@@ -37,7 +59,7 @@ variables:
                   PER_FILE_CHECKED["$t"]=1
               done
           else
-              # Step 2: For specific documentation, match specific targets
+              # Step 3: For specific documentation, match specific targets
               file_no_hyphen="${file//-/}"
               matched_specific=false
               echo "  - Normal doc. Hyphen-stripped path: $file_no_hyphen"
@@ -57,7 +79,7 @@ variables:
               fi
           fi
 
-          # Step 3: Handle exceptions
+          # Step 4: Handle exceptions
           if [[ "$file" == *"esp-wrover-kit"* ]]; then
               echo "  - Exception: matched esp-wrover-kit → esp32"
               [[ -z "${PER_FILE_CHECKED["esp32"]}" ]] && MATCHED_TARGETS+=("esp32") && PER_FILE_CHECKED["esp32"]=1
@@ -74,14 +96,6 @@ variables:
               echo "  - Exception: matched 'eol' → esp32 + esp32s2"
               [[ -z "${PER_FILE_CHECKED["esp32"]}" ]] && MATCHED_TARGETS+=("esp32") && PER_FILE_CHECKED["esp32"]=1
               [[ -z "${PER_FILE_CHECKED["esp32s2"]}" ]] && MATCHED_TARGETS+=("esp32s2") && PER_FILE_CHECKED["esp32s2"]=1
-          fi
-
-          # Step 4: Build all targets if 1) "build" label is present, or 2) commit to master
-          if [[ ",$CI_MERGE_REQUEST_LABELS," =~ ,build, || "$CI_COMMIT_REF_NAME" == "master" ]]; then
-            echo "Build label or commit to master detected. Building docs for all targets ..."
-            for t in "${KNOWN_TARGETS[@]}"; do
-                [[ -z "${PER_FILE_CHECKED["$t"]}" ]] && MATCHED_TARGETS+=("$t") && PER_FILE_CHECKED["$t"]=1
-            done
           fi
 
           echo "  = Matched targets for file: ${MATCHED_TARGETS[*]}"
