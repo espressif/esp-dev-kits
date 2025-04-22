@@ -6,7 +6,7 @@ ESP32-C3-DevKitC-02
 
 本指南将帮助你快速上手 ESP32-C3-DevKitC-02，并提供该款开发板的详细信息。
 
-ESP32-C3-DevKitC-02 是一款入门级开发板，使用配置 4 MB SPI flash 的通用型模组 `ESP32-C3-WROOM-02 <https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_cn.pdf>`_。该款开发板具备完整的 Wi-Fi 和低功耗蓝牙功能。
+ESP32-C3-DevKitC-02 是一款入门级开发板，使用配置 4 MB SPI flash 的通用型模组 `ESP32-C3-WROOM-02 或 ESP32-C3-WROOM-02U <https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_cn.pdf>`_。该款开发板具备完整的 Wi-Fi 和低功耗蓝牙功能。
 
 板上模组大部分管脚均已引出至两侧排针，开发人员可根据实际需求，轻松通过跳线连接多种外围设备，同时也可将开发板插在面包板上使用。
 
@@ -36,10 +36,10 @@ ESP32-C3-DevKitC-02 是一款入门级开发板，使用配置 4 MB SPI flash �
 
 .. figure:: ../../_static/esp32-c3-devkitc-02/esp32-c3-devkitc-02-v1-annotated-photo.png
     :align: center
-    :alt: ESP32-C3-DevKitC-02 - 正面
+    :alt: ESP32-C3-DevKitC-02（搭载 ESP32-C3-WROOM-02） - 正面
     :figclass: align-center
 
-    ESP32-C3-DevKitC-02 - 正面
+    ESP32-C3-DevKitC-02（搭载 ESP32-C3-WROOM-02） - 正面
 
 以下按照逆时针的顺序依次介绍开发板上的主要组件。
 
@@ -49,8 +49,8 @@ ESP32-C3-DevKitC-02 是一款入门级开发板，使用配置 4 MB SPI flash �
 
    * - 主要组件
      - 介绍
-   * - ESP32-C3-WROOM-02
-     - ESP32-C3-WROOM-02 是乐鑫推出的一款通用型 Wi-Fi 和低功耗蓝牙双模模组，功能强大。该模组采用 PCB 板载天线，配置了 4 MB SPI flash。
+   * - ESP32-C3-WROOM-02 或 ESP32-C3-WROOM-02U
+     - ESP32-C3-WROOM-02 和 ESP32-C3-WROOM-02U 是乐鑫推出的通用型 Wi-Fi 和低功耗蓝牙双模模组。ESP32-C3-WROOM-02 采用 PCB 板载天线，ESP32-C3-WROOM-02U 采用外部天线连接器。两款模组均配置 4 MB SPI flash。
    * - 5 V to 3.3 V LDO（5 V 转 3.3 V LDO）
      - 电源转换器，输入 5 V，输出 3.3 V。
    * - 5 V Power On LED（5 V 电源指示灯）
@@ -188,7 +188,7 @@ J3
 ====  ====  ==========  ================================
 
 .. [1] P：电源；I：输入；O：输出；T：可设置为高阻。
-.. [2] GPIO2、GPIO8、GPIO9 为 ESP32-C3 芯片的 Strapping 管脚。在芯片上电和系统复位过程中，Strapping 管脚根据管脚的二进制电压值控制芯片功能。Strapping 管脚的具体描述和应用，请参考 `ESP32-C3 技术规格书`_ 的 Strapping 管脚章节。
+.. [2] GPIO2、GPIO8、GPIO9 为 ESP32-C3 芯片的 Strapping 管脚。在芯片上电和系统复位过程中，Strapping 管脚根据管脚的二进制电压值控制芯片功能。Strapping 管脚的具体描述和应用，请参考 `ESP32-C3 技术规格书`_ 的启动配置项章节。
 
 管脚布局
 ^^^^^^^^
@@ -196,10 +196,10 @@ J3
 .. figure:: ../../_static/esp32-c3-devkitc-02/esp32-c3-devkitc-02-v1-pinout.png
     :align: center
     :scale: 45%
-    :alt: ESP32-C3-DevKitC-02 管脚布局（点击放大）
+    :alt: ESP32-C3-DevKitC-02 管脚布局（搭载 ESP32-C3-WROOM-02 模组，点击放大）
     :figclass: align-center
 
-    ESP32-C3-DevKitC-02 管脚布局（点击放大）
+    ESP32-C3-DevKitC-02 管脚布局（搭载 ESP32-C3-WROOM-02 模组，点击放大）
 
 硬件版本
 ==========
@@ -210,7 +210,7 @@ J3
 ========
 
 * `ESP32-C3 技术规格书`_ (PDF)
-* `ESP32-C3-WROOM-02 规格书`_ (PDF)
+* `ESP32-C3-WROOM-02 和 ESP32-C3-WROOM-02U 技术规格书`_ (PDF)
 * `ESP32-C3-DevKitC-02 原理图 <https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-DEVKITC-02_V1_1_20210126A.pdf>`_ (PDF)
 * `ESP32-C3-DevKitC-02 PCB 布局图 <https://dl.espressif.com/dl/schematics/PCB_ESP32-C3-DevKitC-02_V1_1_20210121AA.pdf>`_ (PDF)
 * `ESP32-C3-DevKitC-02 尺寸图 <https://dl.espressif.com/dl/schematics/DXF_ESP32-C3-DevKitC-02_V1_1_20210121AA.pdf>`_ (PDF)
@@ -219,4 +219,4 @@ J3
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
 .. _ESP32-C3 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_cn.pdf
-.. _ESP32-C3-WROOM-02 规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_cn.pdf
+.. _ESP32-C3-WROOM-02 和 ESP32-C3-WROOM-02U 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_cn.pdf

@@ -6,7 +6,7 @@ ESP32-C3-DevKitM-1
 
 本指南将帮助你快速上手 ESP32-C3-DevKitM-1，并提供该款开发板的详细信息。
 
-ESP32-C3-DevKitM-1 是一款入门级开发板，使用以尺寸小而得名的 `ESP32-C3-MINI-1 <https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_cn.pdf>`_ 模组。该款开发板具备完整的 Wi-Fi 和低功耗蓝牙功能。
+ESP32-C3-DevKitM-1 是一款入门级开发板，使用以尺寸小而得名的 `ESP32-C3-MINI-1 或 ESP32-C3-MINI-1U <https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_cn.pdf>`_ 模组。该款开发板具备完整的 Wi-Fi 和低功耗蓝牙功能。
 
 板上模组大部分管脚均已引出至两侧排针，开发人员可根据实际需求，轻松通过跳线连接多种外围设备，同时也可将开发板插在面包板上使用。
 
@@ -38,10 +38,10 @@ ESP32-C3-DevKitM-1 是一款入门级开发板，使用以尺寸小而得名的 
 
 .. figure:: ../../_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-annotated-photo.png
     :align: center
-    :alt: ESP32-C3-DevKitM-1 - 正面
+    :alt: ESP32-C3-DevKitM-1（搭载 ESP32-C3-MINI-1 模组） - 正面
     :figclass: align-center
 
-    ESP32-C3-DevKitM-1 - 正面
+    ESP32-C3-DevKitM-1（搭载 ESP32-C3-MINI-1 模组） - 正面
 
 以下按照逆时针的顺序依次介绍开发板上的主要组件。
 
@@ -51,8 +51,8 @@ ESP32-C3-DevKitM-1 是一款入门级开发板，使用以尺寸小而得名的 
 
    * - 主要组件
      - 介绍
-   * - ESP32-C3-MINI-1
-     - ESP32-C3-MINI-1 是一款通用型 Wi-Fi 和低功耗蓝牙双模模组，采用 PCB 板载天线。该款模组集成配置 4 MB 嵌入式 flash 的 `ESP32-C3FN4 <https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_cn.pdf>`_ 芯片。由于 flash 直接封装在芯片中，ESP32-C3-MINI-1 模组具有更小的封装尺寸。
+   * - ESP32-C3-MINI-1 或 ESP32-C3-MINI-1U
+     - ESP32-C3-MINI-1 和 ESP32-C3-MINI-1U 是通用型 Wi-Fi 和低功耗蓝牙双模模组。ESP32-C3-MINI-1 采用 PCB 板载天线，ESP32-C3-MINI-1U 采用外部天线连接器。两款模组都配有 4 MB flash，集成于芯片封装内。
    * - 5 V to 3.3 V LDO（5 V 转 3.3 V LDO）
      - 电源转换器，输入 5 V，输出 3.3 V。
    * - 5 V Power On LED（5 V 电源指示灯）
@@ -62,7 +62,7 @@ ESP32-C3-DevKitM-1 是一款入门级开发板，使用以尺寸小而得名的 
    * - Boot Button（Boot 键）
      - 下载按键。按住 **Boot** 键的同时按一下 **Reset** 键进入“固件下载”模式，通过串口下载固件。
    * - Micro-USB Port（Micro-USB 接口）
-     - USB 接口。可用作开发板的供电电源或 PC 和 ESP32-C3FN4 芯片的通信接口。
+     - USB 接口。可用作开发板的供电电源或 PC 和 ESP32-C3 系列芯片的通信接口。
    * - Reset Button（Reset 键）
      - 复位按键。
    * - USB-to-UART Bridge（USB 至 UART 桥接器）
@@ -199,7 +199,7 @@ J3
 ====  ====  ==========  ================================
 
 .. [1] P：电源；I：输入；O：输出；T：可设置为高阻。
-.. [2] GPIO2、GPIO8、GPIO9 为 ESP32-C3FN4 芯片的 Strapping 管脚。在芯片上电和系统复位过程中，Strapping 管脚根据管脚的二进制电压值控制芯片功能。Strapping 管脚的具体描述和应用，请参考 `ESP32-C3 技术规格书`_ 的 Strapping 管脚章节。
+.. [2] GPIO2、GPIO8、GPIO9 为 ESP32-C3 系列芯片的 Strapping 管脚。在芯片上电和系统复位过程中，Strapping 管脚根据管脚的二进制电压值控制芯片功能。Strapping 管脚的具体描述和应用，请参考 `ESP32-C3 技术规格书`_ 的启动配置项章节。
 
 
 管脚布局
@@ -208,9 +208,9 @@ J3
 .. figure:: ../../_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-pinout.png
     :align: center
     :scale: 45%
-    :alt: ESP32-C3-DevKitM-1 管脚布局（点击放大）
+    :alt: ESP32-C3-DevKitM-1 管脚布局（搭载 ESP32-C3-MINI-1 模组，点击放大）
 
-    ESP32-C3-DevKitM-1 管脚布局（点击放大）
+    ESP32-C3-DevKitM-1 管脚布局（搭载 ESP32-C3-MINI-1 模组，点击放大）
 
 
 硬件版本
@@ -223,7 +223,7 @@ J3
 ========
 
 * `ESP32-C3 技术规格书`_ (PDF)
-* `ESP32-C3-MINI-1 规格书`_ (PDF)
+* `ESP32-C3-MINI-1 和 ESP32-C3-MINI-1U 技术规格书`_ (PDF)
 * `ESP32-C3-DevKitM-1 原理图 <https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-DEVKITM-1_V1_20200915A.pdf>`_ (PDF)
 * `ESP32-C3-DevKitM-1 PCB 布局图 <https://dl.espressif.com/dl/schematics/PCB_ESP32-C3-DEVKITM-1_V1_20200915AA.pdf>`_ (PDF)
 * `ESP32-C3-DevKitM-1 尺寸图 <https://dl.espressif.com/dl/schematics/DIMENSION_ESP32-C3-DEVKITM-1_V1_20200915AA.pdf>`_ (PDF)
@@ -232,4 +232,4 @@ J3
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
 .. _ESP32-C3 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_cn.pdf
-.. _ESP32-C3-MINI-1 规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_cn.pdf
+.. _ESP32-C3-MINI-1 和 ESP32-C3-MINI-1U 技术规格书: https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_cn.pdf

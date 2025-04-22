@@ -6,9 +6,9 @@ ESP32-C3-DevKitM-1
 
 This user guide will help you get started with ESP32-C3-DevKitM-1 and will also provide more in-depth information.
 
-ESP32-C3-DevKitM-1 is an entry-level development board based on `ESP32-C3-MINI-1 <https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf>`_, a module named for its small size. This board integrates complete Wi-Fi and Bluetooth® Low Energy functions.
+ESP32-C3-DevKitM-1 is an entry-level development board based on `ESP32-C3-MINI-1 or ESP32-C3-MINI-1U <https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf>`_ modules, which are named for their compact size. This board integrates complete Wi-Fi and Bluetooth® Low Energy functions.
 
-Most of the I/O pins on the ESP32-C3-MINI-1 module are broken out to the pin headers on both sides of this board for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-C3-DevKitM-1 on a breadboard.
+Most of the I/O pins on the module are broken out to the pin headers on both sides of this board for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-C3-DevKitM-1 on a breadboard.
 
 .. figure:: ../../_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-isometric.png
     :align: center
@@ -38,10 +38,10 @@ Description of Components
 
 .. figure:: ../../_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-annotated-photo.png
     :align: center
-    :alt: ESP32-C3-DevKitM-1 - front
+    :alt: ESP32-C3-DevKitM-1 (with the ESP32-C3-MINI-1 module) - front
     :figclass: align-center
 
-    ESP32-C3-DevKitM-1 - front
+    ESP32-C3-DevKitM-1 (with the ESP32-C3-MINI-1 module) - front
 
 The key components of the board are described in a counter-clockwise direction.
 
@@ -51,8 +51,8 @@ The key components of the board are described in a counter-clockwise direction.
 
    * - Key Component
      - Description
-   * - ESP32-C3-MINI-1
-     - ESP32-C3-MINI-1 is a general-purpose Wi-Fi and Bluetooth Low Energy combo module that comes with a PCB antenna. At the core of this module is `ESP32-C3FN4 <https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf>`_, a chip that has an embedded flash of 4 MB. Since flash is packaged in the ESP32-C3FN4 chip, rather than integrated into the module, ESP32-C3-MINI-1 has a smaller package size.
+   * - ESP32-C3-MINI-1 or ESP32-C3-MINI-1U
+     - ESP32-C3-MINI-1 and ESP32-C3-MINI-1U are general-purpose Wi-Fi and Bluetooth Low Energy combo modules. ESP32-C3-MINI-1 comes with an on-board PCB antenna, whereas ESP32-C3-MINI-1U comes with an external antenna connector. They both have a flash of 4 MB, integrated inside the chip's package.
    * - 5 V to 3.3 V LDO
      - Power regulator that converts a 5 V supply into a 3.3 V output.
    * - 5 V Power On LED
@@ -62,7 +62,7 @@ The key components of the board are described in a counter-clockwise direction.
    * - Boot Button
      - Download button. Holding down **Boot** and then pressing **Reset** initiates Firmware Download mode for downloading firmware through the serial port.
    * - Micro-USB Port
-     - USB interface. Power supply for the board as well as the communication interface between a computer and the ESP32-C3FN4 chip.
+     - USB interface. Power supply for the board as well as the communication interface between a computer and the ESP32-C3 series of chips.
    * - Reset Button
      - Press this button to restart the system.
    * - USB-to-UART Bridge
@@ -199,7 +199,7 @@ No.  Name  Type [1]_   Function
 ===  ====  ==========  ====================================
 
 .. [1] P: Power supply; I: Input; O: Output; T: High impedance.
-.. [2] GPIO2, GPIO8, and GPIO9 are strapping pins of the ESP32-C3FN4 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset. For description and application of the strapping pins, please refer to Section Strapping Pins in `ESP32-C3 Datasheet`_.
+.. [2] GPIO2, GPIO8, and GPIO9 are strapping pins of the ESP32-C3 series of chips. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset. For description and application of the strapping pins, please refer to Section Boot Configurations in `ESP32-C3 Datasheet`_.
 
 
 Pin Layout
@@ -208,9 +208,9 @@ Pin Layout
 .. figure:: ../../_static/esp32-c3-devkitm-1/esp32-c3-devkitm-1-v1-pinout.png
     :align: center
     :scale: 45%
-    :alt: ESP32-C3-DevKitM-1 (click to enlarge)
+    :alt: ESP32-C3-DevKitM-1 (with the ESP32-C3-MINI-1 module, click to enlarge)
 
-    ESP32-C3-DevKitM-1 Pin Layout (click to enlarge)
+    ESP32-C3-DevKitM-1 Pin Layout (with the ESP32-C3-MINI-1 module, click to enlarge)
 
 
 Hardware Revision Details
@@ -223,7 +223,7 @@ Related Documents
 =================
 
 * `ESP32-C3 Datasheet`_ (PDF)
-* `ESP32-C3-MINI-1 Datasheet`_ (PDF)
+* `ESP32-C3-MINI-1 & ESP32-C3-MINI-1U Datasheet`_ (PDF)
 * `ESP32-C3-DevKitM-1 Schematic <https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-DEVKITM-1_V1_20200915A.pdf>`_ (PDF)
 * `ESP32-C3-DevKitM-1 PCB Layout <https://dl.espressif.com/dl/schematics/PCB_ESP32-C3-DEVKITM-1_V1_20200915AA.pdf>`_ (PDF)
 * `ESP32-C3-DevKitM-1 Dimensions <https://dl.espressif.com/dl/schematics/DIMENSION_ESP32-C3-DEVKITM-1_V1_20200915AA.pdf>`_ (PDF)
@@ -232,4 +232,4 @@ Related Documents
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
 .. _ESP32-C3 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf
-.. _ESP32-C3-MINI-1 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf
+.. _ESP32-C3-MINI-1 & ESP32-C3-MINI-1U Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c3-mini-1_datasheet_en.pdf

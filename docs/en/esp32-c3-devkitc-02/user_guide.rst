@@ -6,7 +6,7 @@ ESP32-C3-DevKitC-02
 
 This user guide will help you get started with ESP32-C3-DevKitC-02 and will also provide more in-depth information.
 
-ESP32-C3-DevKitC-02 is an entry-level development board based on `ESP32-C3-WROOM-02 <https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_en.pdf>`_, a general-purpose module with 4 MB SPI flash. This board integrates complete Wi-Fi and Bluetooth® Low Energy functions.
+ESP32-C3-DevKitC-02 is an entry-level development board based on `ESP32-C3-WROOM-02 or ESP32-C3-WROOM-02U <https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_en.pdf>`_, general-purpose modules with 4 MB SPI flash. This board integrates complete Wi-Fi and Bluetooth® Low Energy functions.
 
 Most of the I/O pins are broken out to the pin headers on both sides for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-C3-DevKitC-02 on a breadboard.
 
@@ -36,10 +36,10 @@ Description of Components
 
 .. figure:: ../../_static/esp32-c3-devkitc-02/esp32-c3-devkitc-02-v1-annotated-photo.png
     :align: center
-    :alt: ESP32-C3-DevKitC-02 - front
+    :alt: ESP32-C3-DevKitC-02 (with the ESP32-C3-WROOM-02 module） - front
     :figclass: align-center
 
-    ESP32-C3-DevKitC-02 - front
+    ESP32-C3-DevKitC-02 (with the ESP32-C3-WROOM-02 module) - front
 
 The key components of the board are described in a counter-clockwise direction.
 
@@ -49,8 +49,8 @@ The key components of the board are described in a counter-clockwise direction.
 
    * - Key Component
      - Description
-   * - ESP32-C3-WROOM-02
-     - ESP32-C3-WROOM-02 from Espressif is a powerful and general-purpose module that offers Wi-Fi and Bluetooth Low Energy coexistence. It has a PCB antenna and a 4 MB SPI flash.
+   * - ESP32-C3-WROOM-02 or ESP32-C3-WROOM-02U
+     - ESP32-C3-WROOM-02 and ESP32-C3-WROOM-02U are powerful and general-purpose Espressif modules that offer Wi-Fi and Bluetooth Low Energy coexistence. ESP32-C3-WROOM-02 has a PCB antenna, while ESP32-C3-WROOM-02U has an external antenna connector. They both integrate a 4 MB SPI flash.
    * - 5 V to 3.3 V LDO
      - Power regulator that converts a 5 V supply into a 3.3 V output.
    * - 5 V Power On LED
@@ -188,7 +188,7 @@ No.  Name  Type [1]_   Function
 ===  ====  ==========  ====================================
 
 .. [1] P: Power supply; I: Input; O: Output; T: High impedance.
-.. [2] GPIO2, GPIO8, and GPIO9 are strapping pins of the ESP32-C3 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset. For description and application of the strapping pins, please refer to Section Strapping Pins in `ESP32-C3 Datasheet`_.
+.. [2] GPIO2, GPIO8, and GPIO9 are strapping pins of the ESP32-C3 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset. For description and application of the strapping pins, please refer to Section Boot Configurations in `ESP32-C3 Datasheet`_.
 
 Pin Layout
 ^^^^^^^^^^
@@ -196,10 +196,10 @@ Pin Layout
 .. figure:: ../../_static/esp32-c3-devkitc-02/esp32-c3-devkitc-02-v1-pinout.png
     :align: center
     :scale: 45%
-    :alt: ESP32-C3-DevKitC-02 (click to enlarge)
+    :alt: ESP32-C3-DevKitC-02 (with the ESP32-C3-WROOM-02 module, click to enlarge)
     :figclass: align-center
 
-    ESP32-C3-DevKitC-02 Pin Layout (click to enlarge)
+    ESP32-C3-DevKitC-02 Pin Layout (with the ESP32-C3-WROOM-02 module, click to enlarge)
 
 Hardware Revision Details
 =========================
@@ -210,7 +210,7 @@ Related Documents
 =================
 
 * `ESP32-C3 Datasheet`_ (PDF)
-* `ESP32-C3-WROOM-02 Datasheet`_ (PDF)
+* `ESP32-C3-WROOM-02 & ESP32-C3-WROOM-02U Datasheet`_ (PDF)
 * `ESP32-C3-DevKitC-02 Schematic <https://dl.espressif.com/dl/schematics/SCH_ESP32-C3-DEVKITC-02_V1_1_20210126A.pdf>`_ (PDF)
 * `ESP32-C3-DevKitC-02 PCB Layout <https://dl.espressif.com/dl/schematics/PCB_ESP32-C3-DevKitC-02_V1_1_20210121AA.pdf>`_ (PDF)
 * `ESP32-C3-DevKitC-02 Dimensions <https://dl.espressif.com/dl/schematics/DXF_ESP32-C3-DevKitC-02_V1_1_20210121AA.pdf>`_ (PDF)
@@ -219,4 +219,4 @@ Related Documents
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
 .. _ESP32-C3 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c3_datasheet_en.pdf
-.. _ESP32-C3-WROOM-02 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_en.pdf
+.. _ESP32-C3-WROOM-02 & ESP32-C3-WROOM-02U Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c3-wroom-02_datasheet_en.pdf
