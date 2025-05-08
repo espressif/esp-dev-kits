@@ -37,25 +37,33 @@ menuconfig > Component config > Board Support Package
 
 When the pixel clock is set to 80MHz, the default SPI clock source may temporarily fail to meet timing requirements. To address this, please follow these steps to apply the patch file `0001-fix-spi-default-clock-source.patch`:
 
-1. Copy the patch file to the ESP-IDF root directory, for example:
+1. Change to the ESP-IDF root directory and check out the specific version (the patch is designed for IDF release/v5.4 commit:8ad0d3d8f2faab752635bee36070313c47c07a13):
 
 ```bash
-cp 0001-fix-spi-default-clock-source.patch ~/esp-idf/
+cd ~/esp-idf
+git checkout release/v5.4
+git checkout 8ad0d3d8f2faab752635bee36070313c47c07a13
 ```
 
-2. Change to the ESP-IDF root directory:
+2. Copy the patch file to the ESP-IDF root directory, for example:
+
+```bash
+cp 0002-fix-spi-default-clock-source.patch ~/esp-idf/
+```
+
+3. Change to the ESP-IDF root directory:
 
 ```bash
 cd ~/esp-idf
 ```
 
-3. Apply the patch using the following command:
+4. Apply the patch using the following command:
 
 ```bash
-git apply 0001-fix-spi-default-clock-source.patch
+git apply 0002-fix-spi-default-clock-source.patch
 ```
 
-If you experience significant lag during photo capture or video recording, you can try applying the patch file `0001-feat-sdmmc-aligned-write-buffer.patch` using the same method as above.
+If you experience significant lag during photo capture or video recording, you can try applying the patch file `0002-feat-sdmmc-aligned-write-buffer.patch` using the same method as above.
 
 ## How to Use the Example
 

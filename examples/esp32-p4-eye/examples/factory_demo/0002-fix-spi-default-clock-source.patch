@@ -1,7 +1,7 @@
-From da6b64fa96d075328dd980c1be33a91763dcdd77 Mon Sep 17 00:00:00 2001
+From 8abaf0f7ef478da0169490ed004a09d194b40d09 Mon Sep 17 00:00:00 2001
 From: lvhaiyu <lvhaiyu@espressif.com>
-Date: Tue, 15 Apr 2025 15:21:01 +0800
-Subject: [PATCH] feat(p4): update code
+Date: Mon, 12 May 2025 11:54:11 +0800
+Subject: [PATCH] fix(p4): spi fix
 
 ---
  components/soc/esp32p4/include/soc/clk_tree_defs.h | 2 +-

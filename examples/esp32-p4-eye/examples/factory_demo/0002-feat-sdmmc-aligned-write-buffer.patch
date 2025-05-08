@@ -1,38 +1,30 @@
-From 0407522a955207e20bff98a83f5b4abb7c64d9d7 Mon Sep 17 00:00:00 2001
+From b4fd971e48719c0802849b483b82eacee81f78ae Mon Sep 17 00:00:00 2001
 From: lvhaiyu <lvhaiyu@espressif.com>
-Date: Tue, 15 Apr 2025 19:56:20 +0800
-Subject: [PATCH] feat(p4): update code
+Date: Mon, 12 May 2025 13:50:15 +0800
+Subject: [PATCH] fix(p4): sdcard fix
 
 ---
- components/sdmmc/sdmmc_cmd.c | 52 +++++++++++++++++++++++++++---------
- 1 file changed, 39 insertions(+), 13 deletions(-)
+ components/sdmmc/sdmmc_cmd.c | 47 +++++++++++++++++++++++++++---------
+ 1 file changed, 35 insertions(+), 12 deletions(-)
 
 diff --git a/components/sdmmc/sdmmc_cmd.c b/components/sdmmc/sdmmc_cmd.c
-index 71f23ec756..ab99bec94a 100644
+index 71f23ec756..18a998722a 100644
 --- a/components/sdmmc/sdmmc_cmd.c
 +++ b/components/sdmmc/sdmmc_cmd.c
-@@ -9,6 +9,8 @@
- 
- static const char* TAG = "sdmmc_cmd";
+@@ -445,6 +445,9 @@ esp_err_t sdmmc_send_cmd_num_of_written_blocks(sdmmc_card_t* card, size_t* out_n
+     return err;
+ }
  
 +static char *s_write_cache_buffer = NULL;
 +static size_t s_write_cache_buffer_size = 16384;  // 16KB
- 
- esp_err_t sdmmc_send_cmd(sdmmc_card_t* card, sdmmc_command_t* cmd)
++
+ esp_err_t sdmmc_write_sectors(sdmmc_card_t* card, const void* src,
+         size_t start_block, size_t block_count)
  {
-@@ -242,7 +244,6 @@ esp_err_t sdmmc_send_cmd_send_cid(sdmmc_card_t *card, sdmmc_cid_t *out_cid)
-     return sdmmc_decode_cid(buf, out_cid);
- }
+@@ -454,32 +457,52 @@ esp_err_t sdmmc_write_sectors(sdmmc_card_t* card, const void* src,
  
--
- esp_err_t sdmmc_send_cmd_set_relative_addr(sdmmc_card_t* card, uint16_t* out_rca)
- {
-     assert(out_rca);
-@@ -455,31 +456,56 @@ esp_err_t sdmmc_write_sectors(sdmmc_card_t* card, const void* src,
      esp_err_t err = ESP_OK;
      size_t block_size = card->csd.sector_size;
-     esp_dma_mem_info_t dma_mem_info;
-+
 +    // Initialize cache buffer if not initialized yet
 +    if (s_write_cache_buffer == NULL) {
 +        s_write_cache_buffer = heap_caps_aligned_alloc(64, s_write_cache_buffer_size, MALLOC_CAP_SPIRAM | MALLOC_CAP_DMA);
@@ -53,17 +45,14 @@ index 71f23ec756..ab99bec94a 100644
 +    }
 +    // Copy source data to cache buffer
 +    memcpy(s_write_cache_buffer, src, block_size * block_count);
+     esp_dma_mem_info_t dma_mem_info;
      card->host.get_dma_info(card->host.slot, &dma_mem_info);
 -#ifdef SOC_SDMMC_PSRAM_DMA_CAPABLE
 -    dma_mem_info.extra_heap_caps |= MALLOC_CAP_SPIRAM;
 -#endif
 -    if (esp_dma_is_buffer_alignment_satisfied(src, block_size * block_count, dma_mem_info)
++    bool is_aligned = esp_dma_is_buffer_alignment_satisfied(s_write_cache_buffer, block_size * block_count, dma_mem_info);
 +
-+    bool is_aligned = esp_dma_is_buffer_alignment_satisfied(
-+        s_write_cache_buffer,
-+        block_size * block_count,
-+        dma_mem_info
-+    );
 +    if (is_aligned
          #if !SOC_SDMMC_PSRAM_DMA_CAPABLE
 -            && !esp_ptr_external_ram(src)

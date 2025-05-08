@@ -101,14 +101,14 @@ esp_err_t app_video_stream_set_photo_resolution_by_string(const char *resolution
         app_video_stream_set_video_resolution(PHOTO_RESOLUTION_480P);
     } else if (strcmp(resolution_str, "720P") == 0 || strcmp(resolution_str, "720p") == 0) {
         app_video_stream_set_photo_resolution(PHOTO_RESOLUTION_720P);
-        app_video_stream_set_video_resolution(PHOTO_RESOLUTION_480P);
+        app_video_stream_set_video_resolution(PHOTO_RESOLUTION_720P);
     } else if (strcmp(resolution_str, "1080P") == 0 || strcmp(resolution_str, "1080p") == 0) {
         app_video_stream_set_photo_resolution(PHOTO_RESOLUTION_1080P);
-        app_video_stream_set_video_resolution(PHOTO_RESOLUTION_480P);
+        app_video_stream_set_video_resolution(PHOTO_RESOLUTION_1080P);
     } else {
-        ESP_LOGW(TAG, "Unknown resolution string: %s, using default 720P", resolution_str);
-        app_video_stream_set_photo_resolution(PHOTO_RESOLUTION_720P);
-        app_video_stream_set_video_resolution(PHOTO_RESOLUTION_480P);
+        ESP_LOGW(TAG, "Unknown resolution string: %s, using default 1080P", resolution_str);
+        app_video_stream_set_photo_resolution(PHOTO_RESOLUTION_1080P);
+        app_video_stream_set_video_resolution(PHOTO_RESOLUTION_1080P);
     }
 
     return ESP_OK;
