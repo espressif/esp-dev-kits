@@ -39,25 +39,33 @@ menuconfig > Component config > Board Support Package
 
 * 当像素时钟设置为 80MHz 时，SPI 默认时钟源暂时可能无法满足时序需求。为此，请按照以下步骤应用补丁文件 `0001-fix-spi-default-clock-source.patch`：
 
-1. 将补丁文件复制到 ESP-IDF 根目录，例如：
+1. 切换到 ESP-IDF 根目录并检出特定版本 (补丁针对 IDF release/v5.4 commit:8ad0d3d8f2faab752635bee36070313c47c07a13 版本):
 
 ```bash
-cp 0001-fix-spi-default-clock-source.patch ~/esp-idf/
+cd ~/esp-idf
+git checkout release/v5.4
+git checkout 8ad0d3d8f2faab752635bee36070313c47c07a13
 ```
 
-2. 切换到 ESP-IDF 根目录：
+2. 将补丁文件复制到 ESP-IDF 根目录，例如：
+
+```bash
+cp 0002-fix-spi-default-clock-source.patch ~/esp-idf/
+```
+
+3. 切换到 ESP-IDF 根目录：
 
 ```bash
 cd ~/esp-idf
 ```
 
-3. 执行以下命令应用补丁
+4. 执行以下命令应用补丁
 
 ```bash
-git apply 0001-fix-spi-default-clock-source.patch
+git apply 0002-fix-spi-default-clock-source.patch
 ```
 
-* 若在拍照或录像过程中出现明显卡顿，可尝试应用补丁文件 `0001-feat-sdmmc-aligned-write-buffer.patch`，其使用方法同上。
+* 若在拍照或录像过程中出现明显卡顿，可尝试应用补丁文件 `0002-feat-sdmmc-aligned-write-buffer.patch`，其使用方法同上。
 
 ### 编译和烧录示例
 

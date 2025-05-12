@@ -66,7 +66,7 @@ ESP32-P4-EYE 是一款基于 ESP32-P4 芯片的视觉开发板，主要面向摄
    * - 主要组件
      - 描述
    * - MicroSD Card Slot（MicroSD 卡槽）
-     - 可插入 MicroSD 卡，支持 4-线 SDIO 和 SPI 模式。
+     - 支持通过 4 线 SD 总线连接 MicroSD 卡，兼容 SDIO 协议与 SPI 协议两种通信模式。
    * - Test Points（测试点）
      - 用于对 ESP32-C6-MINI-1U 进行烧录测试的测试点，可焊接杜邦线。
    * - USB 2.0 Device Port（USB 2.0 Device 接口）
@@ -243,7 +243,10 @@ SD 卡接口
 
    SD 卡接口电路图（点击放大）
 
-请注意，SD 卡接口同时兼容 1-线，4-线 SDIO 模式和 SPI 模式。
+**请注意，SD 卡接口支持：**
+
+* 1-线和4-线的 SD 总线配置
+* 可通过 SDIO 协议或 SPI 协议通信
 
 充电电路
 ----------

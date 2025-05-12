@@ -66,7 +66,7 @@ The key components of the top PCB are described in a clockwise direction. To fac
    * - Key Component
      - Description
    * - MicroSD Card Slot
-     - Supports a MicroSD card in 4-line SDIO and SPI modes.
+     - Supports a MicroSD card through 4-line SD bus with SDIO protocol or SPI protocol.
    * - Test Points
      - Provides access points for programming and testing the ESP32-C6-MINI-1U; can be connected via Dupont wires.
    * - USB 2.0 Device Port
@@ -243,7 +243,10 @@ MicroSD Card Slot Interface Circuit
 
    MicroSD Card Slot Interface Circuit (Click to Enlarge)
 
-Please note that the MicroSD card interface supports 1-bit and 4-bit SDIO modes, as well as SPI mode.
+**Please note that the MicroSD card interface supports:**
+
+* 1-bit and 4-bit SD bus configurations
+* Communication via SDIO protocol or SPI protocol
 
 Charging Circuit
 ----------------
