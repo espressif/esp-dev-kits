@@ -1,10 +1,10 @@
-==========================
-ESP32-P4-Function-EV-Board
-==========================
+===============================
+ESP32-P4-Function-EV-Board v1.4
+===============================
 
 :link_to_translation:`en: [English]`
 
-更早版本： :doc:`user_guide_v1.4`
+最新版本： :doc:`user_guide`
 
 本指南将帮助您快速上手 ESP32-P4-Function-EV-Board，并提供该款开发板的详细信息。
 
@@ -36,7 +36,7 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
 组件介绍
 --------
 
-.. _user-guide-esp32-p4-function-ev-board-front:
+.. _user-guide-esp32-p4-function-ev-board-v1.4-front:
 
 .. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front.png
     :align: center
@@ -224,15 +224,15 @@ ESP32-P4-Function-EV-Board 的包装盒中包含以下可选配件：
 
 ESP32-P4-Function-EV-Board 的主要组件和连接方式如下图所示。
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-block-diagram.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-v1.4-block-diagram.png
     :align: center
     :width: 100%
-    :alt: ESP32-P4-Function-EV-Board（点击放大）
+    :alt: ESP32-P4-Function-EV-Board v1.4（点击放大）
     :figclass: align-center
 
-    ESP32-P4-Function-EV-Board（点击放大）
+    ESP32-P4-Function-EV-Board v1.4（点击放大）
 
-.. _power-supply-options:
+.. _power-supply-options-v1.4:
 
 电源选项
 --------
@@ -245,12 +245,12 @@ ESP32-P4-Function-EV-Board 的主要组件和连接方式如下图所示。
 
 如果用于调试的 USB 数据线无法提供足够的电流，可通过空闲的 USB Type-C 接口连接电源适配器。
 
-.. _header-block:
+.. _header-block-v1.4:
 
 排针
 ----
 
-下表列出了开发板排针 J1 的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-esp32-p4-function-ev-board-front` 所示，排针的序号与 `ESP32-P4-Function-EV-Board 原理图`_ 一致。
+下表列出了开发板排针 J1 的 **名称** 和 **功能**，排针的名称如图 :ref:`user-guide-esp32-p4-function-ev-board-front` 所示，排针的序号与 `ESP32-P4-Function-EV-Board v1.4 原理图`_ 一致。
 
 J1
 ^^^
@@ -306,10 +306,7 @@ J1
 硬件版本
 ==========
 
-ESP32-P4-Function-EV-Board v1.4
--------------------------------
-
-:doc:`首次发布 <user_guide_v1.4>`
+该开发板为最新硬件，尚未有历史版本。
 
 相关文档
 ========
@@ -318,10 +315,10 @@ ESP32-P4-Function-EV-Board v1.4
 
    请前往 `esp-dev-kits 文档 HTML 网页版本 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/{IDF_TARGET_PATH_NAME}/index.html>`_ 下载以下文档。
 
-* `ESP32-P4-Function-EV-Board 原理图`_ (PDF)
-* `ESP32-P4-Function-EV-Board PCB 布局图`_ (PDF)
-* `ESP32-P4-Function-EV-Board 尺寸图`_ (PDF)
-* `ESP32-P4-Function-EV-Board 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+* `ESP32-P4-Function-EV-Board v1.4 原理图`_ (PDF)
+* `ESP32-P4-Function-EV-Board v1.4 PCB 布局图`_ (PDF)
+* `ESP32-P4-Function-EV-Board v1.4 尺寸图`_ (PDF)
+* `ESP32-P4-Function-EV-Board v1.4 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 * `1.0K-GT-15PB 规格书`_ (PDF)
 * `摄像头规格书`_ (PDF)
 * `显示屏规格书`_ (PDF)
@@ -334,10 +331,10 @@ ESP32-P4-Function-EV-Board v1.4
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
-.. _ESP32-P4-Function-EV-Board 原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics.pdf
-.. _ESP32-P4-Function-EV-Board PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-pcb-layout.pdf
-.. _ESP32-P4-Function-EV-Board 尺寸图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.pdf
-.. _ESP32-P4-Function-EV-Board 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.dxf
+.. _ESP32-P4-Function-EV-Board v1.4 原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-v1.4-schematics.pdf
+.. _ESP32-P4-Function-EV-Board v1.4 PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-v1.4-pcb-layout.pdf
+.. _ESP32-P4-Function-EV-Board v1.4 尺寸图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-v1.4-dimensions.pdf
+.. _ESP32-P4-Function-EV-Board v1.4 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-v1.4-dimensions.dxf
 .. _1.0K-GT-15PB 规格书: https://dl.espressif.com/dl/schematics/1.0K-GT-15PB_specification.pdf
 .. _摄像头规格书: https://dl.espressif.com/dl/schematics/camera_datasheet.pdf
 .. _显示屏规格书: https://dl.espressif.com/dl/schematics/display_datasheet.pdf
@@ -347,8 +344,3 @@ ESP32-P4-Function-EV-Board v1.4
 .. _显示屏适配板 PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-lcd-subboard-pcb-layout.pdf
 .. _摄像头适配板原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf
 .. _摄像头适配板 PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf
-
-.. toctree::
-    :hidden:
-
-    user_guide_v1.4

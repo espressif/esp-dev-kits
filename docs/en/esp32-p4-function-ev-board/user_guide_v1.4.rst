@@ -1,10 +1,10 @@
-==========================
-ESP32-P4-Function-EV-Board
-==========================
+===============================
+ESP32-P4-Function-EV-Board v1.4
+===============================
 
 :link_to_translation:`zh_CN:[中文]`
 
-The older version: :doc:`user_guide_v1.4`
+New version available: :doc:`user_guide`
 
 This user guide will help you get started with ESP32-P4-Function-EV-Board and will also provide more in-depth information.
 
@@ -36,7 +36,7 @@ This section provides a brief introduction to ESP32-P4-Function-EV-Board, instru
 Description of Components
 -------------------------
 
-.. _user-guide-esp32-p4-function-ev-board-front:
+.. _user-guide-esp32-p4-function-ev-board-v1.4-front:
 
 .. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front.png
     :align: center
@@ -224,15 +224,15 @@ Block Diagram
 
 The block diagram below shows the components of ESP32-P4-Function-EV-Board and their interconnections.
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-block-diagram.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-v1.4-block-diagram.png
     :align: center
     :width: 100%
-    :alt: ESP32-P4-Function-EV-Board (click to enlarge)
+    :alt: ESP32-P4-Function-EV-Board v1.4 (click to enlarge)
     :figclass: align-center
 
-    ESP32-P4-Function-EV-Board (click to enlarge)
+    ESP32-P4-Function-EV-Board v1.4 (click to enlarge)
 
-.. _power-supply-options:
+.. _power-supply-options-v1.4:
 
 Power Supply Options
 --------------------
@@ -245,12 +245,12 @@ Power can be supplied through any of the following ports:
 
 If the USB cable used for debugging cannot provide enough current, you can connect the board to a power adapter via any available USB Type-C port.
 
-.. _header-block:
+.. _header-block-v1.4:
 
 Header Block
 -------------
 
-The tables below provide the **Name** and **Function** of the pin header J1 of the board. The pin header names are shown in Figure :ref:`user-guide-esp32-p4-function-ev-board-front`. The numbering is the same as in the `ESP32-P4-Function-EV-Board Schematic`_.
+The tables below provide the **Name** and **Function** of the pin header J1 of the board. The pin header names are shown in Figure :ref:`user-guide-esp32-p4-function-ev-board-front`. The numbering is the same as in the `ESP32-P4-Function-EV-Board v1.4 Schematic`_.
 
 J1
 ^^^
@@ -306,10 +306,7 @@ No.  Name     Type [1]_   Function
 Hardware Revision Details
 =========================
 
-ESP32-P4-Function-EV-Board v1.4
--------------------------------
-
-:doc:`Initial release <user_guide_v1.4>`
+No previous versions available.
 
 Related Documents
 =================
@@ -318,10 +315,10 @@ Related Documents
 
    Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
 
-* `ESP32-P4-Function-EV-Board Schematic`_ (PDF)
-* `ESP32-P4-Function-EV-Board PCB Layout`_ (PDF)
-* `ESP32-P4-Function-EV-Board Dimensions`_ (PDF)
-* `ESP32-P4-Function-EV-Board Dimensions source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+* `ESP32-P4-Function-EV-Board v1.4 Schematic`_ (PDF)
+* `ESP32-P4-Function-EV-Board v1.4 PCB Layout`_ (PDF)
+* `ESP32-P4-Function-EV-Board v1.4 Dimensions`_ (PDF)
+* `ESP32-P4-Function-EV-Board v1.4 Dimensions source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 * `1.0K-GT-15PB Specification`_ (PDF)
 * `Camera Datasheet`_ (PDF)
 * `Display Datasheet`_ (PDF)
@@ -334,10 +331,10 @@ Related Documents
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-.. _ESP32-P4-Function-EV-Board Schematic: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics.pdf
-.. _ESP32-P4-Function-EV-Board PCB Layout: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-pcb-layout.pdf
-.. _ESP32-P4-Function-EV-Board Dimensions: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.pdf
-.. _ESP32-P4-Function-EV-Board Dimensions source file: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.dxf
+.. _ESP32-P4-Function-EV-Board v1.4 Schematic: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-v1.4-schematics.pdf
+.. _ESP32-P4-Function-EV-Board v1.4 PCB Layout: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-v1.4-pcb-layout.pdf
+.. _ESP32-P4-Function-EV-Board v1.4 Dimensions: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-v1.4-dimensions.pdf
+.. _ESP32-P4-Function-EV-Board v1.4 Dimensions source file: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-v1.4-dimensions.dxf
 .. _1.0K-GT-15PB Specification: https://dl.espressif.com/dl/schematics/1.0K-GT-15PB_specification.pdf
 .. _Camera Datasheet: https://dl.espressif.com/dl/schematics/camera_datasheet.pdf
 .. _Display Datasheet: https://dl.espressif.com/dl/schematics/display_datasheet.pdf
@@ -347,8 +344,3 @@ For further design documentation for the board, please contact us at `sales@espr
 .. _LCD Adapter Board PCB Layout: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-lcd-subboard-pcb-layout.pdf
 .. _Camera Adapter Board Schematic: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf
 .. _Camera Adapter Board PCB Layout: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf
-
-.. toctree::
-    :hidden:
-
-    user_guide_v1.4
