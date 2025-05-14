@@ -1,0 +1,25 @@
+From b6857d916ddb7c05c43d6f11ef190f4eafd2e20e Mon Sep 17 00:00:00 2001
+From: lvhaiyu <lvhaiyu@espressif.com>
+Date: Wed, 11 Jun 2025 13:53:58 +0800
+Subject: [PATCH] fix(p4): fix-spi-default-clock-source
+
+---
+ components/soc/esp32p4/include/soc/clk_tree_defs.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/components/soc/esp32p4/include/soc/clk_tree_defs.h b/components/soc/esp32p4/include/soc/clk_tree_defs.h
+index 838beb8753..3e754edb2c 100644
+--- a/components/soc/esp32p4/include/soc/clk_tree_defs.h
++++ b/components/soc/esp32p4/include/soc/clk_tree_defs.h
+@@ -489,7 +489,7 @@ typedef enum {
+     SPI_CLK_SRC_RC_FAST  = SOC_MOD_CLK_RC_FAST,     /*!< Select RC_FAST_20M as SPI source clock */
+     SPI_CLK_SRC_SPLL     = SOC_MOD_CLK_SPLL,        /*!< Select SPLL as SPI source clock */
+     // TODO: IDF-8313, use PLL as default
+-    SPI_CLK_SRC_DEFAULT  = SOC_MOD_CLK_XTAL,        /*!< Select XTAL as default source clock */
++    SPI_CLK_SRC_DEFAULT  = SOC_MOD_CLK_SPLL,        /*!< Select XTAL as default source clock */
+ } soc_periph_spi_clk_src_t;
+ 
+ /////////////////////////////////////////////////PSRAM////////////////////////////////////////////////////////////////////
+-- 
+2.34.1
+

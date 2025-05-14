@@ -35,7 +35,7 @@
 #define MIN_INTERVAL_TIME   5
 #define MAX_INTERVAL_TIME   120
 #define INTERVAL_TIME_STEP  5
-#define MAX_MAGNIFICATION_FACTOR 5
+#define MAX_MAGNIFICATION_FACTOR 4
 #define MIN_MAGNIFICATION_FACTOR 1
 
 #define DEFAULT_MAGNIFICATION_FACTOR 1
@@ -53,6 +53,12 @@ static bool is_usb_disk_mounted = false;
 static bool is_video_recording = false;
 
 static bool is_camera_settings_panel_active = false;
+
+static bool is_ui_init = false;
+
+// AI Detection Mode variables
+static ai_detect_mode_t current_ai_detect_mode = AI_DETECT_PEDESTRIAN;
+static lv_obj_t *ai_mode_label = NULL;
 
 // UI settings
 static uint16_t magnification_factor = DEFAULT_MAGNIFICATION_FACTOR;
@@ -80,13 +86,14 @@ static lv_timer_t *lv_video_timer = NULL;
 static lv_timer_t *lv_usb_disk_timer = NULL;
 
 // Settings options
-static const char* const language_options[] = {"English", "English"};
+static const char* const gyroscope_options[] = {"Off", "On"};
+static const char* const od_options[] = {"Off", "On"};
 static const char* const resolution_options[] = {"720P", "1080P", "480P"};
 static const char* const flash_options[] = {"Off", "On"};
 
 // Settings state
 static int current_settings_item = 0;
-static lv_obj_t* settings_items[4];
+static lv_obj_t* settings_items[5];
 static settings_info_t current_settings;
 
 static lv_obj_t *camera_settings_items[5]; 
@@ -99,7 +106,7 @@ typedef struct {
     lv_obj_t* label;
 } setting_options_t;
 
-static setting_options_t settings_options[4];
+static setting_options_t settings_options[5];
 
 // Page mapping
 typedef struct {
@@ -111,6 +118,7 @@ static const PageMapping page_map[] = {
     {"CAMERA", UI_PAGE_CAMERA},
     {"INTERVAL CAM", UI_PAGE_INTERVAL_CAM},
     {"VIDEO MODE", UI_PAGE_VIDEO_MODE},
+    {"AI DETECT", UI_PAGE_AI_DETECT},
     {"ALBUM", UI_PAGE_ALBUM},
     {"USB DISK", UI_PAGE_USB_DISK},
     {"SETTINGS", UI_PAGE_SETTINGS},
@@ -127,6 +135,8 @@ static void ui_extra_redirect_to_usb_disk_page(void);
 static void ui_extra_redirect_to_settings_page(void);
 static void ui_extra_clear_popup_window(void);
 static void ui_extra_focus_on_picture_delete(void);
+static void ui_extra_update_ai_detect_mode_label(void);
+static void ui_extra_change_ai_detect_mode(ai_detect_mode_t mode);
 
 /*-------------------------------------------------*/
 /* Settings Management Functions                    */
@@ -229,7 +239,7 @@ static void switch_to_main_settings_panel(void) {
  * @param setting_index Index of the setting to update
  */
 static void update_setting_display(int setting_index) {
-    if (setting_index < 0 || setting_index >= 4) {
+    if (setting_index < 0 || setting_index >= 5) {
         ESP_LOGW(TAG, "Invalid setting index: %d", setting_index);
         return;
     }
@@ -245,12 +255,15 @@ static void update_setting_display(int setting_index) {
     // Update the current settings info
     switch (setting_index) {
         case 0:
-            current_settings.language = current_text;
+            current_settings.gyroscope = current_text;
             break;
         case 1:
-            current_settings.resolution = current_text;
+            current_settings.od = current_text;
             break;
         case 2:
+            current_settings.resolution = current_text;
+            break;
+        case 3:
             current_settings.flash = current_text;
             break;
     }
@@ -264,41 +277,48 @@ static void update_setting_display(int setting_index) {
  * @brief Initialize settings options
  */
 static void init_settings_options(void) {
-    // Language options
-    settings_options[0].options = language_options;
-    settings_options[0].option_count = sizeof(language_options) / sizeof(language_options[0]);
-    settings_options[0].current_option = 0;
-    settings_options[0].label = ui_LabelPanelPanelSettingsLanguageBody;
+    // Gyroscope options
+    settings_options[0].options = gyroscope_options;
+    settings_options[0].option_count = sizeof(gyroscope_options) / sizeof(gyroscope_options[0]);
+    settings_options[0].current_option = 0;    // Set to 0, corresponds to "Off"
+    settings_options[0].label = ui_LabelPanelPanelSettingsGyroscopeBody;
+    
+    // OD options
+    settings_options[1].options = od_options;
+    settings_options[1].option_count = sizeof(od_options) / sizeof(od_options[0]);
+    settings_options[1].current_option = 1;    // Set to 1, corresponds to "On"
+    settings_options[1].label = ui_LabelPanelPanelSettingsODBody;
     
     // Resolution options
-    settings_options[1].options = resolution_options;
-    settings_options[1].option_count = sizeof(resolution_options) / sizeof(resolution_options[0]);
-    settings_options[1].current_option = 0;
-    settings_options[1].label = ui_LabelPanelPanelSettingsResBody;
+    settings_options[2].options = resolution_options;
+    settings_options[2].option_count = sizeof(resolution_options) / sizeof(resolution_options[0]);
+    settings_options[2].current_option = 1;    // Set to 1, corresponds to "1080P"
+    settings_options[2].label = ui_LabelPanelPanelSettingsResBody;
     
     // Flash options
-    settings_options[2].options = flash_options;
-    settings_options[2].option_count = sizeof(flash_options) / sizeof(flash_options[0]);
-    settings_options[2].current_option = 0;
-    settings_options[2].label = ui_LabelPanelPanelSettingsFlashBody;
+    settings_options[3].options = flash_options;
+    settings_options[3].option_count = sizeof(flash_options) / sizeof(flash_options[0]);
+    settings_options[3].current_option = 1;    // Set to 1, corresponds to "On"
+    settings_options[3].label = ui_LabelPanelPanelSettingsFlashBody;
     
     // Menu options
-    settings_options[3].options = NULL;
-    settings_options[3].option_count = 0;
-    settings_options[3].current_option = 0;
-    settings_options[3].label = ui_LabelPanelSettingsMenu;
+    settings_options[4].options = NULL;
+    settings_options[4].option_count = 0;
+    settings_options[4].current_option = 0;
+    settings_options[4].label = ui_LabelPanelSettingsMenu;
     
     // Initialize the current settings info
-    current_settings.language = language_options[0];
-    current_settings.resolution = resolution_options[0];
-    current_settings.flash = flash_options[0];
+    current_settings.gyroscope = gyroscope_options[0]; // Set to "Off"
+    current_settings.od = od_options[1];           // Set to "On"
+    current_settings.resolution = resolution_options[1];  // Set to "1080P"
+    current_settings.flash = flash_options[1];    // Set to "On"
 }
 
 /**
  * @brief Initialize settings display
  */
 static void init_settings_display(void) {
-    for (int i = 0; i < 3; i++) {  // Only update the first three settings items
+    for (int i = 0; i < 4; i++) {  // Only update the first four settings items
         update_setting_display(i);
     }
 }
@@ -398,7 +418,7 @@ static lv_obj_t * create_img_button(lv_obj_t *parent, const void *img_src, const
 static void update_settings_focus(int new_item)
 {
     // Clear the focus of all settings items
-    for (int i = 0; i < 4; i++) {
+    for (int i = 0; i < 5; i++) {
         lv_event_send(settings_items[i], LV_EVENT_DEFOCUSED, NULL);
     }
     
@@ -615,6 +635,19 @@ static void pop_up_timer_callback(lv_timer_t * timer)
         lv_obj_clear_flag(ui_LabelCanvasFactor, LV_OBJ_FLAG_HIDDEN);
 
         is_sd_card_mounted ? lv_obj_clear_flag(ui_ImageCanvasSDcard, LV_OBJ_FLAG_HIDDEN) : lv_obj_clear_flag(ui_ImageCanvasNOSDcard, LV_OBJ_FLAG_HIDDEN);
+    } else if(timer->user_data == ui_PanelCanvasPopupAICamera) {
+        lv_obj_add_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN);
+
+        lv_obj_clear_flag(ui_PanelCanvasMaskAICamera, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(ui_LabelCanvasFactor, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(ui_ImageCanvasUp, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(ui_ImageCanvasDown, LV_OBJ_FLAG_HIDDEN);
+        lv_obj_clear_flag(ui_ImageCanvasMenu, LV_OBJ_FLAG_HIDDEN);
+        
+        // Show AI mode label after popup disappears
+        if (ai_mode_label != NULL) {
+            lv_obj_clear_flag(ai_mode_label, LV_OBJ_FLAG_HIDDEN);
+        }
     }
 
     if(lv_popup_timer){
@@ -740,8 +773,8 @@ static void lv_scroll_create(void)
     lv_label_set_text(info_label, "");  
 
     const char* btn_texts[] = {
-        "CAMERA", "INTERVAL CAM", "VIDEO MODE", "ALBUM", 
-        "USB DISK", "SETTINGS",
+        "CAMERA", "INTERVAL CAM", "VIDEO MODE", "AI DETECT","ALBUM", 
+        "USB DISK", "SETTINGS"
     };
 
     // Define the image source for each button
@@ -749,9 +782,10 @@ static void lv_scroll_create(void)
         &ui_img_camera_big_png,
         &ui_img_interval_big_png,
         &ui_img_video_big_png,
+        &ui_img_ai_detect_png,
         &ui_img_album_big_png,
         &ui_img_usb_big_png,
-        &ui_img_settings_big_png
+        &ui_img_settings_big_png,
     };
     
     // Use a loop to create all buttons
@@ -799,6 +833,7 @@ void ui_extra_clear_page(void)
     lv_obj_add_flag(ui_LabelCanvas3X, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_LabelCanvasFactor, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_PanelCanvasMaskCamera, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_add_flag(ui_PanelCanvasMaskAICamera, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_PanelCanvasPopupCameraInterval, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_PanelCanvasMaskCameraInterval, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_LabelCanvas5mplus, LV_OBJ_FLAG_HIDDEN);
@@ -813,8 +848,14 @@ void ui_extra_clear_page(void)
     lv_obj_add_flag(ui_LabelRedDotTime, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_PanelSettings, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(ui_PanelSettingsMenu, LV_OBJ_FLAG_HIDDEN);
+    lv_obj_add_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(scroll_cont, LV_OBJ_FLAG_HIDDEN);
     lv_obj_add_flag(info_label, LV_OBJ_FLAG_HIDDEN);
+    
+    // Hide AI mode label if it exists
+    if (ai_mode_label != NULL) {
+        lv_obj_add_flag(ai_mode_label, LV_OBJ_FLAG_HIDDEN);
+    }
 }
 
 /**
@@ -828,7 +869,7 @@ static void ui_extra_clear_popup_window(void)
        !lv_obj_has_flag(ui_PanelCanvasPopupSDWarning, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarning, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN) ||
-       !lv_obj_has_flag(ui_PanelCanvasPopupSDWarning, LV_OBJ_FLAG_HIDDEN)) {
+       !lv_obj_has_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN)) {
 
             if(lv_popup_timer) {
                 lv_timer_ready(lv_popup_timer);
@@ -844,7 +885,12 @@ static void ui_extra_clear_popup_window(void)
             lv_obj_add_flag(ui_PanelCanvasPopupSDWarning, LV_OBJ_FLAG_HIDDEN);
             lv_obj_add_flag(ui_PanelCanvasPopupIntervalTimerWarning, LV_OBJ_FLAG_HIDDEN);
             lv_obj_add_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN);
-            lv_obj_add_flag(ui_PanelCanvasPopupSDWarning, LV_OBJ_FLAG_HIDDEN);
+            lv_obj_add_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN);
+            
+            // Make sure AI mode label is visible when in AI detect page and popup is cleared
+            if (current_page == UI_PAGE_AI_DETECT && ai_mode_label != NULL) {
+                lv_obj_clear_flag(ai_mode_label, LV_OBJ_FLAG_HIDDEN);
+            }
     }
 }
 
@@ -974,10 +1020,11 @@ static void ui_extra_redirect_to_settings_page(void)
     lv_obj_clear_flag(ui_ImageCanvasDown, LV_OBJ_FLAG_HIDDEN);
 
     // Initialize settings items
-    settings_items[0] = ui_PanelPanelSettingsLanguage;
-    settings_items[1] = ui_PanelPanelSettingsRes;
-    settings_items[2] = ui_PanelPanelSettingsFlash;
-    settings_items[3] = ui_PanelSettingsMenu;
+    settings_items[0] = ui_PanelPanelSettingsGyroscope;
+    settings_items[1] = ui_PanelPanelSettingsLanguage;
+    settings_items[2] = ui_PanelPanelSettingsRes;
+    settings_items[3] = ui_PanelPanelSettingsFlash;
+    settings_items[4] = ui_PanelSettingsMenu;
     
     // Initialize the settings display
     init_settings_display();
@@ -987,6 +1034,82 @@ static void ui_extra_redirect_to_settings_page(void)
     update_settings_focus(current_settings_item);
 
     is_camera_settings_panel_active = false;
+}
+
+/**
+ * @brief Redirect to AI detect page
+ */
+static void ui_extra_redirect_to_ai_detect_page(void)
+{
+    current_page = UI_PAGE_AI_DETECT;
+
+    ui_extra_clear_page();
+
+    // Create AI mode label if it doesn't exist
+    if (ai_mode_label == NULL) {
+        ai_mode_label = lv_label_create(ui_ScreenCamera);
+        lv_obj_set_style_text_font(ai_mode_label, &lv_font_montserrat_16, 0);
+        lv_obj_set_style_text_color(ai_mode_label, lv_color_hex(0xFF0000), 0);
+        lv_obj_set_style_bg_color(ai_mode_label, lv_color_hex(0xFFFFFF), 0);
+        lv_obj_set_style_bg_opa(ai_mode_label, LV_OPA_70, 0);
+        lv_obj_set_style_radius(ai_mode_label, 5, 0);
+        lv_obj_set_style_pad_all(ai_mode_label, 5, 0);
+        // Position the label at the left bottom corner
+        lv_obj_align(ai_mode_label, LV_ALIGN_BOTTOM_LEFT, 10, -10);
+    }
+    
+    // Initially hide AI mode label when popup is shown
+    lv_obj_add_flag(ai_mode_label, LV_OBJ_FLAG_HIDDEN);
+    
+    // Update label text (it will be shown when popup disappears)
+    ui_extra_update_ai_detect_mode_label();
+    
+    // Show popup
+    lv_obj_clear_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN);
+    if(!lv_popup_timer){
+        lv_popup_timer = lv_timer_create(pop_up_timer_callback, 5000, ui_PanelCanvasPopupAICamera);
+    }
+}
+
+/**
+ * @brief Update AI detection mode label
+ */
+static void ui_extra_update_ai_detect_mode_label(void)
+{
+    if (ai_mode_label == NULL) {
+        return;
+    }
+    
+    if (current_ai_detect_mode == AI_DETECT_PEDESTRIAN) {
+        lv_label_set_text(ai_mode_label, "Mode: Pedestrian");
+    } else {
+        lv_label_set_text(ai_mode_label, "Mode: Face");
+    }
+}
+
+/**
+ * @brief Change AI detection mode
+ * @param mode New AI detection mode
+ */
+static void ui_extra_change_ai_detect_mode(ai_detect_mode_t mode)
+{
+    if (mode >= AI_DETECT_MODE_MAX) {
+        mode = 0;
+    }
+    
+    current_ai_detect_mode = mode;
+    
+    // Update label text
+    ui_extra_update_ai_detect_mode_label();
+    
+    // Ensure label is visible if popup is not visible
+    if (ai_mode_label != NULL && lv_obj_has_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN)) {
+        lv_obj_clear_flag(ai_mode_label, LV_OBJ_FLAG_HIDDEN);
+    }
+    
+    // Log the mode change (mode value is only used for UI display)
+    ESP_LOGI(TAG, "Changed AI detection mode display to %s", 
+             (current_ai_detect_mode == AI_DETECT_PEDESTRIAN) ? "pedestrian" : "face");
 }
 
 /**
@@ -1040,6 +1163,9 @@ void ui_extra_goto_page(ui_page_t page)
         case UI_PAGE_SETTINGS:
             ui_extra_redirect_to_settings_page();
             break;
+        case UI_PAGE_AI_DETECT:
+            ui_extra_redirect_to_ai_detect_page();
+            break;
         default:
             ui_extra_redirect_to_main_page();
             break;
@@ -1070,6 +1196,11 @@ ui_page_t ui_extra_get_choosed_page(void)
     }
 
     return UI_PAGE_MAIN;
+}
+
+bool ui_extra_is_ui_init(void)
+{
+    return is_ui_init;
 }
 
 /**
@@ -1209,6 +1340,38 @@ bool ui_extra_get_usb_disk_mounted(void)
 }
 
 /**
+ * @brief Get current AI detection mode
+ * 
+ * @details Returns the current AI detection mode that will be displayed
+ *          in the UI. This can be either pedestrian detection (AI_DETECT_PEDESTRIAN)
+ *          or face detection (AI_DETECT_FACE).
+ * 
+ * @return Current AI detection mode value
+ */
+ai_detect_mode_t ui_extra_get_ai_detect_mode(void)
+{
+    return current_ai_detect_mode;
+}
+
+/**
+ * @brief Set AI detection mode
+ * @param mode New AI detection mode
+ */
+void ui_extra_set_ai_detect_mode(ai_detect_mode_t mode)
+{
+    ui_extra_change_ai_detect_mode(mode);
+}
+
+/**
+ * @brief Get gyroscope enabled status
+ * @return True if gyroscope is enabled, false otherwise
+ */
+bool ui_extra_get_gyroscope_enabled(void)
+{
+    return (strcmp(current_settings.gyroscope, "On") == 0);
+}
+
+/**
  * @brief Get popup window visible status
  * @return Whether popup window is visible
  */
@@ -1219,7 +1382,8 @@ bool ui_extra_get_popup_window_visible(void)
        !lv_obj_has_flag(ui_PanelCanvasPopupVideoMode, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupSDWarning, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarning, LV_OBJ_FLAG_HIDDEN) ||
-       !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN)) {
+       !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN) ||
+       !lv_obj_has_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN)) {
         
         return true;
     }
@@ -1330,7 +1494,8 @@ void ui_extra_btn_up(void)
        !lv_obj_has_flag(ui_PanelCanvasPopupVideoMode, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupSDWarning, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarning, LV_OBJ_FLAG_HIDDEN) ||
-       !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN)) {
+       !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN) ||
+       !lv_obj_has_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN)) {
         
         return;
     }
@@ -1349,7 +1514,7 @@ void ui_extra_btn_up(void)
                     // if current is the first camera settings item, switch back to main settings panel when up button is pressed
                     switch_to_main_settings_panel();
                     // focus on flash setting item
-                    update_settings_focus(2); // index of flash setting item
+                    update_settings_focus(3); // index of flash setting item
                 } else if(current_camera_settings_item > 0) {
                     update_camera_settings_focus(current_camera_settings_item - 1);
                 }
@@ -1387,6 +1552,15 @@ void ui_extra_btn_up(void)
             }
             break;
             
+        case UI_PAGE_AI_DETECT:
+            // Switch to previous AI detection mode (cycle back to the last if at first)
+            if (current_ai_detect_mode == AI_DETECT_PEDESTRIAN) {
+                ui_extra_change_ai_detect_mode(AI_DETECT_FACE);
+            } else {
+                ui_extra_change_ai_detect_mode(AI_DETECT_PEDESTRIAN);
+            }
+            break;
+            
         default:
             break;
     }
@@ -1403,7 +1577,8 @@ void ui_extra_btn_down(void)
        !lv_obj_has_flag(ui_PanelCanvasPopupVideoMode, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupSDWarning, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarning, LV_OBJ_FLAG_HIDDEN) ||
-       !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN)) {
+       !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN) ||
+       !lv_obj_has_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN)) {
         
         return;
     }
@@ -1423,10 +1598,10 @@ void ui_extra_btn_down(void)
                 }
             } else {
                 // main settings panel is active
-                if(current_settings_item == 2 && settings_items[current_settings_item] == ui_PanelPanelSettingsFlash) {
+                if(current_settings_item == 3 && settings_items[current_settings_item] == ui_PanelPanelSettingsFlash) {
                     // if current selected item is flash setting item, switch to camera settings panel when down button is pressed
                     switch_to_camera_settings_panel();
-                } else if(current_settings_item < 3) {
+                } else if(current_settings_item < 4) {
                     update_settings_focus(current_settings_item + 1);
                 }
             }
@@ -1455,6 +1630,15 @@ void ui_extra_btn_down(void)
         case UI_PAGE_ALBUM:
             if(!lv_obj_has_flag(ui_PanelImageScreenAlbumDelete, LV_OBJ_FLAG_HIDDEN)) {
                 ui_extra_focus_on_picture_delete();
+            }
+            break;
+            
+        case UI_PAGE_AI_DETECT:
+            // Switch to next AI detection mode (cycle to the first if at last)
+            if (current_ai_detect_mode == AI_DETECT_FACE) {
+                ui_extra_change_ai_detect_mode(AI_DETECT_PEDESTRIAN);
+            } else {
+                ui_extra_change_ai_detect_mode(AI_DETECT_FACE);
             }
             break;
             
@@ -1600,7 +1784,8 @@ void ui_extra_btn_menu(void)
        !lv_obj_has_flag(ui_PanelCanvasPopupVideoMode, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupSDWarning, LV_OBJ_FLAG_HIDDEN) ||
        !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarning, LV_OBJ_FLAG_HIDDEN) ||
-       !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN)) {
+       !lv_obj_has_flag(ui_PanelCanvasPopupIntervalTimerWarningEnd, LV_OBJ_FLAG_HIDDEN) ||
+       !lv_obj_has_flag(ui_PanelCanvasPopupAICamera, LV_OBJ_FLAG_HIDDEN)) {
         
         ui_extra_clear_popup_window();
         return;
@@ -1623,11 +1808,16 @@ void ui_extra_btn_menu(void)
                 // If current setting item is menu item, return to main page
                 ui_extra_goto_page(UI_PAGE_MAIN);
 
+                // Apply gyroscope setting
+                app_storage_save_gyroscope_setting(strcmp(current_settings.gyroscope, "On") == 0);
+
                 if(strcmp(current_settings.flash, "On") == 0) {
                     app_video_stream_set_flash_light(true);
                 } else {
                     app_video_stream_set_flash_light(false);
                 }
+
+                app_album_enable_coco_od(strcmp(current_settings.od, "On") == 0);
 
                 lv_obj_add_flag(ui_PanelCameraSettings, LV_OBJ_FLAG_HIDDEN);
                 lv_obj_add_flag(ui_PanelSettings, LV_OBJ_FLAG_HIDDEN);
@@ -1660,7 +1850,7 @@ void ui_extra_btn_menu(void)
                 app_video_stream_stop_take_video();
 
                 lv_obj_add_flag(ui_ImageRedDot, LV_OBJ_FLAG_HIDDEN);
-                lv_obj_add_flag(ui_LabelRedDotTime, LV_OBJ_FLAG_HIDDEN);
+                lv_obj_clear_flag(ui_LabelRedDotTime, LV_OBJ_FLAG_HIDDEN);
                 
                 // Stop the video recording and pause the timer
                 is_video_recording = false;
@@ -1676,6 +1866,11 @@ void ui_extra_btn_menu(void)
             ui_extra_popup_camera_sd_space_warning_end();
             if(lv_interval_timer) {
                 lv_timer_ready(lv_interval_timer);
+            }
+            
+            // Hide AI mode label when leaving AI detect page
+            if (current_page == UI_PAGE_AI_DETECT && ai_mode_label != NULL) {
+                lv_obj_add_flag(ai_mode_label, LV_OBJ_FLAG_HIDDEN);
             }
             break;
     }
@@ -1849,6 +2044,10 @@ void ui_extra_init(void)
     // reset flag
     is_camera_settings_panel_active = false;
 
+    // Initialize AI detection mode
+    current_ai_detect_mode = AI_DETECT_PEDESTRIAN;
+    ai_mode_label = NULL;
+
     // load settings
     settings_info_t settings;
     uint16_t loaded_interval_time;
@@ -1859,9 +2058,10 @@ void ui_extra_init(void)
     uint32_t loaded_hue;
     
     // Set default values
-    settings.language = language_options[0];
-    settings.resolution = resolution_options[0];
-    settings.flash = flash_options[0];
+    settings.gyroscope = gyroscope_options[0];     // Set to "Off"
+    settings.od = od_options[1];           // Set to "On"
+    settings.resolution = resolution_options[1];  // Set to "1080P"
+    settings.flash = flash_options[1];     // Set to "On"
 
     loaded_interval_time = DEFAULT_INTERVAL_TIME;
     loaded_magnification = DEFAULT_MAGNIFICATION_FACTOR;
@@ -1876,32 +2076,41 @@ void ui_extra_init(void)
     ESP_LOGD(TAG, "loaded_interval_time: %d, loaded_magnification: %d", loaded_interval_time, loaded_magnification);
     if (err == ESP_OK) {
         // Apply loaded settings
-        // Update language settings
+        // Update gyroscope settings
         for (int i = 0; i < settings_options[0].option_count; i++) {
-            if (strcmp(settings.language, settings_options[0].options[i]) == 0) {
+            if (strcmp(settings.gyroscope, settings_options[0].options[i]) == 0) {
                 settings_options[0].current_option = i;
                 break;
             }
         }
         
-        // Update resolution settings
+        // Update od settings
         for (int i = 0; i < settings_options[1].option_count; i++) {
-            if (strcmp(settings.resolution, settings_options[1].options[i]) == 0) {
+            if (strcmp(settings.od, settings_options[1].options[i]) == 0) {
                 settings_options[1].current_option = i;
                 break;
             }
         }
         
-        // Update flash settings
+        // Update resolution settings
         for (int i = 0; i < settings_options[2].option_count; i++) {
-            if (strcmp(settings.flash, settings_options[2].options[i]) == 0) {
+            if (strcmp(settings.resolution, settings_options[2].options[i]) == 0) {
                 settings_options[2].current_option = i;
                 break;
             }
         }
         
+        // Update flash settings
+        for (int i = 0; i < settings_options[3].option_count; i++) {
+            if (strcmp(settings.flash, settings_options[3].options[i]) == 0) {
+                settings_options[3].current_option = i;
+                break;
+            }
+        }
+        
         // Update current settings
-        current_settings.language = settings.language;
+        current_settings.gyroscope = settings.gyroscope;
+        current_settings.od = settings.od;
         current_settings.resolution = settings.resolution;
         current_settings.flash = settings.flash;
 
@@ -1910,6 +2119,8 @@ void ui_extra_init(void)
         } else {
             app_video_stream_set_flash_light(false);
         }
+
+        app_album_enable_coco_od(strcmp(current_settings.od, "On") == 0);
 
         app_video_stream_set_photo_resolution_by_string(current_settings.resolution);
         
@@ -1926,6 +2137,42 @@ void ui_extra_init(void)
 
         // Update display
         init_settings_display();
+    } else {
+        // First time boot or NVS error, use default values
+        ESP_LOGW(TAG, "Failed to load settings from NVS (%s), using default values", esp_err_to_name(err));
+        
+        // Update current settings with default values
+        current_settings.gyroscope = gyroscope_options[0];     // Set to "Off"
+        current_settings.od = od_options[1];           // Set to "On"
+        current_settings.resolution = resolution_options[1];  // Set to "1080P"
+        current_settings.flash = flash_options[1];     // Set to "On"
+
+        if(strcmp(current_settings.flash, "On") == 0) {
+            app_video_stream_set_flash_light(true);
+        } else {
+            app_video_stream_set_flash_light(false);
+        }
+
+        app_album_enable_coco_od(strcmp(current_settings.od, "On") == 0);
+
+        app_video_stream_set_photo_resolution_by_string(current_settings.resolution);
+        
+        // Use default interval time and magnification
+        interval_time = loaded_interval_time;
+        magnification_factor = loaded_magnification;
+        
+        is_video_recording = false;
+        video_recording_seconds = 0;
+
+        // Update the display
+        lv_label_set_text_fmt(ui_LabelCanvasFactor, "%dX", magnification_factor);
+        lv_label_set_text_fmt(ui_LabelCanvasInvervalTime, "%dmin", interval_time);
+
+        // Update display
+        init_settings_display();
+        
+        // Save default settings to NVS for next boot
+        save_current_settings();
     }
 
     // Load camera settings
@@ -1942,4 +2189,6 @@ void ui_extra_init(void)
 
     // Redirect to the main page
     ui_extra_goto_page(UI_PAGE_MAIN);
+
+    is_ui_init = true;
 }

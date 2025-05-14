@@ -314,7 +314,7 @@ esp_err_t bsp_knob_register_cb(knob_event_t event, knob_cb_t cb, void *usr_data)
 #define BSP_LCD_PIXEL_CLOCK_HZ     (80 * 1000 * 1000)
 #define BSP_LCD_SPI_NUM            (SPI2_HOST)
 
-#define BSP_LCD_DRAW_BUFF_SIZE     (BSP_LCD_H_RES * BSP_LCD_V_RES / 2)
+#define BSP_LCD_DRAW_BUFF_SIZE     (BSP_LCD_H_RES * BSP_LCD_V_RES)
 #define BSP_LCD_DRAW_BUFF_DOUBLE   (0)
 
 /**
@@ -383,6 +383,16 @@ lv_disp_t *bsp_display_start_with_config(const bsp_display_cfg_t *cfg);
 lv_indev_t *bsp_display_get_input_dev(void);
 
 /**
+ * @brief Rotate screen
+ *
+ * Display must be already initialized by calling bsp_display_start()
+ *
+ * @param[in] disp Pointer to LVGL display
+ * @param[in] rotation Angle of the display rotation
+ */
+esp_err_t bsp_display_rotate(lv_disp_rot_t rotation);
+
+/**
  * @brief Take LVGL mutex
  *
  * @param timeout_ms Timeout in [ms]. 0 will block indefinitely.
@@ -396,16 +406,6 @@ bool bsp_display_lock(uint32_t timeout_ms);
  *
  */
 void bsp_display_unlock(void);
-
-/**
- * @brief Rotate screen
- *
- * Display must be already initialized by calling bsp_display_start()
- *
- * @param[in] disp Pointer to LVGL display
- * @param[in] rotation Angle of the display rotation
- */
-void bsp_display_rotate(lv_disp_t *disp, lv_disp_rot_t rotation);
 
 /**************************************************************************************************
  *

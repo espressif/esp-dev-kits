@@ -2,7 +2,7 @@
 
 [中文版本](./README_CN.md)
 
-This example is based on ESP32-P4-EYE and demonstrates a mini camera application that supports photo capture, timed photo capture, video recording, album preview, USB SD card mounting, and settings interface (with adjustable resolution, saturation, contrast, brightness, and hue). The example project comprehensively utilizes various peripheral resources of the development board, including MIPI-CSI camera interface, SPI LCD display interface, USB High-Speed interface, button input, rotary encoder, and SD card storage.
+This example is based on ESP32-P4-EYE and demonstrates a comprehensive mini camera application that supports photo capture, timed photo capture, video recording, album preview, USB SD card mounting, and image parameter settings (with adjustable resolution, saturation, contrast, brightness, and hue). Building on this foundation, the application also integrates face detection, pedestrian detection, and YOLOv11 nano model-based object detection capabilities, enhancing intelligent visual recognition. The project comprehensively utilizes various peripheral resources of the development board, including MIPI-CSI camera interface, SPI LCD display interface, USB High-Speed interface, button input, rotary encoder, and SD card storage.
 
 ## Quick Start
 
@@ -14,7 +14,7 @@ This example is based on ESP32-P4-EYE and demonstrates a mini camera application
 
 ### ESP-IDF Requirements
 
-- This example supports ESP-IDF release/v5.4 and above. By default, it runs on ESP-IDF release/v5.4.
+- This example supports ESP-IDF release/v5.4 and above. By default, it runs on ESP-IDF release/v5.5.
 - Please refer to the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) to set up the development environment. **Strongly recommended** to go through [Build Your First Project](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#id8) to familiarize yourself with ESP-IDF and ensure the environment is set up correctly.
 
 ### Get the esp-dev-kits Repository
@@ -33,22 +33,24 @@ Run ``idf.py menuconfig`` and modify the ``Board Support Package`` configuration
 menuconfig > Component config > Board Support Package
 ```
 
+## How to Use the Example
+
 ### Apply Patch
 
-When the pixel clock is set to 80MHz, the default SPI clock source may temporarily fail to meet timing requirements. To address this, please follow these steps to apply the patch file `0001-fix-spi-default-clock-source.patch`:
+* When the pixel clock is set to 80MHz, the default SPI clock source may temporarily fail to meet timing requirements. To address this, please follow these steps to apply the patch file `0004-fix-spi-default-clock-source.patch`:
 
-1. Change to the ESP-IDF root directory and check out the specific version (the patch is designed for IDF release/v5.4 commit:8ad0d3d8f2faab752635bee36070313c47c07a13):
+1. Change to the ESP-IDF root directory and check out the specific version (the patch is designed for IDF release/v5.5 commit:98cd765953dfe0e7bb1c5df8367e1b54bd966cce):
 
 ```bash
 cd ~/esp-idf
-git checkout release/v5.4
-git checkout 8ad0d3d8f2faab752635bee36070313c47c07a13
+git checkout release/v5.5
+git checkout 98cd765953dfe0e7bb1c5df8367e1b54bd966cce
 ```
 
 2. Copy the patch file to the ESP-IDF root directory, for example:
 
 ```bash
-cp 0002-fix-spi-default-clock-source.patch ~/esp-idf/
+cp 0004-fix-spi-default-clock-source.patch ~/esp-idf/
 ```
 
 3. Change to the ESP-IDF root directory:
@@ -60,12 +62,10 @@ cd ~/esp-idf
 4. Apply the patch using the following command:
 
 ```bash
-git apply 0002-fix-spi-default-clock-source.patch
+git apply 0004-fix-spi-default-clock-source.patch
 ```
 
-If you experience significant lag during photo capture or video recording, you can try applying the patch file `0002-feat-sdmmc-aligned-write-buffer.patch` using the same method as above.
-
-## How to Use the Example
+* If you experience significant lag during photo capture or video recording, you can try applying the patch file `0004-fix-sdmmc-aligned-write-buffer.patch` using the same method as above.
 
 ### Compile and Flash the Example
 
@@ -86,9 +86,10 @@ For complete steps on configuring and using ESP-IDF to compile projects, please 
 | ![Camera](https://dl.espressif.com/AE/esp-dev-kits/esp32-p4-eye-capture.png) | Photo Capture | Users can take photos by pressing the encoder button, with support for digital zoom through rotary encoder or button operations. <br> **Note**: Photo capture requires an SD card. Photos are saved by default in the `esp32_p4_pic_save` folder on the SD card and can be previewed through the album feature. |
 | ![interval_cam](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_timed_capture.png) | Timed Capture | Users can set the capture interval using buttons and start timed capture mode by pressing the encoder button. Digital zoom is also supported via the rotary encoder. Press any button to stop the timed capture. <br> **Note**: Timed capture requires an SD card. Photos are saved by default in the `esp32_p4_pic_save` folder on the SD card and can be previewed through the album feature. |
 | ![video_mode](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_video_record.png) | Video Recording | Users can start video recording by pressing the encoder button, with support for digital zoom through rotary encoder or button operations. <br> **Note**: Video recording requires an SD card. Videos are saved in MP4 format in the `esp32_p4_mp4_save` folder on the SD card. Currently, MP4 video preview is not supported in the album feature. |
-| ![album](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_album_preview.png) | Album | Users can preview photos taken in photo capture or timed capture modes, and navigate through them using buttons. Press the encoder button to delete the current photo. |
+| ![ai_detect](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_video_ai.png) | AI Detection | AI detection supports face detection and pedestrian detection functions, based on esp-dl inference framework. Users can switch between function modes using the up and down buttons. <br> **Note**: Photo capture is not available in this mode. |
+| ![album](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_album_preview.png) | Album | Users can preview photos taken in photo capture or timed capture modes, and navigate through them using buttons. Press the encoder button to delete the current photo. If YOLO object detection is enabled in settings, object detection will be automatically performed on photos when browsing the album. |
 | ![usb_disk](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_usb_access.png) | USB Mounting | Connect the device to a PC via the USB 2.0 Device interface to directly access files on the SD card. |
-| ![settings](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_settings.png) | Settings | Users can configure image resolution, enable/disable flash, and adjust image saturation, contrast, brightness, and hue. <br> **Note**: Language settings are currently not supported. |
+| ![settings](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_settings.png) | Settings | Users can configure whether to enable triaxial accelerometer rotation, whether to enable YOLO object detection, image resolution, whether to enable flash, and adjust image saturation, contrast, brightness, and hue. |
 
 ### Example Output
 

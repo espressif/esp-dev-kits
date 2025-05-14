@@ -24,6 +24,10 @@ extern lv_obj_t * ui_ImageCanvasUp;
 extern lv_obj_t * ui_ImageCanvasDown;
 extern lv_obj_t * ui_PanelCanvasMaskLarge;
 extern lv_obj_t * ui_PanelCanvasPopupCamera;
+extern lv_obj_t * ui_PanelCanvasPopupAICamera;
+extern lv_obj_t * ui_LabelPanelCanvasPopupAICameraTop;
+extern lv_obj_t * ui_PanelCanvasPopupAICameraLine;
+extern lv_obj_t * ui_LabelPanelCanvasPopupAICameraDown;
 extern lv_obj_t * ui_LabelPanelCanvasPopupCameraTop;
 extern lv_obj_t * ui_PanelCanvasPopupCameraLine;
 extern lv_obj_t * ui_LabelPanelCanvasPopupCameraDown;
@@ -35,6 +39,8 @@ extern lv_obj_t * ui_LabelCanvas3X;
 extern lv_obj_t * ui_LabelCanvasFactor;
 extern lv_obj_t * ui_PanelCanvasMaskCamera;
 extern lv_obj_t * ui_ImagePanelCanvasMaskCamera;
+extern lv_obj_t * ui_PanelCanvasMaskAICamera;
+extern lv_obj_t * ui_ImagePanelCanvasMaskAICamera;
 extern lv_obj_t * ui_PanelCanvasPopupCameraInterval;
 extern lv_obj_t * ui_LabelPanelCanvasPopupCameraTopInterval;
 extern lv_obj_t * ui_PanelCanvasPopupCameraIntervalLine;
@@ -68,9 +74,12 @@ extern lv_obj_t * ui_ImageRedDot;
 extern lv_obj_t * ui_LabelRedDotTime;
 extern lv_obj_t * ui_PanelSettings;
 extern lv_obj_t * ui_LabelPanelSettings;
+extern lv_obj_t * ui_PanelPanelSettingsGyroscope;
+extern lv_obj_t * ui_LabelPanelPanelSettingsGyroscopeItem;
+extern lv_obj_t * ui_LabelPanelPanelSettingsGyroscopeBody;
 extern lv_obj_t * ui_PanelPanelSettingsLanguage;
-extern lv_obj_t * ui_LabelPanelPanelSettingsLanguageItem;
-extern lv_obj_t * ui_LabelPanelPanelSettingsLanguageBody;
+extern lv_obj_t * ui_LabelPanelPanelSettingsODItem;
+extern lv_obj_t * ui_LabelPanelPanelSettingsODBody;
 extern lv_obj_t * ui_PanelPanelSettingsRes;
 extern lv_obj_t * ui_LabelPanelPanelSettingsResItem;
 extern lv_obj_t * ui_LabelPanelPanelSettingsResBody;
@@ -154,6 +163,8 @@ LV_IMG_DECLARE(ui_img_interval_big_png);    // assets/interval_big.png
 LV_IMG_DECLARE(ui_img_video_big_png);    // assets/video_big.png
 LV_IMG_DECLARE(ui_img_usb_big_png);    // assets/usb_big.png
 LV_IMG_DECLARE(ui_img_settings_big_png);    // assets/settings_big.png
+LV_IMG_DECLARE(ui_img_ai_detect_png); // assets/ai_detect.png
+LV_IMG_DECLARE(ui_img_ai_detect_small_png); // assets/ai_detect_small.png
 
 
 LV_FONT_DECLARE(ui_font_FontKoHoBold14);

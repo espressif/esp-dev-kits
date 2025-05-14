@@ -19,6 +19,8 @@
 #include "app_video_stream.h"
 #include "app_video_utils.h"
 
+#include "app_ai_detect.h"
+
 static const char *TAG = "app_album";
 
 #define ALIGN_UP(num, align)    (((num) + ((align) - 1)) & ~((align) - 1))
@@ -55,6 +57,8 @@ static const uint32_t MIN_FREE_SPACE = 5 * 1024 * 1024; // 5MB
 
 static const uint32_t album_res[PHOTO_RESOLUTION_MAX] = {480, 640, 960};
 static photo_resolution_t current_album_resolution = PHOTO_RESOLUTION_1080P; // default 1080P
+
+static bool enable_coco_od = false;
 
 static bool is_valid_image_file(const char *filename) {
     // check file extension
@@ -572,6 +576,9 @@ static esp_err_t app_album_display_current_image(void) {
     }
     
     // Set canvas buffer with decoded image
+    if (enable_coco_od) {
+        app_coco_od_detect(album_ctx.canvas_buffer, album_ctx.canvas_width, album_ctx.canvas_height);
+    }
     bsp_display_lock(0);
     lv_canvas_set_buffer(album_ctx.canvas, album_ctx.canvas_buffer, 
                          album_ctx.canvas_width, album_ctx.canvas_height, 
@@ -783,6 +790,11 @@ esp_err_t app_album_delete_current_image(void) {
     return app_album_display_current_image();
 }
 
+esp_err_t app_album_enable_coco_od(bool enable) {
+    enable_coco_od = enable;
+    return ESP_OK;
+}
+
 // Initialize album functionality
 esp_err_t app_album_init(lv_obj_t *parent) {
     // Initialize context
@@ -854,9 +866,6 @@ esp_err_t app_album_init(lv_obj_t *parent) {
         app_album_show_no_data_message();
         return ESP_OK;
     }
-    
-    // Display first image
-    ret = app_album_display_current_image();
     
     return ret;
 }

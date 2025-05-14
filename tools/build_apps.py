@@ -98,7 +98,7 @@ def main(args):  # type: (argparse.Namespace) -> None
         parallel_index=args.parallel_index,
         dry_run=False,
         collect_size_info=args.collect_size_info,
-        keep_going=True,
+        # keep_going=True,
         ignore_warning_strs=IGNORE_WARNINGS,
         copy_sdkconfig=True,
         no_preserve=False,

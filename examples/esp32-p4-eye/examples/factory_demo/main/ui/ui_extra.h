@@ -1,6 +1,10 @@
 #ifndef UI_EXTRA_H
 #define UI_EXTRA_H
 
+#ifdef __cplusplus
+extern "C" {
+#endif
+
 #include "ui.h"
 #include <stdbool.h>
 
@@ -8,6 +12,15 @@
 #define DEFAULT_SATURATION_PERCENT 63
 #define DEFAULT_BRIGHTNESS_PERCENT 54
 #define DEFAULT_HUE_PERCENT 2
+
+/**
+ * @brief AI detection mode enumeration
+ */
+typedef enum {
+    AI_DETECT_PEDESTRIAN = 0,  // Pedestrian detection
+    AI_DETECT_FACE,            // Face detection
+    AI_DETECT_MODE_MAX         // Maximum number of modes
+} ai_detect_mode_t;
 
 /**
  * @brief UI page enumeration
@@ -20,6 +33,7 @@ typedef enum {
     UI_PAGE_ALBUM,          // Album page
     UI_PAGE_USB_DISK,       // USB disk page
     UI_PAGE_SETTINGS,       // Settings page
+    UI_PAGE_AI_DETECT,      // AI detect page
     UI_PAGE_MAX             // Page count
 } ui_page_t;
 
@@ -27,7 +41,8 @@ typedef enum {
  * @brief Settings information structure
  */
 typedef struct {
-    const char* language;   // Language setting
+    const char* gyroscope;  // Gyroscope setting
+    const char* od;         // Object Detection setting
     const char* resolution; // Resolution setting
     const char* flash;      // Flash setting
 } settings_info_t;
@@ -81,6 +96,12 @@ ui_page_t ui_extra_get_current_page(void);
  * @return Chosen page enum value
  */
 ui_page_t ui_extra_get_choosed_page(void);
+
+/**
+ * @brief Check if UI is initialized
+ * @return True if UI is initialized, false otherwise
+ */
+bool ui_extra_is_ui_init(void);
 
 /**
  * @brief Navigate to specified page
@@ -204,4 +225,25 @@ void ui_extra_popup_camera_sd_space_warning_end(void);
  */
 void ui_extra_popup_camera_sd_space_warning(void);
 
+/**
+ * @brief Get current AI detection mode (for UI display only)
+ * @return Current AI detection mode
+ */
+ai_detect_mode_t ui_extra_get_ai_detect_mode(void);
+
+/**
+ * @brief Set AI detection mode (for UI display only)
+ * @param mode New AI detection mode
+ */
+void ui_extra_set_ai_detect_mode(ai_detect_mode_t mode);
+
+/**
+ * @brief Get gyroscope enabled status
+ * @return True if gyroscope is enabled, false otherwise
+ */
+bool ui_extra_get_gyroscope_enabled(void);
+
+#ifdef __cplusplus
+}
+#endif
 #endif /* UI_EXTRA_H */

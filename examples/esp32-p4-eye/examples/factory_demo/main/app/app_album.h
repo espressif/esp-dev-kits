@@ -99,6 +99,13 @@ void app_album_photo_saved(void);
  */
 bool app_video_stream_can_store_new_mp4(float estimated_size_mb);
 
+/**
+ * @brief Enable or disable COCO OD detection
+ * 
+ * @param enable true to enable, false to disable
+ */
+void app_album_enable_coco_od(bool enable);
+
 #ifdef __cplusplus
 }
 #endif

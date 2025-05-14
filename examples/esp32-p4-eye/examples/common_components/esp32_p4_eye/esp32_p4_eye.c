@@ -85,6 +85,8 @@ static esp_cam_sensor_xclk_handle_t xclk_handle = NULL;
 
 static knob_handle_t knob = NULL;
 
+static lv_disp_t *disp = NULL;
+
 static bool led_status = false;
 
 /**
@@ -475,7 +477,7 @@ esp_err_t bsp_display_new(const bsp_display_config_t *config, esp_lcd_panel_hand
         .lcd_cmd_bits = LCD_CMD_BITS,
         .lcd_param_bits = LCD_PARAM_BITS,
         .spi_mode = 3,
-        .trans_queue_depth = 10,
+        .trans_queue_depth = 2,
     };
     if(io_config.pclk_hz != 20 * 1000 * 1000) {
         ESP_LOGW(TAG, "If the pixel clock is not set to 20 MHz, you need to temporarily apply the patch 0001-fix-spi-default-clock-source.patch. For details on how to apply the patch, please refer to the README.");
@@ -525,7 +527,7 @@ static lv_disp_t *bsp_display_lcd_init(const bsp_display_cfg_t *cfg)
 {
     assert(cfg != NULL);
     const bsp_display_config_t bsp_disp_cfg = {
-        .max_transfer_sz = BSP_LCD_DRAW_BUFF_SIZE * sizeof(uint16_t),
+        .max_transfer_sz = BSP_LCD_H_RES * 10 * sizeof(uint16_t),
     };
     BSP_ERROR_CHECK_RETURN_NULL(bsp_display_new(&bsp_disp_cfg, &panel_handle, &io_handle));
 
@@ -550,6 +552,7 @@ static lv_disp_t *bsp_display_lcd_init(const bsp_display_cfg_t *cfg)
         .flags = {
             .buff_dma = cfg->flags.buff_dma,
             .buff_spiram = cfg->flags.buff_spiram,
+            .sw_rotate = true,
         }
     };
 
@@ -569,8 +572,8 @@ lv_disp_t *bsp_display_start(void)
         .buffer_size = BSP_LCD_DRAW_BUFF_SIZE,
         .double_buffer = BSP_LCD_DRAW_BUFF_DOUBLE,
         .flags = {
-            .buff_dma = true,
-            .buff_spiram = false,
+            .buff_dma = false,
+            .buff_spiram = true,
         }
     };
     return bsp_display_start_with_config(&cfg);
@@ -586,7 +589,6 @@ esp_err_t bsp_display_enter_sleep(void)
 
 lv_disp_t *bsp_display_start_with_config(const bsp_display_cfg_t *cfg)
 {
-    lv_disp_t *disp;
     assert(cfg != NULL);
     BSP_ERROR_CHECK_RETURN_NULL(lvgl_port_init(&cfg->lvgl_port_cfg));
     BSP_NULL_CHECK(disp = bsp_display_lcd_init(cfg), NULL);
@@ -599,6 +601,12 @@ lv_indev_t *bsp_display_get_input_dev(void)
     return NULL;
 }
 
+esp_err_t bsp_display_rotate(lv_disp_rot_t rotation)
+{
+    lv_disp_set_rotation(disp, rotation);
+    return ESP_OK;
+}
+
 bool bsp_display_lock(uint32_t timeout_ms)
 {
     return lvgl_port_lock(timeout_ms);
@@ -607,11 +615,6 @@ bool bsp_display_lock(uint32_t timeout_ms)
 void bsp_display_unlock(void)
 {
     lvgl_port_unlock();
-}
-
-void bsp_display_rotate(lv_disp_t *disp, lv_disp_rot_t rotation)
-{
-    lv_disp_set_rotation(disp, rotation);
 }
 
 esp_err_t bsp_flashlight_init(void)
