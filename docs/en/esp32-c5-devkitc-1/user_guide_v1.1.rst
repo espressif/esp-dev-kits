@@ -1,14 +1,16 @@
 =======================
-ESP32-C5-DevKitC-1 v1.2
+ESP32-C5-DevKitC-1 v1.1
 =======================
 
 :link_to_translation:`zh_CN:[中文]`
 
-Older version: :doc:`user_guide_v1.1`
+Latest version: :doc:`user_guide`
 
 This user guide will help you get started with ESP32-C5-DevKitC-1 and will also provide more in-depth information.
 
-The ESP32-C5-DevKitC-1 is an entry-level development board based on the general-purpose module `ESP32-C5-WROOM-1(U) <https://www.espressif.com/sites/default/files/documentation/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf>`_. This board integrates complete Wi-Fi, Bluetooth (LE), Zigbee, and Thread functions.
+The ESP32-C5-DevKitC-1 is an entry-level development board based on the general-purpose module ESP32-C5-WROOM-1. This board integrates complete Wi-Fi, Bluetooth (LE), Zigbee, and Thread functions.
+
+.. ESP32-C5-DevKitC-1 is an entry-level development board with a 8 MB SPI flash `ESP32-C5-WROOM-1 <https://www.espressif.com/sites/default/files/documentation/esp32-c5-wroom-1_datasheet_cn.pdf>`_. This board integrates complete Wi-Fi, Bluetooth LE, Zigbee, and Thread functions.
 
 Most of the I/O pins are broken out to the pin headers on both sides for easy interfacing. Developers can either connect peripherals with jumper wires or mount ESP32-C5-DevKitC-1 on a breadboard.
 
@@ -36,7 +38,7 @@ This section provides a brief introduction to ESP32-C5-DevKitC-1, introducing ho
 Description of Components
 -------------------------
 
-.. _user-guide-c5-devkitc-1-board-v1.2-front:
+.. _user-guide-c5-devkitc-1-board-front:
 
 .. figure:: ../../_static/esp32-c5-devkitc-1/ESP32-C5-DevKitC-1_v1.1_callouts.png
     :align: center
@@ -53,8 +55,8 @@ The following list psrovides a description of the key components on the board in
 
    * - Key Component
      - Description
-   * - ESP32-C5-WROOM-1(U)
-     - ESP32-C5-WROOM-1(U) is a general-purpose module supporting Wi-Fi 6 in 2.4 & 5 GHz dual-band (802.11ax), Bluetooth® 5 (LE), Zigbee, and Thread (802.15.4) with on-board PCB antenna.
+   * - ESP32-C5-WROOM-1
+     - ESP32-C5-WROOM-1 is a general-purpose module supporting Wi-Fi 6 in 2.4 & 5 GHz dual-band (802.11ax), Bluetooth® 5 (LE), Zigbee, and Thread (802.15.4) with on-board PCB antenna.
    * - Pin Header
      - All available GPIO pins (except for the SPI bus for flash) are broken out to the pin headers on the board.
    * - 5 V to 3.3 V DC/DC
@@ -99,6 +101,8 @@ Software Setup
 ^^^^^^^^^^^^^^
 
 Please proceed to `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/get-started/index.html>`__, which will help you set up the development environment quickly and then flash an application example onto your board.
+
+ESP32-C5-DevKitC-1 v1.1 is equipped with ESP32-C5 chip revision v0.1. Support for ESP32-C5 v0.1 in ESP-IDF has been discontinued as of commit `16d7910 <https://github.com/espressif/esp-idf/commit/16d79103aa02f1eeb559e66f777cfd65633c7ea0>`__. For ESP32-C5 v0.1 chip users, please use the last supported commit `d930a38 <https://github.com/espressif/esp-idf/commit/d930a386dae78cfab75f313af3df67921e748fc4>`__ for evaluation. See details in `ESP32-C5 support status (IDFGH-13076) <https://github.com/espressif/esp-idf/issues/14021>`__.
 
 
 .. ESP-AT Support
@@ -162,7 +166,7 @@ There are three mutually exclusive ways to provide power to the board:
 Current Measurement
 -------------------
 
-The J5 headers on ESP32-C5-DevKitC-1 (see J5 in Figure :ref:`user-guide-c5-devkitc-1-board-v1.2-front`) can be used for measuring the current drawn by the ESP32-C5-WROOM-1(U) module:
+The J5 headers on ESP32-C5-DevKitC-1 (see J5 in Figure :ref:`user-guide-c5-devkitc-1-board-front`) can be used for measuring the current drawn by the ESP32-C5-WROOM-1 module:
 
 - Remove the jumper: Power supply between the module and peripherals on the board is cut off. To measure the module's current, connect the board with an ammeter via J5 headers.
 - Apply the jumper (factory default): Restore the board's normal functionality.
@@ -175,7 +179,7 @@ The J5 headers on ESP32-C5-DevKitC-1 (see J5 in Figure :ref:`user-guide-c5-devki
 Header Block
 -------------
 
-The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3). The pin header names are shown in Figure :ref:`user-guide-c5-devkitc-1-board-v1.2-front`. The numbering is the same as in the `ESP32-C5-DevKitC-1 Schematic v1.2`_ (PDF).
+The two tables below provide the **Name** and **Function** of the pin headers on both sides of the board (J1 and J3). The pin header names are shown in Figure :ref:`user-guide-c5-devkitc-1-board-front`. The numbering is the same as in the `ESP32-C5-DevKitC-1 Schematic`_ (PDF).
 
 
 J1
@@ -185,17 +189,17 @@ No.  Name     Type [1]_    Function
 ===  =======  ==========  =================================================
 1    3V3       P          3.3 V power supply
 2    RST       I          High: enables the chip; Low: disables the chip.
-3    2         I/O/T      MTMS [3]_, GPIO2, LP_GPIO2, LP_UART_RTSN, LP_I2C_SDA, ADC1_CH1, FSPIQ
-4    3         I/O/T      MTDI [3]_, GPIO3, LP_GPIO3, LP_UART_CTSN, LP_I2C_SCL, ADC1_CH2
-5    0         I/O/T      GPIO0, XTAL_32K_P, LP_GPIO0, LP_UART_DTRN
-6    1         I/O/T      GPIO1, XTAL_32K_N, LP_GPIO1, LP_UART_DSRN, ADC1_CH0
-7    6         I/O/T      GPIO6, LP_GPIO6, ADC1_CH5, FSPICLK
-8    7         I/O/T      GPIO7 [3]_, FSPID, SDIO_DATA1
-9    8         I/O/T      GPIO8, PAD_COMP0, SDIO_DATA0
-10   9         I/O/T      GPIO9, PAD_COMP1, SDIO_CLK
-11   10        I/O/T      GPIO10, FSPICS0, SDIO_CMD
-12   26        I/O/T      GPIO26 [3]_,
-13   25        I/O/T      GPIO25 [3]_,
+3    2         I/O/T      MTMS [3]_, GPIO2, LP_GPIO2, LP_UART_RTSN, ADC1_CH1, FSPIQ
+4    3         I/O/T      MTDI, GPIO3, LP_GPIO3, LP_UART_CTSN, ADC1_CH2
+5    4         I/O/T      MTCK, GPIO4, LP_GPIO4, LP_UART_RXD, ADC1_CH3, FSPIHD
+6    5         I/O/T      MTDO, GPIO5, LP_GPIO5, LP_UART_TXD, ADC1_CH4, FSPIWP
+7    0         I/O/T      GPIO0, XTAL_32K_P, LP_GPIO0, LP_UART_DTRN
+8    1         I/O/T      GPIO1, XTAL_32K_N, LP_GPIO1, LP_UART_DSRN, ADC1_CH0
+9    27        I/O/T      GPIO27 [2]_ [3]_
+10   6         I/O/T      GPIO6, LP_GPIO6, LP_I2C_SDA, ADC1_CH5, FSPICLK
+11   7         I/O/T      GPIO7 [3]_, LP_GPIO7, LP_I2C_SCL, FSPID
+12   26        I/O/T      GPIO26
+13   25        I/O/T      GPIO25
 14   5V        P          5 V power supply
 15   G         G          Ground
 16   NC        –          No connection
@@ -213,27 +217,28 @@ No.   Name       Type    Function
 4     24         I/O/T   GPIO24
 5     23         I/O/T   GPIO23
 6     NC/15      I/O/T   No connection/GPIO15 [4]_
-7     27         I/O/T   GPIO27 [2]_ [3]_
-8     4          I/O/T   MTCK, GPIO4, LP_GPIO4, LP_UART_RXD, ADC1_CH3, FSPIHD
-9     5          I/O/T   MTDO, GPIO5, LP_GPIO5, LP_UART_TXD, ADC1_CH4, FSPIWP
+7     10         I/O/T   GPIO10, FSPICS0
+8     9          I/O/T   GPIO9, PAD_COMP1
+9     8          I/O/T   GPIO8, PAD_COMP0
 10    NC         –       No connection
 11    28         I/O/T   GPIO28 [3]_
 12    G          G       Ground
-13    14         I/O/T   GPIO14, USB_D+, SDIO_DATA2
-14    13         I/O/T   GPIO13, USB_D-, SDIO_DATA3
+13    14         I/O/T   GPIO14, USB_D+
+14    13         I/O/T   GPIO13, USB_D-
 15    G          G       Ground
 16    NC         –       No connection
 ===  ==========  ======  ==========================================
 
 .. [1] P: Power supply; I: Input; O: Output; T: High impedance.
 .. [2] Used to drive the RGB LED.
-.. [3] MTMS, MTDI, GPIO7, GPIO25, GPIO26, GPIO27, and GPIO28 are strapping pins of the ESP32-C5 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset. For description and application of the strapping pins, please refer to `ESP32-C5 Datasheet`_ > Section *Boot Configurations*.
+.. [3] MTMS, GPIO7, GPIO27, and GPIO28 are strapping pins of the ESP32-C5 chip. These pins are used to control several chip functions depending on binary voltage values applied to the pins during chip power-up or system reset.
+.. For description and application of the strapping pins, please refer to `ESP32-C5 Datasheet`_ > Section *Strapping Pins*.
 .. [4] In modules integrated with SPI PSRAM, this pin is already used for SPICS1 function, thus unavailable for external use. In modules without SPI PSRAM, this pin can be used as GPIO15.
 
 
 Pin Layout
 ^^^^^^^^^^^
-.. figure:: ../../_static/esp32-c5-devkitc-1/esp32-c5-devkitc-1-pin-layout_v1.2.png
+.. figure:: ../../_static/esp32-c5-devkitc-1/esp32-c5-devkitc-1-pin-layout_v1.1.png
     :align: center
     :scale: 40%
     :alt: ESP32-C5-DevKitC-1 Pin Layout (click to enlarge)
@@ -245,19 +250,7 @@ Pin Layout
 Hardware Revision Details
 =========================
 
-ESP32-C5-DevKitC-1 v1.2
------------------------
-
-For boards with the PW number of and after PW-2025-04-0446, J1 and J3 functions are updated. See details in Section `Header Block`_.
-
-.. note::
-
-  The PW number can be found in the product label on the large cardboard boxes for wholesale orders.
-
-ESP32-C5-DevKitC-1 v1.1
------------------------
-
-:doc:`Initial release <user_guide_v1.1>`
+This is the first revision of this board released.
 
 
 Related Documents
@@ -267,23 +260,19 @@ Related Documents
 
    Please download the following documents from `the HTML version of esp-dev-kits Documentation <https://docs.espressif.com/projects/esp-dev-kits/en/latest/{IDF_TARGET_PATH_NAME}/index.html>`_.
 
-* `ESP32-C5 Datasheet`_ (PDF)
-* `ESP32-C5-WROOM-1 & ESP32-C5-WROOM-1U Datasheet`_ (PDF)
-* `ESP32-C5-DevKitC-1 Schematic v1.2`_ (PDF) 
-* `ESP32-C5-DevKitC-1 PCB Layout v1.2`_ (PDF) 
-* `ESP32-C5-DevKitC-1 Dimensions v1.2`_ (PDF) 
-* `ESP32-C5-DevKitC-1 Dimensions v1.2 source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+.. * `ESP32-C5 Datasheet`_ (PDF)
+.. * `ESP32-C5-WROOM-1 Datasheet`_ (PDF)
+
+* `ESP32-C5-DevKitC-1 Schematic`_ (PDF) 
+* `ESP32-C5-DevKitC-1 PCB Layout`_ (PDF) 
+* `ESP32-C5-DevKitC-1 Dimensions`_ (PDF) 
+* `ESP32-C5-DevKitC-1 Dimensions source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-.. _ESP32-C5 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c5_datasheet_en.pdf
-.. _ESP32-C5-WROOM-1 & ESP32-C5-WROOM-1U Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c5-wroom-1_wroom-1u_datasheet_en.pdf
-.. _ESP32-C5-DevKitC-1 Schematic v1.2: https://dl.espressif.com/dl/schematics/SCH_ESP32-C5-DevkitC-1_V1.2_20250211.pdf
-.. _ESP32-C5-DevKitC-1 PCB Layout v1.2: https://dl.espressif.com/dl/schematics/PCB_ESP32-C5-DevKitC-1_V1.2_20250211.pdf
-.. _ESP32-C5-DevKitC-1 Dimensions v1.2: https://dl.espressif.com/dl/schematics/Dimension_esp32-c5-devkitc-1_v1.2_20250509.pdf
-.. _ESP32-C5-DevKitC-1 Dimensions v1.2 source file: https://dl.espressif.com/dl/schematics/Dimension_esp32-c5-devkitc-1_v1.2_20250509.dxf
-
-.. toctree::
-    :hidden:
-
-    user_guide_v1.1
+.. .. _ESP32-C5 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6_datasheet_cn.pdf
+.. .. _ESP32-C5-WROOM-1 Datasheet: https://www.espressif.com/sites/default/files/documentation/esp32-c6-wroom-1_datasheet_cn.pdf
+.. _ESP32-C5-DevKitC-1 Schematic: https://dl.espressif.com/dl/schematics/SCH_ESP32-C5-DevkitC-1_V1.1_20240621.pdf
+.. _ESP32-C5-DevKitC-1 PCB Layout: https://dl.espressif.com/dl/schematics/PCB_ESP32-C5-DevKitC-1_V1.1_20240621.pdf
+.. _ESP32-C5-DevKitC-1 Dimensions: https://dl.espressif.com/dl/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.pdf
+.. _ESP32-C5-DevKitC-1 Dimensions source file: https://dl.espressif.com/dl/schematics/dimension_esp32-c5-devkitc-1_v1.1_20240621.dxf
