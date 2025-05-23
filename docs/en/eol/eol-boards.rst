@@ -17,6 +17,7 @@ This section contains user guides for the {IDF_TARGET_NAME} end-of-life developm
       ESP32-Sense-Kit <../esp32-sense-kit/index>
       ESP32-MeshKit-Sense <../esp32-meshkit-sensor/index>
       ESP-WROVER-KIT <../esp-wrover-kit/index>
+      ESP32-PICO-KIT <../esp32-pico-kit/index>
 
 .. only:: esp32s2
 
@@ -27,3 +28,10 @@ This section contains user guides for the {IDF_TARGET_NAME} end-of-life developm
       ESP32-S2-Touch-Devkit-1 <../esp32-s2-touch-devkit-1/index>
       ESP32-S2-Kaluga-1 <../esp32-s2-kaluga-1/index>
       ESP32-S2-Saola-1 <../esp32-s2-saola-1/index>
+
+.. only:: esp32s3
+
+   .. toctree::
+      :maxdepth: 1
+
+      ESP32-S3-USB-Bridge <../esp32-s3-usb-bridge/index>

@@ -86,6 +86,7 @@ ESP32S2_DOCS = ['*.rst',
                 ]
 ESP32S3_DOCS = ['*.rst',
                 'index/esp32s3-index.inc',
+                'eol/*.rst',
                 'esp32-s3-devkitc-1/*.rst',
                 'esp32-s3-devkitm-1/*.rst',
                 'esp32-s3-lcd-ev-board/*.rst',
