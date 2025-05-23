@@ -6,7 +6,7 @@
     ESP32-S3-DevKitM-1 <esp32-s3-devkitm-1/index>
     ESP32-S3-USB-OTG <esp32-s3-usb-otg/index>
     ESP32-S3-LCD-EV-Board <esp32-s3-lcd-ev-board/index>
-    ESP32-S3-USB-Bridge <esp32-s3-usb-bridge/index>
+    寿命终止开发板 <eol/eol-boards>
 
 
 ============================   ===========================
@@ -19,10 +19,6 @@
 |ESP32-S3-USB-OTG|_            |ESP32-S3-LCD-EV-Board|_
 ----------------------------   ---------------------------
 `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
-----------------------------   ---------------------------
-|ESP32-S3-USB-Bridge|_
-----------------------------   ---------------------------
-`ESP32-S3-USB-Bridge`_
 ============================   ===========================
 
 .. |ESP32-S3-DevKitC-1| image:: ../_static/esp32-s3-devkitc-1/esp32-s3-devkitc-1-v1-isometric.png
@@ -38,6 +34,3 @@
 
 .. |ESP32-S3-LCD-EV-Board| image:: ../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
 .. _ESP32-S3-LCD-EV-Board: esp32-s3-lcd-ev-board/index.html
-
-.. |ESP32-S3-USB-Bridge| image:: ../_static/esp32-s3-usb-bridge/esp32-s3-usb-bridge.png
-.. _ESP32-S3-USB-Bridge: esp32-s3-usb-bridge/index.html
