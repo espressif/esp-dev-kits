@@ -1,0 +1,104 @@
+# example/a               // project full path
+#  target: esp32          // target name
+#  sdkconfig:             // sdkconfig name
+#     - a                 // sdkconfig.ci.a
+#     - default           // sdkconfig.default (will be renamed to {target}_generic)
+#  target: esp32s3        // target name
+#  sdkconfig:             // sdkconfig name
+#     - b                 // sdkconfig.ci.b
+#     - default           // sdkconfig.default (will be renamed to {target}_generic)
+#  description:           // Description of the example (optional)
+#     <description>
+#  readme:                // readme url must point a README.md link (optional)
+#     <URL>
+
+examples/esp32-p4-function-ev-board/examples/lvgl_demo_v8:
+  esp32p4:
+    sdkconfig:
+      - defaults
+  description: This example demonstrates how to port LVGL v8 and conduct performance testing using LVGL's built-in demos.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-p4-function-ev-board/examples/lvgl_demo_v8/README.md
+
+examples/esp32-p4-function-ev-board/examples/lvgl_demo_v9:
+  esp32p4:
+    sdkconfig:
+      - defaults
+  description: This example demonstrates how to port LVGL v9 and conduct performance testing using LVGL's built-in demos.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-p4-function-ev-board/examples/lvgl_demo_v9/README.md
+
+examples/esp32-p4-function-ev-board/examples/esp_brookesia_phone:
+  esp32p4:
+    sdkconfig:
+      - defaults
+  description: This example demonstrates an Android-like interface that includes many different applications based on ESP_Brookesia.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-p4-function-ev-board/examples/esp_brookesia_phone/README.md
+
+examples/esp32-s3-lcd-ev-board/examples/usb_keyboard:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: An example for using LCD and LVGL to simulate USB keyboard.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-lcd-ev-board/examples/usb_keyboard/README.md
+
+examples/esp32-s3-lcd-ev-board/examples/lvgl_demos:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: An example used to run LVGL's demos, including music player, widgets, stress and benchmark.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-lcd-ev-board/examples/lvgl_demos/README.md
+
+examples/esp32-s3-lcd-ev-board/examples/usb_camera_lcd:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: An example for using LCD display video which captured from USB camera.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-lcd-ev-board/examples/usb_camera_lcd/README.md
+
+examples/esp32-s3-lcd-ev-board/examples/smart_panel:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: A factory demo designed for smart control panel (800x480) which has offline voice recognition function.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-lcd-ev-board/examples/smart_panel/README.md
+
+examples/esp32-s3-lcd-ev-board/examples/usb_msc_file_sys:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: This example demonstrates how to use USB HOST on ESP32-S2/S3 to read and write files on a USB flash drive.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-lcd-ev-board/examples/usb_msc_file_sys/README.md
+
+examples/esp32-s3-lcd-ev-board/examples/86box_demo:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: A GUI demo designed for control panel (480x480) which is usually used fo wall-mounted 86 type box.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-lcd-ev-board/examples/86box_demo/README.md
+
+examples/esp32-s3-lcd-ev-board/examples/86box_smart_panel:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: A factory demo designed for smart control panel (480x480) which has offline voice recognition function.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-lcd-ev-board/examples/86box_smart_panel/README.md
+
+examples/esp32-s3-usb-otg/examples/factory:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: ESP32-S3-USB-OTG All-in-One factory demo
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-usb-otg/examples/factory/README.md
+
+examples/esp32-s3-usb-bridge/examples/usb_wireless_bridge:
+  esp32s3:
+    sdkconfig:
+      - defaults
+  description: This project is based on the ESP USB Bridge with additional features for flashing via ESP-NOW and serial communication.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-s3-usb-bridge/examples/usb_wireless_bridge/README.md
+
+examples/esp32-c3-lcdkit/examples/knob_panel:
+  esp32c3:
+    sdkconfig:
+      - defaults
+  description: A GUI Demo designed for knob panel which has the voice playback function.
+  readme: https://raw.githubusercontent.com/espressif/esp-dev-kits/examples/esp32-c3-lcdkit/examples/knob_panel/README.md
