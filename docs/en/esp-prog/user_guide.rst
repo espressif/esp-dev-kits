@@ -136,8 +136,8 @@ The contents are as follows:
 - Cables
 
   Two flexible flat cables:
-    - One cable to connect to 2*5-PIN 2.54 mm male shrouded box header.
-    - One cable to connect to 2*3-PIN 1.27 mm male shrouded box header.
+    - One cable for JTAG 1.27 mm interface to connect to 2*5-PIN male shrouded box header.
+    - One cable for PROG 1.27 mm interface to connect to 2*3-PIN male shrouded box header.
 
 If you order a few samples, each board comes in an individual package in either antistatic bag or any packaging depending on your retailer.
 
