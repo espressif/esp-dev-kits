@@ -25,7 +25,7 @@ esp-dev-kits 文档
 
 .. only:: esp32c2
 
-   目前 {IDF_TARGET_NAME} 芯片仅包含 ESP8684 单个系列，因此本文档中提到的 {IDF_TARGET_NAME} 实际对应 ESP8684 系列芯片。
+   {IDF_TARGET_NAME} 芯片系列合集当前仅包含 ESP8684 一个系列，因此本文中出现的 {IDF_TARGET_NAME} 指的就是 ESP8684 芯片系列。
 
 .. note::
 

@@ -1982,7 +1982,7 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# 33 ESP8684-DevKitM-1 v1.1 User Guide
+# 79 ESP8684-DevKitM-1 v1.1 User Guide
 ########################################
     - document_name: ESP8684-DevKitM-1 v1.1 User Guide
       doc_id: 6117
@@ -2007,7 +2007,7 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# 34 ESP8684-DevKitM-1 v1.1 用户指南
+# 80 ESP8684-DevKitM-1 v1.1 用户指南
 ########################################
     - document_name: ESP8684-DevKitM-1 v1.1 用户指南
       doc_id: 6119
@@ -2031,3 +2031,110 @@ documents:
       scheduled_release_date:
       document_status: active
       document_classification: public
+
+########################################
+# 81 ESP32-C61-DevKitC-1 v1.0 User Guide
+########################################
+    - document_name: ESP32-C61-DevKitC-1 v1.0 User Guide
+      doc_id: 9567
+      translation_docid: 9565
+      chip_series: ESP32-C61
+      product_name:
+        - ESP32-C61-DevKitC-1
+      product_name_old_website:
+        - ESP32-C61-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-08-19
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c61/esp32-c61-devkitc-1/user_guide_v1.0.html
+      document_summary: This user guide will help you get started with ESP32-C61-DevKitC-1 v1.0 and will also provide more in-depth information.
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 82 ESP32-C61-DevKitC-1 v1.0 用户指南
+########################################
+    - document_name: ESP32-C61-DevKitC-1 v1.0 用户指南
+      doc_id: 9565
+      translation_docid: 9567
+      chip_series: ESP32-C61
+      product_name:
+        - ESP32-C61-DevKitC-1
+      product_name_old_website:
+        - ESP32-C61-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-08-19
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c61/esp32-c61-devkitc-1/user_guide_v1.0.html
+      document_summary: 本指南将帮助您快速上手 ESP32-C61-DevKitC-1 v1.0，并提供该款开发板的详细信息。
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
+########################################
+# 83 ESP32-C61-DevKitC-1 v2.0 User Guide
+########################################
+    - document_name: ESP32-C61-DevKitC-1 v2.0 User Guide
+      doc_id: 9571
+      translation_docid: 9569
+      chip_series: ESP32-C61
+      product_name:
+        - ESP32-C61-DevKitC-1
+      product_name_old_website:
+        - ESP32-C61-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-08-19
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c61/esp32-c61-devkitc-1/index.html
+      document_summary: This user guide will help you get started with ESP32-C61-DevKitC-1 v2.0 and will also provide more in-depth information.
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 84 ESP32-C61-DevKitC-1 v2.0 用户指南
+########################################
+    - document_name: ESP32-C61-DevKitC-1 v2.0 用户指南
+      doc_id: 9569
+      translation_docid: 9571
+      chip_series: ESP32-C61
+      product_name:
+        - ESP32-C61-DevKitC-1
+      product_name_old_website:
+        - ESP32-C61-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-08-19
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c61/esp32-c61-devkitc-1/index.html
+      document_summary: 本指南将帮助您快速上手 ESP32-C61-DevKitC-1 v2.0，并提供该款开发板的详细信息。
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
