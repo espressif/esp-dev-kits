@@ -51,12 +51,9 @@
 publish_to_cdp_qa_with_dmf_files:
   extends:
     - .publish_to_cdp_template
-  rules:
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event" && $CI_MERGE_REQUEST_LABELS =~ /(^|,)Release(,|$)/'
-      when: always
-    - if: '$CI_PIPELINE_SOURCE == "merge_request_event"'
-      changes:
-        - docs/**/*
+    - .rules:deploy:docs_preview
+  needs:
+    - deploy_docs_preview
   variables:
     MR_BASE_URL: " $CI_MERGE_REQUEST_PROJECT_URL/-/merge_requests"
     CDP_API_ENDPOINT: "$CDP_API_ENDPOINT_QA"
@@ -64,9 +61,8 @@ publish_to_cdp_qa_with_dmf_files:
 publish_to_cdp_prod_with_dmf_files:
   extends:
     - .publish_to_cdp_template
-  rules:
-    - if: '$CI_COMMIT_BRANCH == "master" && $CI_PIPELINE_SOURCE == "push"'
-      changes:
-        - docs/**/*
+    - .rules:deploy:docs_production
+  needs:
+    - deploy_docs_production
   variables:
     CDP_API_ENDPOINT: "$CDP_API_ENDPOINT_PROD"

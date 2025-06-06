@@ -68,7 +68,7 @@ The description of components starts from the ESP32-H2-MINI-1/1U module on the l
    * - USB Type-C to UART Port
      - Power supply for the board as well as the communication interface between a computer and the ESP32-H2 chip via USB-to-UART bridge.
    * - RGB LED
-     - Addressable RGB LED, driven by GPIO8.
+     - Addressable RGB LED, driven by GPIO8. This means that all color data is transmitted serially through a single data line (GPIO8) to control the color of the RGB LED.
    * - J5
      - Used for current measurement. See details in Section :ref:`user-guide-h2-devkitm-1-current`.
    * - 32.768 kHz Crystal [A]_
@@ -98,6 +98,11 @@ Software Setup
 ^^^^^^^^^^^^^^
 
 Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/index.html>`_, where Section `Installation <https://docs.espressif.com/projects/esp-idf/en/latest/esp32h2/get-started/index.html#get-started-step-by-step>`_ will quickly help you set up the development environment and then flash an application example onto your ESP32-H2-DevKitM-1.
+
+Application Example
+^^^^^^^^^^^^^^^^^^^
+
+Refer to the LED blink example <https://github.com/espressif/esp-idf/tree/master/examples/get-started/blink>_ for how to use the onboard RGB LED of the development board.
 
 
 Contents and Packaging

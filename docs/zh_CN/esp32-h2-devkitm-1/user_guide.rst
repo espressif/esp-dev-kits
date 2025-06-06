@@ -68,7 +68,7 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
    * - USB Type-C to UART Port（USB Type-C 转 UART 接口）
      - 可用作开发板的供电接口，也可作为通信接口，通过板载 USB 转 UART 桥接器与 ESP32-H2 芯片通信。
    * - RGB LED
-     - 可寻址 RGB 发光二极管，由 GPIO8 驱动。
+     - 可寻址 RGB 发光二极管，由 GPIO8 驱动。所有颜色数据通过同一根数据线 (GPIO8) 串行传输，从而控制 RGB LED 的颜色。
    * - J5
      - 用于测量电流，详见章节 `测量电流`_ 。
    * - 32.768 kHz 晶振 [A]_
@@ -98,6 +98,11 @@ ESP32-H2-DevKitM-1 是一款入门级开发板，搭载低功耗蓝牙®和 IEEE
 ^^^^^^^^
 
 请前往 `快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32h2/get-started/index.html>`_ 的 `安装 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32h2/get-started/index.html#get-started-step-by-step>`_ 小节查看如何快速设置开发环境，将应用程序烧录至您的开发板。
+
+应用示例
+^^^^^^^^
+
+请参考 `LED 闪烁示例 <https://github.com/espressif/esp-idf/tree/master/examples/get-started/blink>`_，了解如何使用开发板上的 RGB LED。
 
 
 内含组件和包装
@@ -176,7 +181,7 @@ ESP32-H2-DevKitM-1 的主要组件和连接方式如下图所示。
 测量电流
 ^^^^^^^^
 
-开发板上的 J5 排针（见图 :ref:`user-guide-H2-devkitm-1-board-front` - 正面 中的 J5）可用于测量 ESP32-H2-MINI-1/1U 模组的电流：
+开发板上的 J5 排针（见图 :ref:`user-guide-H2-devkitm-1-board-front` 中的 J5）可用于测量 ESP32-H2-MINI-1/1U 模组的电流：
 
 - 移除 J5 跳帽：此时开发板上外设和模组电源断开，J5 排针接入电流表后可测量模组电流。
 - 安装 J5 跳帽（出厂时默认）：开发板恢复正常功能。
