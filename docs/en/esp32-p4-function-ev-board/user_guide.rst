@@ -1,6 +1,6 @@
-==========================
-ESP32-P4-Function-EV-Board
-==========================
+=================================
+ESP32-P4-Function-EV-Board v1.5.2
+=================================
 
 :link_to_translation:`zh_CN:[中文]`
 
@@ -14,7 +14,7 @@ The 2.4 GHz Wi-Fi 6 & Bluetooth 5 (LE) module ESP32-C6-MINI-1 serves as the Wi-F
 
 Most of the I/O pins are broken out to the pin headers for easy interfacing. Developers can connect peripherals with jumper wires.
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric_v1.5.2.png
     :align: center
     :alt: ESP32-P4-Function-EV-Board
     :figclass: align-center
@@ -38,7 +38,7 @@ Description of Components
 
 .. _user-guide-esp32-p4-function-ev-board-front:
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front_v1.5.2.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board - front (click to enlarge)
@@ -46,7 +46,7 @@ Description of Components
 
     ESP32-P4-Function-EV-Board - front (click to enlarge)
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-back.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-back_v1.5.2.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board - back (click to enlarge)
@@ -86,16 +86,14 @@ The key components of the board are described in a clockwise direction.
      - Ethernet PHY chip connected to the ESP32-P4 EMAC RMII interface and RJ45 Ethernet Port.
    * - Buck Converter
      - A buck DC-DC converter for the 3.3 V power supply.
-   * - USB-to-UART Bridge Chip
-     - CP2102N is a single USB-to-UART bridge chip connected to the ESP32-P4 UART0 interface, CHIP_PU, and GPIO35 (strapping pin). It provides transfer rates up to 3 Mbps for firmware downloading and debugging, supporting the automatic download functionality.
    * - 5 V Power-on LED
      - This LED lights up when the board is powered through any USB Type-C port.
    * - RJ45 Ethernet Port
      - An Ethernet Port supporting 10/100 Mbps adaptive.
-   * - USB-to-UART Port
-     - The USB Type-C port can be used to power the board, flash firmware to the chip, and communicate with the ESP32-P4 chip via the USB-to-UART Bridge Chip.
-   * - USB Power-in Port
-     - The USB Type-C port used to power the board.
+   * - USB Full-speed Port
+     - USB Type-C port that supports USB 2.0 Full-speed data rate. It can be used as the power supply interface for the development board and as a communication interface.
+   * - USB Serial/JTAG Port
+     - USB Type-C port that supports USB 2.0 Full-speed data rate. It can be used to flash firmware to the ESP32-P4 chip, communicate with the chip via the USB protocol, and perform JTAG debugging.
    * - USB 2.0 Type-C Port
      - The USB 2.0 Type-C Port is connected to the USB 2.0 OTG High-Speed interface of ESP32-P4, compliant with the USB 2.0 specification. When communicating with other devices via this port, ESP32-P4 acts as a USB device connecting to a USB host. Please note that USB 2.0 Type-C Port and USB 2.0 Type-A Port cannot be used simultaneously. USB 2.0 Type-C Port can also be used for powering the board.
    * - USB 2.0 Type-A Port
@@ -224,13 +222,13 @@ Block Diagram
 
 The block diagram below shows the components of ESP32-P4-Function-EV-Board and their interconnections.
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-block-diagram.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-block-diagram_v1.5.2.png
     :align: center
     :width: 100%
-    :alt: ESP32-P4-Function-EV-Board (click to enlarge)
+    :alt: ESP32-P4-Function-EV-Board Block Diagram (click to enlarge)
     :figclass: align-center
 
-    ESP32-P4-Function-EV-Board (click to enlarge)
+    ESP32-P4-Function-EV-Board Block Diagram (click to enlarge)
 
 .. _power-supply-options:
 
@@ -240,8 +238,8 @@ Power Supply Options
 Power can be supplied through any of the following ports:
 
 - USB 2.0 Type-C Port
-- USB Power-in Port
-- USB-to-UART Port
+- USB Full-speed Port
+- USB Serial/JTAG Port
 
 If the USB cable used for debugging cannot provide enough current, you can connect the board to a power adapter via any available USB Type-C port.
 
@@ -320,6 +318,7 @@ Related Documents
 
 * `ESP32-P4-Function-EV-Board Schematic`_ (PDF)
 * `ESP32-P4-Function-EV-Board PCB Layout`_ (PDF)
+* `ESP32-P4-Function-EV-Board Assembly`_ (PDF)
 * `ESP32-P4-Function-EV-Board Dimensions`_ (PDF)
 * `ESP32-P4-Function-EV-Board Dimensions source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 * `1.0K-GT-15PB Specification`_ (PDF)
@@ -334,8 +333,9 @@ Related Documents
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
-.. _ESP32-P4-Function-EV-Board Schematic: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics.pdf
+.. _ESP32-P4-Function-EV-Board Schematic: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics_v1.52.pdf
 .. _ESP32-P4-Function-EV-Board PCB Layout: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-pcb-layout.pdf
+.. _ESP32-P4-Function-EV-Board Assembly: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-assembly_v1.52.pdf
 .. _ESP32-P4-Function-EV-Board Dimensions: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.pdf
 .. _ESP32-P4-Function-EV-Board Dimensions source file: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.dxf
 .. _1.0K-GT-15PB Specification: https://dl.espressif.com/dl/schematics/1.0K-GT-15PB_specification.pdf
