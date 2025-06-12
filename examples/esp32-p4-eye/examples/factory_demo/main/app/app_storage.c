@@ -2,6 +2,7 @@
 #include <dirent.h> 
 #include <fcntl.h>
 #include <string.h>
+#include <sys/stat.h>
 #include "esp_log.h"
 #include "esp_sleep.h"
 #include "esp_timer.h"
@@ -24,7 +25,7 @@
 /* Constants and definitions */
 #define PIC_FOLDER_NAME "esp32_p4_pic_save"
 #define NVS_NAMESPACE "p4_eye_cfg"
-#define NVS_KEY_LANGUAGE "language"
+#define NVS_KEY_OD "od"
 #define NVS_KEY_RESOLUTION "resolution"
 #define NVS_KEY_FLASH "flash"
 #define NVS_KEY_INTERVAL_TIME "int_time"
@@ -36,6 +37,7 @@
 #define NVS_KEY_SATURATION "saturation"
 #define NVS_KEY_BRIGHTNESS "brightness"
 #define NVS_KEY_HUE "hue"
+#define NVS_KEY_GYROSCOPE "gyroscope"
 #define LOGICAL_DISK_NUM 1
 
 /* Static variables */
@@ -232,13 +234,13 @@ esp_err_t app_storage_save_settings(settings_info_t *settings, uint16_t interval
     }
     
     // Save language settings
-    uint8_t language_idx = 0;
-    if (strcmp(settings->language, "Chinese") == 0) {
-        language_idx = 1;
+    uint8_t od_idx = 0;
+    if (strcmp(settings->od, "On") == 0) {
+        od_idx = 1;
     }
-    err = nvs_set_u8(nvs_handle, NVS_KEY_LANGUAGE, language_idx);
+    err = nvs_set_u8(nvs_handle, NVS_KEY_OD, od_idx);
     if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Error saving language: %s", esp_err_to_name(err));
+        ESP_LOGE(TAG, "Error saving od: %s", esp_err_to_name(err));
         nvs_close(nvs_handle);
         return err;
     }
@@ -285,6 +287,18 @@ esp_err_t app_storage_save_settings(settings_info_t *settings, uint16_t interval
         return err;
     }
     
+    // Save gyroscope settings
+    uint8_t gyroscope_idx = 0;
+    if (strcmp(settings->gyroscope, "On") == 0) {
+        gyroscope_idx = 1;
+    }
+    err = nvs_set_u8(nvs_handle, NVS_KEY_GYROSCOPE, gyroscope_idx);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Error saving gyroscope: %s", esp_err_to_name(err));
+        nvs_close(nvs_handle);
+        return err;
+    }
+    
     // Commit changes
     err = nvs_commit(nvs_handle);
     if (err != ESP_OK) {
@@ -315,13 +329,22 @@ esp_err_t app_storage_load_settings(settings_info_t *settings, uint16_t *interva
         return err;
     }
     
-    // Load language settings
-    uint8_t language_idx = 0;
-    err = nvs_get_u8(nvs_handle, NVS_KEY_LANGUAGE, &language_idx);
+    // Load gyroscope settings
+    uint8_t gyroscope_idx = 0;
+    err = nvs_get_u8(nvs_handle, NVS_KEY_GYROSCOPE, &gyroscope_idx);
     if (err == ESP_OK) {
-        settings->language = (language_idx == 1) ? "Chinese" : "English";
+        settings->gyroscope = (gyroscope_idx == 1) ? "On" : "Off";
     } else if (err != ESP_ERR_NVS_NOT_FOUND) {
-        ESP_LOGE(TAG, "Error loading language: %s", esp_err_to_name(err));
+        ESP_LOGE(TAG, "Error loading gyroscope: %s", esp_err_to_name(err));
+    }
+    
+    // Load od settings
+    uint8_t od_idx = 0;
+    err = nvs_get_u8(nvs_handle, NVS_KEY_OD, &od_idx);
+    if (err == ESP_OK) {
+        settings->od = (od_idx == 1) ? "On" : "Off";
+    } else if (err != ESP_ERR_NVS_NOT_FOUND) {
+        ESP_LOGE(TAG, "Error loading od: %s", esp_err_to_name(err));
     }
     
     // Load resolution settings
@@ -477,6 +500,80 @@ esp_err_t app_storage_load_camera_settings(uint32_t *contrast, uint32_t *saturat
     return ESP_OK;
 }
 
+/**
+ * @brief Save gyroscope setting to NVS
+ */
+esp_err_t app_storage_save_gyroscope_setting(bool enabled)
+{
+    nvs_handle_t nvs_handle;
+    esp_err_t err;
+    
+    // Open NVS namespace
+    err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &nvs_handle);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Error opening NVS handle: %s", esp_err_to_name(err));
+        return err;
+    }
+    
+    // Save gyroscope setting
+    err = nvs_set_u8(nvs_handle, NVS_KEY_GYROSCOPE, enabled ? 1 : 0);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Error saving gyroscope setting: %s", esp_err_to_name(err));
+        nvs_close(nvs_handle);
+        return err;
+    }
+    
+    // Commit changes
+    err = nvs_commit(nvs_handle);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Error committing NVS: %s", esp_err_to_name(err));
+        nvs_close(nvs_handle);
+        return err;
+    }
+    
+    // Close NVS handle
+    nvs_close(nvs_handle);
+    ESP_LOGI(TAG, "Gyroscope setting saved: %s", enabled ? "On" : "Off");
+    
+    return ESP_OK;
+}
+
+/**
+ * @brief Load gyroscope setting from NVS
+ */
+esp_err_t app_storage_load_gyroscope_setting(bool *enabled)
+{
+    nvs_handle_t nvs_handle;
+    esp_err_t err;
+    
+    // Open NVS namespace
+    err = nvs_open(NVS_NAMESPACE, NVS_READONLY, &nvs_handle);
+    if (err != ESP_OK) {
+        ESP_LOGE(TAG, "Error opening NVS handle: %s", esp_err_to_name(err));
+        return err;
+    }
+    
+    // Get gyroscope setting
+    uint8_t gyroscope_flag = 0;
+    err = nvs_get_u8(nvs_handle, NVS_KEY_GYROSCOPE, &gyroscope_flag);
+    if (err == ESP_OK) {
+        *enabled = (gyroscope_flag == 1);
+    } else if (err == ESP_ERR_NVS_NOT_FOUND) {
+        *enabled = false;  // Default to false if not found
+        err = ESP_OK;
+    } else {
+        ESP_LOGE(TAG, "Error getting gyroscope setting: %s", esp_err_to_name(err));
+        nvs_close(nvs_handle);
+        return err;
+    }
+    
+    // Close NVS handle
+    nvs_close(nvs_handle);
+    ESP_LOGI(TAG, "Gyroscope setting loaded: %s", *enabled ? "On" : "Off");
+    
+    return ESP_OK;
+}
+
 /* SD Card and file operations */
 
 /**
@@ -533,8 +630,30 @@ esp_err_t app_storage_save_picture(const uint8_t *data, size_t len)
     
     FILE *file = fopen(filename, "wb");
     if (!file) {
-        ESP_LOGE(TAG, "Failed to open file for writing: %s", filename);
-        return ESP_FAIL;
+        // If file opening failed, try to create the directory first
+        char folder_path[64];
+        sprintf(folder_path, "%s/%s", BSP_SD_MOUNT_POINT, PIC_FOLDER_NAME);
+        
+        // Check if directory exists
+        DIR *dir = opendir(folder_path);
+        if (!dir) {
+            // Directory doesn't exist, create it
+            ESP_LOGW(TAG, "Directory %s doesn't exist, creating it", folder_path);
+            if (mkdir(folder_path, 0755) != 0) {
+                ESP_LOGE(TAG, "Failed to create directory %s", folder_path);
+                return ESP_FAIL;
+            }
+            ESP_LOGI(TAG, "Created directory: %s", folder_path);
+        } else {
+            closedir(dir);
+        }
+        
+        // Try to open the file again after ensuring directory exists
+        file = fopen(filename, "wb");
+        if (!file) {
+            ESP_LOGE(TAG, "Failed to open file for writing even after creating directory: %s", filename);
+            return ESP_FAIL;
+        }
     }
     
     size_t bytes_written = fwrite(data, 1, len, file);

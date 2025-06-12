@@ -98,4 +98,20 @@ esp_err_t app_storage_save_photo_count(uint16_t count);
  */
 esp_err_t app_storage_get_photo_count(uint16_t *count);
 
+/**
+ * @brief Save gyroscope setting to NVS
+ * 
+ * @param enabled Whether gyroscope is enabled
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t app_storage_save_gyroscope_setting(bool enabled);
+
+/**
+ * @brief Load gyroscope setting from NVS
+ * 
+ * @param enabled Pointer to store gyroscope enabled state
+ * @return ESP_OK on success, error code otherwise
+ */
+esp_err_t app_storage_load_gyroscope_setting(bool *enabled);
+
 #endif /* APP_STORAGE_H */

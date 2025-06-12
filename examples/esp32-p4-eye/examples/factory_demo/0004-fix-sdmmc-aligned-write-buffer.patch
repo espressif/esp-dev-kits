@@ -1,0 +1,194 @@
+From 6c9c32bf8372b3ebeb9c7d1fe1dc30c4e1ab7766 Mon Sep 17 00:00:00 2001
+From: lvhaiyu <lvhaiyu@espressif.com>
+Date: Wed, 11 Jun 2025 15:55:22 +0800
+Subject: [PATCH] fix(p4): feat-sdmmc-aligned-write-buffer
+
+---
+ components/sdmmc/sdmmc_cmd.c | 125 +++++++++++++++++++++++++++--------
+ 1 file changed, 97 insertions(+), 28 deletions(-)
+
+diff --git a/components/sdmmc/sdmmc_cmd.c b/components/sdmmc/sdmmc_cmd.c
+index a928dee6d2..37e7b2f4c0 100644
+--- a/components/sdmmc/sdmmc_cmd.c
++++ b/components/sdmmc/sdmmc_cmd.c
+@@ -5,10 +5,18 @@
+  */
+ 
+ #include <inttypes.h>
++#include <string.h>
+ #include "esp_private/sdmmc_common.h"
+ 
+ static const char* TAG = "sdmmc_cmd";
+ 
++// Static cache buffer for write operations
++static char *s_write_cache_buffer = NULL;
++static size_t s_write_cache_buffer_size = 16384;  // 16KB
++
++// Static cache buffer for read operations
++static char *s_read_cache_buffer = NULL;
++static size_t s_read_cache_buffer_size = 16384;  // 16KB
+ 
+ esp_err_t sdmmc_send_cmd(sdmmc_card_t* card, sdmmc_command_t* cmd)
+ {
+@@ -452,14 +460,38 @@ esp_err_t sdmmc_write_sectors(sdmmc_card_t* card, const void* src,
+ 
+     esp_err_t err = ESP_OK;
+     size_t block_size = card->csd.sector_size;
+-    bool is_aligned = card->host.check_buffer_alignment(card->host.slot, src, block_size * block_count);
++    // Initialize cache buffer if not initialized yet
++    if (s_write_cache_buffer == NULL) {
++        s_write_cache_buffer = heap_caps_aligned_alloc(64, s_write_cache_buffer_size, MALLOC_CAP_SPIRAM | MALLOC_CAP_DMA);
++        if (s_write_cache_buffer == NULL) {
++            ESP_LOGE(TAG, "%s: not enough mem for cache buffer, err=0x%x", __func__, ESP_ERR_NO_MEM);
++            return ESP_ERR_NO_MEM;
++        }
++    }
++    // Ensure buffer is large enough
++    if (s_write_cache_buffer_size < block_size * block_count) {
++        free(s_write_cache_buffer);
++        s_write_cache_buffer_size = block_size * block_count;
++        s_write_cache_buffer = heap_caps_aligned_alloc(64, s_write_cache_buffer_size, MALLOC_CAP_SPIRAM | MALLOC_CAP_DMA);
++        if (s_write_cache_buffer == NULL) {
++            ESP_LOGE(TAG, "%s: not enough mem for resized cache buffer, err=0x%x", __func__, ESP_ERR_NO_MEM);
++            return ESP_ERR_NO_MEM;
++        }
++    }
++    // Copy source data to cache buffer
++    memcpy(s_write_cache_buffer, src, block_size * block_count);
++    esp_dma_mem_info_t dma_mem_info = {0};
++    if (card->host.get_dma_info != NULL) {
++        card->host.get_dma_info(card->host.slot, &dma_mem_info);
++    }
++    bool is_aligned = esp_dma_is_buffer_alignment_satisfied(s_write_cache_buffer, block_size * block_count, dma_mem_info);
+ 
+     if (is_aligned
+         #if !SOC_SDMMC_PSRAM_DMA_CAPABLE
+-            && !esp_ptr_external_ram(src)
++            && !esp_ptr_external_ram(s_write_cache_buffer)
+         #endif
+     ) {
+-        err = sdmmc_write_sectors_dma(card, src, start_block, block_count, block_size * block_count);
++        err = sdmmc_write_sectors_dma(card, s_write_cache_buffer, start_block, block_count, block_size * block_count);
+     } else {
+         // SDMMC peripheral needs DMA-capable buffers. Split the write into
+         // separate single block writes, if needed, and allocate a temporary
+@@ -468,14 +500,14 @@ esp_err_t sdmmc_write_sectors(sdmmc_card_t* card, const void* src,
+         size_t actual_size = 0;
+         // We don't want to force the allocation into SPIRAM, the allocator
+         // will decide based on the buffer size and memory availability.
+-        tmp_buf = heap_caps_malloc(block_size, MALLOC_CAP_DMA);
++        tmp_buf = heap_caps_malloc(block_size, MALLOC_CAP_SPIRAM | MALLOC_CAP_DMA);
+         if (!tmp_buf) {
+             ESP_LOGE(TAG, "%s: not enough mem, err=0x%x", __func__, ESP_ERR_NO_MEM);
+             return ESP_ERR_NO_MEM;
+         }
+         actual_size = heap_caps_get_allocated_size(tmp_buf);
+ 
+-        const uint8_t* cur_src = (const uint8_t*) src;
++        const uint8_t* cur_src = (const uint8_t*) s_write_cache_buffer;
+         for (size_t i = 0; i < block_count; ++i) {
+             memcpy(tmp_buf, cur_src, block_size);
+             cur_src += block_size;
+@@ -590,8 +622,9 @@ esp_err_t sdmmc_read_sectors(sdmmc_card_t* card, void* dst,
+ 
+     esp_err_t err = ESP_OK;
+     size_t block_size = card->csd.sector_size;
+-    bool is_aligned = card->host.check_buffer_alignment(card->host.slot, dst, block_size * block_count);
+-
++    bool is_aligned = card->host.check_buffer_alignment ?
++                      card->host.check_buffer_alignment(card->host.slot, dst, block_size * block_count) :
++                      false;
+     if (is_aligned
+         #if !SOC_SDMMC_PSRAM_DMA_CAPABLE
+             && !esp_ptr_external_ram(dst)
+@@ -599,30 +632,66 @@ esp_err_t sdmmc_read_sectors(sdmmc_card_t* card, void* dst,
+     ) {
+         err = sdmmc_read_sectors_dma(card, dst, start_block, block_count, block_size * block_count);
+     } else {
+-        // SDMMC peripheral needs DMA-capable buffers. Split the read into
+-        // separate single block reads, if needed, and allocate a temporary
+-        // DMA-capable buffer.
+-        void *tmp_buf = NULL;
+-        size_t actual_size = 0;
+-        tmp_buf = heap_caps_malloc(block_size, MALLOC_CAP_DMA);
+-        if (!tmp_buf) {
+-            ESP_LOGE(TAG, "%s: not enough mem, err=0x%x", __func__, ESP_ERR_NO_MEM);
+-            return ESP_ERR_NO_MEM;
++        // SDMMC peripheral needs DMA-capable buffers. Use a cached approach
++        // to read multiple blocks at once, reducing memory allocation overhead.
++        // Initialize cache buffer if not initialized yet
++        if (s_read_cache_buffer == NULL) {
++            s_read_cache_buffer = heap_caps_aligned_alloc(64, s_read_cache_buffer_size, MALLOC_CAP_SPIRAM | MALLOC_CAP_DMA);
++            if (s_read_cache_buffer == NULL) {
++                ESP_LOGE(TAG, "%s: not enough mem for read cache buffer, err=0x%x", __func__, ESP_ERR_NO_MEM);
++                return ESP_ERR_NO_MEM;
++            }
+         }
+-        actual_size = heap_caps_get_allocated_size(tmp_buf);
+-
+-        uint8_t* cur_dst = (uint8_t*) dst;
+-        for (size_t i = 0; i < block_count; ++i) {
+-            err = sdmmc_read_sectors_dma(card, tmp_buf, start_block + i, 1, actual_size);
+-            if (err != ESP_OK) {
+-                ESP_LOGD(TAG, "%s: error 0x%x writing block %d+%d",
+-                        __func__, err, start_block, i);
+-                break;
++        // Ensure buffer is large enough
++        if (s_read_cache_buffer_size < block_size * block_count) {
++            free(s_read_cache_buffer);
++            s_read_cache_buffer_size = block_size * block_count;
++            s_read_cache_buffer = heap_caps_aligned_alloc(64, s_read_cache_buffer_size, MALLOC_CAP_SPIRAM | MALLOC_CAP_DMA);
++            if (s_read_cache_buffer == NULL) {
++                ESP_LOGE(TAG, "%s: not enough mem for resized read cache buffer, err=0x%x", __func__, ESP_ERR_NO_MEM);
++                return ESP_ERR_NO_MEM;
+             }
+-            memcpy(cur_dst, tmp_buf, block_size);
+-            cur_dst += block_size;
+         }
+-        free(tmp_buf);
++        esp_dma_mem_info_t dma_mem_info = {0};
++        if (card->host.get_dma_info != NULL) {
++            card->host.get_dma_info(card->host.slot, &dma_mem_info);
++        }
++        bool cache_is_aligned = esp_dma_is_buffer_alignment_satisfied(s_read_cache_buffer, block_size * block_count, dma_mem_info);
++        if (cache_is_aligned
++            #if !SOC_SDMMC_PSRAM_DMA_CAPABLE
++                && !esp_ptr_external_ram(s_read_cache_buffer)
++            #endif
++        ) {
++            // Read all blocks at once to cache buffer
++            err = sdmmc_read_sectors_dma(card, s_read_cache_buffer, start_block, block_count, block_size * block_count);
++            if (err == ESP_OK) {
++                // Copy from cache buffer to destination
++                memcpy(dst, s_read_cache_buffer, block_size * block_count);
++            }
++        } else {
++            // Fall back to original single-block approach if cache buffer is not DMA-aligned
++            void *tmp_buf = NULL;
++            size_t actual_size = 0;
++            tmp_buf = heap_caps_malloc(block_size, MALLOC_CAP_DMA);
++            if (!tmp_buf) {
++                ESP_LOGE(TAG, "%s: not enough mem, err=0x%x", __func__, ESP_ERR_NO_MEM);
++                return ESP_ERR_NO_MEM;
++            }
++            actual_size = heap_caps_get_allocated_size(tmp_buf);
++
++            uint8_t* cur_dst = (uint8_t*) dst;
++            for (size_t i = 0; i < block_count; ++i) {
++                err = sdmmc_read_sectors_dma(card, tmp_buf, start_block + i, 1, actual_size);
++                if (err != ESP_OK) {
++                    ESP_LOGD(TAG, "%s: error 0x%x reading block %d+%d",
++                            __func__, err, start_block, i);
++                    break;
++                }
++                memcpy(cur_dst, tmp_buf, block_size);
++                cur_dst += block_size;
++            }
++            free(tmp_buf);
++        }
+     }
+     return err;
+ }
+-- 
+2.34.1
+

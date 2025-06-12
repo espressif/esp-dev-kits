@@ -22,7 +22,7 @@ static int knob_step_counter = 0;
 static int knob_last_direction = 0;  // 0: no direction, 1: right, -1: left
 static int64_t knob_last_time = 0;   // timestamp of last rotation
 static const int knob_timeout_ms = 500;  // timeout in milliseconds
-static int knob_step_threshold = 6;  // threshold for knob step counter
+static int knob_step_threshold = 3;  // threshold for knob step counter
 
 /* Private function prototypes */
 static void btn_handler(void *arg, void *data);
@@ -114,7 +114,8 @@ static void handle_knob_rotation(int direction, void (*action_camera)(void), voi
         bsp_display_lock(0);
         if (ui_extra_get_current_page() == UI_PAGE_CAMERA || 
             ui_extra_get_current_page() == UI_PAGE_INTERVAL_CAM || 
-            ui_extra_get_current_page() == UI_PAGE_VIDEO_MODE) {
+            ui_extra_get_current_page() == UI_PAGE_VIDEO_MODE ||
+            ui_extra_get_current_page() == UI_PAGE_AI_DETECT) {
             action_camera();
         } else if (ui_extra_get_current_page() == UI_PAGE_MAIN) {
             action_main();

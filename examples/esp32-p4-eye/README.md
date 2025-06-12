@@ -6,11 +6,11 @@
 
 ## Examples
 
-The examples are developed under the ESP-IDF **release/v5.4** branch. The [Factory Demo](./examples/factory_demo/) is the factory firmware of the development board.
+The examples are developed under the ESP-IDF **release/v5.5** branch. The [Factory Demo](./examples/factory_demo/) is the factory firmware of the development board.
 
 ## Factory Bin
 
-* [Factory Bin](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_factory_demo_010.bin) for ESP32-P4-EYE, programmed with the [Factory Demo](./examples/factory_demo/) example.
+* [Factory Bin](https://dl.espressif.com/AE/esp-dev-kits/p4_eye_factory_demo_100.bin) for ESP32-P4-EYE, programmed with the [Factory Demo](./examples/factory_demo/) example.
 
 <a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif2022.github.io/ESP32-P4-Function-EV-Board/launchpad.toml">
     <img alt="Try it with ESP Launchpad" src="https://dl.espressif.com/AE/esp-dev-kits/new_launchpad.png" width="316" height="100">

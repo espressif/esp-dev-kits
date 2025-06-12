@@ -2,7 +2,7 @@
 
 [英文版本](./README.md)
 
-该示例基于 ESP32-P4-EYE，展示了一个迷你相机应用，支持拍照、定时拍照、录像、相册预览、USB 挂载 SD 卡以及设置界面（可调节分辨率、饱和度、对比度、亮度和色度）。示例项目综合使用了开发板的各类外设资源，包括 MIPI-CSI 摄像头接口、SPI LCD 显示接口、USB High-Speed 接口、按键输入、旋转编码器以及 SD 卡存储。
+该示例基于 ESP32-P4-EYE 开发板，展示了一个功能全面的迷你相机应用，支持拍照、定时拍照、录像、相册预览、USB 挂载 SD 卡以及图像参数设置（可调节分辨率、饱和度、对比度、亮度和色度）。在此基础上，应用还集成了人脸检测、行人检测以及基于 YOLOv11 nano 模型的目标检测功能，增强了智能视觉识别能力。项目综合利用了开发板的多种外设资源，包括 MIPI-CSI 摄像头接口、SPI 接口 LCD 显示屏、USB High-Speed 接口、按键输入、旋转编码器和 SD 卡存储等。
 
 ## 快速入门
 
@@ -14,7 +14,7 @@
 
 ### ESP-IDF 要求
 
-- 此示例支持 ESP-IDF release/v5.4 及以上版本。默认情况下，在 ESP-IDF release/v5.4 上运行。
+- 此示例支持 ESP-IDF release/v5.4 及以上版本。默认情况下，在 ESP-IDF release/v5.5 上运行。
 - 请参照 [ESP-IDF 编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html) 设置开发环境。**强烈推荐** 通过 [编译第一个工程](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#id8) 来熟悉 ESP-IDF，并确保环境设置正确。
 
 ### 获取 esp-dev-kits 仓库
@@ -37,20 +37,20 @@ menuconfig > Component config > Board Support Package
 
 ### 应用补丁
 
-* 当像素时钟设置为 80MHz 时，SPI 默认时钟源暂时可能无法满足时序需求。为此，请按照以下步骤应用补丁文件 `0001-fix-spi-default-clock-source.patch`：
+* 当像素时钟设置为 80MHz 时，SPI 默认时钟源暂时可能无法满足时序需求。为此，请按照以下步骤应用补丁文件 `0004-fix-spi-default-clock-source.patch`：
 
-1. 切换到 ESP-IDF 根目录并检出特定版本 (补丁针对 IDF release/v5.4 commit:8ad0d3d8f2faab752635bee36070313c47c07a13 版本):
+1. 切换到 ESP-IDF 根目录并检出特定版本 (补丁针对 IDF release/v5.5 commit:98cd765953dfe0e7bb1c5df8367e1b54bd966cce 版本):
 
 ```bash
 cd ~/esp-idf
-git checkout release/v5.4
-git checkout 8ad0d3d8f2faab752635bee36070313c47c07a13
+git checkout release/v5.5
+git checkout 98cd765953dfe0e7bb1c5df8367e1b54bd966cce
 ```
 
 2. 将补丁文件复制到 ESP-IDF 根目录，例如：
 
 ```bash
-cp 0002-fix-spi-default-clock-source.patch ~/esp-idf/
+cp 0004-fix-spi-default-clock-source.patch ~/esp-idf/
 ```
 
 3. 切换到 ESP-IDF 根目录：
@@ -62,10 +62,10 @@ cd ~/esp-idf
 4. 执行以下命令应用补丁
 
 ```bash
-git apply 0002-fix-spi-default-clock-source.patch
+git apply 0004-fix-spi-default-clock-source.patch
 ```
 
-* 若在拍照或录像过程中出现明显卡顿，可尝试应用补丁文件 `0002-feat-sdmmc-aligned-write-buffer.patch`，其使用方法同上。
+* 若在拍照或录像过程中出现明显卡顿，可尝试应用补丁文件 `0004-fix-sdmmc-aligned-write-buffer.patch`，其使用方法同上。
 
 ### 编译和烧录示例
 
@@ -86,9 +86,10 @@ idf.py -p PORT flash monitor
 | ![Camera](https://dl.espressif.com/AE/esp-dev-kits/esp32-p4-eye-capture.png)             | 拍照     | 用户可通过按下编码器按键进行拍照，同时支持通过旋转编码器或按键操作实现数码变焦功能。<br>**注意**：拍照功能需插入 SD 卡，照片将默认保存至 SD 卡中的 `esp32_p4_pic_save` 文件夹，并可通过相册功能进行预览 |
 | ![interval_cam](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_timed_capture.png) | 定时拍摄 | 用户可通过按键设置定时拍摄时间，并通过按下编码器按键启动定时拍摄模式。同时，可通过旋转编码器实现数码变焦。在定时拍摄过程中，按下任意按键即可停止拍摄。<br>**注意**：定时拍摄功能需插入 SD 卡，照片将默认保存至 SD 卡中的 `esp32_p4_pic_save` 文件夹，并可通过相册功能进行预览。 |
 | ![video_mode](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_video_record.png)     | 录像     | 用户可通过按下编码器按键开始录像，同时支持通过旋转编码器或按键操作进行数码变焦。<br>**注意**：录像功能需插入 SD 卡，视频将以 MP4 格式保存至 SD 卡中的 `esp32_p4_mp4_save` 文件夹。目前暂不支持通过相册功能预览 MP4 视频。 |
-| ![album](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_album_preview.png)               | 相册     | 用户可预览在拍照模式或定时拍摄模式下拍摄的照片，并通过按键实现上下翻页浏览。按下编码器按键可删除当前照片。 |
+| ![ai_detect](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_video_ai.png)     | AI 检测     | 检测功能支持人脸检测与行人检测，基于 esp-dl 推理框架实现，用户可通过上下翻按键在不同检测模式间切换。<br>**注意**：该模式下不可进行拍照。 |
+| ![album](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_album_preview.png)               | 相册     | 用户可在拍照模式或定时拍摄模式下预览已拍摄的照片，并通过按键进行上下翻页浏览。按下编码器按键可删除当前照片。若在设置中启用 YOLO 目标检测，浏览相册时将自动对照片进行目标检测。 |
 | ![usb_disk](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_usb_access.png)         | USB 挂载 | 将设备通过 USB 2.0 Device 接口连接至 PC 后，可直接访问 SD 卡中的文件内容。 |
-| ![settings](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_settings.png)         | 设置     | 用户可设置拍摄图像的分辨率、是否开启闪光灯，并可调节图像的饱和度、对比度、亮度和色度。<br>**注意**：当前暂不支持语言设置功能。 |
+| ![settings](https://dl.espressif.com/AE/esp-dev-kits/esp32_p4_eye_settings.png)         | 设置     | 用户可设置是否开启三轴加速度计旋转、是否开启 YOLO 目标检测、拍摄图像的分辨率、是否开启闪光灯，并可调节图像的饱和度、对比度、亮度和色度。 |
 
 ### 示例输出
 
