@@ -10,5 +10,5 @@ ESP32-S3-DevKitC-1 是一款入门级开发板，搭载 Wi-Fi + Bluetooth® LE �
 .. toctree::
     :maxdepth: 2
 
-    用户指南 v1.1 <user_guide>
+    用户指南 v1.1 <user_guide_v1.1>
     用户指南 v1.0 <user_guide_v1.0>

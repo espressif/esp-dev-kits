@@ -10,5 +10,5 @@ Most of the I/O pins on the module are broken out to the pin headers on both sid
 .. toctree::
     :maxdepth: 2
 
-    User Guide v1.1 <user_guide>
+    User Guide v1.1 <user_guide_v1.1>
     User Guide v1.0 <user_guide_v1.0>
