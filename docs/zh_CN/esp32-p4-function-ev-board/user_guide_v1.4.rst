@@ -14,7 +14,7 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
 
 板上模组大部分管脚均已引出至排针，开发人员可根据实际需求，轻松通过跳线连接多种外围设备。
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric_v1.4.png
     :align: center
     :alt: ESP32-P4-Function-EV-Board
     :figclass: align-center
@@ -38,7 +38,7 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
 
 .. _user-guide-esp32-p4-function-ev-board-v1.4-front:
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front_v1.4.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board - 正面（点击放大）
@@ -46,7 +46,7 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
 
     ESP32-P4-Function-EV-Board - 正面（点击放大）
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-back.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-back_v1.4.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board - 背面（点击放大）
@@ -224,7 +224,7 @@ ESP32-P4-Function-EV-Board 的包装盒中包含以下可选配件：
 
 ESP32-P4-Function-EV-Board 的主要组件和连接方式如下图所示。
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-v1.4-block-diagram.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-block-diagram_v1.4.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board v1.4（点击放大）

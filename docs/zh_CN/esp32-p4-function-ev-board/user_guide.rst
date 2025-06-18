@@ -1,6 +1,6 @@
-==========================
-ESP32-P4-Function-EV-Board
-==========================
+=================================
+ESP32-P4-Function-EV-Board v1.5.2
+=================================
 
 :link_to_translation:`en: [English]`
 
@@ -14,7 +14,7 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
 
 板上模组大部分管脚均已引出至排针，开发人员可根据实际需求，轻松通过跳线连接多种外围设备。
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric_v1.5.2.png
     :align: center
     :alt: ESP32-P4-Function-EV-Board
     :figclass: align-center
@@ -38,7 +38,7 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
 
 .. _user-guide-esp32-p4-function-ev-board-front:
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front_v1.5.2.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board - 正面（点击放大）
@@ -46,7 +46,7 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
 
     ESP32-P4-Function-EV-Board - 正面（点击放大）
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-back.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-back_v1.5.2.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board - 背面（点击放大）
@@ -86,16 +86,14 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
      - 以太网 PHY 芯片，与 ESP32-P4 EMAC RMII 接口和 RJ45 以太网模块端口连接。
    * - Buck Converter（降压转换器）
      - 用于 3.3 V 电源的降压型 DC-DC 转换器。
-   * - USB-to-UART Bridge Chip（USB 转 UART 桥接器）
-     - 单芯片 USB 转 UART 桥接器芯片 CP2102N，与 ESP32-P4 UART0 接口、CHIP_PU 及 GPIO35 管脚 (strapping pin) 连接，可提供高达 3 Mbps 的传输速率，用于固件下载和调试 log 打印，支持自动下载功能。
    * - 5 V Power-on LED（5 V 电源指示灯）
      - 开发板通过任一 USB Type-C 接口连接电源后，该指示灯亮起。
    * - RJ45 Ethernet Port（RJ45 以太网接口）
      - 以太网接口，支持 10/100 Mbps 自适应。
-   * - USB-to-UART Port（USB 转 UART 接口）
-     - USB Type-C 接口，可用作开发板的供电接口，可烧录固件至芯片，也可作为通信接口，通过板载 USB 转 UART 桥接器与 ESP32-P4 芯片通信。
-   * - USB Power-in Port（USB 电源输入接口）
-     - 开发板的 USB Type-C 供电接口。
+   * - USB Full-speed Port（USB 全速接口）
+     - USB Type-C 接口，支持 USB 2.0 Full-speed 速率，可用作开发板的供电接口，可作为通信接口。
+   * - USB Serial/JTAG Port（USB 串口/JTAG 接口）
+     - USB Type-C 接口，支持 USB 2.0 Full-speed 速率，可烧录固件至 ESP32-P4 芯片，可通过 USB 协议与芯片通信，也可用于 JTAG 调试。
    * - USB 2.0 Type-C Port（USB 2.0 Type-C 接口）
      - USB 2.0 Type-C 接口与 ESP32-P4 芯片的 USB 2.0 OTG High-Speed 接口连接，支持 USB 2.0 标准。通过该接口进行 USB 通讯时，ESP32-P4 作为 USB Device 设备与其他 USB Host 设备连接。USB 2.0 Type-C 接口和 USB 2.0 Type-A 接口需要二选一使用，不能同时使用。该接口也可用作开发板的供电接口。
    * - USB 2.0 Type-A Port （USB 2.0 Type-A 接口）
@@ -224,13 +222,13 @@ ESP32-P4-Function-EV-Board 的包装盒中包含以下可选配件：
 
 ESP32-P4-Function-EV-Board 的主要组件和连接方式如下图所示。
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-block-diagram.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-block-diagram_v1.5.2.png
     :align: center
     :width: 100%
-    :alt: ESP32-P4-Function-EV-Board（点击放大）
+    :alt: ESP32-P4-Function-EV-Board 功能框图（点击放大）
     :figclass: align-center
 
-    ESP32-P4-Function-EV-Board（点击放大）
+    ESP32-P4-Function-EV-Board 功能框图（点击放大）
 
 .. _power-supply-options:
 
@@ -240,8 +238,8 @@ ESP32-P4-Function-EV-Board 的主要组件和连接方式如下图所示。
 可通过以下接口为开发板供电：
 
 - USB 2.0 Type-C 接口
-- USB 电源输入接口
-- USB 转 UART 接口
+- USB 全速接口
+- USB 串口/JTAG 接口
 
 如果用于调试的 USB 数据线无法提供足够的电流，可通过空闲的 USB Type-C 接口连接电源适配器。
 
@@ -320,6 +318,7 @@ ESP32-P4-Function-EV-Board v1.4
 
 * `ESP32-P4-Function-EV-Board 原理图`_ (PDF)
 * `ESP32-P4-Function-EV-Board PCB 布局图`_ (PDF)
+* `ESP32-P4-Function-EV-Board 元件位号图`_ (PDF)
 * `ESP32-P4-Function-EV-Board 尺寸图`_ (PDF)
 * `ESP32-P4-Function-EV-Board 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 * `1.0K-GT-15PB 规格书`_ (PDF)
@@ -334,8 +333,9 @@ ESP32-P4-Function-EV-Board v1.4
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
 
-.. _ESP32-P4-Function-EV-Board 原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics.pdf
+.. _ESP32-P4-Function-EV-Board 原理图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-schematics_v1.52.pdf
 .. _ESP32-P4-Function-EV-Board PCB 布局图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-pcb-layout.pdf
+.. _ESP32-P4-Function-EV-Board 元件位号图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-assembly_v1.52.pdf
 .. _ESP32-P4-Function-EV-Board 尺寸图: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.pdf
 .. _ESP32-P4-Function-EV-Board 尺寸图源文件: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-dimensions.dxf
 .. _1.0K-GT-15PB 规格书: https://dl.espressif.com/dl/schematics/1.0K-GT-15PB_specification.pdf

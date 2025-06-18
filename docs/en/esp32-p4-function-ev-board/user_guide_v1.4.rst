@@ -14,7 +14,7 @@ The 2.4 GHz Wi-Fi 6 & Bluetooth 5 (LE) module ESP32-C6-MINI-1 serves as the Wi-F
 
 Most of the I/O pins are broken out to the pin headers for easy interfacing. Developers can connect peripherals with jumper wires.
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric_v1.4.png
     :align: center
     :alt: ESP32-P4-Function-EV-Board
     :figclass: align-center
@@ -38,7 +38,7 @@ Description of Components
 
 .. _user-guide-esp32-p4-function-ev-board-v1.4-front:
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-front_v1.4.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board - front (click to enlarge)
@@ -46,7 +46,7 @@ Description of Components
 
     ESP32-P4-Function-EV-Board - front (click to enlarge)
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-back.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-annotated-photo-back_v1.4.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board - back (click to enlarge)
@@ -224,7 +224,7 @@ Block Diagram
 
 The block diagram below shows the components of ESP32-P4-Function-EV-Board and their interconnections.
 
-.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-v1.4-block-diagram.png
+.. figure:: ../../_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-block-diagram_v1.4.png
     :align: center
     :width: 100%
     :alt: ESP32-P4-Function-EV-Board v1.4 (click to enlarge)
