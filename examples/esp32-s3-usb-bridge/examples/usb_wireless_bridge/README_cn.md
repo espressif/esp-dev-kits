@@ -6,7 +6,7 @@
 
 * ESP32-S2/ESP32-S3 开发板
     * ESP32-S3-USB-Bridge - [用户指南](../../../../docs/zh_CN/esp32-s3-usb-bridge/user_guide.rst)
-    * ESP32-S3-DevkitC-1 - [用户指南](../../../../docs/zh_CN/esp32-s3-devkitc-1/user_guide.rst)
+    * ESP32-S3-DevkitC-1 - [用户指南](../../../../docs/zh_CN/esp32-s3-devkitc-1/user_guide_v1.1.rst)
 * 用于下载和编程的 USB 数据线
 
 ## 烧录
