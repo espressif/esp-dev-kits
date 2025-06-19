@@ -1,10 +1,10 @@
-==================
-ESP32-S3-DevKitC-1
-==================
+=======================
+ESP32-S3-DevKitC-1 v1.0
+=======================
 
 :link_to_translation:`zh_CN:[中文]`
 
-The latest version: :doc:`user_guide`
+The latest version: :doc:`user_guide_v1.1`
 
 This user guide will help you get started with ESP32-S3-DevKitC-1 and will also provide more in-depth information.
 
@@ -140,15 +140,10 @@ The development board has a variety of variants to choose from, as shown in the 
      - 8 MB QD
      - 8 MB OT
      - 3.3 V
-   * - ESP32-S3-DevKitC-1-N16R8V
-     - ESP32-S3-WROOM-2-N16R8V
-     - 16 MB OT
-     - 8 MB OT
-     - 1.8 V
-   * - ESP32-S3-DevKitC-1-N32R8V
-     - ESP32-S3-WROOM-2-N32R8V
+   * - ESP32-S3-DevKitC-1-N32R16V
+     - ESP32-S3-WROOM-2-N32R16V
      - 32 MB OT
-     - 8 MB OT
+     - 16 MB OT
      - 1.8 V
    * - ESP32-S3-DevKitC-1U-N8
      - ESP32-S3-WROOM-1U-N8

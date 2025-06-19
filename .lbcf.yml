@@ -648,9 +648,9 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# 25 ESP32-S3-DevKitC-1 User Guide
+# 25 ESP32-S3-DevKitC-1 v1.1 User Guide
 ########################################
-    - document_name: ESP32-S3-DevKitC-1 User Guide
+    - document_name: ESP32-S3-DevKitC-1 v1.1 User Guide
       doc_id: 5457
       translation_docid: 5458
       chip_series: ESP32-S3
@@ -663,20 +663,20 @@ documents:
       document_type_old_website: guide
       document_status: active
       version: latest
-      revision_date: 2021-10-28
+      revision_date: 2025-06-18
       language: en
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/index.html
-      document_summary: This user guide will help you get started with ESP32-S3-DevKitC-1 and will also provide more in-depth information.
-      notify_subscribers: false
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide.html
+      document_summary: This user guide will help you get started with ESP32-S3-DevKitC-1 v1.1 and will also provide more in-depth information.
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
       document_classification: public
 ########################################
-# 26 ESP32-S3-DevKitC-1 用户指南
+# 26 ESP32-S3-DevKitC-1 v1.1 用户指南
 ########################################
-    - document_name: ESP32-S3-DevKitC-1 用户指南
+    - document_name: ESP32-S3-DevKitC-1 v1.1 用户指南
       doc_id: 5458
       translation_docid: 5457
       chip_series: ESP32-S3
@@ -689,12 +689,12 @@ documents:
       document_type_old_website: guide
       document_status: active
       version: latest
-      revision_date: 2021-10-28
+      revision_date: 2025-06-18
       language: cn
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-devkitc-1/index.html
-      document_summary: 本指南将帮助您快速上手 ESP32-S3-DevKitC-1，并提供该款开发板的详细信息。
-      notify_subscribers: false
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-devkitc-1/user_guide.html
+      document_summary: 本指南将帮助您快速上手 ESP32-S3-DevKitC-1 v1.1，并提供该款开发板的详细信息。
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1630,6 +1630,58 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/other/esp-prog-2/user_guide.html
       document_summary: 本指南将帮助您快速上手 ESP-Prog-2，并提供该款开发板的详细信息。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 63 ESP32-S3-DevKitC-1 v1.0 User Guide
+########################################
+    - document_name: ESP32-S3-DevKitC-1 v1.0 User Guide
+      doc_id: 9081
+      translation_docid: 9083
+      chip_series: ESP32-S3
+      product_name:
+        - ESP32-S3-DevKitC-1
+      product_name_old_website:
+        - ESP32-S3-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-06-18
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.0.html
+      document_summary: This user guide will help you get started with ESP32-S3-DevKitC-1 v1.0 and will also provide more in-depth information.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 64 ESP32-S3-DevKitC-1 v1.0 用户指南
+########################################
+    - document_name: ESP32-S3-DevKitC-1 v1.0 用户指南
+      doc_id: 9083
+      translation_docid: 9081
+      chip_series: ESP32-S3
+      product_name:
+        - ESP32-S3-DevKitC-1
+      product_name_old_website:
+        - ESP32-S3-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-06-18
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.0.html
+      document_summary: 本指南将帮助您快速上手 ESP32-S3-DevKitC-1 v1.0，并提供该款开发板的详细信息。
       notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
