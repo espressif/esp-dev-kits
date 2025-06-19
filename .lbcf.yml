@@ -1587,8 +1587,8 @@ documents:
 # 61 ESP-Prog-2 User Guide
 ########################################
     - document_name: ESP-Prog-2 User Guide
-      doc_id: 9227
-      translation_docid: 9225
+      doc_id: 9275
+      translation_docid: 9277
       chip_series: Other
       product_name:
         - ESP-Prog-2
@@ -1613,8 +1613,8 @@ documents:
 # 62 ESP-Prog-2 用户指南
 ########################################
     - document_name: ESP-Prog-2 用户指南
-      doc_id: 9225
-      translation_docid: 9227
+      doc_id: 9277
+      translation_docid: 9275
       chip_series: Other
       product_name:
         - ESP-Prog-2
