@@ -1,20 +1,41 @@
 # This document specifies owners for each document in esp-dev-kits.
 # For more CODEOWNERS examples and use cases, see https://github.com/espressif/esp-idf/blob/master/.gitlab/CODEOWNERS.
 
-# User guide
+# Debugging and Flashing Boards User guide
 
+/docs/*/index/other-index.inc               @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp-module-prog-1-r/                @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp-module-prog-sub-01&04/          @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp-module-prog-sub-02/             @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp-prog/                           @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp-prog-2/                         @documentation/codeowners/esp32s3       @documentation/codeowners/hw
+
+# ESP32-C3 Boards User guide
+
+/docs/*/index/esp32c3-index.inc             @documentation/codeowners/esp32c3       @documentation/codeowners/hw
 /docs/*/esp32-c3-devkitc-02/                @documentation/codeowners/esp32c3       @documentation/codeowners/hw
 /docs/*/esp32-c3-devkitm-1/                 @documentation/codeowners/esp32c3       @documentation/codeowners/hw
 /docs/*/esp32-c3-lcdkit/                    @documentation/codeowners/esp32c3       @documentation/codeowners/hw @documentation/codeowners/ae
+
+# ESP32-C5 Boards User guide
+
+/docs/*/index/esp32c5-index.inc             @documentation/codeowners/esp32c5       @documentation/codeowners/hw
 /docs/*/esp32-c5-devkitc-1/                 @documentation/codeowners/esp32c5       @documentation/codeowners/hw
+
+# ESP32-C6 Boards User guide
+
+/docs/*/index/esp32c6-index.inc             @documentation/codeowners/esp32c6       @documentation/codeowners/hw
 /docs/*/esp32-c6-devkitc-1/                 @documentation/codeowners/esp32c6       @documentation/codeowners/hw
 /docs/*/esp32-c6-devkitm-1/                 @documentation/codeowners/esp32c6       @documentation/codeowners/hw
+
+# ESP32-C61 Boards User guide
+
+/docs/*/index/esp32c61-index.inc            @documentation/codeowners/esp32c61      @documentation/codeowners/hw
 /docs/*/esp32-c61-devkitc-1/                @documentation/codeowners/esp32c61      @documentation/codeowners/hw
+
+# ESP32 Boards User guide
+
+/docs/*/index/esp32-index.inc               @documentation/codeowners/esp32         @documentation/codeowners/hw
 /docs/*/esp-wrover-kit/                     @documentation/codeowners/esp32         @documentation/codeowners/hw
 /docs/*/esp32-devkitc/                      @documentation/codeowners/esp32         @documentation/codeowners/hw
 /docs/*/esp32-devkitm-1/                    @documentation/codeowners/esp32         @documentation/codeowners/hw
@@ -25,22 +46,55 @@
 /docs/*/esp32-pico-kit/                     @documentation/codeowners/esp32         @documentation/codeowners/hw
 /docs/*/esp32-pico-kit-1/                   @documentation/codeowners/esp32         @documentation/codeowners/hw
 /docs/*/esp32-sense-kit/                    @documentation/codeowners/esp32         @documentation/codeowners/hw
+
+# ESP32-H2 Boards User guide
+
+/docs/*/index/esp32h2-index.inc             @documentation/codeowners/esp32h2       @documentation/codeowners/hw
 /docs/*/esp32-h2-devkitm-1/                 @documentation/codeowners/esp32h2       @documentation/codeowners/hw
+
+# ESP32-P4 Boards User guide
+
+/docs/*/index/esp32p4-index.inc             @documentation/codeowners/esp32p4       @documentation/codeowners/hw
+/docs/*/esp32-p4-eye/                       @documentation/codeowners/esp32p4       @documentation/codeowners/hw @documentation/codeowners/ae
 /docs/*/esp32-p4-function-ev-board/         @documentation/codeowners/esp32p4       @documentation/codeowners/hw @documentation/codeowners/ae
+
+# ESP32-S2 Boards User guide
+
+/docs/*/index/esp32s3-index.inc             @documentation/codeowners/esp32s2       @documentation/codeowners/hw
 /docs/*/esp32-s2-devkitc-1/                 @documentation/codeowners/esp32s2       @documentation/codeowners/hw
 /docs/*/esp32-s2-devkitm-1/                 @documentation/codeowners/esp32s2       @documentation/codeowners/hw
 /docs/*/esp32-s2-hmi-devkit-1/              @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
 /docs/*/esp32-s2-kaluga-1/                  @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
 /docs/*/esp32-s2-saola-1/                   @documentation/codeowners/esp32s2       @documentation/codeowners/hw
 /docs/*/esp32-s2-touch-devkit-1/            @documentation/codeowners/esp32s2       @documentation/codeowners/hw @documentation/codeowners/ae
+
+# ESP32-S3 Boards User guide
+
+/docs/*/index/esp32s3-index.inc             @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp32-s3-devkitc-1/                 @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp32-s3-devkitm-1/                 @documentation/codeowners/esp32s3       @documentation/codeowners/hw
 /docs/*/esp32-s3-lcd-ev-board/              @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
 /docs/*/esp32-s3-usb-bridge/                @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
 /docs/*/esp32-s3-usb-otg/                   @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
+
+# ESP8684 Boards User guide
+
+/docs/*/index/esp32c2-index.inc             @documentation/codeowners/esp32c2       @documentation/codeowners/hw
 /docs/*/esp8684-devkitc-02/                 @documentation/codeowners/esp32c2       @documentation/codeowners/hw
 /docs/*/esp8684-devkitm-1/                  @documentation/codeowners/esp32c2       @documentation/codeowners/hw
+
+# Figures, README, document templates
+
 /docs/_static/                              @documentation/codeowners/esp-dev-kits  @documentation/codeowners/hw
+/docs/*/eol/                                @documentation/codeowners/esp-dev-kits
+README*.md                                  @documentation/codeowners/esp-dev-kits
+/docs/README.md                             @documentation/codeowners/esp-dev-kits
+/docs/TEMPLATE_EXAMPLE_README*.md           @documentation/codeowners/esp-dev-kits
+/docs/*/_templates/                         @documentation/codeowners/esp-dev-kits
+/docs/*/404.rst                             @documentation/codeowners/esp-dev-kits
+/docs/*/index.rst                           @documentation/codeowners/esp-dev-kits
+/docs/*/resources.rst                       @documentation/codeowners/esp-dev-kits
+/docs/*/disclaimer-and-copyright.rst        @documentation/codeowners/esp-dev-kits
 
 # Configuration
 
@@ -62,17 +116,6 @@ check_copyright_config.yaml                 @documentation/codeowners/ae   @docu
 /docs/sphinx-known-warnings.txt             @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
 /docs/*/conf.py                             @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
 /docs/*/Makefile                            @documentation/codeowners/ae   @documentation/codeowners/esp-dev-kits
-
-# README and document template
-
-README*.md                                  @documentation/codeowners/esp-dev-kits
-/docs/README.md                             @documentation/codeowners/esp-dev-kits
-/docs/TEMPLATE_EXAMPLE_README*.md           @documentation/codeowners/esp-dev-kits
-/docs/*/_templates/                         @documentation/codeowners/esp-dev-kits
-/docs/*/404.rst                             @documentation/codeowners/esp-dev-kits
-/docs/*/index.rst                           @documentation/codeowners/esp-dev-kits
-/docs/*/resources.rst                       @documentation/codeowners/esp-dev-kits
-/docs/*/disclaimer-and-copyright.rst        @documentation/codeowners/esp-dev-kits
 
 # Example
 
