@@ -46,6 +46,7 @@
     paths:
       - 'logs/*.yml'
     expire_in: 1 week
+  allow_failure: true
 
 publish_to_cdp_qa_with_dmf_files:
   extends:
