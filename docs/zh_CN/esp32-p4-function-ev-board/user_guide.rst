@@ -54,69 +54,98 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
 
     ESP32-P4-Function-EV-Board - 背面（点击放大）
 
-以下按照顺时针的顺序依次介绍开发板上的主要组件。
+下面从 J1 开始按照顺时针的顺序依次介绍开发板正面和背面的主要组件。
 
 .. list-table::
-   :widths: 30 70
+   :widths: 10 20 70
    :header-rows: 1
 
-   * - 主要组件
+   * - 组件编号
+     - 主要组件
      - 介绍
-   * - J1
+   * - 1
+     - J1
      - 所有可用 GPIO 管脚均已引出至排针 J1，详细信息请见 :ref:`header-block`。
-   * - ESP32-C6 Module Programming Connector（ESP32-C6 模组固件烧录接口）
+   * - 2
+     - ESP32-C6 Module Programming Connector（ESP32-C6 模组固件烧录接口）
      - 该接口可配合使用 ESP-Prog 或其他 UART 工具为 ESP32-C6 模组烧录固件。
-   * - ESP32-C6-MINI-1 Module（ESP32-C6-MINI-1 模组）
+   * - 3
+     - ESP32-C6-MINI-1 Module（ESP32-C6-MINI-1 模组）
      - ESP32-C6-MINI-1 模组用于该开发板的 Wi-Fi 和蓝牙通信。
-   * - Microphone（麦克风）
+   * - 4
+     - Microphone（麦克风）
      - 板载麦克风，连接至 Audio Codec Chip 接口。
-   * - Reset Button（Reset 键）
+   * - 5
+     - Reset Button（Reset 键）
      - 复位按键。
-   * - Audio Codec Chip（音频编解码芯片）
+   * - 6
+     - Audio Codec Chip（音频编解码芯片）
      - 音频编解码器芯片 ES8311 是一种低功耗单声道音频编解码器，包含单通道 ADC、单通道 DAC、低噪声前置放大器、耳机驱动器、数字音效、模拟混音和增益功能。它通过 I2S 和 I2C 总线与 ESP32-P4 芯片连接，以提供独立于音频应用程序的硬件音频处理。
-   * - Speaker Output Port（扬声器输出端口）
+   * - 7
+     - Speaker Output Port（扬声器输出端口）
      - 该输出端口用于连接扬声器。最高输出功率可以驱动 4 Ω 3 W 扬声器，引脚间距为 2.00 mm/0.08”。
-   * - Audio PA Chip（音频功率放大器）
+   * - 8
+     - Audio PA Chip（音频功率放大器）
      - NS4150 是一款低 EMI、3 W 单声道 D 类音频功率放大器，用于放大来自音频编解码芯片的音频信号，以驱动扬声器。
-   * - 5 V to 3.3 V LDO（5 V 转 3.3 V LDO）
+   * - 9
+     - 5 V to 3.3 V LDO（5 V 转 3.3 V LDO）
      - 电源转换器，输入 5 V，输出 3.3 V。
-   * - BOOT Button（BOOT 键）
+   * - 10
+     - BOOT Button（BOOT 键）
      - 启动模式控制按键，保持按住 **BOOT 键** 的同时按一下 **Reset 键**，ESP-P4 将重新启动并进入“固件下载”模式，这时可以通过 USB 转 UART 接口下载固件到板载 SPI flash 中。
-   * - Ethernet PHY IC
+   * - 11
+     - Ethernet PHY IC
      - 以太网 PHY 芯片，与 ESP32-P4 EMAC RMII 接口和 RJ45 以太网模块端口连接。
-   * - Buck Converter（降压转换器）
+   * - 12
+     - Buck Converter（降压转换器）
      - 用于 3.3 V 电源的降压型 DC-DC 转换器。
-   * - 5 V Power-on LED（5 V 电源指示灯）
+   * - 13
+     - 5 V Power-on LED（5 V 电源指示灯）
      - 开发板通过任一 USB Type-C 接口连接电源后，该指示灯亮起。
-   * - RJ45 Ethernet Port（RJ45 以太网接口）
+   * - 14
+     - RJ45 Ethernet Port（RJ45 以太网接口）
      - 以太网接口，支持 10/100 Mbps 自适应。
-   * - USB Full-speed Port（USB 全速接口）
+   * - 15
+     - USB Full-speed Port（USB 全速接口）
      - USB Type-C 接口，支持 USB 2.0 Full-speed 速率，可用作开发板的供电接口，可作为通信接口。
-   * - USB Serial/JTAG Port（USB 串口/JTAG 接口）
+   * - 16
+     - USB Serial/JTAG Port（USB 串口/JTAG 接口）
      - USB Type-C 接口，支持 USB 2.0 Full-speed 速率，可烧录固件至 ESP32-P4 芯片，可通过 USB 协议与芯片通信，也可用于 JTAG 调试。
-   * - USB 2.0 Type-C Port（USB 2.0 Type-C 接口）
+   * - 17
+     - USB 2.0 Type-C Port（USB 2.0 Type-C 接口）
      - USB 2.0 Type-C 接口与 ESP32-P4 芯片的 USB 2.0 OTG High-Speed 接口连接，支持 USB 2.0 标准。通过该接口进行 USB 通讯时，ESP32-P4 作为 USB Device 设备与其他 USB Host 设备连接。USB 2.0 Type-C 接口和 USB 2.0 Type-A 接口需要二选一使用，不能同时使用。该接口也可用作开发板的供电接口。
-   * - USB 2.0 Type-A Port （USB 2.0 Type-A 接口）
+   * - 18
+     - USB 2.0 Type-A Port （USB 2.0 Type-A 接口）
      - USB 2.0 Type-A 接口与 ESP32-P4 芯片的 USB 2.0 OTG High-Speed 接口连接，支持 USB 2.0 标准。通过该接口进行 USB 通讯时，ESP32-P4 作为 USB Host 与其它 USB device 设备连接，对外提供最高 500 mA 电流。USB 2.0 Type-C 接口和 USB 2.0 Type-A 接口需要二选一使用，不能同时使用。
-   * - Power Switch（电源开关）
+   * - 19
+     - Power Switch（电源开关）
      - 电源开关。拨向 ON 一侧，开发板连接 5 V 电源上电；拨离 ON 一侧，开发板断开 5 V 电源掉电。
-   * - Switch（开关）
+   * - 20
+     - Switch（开关）
      - TPS2051C 是一款 USB 电源开关，提供 500 mA 输出电流限制。
-   * - MIPI CSI Connector（MIPI CSI 连接器）
+   * - 21
+     - MIPI CSI Connector（MIPI CSI 连接器）
      - FPC 连接器 1.0K-GT-15PB，用以连接外接摄像头模组，实现图像传输，详情请见相关文档中的 1.0K-GT-15PB 规格书。适配的 FPC 规格：间距 1.0 mm，管脚宽度 0.7 mm，厚度 0.3 mm，管脚数量 15。
-   * - Buck Converter（降压转换器）
+   * - 22
+     - Buck Converter（降压转换器）
      - 用于 VDD_HP 电源的降压型 DC-DC 转换器。
-   * - ESP32-P4
+   * - 23
+     - ESP32-P4
      - ESP32-P4 是一款高性能 MCU，支持超大片上内存，具有强大的图像和语音处理能力。
-   * - 40 MHz XTAL
+   * - 24
+     - 40 MHz XTAL
      - 40 MHz 晶振，用于提供系统时钟。
-   * - 32.768 kHz XTAL
+   * - 25
+     - 32.768 kHz XTAL
      - 32.768 kHz 晶振，可提供 Deep-sleep 下使用的低功耗时钟。
-   * - MIPI DSI Connector（MIPI DSI 连接器）
+   * - 26
+     - MIPI DSI Connector（MIPI DSI 连接器）
      - FPC 连接器 1.0K-GT-15PB，用以连接 LCD 扩展板，详情请见相关文档中的 1.0K-GT-15PB 规格书。适配的 FPC 规格：间距 1.0 mm，管脚宽度 0.7 mm，厚度 0.3 mm，管脚数量 15。
-   * - SPI flash
+   * - 27
+     - SPI flash
      - 通过 SPI 接口与 ESP32-P4 芯片连接，大小为 16 MB。
-   * - MicroSD Card Slot（MicroSD 卡槽）
+   * - 28
+     - MicroSD Card Slot（MicroSD 卡槽）
      - 本开发板支持 4-bit 模式的 MicroSD 卡，可以存储或播放 MicroSD 卡中的音频文件。
 
 开发板配件
@@ -304,10 +333,11 @@ J1
 硬件版本
 ==========
 
-ESP32-P4-Function-EV-Board v1.4
--------------------------------
-
 :doc:`首次发布 <user_guide_v1.4>`
+
+.. note::
+
+    开发板 v1.52 版本相较于 v1.4 版本的主要改进包括：将调试用的 USB-to-UART Type-C 接口替换为 ESP32-P4 芯片内置的 USB 串口/JTAG 接口 ，并新增了全速 USB OTG 至 Type-C 的接口引出。
 
 相关文档
 ========

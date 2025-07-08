@@ -54,69 +54,98 @@ Description of Components
 
     ESP32-P4-Function-EV-Board - back (click to enlarge)
 
-The key components of the board are described in a clockwise direction.
+The key components of the board are described from front view to back view, starting from the J1, in a clockwise direction.
 
 .. list-table::
-   :widths: 30 70
+   :widths: 10 20 70
    :header-rows: 1
 
-   * - Key Component
+   * - No.
+     - Key Component
      - Description
-   * - J1
+   * - 1
+     - J1
      - All available GPIO pins are broken out to the header block J1 for easy interfacing. For more details, see :ref:`header-block`.
-   * - ESP32-C6 Module Programming Connector
+   * - 2
+     - ESP32-C6 Module Programming Connector
      - The connector can be used with ESP-Prog or other UART tools to flash firmware onto the ESP32-C6 module.
-   * - ESP32-C6-MINI-1 Module
+   * - 3
+     - ESP32-C6-MINI-1 Module
      - This module serves as the Wi-Fi and Bluetooth communication module for the board.
-   * - Microphone
+   * - 4
+     - Microphone
      - Onboard microphone connected to the interface of Audio Codec Chip.
-   * - Reset Button
+   * - 5
+     - Reset Button
      - Resets the board.
-   * - Audio Codec Chip
+   * - 6
+     - Audio Codec Chip
      - ES8311 is a low-power mono audio codec chip. It includes a single-channel ADC, a single-channel DAC, a low-noise pre-amplifier, a headphone driver, digital sound effects, analog mixing, and gain functions. It interfaces with the ESP32-P4 chip over I2S and I2C buses to provide hardware audio processing independent of the audio application.
-   * - Speaker Output Port
+   * - 7
+     - Speaker Output Port
      - This port is used to connect a speaker. The maximum output power can drive a 4 Ω, 3 W speaker. The pin spacing is 2.00 mm (0.08”).
-   * - Audio PA Chip
+   * - 8
+     - Audio PA Chip
      - NS4150B is an EMI-compliant, 3 W mono Class D audio power amplifier that amplifies audio signals from the audio codec chip to drive speakers.
-   * - 5 V to 3.3 V LDO
+   * - 9
+     - 5 V to 3.3 V LDO
      - A power regulator that converts a 5 V supply to a 3.3 V output.
-   * - BOOT Button
+   * - 10
+     - BOOT Button
      - The boot mode control button. Press the **Reset Button** while holding down the **Boot Button** to reset ESP32-P4 and enter firmware download mode. Firmware can then be downloaded to SPI flash via the USB-to-UART Port.
-   * - Ethernet PHY IC
+   * - 11
+     - Ethernet PHY IC
      - Ethernet PHY chip connected to the ESP32-P4 EMAC RMII interface and RJ45 Ethernet Port.
-   * - Buck Converter
+   * - 12
+     - Buck Converter
      - A buck DC-DC converter for the 3.3 V power supply.
-   * - 5 V Power-on LED
+   * - 13
+     - 5 V Power-on LED
      - This LED lights up when the board is powered through any USB Type-C port.
-   * - RJ45 Ethernet Port
+   * - 14
+     - RJ45 Ethernet Port
      - An Ethernet Port supporting 10/100 Mbps adaptive.
-   * - USB Full-speed Port
+   * - 15
+     - USB Full-speed Port
      - USB Type-C port that supports USB 2.0 Full-speed data rate. It can be used as the power supply interface for the development board and as a communication interface.
-   * - USB Serial/JTAG Port
+   * - 16
+     - USB Serial/JTAG Port
      - USB Type-C port that supports USB 2.0 Full-speed data rate. It can be used to flash firmware to the ESP32-P4 chip, communicate with the chip via the USB protocol, and perform JTAG debugging.
-   * - USB 2.0 Type-C Port
+   * - 17
+     - USB 2.0 Type-C Port
      - The USB 2.0 Type-C Port is connected to the USB 2.0 OTG High-Speed interface of ESP32-P4, compliant with the USB 2.0 specification. When communicating with other devices via this port, ESP32-P4 acts as a USB device connecting to a USB host. Please note that USB 2.0 Type-C Port and USB 2.0 Type-A Port cannot be used simultaneously. USB 2.0 Type-C Port can also be used for powering the board.
-   * - USB 2.0 Type-A Port
+   * - 18
+     - USB 2.0 Type-A Port
      - The USB 2.0 Type-A Port is connected to the USB 2.0 OTG High-Speed interface of ESP32-P4, compliant with the USB 2.0 specification. When communicating with other devices via this port, ESP32-P4 acts as a USB host, providing up to 500 mA of current. Please note that USB 2.0 Type-C Port and USB 2.0 Type-A Port cannot be used simultaneously.
-   * - Power Switch
+   * - 19
+     - Power Switch
      - Power On/Off Switch. Toggling toward the ON sign powers the board on (5 V), toggling away from the ON sign powers the board off.
-   * - Switch
+   * - 20
+     - Switch
      - TPS2051C is a USB power switch that provides a 500 mA output current limit.
-   * - MIPI CSI Connector
+   * - 21
+     - MIPI CSI Connector
      - The FPC connector 1.0K-GT-15PB is used for connecting external camera modules to enable image transmission. For details, please refer to 1.0K-GT-15PB specification in Related Documents. FPC specifications: 1.0 mm pitch, 0.7 mm pin width, 0.3 mm thickness, 15 pins.
-   * - Buck Converter
+   * - 22
+     - Buck Converter
      - A buck DC-DC converter for VDD_HP power supply of ESP32-P4.
-   * - ESP32-P4
+   * - 23
+     - ESP32-P4
      - A high-performance MCU with large internal memory and powerful image and voice processing capabilities.
-   * - 40 MHz XTAL
+   * - 24
+     - 40 MHz XTAL
      - An external precision 40 MHz crystal oscillator that serves as a clock for the system.
-   * - 32.768 kHz XTAL
+   * - 25
+     - 32.768 kHz XTAL
      - An external precision 32.768 kHz crystal oscillator that serves as a low-power clock while the chip is in deep-sleep mode.
-   * - MIPI DSI Connector
+   * - 26
+     - MIPI DSI Connector
      - The FPC connector 1.0K-GT-15PB is used for connecting displays. For details, please refer to 1.0K-GT-15PB Specification in Related Documents. FPC specifications: 1.0 mm pitch, 0.7 mm pin width, 0.3 mm thickness, 15 pins.
-   * - SPI flash
+   * - 27
+     - SPI flash
      - The 16 MB flash is connected to the chip via the SPI interface.
-   * - MicroSD Card Slot
+   * - 28
+     - MicroSD Card Slot
      - The development board supports a MicroSD card in 4-bit mode and can store or play audio files from the MicroSD card.
 
 Accessories
@@ -304,10 +333,11 @@ No.  Name     Type [1]_   Function
 Hardware Revision Details
 =========================
 
-ESP32-P4-Function-EV-Board v1.4
--------------------------------
-
 :doc:`Initial release <user_guide_v1.4>`
+
+.. note::
+
+    The main improvements in development board version v1.52 compared to v1.4 include: replacing the USB-to-UART Type-C port used for debugging with the ESP32-P4 chip’s built-in USB Serial/JTAG port, and adding a Full-speed USB OTG breakout to a Type-C port.
 
 Related Documents
 =================
