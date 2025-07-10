@@ -7,7 +7,11 @@ EchoEar is an intelligent AI development kit. It is suitable for voice interacti
 
 Application examples for the development board are stored in the `esp-brookesia <https://github.com/espressif/esp-brookesia/tree/master/products/speaker>`_ project.
 
+.. note::
+
+   Please check the silkscreen version number on the mainboard to confirm your development board version. For v1.0 version development boards, please refer to :doc:`user_guide_v1.0`.
+   
 .. toctree::
     :maxdepth: 2
 
-    User Guide <user_guide>
+    User Guide v1.0 <user_guide_v1.0>

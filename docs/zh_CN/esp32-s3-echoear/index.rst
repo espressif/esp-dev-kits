@@ -7,7 +7,12 @@ EchoEar 喵伴是乐鑫携手火山引擎扣子大模型团队打造的智能 AI
 
 开发板的应用示例存放在 `esp-brookesia <https://github.com/espressif/esp-brookesia/tree/master/products/speaker>`_ 工程中。
 
+.. note::
+
+  请查看主板上的丝印版本号，以确认您的开发板版本。对于 v1.0 版本的开发板，请参考 :doc:`user_guide_v1.0`。
+
+
 .. toctree::
     :maxdepth: 2
 
-    用户指南 <user_guide>
+    用户指南 v1.0 <user_guide_v1.0>

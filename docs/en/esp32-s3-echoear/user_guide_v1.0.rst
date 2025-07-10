@@ -4,6 +4,10 @@ EchoEar
 
 :link_to_translation:`zh_CN:[中文]`
 
+.. note::
+
+  Please check the silkscreen version number on the mainboard to confirm your development board version. For v1.0 version development boards, please refer to the current user guide.
+  
 This guide will help you get started with EchoEar quickly and provide detailed information about this development board.
 
 EchoEar is an intelligent AI development kit. It is suitable for voice interaction products that require large model capabilities, such as toys, smart speakers, and smart central control systems. The device is equipped with an ESP32-S3-WROOM-1 module, a 1.85-inch QSPI circular touch screen, dual microphone array, and supports offline voice wake-up and sound source localization algorithms. Combined with the large model capabilities provided by OpenAI，Xiaozhi AI, Gemini, etc. EchoEar can achieve full-duplex voice interaction, multimodal recognition, and intelligent agent control, providing a solid foundation for developers to create complete edge-side AI application experiences.
