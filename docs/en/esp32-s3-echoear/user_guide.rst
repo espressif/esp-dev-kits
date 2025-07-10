@@ -6,13 +6,11 @@ EchoEar
 
 This guide will help you get started with EchoEar quickly and provide detailed information about this development board.
 
-EchoEar MeowBuddy is an intelligent AI development kit jointly created by Espressif and the Volcano Engine Kozi Large Model team. It is suitable for voice interaction products that require large model capabilities, such as toys, smart speakers, and smart central control systems. The device is equipped with an ESP32-S3-WROOM-1 module, a 1.85-inch QSPI circular touch screen, dual microphone array, and supports offline voice wake-up and sound source localization algorithms. Combined with the large model capabilities provided by Volcano Engine, MeowBuddy can achieve full-duplex voice interaction, multimodal recognition, and intelligent agent control, providing a solid foundation for developers to create complete edge-side AI application experiences.
+EchoEar is an intelligent AI development kit. It is suitable for voice interaction products that require large model capabilities, such as toys, smart speakers, and smart central control systems. The device is equipped with an ESP32-S3-WROOM-1 module, a 1.85-inch QSPI circular touch screen, dual microphone array, and supports offline voice wake-up and sound source localization algorithms. Combined with the large model capabilities provided by OpenAI，Xiaozhi AI, Gemini, etc. EchoEar can achieve full-duplex voice interaction, multimodal recognition, and intelligent agent control, providing a solid foundation for developers to create complete edge-side AI application experiences.
 
 EchoEar's main controller uses the Espressif ESP32-S3-WROOM-2-N32R16V module, supporting 2.4 GHz Wi-Fi and Bluetooth 5 (LE) wireless connectivity. For storage, the entire device has 16MB PSRAM and 32MB Flash storage space, and is also equipped with a microSD card slot that can support up to 32GB, meeting the needs of voice interaction and multimedia processing. It features a 1.85-inch circular touch screen (360×360 resolution) with ESP32-S3 native touch sensors, providing an intuitive and rich interactive experience.
 
 For audio, EchoEar has a built-in 3W speaker and dual microphone array, supporting local voice wake-up and sound source localization. The power system is compatible with 5V DC and 3.7V 700mAh lithium battery power supply. Additionally, it integrates a USB-C interface for power supply and programming download, while reserving a Pogopin interface for convenient functional expansion.
-
-This example is developed based on Coze intelligent agent and requires self-registration of KEY to use. For specific usage methods, please refer to the `EchoEar User Guide <https://espressif.craft.me/1gOl65rON8G8FK>`__.
 
 .. figure:: ../../_static/esp32-s3-echoear/EchoEar-black-fount_V1_0.png
    :alt: EchoEar Front View (Click to enlarge)
