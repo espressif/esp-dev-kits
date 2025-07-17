@@ -50,6 +50,7 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 |:----:|:----:|:----|
 | [ESP32-S3-USB-OTG](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-usb-otg/index.html)| [<img src="docs/_static/esp32-s3-usb-otg/ESP32-S3-USB-OTG.png" alt ="ESP32-S3-USB-OTG" align="center" />](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-usb-otg/index.html) |ESP32-S3-USB-OTG 是一款着重 USB 外设应用的开发板，搭载 ESP32-S3-MINI-1-N8 模组。结合芯片的 Wi-Fi 功能，此开发板可利用 USB 实现摄像头 Wi-Fi 图传、4G 热点上网、无线 U 盘等应用。|
 | [ESP32-S3-LCD-EV-BOARD](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/index.html)| [<img src="docs/_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png" alt ="ESP32-S3-LCD-EV-BOARD" align="center" width=140/>](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/index.html) | ESP32-S3-LCD-EV-BOARD 是用于评估和验证 ESP32-S3 屏幕交互应用的开发板。ESP32-S3-LCD-EV-BOARD 主板集成了 ESP32-S3-WROOM-1 模块，具有触摸屏交互和语音交互功能。|
+| [EchoEar](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/EchoEar/index.html)| [<img src="docs/_static/esp32-s3-echoear/EchoEar-black-fount_V1_0.png" alt ="EchoEar" align="center" width=140/>](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/EchoEar/index.html) | EchoEar（喵伴）是乐鑫携⼿⽕⼭引擎扣⼦⼤模型团队打造的智能 AI 开发套件，适用于玩具、智能音箱、智能中控等需要大模型赋能的语音交互类产品。|
 
 **ESP32-S2 系列开发板**
 
