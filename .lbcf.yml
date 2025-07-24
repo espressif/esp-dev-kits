@@ -35,7 +35,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2017-07-28
       language: en
@@ -61,7 +60,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2017-08-22
       language: cn
@@ -87,7 +85,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2025-03-04
       language: en
@@ -113,7 +110,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-02-24
       language: cn
@@ -139,7 +135,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2019-08-28
       language: en
@@ -165,7 +160,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2019-08-28
       language: cn
@@ -192,7 +186,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: en
@@ -219,7 +212,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: cn
@@ -245,7 +237,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2017-12-26
       language: en
@@ -271,7 +262,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2017-12-26
       language: cn
@@ -297,7 +287,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-02-24
       language: en
@@ -323,7 +312,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-02-24
       language: cn
@@ -349,7 +337,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-02-24
       language: en
@@ -375,7 +362,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-02-24
       language: cn
@@ -401,7 +387,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2017-07-27
       language: en
@@ -427,7 +412,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2017-08-22
       language: cn
@@ -453,7 +437,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-10-28
       language: en
@@ -479,7 +462,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-10-28
       language: cn
@@ -505,7 +487,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2020-10-12
       language: en
@@ -531,7 +512,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2020-10-12
       language: cn
@@ -557,7 +537,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2020-05-29
       language: en
@@ -583,7 +562,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2020-05-29
       language: cn
@@ -609,7 +587,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2020-03-27
       language: en
@@ -635,7 +612,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2020-03-27
       language: cn
@@ -661,7 +637,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2025-06-18
       language: en
@@ -687,7 +662,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2025-06-18
       language: cn
@@ -713,7 +687,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-12-02
       language: en
@@ -739,7 +712,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-12-02
       language: cn
@@ -765,7 +737,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-19
       language: en
@@ -791,7 +762,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-19
       language: cn
@@ -817,7 +787,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-19
       language: en
@@ -843,7 +812,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-19
       language: cn
@@ -869,7 +837,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2022-09-09
       language: en
@@ -895,7 +862,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2022-09-09
       language: cn
@@ -921,7 +887,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-07-14
       language: en
@@ -947,7 +912,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-07-14
       language: cn
@@ -973,7 +937,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2024-01-03
       language: en
@@ -999,7 +962,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2024-01-03
       language: cn
@@ -1025,7 +987,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-02-10
       language: en
@@ -1051,7 +1012,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-02-10
       language: cn
@@ -1077,7 +1037,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-04-07
       language: en
@@ -1103,7 +1062,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2021-04-07
       language: cn
@@ -1129,7 +1087,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-03-17
       language: en
@@ -1155,7 +1112,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-03-17
       language: cn
@@ -1181,7 +1137,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-01-06
       language: en
@@ -1207,7 +1162,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-01-06
       language: cn
@@ -1233,7 +1187,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-17
       language: en
@@ -1259,7 +1212,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-17
       language: cn
@@ -1285,7 +1237,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: en
@@ -1311,7 +1262,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-27
       language: cn
@@ -1337,7 +1287,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: en
@@ -1363,7 +1312,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: cn
@@ -1389,7 +1337,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: en
@@ -1415,7 +1362,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: cn
@@ -1441,7 +1387,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: en
@@ -1467,7 +1412,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2023-12-28
       language: cn
@@ -1493,7 +1437,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2024-07-12
       language: en
@@ -1519,7 +1462,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2024-07-19
       language: cn
@@ -1545,7 +1487,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2025-04-21
       language: en
@@ -1571,7 +1512,6 @@ documents:
       soc_series_base_filter: all
       document_type: guide
       document_type_old_website: guide
-      document_status: active
       version: latest
       revision_date: 2025-04-21
       language: cn
