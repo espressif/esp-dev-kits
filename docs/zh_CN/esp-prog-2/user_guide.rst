@@ -180,7 +180,7 @@ ESP-Prog-2 的主要组件和连接方式如下图所示。
 排针
 -------------
 
-以下三个表格提供了开发板两侧连接器（Program 接口和 JTAG 接口）和扩展连接器的 **名称** 和 **功能**。连接器名称如 ESP-Prog-2 正面图所示，管脚编号与 `ESP-Prog-2 原理图 <../_static/esp-prog-2/schematics/SCH_ESP32-PROG-2_20250403.pdf>`__ (PDF) 中一致。
+以下三个表格提供了开发板两侧连接器（Program 接口和 JTAG 接口）和扩展连接器的 **名称** 和 **功能**。连接器名称如 ESP-Prog-2 正面图所示，管脚编号与 `ESP-Prog-2 原理图 <https://dl.espressif.com/schematics/SCH_ESP32-PROG-2_20250403.pdf>`__ (PDF) 中一致。
 
 Program 接口
 ^^^^^^^^^^^^^^^^^^

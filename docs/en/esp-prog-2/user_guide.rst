@@ -180,7 +180,7 @@ The development board has three incompatible power supply options:
 Header Block
 -------------
 
-The tables below provide the **Name** and **Function** of the pins on both sides of the board (Program Interface and JTAG Interface), and on the expansion connector. The pin names are shown in the front view of the ESP-Prog-2 board. The numbering is the same as in the `ESP-Prog-2 Schematic <../_static/esp-prog-2/schematics/SCH_ESP32-PROG-2_20250403.pdf>`__ (PDF).
+The tables below provide the **Name** and **Function** of the pins on both sides of the board (Program Interface and JTAG Interface), and on the expansion connector. The pin names are shown in the front view of the ESP-Prog-2 board. The numbering is the same as in the `ESP-Prog-2 Schematic <https://dl.espressif.com/schematics/SCH_ESP32-PROG-2_20250403.pdf>`__ (PDF).
 
 Program Interface
 ^^^^^^^^^^^^^^^^^^
@@ -310,6 +310,6 @@ Related Documents
 
 .. _ESP-Prog-2 Schematic: https://dl.espressif.com/schematics/SCH_ESP32-PROG-2_20250403.pdf
 .. _ESP-Prog-2 PCB Layout: https://dl.espressif.com/schematics/PCB_ESP32-PROG-2_20250403.pdf
-.. _ESP-Prog-2 Dimensions: https: https://dl.espressif.com/schematics/DIM_ESP32-PROG-2_20250403.pdf
+.. _ESP-Prog-2 Dimensions: https://dl.espressif.com/schematics/DIM_ESP32-PROG-2_20250403.pdf
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
