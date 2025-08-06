@@ -217,7 +217,7 @@ ESP32-S2-DevKitC-1 的主要组件和连接方式如下图所示。
 J1
 ^^^
 
-. list-table::
+.. list-table::
    :header-rows: 1
    :widths: 10 15 15 50
 
