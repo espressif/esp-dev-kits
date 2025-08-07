@@ -92,6 +92,10 @@ variables:
               echo "  - Exception: matched esp-module-prog or esp-prog → other"
               [[ -z "${PER_FILE_CHECKED["other"]}" ]] && MATCHED_TARGETS+=("other") && PER_FILE_CHECKED["other"]=1
           fi
+          if [[ "$file" == *"echoear"* ]]; then
+              echo "  - Exception: matched echoear → esp32s3"
+              [[ -z "${PER_FILE_CHECKED["esp32s3"]}" ]] && MATCHED_TARGETS+=("esp32s3") && PER_FILE_CHECKED["esp32s3"]=1
+          fi
           if [[ "$file" == *"eol"* ]]; then
               echo "  - Exception: matched 'eol' → esp32 + esp32s2 + esp32s3"
               [[ -z "${PER_FILE_CHECKED["esp32"]}" ]] && MATCHED_TARGETS+=("esp32") && PER_FILE_CHECKED["esp32"]=1
