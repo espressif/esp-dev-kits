@@ -91,7 +91,8 @@ ESP32S3_DOCS = ['*.rst',
                 'esp32-s3-devkitm-1/*.rst',
                 'esp32-s3-lcd-ev-board/*.rst',
                 'esp32-s3-usb-bridge/*.rst',
-                'esp32-s3-usb-otg/*.rst'
+                'esp32-s3-usb-otg/*.rst',
+                'echoear/*.rst'
                 ]
 OTHER_DOCS = ['*.rst',
               'index/other-index.inc',
