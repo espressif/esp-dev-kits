@@ -1627,3 +1627,107 @@ documents:
       scheduled_release_date:
       document_status: active
       document_classification: public
+########################################
+# 65 EchoEar v1.0 User Guide
+########################################
+    - document_name: EchoEar v1.0 User Guide
+      doc_id: 9537
+      translation_docid: 9539
+      chip_series: ESP32-S3
+      product_name:
+        - EchoEar
+      product_name_old_website:
+        - EchoEar
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-08-07
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/echoear/user_guide_v1.0.html
+      document_summary: This user guide will help you get started with EchoEar v1.0 and will also provide more in-depth information.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 66 EchoEar v1.0 用户指南
+########################################
+    - document_name: EchoEar v1.0 用户指南
+      doc_id: 9539
+      translation_docid: 9537
+      chip_series: ESP32-S3
+      product_name:
+        - EchoEar
+      product_name_old_website:
+        - EchoEar
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-08-07
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/echoear/user_guide_v1.0.html
+      document_summary: 本指南将帮助您快速上手 EchoEar v1.0，并提供该款开发板的详细信息。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 67 EchoEar v1.2 User Guide
+########################################
+    - document_name: EchoEar v1.2 User Guide
+      doc_id: 9541
+      translation_docid: 9543
+      chip_series: ESP32-S3
+      product_name:
+        - EchoEar
+      product_name_old_website:
+        - EchoEar
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-08-07
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/echoear/user_guide_v1.2.html
+      document_summary: This user guide will help you get started with EchoEar v1.2 and will also provide more in-depth information.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 68 EchoEar v1.2 用户指南
+########################################
+    - document_name: EchoEar v1.2 用户指南
+      doc_id: 9543
+      translation_docid: 9541
+      chip_series: ESP32-S3
+      product_name:
+        - EchoEar
+      product_name_old_website:
+        - EchoEar
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-08-07
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/echoear/user_guide_v1.2.html
+      document_summary: 本指南将帮助您快速上手 EchoEar v1.2，并提供该款开发板的详细信息。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
