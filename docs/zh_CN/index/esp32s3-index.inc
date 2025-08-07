@@ -6,6 +6,7 @@
     ESP32-S3-DevKitM-1 <esp32-s3-devkitm-1/index>
     ESP32-S3-USB-OTG <esp32-s3-usb-otg/index>
     ESP32-S3-LCD-EV-Board <esp32-s3-lcd-ev-board/index>
+    EchoEar <echoear/index>
     寿命终止开发板 <eol/eol-boards>
 
 
@@ -19,6 +20,10 @@
 |ESP32-S3-USB-OTG|_            |ESP32-S3-LCD-EV-Board|_
 ----------------------------   ---------------------------
 `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
+----------------------------   ---------------------------
+|EchoEar|_            
+----------------------------   ---------------------------  
+`EchoEar`_            
 ============================   ===========================
 
 .. |ESP32-S3-DevKitC-1| image:: ../_static/esp32-s3-devkitc-1/esp32-s3-devkitc-1-v1-isometric.png
@@ -34,3 +39,8 @@
 
 .. |ESP32-S3-LCD-EV-Board| image:: ../_static/esp32-s3-lcd-ev-board/ESP32-S3-LCD-EV-Board_480x480.png
 .. _ESP32-S3-LCD-EV-Board: esp32-s3-lcd-ev-board/index.html
+
+.. |EchoEar| image:: ../_static/echoear/echoear-black-front_v1.0.png
+                        :height: 260px
+                        :width: 400px
+.. _EchoEar: echoear/index.html
