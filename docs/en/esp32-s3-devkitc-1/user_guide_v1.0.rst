@@ -125,16 +125,6 @@ The development board has a variety of variants to choose from, as shown in the 
      - Flash
      - PSRAM
      - SPI Voltage
-   * - ESP32-S3-DevKitC-1-N8
-     - ESP32-S3-WROOM-1-N8
-     - 8 MB QD
-     - —
-     - 3.3 V
-   * - ESP32-S3-DevKitC-1-N8R2
-     - ESP32-S3-WROOM-1-N8R2
-     - 8 MB QD
-     - 2 MB QD
-     - 3.3 V
    * - ESP32-S3-DevKitC-1-N8R8
      - ESP32-S3-WROOM-1-N8R8
      - 8 MB QD
@@ -145,16 +135,6 @@ The development board has a variety of variants to choose from, as shown in the 
      - 32 MB OT
      - 16 MB OT
      - 1.8 V
-   * - ESP32-S3-DevKitC-1U-N8
-     - ESP32-S3-WROOM-1U-N8
-     - 8 MB QD
-     - —
-     - 3.3 V
-   * - ESP32-S3-DevKitC-1U-N8R2
-     - ESP32-S3-WROOM-1U-N8R2
-     - 8 MB QD
-     - 2 MB QD
-     - 3.3 V
    * - ESP32-S3-DevKitC-1U-N8R8
      - ESP32-S3-WROOM-1U-N8R8
      - 8 MB QD

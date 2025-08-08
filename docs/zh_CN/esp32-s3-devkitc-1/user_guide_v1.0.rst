@@ -125,16 +125,6 @@ ESP32-S3-DevKitC-1 是一款入门级开发板，搭载 Wi-Fi + Bluetooth® LE �
      - Flash
      - PSRAM
      - SPI 电压
-   * - ESP32-S3-DevKitC-1-N8
-     - ESP32-S3-WROOM-1-N8
-     - 8 MB QD
-     - —
-     - 3.3 V
-   * - ESP32-S3-DevKitC-1-N8R2
-     - ESP32-S3-WROOM-1-N8R2
-     - 8 MB QD
-     - 2 MB QD
-     - 3.3 V
    * - ESP32-S3-DevKitC-1-N8R8
      - ESP32-S3-WROOM-1-N8R8
      - 8 MB QD
@@ -145,16 +135,6 @@ ESP32-S3-DevKitC-1 是一款入门级开发板，搭载 Wi-Fi + Bluetooth® LE �
      - 32 MB OT
      - 16 MB OT
      - 1.8 V
-   * - ESP32-S3-DevKitC-1U-N8
-     - ESP32-S3-WROOM-1U-N8
-     - 8 MB QD
-     - —
-     - 3.3 V
-   * - ESP32-S3-DevKitC-1U-N8R2
-     - ESP32-S3-WROOM-1U-N8R2
-     - 8 MB QD
-     - 2 MB QD
-     - 3.3 V
    * - ESP32-S3-DevKitC-1U-N8R8
      - ESP32-S3-WROOM-1U-N8R8
      - 8 MB QD
