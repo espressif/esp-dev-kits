@@ -26,7 +26,7 @@
     # Generate DMFs
     - python documentation-tools/dmf-tool/generate-dmf.py -p . -t documentation-tools/dmf-tool/dmf-template.yml
     - mkdir -p logs
-    - mv ESP*.yml logs/
+    - mv E*.yml logs/
     - |
         if [ -n "$CI_MERGE_REQUEST_IID" ]; then
             TRACKING_REF="$CI_PROJECT_URL/-/merge_requests/$CI_MERGE_REQUEST_IID"
