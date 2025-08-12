@@ -12,7 +12,7 @@ What You Need
 -------------
 
 * :ref:`ESP32-DevKitC V4 board <get-started-esp32-devkitc-board-front>`
-* USB A/micro USB B cable
+* USB 2.0 cable (Standard-A to Micro-B)
 * Computer running Windows, Linux, or macOS
 
 You can skip the introduction sections and go directly to Section `Start Application Development`_.
@@ -39,7 +39,7 @@ To cover a wide range of user requirements, the following versions of ESP32-DevK
    - `ESP32-SOLO-1 <https://www.espressif.com/sites/default/files/documentation/esp32-solo-1_datasheet_en.pdf>`_
    - `ESP32-WROOM-32 <https://espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf>`_
 
-- male or female pin headers.
+- male or female pin headers
 
 For details please refer to `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`_.
 
@@ -51,33 +51,42 @@ The following figure and the table below describe the key components, interfaces
 
 .. _get-started-esp32-devkitc-board-front:
 
-.. figure:: ../../_static/esp32-devkitc/esp32-devkitc-v4-functional-overview.jpg
+.. figure:: ../../_static/esp32-devkitc/esp32-devkitc-v4-functional-overview.png
     :align: center
-    :alt: ESP32-DevKitC V4 with ESP-WROOM-32 module soldered
+    :alt: ESP32-DevKitC V4 with ESP-WROOM-32E module soldered
 
-    ESP32-DevKitC V4 with ESP32-WROOM-32 module soldered
+    ESP32-DevKitC V4 with ESP32-WROOM-32E module soldered
 
+The key components of the board are described, starting from the 5V Power On LED, in a clockwise direction.
 
 .. list-table::
-    :widths: 25 75
+    :widths: 10 20 70
     :header-rows: 1
 
-    * - Key Component
+    * - No.
+      - Key Component
       - Description
-    * - ESP32-WROOM-32
-      - A module with ESP32 at its core. For more information, see `ESP32-WROOM-32 Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf>`_.
-    * - EN
-      - Reset button.
-    * - Boot
-      - Download button. Holding down **Boot** and then pressing **EN** initiates Firmware Download mode for downloading firmware through the serial port.
-    * - USB-to-UART Bridge
-      - Single USB-UART bridge chip provides transfer rates of up to 3 Mbps.
-    * - Micro USB Port
-      - USB interface. Power supply for the board as well as the communication interface between a computer and the ESP32-WROOM-32 module.
-    * - 5V Power On LED
+    * - 1
+      - 5V Power On LED
       - Turns on when the USB or an external 5V power supply is connected to the board. For details see the schematics in `Related Documents`_.
-    * - I/O
+    * - 2
+      - I/O Connector
       - Most of the pins on the ESP module are broken out to the pin headers on the board. You can program ESP32 to enable multiple functions such as PWM, ADC, DAC, I2C, I2S, SPI, etc.
+    * - 3
+      - ESP32-WROOM-32E
+      - A module with ESP32 at its core. For more information, see `ESP32-WROOM-32E Datasheet <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf>`_.
+    * - 4
+      - USB-to-UART Bridge
+      - Single USB-to-UART bridge chip, providing transfer rates up to 3 Mbps.
+    * - 5
+      - Boot Button
+      - Download button. Holding down **Boot** and then pressing **EN** initiates Firmware Download mode for downloading firmware through the serial port.
+    * - 6
+      - USB-to-UART Port
+      - A Micro-USB port used for power supply to the board, as well as for communication between a computer and the ESP32-WROOM-32E module.
+    * - 7
+      - EN Button
+      - Reset button.
 
 
 Power Supply Options

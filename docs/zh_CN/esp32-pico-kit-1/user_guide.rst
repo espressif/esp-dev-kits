@@ -31,7 +31,7 @@ ESP32-PICO-KIT-1 为用户提供了基于 ESP32 芯片应用开发的硬件，�
 
 .. figure:: ../../_static/esp32-pico-kit-1/esp32-pico-kit-1-overview.png
     :align: center
-    :scale: 70%
+    :scale: 50%
     :alt: ESP32-PICO-KIT-1 外观图
     :figclass: align-center
 
@@ -61,37 +61,45 @@ ESP32-PICO-KIT-1 开发板的主要组件、接口及控制方式见下图。
 
 .. figure:: ../../_static/esp32-pico-kit-1/esp32-pico-kit-1-layout-front.png
     :align: center
-    :scale: 90%
+    :scale: 40%
     :alt: ESP32-PICO-KIT-1 开发板布局 - 正面
     :figclass: align-center
 
     ESP32-PICO-KIT-1 开发板布局 - 正面（点击放大）
 
-
-从左上角开始，按顺时针顺序，开发板主要组件的描述见下表。
+下面从 ESP32-PICO-V3 开始按照顺时针的顺序依次介绍开发板的主要组件。
 
 .. list-table::
-   :widths: 10 25
+   :widths: 10 20 70
    :header-rows: 1
 
-   * - 主要组件
-     - 描述
-   * - ESP32-PICO-V3
+   * - 组件编号
+     - 主要组件
+     - 介绍
+   * - 1
+     - ESP32-PICO-V3
      - ESP32-PICO-KIT-1 开发板的板载模组 (SiP)，搭载 ESP32 SoC 芯片，仅需连接天线、LC 匹配电路、去耦电容和一个 EN 信号上拉电阻即可正常工作。
-   * - LDO
-     - 5 V 转 3.3 V 低压差稳压器
-   * - USB-to-UART
-     - CP2102N：单芯片 USB-to-UART 桥接器，数据传输速率可达 3 Mbps。
-   * - Micro-B USB
-     - USB 接口。可为开发板供电，或连接 PC 进行 USB 通信。
-   * - 5V Power On LED
+   * - 2
+     - LDO
+     - 5 V 转 3.3 V 低压差稳压器。
+   * - 3
+     - USB-to-UART Bridge
+     - CP2102N：单芯片 USB 至 UART 桥接器，可提供高达 3 Mbps 的传输速率。
+   * - 4
+     - USB-to-UART Port
+     - Micro-USB 接口，可用作开发板的供电接口，或连接 PC 进行 USB 通信。
+   * - 5
+     - 5V Power On LED
      - 开发板上电后，红色指示灯亮起。更多信息，见 `相关文档`_ 中提供的原理图。
-   * - I/O Connector
-     - ESP32-PICO-V3 上的管脚均已引出至开发板排针。用户可对 ESP32 进行编程，实现 PWM、ADC、DAC、I2C、I2S、SPI 等功能。更多信息，见章节 `管脚描述`_。
-   * - BOOT 按键
+   * - 6
+     - Boot Button
      - 下载按键。按下 **Boot** 键并保持，同时按下 **EN** 键将进入固件下载模式，通过串口下载固件。
-   * - EN 按键
+   * - 7
+     - EN Button
      - 复位按键。
+   * - 8
+     - I/O Connector
+     - ESP32-PICO-V3 上的管脚均已引出至开发板排针。用户可对 ESP32 进行编程，实现 PWM、ADC、DAC、I2C、I2S、SPI 等功能。更多信息，见章节 `管脚描述`_。
 
 
 应用开发
@@ -104,7 +112,7 @@ ESP32-PICO-KIT-1 开发板的主要组件、接口及控制方式见下图。
 """"""""
 
 - 1 x ESP32-PICO-KIT-1 开发板
-- 1 x USB 2.0 A 转 Micro B 数据线
+- 1 x USB 2.0 数据线（标准 A 型转 Micro-B 型）
 - 1 x PC，运行 Windows、Linux 或 macOS 系统
 
 

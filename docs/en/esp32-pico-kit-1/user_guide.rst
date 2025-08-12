@@ -31,7 +31,7 @@ ESP32-PICO-KIT-1 provides the users with hardware for development of application
 
 .. figure:: ../../_static/esp32-pico-kit-1/esp32-pico-kit-1-overview.png
     :align: center
-    :scale: 70%
+    :scale: 50%
     :alt: ESP32-PICO-KIT-1 Overview
     :figclass: align-center
 
@@ -61,37 +61,45 @@ The following figure and the table below describe the key components, interfaces
 
 .. figure:: ../../_static/esp32-pico-kit-1/esp32-pico-kit-1-layout-front.png
     :align: center
-    :scale: 90%
+    :scale: 40%
     :alt: ESP32-PICO-KIT-1 - front
     :figclass: align-center
 
     ESP32-PICO-KIT-1 board layout - front (click to enlarge)
 
-
-Below is the description of the items identified in the figure starting from the top left corner and going clockwise.
+The key components of the board are described, starting from the ESP32-PICO-V3, in a clockwise direction.
 
 .. list-table::
-   :widths: 10 25
+   :widths: 10 20 70
    :header-rows: 1
 
-   * - Key Component
+   * - No.
+     - Key Component
      - Description
-   * - ESP32-PICO-V3
+   * - 1
+     - ESP32-PICO-V3
      - Standard ESP32-PICO-V3 module soldered to the ESP32-PICO-KIT-1 board. The complete ESP32 system on a chip (ESP32 SoC) has been integrated into the SiP module, requiring only an external antenna with LC matching network, decoupling capacitors, and a pull-up resistor for EN signals to function properly.
-   * - LDO
+   * - 2
+     - LDO
      - 5V-to-3.3V Low dropout voltage regulator (LDO).
-   * - USB-to-UART bridge
-     - CP2102N, single-chip USB-to-UART bridge that offers up to 3 Mbps transfers rates.
-   * - Micro USB Port
-     - USB interface. Power supply for the board as well as the communication interface between a computer and the board.
-   * - 5V Power On LED
+   * - 3
+     - USB-to-UART Bridge
+     - CP2102N, single USB-to-UART bridge chip, providing transfer rates up to 3 Mbps.
+   * - 4
+     - USB-to-UART Port
+     - A Micro-USB port used for power supply to the board, as well as for communication between a computer and the board.
+   * - 5
+     - 5V Power On LED
      - This red LED turns on when power is supplied to the board. For details, see the schematic in `Related Documents`_.
-   * - I/O Connector
-     - All the pins on ESP32-PICO-V3 are broken out to pin headers. You can program ESP32 to enable multiple functions, such as PWM, ADC, DAC, I2C, I2S, SPI, etc. For details, please see Section `Pin Descriptions`_.
-   * - BOOT Button
+   * - 6
+     - Boot Button
      - Download button. Holding down **Boot** and then pressing **EN** initiates Firmware Download mode for downloading firmware through the serial port.
-   * - EN Button
+   * - 7
+     - EN Button
      - Reset button.
+   * - 8
+     - I/O Connector
+     - All the pins on ESP32-PICO-V3 are broken out to pin headers. You can program ESP32 to enable multiple functions, such as PWM, ADC, DAC, I2C, I2S, SPI, etc. For details, please see Section `Pin Descriptions`_.
 
 
 Start Application Development
@@ -104,7 +112,7 @@ Required Hardware
 """""""""""""""""
 
 - 1 x ESP32-PICO-KIT-1
-- 1 x USB 2.0 A to Micro B cable
+- 1 x USB 2.0 cable (Standard-A to Micro-B)
 - 1 x Computer running Windows, Linux, or macOS
 
 

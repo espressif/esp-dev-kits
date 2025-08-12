@@ -12,7 +12,7 @@ ESP32-DevKitC V2
 --------
 
 * :ref:`ESP32-DevKitC V2 开发板 <get-started-esp32-devkitc-v2-board-front>`
-* USB A/micro USB B 数据线
+* USB 2.0 数据线（标准 A 型转 Micro-B 型）
 * PC（Windows、Linux 或 macOS）
 
 你可以跳过介绍部分，直接前往 `应用程序开发`_ 章节。

@@ -11,7 +11,7 @@ What You Need
 -------------
 
 * :ref:`ESP32-DevKitC V2 board <get-started-esp32-devkitc-v2-board-front-make>`
-* USB A/micro USB B cable
+* USB 2.0 cable (Standard-A to Micro-B)
 * Computer running Windows, Linux, or macOS
 
 You can skip the introduction sections and go directly to Section `Start Application Development`_.

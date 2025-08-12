@@ -36,12 +36,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2017-07-28
+      revision_date: 2025-08-15
       language: en
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html
       document_summary: The getting started guide for the ESP32-DevKitC V4 development board.
-      notify_subscribers: false
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -61,12 +61,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2017-08-22
+      revision_date: 2025-08-15
       language: cn
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-devkitc/user_guide.html
       document_summary: ESP32-DevKitC V4 入门指南
-      notify_subscribers: false
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -288,12 +288,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2021-02-24
+      revision_date: 2025-08-15
       language: en
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-pico-kit-1/index.html
       document_summary: This user guide provides information on ESP32-PICO-KIT-1, a development board based on ESP32-PICO-V3 SiP.
-      notify_subscribers: false
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -313,12 +313,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2021-02-24
+      revision_date: 2025-08-15
       language: cn
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-pico-kit/index.html
-      document_summary: 本文档为 ESP32-PICO-KIT 迷你开发板的入门指南。
-      notify_subscribers: false
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-pico-kit-1/index.html
+      document_summary: 本指南介绍了搭载 ESP32-PICO-V3 的开发板 ESP32-PICO-KIT-1。
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1896,12 +1896,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2017-07-28
+      revision_date: 2025-08-15
       language: en
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide_v2.html
       document_summary: The getting started guide for the ESP32-DevKitC V2 development board.
-      notify_subscribers: false
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1921,12 +1921,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2017-08-22
+      revision_date: 2025-08-15
       language: cn
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-devkitc/user_guide_v2.html
       document_summary: ESP32-DevKitC V2 入门指南
-      notify_subscribers: false
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
