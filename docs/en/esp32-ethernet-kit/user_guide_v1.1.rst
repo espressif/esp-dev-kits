@@ -12,7 +12,7 @@ What You Need
 -------------
 
 * :ref:`ESP32-Ethernet-Kit v1.1 board <get-started-esp32-ethernet-kit-v1.1>`
-* USB 2.0 A to Micro B Cable
+* USB 2.0 cable (Standard-A to Micro-B)
 * Computer running Windows, Linux, or macOS
 
 You can skip the introduction sections and go directly to Section `Start Application Development`_.

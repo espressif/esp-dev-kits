@@ -22,7 +22,7 @@ ESP32-Ethernet-Kit v1.2
 --------
 
 * :ref:`ESP32-Ethernet-Kit v1.2 开发板 <get-started-esp32-ethernet-kit-v1.2>`
-* USB 数据线（A 转 Micro-B）
+* USB 2.0 数据线（标准 A 型转 Micro-B 型）
 * PC（Windows、Linux 或 macOS）
 
 你可以跳过介绍部分，直接前往 `应用程序开发`_ 章节。

@@ -22,9 +22,9 @@ syntax_version: v0.62
 # Other boards: 8 documents, including ESP-Prog, ESP-Module-Prog-1, ESP-Module-Prog-1R, ESP-Module-Prog-SUB-02, and ESP-Module-Prog-SUB-01&04
 documents:
 ########################################
-# 1. ESP32-DevKitC User Guide
+# 1. ESP32-DevKitC V4 User Guide
 ########################################
-    - document_name: ESP32-DevKitC Getting Started Guide
+    - document_name: ESP32-DevKitC V4 Getting Started Guide
       doc_id: 1874
       translation_docid: 2051
       chip_series: ESP32
@@ -39,17 +39,17 @@ documents:
       revision_date: 2017-07-28
       language: en
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/index.html
-      document_summary: The getting started guide for the ESP32-DevKitC development board.
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html
+      document_summary: The getting started guide for the ESP32-DevKitC V4 development board.
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
       document_classification: public
 ########################################
-# 2. ESP32-DevKitC 入门指南
+# 2. ESP32-DevKitC V4 入门指南
 ########################################
-    - document_name: ESP32-DevKitC 入门指南
+    - document_name: ESP32-DevKitC V4 入门指南
       doc_id: 2051
       translation_docid: 1874
       chip_series: ESP32
@@ -64,8 +64,8 @@ documents:
       revision_date: 2017-08-22
       language: cn
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-devkitc/index.html
-      document_summary: ESP32-DevKitC 入门指南
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-devkitc/user_guide.html
+      document_summary: ESP32-DevKitC V4 入门指南
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
@@ -122,9 +122,9 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# 5. ESP32-Ethernet-Kit User Guide
+# 5. ESP32-Ethernet-Kit V1.2 User Guide
 ########################################
-    - document_name: ESP32-Ethernet-Kit Getting Started Guide
+    - document_name: ESP32-Ethernet-Kit V1.2 Getting Started Guide
       doc_id: 4082
       translation_docid: 4081
       chip_series: ESP32
@@ -136,20 +136,20 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2019-08-28
+      revision_date: 2025-08-14
       language: en
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/index.html
-      document_summary: This guide shows how to get started with the ESP32-Ethernet-Kit development board and also provides information about its functionality and configuration options.
-      notify_subscribers: false
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide.html
+      document_summary: This guide shows how to get started with the ESP32-Ethernet-Kit V1.2 development board and also provides information about its functionality and configuration options.
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
       document_classification: public
 ########################################
-# 6. ESP32-Ethernet-Kit 入门指南
+# 6. ESP32-Ethernet-Kit V1.2 入门指南
 ########################################
-    - document_name: ESP32-Ethernet-Kit 入门指南
+    - document_name: ESP32-Ethernet-Kit V1.2 入门指南
       doc_id: 4081
       translation_docid: 4082
       chip_series: ESP32
@@ -161,12 +161,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2019-08-28
+      revision_date: 2025-08-14
       language: cn
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/index.html
-      document_summary: 本指南介绍了如何使用 ESP32-Ethernet-Kit 开发板以及配置相关功能。
-      notify_subscribers: false
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide.html
+      document_summary: 本指南介绍了如何使用 ESP32-Ethernet-Kit V1.2 开发板以及配置相关功能。
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -224,9 +224,9 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# 9 ESP32-PICO-KIT User Guide
+# 9 ESP32-PICO-KIT V4/V4.1 User Guide
 ########################################
-    - document_name: ESP32-PICO-KIT Getting Started Guide
+    - document_name: ESP32-PICO-KIT V4/V4.1 Getting Started Guide
       doc_id: 2388
       translation_docid: 2389
       chip_series: ESP32
@@ -241,17 +241,17 @@ documents:
       revision_date: 2017-12-26
       language: en
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-pico-kit/index.html
-      document_summary: This user guide shows how to get started with the ESP32-PICO-KIT V4 mini development board.
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-pico-kit/user_guide.html
+      document_summary: This user guide shows how to get started with the ESP32-PICO-KIT V4/V4.1 mini development board.
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
       document_classification: public
 ########################################
-# 10 ESP32-PICO-KIT 入门指南
+# 10 ESP32-PICO-KIT V4/V4.1 入门指南
 ########################################
-    - document_name: ESP32-PICO-KIT 入门指南
+    - document_name: ESP32-PICO-KIT V4/V4.1 入门指南
       doc_id: 2389
       translation_docid: 2388
       chip_series: ESP32
@@ -266,8 +266,8 @@ documents:
       revision_date: 2017-12-26
       language: cn
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-pico-kit/index.html
-      document_summary: 本文档为 ESP32-PICO-KIT 迷你开发板的入门指南。
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-pico-kit/user_guide.html
+      document_summary: 本文档为 ESP32-PICO-KIT V4/V4.1 迷你开发板的入门指南。
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
@@ -1727,6 +1727,206 @@ documents:
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/echoear/user_guide_v1.2.html
       document_summary: 本指南将帮助您快速上手 EchoEar v1.2，并提供该款开发板的详细信息。
       notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 69. ESP32-Ethernet-Kit V1.1 User Guide
+########################################
+    - document_name: ESP32-Ethernet-Kit V1.1 Getting Started Guide
+      doc_id: 9159
+      translation_docid: 9161
+      chip_series: ESP32
+      product_name:
+        - ESP32-Ethernet-Kit
+      product_name_old_website:
+        - ESP32-Ethernet-Kit
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2025-08-14
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide_v1.1.html
+      document_summary: This guide shows how to get started with the ESP32-Ethernet-Kit V1.1 development board and also provides information about its functionality and configuration options.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 70. ESP32-Ethernet-Kit V1.1 入门指南
+########################################
+    - document_name: ESP32-Ethernet-Kit V1.1 入门指南
+      doc_id: 9161
+      translation_docid: 9159
+      chip_series: ESP32
+      product_name:
+        - ESP32-Ethernet-Kit
+      product_name_old_website:
+        - ESP32-Ethernet-Kit
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2025-08-14
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide_v1.1.html
+      document_summary: 本指南介绍了如何使用 ESP32-Ethernet-Kit V1.1 开发板以及配置相关功能。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+      ########################################
+# 71. ESP32-Ethernet-Kit V1.0 User Guide
+########################################
+    - document_name: ESP32-Ethernet-Kit V1.0 Getting Started Guide
+      doc_id: 9163
+      translation_docid: 9165
+      chip_series: ESP32
+      product_name:
+        - ESP32-Ethernet-Kit
+      product_name_old_website:
+        - ESP32-Ethernet-Kit
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2025-08-14
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide_v1.0.html
+      document_summary: This guide shows how to get started with the ESP32-Ethernet-Kit V1.0 development board and also provides information about its functionality and configuration options.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 72. ESP32-Ethernet-Kit V1.0 入门指南
+########################################
+    - document_name: ESP32-Ethernet-Kit V1.0 入门指南
+      doc_id: 9165
+      translation_docid: 9163
+      chip_series: ESP32
+      product_name:
+        - ESP32-Ethernet-Kit
+      product_name_old_website:
+        - ESP32-Ethernet-Kit
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2025-08-14
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide_v1.0.html
+      document_summary: 本指南介绍了如何使用 ESP32-Ethernet-Kit V1.0 开发板以及配置相关功能。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 73 ESP32-PICO-KIT V3 User Guide
+########################################
+    - document_name: ESP32-PICO-KIT V3 Getting Started Guide
+      doc_id: 9167
+      translation_docid: 9169
+      chip_series: ESP32
+      product_name:
+        - ESP32-PICO-KIT
+      product_name_old_website:
+        - ESP32-PICO-KIT
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2017-12-26
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-pico-kit/user_guide_v3.html
+      document_summary: This user guide shows how to get started with the ESP32-PICO-KIT V3 mini development board.
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 74 ESP32-PICO-KIT V3 入门指南
+########################################
+    - document_name: ESP32-PICO-KIT V3 入门指南
+      doc_id: 9169
+      translation_docid: 9167
+      chip_series: ESP32
+      product_name:
+        - ESP32-PICO-KIT
+      product_name_old_website:
+        - ESP32-PICO-KIT
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2017-12-26
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-pico-kit/user_guide_v3.html
+      document_summary: 本文档为 ESP32-PICO-KIT V3 迷你开发板的入门指南。
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 75. ESP32-DevKitC V2 User Guide
+########################################
+    - document_name: ESP32-DevKitC V2 Getting Started Guide
+      doc_id: 9147
+      translation_docid: 9157
+      chip_series: ESP32
+      product_name:
+        - ESP32-DevKitC
+      product_name_old_website:
+        - ESP32-DevKitC
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2017-07-28
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide_v2.html
+      document_summary: The getting started guide for the ESP32-DevKitC V2 development board.
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 76. ESP32-DevKitC V2 入门指南
+########################################
+    - document_name: ESP32-DevKitC V2 入门指南
+      doc_id: 9157
+      translation_docid: 9147
+      chip_series: ESP32
+      product_name:
+        - ESP32-DevKitC
+      product_name_old_website:
+        - ESP32-DevKitC
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2017-08-22
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-devkitc/user_guide_v2.html
+      document_summary: ESP32-DevKitC V2 入门指南
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
