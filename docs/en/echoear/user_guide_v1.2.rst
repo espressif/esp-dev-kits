@@ -12,7 +12,7 @@ This guide will help you get started with EchoEar quickly and provide detailed i
 
 EchoEar is an intelligent AI development kit. It is suitable for voice interaction products that require large model capabilities, such as toys, smart speakers, and smart central control systems. The device is equipped with a 1.85-inch QSPI circular touch screen, dual microphone array, and supports offline voice wake-up and sound source localization algorithms. Combined with the large model capabilities provided by OpenAI，Xiaozhi AI, Gemini, etc., EchoEar can achieve full-duplex voice interaction, multimodal recognition, and intelligent agent control, providing a solid foundation for developers to create complete edge-side AI application experiences.
 
-EchoEar's main controller uses the Espressif ESP32-S3-WROOM-1-N16R16V module, supporting 2.4 GHz Wi-Fi and Bluetooth 5 (LE) wireless connectivity. For storage, the entire device has 16MB PSRAM and 16MB Flash storage space, and is also equipped with a microSD card slot that can support up to 32GB, meeting the needs of voice interaction and multimedia processing. It features a 1.85-inch circular touch screen (360 × 360 resolution) with ESP32-S3 native touch sensors, providing an intuitive and rich interactive experience.
+EchoEar's main controller uses the Espressif ESP32-S3-WROOM-1-N16R16VA module, supporting 2.4 GHz Wi-Fi and Bluetooth 5 (LE) wireless connectivity. For storage, the entire device has 16MB PSRAM and 16MB Flash storage space, and is also equipped with a microSD card slot that can support up to 32GB, meeting the needs of voice interaction and multimedia processing. It features a 1.85-inch circular touch screen (360 × 360 resolution) with ESP32-S3 native touch sensors, providing an intuitive and rich interactive experience.
 
 For audio, EchoEar has a built-in 3W speaker and dual microphone array, supporting local voice wake-up and sound source localization. The power system is compatible with 5 V DC and 3.7 V lithium battery power supply. Additionally, it integrates a USB-C interface for power supply and programming download, while reserving a Pogopin interface for convenient functional expansion.
 
@@ -85,7 +85,7 @@ The following introduces the main components on the front PCB in clockwise order
      - Description
    * - :strong:`CoreBoard`
      -
-   * - ESP32-S3-WROOM-1-N16R16V
+   * - ESP32-S3-WROOM-1-N16R16VA
      - Main controller chip, integrates 16 MB Flash and 16 MB PSRAM, supports 2.4 GHz Wi-Fi and Bluetooth 5 (LE) wireless connectivity.
    * - Battery Connector
      - Battery connector for connecting 3.7 V lithium battery, top is positive, bottom is negative.
