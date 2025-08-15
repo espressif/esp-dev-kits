@@ -12,7 +12,7 @@ ESP32-DevKitC V4
 -----------
 
 * :ref:`ESP32-DevKitC V4 开发板 <get-started-esp32-devkitc-board-front>`
-* USB A / micro USB B 数据线
+* USB 2.0 数据线（标准 A 型转 Micro-B 型）
 * PC（Windows、Linux 或 Mac OS）
 
 你可以跳过介绍部分，直接前往 `应用程序开发`_ 章节。
@@ -51,33 +51,42 @@ ESP32-DevKitC V4 开发板的主要组件、接口及控制方式见下。
 
 .. _get-started-esp32-devkitc-board-front:
 
-.. figure:: ../../_static/esp32-devkitc/esp32-devkitc-v4-functional-overview.jpg
+.. figure:: ../../_static/esp32-devkitc/esp32-devkitc-v4-functional-overview.png
     :align: center
-    :alt: ESP32-DevKitC V4（板载 ESP32-WROOM-32）
+    :alt: ESP32-DevKitC V4（板载 ESP32-WROOM-32E）
 
-    ESP32-DevKitC V4（板载 ESP32-WROOM-32）
+    ESP32-DevKitC V4（板载 ESP32-WROOM-32E）
 
+下面从 5V Power On LED 开始按照顺时针的顺序依次介绍开发板的主要组件。
 
 .. list-table::
-    :widths: 25 75
+    :widths: 10 20 70
     :header-rows: 1
 
-    * - 主要组件
-      - 基本介绍
-    * - ESP32-WROOM-32
-      - 基于 ESP32 的模组。更多详情，请见 `ESP32-WROOM-32 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_cn.pdf>`_。
-    * - EN
-      - 复位按键。
-    * - Boot
-      - 下载按键。按下 **Boot** 键并保持，同时按一下 **EN** 键（此时不要松开 **Boot** 键）进入“固件下载”模式，通过串口下载固件。
-    * - USB-to-UART 桥接器
-      - 单芯片 USB-UART 桥接器，可提供高达 3 Mbps 的传输速率。
-    * -  Micro USB 接口。
-      - USB 接口，可用作电路板的供电电源，或连接 PC 和 ESP32-WROOM-32 模组的通信接口。
-    * - 5V Power On LED
+    * - 组件编号
+      - 主要组件
+      - 介绍
+    * - 1
+      - 5V Power On LED
       - 开发板通电后（USB 或外部 5 V），该指示灯将亮起。更多信息，请见 `相关文档`_ 中的原理图。
-    * - I/O
+    * - 2
+      - I/O Connector
       - 板上模组的绝大部分管脚均已引出至开发板的排针。用户可以对 ESP32 进行编程，实现 PWM、ADC、DAC、I2C、I2S、SPI 等多种功能。
+    * - 3
+      - ESP32-WROOM-32E
+      - 基于 ESP32 的模组。更多详情，请见 `ESP32-WROOM-32E 技术规格书 <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_cn.pdf>`_。
+    * - 4
+      - USB-to-UART Bridge
+      - 单芯片 USB 至 UART 桥接器，可提供高达 3 Mbps 的传输速率。
+    * - 5
+      - Boot Button
+      - 下载按键。按下 **Boot** 键并保持，同时按一下 **EN** 键（此时不要松开 **Boot** 键）进入“固件下载”模式，通过串口下载固件。
+    * - 6
+      - USB-to-UART Port
+      - Micro-USB 接口，可用作开发板的供电接口，或连接 PC 和 ESP32-WROOM-32E 模组的通信接口。
+    * - 7
+      - EN Button
+      - 复位按键。
 
 
 电源选项
