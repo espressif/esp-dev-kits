@@ -68,7 +68,7 @@ ESP32-C3-LCDkit 是一款物种保护系列开发板，由主板和子板组成�
 
 .. figure:: ../../_static/esp32-c3-lcdkit/esp32-c3-lcdkit-layout-front.png
     :align: center
-    :scale: 80%
+    :scale: 90%
     :alt: ESP32-C3-LCDkit - 正面（点击放大）
 
     ESP32-C3-LCDkit - 正面（点击放大）
@@ -119,14 +119,14 @@ LCD 子板
 
 .. figure:: ../../_static/esp32-c3-lcdkit/esp32-c3-lcdkit-sub-front.png
     :align: center
-    :scale: 60%
+    :scale: 50%
     :alt: ESP32-C3-LCDkit_DB - 正面（点击放大）
 
     ESP32-C3-LCDkit_DB - 正面（点击放大）
 
 .. figure:: ../../_static/esp32-c3-lcdkit/esp32-c3-lcdkit-sub-back.png
     :align: center
-    :scale: 65%
+    :scale: 50%
     :alt: ESP32-C3-LCDkit_DB - 反面（点击放大）
 
     ESP32-C3-LCDkit_DB - 反面（点击放大）
