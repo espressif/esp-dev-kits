@@ -1124,9 +1124,9 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# 45 ESP32-C6-DevKitC-1 User Guide
+# 45 ESP32-C6-DevKitC-1 v1.2 User Guide
 ########################################
-    - document_name: ESP32-C6-DevKitC-1 User Guide
+    - document_name: ESP32-C6-DevKitC-1 v1.2 User Guide
       doc_id: 6441
       translation_docid: 6443
       chip_series: ESP32-C6
@@ -1141,17 +1141,17 @@ documents:
       revision_date: 2023-01-06
       language: en
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitc-1/index.html
-      document_summary: This document provides information on ESP32-C6-DevKitC-1 development board.
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitc-1/user_guide.html
+      document_summary: This document provides information on ESP32-C6-DevKitC-1 v1.2 development board.
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
       document_classification: public
 ########################################
-# 46 ESP32-C6-DevKitC-1 用户指南
+# 46 ESP32-C6-DevKitC-1 v1.2 用户指南
 ########################################
-    - document_name: ESP32-C6-DevKitC-1 用户指南
+    - document_name: ESP32-C6-DevKitC-1 v1.2 用户指南
       doc_id: 6443
       translation_docid: 6441
       chip_series: ESP32-C6
@@ -1166,8 +1166,8 @@ documents:
       revision_date: 2023-01-06
       language: cn
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c6/esp32-c6-devkitc-1/index.html
-      document_summary: 本文档将介绍如何使用 ESP32-C6-DevKitC-1 开发板。
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c6/esp32-c6-devkitc-1/user_guide.html
+      document_summary: 本文档将介绍如何使用 ESP32-C6-DevKitC-1 v1.2 开发板。
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
@@ -1927,6 +1927,56 @@ documents:
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-devkitc/user_guide_v2.html
       document_summary: ESP32-DevKitC V2 入门指南
       notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 77 ESP32-C6-DevKitC-1 v1.1 User Guide
+########################################
+    - document_name: ESP32-C6-DevKitC-1 v1.1 User Guide
+      doc_id: 8959
+      translation_docid: 8957
+      chip_series: ESP32-C6
+      product_name:
+        - ESP32-C6-DevKitC-1
+      product_name_old_website:
+        - ESP32-C6-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2023-01-06
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c6/esp32-c6-devkitc-1/user_guide_v1.1.html
+      document_summary: This document provides information on ESP32-C6-DevKitC-1 v1.1 development board.
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 78 ESP32-C6-DevKitC-1 v1.1 用户指南
+########################################
+    - document_name: ESP32-C6-DevKitC-1 v1.1 用户指南
+      doc_id: 8957
+      translation_docid: 8959
+      chip_series: ESP32-C6
+      product_name:
+        - ESP32-C6-DevKitC-1
+      product_name_old_website:
+        - ESP32-C6-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2023-01-06
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c6/esp32-c6-devkitc-1/user_guide_v1.1.html
+      document_summary: 本文档将介绍如何使用 ESP32-C6-DevKitC-1 v1.1 开发板。
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
