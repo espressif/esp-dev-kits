@@ -68,7 +68,7 @@ Mainboard
 
 .. figure:: ../../_static/esp32-c3-lcdkit/esp32-c3-lcdkit-layout-front.png
     :align: center
-    :scale: 80%
+    :scale: 90%
     :alt: ESP32-C3-LCDkit - Front (Click to Enlarge)
 
     ESP32-C3-LCDkit - Front (Click to Enlarge)
@@ -119,14 +119,14 @@ The **ESP32-C3-LCDkit_DB** subboard supports a 1.28" LCD screen with SPI interfa
 
 .. figure:: ../../_static/esp32-c3-lcdkit/esp32-c3-lcdkit-sub-front.png
     :align: center
-    :scale: 60%
+    :scale: 50%
     :alt: ESP32-C3-LCDkit_DB - Front (Click to Enlarge)
 
     ESP32-C3-LCDkit_DB - Front (Click to Enlarge)
 
 .. figure:: ../../_static/esp32-c3-lcdkit/esp32-c3-lcdkit-sub-back.png
     :align: center
-    :scale: 65%
+    :scale: 50%
     :alt: ESP32-C3-LCDkit_DB - Back (Click to Enlarge)
 
     ESP32-C3-LCDkit_DB - Back (Click to Enlarge)
