@@ -84,9 +84,13 @@
 /docs/*/esp8684-devkitc-02/                 @documentation/codeowners/esp32c2       @documentation/codeowners/hw
 /docs/*/esp8684-devkitm-1/                  @documentation/codeowners/esp32c2       @documentation/codeowners/hw
 
-# Figures, README, document templates
+# README and document templates
 
-/docs/_static/                              @documentation/codeowners/esp-dev-kits  @documentation/codeowners/hw
+/docs/_static/js/*                          @documentation/codeowners/esp-dev-kits
+/docs/_static/*.pdf                         @documentation/codeowners/esp-dev-kits
+/docs/_static/*.png                         @documentation/codeowners/esp-dev-kits
+/docs/_static/*.svg                         @documentation/codeowners/esp-dev-kits
+/docs/_static/*.html                        @documentation/codeowners/esp-dev-kits 
 /docs/*/eol/                                @documentation/codeowners/esp-dev-kits
 README*.md                                  @documentation/codeowners/esp-dev-kits
 /docs/README.md                             @documentation/codeowners/esp-dev-kits
