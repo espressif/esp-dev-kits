@@ -824,11 +824,11 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# 33 ESP8684-DevKitM-1 User Guide
+# 33 ESP8684-DevKitM-1 v1.0 User Guide
 ########################################
-    - document_name: ESP8684-DevKitM-1 User Guide
-      doc_id: 6117
-      translation_docid: 6119
+    - document_name: ESP8684-DevKitM-1 v1.0 User Guide
+      doc_id: 9059
+      translation_docid: 9061
       chip_series: ESP32-C2
       product_name:
         - ESP8684-DevKitM-1
@@ -841,19 +841,19 @@ documents:
       revision_date: 2022-09-09
       language: en
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c2/esp8684-devkitm-1/index.html
-      document_summary: This user guide provides information on ESP8684-DevKitM-1, an entry-level development board based on ESP8684-MINI-1 module.
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c2/esp8684-devkitm-1/user_guide-v1.0.html
+      document_summary: This user guide provides information on ESP8684-DevKitM-1 v1.0, an entry-level development board based on ESP8684-MINI-1 module.
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
       document_classification: public
 ########################################
-# 34 ESP8684-DevKitM-1 用户指南
+# 34 ESP8684-DevKitM-1 v1.0 用户指南
 ########################################
-    - document_name: ESP8684-DevKitM-1 用户指南
-      doc_id: 6119
-      translation_docid: 6117
+    - document_name: ESP8684-DevKitM-1 v1.0 用户指南
+      doc_id: 9061
+      translation_docid: 9059
       chip_series: ESP32-C2
       product_name:
         - ESP8684-DevKitM-1
@@ -866,8 +866,8 @@ documents:
       revision_date: 2022-09-09
       language: cn
       document_storage: docs
-      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c2/esp8684-devkitm-1/index.html
-      document_summary: 本指南介绍了搭载 ESP8684-MINI-1 的入门级开发板 ESP8684-DevKitM-1。
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c2/esp8684-devkitm-1/user_guide-v1.0.html
+      document_summary: 本指南介绍了搭载 ESP8684-MINI-1 的入门级开发板 ESP8684-DevKitM-1 v1.0。
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
@@ -1781,7 +1781,7 @@ documents:
       scheduled_release_date:
       document_status: active
       document_classification: public
-      ########################################
+########################################
 # 71. ESP32-Ethernet-Kit V1.0 User Guide
 ########################################
     - document_name: ESP32-Ethernet-Kit V1.0 Getting Started Guide
@@ -1976,6 +1976,56 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c6/esp32-c6-devkitc-1/user_guide_v1.1.html
       document_summary: 本文档将介绍如何使用 ESP32-C6-DevKitC-1 v1.1 开发板。
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 33 ESP8684-DevKitM-1 v1.1 User Guide
+########################################
+    - document_name: ESP8684-DevKitM-1 v1.1 User Guide
+      doc_id: 6117
+      translation_docid: 6119
+      chip_series: ESP32-C2
+      product_name:
+        - ESP8684-DevKitM-1
+      product_name_old_website:
+        - ESP8684-DevKitM-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2025-08-22
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c2/esp8684-devkitm-1/user_guide.html
+      document_summary: This user guide provides information on ESP8684-DevKitM-1 v1.1, an entry-level development board based on ESP8684-MINI-1 module.
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 34 ESP8684-DevKitM-1 v1.1 用户指南
+########################################
+    - document_name: ESP8684-DevKitM-1 v1.1 用户指南
+      doc_id: 6119
+      translation_docid: 6117
+      chip_series: ESP32-C2
+      product_name:
+        - ESP8684-DevKitM-1
+      product_name_old_website:
+        - ESP8684-DevKitM-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2025-08-22
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c2/esp8684-devkitm-1/user_guide.html
+      document_summary: 本指南介绍了搭载 ESP8684-MINI-1 的入门级开发板 ESP8684-DevKitM-1 v1.1。
       notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
