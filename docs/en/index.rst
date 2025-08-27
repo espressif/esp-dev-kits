@@ -25,7 +25,7 @@ esp-dev-kits Documentation
 
 .. only:: esp32c2
 
-   The {IDF_TARGET_NAME} SoC currently consists of only one series, the ESP8684, so the references of {IDF_TARGET_NAME} in this document refers to the ESP8684 Series SoCs.
+   The {IDF_TARGET_NAME} SoC series group currently includes only one series, the ESP8684. Therefore, any reference to {IDF_TARGET_NAME} in this document applies to the ESP8684.
 
 .. note::
 
