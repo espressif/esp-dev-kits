@@ -272,7 +272,9 @@ No.   ESP32 管脚 (MAC)   IP101GRI (PHY)
 
 .. Note::
 
-    ESP32 的 *RMII 接口* 下的所有管脚分配都是固定的，不能通过 IOMUX 或 GPIO 矩阵进行更改。REF_CLK 仅可选择 GPIO0、GPIO16 或 GPIO17，且不可通过 GPIO 矩阵进行更改。
+    1. ESP32 的 *RMII 接口* 下的所有管脚分配都是固定的，不能通过 IO MUX 或 GPIO 矩阵进行更改。
+
+    2. 对于 REF_CLK，GPIO0 支持输入和输出模式，GPIO16 和 GPIO17 仅支持输出模式。但 GPIO16 和 GPIO17 并未引出至 ESP32-WROVER-E 模块，因此无法使用。如果需要使用这两个引脚，请更换为不带 PSRAM 且引出 GPIO16 和 GPIO17 的模组。
 
 
 GPIO Header 1
@@ -314,7 +316,7 @@ No.   ESP32 管脚   备注
 
 .. note::
 
-    1. ESP32 芯片的 GPIO16 和 GPIO17 管脚没有引出至 ESP32-WROVER-E 模组的管脚，因此无法使用。如需使用 ESP32 的 GP1016 和 GPIO17 管脚，建议更换其他不含 PSRAM 的模组，比如 ESP32-WROOM-32D 或 ESP32-SOLO-1。
+    1. ESP32 芯片的 GPIO16 和 GPIO17 管脚没有引出至 ESP32-WROVER-E 模组的管脚，因此无法使用。如需使用 ESP32 的 GP1016 和 GPIO17 管脚，请更换为不带 PSRAM 且引出 GPIO16 和 GPIO17 的模组。
 
     2. 具体功能取决与 `功能选择开关`_ 的设置。
 
@@ -356,7 +358,7 @@ GPIO 管脚分配总结
 
     1. 为防止 ESP32 侧 GPIO0 的上电状态受 PHY 侧时钟输出的影响，PHY 侧 RESET_N 默认为低，以关闭 PHY 侧时钟输出。上电后，可以通过 GPIO5 控制 RESET_N 以打开该时钟输出。参见 `PHY 侧提供 RMII 时钟`_。对于无法通过 RESET_N 关闭时钟输出的 PHY，PHY 侧建议使用可在外部禁用/使能的有源晶振。与使用 RESET_N 类似，默认情况下晶振模块应禁用，并在上电后由 ESP32 开启。有关参考设计，请参见 `ESP32-Ethernet-Kit v1.2 以太网母板（A 板）原理图`_。
 
-    2. ESP32 芯片的 GPIO16 和 GPIO17 管脚没有引出至 ESP32-WROVER-E 模组的管脚，因此无法使用。如需使用 ESP32 的 GP1016 和 GPIO17 管脚，建议更换其他不含 PSRAM 的模组，比如 ESP32-WROOM-32D 或 ESP32-SOLO-1。
+    2. ESP32 芯片的 GPIO16 和 GPIO17 管脚没有引出至 ESP32-WROVER-E 模组的管脚，因此无法使用。如需使用 ESP32 的 GP1016 和 GPIO17 管脚，请更换为不带 PSRAM 且引出 GPIO16 和 GPIO17 的模组。
 
 
 应用程序开发
