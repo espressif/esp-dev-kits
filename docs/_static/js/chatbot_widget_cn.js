@@ -4,6 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     script.setAttribute("data-bot-protection-mechanism", "hcaptcha");
     script.setAttribute("data-website-id", "d3dfaec3-5ca8-4aaf-b279-eb0b1b491dd8");
     script.setAttribute("data-modal-title", "esp-dev-kits 文档 AI 助手");
+    script.setAttribute("data-project-name", "esp-dev-kits");
     script.setAttribute("data-project-color", "#C62817");
     script.setAttribute("data-project-logo", "https://dl.espressif.com/public/logo.png");
     script.setAttribute("data-button-image", "https://dl.espressif.com/chatbot/Chatbot.png");
@@ -24,6 +25,7 @@ document.addEventListener("DOMContentLoaded", function () {
     script.setAttribute("data-modal-override-open-class", "test-ai");
     script.setAttribute("data-user-analytics-fingerprint-enabled", "true");
     script.setAttribute("data-modal-example-questions-title", "问题示例");
+    script.setAttribute("data-language", "zh");
     script.setAttribute("data-modal-example-questions-col-span", "8,4");
     script.setAttribute("data-modal-disclaimer", "欢迎使用乐鑫文档智能问答助手！本助手基于乐鑫的公开文档，旨在为您提供产品和服务的技术支持与解答。如有任何意见或建议，欢迎留下反馈！\n\n**注意**：本回答由 AI 生成，可能存在不准确之处，请核实重要信息。");
     script.setAttribute("data-modal-example-questions", "ESP32-P4-Function-EV-Board 电容触摸屏的分辨率是多少？,ESP32-S3-DevKitM-1 搭载了哪款模组？");
