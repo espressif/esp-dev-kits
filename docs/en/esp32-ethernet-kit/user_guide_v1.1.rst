@@ -236,7 +236,7 @@ IP101GRI (PHY) Interface
 The allocation of the ESP32 (MAC) pins to IP101GRI (PHY) is shown in the table below. Implementation of ESP32-Ethernet-Kit defaults to Reduced Media-Independent Interface (RMII).
 
 ====  ================  ===============
-.     ESP32 Pin (MAC)   IP101GRI (PHY)
+No.   ESP32 Pin (MAC)   IP101GRI (PHY)
 ====  ================  ===============
 *RMII Interface*
 ---------------------------------------
@@ -260,7 +260,7 @@ The allocation of the ESP32 (MAC) pins to IP101GRI (PHY) is shown in the table b
 
 .. note::
 
-    Except for REF_CLK, the allocation of all pins under the ESP32's *RMII Interface* is fixed and cannot be changed either through IOMUX or GPIO Matrix.
+    Except for REF_CLK, the allocation of all pins under the ESP32's *RMII Interface* is fixed and cannot be changed either through IO MUX or GPIO Matrix.
 
 
 GPIO Header 1
@@ -269,7 +269,7 @@ GPIO Header 1
 This header exposes some GPIOs that are not used elsewhere on the ESP32-Ethernet-Kit.
 
 ====  ================
-.     ESP32 Pin
+No.   ESP32 Pin
 ====  ================
  1    GPIO32
  2    GPIO33
@@ -286,7 +286,7 @@ GPIO Header 2
 This header contains GPIOs that may be used for other purposes depending on scenarios described in column **Notes**.
 
 ====  ==========  ====================
-.     ESP32 Pin   Notes
+No.   ESP32 Pin   Notes
 ====  ==========  ====================
  1    GPIO17      See note 1
  2    GPIO16      See note 1

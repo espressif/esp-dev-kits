@@ -271,7 +271,9 @@ No.   ESP32 Pin (MAC)   IP101GRI (PHY)
 
 .. note::
 
-    The allocation of all pins under the ESP32's *RMII Interface* is fixed and cannot be changed either through IO MUX or GPIO Matrix. REF_CLK can only be selected from GPIO0, GPIO16 or GPIO17 and it can not be changed through GPIO Matrix.
+    1. The allocation of all pins under the ESP32's *RMII Interface* is fixed and cannot be changed either through IO MUX or GPIO Matrix.
+
+    2. For REF_CLK, GPIO0 supports both input and output modes, while GPIO16 and GPIO17 support only output mode. However, GPIO16 and GPIO17 are not broken out to the ESP32-WROVER-E module and therefore not available for use. If you need to use these pins, please replace the module with one that does not include PSRAM memory and exposes GPIO16 and GPIO17.
 
 
 GPIO Header 1
@@ -313,7 +315,7 @@ No.   ESP32 Pin   Notes
 
 .. note::
 
-    1. The ESP32 pins GPIO16 and GPIO17 are not broken out to the ESP32-WROVER-E module and therefore not available for use. If you need to use these pins, please solder a module without PSRAM memory inside, e.g., the ESP32-WROOM-32D or ESP32-SOLO-1.
+    1. The ESP32 pins GPIO16 and GPIO17 are not broken out to the ESP32-WROVER-E module and therefore not available for use. If you need to use these pins, please replace the module with one that does not include PSRAM memory and exposes GPIO16 and GPIO17.
 
     2. Functionality depends on the settings of the `Function Switch`_.
 
@@ -355,7 +357,7 @@ GPIO Allocation Summary
 
     1. To prevent the power-on state of the GPIO0 from being affected by the clock output on the PHY side, the RESET_N signal to PHY defaults to low, turning the clock output off. After power-on you can control RESET_N with GPIO5 to turn the clock output on. See also `RMII Clock Sourced Externally by PHY`_. For PHYs that cannot turn off the clock output through RESET_N, it is recommended to use a crystal module that can be disabled/enabled externally. Similarly like when using RESET_N, the oscillator module should be disabled by default and turned on by ESP32 after power-up. For a reference design please see `ESP32-Ethernet-Kit v1.2 Ethernet board (A) schematic`_.
 
-    2. The ESP32 pins GPIO16 and GPIO17 are not broken out to the ESP32-WROVER-E module and therefore not available for use. If you need to use these pins, please solder a module without PSRAM memory inside, e.g., the ESP32-WROOM-32D or ESP32-SOLO-1.
+    2. The ESP32 pins GPIO16 and GPIO17 are not broken out to the ESP32-WROVER-E module and therefore not available for use. If you need to use these pins, please replace the module with one that does not include PSRAM memory and exposes GPIO16 and GPIO17.
 
 
 Start Application Development

@@ -185,7 +185,7 @@ Flow Control
 This is a 2 x 2 jumper pin header intended for the UART flow control.
 
 ====  =======  =================================================
-.     Signal   Notes
+No.   Signal   Notes
 ====  =======  =================================================
  1    MTDO     GPIO13, see also `Function Switch`_
  2    MTCK     GPIO15, see also `Function Switch`_
@@ -206,7 +206,7 @@ IP101GRI (PHY) Interface
 The allocation of the ESP32 (MAC) pins to IP101GRI (PHY) is shown in the table below. Implementation of ESP32-Ethernet-Kit defaults to Reduced Media-Independent Interface (RMII).
 
 ====  ================  ===============
-.     ESP32 Pin (MAC)   IP101GRI (PHY)
+No.   ESP32 Pin (MAC)   IP101GRI (PHY)
 ====  ================  ===============
 *RMII Interface*
 ---------------------------------------
@@ -230,7 +230,7 @@ The allocation of the ESP32 (MAC) pins to IP101GRI (PHY) is shown in the table b
 
 .. note::
 
-    Except for REF_CLK, the allocation of all pins under the *RMII Interface* is fixed and cannot be changed either through IOMUX or GPIO Matrix.
+    Except for REF_CLK, the allocation of all pins under the *RMII Interface* is fixed and cannot be changed either through IO MUX or GPIO Matrix.
 
 
 GPIO Header 1
@@ -239,7 +239,7 @@ GPIO Header 1
 This header exposes some GPIOs that are not used elsewhere on the ESP32-Ethernet-Kit.
 
 ====  ================
-.     ESP32 Pin
+No.   ESP32 Pin
 ====  ================
  1    GPIO32
  2    GPIO33
@@ -256,7 +256,7 @@ GPIO Header 2
 This header contains the GPIOs with specific MII functionality (except GPIO2), as opposed to Reduced Media-Independent Interface (RMII) functionality implemented on ESP32-Ethernet-Kit board by default, see `IP101GRI (PHY) Interface`_. Depending on the situation, if MMI is used, specific Ethernet applications might require this functionality.
 
 ====  ==========  =================  ==================
-.     ESP32 Pin   MII Function       Notes
+No.   ESP32 Pin   MII Function       Notes
 ====  ==========  =================  ==================
  1    GPIO17      EMAC_CLK_180       See note 1
  2    GPIO16      EMAC_CLK_OUT       See note 1
@@ -277,7 +277,7 @@ GPIO Header 3
 The functionality of GPIOs connected to this header depends on the settings of the `Function Switch`_.
 
 ====  ===========
-.     ESP32 Pin
+No.   ESP32 Pin
 ====  ===========
  1     GPIO15
  2     GPIO13

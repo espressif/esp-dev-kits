@@ -136,7 +136,7 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2025-08-14
+      revision_date: 2025-09-12
       language: en
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide.html
@@ -161,7 +161,7 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2025-08-14
+      revision_date: 2025-09-12
       language: cn
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide.html
@@ -1746,7 +1746,7 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2025-08-14
+      revision_date: 2025-09-12
       language: en
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide_v1.1.html
@@ -1771,7 +1771,7 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2025-08-14
+      revision_date: 2025-09-12
       language: cn
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide_v1.1.html
@@ -1796,7 +1796,7 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2025-08-14
+      revision_date: 2025-09-12
       language: en
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide_v1.0.html
@@ -1821,7 +1821,7 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2025-08-14
+      revision_date: 2025-09-12
       language: cn
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide_v1.0.html
