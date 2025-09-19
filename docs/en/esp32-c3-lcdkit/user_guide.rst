@@ -96,7 +96,7 @@ The key components of the board are described in a clockwise direction.
      - Provides power to the entire system. It is recommended to use at least a 5V/2A power adapter to ensure a stable power supply. Used for USB communication between the PC side and the ESP32-C3-MINI-1 module.
    * - Reset Button
      - Press this button to reset the system.
-   * - 5V-to-3.3V LDO
+   * - 5 V to 3.3 V LDO
      - Low Dropout Regulator (LDO).
    * - 3.3 V Power On LED
      - Indicates the status of the system power supply.
