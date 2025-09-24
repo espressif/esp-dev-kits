@@ -31,9 +31,6 @@ ESP-Prog-2 设计简洁，使用方便，仅需一根 USB 线即可连接到电�
 
 本小节简要介绍 ESP-Prog-2，说明如何对 ESP-Prog-2 进行初始硬件设置。
 
-.. note::
-
-    收到 ESP-Prog-2 后，建议您通过乐鑫的在线固件烧写工具 `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__ 更新内置的出厂固件，以确保您获得最新的错误修复和功能。
 
 组件介绍
 --------
@@ -100,7 +97,6 @@ ESP-Prog-2 设计简洁，使用方便，仅需一根 USB 线即可连接到电�
 
     请确保使用适当的 USB 数据线。部分数据线仅可用于充电，无法用于数据传输和编程。
 
-
 硬件设置
 ^^^^^^^^^^^^^^
 
@@ -109,10 +105,19 @@ ESP-Prog-2 设计简洁，使用方便，仅需一根 USB 线即可连接到电�
 3. 使用乐鑫提供的排线连接 ESP-Prog-2 调试板和 ESP 产品板。
 4. 使用乐鑫官方软件工具或脚本，实现自动下载和 JTAG 调试功能。
 
+固件下载
+^^^^^^^^^^^^^^
+
+在软件开发前，建议更新 ESP-Prog-2 的内置出厂固件，以确保设备运行最新的功能和错误修复。
+
+1. **使用在线工具更新**：通过乐鑫提供的在线固件烧写工具 `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__ 对 ESP-Prog-2 进行固件更新。
+
+2. **获取固件源代码**：若希望了解固件实现，可访问 `esp-usb-bridge <https://github.com/espressif/esp-usb-bridge>`__ 获取 ESP-Prog-2 的固件源代码。
+
 软件设置
 ^^^^^^^^^^^^^^
 
-请前往 `ESP-IDF 快速入门 <https://idf.espressif.com/zh-cn/index.html>`__ 的 `安装 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ 章节，查看如何快速设置开发环境。获取 ESP-Prog-2 固件源代码请前往 `esp-usb-bridge <https://github.com/espressif/esp-usb-bridge>`__ 。
+要快速设置开发环境，请参阅 `ESP-IDF 快速入门 <https://idf.espressif.com/zh-cn/index.html>`__ 的 `安装 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ 章节。
 
 
 内容和包装

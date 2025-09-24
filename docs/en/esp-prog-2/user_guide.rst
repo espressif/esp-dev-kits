@@ -97,7 +97,6 @@ Required Hardware
 
     Be sure to use an appropriate USB cable. Some cables can only be used for charging, and cannot be used for data transmission or programming.
 
-
 Hardware Setup
 ^^^^^^^^^^^^^^
 
@@ -106,10 +105,19 @@ Hardware Setup
 3. Use the ribbon cable provided by Espressif to connect the ESP-Prog-2 debugging board to the Espressif target board.
 4. Use the Espressif official software tools or scripts to enable automatic downloading and JTAG debugging functions.
 
+Firmware Installation
+^^^^^^^^^^^^^^^^^^^^^
+
+Before starting software development, it is recommended to update the built-in factory firmware of the ESP-Prog-2. This ensures the device run the latest features and bug fixes.
+
+1. **Update firmware using online tool**: Update ESP-Prog-2 firmware via Espressif's online flashing tool `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__.
+
+2. **Obtain the firmware source code**: To understand the firmware implementation, check the firmware source code of ESP-Prog-2 at `esp-usb-bridge <https://github.com/espressif/esp-usb-bridge>`__.
+
 Software Setup
 ^^^^^^^^^^^^^^
 
-Please refer to `Get Started with ESP-IDF <https://idf.espressif.com/index.html>`__, where section `Installation <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ can help you set up the development environment.
+- To  set up the development environment, please refer to Section `Installation <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ in `Get Started with ESP-IDF <https://idf.espressif.com/index.html>`__.
 
 
 Contents and Packaging
