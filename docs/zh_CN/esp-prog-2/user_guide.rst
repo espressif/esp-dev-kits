@@ -31,6 +31,9 @@ ESP-Prog-2 设计简洁，使用方便，仅需一根 USB 线即可连接到电�
 
 本小节简要介绍 ESP-Prog-2，说明如何对 ESP-Prog-2 进行初始硬件设置。
 
+.. note::
+
+    收到 ESP-Prog-2 后，建议您通过乐鑫的在线固件烧写工具 `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__ 更新内置的出厂固件，以确保您获得最新的错误修复和功能。
 
 组件介绍
 --------
@@ -109,7 +112,7 @@ ESP-Prog-2 设计简洁，使用方便，仅需一根 USB 线即可连接到电�
 软件设置
 ^^^^^^^^^^^^^^
 
-请前往 `ESP-IDF 快速入门 <https://idf.espressif.com/zh-cn/index.html>`__ 的 `安装 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ 章节，查看如何快速设置开发环境。
+请前往 `ESP-IDF 快速入门 <https://idf.espressif.com/zh-cn/index.html>`__ 的 `安装 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ 章节，查看如何快速设置开发环境。获取 ESP-Prog-2 固件源代码请前往 `esp-usb-bridge <https://github.com/espressif/esp-usb-bridge>`__ 。
 
 
 内容和包装
