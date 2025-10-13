@@ -1,0 +1,35 @@
+## IDF Component Manager Manifest File
+dependencies:
+  espressif/led_indicator: ^1.0.0
+  ## Required IDF version
+  idf:
+    version: '>=4.1.0'
+  espressif/tinyusb:
+    version: '>=0.15.0~2'
+  button:
+    version: ">=4.0.0"
+
+  espressif/esp_insights: ^1.2.4
+  espressif/esp_rainmaker: ^1.5.2
+  espressif/rmaker_common: ^1.4.6
+
+  app_insights:
+    version: "*"
+    override_path: "../../../components/app_insights"
+
+  app_network:
+    version: "*"
+    override_path: "../../../components/app_network"
+
+  qrcode:
+    version: "*"
+    override_path: "../../../components/qrcode"
+
+  esp_dualkey:
+    version: "*"
+    override_path: "../../../components/esp_dualkey"
+
+  esp_hid:
+    version: "*"
+    override_path: "../../../components/esp_hid"
+

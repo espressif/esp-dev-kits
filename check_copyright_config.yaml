@@ -42,3 +42,14 @@ ignore:  # You can also select ignoring files here
   include:
     - docs/
     - gui_music/
+    - examples/esp-dualkey/components/qrcode/src/qrcodegen.c
+    - examples/esp-dualkey/examples/factory_demo/main/usb_hid/usb_descriptors.h
+    - examples/esp-dualkey/examples/factory_demo/main/usb_hid/usb_descriptors.c
+    - examples/esp-dualkey/examples/factory_demo/main/ble_hid/esp_hid_gap.h
+    - examples/esp-dualkey/examples/factory_demo/main/app_rainmaker/app_rainmaker.c
+    - examples/esp-dualkey/examples/factory_demo/main/ble_hid/esp_hid_gap.c
+    - examples/esp-dualkey/examples/factory_demo/main/app_nvs/app_nvs.c
+    - examples/esp-dualkey/examples/factory_demo/main/usb_hid/tusb_config.h
+    - examples/esp-dualkey/components/esp_hid/test_apps/pytest_esp_hid.py
+    - examples/esp-dualkey/examples/factory_demo/main/app_nvs/app_nvs.h
+    - examples/esp-dualkey/components/qrcode/src/qrcodegen.h
