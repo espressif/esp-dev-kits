@@ -7,6 +7,7 @@
     ESP32-S3-USB-OTG <esp32-s3-usb-otg/index>
     ESP32-S3-LCD-EV-Board <esp32-s3-lcd-ev-board/index>
     EchoEar <echoear/index>
+    ESP-DualKey <esp-dualkey/index>
     EOL (End of Life) Boards <eol/eol-boards>
 
 
@@ -21,9 +22,9 @@
 ----------------------------   ---------------------------
 `ESP32-S3-USB-OTG`_            `ESP32-S3-LCD-EV-Board`_
 ----------------------------   ---------------------------
-|EchoEar|_            
+|EchoEar|_                      |ESP-DualKey|_     
 ----------------------------   ---------------------------  
-`EchoEar`_            
+`EchoEar`_                      `ESP-DualKey`_  
 ============================   ===========================
 
 .. |ESP32-S3-DevKitC-1| image:: ../_static/esp32-s3-devkitc-1/esp32-s3-devkitc-1-v1-isometric.png
@@ -44,3 +45,9 @@
                         :height: 260px
                         :width: 400px
 .. _EchoEar: echoear/index.html
+
+.. |ESP-DualKey| image:: ../_static/esp-dualkey/esp-dualkey-front.jpg
+                        :height: 260px
+                        :width: 400px
+.. _ESP-DualKey: esp-dualkey/index.html
+
