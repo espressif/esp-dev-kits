@@ -41,7 +41,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide.html
       document_summary: The getting started guide for the ESP32-DevKitC V4 development board.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -66,7 +66,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-devkitc/user_guide.html
       document_summary: ESP32-DevKitC V4 入门指南
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -141,7 +141,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide.html
       document_summary: This guide shows how to get started with the ESP32-Ethernet-Kit V1.2 development board and also provides information about its functionality and configuration options.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -166,7 +166,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide.html
       document_summary: 本指南介绍了如何使用 ESP32-Ethernet-Kit V1.2 开发板以及配置相关功能。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -293,7 +293,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-pico-kit-1/index.html
       document_summary: This user guide provides information on ESP32-PICO-KIT-1, a development board based on ESP32-PICO-V3 SiP.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -318,7 +318,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-pico-kit-1/index.html
       document_summary: 本指南介绍了搭载 ESP32-PICO-V3 的开发板 ESP32-PICO-KIT-1。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -643,7 +643,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html
       document_summary: This user guide will help you get started with ESP32-S3-DevKitC-1 v1.1 and will also provide more in-depth information.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -668,7 +668,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.1.html
       document_summary: 本指南将帮助您快速上手 ESP32-S3-DevKitC-1 v1.1，并提供该款开发板的详细信息。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -693,7 +693,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitm-1/index.html
       document_summary: This user guide will help you get started with ESP32-S3-DevKitM-1 and will also provide more in-depth information.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -718,7 +718,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-devkitm-1/index.html
       document_summary: 本指南将帮助您快速上手 ESP32-S3-DevKitM-1，并提供该款开发板的详细信息。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1544,7 +1544,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/espressif-esp-dev-kits/en/latest/other/esp-prog-2/user_guide.html
       document_summary: This user guide will help you get started with ESP-Prog-2 and will also provide more in-depth information.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1570,7 +1570,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/espressif-esp-dev-kits/zh_CN/latest/other/esp-prog-2/user_guide.html
       document_summary: 本指南将帮助您快速上手 ESP-Prog-2，并提供该款开发板的详细信息。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1596,7 +1596,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.0.html
       document_summary: This user guide will help you get started with ESP32-S3-DevKitC-1 v1.0 and will also provide more in-depth information.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1622,7 +1622,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-devkitc-1/user_guide_v1.0.html
       document_summary: 本指南将帮助您快速上手 ESP32-S3-DevKitC-1 v1.0，并提供该款开发板的详细信息。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1648,7 +1648,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/echoear/user_guide_v1.0.html
       document_summary: This user guide will help you get started with EchoEar v1.0 and will also provide more in-depth information.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1674,7 +1674,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/echoear/user_guide_v1.0.html
       document_summary: 本指南将帮助您快速上手 EchoEar v1.0，并提供该款开发板的详细信息。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1700,7 +1700,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/echoear/user_guide_v1.2.html
       document_summary: This user guide will help you get started with EchoEar v1.2 and will also provide more in-depth information.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1726,7 +1726,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/echoear/user_guide_v1.2.html
       document_summary: 本指南将帮助您快速上手 EchoEar v1.2，并提供该款开发板的详细信息。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1751,7 +1751,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide_v1.1.html
       document_summary: This guide shows how to get started with the ESP32-Ethernet-Kit V1.1 development board and also provides information about its functionality and configuration options.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1776,7 +1776,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide_v1.1.html
       document_summary: 本指南介绍了如何使用 ESP32-Ethernet-Kit V1.1 开发板以及配置相关功能。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1801,7 +1801,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-ethernet-kit/user_guide_v1.0.html
       document_summary: This guide shows how to get started with the ESP32-Ethernet-Kit V1.0 development board and also provides information about its functionality and configuration options.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1826,7 +1826,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-ethernet-kit/user_guide_v1.0.html
       document_summary: 本指南介绍了如何使用 ESP32-Ethernet-Kit V1.0 开发板以及配置相关功能。
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1901,7 +1901,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32/esp32-devkitc/user_guide_v2.html
       document_summary: The getting started guide for the ESP32-DevKitC V2 development board.
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1926,7 +1926,7 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32/esp32-devkitc/user_guide_v2.html
       document_summary: ESP32-DevKitC V2 入门指南
-      notify_subscribers: true
+      notify_subscribers: false
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
