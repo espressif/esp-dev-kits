@@ -33,6 +33,11 @@ esp_err_t app_nvs_open(nvs_handle_t *handle)
     return err;
 }
 
+void app_nvs_close(nvs_handle_t handle)
+{
+    nvs_close(handle);
+}
+
 esp_err_t app_nvs_store(nvs_handle_t handle, const char *key, const void *data, size_t length)
 {
     esp_err_t err = ESP_OK;

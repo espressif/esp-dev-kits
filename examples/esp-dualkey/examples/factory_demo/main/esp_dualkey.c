@@ -286,12 +286,18 @@ static void button_event_cb(void *arg, void *usr_data)
 
                 // Reset RGB matrix to default mode.
                 light_manager_set_suspended(false);
+
+                app_nvs_close(esp_dualkey_ctx.nvs_handle);
+
+                // Erase factory partition.
+                const esp_partition_t *factory_partition = esp_partition_find_first(ESP_PARTITION_TYPE_DATA, ESP_PARTITION_SUBTYPE_DATA_NVS, "fctry");
+                esp_partition_erase_range(factory_partition, 0, factory_partition->size);
+
+                ESP_LOGI(TAG, "Start factory reset");
                 esp_rmaker_factory_reset(0, 0);
 
                 // Stop button monitoring.
                 iot_button_stop();
-
-                ESP_LOGI(TAG, "RainMaker factory reset completed");
             }
         }
     }
@@ -506,8 +512,6 @@ esp_err_t esp_dualkey_init(void)
         esp_dualkey_ctx.storage_param.rmaker_params.read_cb = NULL;
         app_rainmaker_init(&esp_dualkey_ctx.storage_param.rmaker_params);
         light_manager_set_suspended(!esp_dualkey_ctx.storage_param.rmaker_params.power);
-        bsp_deep_sleep_init(&config);
-        bsp_deep_sleep_enable(true);
         break;
     default:
         break;

@@ -17,6 +17,8 @@ extern "C" {
 
 esp_err_t app_nvs_open(nvs_handle_t *handle);
 
+void app_nvs_close(nvs_handle_t handle);
+
 esp_err_t app_nvs_store(nvs_handle_t handle, const char *key, const void *data, size_t length);
 
 esp_err_t app_nvs_get_length(nvs_handle_t handle, const char *key, size_t *length);

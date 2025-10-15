@@ -148,13 +148,13 @@ esp_err_t app_rainmaker_init(app_rainmaker_params_t *params)
     switch_r_param = esp_rmaker_power_param_create(ESP_RMAKER_DEF_SWITCH_R_NAME, params->switch_r);
     esp_rmaker_device_add_param(switch_device, switch_r_param);
 
+    esp_rmaker_device_add_param(switch_device, create_action_mode_param(ESP_RMAKER_DEF_ACTION_NAME, keyboard_action_list[params->action_type]));
+    esp_rmaker_device_add_param(switch_device, create_light_mode_param(ESP_RMAKER_DEF_LIGHT_MODE_NAME, light_mode_list[params->light_mode_type]));
+
     esp_rmaker_device_add_param(switch_device, esp_rmaker_hue_param_create(ESP_RMAKER_DEF_HUE_NAME, params->hue));
     esp_rmaker_device_add_param(switch_device, esp_rmaker_saturation_param_create(ESP_RMAKER_DEF_SATURATION_NAME, params->saturation));
     esp_rmaker_device_add_param(switch_device, esp_rmaker_brightness_param_create(ESP_RMAKER_DEF_BRIGHTNESS_NAME, params->brightness));
     esp_rmaker_device_add_param(switch_device, esp_rmaker_light_speed_param_create(ESP_RMAKER_DEF_SPEED_NAME, params->light_speed));
-
-    esp_rmaker_device_add_param(switch_device, create_action_mode_param(ESP_RMAKER_DEF_ACTION_NAME, keyboard_action_list[params->action_type]));
-    esp_rmaker_device_add_param(switch_device, create_light_mode_param(ESP_RMAKER_DEF_LIGHT_MODE_NAME, light_mode_list[params->light_mode_type]));
 
     battery_level_param = create_battery_level_param(ESP_RMAKER_DEF_BATTERY_LEVEL_NAME, 50);
     esp_rmaker_device_add_param(switch_device, battery_level_param);

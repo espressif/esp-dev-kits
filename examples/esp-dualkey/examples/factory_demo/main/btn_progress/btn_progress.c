@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2024-2025 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -221,21 +221,24 @@ void btn_progress(keyboard_btn_report_t kbd_report)
         }
     }
 
-    _report(kbd_hid_report);
-
     if (if_consumer_report && !release_consumer_report) {
         consumer_report.report_id = REPORT_ID_CONSUMER;
         _report(consumer_report);
+        return;
     } else if (release_consumer_report) {
         consumer_report.report_id = REPORT_ID_CONSUMER;
         consumer_report.consumer_report.keycode = 0;
         _report(consumer_report);
+        return;
     }
 
     if (if_mouse_report) {
         mouse_report.report_id = REPORT_ID_MOUSE;
         _report(mouse_report);
+        return;
     }
+
+    _report(kbd_hid_report);
 }
 
 void btn_progress_set_report_type(btn_report_type_t type)
