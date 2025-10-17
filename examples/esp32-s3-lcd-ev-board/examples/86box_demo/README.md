@@ -1,6 +1,6 @@
 # 86-box Demo Example
 
-A GUI demo designed for control panel (480x480) which is usually used fo wall-mounted 86 type box.
+A GUI demo designed for control panel (480x480) which is usually used for wall-mounted 86 type box.
 
 **Note: This example is only applicable to 480 x 480 LCD.**
 
@@ -16,8 +16,11 @@ The example can be directly flashed to the board by [ESP Launchpad](https://espr
 
 ### ESP-IDF Required
 
-* The ESP-IDF v5.0.1 or later is required to use this example. For using the branch of ESP-IDF, the latest branch `release/v5.1` is recommended. For using the tag of ESP-IDF, the tag `v5.1.2` or later is recommended.
-* Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html) to set up the development environment.
+This example supports the following ESP-IDF version:
+
+- ESP-IDF release/v5.3 and all bugfix releases
+
+Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/get-started/index.html) to set up the development environment.
 
 ### Hardware Required
 

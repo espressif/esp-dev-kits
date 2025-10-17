@@ -24,10 +24,14 @@ _If any other items are needed, such as server, Bluetooth device, app, second ch
 
 ### ESP-IDF Required
 
-_Specify the ESP-IDF branch recommended or required by the example. Take the following statement as a reference._
+_Specify the ESP-IDF branches supported by the example. Take the following statement as a reference._
 
-- This example supports ESP-IDF release/v[x.y] and later branches. By default, it runs on ESP-IDF release/v[x.y].
-- Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) to set up the development environment. **We highly recommend** you [Build Your First Project](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#build-your-first-project) to get familiar with ESP-IDF and make sure the environment is set up correctly.
+This example supports the following ESP-IDF versions:
+
+- ESP-IDF release/v5.1 and all bugfix releases
+- ESP-IDF release/v5.2 and all bugfix releases
+
+Please follow the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) to set up the development environment. **We highly recommend** you [Build Your First Project](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#build-your-first-project) to get familiar with ESP-IDF and make sure the environment is set up correctly.
 
 ### Get the esp-dev-kits Repository
 

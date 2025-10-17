@@ -14,8 +14,11 @@ This example is based on ESP32-P4-EYE and demonstrates a comprehensive mini came
 
 ### ESP-IDF Requirements
 
-- This example supports ESP-IDF release/v5.4 and above. By default, it runs on ESP-IDF release/v5.5.
-- Please refer to the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html) to set up the development environment. **Strongly recommended** to go through [Build Your First Project](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html#id8) to familiarize yourself with ESP-IDF and ensure the environment is set up correctly.
+This example supports the following ESP-IDF version:
+
+- ESP-IDF release/v5.5 and all bugfix releases
+
+Please refer to the [ESP-IDF Programming Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html) to set up the development environment. **Strongly recommended** to go through [Build Your First Project](https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html#id8) to familiarize yourself with ESP-IDF and ensure the environment is set up correctly.
 
 ### Get the esp-dev-kits Repository
 

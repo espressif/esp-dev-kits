@@ -2,6 +2,16 @@
 
 This project is based on the ESP USB Bridge with additional features for flashing via ESP-NOW and serial communication. Click to learn more about [ESP USB Bridge](https://github.com/espressif/esp-usb-bridge#readme).
 
+## ESP-IDF Required
+
+This example supports the following ESP-IDF versions:
+
+- ESP-IDF release/v5.0 and all bugfix releases
+- ESP-IDF release/v5.1 and all bugfix releases
+- ESP-IDF release/v5.2 and all bugfix releases
+- ESP-IDF release/v5.3 and all bugfix releases
+- ESP-IDF release/v5.4 and all bugfix releases
+
 ## Hardware
 
 * ESP32-S2/ESP32-S3 Development Board

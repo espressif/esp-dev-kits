@@ -1,6 +1,16 @@
 # ESP32-S3-USB-Bridge
 
-该项目基于 ESP USB Bridge 二次开发，增加了通过 ESP-NOW 烧录和串口通信的功能。点击了解 [ESP USB Bridge](https://github.com/espressif/esp-usb-bridge#readmehttps://github.com/espressif/esp-usb-bridge#readme)
+该项目基于 ESP USB Bridge 二次开发，增加了通过 ESP-NOW 烧录和串口通信的功能。点击了解 [ESP USB Bridge](https://github.com/espressif/esp-usb-bridge#readmehttps://github.com/espressif/esp-usb-bridge#readme)。
+
+## ESP-IDF 要求
+
+此示例支持以下 ESP-IDF 版本：
+
+- ESP-IDF release/v5.0 及所有 Bugfix 版本
+- ESP-IDF release/v5.1 及所有 Bugfix 版本
+- ESP-IDF release/v5.2 及所有 Bugfix 版本
+- ESP-IDF release/v5.3 及所有 Bugfix 版本
+- ESP-IDF release/v5.4 及所有 Bugfix 版本
 
 ## 硬件
 
