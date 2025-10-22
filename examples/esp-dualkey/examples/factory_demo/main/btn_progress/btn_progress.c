@@ -57,7 +57,6 @@ static uint8_t hsv_color[HSV_MAX][3] = {
 
 static void _report(hid_report_t report)
 {
-    ESP_LOGI(TAG, "Report type: %d", report.report_id);
     switch (s_report_type) {
     case TINYUSB_HID_REPORT:
         if (report.report_id == REPORT_ID_MOUSE) {

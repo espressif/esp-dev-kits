@@ -7,7 +7,6 @@ ESP-DualKey is an intelligent dual-key controller development board based on the
 
 Application examples for the development board are stored in the `esp-dev-kits <https://github.com/espressif/esp-dev-kits/tree/master/examples/esp-dualkey>`_ project.
 
-
 .. toctree::
     :maxdepth: 2
     

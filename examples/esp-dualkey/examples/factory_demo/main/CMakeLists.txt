@@ -1,14 +1,14 @@
 # Define component directories
 set(COMPONENT_DIRS
-    ble_hid
-    app_rainmaker
-    usb_hid
-    app_utils
-    btn_progress
     app_nvs
-    via_keymap
-    light_manager
+    app_rainmaker
+    app_utils
+    ble_hid
+    btn_progress
     dual_button
+    light_manager
+    usb_hid
+    via_keymap
 )
 
 # Collect all C source files from component directories

@@ -32,7 +32,7 @@ ESP-DualKey 主控采用乐鑫 ESP32-S3 芯片，支持 2.4 GHz Wi-Fi 和 Blueto
 
 .. note::
 
-  关于出厂固件的使用说明，请参考：ESP-DualKey User Guide https://espressif.craft.me/DiTh53ddFXD94L
+  关于出厂固件的使用说明，请参考：`ESP-DualKey 用户指南 <https://espressif.craft.me/5gX6vzhfn5QL93>`_
 
 .. _Getting-started_esp_dualkey:
 
@@ -44,7 +44,7 @@ ESP-DualKey 主控采用乐鑫 ESP32-S3 芯片，支持 2.4 GHz Wi-Fi 和 Blueto
 组件介绍
 ------------
 
-以下按照顺时针的顺序依次介绍 PCB 上的主要组件。为了方便用户使用，我们同时在 ESP-DualKey 的外壳上标注出了这些组件或者接口。
+以下依次介绍 PCB 上的主要组件。为了方便用户使用，我们同时在 ESP-DualKey 的外壳上标注出了这些组件或者接口。
 
 .. list-table::
    :widths: 30 70
@@ -56,26 +56,26 @@ ESP-DualKey 主控采用乐鑫 ESP32-S3 芯片，支持 2.4 GHz Wi-Fi 和 Blueto
      -
    * - ESP32-S3
      - 主控芯片，支持 2.4 GHz Wi-Fi 和 Bluetooth 5 (LE) 无线连接，集成 8 MB Flash 存储。
-   * - :strong:`按键矩阵`
+   * - :strong:`交互`
      -
    * - 双按键
      - 2x1 按键矩阵，支持独立按键和组合按键功能。
+   * - 模式切换开关
+     - 三档位开关，用于切换工作模式（蓝牙键盘/智能家居/USB 键盘）。
    * - :strong:`RGB 灯效`
      -
    * - WS2812 RGB LED
      - 可编程 RGB LED，支持多种灯效模式，包括热力图、呼吸灯、流水灯等。
    * - :strong:`电源管理`
      -
-   * - 电池管理芯片
-     - 电池电量检测、充电管理和电源状态监控。
    * - 锂电池充电芯片
-     - 锂电池充电管理，支持 USB-C 充电。
+     - TP4057 锂电池充电管理，支持 USB-C 充电。
    * - :strong:`接口`
      -
    * - USB-C 接口
      - USB-C 接口，用于供电、编程下载和调试，支持对锂电池进行充电。
-   * - 模式切换开关
-     - 三档位开关，用于切换工作模式（蓝牙键盘/智能家居/USB 键盘）。
+   * - 2 × HY2.0-4P 接口
+     - 支持向外供电，用于连接外置传感器
    * - :strong:`其他功能`
      -
    * - 电池电压监控
@@ -191,5 +191,5 @@ ESP-DualKey
 -  `ESP-DualKey 原理图`_ (PDF)
 -  `用户指南`_ (HTML)
 
-.. _ESP-DualKey 原理图:  ../../../examples/esp-dualkey/hardware/SCH_SCH-ESP-Dualkey-MainBoard-V1_2.pdf
+.. _ESP-DualKey 原理图:  https://dl.espressif.com/AE/esp-dev-kits/SCH-ESP-Dualkey-MainBoard-V1_2.pdf
 .. _用户指南: https://espressif.craft.me/DiTh53ddFXD94L

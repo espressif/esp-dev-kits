@@ -3,6 +3,7 @@
  *
  * SPDX-License-Identifier: Apache-2.0
  */
+#include <string.h>
 #include "dual_button.h"
 #include "esp_log.h"
 #include "esp_check.h"

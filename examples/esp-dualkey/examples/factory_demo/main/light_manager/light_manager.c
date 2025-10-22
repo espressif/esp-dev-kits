@@ -8,6 +8,7 @@
 #include "bsp/esp-bsp.h"
 #include "esp_log.h"
 #include "esp_timer.h"
+#include <string.h>
 #include "rgb_matrix.h"
 
 static const char *TAG = "light_manager";

@@ -81,7 +81,7 @@ static uint64_t prov_timeout_period = (APP_NETWORK_PROV_TIMEOUT_PERIOD * 60 * 10
 
 #if ESP_IDF_VERSION >= ESP_IDF_VERSION_VAL(5, 1, 3)
 #define APP_PROV_STOP_ON_CREDS_MISMATCH
-#elif (CONFIG_APP_NETWOKR_PROV_MAX_RETRY_CNT > 0)
+#elif (CONFIG_APP_NETWORK_PROV_MAX_RETRY_CNT > 0)
 #warning "Provisioning window stop on max credentials failures, needs IDF version >= 5.1.3"
 #endif
 

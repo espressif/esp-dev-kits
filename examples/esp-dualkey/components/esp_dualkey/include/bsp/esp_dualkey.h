@@ -35,6 +35,7 @@ extern "C" {
 #define KBD_INPUT_IOS  {KBD_COL_IO_0, KBD_COL_IO_1}
 
 /*!< WS2812 power control GPIO */
+#define LIGHTMAP_NUM             2
 #define KBD_WS2812_POWER_IO    (40)
 #define KBD_WS2812_GPIO        (21)
 

@@ -30,6 +30,11 @@ This guide includes the following content:
 - `Hardware Versions`_: Introduces hardware historical versions and known issues (if any).
 - `Related Documents`_: Lists links to related documents.
 
+.. note::
+
+  For instructions on using the factory firmware, please refer to: 'ESP-DualKey User Guide <https://espressif.craft.me/DiTh53ddFXD94L>'
+
+
 .. _Getting-started_esp_dualkey:
 
 Getting Started
@@ -46,40 +51,40 @@ The following introduces the main components on the PCB in clockwise order. For 
    :widths: 30 70
    :header-rows: 1
 
-   * - Main Components
+   * - Main Component
      - Description
    * - :strong:`Main Controller`
      -
    * - ESP32-S3
-     - Main controller chip, supporting 2.4 GHz Wi-Fi and Bluetooth 5 (LE) wireless connectivity, integrated with 8 MB Flash storage.
-   * - :strong:`Button Matrix`
+     - Main controller chip supporting 2.4 GHz Wi-Fi and Bluetooth 5 (LE) connectivity, and featuring 8 MB of integrated Flash storage.
+   * - :strong:`Interaction`
      -
    * - Dual Buttons
-     - 2x1 button matrix, supporting independent button and combination button functions.
+     - 2x1 button matrix, supports independent key detection and combination key functions.
+   * - Mode Switch
+     - Three-position switch for toggling between operating modes (Bluetooth keyboard / Wi-Fi Mode / USB keyboard).
    * - :strong:`RGB Lighting`
      -
    * - WS2812 RGB LED
-     - Programmable RGB LED, supporting multiple lighting effect modes, including heat map, breathing light, flowing light, etc.
+     - Programmable RGB LED supporting diverse lighting effects, e.g., heat map, breathing effect, flowing effect.
    * - :strong:`Power Management`
      -
-   * - Battery Management Chip
-     - Battery level detection, charging management and power status monitoring.
    * - Lithium Battery Charging Chip
-     - Lithium battery charging management, supporting USB-C charging.
+     - TP4057 lithium battery charging management, supports USB-C charging.
    * - :strong:`Interfaces`
      -
-   * - USB-C Interface
-     - USB-C interface for power supply, programming download and debugging, supporting lithium battery charging.
-   * - Mode Switch
-     - Three-position switch for switching working modes (Bluetooth keyboard/Smart home/USB keyboard).
+   * - USB-C Port
+     - USB-C for power, programming/download, debugging, and battery charging.
+   * - 2 × HY2.0-4P Ports
+     - Support auxiliary power output for connecting external sensors.
    * - :strong:`Other Functions`
      -
    * - Battery Voltage Monitoring
-     - Real-time monitoring of battery voltage and charging status.
+     - Real-time battery voltage and charging status monitoring.
    * - VBUS Monitoring
-     - Monitoring USB power supply status.
+     - Monitors USB power status.
    * - Deep Sleep
-     - Support for deep sleep mode to save power.
+     - Supports deep sleep mode for energy saving.
 
 Start Developing Applications
 -----------------------------
@@ -111,7 +116,7 @@ Please refer to the `ESP-IDF Quick Start <https://docs.espressif.com/projects/es
 
 Espressif provides Board Support Packages (BSP) for various development boards, which can help you more easily and efficiently initialize and use the main peripherals on the board, such as buttons, LEDs and power management. Please visit `esp-bsp <https://github.com/espressif/esp-bsp>`__ to check all supported development boards.
 
-Development board application examples are stored in the `esp-dev-kits <https://github.com/espressif/esp-dev-kits/tree/master/examples/esp-dualkey>`_ project.
+Development board application examples are stored in the :project:`Examples <examples/esp-dualkey/examples>`.
 
 .. _Hardware-reference_esp_dualkey:
 
@@ -187,5 +192,5 @@ Related Documents
 -  `ESP-DualKey Schematic`_ (PDF)
 -  `User Guide`_ (HTML)
 
-.. _ESP-DualKey Schematic:  ../../../examples/esp-dualkey/hardware/SCH_SCH-ESP-Dualkey-MainBoard-V1_2.pdf
+.. _ESP-DualKey Schematic:  https://dl.espressif.com/AE/esp-dev-kits/SCH-ESP-Dualkey-MainBoard-V1_2.pdf
 .. _User Guide: https://espressif.craft.me/DiTh53ddFXD94L

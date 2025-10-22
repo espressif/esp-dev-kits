@@ -84,7 +84,7 @@ Switch working modes through physical switch:
 
 2. Enter example directory:
    ```bash
-   cd esp-duo/examples/factory_demo
+   cd esp-dualkey/examples/factory_demo
    ```
 
 3. Build and flash:
@@ -96,24 +96,60 @@ Switch working modes through physical switch:
 
 ```
 factory_demo/
-├── main/                   # Source code
-│   ├── main.c              # Main program entry
-│   ├── dual_button.c       # Dual button simultaneous press handling
-│   ├── btn_progress.c      # Button processing
-│   ├── settings.c          # Storage
-│   ├── rainmaker/          # Rainmaker related code
-│   ├── ble/                # Bluetooth HID related code
-│   └── usb/                # USB HID related code
-├── CMakeLists.txt          # CMake build configuration
-├── sdkconfig.defaults      # Default SDK configuration
-└── partitions.csv          # Partition table configuration
+├── main/                           # Source code
+│   ├── main.c                      # Main program entry
+│   ├── esp_dualkey.c               # ESP DualKey main implementation
+│   ├── esp_dualkey.h               # ESP DualKey header file
+│   ├── CMakeLists.txt              # Main CMake configuration
+│   ├── idf_component.yml           # Component dependencies
+│   ├── Kconfig.projbuild           # Project configuration options
+│   ├── dual_button/                # Dual button handling
+│   │   ├── dual_button.c
+│   │   └── dual_button.h
+│   ├── btn_progress/               # Button processing
+│   │   ├── btn_progress.c
+│   │   ├── btn_progress.h
+│   │   └── media_control_config.h
+│   ├── app_rainmaker/              # Rainmaker cloud integration
+│   │   ├── app_rainmaker.c
+│   │   └── app_rainmaker.h
+│   ├── app_nvs/                    # NVS storage management
+│   │   ├── app_nvs.c
+│   │   └── app_nvs.h
+│   ├── app_utils/                  # Application utilities
+│   │   ├── app_utils.c
+│   │   └── app_utils.h
+│   ├── ble_hid/                    # Bluetooth HID functionality
+│   │   ├── ble_hid.c
+│   │   ├── ble_hid.h
+│   │   ├── esp_hid_gap.c
+│   │   └── esp_hid_gap.h
+│   ├── usb_hid/                    # USB HID functionality
+│   │   ├── tinyusb_hid.c
+│   │   ├── tinyusb_hid.h
+│   │   ├── tusb_config.h
+│   │   ├── usb_descriptors.c
+│   │   └── usb_descriptors.h
+│   ├── light_manager/              # LED lighting control
+│   │   ├── light_manager.c
+│   │   └── light_manager.h
+│   └── via_keymap/                 # VIA keymap configuration
+│       ├── via_keymap.c
+│       └── via_keymap.h
+├── json/                           # JSON configuration files
+│   └── ESP_DualKey_VIA_Definition.json
+├── CMakeLists.txt                  # Root CMake configuration
+├── sdkconfig.defaults              # Default SDK configuration
+├── partitions.csv                  # Partition table configuration
+└── README.md                       # Project documentation
 ```
 
 ## Configuration Options
 
 The project supports the following configuration options (configured through `idf.py menuconfig`):
 
-- **CONFIG_LIGHT_SLEEP_TIMEOUT_MS**: Light sleep timeout duration
+- **CONFIG_LIGHT_SLEEP_TIMEOUT_MS**: Enter light sleep after CONFIG_LIGHT_SLEEP_TIMEOUT_MS of time without pressing any key
+- **CONFIG_DEEP_SLEEP_TIMEOUT_S**：Enter deep sleep after CONFIG_DEEP_SLEEP_TIMEOUT_S of time without pressing any key
 
 ## License
 

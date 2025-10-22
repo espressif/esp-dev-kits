@@ -62,6 +62,18 @@ static esp_dualkey_context_t esp_dualkey_ctx = {
     .btn = NULL,
 };
 
+led_config_t g_led_config = {{
+        // Key Matrix to LED Index
+        {0, 1}
+    }, {
+        // LED Index to Physical Position
+        {0, 0}, {32, 0}
+    }, {
+        // LED Index to Flag
+        4, 4
+    }
+};
+
 // Set default values for storage parameters.
 static void set_default_storage_config(storage_param_t *storage_param)
 {
