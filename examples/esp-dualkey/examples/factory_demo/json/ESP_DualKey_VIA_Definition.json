@@ -1,0 +1,14 @@
+{
+  "name": "ESP-DualKey-VIA-Definition",
+  "vendorId": "0x303A",
+  "productId": "0x8000",
+  "matrix": {
+    "rows": 1,
+    "cols": 2
+  },
+  "layouts": {
+    "keymap": [
+      ["0,0", "0,1"]
+    ]
+  }
+}

@@ -1,0 +1,11 @@
+menu "App Insights"
+visible if ESP_INSIGHTS_ENABLED
+
+    config APP_INSIGHTS_ENABLE_LOG_TYPE_ALL
+        bool "Enable all diagnostics log type"
+        default n
+        help
+            By default only error logs are enabled.
+            This config option enables the capture of all log types (errors/warnings/events).
+
+endmenu

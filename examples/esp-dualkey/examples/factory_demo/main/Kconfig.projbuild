@@ -1,0 +1,31 @@
+menu "ESP KeyBoard Example"
+
+    menu "USB Configuration"
+        config TUSB_VID
+            hex "USB Device VID"
+            default 0x303A
+        config TUSB_PID
+            hex "USB Device PID"
+            default 0x8000
+        config TUSB_MANUFACTURER
+            string "USB Device Manufacture"
+            default "Espressif"
+        config TUSB_PRODUCT
+            string "Product Name"
+            default "HID Demo"
+    endmenu
+
+    menu "Wireless Configuration"
+        config WS2812_SLEEP_TIMEOUT_S
+            int "WS2812 Sleep Timeout"
+            default 60
+            help
+                "Time to enter WS2812 sleep mode and close all light when no key is pressed"
+        config DEEP_SLEEP_TIMEOUT_S
+            int "Deep Sleep Timeout"
+            default 3600
+            help
+                "Time to enter deep sleep mode"
+    endmenu
+
+endmenu

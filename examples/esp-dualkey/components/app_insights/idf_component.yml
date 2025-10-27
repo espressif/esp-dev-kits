@@ -1,0 +1,6 @@
+## IDF Component Manager Manifest File
+dependencies:
+  espressif/esp_rainmaker:
+    version: ">=1.0"
+  espressif/esp_insights:
+    version: "~1.2.4"

@@ -42,3 +42,5 @@ ignore:  # You can also select ignoring files here
   include:
     - docs/
     - gui_music/
+    - examples/esp-dualkey/components/qrcode/src/qrcodegen.h
+    - examples/esp-dualkey/components/qrcode/src/qrcodegen.c
