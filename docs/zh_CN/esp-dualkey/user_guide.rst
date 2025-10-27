@@ -100,7 +100,7 @@ ESP-DualKey 主控采用乐鑫 ESP32-S3 芯片，支持 2.4 GHz Wi-Fi 和 Blueto
      - USB-C 接口，用于供电、编程下载和调试，支持对锂电池进行充电。
    * - 两个 HY2.0-4P 接口
      - 支持向外供电，用于连接外置传感器
-   * - :strong:`其他功能`
+   * - :strong:`其他组件`
      -
    * - 电池电压监控
      - 实时监控电池电压和充电状态。
@@ -120,7 +120,7 @@ ESP-DualKey 主控采用乐鑫 ESP32-S3 芯片，支持 2.4 GHz Wi-Fi 和 Blueto
 ^^^^^^^^
 
 - ESP-DualKey
-- USB 2.0 数据线（标准 A 型转 Micro-B 型）
+- USB 2.0 数据线（标准 A 型转 Type-C 型）
 - 电脑（Windows、Linux 或 macOS）
 
 .. 注解::

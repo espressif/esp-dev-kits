@@ -100,7 +100,7 @@ The key components of the board are described below. For user convenience, the c
      - USB-C for power, programming/download, debugging, and battery charging.
    * - Two HY2.0-4P Ports
      - Support auxiliary power output for connecting external sensors.
-   * - :strong:`Other Functions`
+   * - :strong:`Other Components`
      -
    * - Battery Voltage Monitoring
      - Real-time battery voltage and charging status monitoring.
@@ -120,7 +120,7 @@ Required Hardware
 ^^^^^^^^^^^^^^^^^
 
 - ESP-DualKey
-- USB 2.0 cable (Standard-A to Micro-B)
+- USB 2.0 cable (Standard-A to Type-C)
 - Computer running Windows, Linux, or macOS
 
 .. note::
