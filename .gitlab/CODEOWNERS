@@ -77,6 +77,7 @@
 /docs/*/esp32-s3-usb-bridge/                @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
 /docs/*/esp32-s3-usb-otg/                   @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
 /docs/*/echoear/                            @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
+/docs/*/esp-dualkey/                        @documentation/codeowners/esp32s3       @documentation/codeowners/hw @documentation/codeowners/ae
 
 # ESP8684 Boards User guide
 

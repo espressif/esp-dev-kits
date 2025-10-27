@@ -2138,3 +2138,55 @@ documents:
       document_status: active
       document_classification: public
 
+########################################
+# 85 ESP-DualKey User Guide
+########################################
+    - document_name: ESP-DualKey User Guide
+      doc_id: 9821
+      translation_docid: 9823
+      chip_series: ESP32-S3
+      product_name:
+        - ESP-DualKey
+      product_name_old_website:
+        - ESP-DualKey
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-10-27
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp-dualkey/index.html
+      document_summary: This user guide will help you get started with ESP-DualKey and will also provide more in-depth information.
+      notify_subscribers: false
+      visibility_on_website: hide
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# 86 ESP-DualKey 用户指南
+########################################
+    - document_name: ESP-DualKey 用户指南
+      doc_id: 9823
+      translation_docid: 9821
+      chip_series: ESP32-S3
+      product_name:
+        - ESP-DualKey
+      product_name_old_website:
+        - ESP-DualKey
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-10-27
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp-dualkey/index.html
+      document_summary: 本指南将帮助您快速上手 ESP-DualKey，并提供该款开发板的详细信息。
+      notify_subscribers: false
+      visibility_on_website: hide
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
