@@ -5,7 +5,7 @@ ESP-DualKey
 
 ESP-DualKey is an intelligent dual-key controller development board based on the ESP32-S3 chip developed by Espressif. It integrates smart home control, Bluetooth keyboard, USB keyboard, and other functions, and can switch between different working modes through physical switches. The development board features dual buttons, RGB lighting effects, battery management, power monitoring, and other functions, providing developers with a complete intelligent button solution.
 
-Application examples for the development board are stored in the `esp-dev-kits <https://github.com/espressif/esp-dev-kits/tree/master/examples/esp-dualkey>`_ project.
+Application examples for the development board are stored in the :project:`Examples <examples/esp-dualkey/examples>` folder.
 
 .. toctree::
     :maxdepth: 2
