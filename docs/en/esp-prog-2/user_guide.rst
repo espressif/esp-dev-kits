@@ -117,7 +117,7 @@ Before starting software development, it is recommended to update the built-in f
 Software Setup
 ^^^^^^^^^^^^^^
 
-- To  set up the development environment, please refer to Section `Installation <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ in `Get Started with ESP-IDF <https://idf.espressif.com/index.html>`__.
+To set up the development environment, please refer to Section `Installation <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#get-started-step-by-step>`__ in `Get Started with ESP-IDF <https://idf.espressif.com/index.html>`__.
 
 
 Contents and Packaging
