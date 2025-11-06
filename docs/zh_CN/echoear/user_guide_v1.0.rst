@@ -294,7 +294,7 @@ LCD 接口
 
 请注意，CN3 接口为其他屏幕兼容预留，目前未启用。
 
-U2 接口为正式使用的 LCD 屏幕接口，该开发板使用的屏幕型号为 `ST77916 <https://dl.espressif.com/AE/esp-dev-kits/UE018HV-RB39-A002A%20%20V1.0%20SPEC.pdf>`_，LCD: 1.85"，360 x 360，ST77916，QSPI Interface，``LCD_BLK`` (GPIO43) 可用于控制屏幕背光。
+U2 接口为正式使用的 LCD 屏幕接口，该开发板使用的屏幕型号为 `ST77916 <https://dl.espressif.com/AE/esp-dev-kits/UE018HV-RB39-A002A%20%20V1.0%20SPEC.pdf>`_，LCD: 1.85"，360 x 360，ST77916，QSPI Interface，``LCD_BLK`` (GPIO44) 可用于控制屏幕背光。
 
 SD 卡接口
 -------------

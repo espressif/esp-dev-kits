@@ -296,7 +296,7 @@ LCD Interface
 
 Please note that the CN3 interface is reserved for other screen compatibility and is currently not enabled.
 
-The U2 interface is the officially used LCD screen interface. The screen model used by this development board is `ST77916 <https://dl.espressif.com/AE/esp-dev-kits/UE018HV-RB39-A002A%20%20V1.0%20SPEC.pdf>`_, LCD: 1.85", 360 x 360, ST77916, QSPI Interface. ``LCD_BLK`` (GPIO43) can be used to control screen backlight.
+The U2 interface is the officially used LCD screen interface. The screen model used by this development board is `ST77916 <https://dl.espressif.com/AE/esp-dev-kits/UE018HV-RB39-A002A%20%20V1.0%20SPEC.pdf>`_, LCD: 1.85", 360 x 360, ST77916, QSPI Interface. ``LCD_BLK`` (GPIO44) can be used to control screen backlight.
 
 SD Card Interface
 -----------------------------
