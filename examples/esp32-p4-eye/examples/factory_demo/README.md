@@ -277,6 +277,6 @@ Please provide feedback through the following channels:
 
 - For technical questions, please visit the [esp32.com](https://esp32.com/viewforum.php?f=22) forum.
 - For feature requests or bug reports, please create a new [GitHub issue](https://github.com/espressif/esp-dev-kits/issues).
-- For ESP-LaunchPad related questions, please visit [ESP-LaunchPad](https://esp-launchpad.com/).
+- For ESP-LaunchPad related questions, please visit [ESP-LaunchPad](https://espressif.github.io/esp-launchpad/).
 
 We will respond as soon as possible.
