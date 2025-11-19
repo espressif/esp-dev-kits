@@ -158,7 +158,7 @@ esp_err_t bsp_p4_eye_init(void)
 
     const gpio_config_t sdcard_io_config = {
         .pin_bit_mask = BIT64(BSP_SD_EN_PIN),
-        .mode = GPIO_MODE_OUTPUT, 
+        .mode = GPIO_MODE_OUTPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE
@@ -167,7 +167,7 @@ esp_err_t bsp_p4_eye_init(void)
 
     const gpio_config_t rst_io_config = {
         .pin_bit_mask = BIT64(BSP_CAMERA_RST_PIN),
-        .mode = GPIO_MODE_OUTPUT, 
+        .mode = GPIO_MODE_OUTPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE
@@ -176,16 +176,20 @@ esp_err_t bsp_p4_eye_init(void)
 
     esp_sleep_pd_config(ESP_PD_DOMAIN_RTC_PERIPH, ESP_PD_OPTION_ON);
     esp_sleep_pd_config(ESP_PD_DOMAIN_VDDSDIO, ESP_PD_OPTION_ON);
+
     rtc_gpio_init(BSP_CAMERA_EN_PIN);
+    rtc_gpio_set_direction(BSP_CAMERA_EN_PIN, RTC_GPIO_MODE_OUTPUT_ONLY);
+    rtc_gpio_pulldown_dis(BSP_CAMERA_EN_PIN);
+    rtc_gpio_pullup_dis(BSP_CAMERA_EN_PIN);
+    rtc_gpio_hold_dis(BSP_CAMERA_EN_PIN);
+
+#if CONFIG_BSP_CONTROL_C6_EN_PIN
     rtc_gpio_init(BSP_C6_EN_PIN);
     rtc_gpio_set_direction(BSP_C6_EN_PIN, RTC_GPIO_MODE_OUTPUT_ONLY);
     rtc_gpio_pulldown_dis(BSP_C6_EN_PIN);
     rtc_gpio_pullup_dis(BSP_C6_EN_PIN);
-    rtc_gpio_set_direction(BSP_CAMERA_EN_PIN, RTC_GPIO_MODE_OUTPUT_ONLY);
-    rtc_gpio_pulldown_dis(BSP_CAMERA_EN_PIN);
-    rtc_gpio_pullup_dis(BSP_CAMERA_EN_PIN);
     rtc_gpio_hold_dis(BSP_C6_EN_PIN);
-    rtc_gpio_hold_dis(BSP_CAMERA_EN_PIN);
+#endif
 
     gpio_set_level(BSP_SD_EN_PIN, 0);
 
@@ -199,14 +203,15 @@ esp_err_t bsp_p4_eye_init(void)
 
 esp_err_t bsp_enter_sleep_init(void)
 {
-    rtc_gpio_hold_dis(BSP_C6_EN_PIN);
     rtc_gpio_hold_dis(BSP_CAMERA_EN_PIN);
-
-    rtc_gpio_set_level(BSP_C6_EN_PIN, 0);
     rtc_gpio_set_level(BSP_CAMERA_EN_PIN, 0);
-
-    rtc_gpio_hold_en(BSP_C6_EN_PIN);
     rtc_gpio_hold_en(BSP_CAMERA_EN_PIN);
+
+#if CONFIG_BSP_CONTROL_C6_EN_PIN
+    rtc_gpio_hold_dis(BSP_C6_EN_PIN);
+    rtc_gpio_set_level(BSP_C6_EN_PIN, 0);
+    rtc_gpio_hold_en(BSP_C6_EN_PIN);
+#endif
 
     ESP_ERROR_CHECK(esp_cam_sensor_xclk_stop(xclk_handle));
 
@@ -284,7 +289,7 @@ esp_err_t bsp_spiffs_unmount(void)
 
 esp_err_t bsp_sdcard_mount(void)
 {
-    if(bsp_sdcard != NULL) {
+    if (bsp_sdcard != NULL) {
         return ESP_OK;
     }
 
@@ -326,13 +331,13 @@ esp_err_t bsp_sdcard_mount(void)
 
 esp_err_t bsp_sdcard_unmount(void)
 {
-    if(bsp_sdcard == NULL) {
+    if (bsp_sdcard == NULL) {
         return ESP_OK;
     }
 
     esp_vfs_fat_sdcard_unmount(BSP_SD_MOUNT_POINT, bsp_sdcard);
     bsp_sdcard = NULL;
-    
+
     esp_err_t ret = sd_pwr_ctrl_del_on_chip_ldo(pwr_ctrl_handle);
     if (ret != ESP_OK) {
         ESP_LOGE(TAG, "Failed to delete the on-chip LDO power control driver");
@@ -479,7 +484,7 @@ esp_err_t bsp_display_new(const bsp_display_config_t *config, esp_lcd_panel_hand
         .spi_mode = 3,
         .trans_queue_depth = 2,
     };
-    if(io_config.pclk_hz != 20 * 1000 * 1000) {
+    if (io_config.pclk_hz != 20 * 1000 * 1000) {
         ESP_LOGW(TAG, "If the pixel clock is not set to 20 MHz, you need to temporarily apply the patch 0001-fix-spi-default-clock-source.patch. For details on how to apply the patch, please refer to the README.");
     }
     ESP_GOTO_ON_ERROR(esp_lcd_new_panel_io_spi((esp_lcd_spi_bus_handle_t)BSP_LCD_SPI_NUM, &io_config, ret_io), err, TAG, "New panel IO failed");
@@ -583,7 +588,7 @@ esp_err_t bsp_display_enter_sleep(void)
 {
     bsp_display_backlight_off();
     esp_lcd_panel_disp_sleep(panel_handle, true);
-    
+
     return ESP_OK;
 }
 
@@ -621,22 +626,22 @@ esp_err_t bsp_flashlight_init(void)
 {
     const gpio_config_t led_io_config = {
         .pin_bit_mask = BIT64(BSP_LED_FLASHLIGHT),
-        .mode = GPIO_MODE_OUTPUT, 
+        .mode = GPIO_MODE_OUTPUT,
         .pull_up_en = GPIO_PULLUP_DISABLE,
         .pull_down_en = GPIO_PULLDOWN_DISABLE,
         .intr_type = GPIO_INTR_DISABLE
     };
     BSP_ERROR_CHECK_RETURN_ERR(gpio_config(&led_io_config));
-    
+
     return ESP_OK;
 }
 
 esp_err_t bsp_flashlight_set(const bool on)
 {
     BSP_ERROR_CHECK_RETURN_ERR(gpio_set_level(BSP_LED_FLASHLIGHT, on));
-    
+
     led_status = on;
-    
+
     return ESP_OK;
 }
 
