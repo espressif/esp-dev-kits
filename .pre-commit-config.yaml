@@ -23,3 +23,9 @@ repos:
   hooks:
     - id: check-copyright
       args: ['--config', 'check_copyright_config.yaml']
+
+- repo: https://github.com/codespell-project/codespell
+  rev: v2.4.1
+  hooks:
+    - id: codespell
+      args: [--config=.codespellrc]
