@@ -140,7 +140,7 @@ Motherboard
    :alt: ESP32-Sense
    :figclass: align-center
 
-   Diaplay Unit
+   Display Unit
 
 Daughterboard
 ~~~~~~~~~~~~~~~~~

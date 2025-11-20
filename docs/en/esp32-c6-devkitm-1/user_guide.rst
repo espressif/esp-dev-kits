@@ -226,7 +226,7 @@ Pin Layout
 Hardware Revision Details
 =========================
 
-- For boards with the PW number of and after PW-2023-06-XXXX (on and after June 2023), multi-point calibration is performed on ADC instead of two-point calibration, and the measurement range and accuracy are illustrated in `ESP32-C6 Datasheet`_ > Section ADC Characteristics. For boards with eariler PW number, please `ask our sales team <https://www.espressif.com/en/contact-us/sales-questions>`_ to provide the actual range and accuracy according to batch.
+- For boards with the PW number of and after PW-2023-06-XXXX (on and after June 2023), multi-point calibration is performed on ADC instead of two-point calibration, and the measurement range and accuracy are illustrated in `ESP32-C6 Datasheet`_ > Section ADC Characteristics. For boards with earlier PW number, please `ask our sales team <https://www.espressif.com/en/contact-us/sales-questions>`_ to provide the actual range and accuracy according to batch.
 
 .. note::
 
