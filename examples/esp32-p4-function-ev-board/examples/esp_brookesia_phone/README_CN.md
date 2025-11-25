@@ -29,8 +29,11 @@
 
 ### ESP-IDF 要求
 
-- 此示例支持 ESP-IDF release/v5.4 及以上版本。默认情况下，在 ESP-IDF release/v5.4 上运行。
-- 请参照 [ESP-IDF 编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html) 设置开发环境。**强烈推荐** 通过 [编译第一个工程](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html#id8) 来熟悉 ESP-IDF，并确保环境设置正确。
+此示例支持以下 ESP-IDF 版本：
+
+- ESP-IDF release/v5.5 及所有 Bugfix 版本
+
+请参照 [ESP-IDF 编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html) 设置开发环境。**强烈推荐** 通过 [编译第一个工程](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html#id8) 来熟悉 ESP-IDF，并确保环境设置正确。
 
 ### 获取 esp-dev-kits 仓库
 

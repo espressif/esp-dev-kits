@@ -21,8 +21,11 @@
 
 ### ESP-IDF 要求
 
-* 使用此示例需要 ESP-IDF v5.1.0 或更高版本。如果使用 ESP-IDF 的分支，推荐最新的 `release/v5.1` 分支。如果使用 ESP-IDF 的标签，请推荐使用 `v5.1.2` 或更高版本的标签。
-* 请按照 [ESP-IDF 编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html) 设置开发环境。
+此示例支持以下 ESP-IDF 版本：
+
+- ESP-IDF release/v5.3 及所有 Bugfix 版本
+  
+请按照 [ESP-IDF 编程指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/get-started/index.html) 设置开发环境。
 
 ### 硬件需求
 

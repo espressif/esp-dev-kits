@@ -1,8 +1,6 @@
 
 # ESP32-S3-USB-OTG All-in-One factory demo
 
-Please use ESP-IDF [release/v4.4](https://github.com/espressif/esp-idf/tree/release/v4.4) branch
-
 ## Hardware Overview
 
 * [ESP32-S3-USB-OTG online docs](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-usb-otg/index.html)
@@ -14,6 +12,12 @@ The example can be directly flashed to the board by [ESP Launchpad](https://espr
 <a href="https://espressif.github.io/esp-launchpad/?flashConfigURL=https://dl.espressif.com/AE/esp-dev-kits/config.toml&app=factory">
     <img alt="Try it with ESP Launchpad" src="https://espressif.github.io/esp-launchpad/assets/try_with_launchpad.png" width="200" height="56">
 </a>
+
+### ESP-IDF Required
+
+This example supports the following ESP-IDF version:
+
+- ESP-IDF release/v4.4 and all bugfix releases
 
 ### Hardware Required
 
