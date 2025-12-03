@@ -197,6 +197,7 @@ ESP32-P4-EYE can be powered using the following methods:
 
 .. figure:: ../../_static/esp32-p4-eye/pic_board_battery_label.png
    :alt: Battery Connection (click to enlarge)
+   :scale: 20%
    :figclass: align-center
 
    Battery Connection (click to enlarge)
@@ -205,31 +206,31 @@ Female Header
 -------------
 
 .. figure:: ../../_static/esp32-p4-eye/p4_board_empty_pin.png
-   :alt: Female Header (Click to Enlarge)
-   :scale: 60%
+   :alt: Female Header (click to enlarge)
+   :scale: 30%
    :figclass: align-center
 
-   Female Header (Click to Enlarge)
+   Female Header (click to enlarge)
 
 USB 2.0 Device Port Circuit
 ---------------------------
 
 .. figure:: ../../_static/esp32-p4-eye/sch_usb_high_speed.png
-   :alt: USB 2.0 Device Port Circuit (Click to Enlarge)
+   :alt: USB 2.0 Device Port Circuit (click to enlarge)
    :scale: 70%
    :figclass: align-center
 
-   USB 2.0 Device Port Circuit (Click to Enlarge)
+   USB 2.0 Device Port Circuit (click to enlarge)
 
 LCD Circuit
 -----------
 
 .. figure:: ../../_static/esp32-p4-eye/sch_interface_lcd.png
-   :alt: LCD Circuit (Click to Enlarge)
+   :alt: LCD Circuit (click to enlarge)
    :scale: 70%
    :figclass: align-center
 
-   LCD Circuit (Click to Enlarge)
+   LCD Circuit (click to enlarge)
 
 Please note that this interface supports SPI displays. ESP32-P4-EYE features the `ST7789 <https://dl.espressif.com/AE/esp-dev-kits/ST7789VW芯片手册.pdf>`_, which uses the ``LCD_BL`` pin (GPIO20) to control the backlight.
 
@@ -241,7 +242,7 @@ MicroSD Card Slot Interface Circuit
    :scale: 70%
    :figclass: align-center
 
-   MicroSD Card Slot Interface Circuit (Click to Enlarge)
+   MicroSD Card Slot Interface Circuit (click to enlarge)
 
 **Please note that the MicroSD card interface supports:**
 
@@ -252,51 +253,51 @@ Charging Circuit
 ----------------
 
 .. figure:: ../../_static/esp32-p4-eye/sch_charge_circuit.png
-   :alt: Charging Circuit (Click to Enlarge)
+   :alt: Charging Circuit (click to enlarge)
    :scale: 70%
    :figclass: align-center
 
-   Charging Circuit (Click to Enlarge)
+   Charging Circuit (click to enlarge)
 
 Microphone Circuit
 ------------------
 
 .. figure:: ../../_static/esp32-p4-eye/sch_interface_mic.png
-   :alt: Microphone Circuit (Click to Enlarge)
+   :alt: Microphone Circuit (click to enlarge)
    :scale: 100%
    :figclass: align-center
 
-   Microphone Circuit (Click to Enlarge)
+   Microphone Circuit (click to enlarge)
 
 Camera Circuit
 --------------
 
 .. figure:: ../../_static/esp32-p4-eye/sch_interface_camera.png
-   :alt: Camera Circuit (Click to Enlarge)
+   :alt: Camera Circuit (click to enlarge)
    :scale: 80%
    :figclass: align-center
 
-   Camera Circuit (Click to Enlarge)
+   Camera Circuit (click to enlarge)
 
 Rotary Encoder Circuit
 ----------------------
 
 .. figure:: ../../_static/esp32-p4-eye/sch_interface_encoder.png
-   :alt: Rotary Encoder Circuit (Click to Enlarge)
+   :alt: Rotary Encoder Circuit (click to enlarge)
    :scale: 100%
    :figclass: align-center
 
-   Rotary Encoder Circuit (Click to Enlarge)
+   Rotary Encoder Circuit (click to enlarge)
 
 ESP32-C6-MINI-1U Module Circuit
 -------------------------------
 
 .. figure:: ../../_static/esp32-p4-eye/sch_interface_esp32_c6.png
-   :alt: ESP32-C6-MINI-1U Module Circuit (Click to Enlarge)
+   :alt: ESP32-C6-MINI-1U Module Circuit (click to enlarge)
    :scale: 60%
    :figclass: align-center
 
-   ESP32-C6-MINI-1U Module Circuit (Click to Enlarge)
+   ESP32-C6-MINI-1U Module Circuit (click to enlarge)
 
 Hardware Revision Details
 =========================

@@ -197,6 +197,7 @@ ESP32-P4-EYE 的主要组件和连接方式如下图所示。
 
 .. figure:: ../../_static/esp32-p4-eye/pic_board_battery_label.png
    :alt: 电池连接图（点击放大）
+   :scale: 20%
    :figclass: align-center
 
    电池连接图（点击放大）
@@ -206,7 +207,7 @@ ESP32-P4-EYE 的主要组件和连接方式如下图所示。
 
 .. figure:: ../../_static/esp32-p4-eye/p4_board_empty_pin.png
    :alt: 排母实物图（点击放大）
-   :scale: 60%
+   :scale: 30%
    :figclass: align-center
 
    排母实物图（点击放大）
