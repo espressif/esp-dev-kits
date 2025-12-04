@@ -1488,12 +1488,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2025-04-21
+      revision_date: 2025-12-04
       language: en
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32p4/esp32-p4-eye/index.html
       document_summary: This user guide will help you get started with ESP32-P4-EYE and provide more in-depth information.
-      notify_subscribers: false
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
@@ -1513,12 +1513,12 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2025-04-21
+      revision_date: 2025-12-04
       language: cn
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-eye/index.html
       document_summary: 本指南将帮助您快速上手 ESP32-P4-EYE，并提供该款开发板的详细信息。
-      notify_subscribers: false
+      notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
       document_status: active
