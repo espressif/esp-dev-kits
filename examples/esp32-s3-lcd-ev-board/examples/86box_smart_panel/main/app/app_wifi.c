@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- * SPDX-License-Identifier: Unlicense OR CC0-1.0
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 #include <string.h>
@@ -239,7 +239,6 @@ static void wifi_init_sta(void)
     memcpy(wifi_config.sta.password, sys_param->password, sizeof(wifi_config.sta.password));
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA) );
-    ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config) );
     ESP_ERROR_CHECK(esp_wifi_start() );
     ESP_LOGI(TAG, "wifi_init_sta finished.%s:%d, %s:%d", \
              wifi_config.sta.ssid, sys_param->ssid_len, wifi_config.sta.password, sys_param->password_len);
