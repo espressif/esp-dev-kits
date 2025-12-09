@@ -198,12 +198,16 @@ static void wifi_init_sta(void)
                     NULL,
                     &instance_got_ip));
 
-    wifi_config_t wifi_config;
+    wifi_config_t wifi_config = { 0 };
 
     sys_param_t *sys_param = settings_get_parameter();
     memcpy(wifi_config.sta.ssid, sys_param->ssid, sizeof(wifi_config.sta.ssid));
     memcpy(wifi_config.sta.password, sys_param->password, sizeof(wifi_config.sta.password));
+    
+    /* set safe defaults to avoid implicit use of WPA3 fields if not intended */
+    wifi_config.sta.threshold.authmode = WIFI_AUTH_WPA2_PSK;
 
+    
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA) );
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config) );
     ESP_ERROR_CHECK(esp_wifi_start() );

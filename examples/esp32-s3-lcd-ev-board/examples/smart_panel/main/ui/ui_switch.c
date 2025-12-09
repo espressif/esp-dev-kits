@@ -19,8 +19,8 @@ static ui_state_t ui_switch_state = ui_state_dis;
 /* LVGL objects defination */
 static lv_obj_t *_obj_light_control = NULL;
 static lv_obj_t *_obj_air_conditioner = NULL;
-static lv_obj_t *_obj_smart_plug = NULL;
-static lv_obj_t *_obj_curtain = NULL;
+static lv_obj_t *_obj_pomodoro_timer = NULL;
+static lv_obj_t *_obj_habit_tracker = NULL;
 static lv_obj_t *_obj_fan = NULL;
 static lv_obj_t *_obj_video_entertainment = NULL;
 static lv_obj_t *_obj_smart_security = NULL;
@@ -30,8 +30,8 @@ static lv_obj_t *msgbox = NULL;
 /* Extern image resources data. Loaded in `ui_main.c` */
 extern void *light_control;
 extern void *air_conditioner;
-extern void *smart_plug;
-extern void *curtain;
+extern void *pomodoro_timer;
+extern void *habit_tracker;
 extern void *fan;
 extern void *video_entertainment;
 extern void *smart_security;
@@ -46,8 +46,8 @@ void ui_switch_init(void *data)
 {
     _obj_light_control = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, light_control, "  Light\nControl");
     _obj_air_conditioner = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, air_conditioner, "       Air\nConditioner");
-    _obj_smart_plug = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, smart_plug, "Smart Plug");
-    _obj_curtain = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, curtain, "Curtain");
+    _obj_pomodoro_timer = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, pomodoro_timer, "Pomodoro\n    Timer");
+    _obj_habit_tracker = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, habit_tracker, "  Habit\nTracker");
     _obj_fan = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, fan, "Fan");
     _obj_video_entertainment = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, video_entertainment, "Media");
     _obj_smart_security = ui_img_obj_vertical_create(lv_scr_act(), 160, 160, 15, smart_security, " Smart\nSecurity");
@@ -55,8 +55,8 @@ void ui_switch_init(void *data)
 
     lv_obj_align(_obj_light_control, NULL, LV_ALIGN_CENTER, -270, -65);
     lv_obj_align(_obj_air_conditioner, NULL, LV_ALIGN_CENTER, -90, -65);
-    lv_obj_align(_obj_smart_plug, NULL, LV_ALIGN_CENTER, 90, -65);
-    lv_obj_align(_obj_curtain, NULL, LV_ALIGN_CENTER, 270, -65);
+    lv_obj_align(_obj_pomodoro_timer, NULL, LV_ALIGN_CENTER, 90, -65);
+    lv_obj_align(_obj_habit_tracker, NULL, LV_ALIGN_CENTER, 270, -65);
     lv_obj_align(_obj_fan, NULL, LV_ALIGN_CENTER, -270, 115);
     lv_obj_align(_obj_video_entertainment, NULL, LV_ALIGN_CENTER, -90, 115);
     lv_obj_align(_obj_smart_security, NULL, LV_ALIGN_CENTER, 90, 115);
@@ -65,8 +65,8 @@ void ui_switch_init(void *data)
     lv_obj_set_event_cb(_obj_light_control, btn_obj_click_cb);
     lv_obj_set_event_cb(_obj_air_conditioner, btn_obj_click_cb);
     lv_obj_set_event_cb(_obj_other_device, btn_obj_click_cb);
-    lv_obj_set_event_cb(_obj_smart_plug, btn_obj_click_cb);
-    lv_obj_set_event_cb(_obj_curtain, btn_obj_click_cb);
+    lv_obj_set_event_cb(_obj_pomodoro_timer, btn_obj_click_cb);
+    lv_obj_set_event_cb(_obj_habit_tracker, btn_obj_click_cb);
     lv_obj_set_event_cb(_obj_fan, btn_obj_click_cb);
     lv_obj_set_event_cb(_obj_video_entertainment, btn_obj_click_cb);
     lv_obj_set_event_cb(_obj_smart_security, btn_obj_click_cb);
@@ -82,8 +82,8 @@ void ui_switch_show(void *data)
     } else if (ui_state_hide == ui_switch_state) {
         lv_obj_set_hidden(_obj_light_control, false);
         lv_obj_set_hidden(_obj_air_conditioner, false);
-        lv_obj_set_hidden(_obj_smart_plug, false);
-        lv_obj_set_hidden(_obj_curtain, false);
+        lv_obj_set_hidden(_obj_pomodoro_timer, false);
+        lv_obj_set_hidden(_obj_habit_tracker, false);
         lv_obj_set_hidden(_obj_fan, false);
         lv_obj_set_hidden(_obj_video_entertainment, false);
         lv_obj_set_hidden(_obj_smart_security, false);
@@ -100,8 +100,8 @@ void ui_switch_hide(void *data)
     if (ui_state_show == ui_switch_state) {
         lv_obj_set_hidden(_obj_light_control, true);
         lv_obj_set_hidden(_obj_air_conditioner, true);
-        lv_obj_set_hidden(_obj_smart_plug, true);
-        lv_obj_set_hidden(_obj_curtain, true);
+        lv_obj_set_hidden(_obj_pomodoro_timer, true);
+        lv_obj_set_hidden(_obj_habit_tracker, true);
         lv_obj_set_hidden(_obj_fan, true);
         lv_obj_set_hidden(_obj_video_entertainment, true);
         lv_obj_set_hidden(_obj_smart_security, true);
@@ -118,6 +118,10 @@ static void btn_obj_click_cb(lv_obj_t *obj, lv_event_t event)
             ui_show(&ui_led_func, UI_SHOW_PEDDING);
         } else if (_obj_air_conditioner == obj) {
             ui_show(&ui_air_conditioner_func, UI_SHOW_PEDDING);
+        } else if (_obj_pomodoro_timer == obj) {
+            ui_show(&ui_pomodoro_timer_func, UI_SHOW_PEDDING); 
+        } else if (_obj_habit_tracker == obj) {
+            ui_show(&ui_habit_tracker_func, UI_SHOW_PEDDING); 
         } else {
             show_msg("Not support yet!");
         }

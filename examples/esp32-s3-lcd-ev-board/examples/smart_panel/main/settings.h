@@ -24,6 +24,8 @@ typedef struct {
     char password[64];  /**< Password of target AP. */
     uint8_t ssid_len;      /**< SSID of target AP. */
     uint8_t password_len;  /**< Password of target AP. */
+
+    uint8_t bt_addr[6];  // Last connected Bluetooth device address
 } sys_param_t;
 
 esp_err_t settings_factory_reset(void);

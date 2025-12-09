@@ -19,6 +19,7 @@
 
 #include "app_wifi.h"
 #include "app_weather.h"
+#include "app_bluetooth.h"
 
 #define LOG_MEM_INFO    0
 
@@ -52,6 +53,7 @@ void app_main(void)
 
     app_weather_start();
     app_network_start();
+    app_bluetooth_init();
 
     ESP_LOGI(TAG, "Display LVGL demo");
     ui_main();

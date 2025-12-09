@@ -37,6 +37,7 @@ typedef enum {
 typedef enum {
     status_bar_item_wifi = 0,
     status_bar_item_battery,
+    status_bar_item_bluetooth,
     status_bar_item_little_time,
     status_bar_item_max,
 } status_bar_item_t;
@@ -97,8 +98,11 @@ _UI_FUNC_DEF_(page);
 
 _UI_FUNC_DEF_(about);
 _UI_FUNC_DEF_(air);
-_UI_FUNC_DEF_(air_conditioner)
-_UI_FUNC_DEF_(app)
+_UI_FUNC_DEF_(air_conditioner);
+_UI_FUNC_DEF_(pomodoro_timer);
+_UI_FUNC_DEF_(habit_tracker);
+_UI_FUNC_DEF_(app);
+_UI_FUNC_DEF_(bluetooth);
 _UI_FUNC_DEF_(clock);
 _UI_FUNC_DEF_(humidity);
 _UI_FUNC_DEF_(led);
@@ -109,6 +113,7 @@ _UI_FUNC_DEF_(uv);
 _UI_FUNC_DEF_(weather);
 _UI_FUNC_DEF_(guide);
 _UI_FUNC_DEF_(sr);
+// _UI_FUNC_DEF_(ui_pomodoro_analytics_func);
 
 /**
  * @brief Init status bar. Objects to show time, qucik action buttons and Wi-Fi signal indicate.

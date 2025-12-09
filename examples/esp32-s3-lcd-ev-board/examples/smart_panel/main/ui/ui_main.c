@@ -42,8 +42,8 @@ void *data_ico_fan_down = NULL;
 
 void *light_control = NULL;
 void *air_conditioner = NULL;
-void *smart_plug = NULL;
-void *curtain = NULL;
+void *pomodoro_timer = NULL;
+void *habit_tracker = NULL;
 void *fan = NULL;
 void *video_entertainment = NULL;
 void *smart_security = NULL;
@@ -81,8 +81,8 @@ static ui_data_fetch_t img_fetch_list[] = {
     /* Smart Switch Page */
     { "S:/UI/light_control.bin", &light_control },
     { "S:/UI/air_conditioner.bin", &air_conditioner },
-    { "S:/UI/smart_plug.bin", &smart_plug },
-    { "S:/UI/curtain.bin", &curtain },
+    { "S:/UI/pomodoro_timer.bin", &pomodoro_timer },
+    { "S:/UI/habit_tracker.bin", &habit_tracker },
     { "S:/UI/fan.bin", &fan },
     { "S:/UI/video_entertainment.bin", &video_entertainment },
     { "S:/UI/smart_security.bin", &smart_security },
