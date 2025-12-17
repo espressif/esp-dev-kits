@@ -1,6 +1,6 @@
 .check_pre_commit_template:
   stage: pre_check
-  image: python:3.8
+  image: python:3.9
   rules:
     - if: $CI_PIPELINE_SOURCE == "merge_request_event"
   script:
