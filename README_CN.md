@@ -10,7 +10,7 @@
 
 ## 概述
 
-esp-dev-kits 深入介绍了部分内嵌 ESP32、ESP32-S2、ESP32-S3 等 SoC 芯片的乐鑫开发板。如果您想获取乐鑫开发板的完整列表，请参阅乐鑫官网 [产品 > 开发板](https://www.espressif.com/zh-hans/products/devkits) 页面。您可以使用 esp-dev-kits 快速入门乐鑫开发板，构建您的物联网应用。
+esp-dev-kits 深入介绍了部分内嵌 ESP32、ESP32-S2、ESP32-S3、ESP32-C3、ESP32-C5 或 ESP32-P4 等 SoC 芯片的乐鑫开发板。如果您想获取乐鑫开发板的完整列表，请参阅乐鑫官网 [产品 > 开发板](https://www.espressif.com/zh-hans/products/devkits) 页面。您可以使用 esp-dev-kits 快速入门乐鑫开发板，构建您的物联网应用。
 
 esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 
@@ -24,7 +24,7 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 
 ### 快速入门
 
-由于 esp-dev-kits 依赖 ESP-IDF 的基础功能和编译工具，因此您首先需要完成 ESP-IDF 开发环境的搭建。如果这是您首次使用 ESP-IDF，请参考 [ESP32](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html)、[ESP32-S2](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/get-started/index.html)、[ESP32-S3](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/index.html) 或 [ESP32-C3](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c3/get-started/index.html) SoC 的 **快速入门** 文档。
+由于 esp-dev-kits 依赖 ESP-IDF 的基础功能和编译工具，因此您首先需要完成 ESP-IDF 开发环境的搭建。如果这是您首次使用 ESP-IDF，请参考 [ESP32](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html)、[ESP32-S2](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s2/get-started/index.html)、[ESP32-S3](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s3/index.html)、[ESP32-C3](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c3/get-started/index.html)、[ESP32-C5](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c5/get-started/index.html) 或 [ESP32-P4](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html) SoC 的 **快速入门** 文档。
 
 您可以点击以下任意开发板，开始搭建环境并使用 esp-dev-kits。
 
@@ -37,6 +37,12 @@ esp-dev-kits 主要包含以下与乐鑫开发板相关的信息：
 |:----:|:----:|:----|
 | [ESP32-P4-Function-EV-Board](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-function-ev-board/index.html)| [<img src="docs/_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric_v1.5.2.png" alt ="ESP32-P4-Function-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-function-ev-board/index.html) | ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板。ESP32-P4 搭载双核 RISC-V 处理器，支持最大 32 MB PSRAM。此外，ESP32-P4 支持 USB 2.0 标准, MIPI-CSI/DSI, H264 Encoder 等多种外设，可满足客户对低成本、高性能、低功耗的多媒体产品的开发需求。|
 | [ESP32-P4-EYE](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-eye/index.html)| [<img src="docs/_static/esp32-p4-eye/esp32-p4-eye-isometric.png" alt ="ESP32-P4-EYE" align="center" width=200/>](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-eye/index.html) | ESP32-P4-EYE 是乐鑫信息科技推出的一款面向摄像头应用的视觉开发板。该设备搭载 ESP32-P4 微控制器和 ESP32-C6 无线模组，支持 MIPI-CSI 摄像头接口和 USB 2.0 High-Speed 从机模式。板载功能丰富，包括摄像头、显示屏、麦克风和 MicroSD 卡扩展，使得设备能够实时监测周围环境并采集图像、音频数据。适用于智能安防摄像头、视觉模型检测、物联网边缘计算等需要实时图像处理与无线通信的应用场景。|
+
+**ESP32-C5 系列开发板**
+
+|<div style="width: 150pt">开发板</div> |图片|描述|
+|:----:|:----:|:----|
+| [ESP-SensairShuttle](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c5/esp-sensairshuttle/index.html)| [<img src="docs/_static/esp-sensairshuttle/esp-sensairshuttle-board-isometric-v1_0.png" alt ="ESP-SensairShuttle" align="center" width=300/>](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c5/esp-sensairshuttle/index.html) | ESP-SensairShuttle 是乐鑫携手 Bosch Sensortec 面向动作感知与大模型人机交互场景联合推出的开发板。主控采用 ESP32-C5-WROOM-1-N16R8 模组，支持双频 Wi-Fi 6、Bluetooth 5 (LE)、Zigbee 及 Thread。支持更换传感器子板（BME690、BMI270 & BMM350）实现多维度感知，同时支持外接麦克风与扬声器，可对接大语言模型实现 AI 语音交互。|
 
 **ESP32-C3 系列开发板**
 
