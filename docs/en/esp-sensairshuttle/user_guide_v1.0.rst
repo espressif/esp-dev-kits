@@ -79,11 +79,11 @@ The main components on the front PCB are introduced in clockwise order below.
      - Used to indicate device power status. For indicator status details, please refer to the `Power Options`_ section.
    * - Power Switch
      - Used to control device power on/off. Click the power switch to toggle the power state.
-   * - :strong:`ShuttleBoard-BME690 (BME690 Sensor Daughterboard)`
+   * - :strong:`ShuttleBoard-BME690`
      -
    * - BME690 Sensor
      - Bosch BME690 gas sensor that can detect air quality, including temperature, humidity, pressure, and gas resistance, supporting I2C and SPI protocol communication.
-   * - :strong:`ShuttleBoard-BMI270&BMM350 (BMI270&BMM350 Sensor Daughterboard)`
+   * - :strong:`ShuttleBoard-BMI270&BMM350`
      -
    * - BMI270 Sensor
      - Bosch BMI270 inertial measurement unit that can detect three-axis acceleration and three-axis angular velocity, supporting I2C and SPI protocol communication.
@@ -131,9 +131,9 @@ The main components on the back PCB are introduced in clockwise order below.
      - 2-wire speaker connector that can connect to an external speaker, using HC-1.25-2P wire-to-board connector.
    * - Type-C Port (USB-C Interface)
      - USB-C interface for power supply, program flashing, and debugging, supporting lithium battery charging.
-   * - :strong:`ShuttleBoard-BME690 (BME690 Sensor Daughterboard)`
+   * - :strong:`ShuttleBoard-BME690`
      - Pin definitions for the sensor daughterboard are marked in the figure.
-   * - :strong:`ShuttleBoard-BMI270&BMM350 (BMI270&BMM350 Sensor Daughterboard)`
+   * - :strong:`ShuttleBoard-BMI270&BMM350`
      - Pin definitions for the sensor daughterboard are marked in the figure.
 
 Start Development
@@ -215,7 +215,7 @@ LCD Interface
 
    LCD Interface Circuit Diagram (Click to enlarge)
 
-The X1 interface is the LCD screen interface in use. The screen model used on this development board is `ST7789P3 <https://dl.espressif.com/AE/esp-dev-kits/UE018HV-RB39-A002A%20%20V1.0%20SPEC.pdf>`_,
+The X1 interface is the LCD screen interface in use. The screen model used on this development board is `ST7789P3 <https://dl.espressif.com/AE/esp-dev-kits/1.83-inch-LCD-P183B001-V4-CTP.pdf>`_,
 LCD: 1.83", 240(H)x284(V), ST7789P3, 4-line SPI Interface. ``PWR_CTRL`` (GPIO5) can be used to control the screen power.
 
 Power Switch Circuit
@@ -269,8 +269,8 @@ Related Documents
 =====================
 
 -  `ESP32-C5 Datasheet`_ (PDF)
--  `ESP32-C5-WROOM-1 Datasheet`_ (PDF)
--  `Espressif Product Selector`_ (PDF)
+-  `ESP32-C5-WROOM-1 & ESP32-C5-WROOM-1U Datasheet`_ (PDF)
+-  `Espressif Product Selector`_
 -  `ESP-SensairShuttle-Mainboard V1.0 Schematic`_ (PDF)
 -  `ESP-SensairShuttle-Mainboard V1.0 PCB Layout`_ (PDF)
 -  `ESP-SensairShuttle-ShuttleBoard-BME690 V1.0 Schematic`_ (PDF)
@@ -278,9 +278,12 @@ Related Documents
 -  `ESP-SensairShuttle-ShuttleBoard-BMI270&BMM350 V1.0 Schematic`_ (PDF)
 -  `ESP-SensairShuttle-ShuttleBoard-BMI270&BMM350 V1.0 PCB Layout`_ (PDF)
 -  `Display Specification`_ (PDF)
+-  `Gas Sensor BME690 Official Data Sheet`_
+-  `Inertial Measurement Unit BMI270 Official Data Sheet`_
+-  `Magnetometer BMM350 Official Data Sheet`_
 
 .. _ESP32-C5 Datasheet: https://documentation.espressif.com/esp32-c5_datasheet_en.pdf
-.. _ESP32-C5-WROOM-1 Datasheet: https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html
+.. _ESP32-C5-WROOM-1 & ESP32-C5-WROOM-1U Datasheet: https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_en.html
 .. _Espressif Product Selector: https://products.espressif.com/#/product-selector?names=
 .. _ESP-SensairShuttle-Mainboard V1.0 Schematic: https://dl.espressif.com/AE/esp-dev-kits/SCH_SCH-ESP-SensairShuttle-MainBoard-V1_0_2025-12-16.pdf
 .. _ESP-SensairShuttle-Mainboard V1.0 PCB Layout: https://dl.espressif.com/AE/esp-dev-kits/PCB_PCB-ESP-SensairShuttle-MainBoard-V1_0_2025-12-16.pdf
@@ -289,4 +292,7 @@ Related Documents
 .. _ESP-SensairShuttle-ShuttleBoard-BMI270&BMM350 V1.0 Schematic: https://dl.espressif.com/AE/esp-dev-kits/SCH_SCH-ShuttleBoard-BMI270&BMM350-V1_1_2025-12-16.pdf
 .. _ESP-SensairShuttle-ShuttleBoard-BMI270&BMM350 V1.0 PCB Layout: https://dl.espressif.com/AE/esp-dev-kits/PCB_PCB-ShuttleBoard-BMI270&BMM350-V1_1_2025-12-16.pdf
 .. _Display Specification: https://dl.espressif.com/AE/esp-dev-kits/1.83-inch-LCD-P183B001-V4-CTP.pdf
+.. _Gas Sensor BME690 Official Data Sheet: https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme690/
+.. _Inertial Measurement Unit BMI270 Official Data Sheet: https://www.bosch-sensortec.com/products/motion-sensors/imus/bmi270/
+.. _Magnetometer BMM350 Official Data Sheet: https://www.bosch-sensortec.com/products/motion-sensors/magnetometers/bmm350/
 

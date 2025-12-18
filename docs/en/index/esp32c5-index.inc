@@ -1,6 +1,6 @@
 .. toctree::
-    : hidden:
-    : caption: {IDF_TARGET_NAME} Boards
+    :hidden:
+    :caption: {IDF_TARGET_NAME} Boards
 
     ESP32-C5-DevKitC-1 <esp32-c5-devkitc-1/index>
     ESP-SensairShuttle <esp-sensairshuttle/index>

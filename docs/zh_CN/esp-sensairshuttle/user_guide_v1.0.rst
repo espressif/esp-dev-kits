@@ -79,11 +79,11 @@ ESP-SensairShuttle 主控采用乐鑫 **ESP32-C5-WROOM-1-N16R8** 模组，具有
      - 用于指示设备电源状态，指示状态详见 `电源选项`_ 小节。
    * - Power Switch（电源开关）
      - 用于控制设备开关机，单击电源开关即可切换开关机状态。
-   * - :strong:`ShuttleBoard-BME690 (BME690 传感器子板)`
+   * - :strong:`BME690 传感器子板`
      -
    * - BME690 传感器
      - 博世 BME690 气体传感器，可检测空气质量，包括温度、湿度、气压、气体电阻，支持 I2C 与 SPI 协议通信。
-   * - :strong:`ShuttleBoard-BMI270&BMM350 (BMI270&BMM350 传感器子板)`
+   * - :strong:`BMI270&BMM350 传感器子板`
      -
    * - BMI270 传感器
      - 博世 BMI270 惯性测量单元，可检测三轴加速度与三轴角速度，支持 I2C 与 SPI 协议通信。
@@ -131,9 +131,9 @@ ESP-SensairShuttle 主控采用乐鑫 **ESP32-C5-WROOM-1-N16R8** 模组，具有
      - 2 线扬声器连接器，可外接一个扬声器，采用 HC-1.25-2P 线对板连接器。
    * - Type-C Port（USB-C 接口）
      - USB-C 接口，用于供电、程序烧录和调试，支持对锂电池进行充电。
-   * - :strong:`ShuttleBoard-BME690 (BME690 传感器子板)`
+   * - :strong:`BME690 传感器子板`
      - 传感器子板各针脚定义已在图中标出。
-   * - :strong:`ShuttleBoard-BMI270&BMM350 (BMI270&BMM350 传感器子板)`
+   * - :strong:`BMI270&BMM350 传感器子板`
      - 传感器子板各针脚定义已在图中标出。
 
 开始开发应用
@@ -215,7 +215,7 @@ LCD 接口
 
    LCD 接口电路图（点击放大）
 
-X1 接口为正式使用的 LCD 屏幕接口，该开发板使用的屏幕型号为 `ST7789P3 <https://dl.espressif.com/AE/esp-dev-kits/UE018HV-RB39-A002A%20%20V1.0%20SPEC.pdf>`_，
+X1 接口为正式使用的 LCD 屏幕接口，该开发板使用的屏幕型号为 `ST7789P3 <https://dl.espressif.com/AE/esp-dev-kits/1.83-inch-LCD-P183B001-V4-CTP.pdf>`_，
 LCD: 1.83"， 240(H)x284(V)，ST7789P3，4-lineSPI Interface，``PWR_CTRL`` (GPIO5) 可用于控制屏幕电源。
 
 开关机电路
@@ -269,8 +269,8 @@ I2C/RGB/外置引脚接口
 ==========
 
 -  `ESP32-C5 技术规格书`_ (PDF)
--  `ESP32-C5-WROOM-1 技术规格书`_ (PDF)
--  `乐鑫产品选型工具`_ (PDF)
+-  `ESP32-C5-WROOM-1 & ESP32-C5-WROOM-1U 技术规格书`_ (PDF)
+-  `乐鑫产品选型工具`_
 -  `ESP-SensairShuttle-Mainboard V1.0 原理图`_ (PDF)
 -  `ESP-SensairShuttle-Mainboard V1.0 PCB 布局图`_ (PDF)
 -  `ESP-SensairShuttle-ShuttleBoard-BME690 V1.0 原理图`_ (PDF)
@@ -278,9 +278,12 @@ I2C/RGB/外置引脚接口
 -  `ESP-SensairShuttle-ShuttleBoard-BMI270&BMM350 V1.0 原理图`_ (PDF)
 -  `ESP-SensairShuttle-ShuttleBoard-BMI270&BMM350 V1.0 PCB 布局图`_ (PDF)
 -  `显示屏规格书`_ (PDF)
+-  `气体传感器 BME690 官方数据手册`_
+-  `六轴惯性测量单元 BMI270 官方数据手册`_
+-  `三轴磁力计 BMM350 官方数据手册`_
 
 .. _ESP32-C5 技术规格书: https://documentation.espressif.com/esp32-c5_datasheet_cn.pdf
-.. _ESP32-C5-WROOM-1 技术规格书: https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_cn.html
+.. _ESP32-C5-WROOM-1 & ESP32-C5-WROOM-1U 技术规格书: https://documentation.espressif.com/esp32-c5-wroom-1_wroom-1u_datasheet_cn.html
 .. _乐鑫产品选型工具: https://products.espressif.com/#/product-selector?names=
 .. _ESP-SensairShuttle-Mainboard V1.0 原理图: https://dl.espressif.com/AE/esp-dev-kits/SCH_SCH-ESP-SensairShuttle-MainBoard-V1_0_2025-12-16.pdf
 .. _ESP-SensairShuttle-Mainboard V1.0 PCB 布局图: https://dl.espressif.com/AE/esp-dev-kits/PCB_PCB-ESP-SensairShuttle-MainBoard-V1_0_2025-12-16.pdf
@@ -289,4 +292,7 @@ I2C/RGB/外置引脚接口
 .. _ESP-SensairShuttle-ShuttleBoard-BMI270&BMM350 V1.0 原理图: https://dl.espressif.com/AE/esp-dev-kits/SCH_SCH-ShuttleBoard-BMI270&BMM350-V1_1_2025-12-16.pdf
 .. _ESP-SensairShuttle-ShuttleBoard-BMI270&BMM350 V1.0 PCB 布局图: https://dl.espressif.com/AE/esp-dev-kits/PCB_PCB-ShuttleBoard-BMI270&BMM350-V1_1_2025-12-16.pdf
 .. _显示屏规格书: https://dl.espressif.com/AE/esp-dev-kits/1.83-inch-LCD-P183B001-V4-CTP.pdf
+.. _气体传感器 BME690 官方数据手册: https://www.bosch-sensortec.com/products/environmental-sensors/gas-sensors/bme690/
+.. _六轴惯性测量单元 BMI270 官方数据手册: https://www.bosch-sensortec.com/products/motion-sensors/imus/bmi270/
+.. _三轴磁力计 BMM350 官方数据手册: https://www.bosch-sensortec.com/products/motion-sensors/magnetometers/bmm350/
 
