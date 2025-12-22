@@ -21,6 +21,7 @@
 
 /docs/*/index/esp32c5-index.inc             @documentation/codeowners/esp32c5       @documentation/codeowners/hw
 /docs/*/esp32-c5-devkitc-1/                 @documentation/codeowners/esp32c5       @documentation/codeowners/hw
+/docs/*/esp-sensairshuttle/                 @documentation/codeowners/esp32c5       @documentation/codeowners/hw
 
 # ESP32-C6 Boards User guide
 

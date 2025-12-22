@@ -1523,6 +1523,169 @@ documents:
       scheduled_release_date:
       document_status: active
       document_classification: public
+
+########################################
+# 87 ESP32-C5-DevKitC-1 v1.1 User Guide
+########################################
+    - document_name: ESP32-C5-DevKitC-1 v1.1 User Guide
+      doc_id: 9135
+      translation_docid: 9137
+      chip_series: ESP32-C5
+      product_name:
+        - ESP32-C5-DevKitC-1
+      product_name_old_website:
+        - ESP32-C5-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2024-08-30
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c5/esp32-c5-devkitc-1/user_guide_v1.1.html
+      document_summary: This user guide will help you get started with ESP32-C5-DevKitC-1 v1.1 and will also provide more in-depth information.
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
+########################################
+# 88 ESP32-C5-DevKitC-1 v1.1 用户指南
+########################################
+    - document_name: ESP32-C5-DevKitC-1 v1.1 用户指南
+      doc_id: 9137
+      translation_docid: 9135
+      chip_series: ESP32-C5
+      product_name:
+        - ESP32-C5-DevKitC-1
+      product_name_old_website:
+        - ESP32-C5-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2024-08-30
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c5/esp32-c5-devkitc-1/user_guide_v1.1.html
+      document_summary: 本指南将帮助您快速上手 ESP32-C5-DevKitC-1 v1.1，并提供该款开发板的详细信息。
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
+########################################
+# 89 ESP32-C5-DevKitC-1 v1.2 User Guide
+########################################
+    - document_name: ESP32-C5-DevKitC-1 v1.2 User Guide
+      doc_id: 9141
+      translation_docid: 9139
+      chip_series: ESP32-C5
+      product_name:
+        - ESP32-C5-DevKitC-1
+      product_name_old_website:
+        - ESP32-C5-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-05-28
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c5/esp32-c5-devkitc-1/user_guide.html
+      document_summary: This user guide will help you get started with ESP32-C5-DevKitC-1 v1.2 and will also provide more in-depth information.
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
+########################################
+# 90 ESP32-C5-DevKitC-1 v1.2 用户指南
+########################################
+    - document_name: ESP32-C5-DevKitC-1 v1.2 用户指南
+      doc_id: 9139
+      translation_docid: 9141
+      chip_series: ESP32-C5
+      product_name:
+        - ESP32-C5-DevKitC-1
+      product_name_old_website:
+        - ESP32-C5-DevKitC-1
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-05-28
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c5/esp32-c5-devkitc-1/user_guide.html
+      document_summary: 本指南将帮助您快速上手 ESP32-C5-DevKitC-1 v1.2，并提供该款开发板的详细信息。
+      notify_subscribers: false
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
+########################################
+# 91 ESP-SensairShuttle User Guide
+########################################
+    - document_name: ESP-SensairShuttle User Guide
+      doc_id: 9915
+      translation_docid: 9917
+      chip_series: ESP32-C5
+      product_name:
+        - ESP-SensairShuttle
+      product_name_old_website:
+        - ESP32-C5
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-12-22
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c5/esp-sensairshuttle/user_guide.html
+      document_summary: This user guide will help you get started with ESP-SensairShuttle and will also provide more in-depth information.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
+########################################
+# 92 ESP-SensairShuttle 用户指南
+########################################
+    - document_name: ESP-SensairShuttle 用户指南
+      doc_id: 9917
+      translation_docid: 9915
+      chip_series: ESP32-C5
+      product_name:
+        - ESP-SensairShuttle
+      product_name_old_website:
+        - ESP32-C5
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      document_status: active
+      version: latest
+      revision_date: 2025-12-22
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c5/esp-sensairshuttle/user_guide.html
+      document_summary: 本指南将帮助您快速上手 ESP-SensairShuttle，并提供该款开发板的详细信息。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
 ########################################
 # 61 ESP-Prog-2 User Guide
 ########################################

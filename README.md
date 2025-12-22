@@ -10,7 +10,7 @@
 
 ## Overview
 
-esp-dev-kits provides in-depth information on selected development boards embedded with different Espressif SoCs, such as ESP32, ESP32-S2, and ESP32-S3. For the list of all available boards, see the [Products > DevKits](https://www.espressif.com/en/products/devkits) page on the Espressif website. With esp-dev-kits, you can easily get started with Espressif development boards and build your IoT applications.
+esp-dev-kits provides in-depth information on selected development boards embedded with different Espressif SoCs, such as ESP32, ESP32-S2, ESP32-S3, ESP32-C3, ESP32-C5 and ESP32-P4. For the list of all available boards, see the [Products > DevKits](https://www.espressif.com/en/products/devkits) page on the Espressif website. With esp-dev-kits, you can easily get started with Espressif development boards and build your IoT applications.
 
 esp-dev-kits contains the following information for development boards designed by Espressif:
 
@@ -24,7 +24,7 @@ esp-dev-kits contains the following information for development boards designed 
 
 ### Quick Start
 
-esp-dev-kits is developed based on ESP-IDF functions and tools, so the ESP-IDF development environment must be set up first. If this is your first exposure to ESP-IDF, proceed to **Get Started** documentation specific for [ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html), [ESP32-S2](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html), [ESP32-S3](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/index.html), or [ESP32-C3](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/get-started/index.html) SoCs.
+esp-dev-kits is developed based on ESP-IDF functions and tools, so the ESP-IDF development environment must be set up first. If this is your first exposure to ESP-IDF, proceed to **Get Started** documentation specific for [ESP32](https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html), [ESP32-S2](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s2/get-started/index.html), [ESP32-S3](https://docs.espressif.com/projects/esp-idf/en/latest/esp32s3/index.html), [ESP32-C3](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/get-started/index.html), [ESP32-C5](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/get-started/index.html), or [ESP32-P4](https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html) SoCs.
 
 Click one of the development boards shown below to set up and start using esp-dev-kits.
 
@@ -38,7 +38,11 @@ Click one of the development boards shown below to set up and start using esp-de
 | [ESP32-P4-Function-EV-Board](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-function-ev-board/index.html)| [<img src="docs/_static/esp32-p4-function-ev-board/esp32-p4-function-ev-board-isometric_v1.5.2.png" alt ="ESP32-P4-Function-EV-BOARD" align="center" width=200/>](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4-function-ev-board/index.html) | ESP32-P4-Function-EV-Board is a multimedia development board based on the ESP32-P4 chip. ESP32-P4 chip features a dual-core RISC-V processor and supports up to 32 MB PSRAM. In addition, ESP32-P4 supports USB 2.0 specification, MIPI-CSI/DSI, H264 Encoder, and various other peripherals. With all of its outstanding features, the board is an ideal choice for developing low-cost, high-performance, low-power network-connected audio and video products. |
 | [ESP32-P4-EYE](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32p4/esp32-p4-eye/index.html)| [<img src="docs/_static/esp32-p4-eye/esp32-p4-eye-isometric.png" alt ="ESP32-P4-EYE" align="center" width=200/>](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32p4/esp32-p4-eye/index.html) | ESP32-P4-EYE is a vision development board designed by Espressif Systems for camera applications. It features the ESP32-P4 microcontroller and ESP32-C6 wireless module, supporting MIPI-CSI camera interface and USB 2.0 High-Speed device mode. The board comes with integrated camera, display, microphone, and MicroSD card expansion, allowing real-time monitoring of surroundings and collection of image and audio data. It's ideal for smart security cameras, visual model detection, IoT edge computing, and other applications requiring real-time image processing and wireless communication. |
 
+**ESP32-C5 Development Boards**
 
+|<div style="width: 150pt">Board</div>|Picture|Description|
+|:----:|:----:|:----|
+| [ESP-SensairShuttle](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c5/esp-sensairshuttle/index.html)| [<img src="docs/_static/esp-sensairshuttle/esp-sensairshuttle-board-isometric-v1_0.png" alt ="ESP-SensairShuttle" align="center" width=300/>](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c5/esp-sensairshuttle/index.html) | ESP-SensairShuttle is a development board jointly launched by Espressif and Bosch Sensortec for motion sensing and large language model human-computer interaction scenarios. It features the ESP32-C5-WROOM-1-N16R8 module, supporting dual-band Wi-Fi 6, Bluetooth 5 (LE), Zigbee, and Thread. The board supports interchangeable sensor daughterboards (BME690, BMI270 & BMM350) for multi-dimensional sensing, and external microphone and speaker interfaces for seamless integration with large language models to achieve AI voice interaction. |
 
 **ESP32-C3 Development Boards**
 

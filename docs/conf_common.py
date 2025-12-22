@@ -71,7 +71,8 @@ ESP32P4_DOCS = ['*.rst',
                 ]
 ESP32C5_DOCS = ['*.rst',
                 'index/esp32c5-index.inc',
-                'esp32-c5-devkitc-1/*.rst'
+                'esp32-c5-devkitc-1/*.rst',
+                'esp-sensairshuttle/*.rst'
                 ]
 ESP32S2_DOCS = ['*.rst',
                 'index/esp32s2-index.inc',
