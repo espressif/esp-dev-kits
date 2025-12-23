@@ -110,7 +110,11 @@ ESP-Prog-2 设计简洁，使用方便，仅需一根 USB 线即可连接到电�
 
 在软件开发前，建议更新 ESP-Prog-2 的内置出厂固件，以确保设备运行最新的功能和错误修复。
 
-1. **使用在线工具更新**：通过乐鑫提供的在线固件烧写工具 `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__ 对 ESP-Prog-2 进行固件更新。
+1. **使用在线工具更新固件**：通过乐鑫官方在线烧录工具 `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__ 更新 ESP-Prog-2 固件，请按以下步骤操作：
+
+  a. 使用基于 Chromium 内核的浏览器，例如 Chrome。
+  b. **按住** 靠近模块的 BOOT 按键，然后连接 USB 线，使 ESP-Prog-2 进入固件下载模式。
+  c. 在浏览器中打开 `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__ 页面，并按照屏幕上的指引完成设备连接和固件烧录。
 
 2. **获取固件源代码**：若希望了解固件实现，可访问 `esp-usb-bridge <https://github.com/espressif/esp-usb-bridge>`__ 获取 ESP-Prog-2 的固件源代码。
 

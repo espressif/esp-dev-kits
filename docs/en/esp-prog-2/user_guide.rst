@@ -110,8 +110,12 @@ Firmware Installation
 
 Before starting software development, it is recommended to update the built-in factory firmware of the ESP-Prog-2. This ensures the device run the latest features and bug fixes.
 
-1. **Update firmware using online tool**: Update ESP-Prog-2 firmware via Espressif's online flashing tool `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__.
+1. **Update firmware using online tool**: Update ESP-Prog-2 firmware via Espressif's online flashing tool `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__ following the steps below:
 
+  a. Use a Chromium-based browser, such as Chrome.
+  b. **Press and hold** the BOOT button closest to the module, and then connect the USB cable to put ESP-Prog-2 into firmware download mode.
+  c. Open the  `ESP Launchpad <https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif.github.io/esp-usb-bridge/launchpad.toml>`__ page in your browser, and follow the instructions on the screen to connect and flash the firmware.
+  
 2. **Obtain the firmware source code**: To understand the firmware implementation, check the firmware source code of ESP-Prog-2 at `esp-usb-bridge <https://github.com/espressif/esp-usb-bridge>`__.
 
 Software Setup
