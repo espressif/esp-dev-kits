@@ -102,6 +102,13 @@ ESP32-P4-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板�
      - USB 2.0 Type-A 接口与 ESP32-P4 芯片的 USB 2.0 OTG High-Speed 接口连接，支持 USB 2.0 标准。通过该接口进行 USB 通讯时，ESP32-P4 作为 USB Host 与其它 USB device 设备连接，对外提供最高 500 mA 电流。USB 2.0 Type-C 接口和 USB 2.0 Type-A 接口需要二选一使用，不能同时使用。
    * - Power Switch（电源开关）
      - 电源开关。拨向 ON 一侧，开发板连接 5 V 电源上电；拨离 ON 一侧，开发板断开 5 V 电源掉电。
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - 主要组件
+     - 介绍
    * - Switch（开关）
      - TPS2051C 是一款 USB 电源开关，提供 500 mA 输出电流限制。
    * - MIPI CSI Connector（MIPI CSI 连接器）
