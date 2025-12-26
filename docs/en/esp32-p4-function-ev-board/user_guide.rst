@@ -105,6 +105,14 @@ The key components of the board are described from front view to back view, star
    * - 14
      - RJ45 Ethernet Port
      - An Ethernet Port supporting 10/100 Mbps adaptive.
+
+.. list-table::
+   :widths: 10 20 70
+   :header-rows: 1
+
+   * - No.
+     - Key Component
+     - Description
    * - 15
      - USB Full-speed Port
      - USB Type-C port that supports USB 2.0 Full-speed data rate. It can be used as the power supply interface for the development board and as a communication interface.

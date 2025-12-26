@@ -100,6 +100,13 @@ The key components of the board are described in a clockwise direction.
      - The USB 2.0 Type-C Port is connected to the USB 2.0 OTG High-Speed interface of ESP32-P4, compliant with the USB 2.0 specification. When communicating with other devices via this port, ESP32-P4 acts as a USB device connecting to a USB host. Please note that USB 2.0 Type-C Port and USB 2.0 Type-A Port cannot be used simultaneously. USB 2.0 Type-C Port can also be used for powering the board.
    * - USB 2.0 Type-A Port
      - The USB 2.0 Type-A Port is connected to the USB 2.0 OTG High-Speed interface of ESP32-P4, compliant with the USB 2.0 specification. When communicating with other devices via this port, ESP32-P4 acts as a USB host, providing up to 500 mA of current. Please note that USB 2.0 Type-C Port and USB 2.0 Type-A Port cannot be used simultaneously.
+
+.. list-table::
+   :widths: 30 70
+   :header-rows: 1
+
+   * - Key Component
+     - Description
    * - Power Switch
      - Power On/Off Switch. Toggling toward the ON sign powers the board on (5 V), toggling away from the ON sign powers the board off.
    * - Switch
