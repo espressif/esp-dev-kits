@@ -53,6 +53,13 @@ ESP-SensairShuttle 主控采用乐鑫 **ESP32-C5-WROOM-1-N16R8** 模组，具有
 
    ShuttleBoard-BMI270&BMM350 PCB 正面图（点击放大）
 
+.. figure:: ../../_static/esp-sensairshuttle/esp-sensairshuttle-lcd.png
+   :alt: ESP-SensairShuttle 配套 LCD 屏幕实物图（点击放大）
+   :scale: 60%
+   :figclass: align-center
+
+   ESP-SensairShuttle 配套 LCD 屏幕实物图（点击放大）
+
 以下按照顺时针的顺序依次介绍正面 PCB 上的主要组件。
 
 .. list-table::
@@ -72,7 +79,7 @@ ESP-SensairShuttle 主控采用乐鑫 **ESP32-C5-WROOM-1-N16R8** 模组，具有
    * - ESP32-C5-WROOM-1-N16R8
      - 主控模组，集成 16 MB Flash 和 8 MB PSRAM，具备 2.4 & 5 GHz 双频 Wi-Fi 6 (802.11ax)、Bluetooth® 5 (LE)、Zigbee 及 Thread (802.15.4) 无线通信能力。
    * - LCD Connector（LCD 连接器）
-     - 用于连接 LCD 屏幕，分辨率为 284 x 240。
+     - 用于连接 LCD 屏幕，分辨率为 240(H) x 284(V)。
    * - Boot Button（Boot 按键）
      - 用于手动进入下载模式，也可用作普通功能按键。
    * - Power Indicator LED（电源指示灯）
@@ -89,6 +96,8 @@ ESP-SensairShuttle 主控采用乐鑫 **ESP32-C5-WROOM-1-N16R8** 模组，具有
      - 博世 BMI270 惯性测量单元，可检测三轴加速度与三轴角速度，支持 I2C 与 SPI 协议通信。
    * - BMM350 传感器
      - 博世 BMM350 地磁传感器，可检测三轴地磁场强度，支持 I2C 协议通信。
+   * - LCD Screen（LCD 屏幕）
+     - 配套 LCD 屏幕，型号为 ST7789P3，尺寸为 1.83 英寸，分辨率为 240(H) x 284(V)，采用 4-line SPI 接口通信。屏幕通过 LCD 连接器与主板连接，支持通过 GPIO5 (PWR_CTRL) 控制屏幕电源开关。
 
 .. figure:: ../../_static/esp-sensairshuttle/esp-sensairshuttle-mainboard-back.png
    :alt: SensairShuttle-Mainboard PCB 背面图（点击放大）
@@ -215,8 +224,15 @@ LCD 接口
 
    LCD 接口电路图（点击放大）
 
-X1 接口为正式使用的 LCD 屏幕接口，该开发板使用的屏幕型号为 `ST7789P3 <https://dl.espressif.com/AE/esp-dev-kits/1.83-inch-LCD-P183B001-V4-CTP.pdf>`_，
-LCD: 1.83"， 240(H)x284(V)，ST7789P3，4-lineSPI Interface，``PWR_CTRL`` (GPIO5) 可用于控制屏幕电源。
+X1 接口为正式使用的 LCD 屏幕接口。该开发板配套的 LCD 屏幕规格如下：
+
+- **屏幕尺寸**：1.83 英寸
+- **分辨率**：240(H) x 284(V)
+- **驱动芯片**：ST7789P3
+- **通信接口**：4-line SPI Interface
+- **电源控制**：支持通过 ``PWR_CTRL`` (GPIO5) 控制屏幕电源开关
+
+更多详细信息请参考 `显示屏规格书`_。
 
 开关机电路
 ----------
