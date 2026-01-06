@@ -38,7 +38,7 @@ ESP32-C5-DevKitC-1 是一款入门级开发板，使用通用型模组 `ESP32-C5
 
 .. _user-guide-c5-devkitc-1-board-v1.2-front:
 
-.. figure:: ../../_static/esp32-c5-devkitc-1/ESP32-C5-DevKitC-1_v1.1_callouts.png
+.. figure:: ../../_static/esp32-c5-devkitc-1/ESP32-C5-DevKitC-1_callouts.png
     :align: center
     :alt: ESP32-C5-DevKitC-1 - 正面
     :figclass: align-center
@@ -269,9 +269,9 @@ ESP32-C5-DevKitC-1 v1.1
 
 * `ESP32-C5 技术规格书`_ (PDF)
 * `ESP32-C5-WROOM-1 & ESP32-C5-WROOM-1U 技术规格书`_ (PDF)
-* `ESP32-C5-DevKitC-1 原理图 v1.2`_ (PDF) 
-* `ESP32-C5-DevKitC-1 PCB 布局图 v1.2`_ (PDF) 
-* `ESP32-C5-DevKitC-1 尺寸图 v1.2`_ (PDF) 
+* `ESP32-C5-DevKitC-1 原理图 v1.2`_ (PDF)
+* `ESP32-C5-DevKitC-1 PCB 布局图 v1.2`_ (PDF)
+* `ESP32-C5-DevKitC-1 尺寸图 v1.2`_ (PDF)
 * `ESP32-C5-DevKitC-1 尺寸图 v1.2 源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。
