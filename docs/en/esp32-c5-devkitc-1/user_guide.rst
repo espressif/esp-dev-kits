@@ -38,7 +38,7 @@ Description of Components
 
 .. _user-guide-c5-devkitc-1-board-v1.2-front:
 
-.. figure:: ../../_static/esp32-c5-devkitc-1/ESP32-C5-DevKitC-1_v1.1_callouts.png
+.. figure:: ../../_static/esp32-c5-devkitc-1/ESP32-C5-DevKitC-1_callouts.png
     :align: center
     :alt: ESP32-C5-DevKitC-1 - front
     :figclass: align-center
@@ -269,9 +269,9 @@ Related Documents
 
 * `ESP32-C5 Datasheet`_ (PDF)
 * `ESP32-C5-WROOM-1 & ESP32-C5-WROOM-1U Datasheet`_ (PDF)
-* `ESP32-C5-DevKitC-1 Schematic v1.2`_ (PDF) 
-* `ESP32-C5-DevKitC-1 PCB Layout v1.2`_ (PDF) 
-* `ESP32-C5-DevKitC-1 Dimensions v1.2`_ (PDF) 
+* `ESP32-C5-DevKitC-1 Schematic v1.2`_ (PDF)
+* `ESP32-C5-DevKitC-1 PCB Layout v1.2`_ (PDF)
+* `ESP32-C5-DevKitC-1 Dimensions v1.2`_ (PDF)
 * `ESP32-C5-DevKitC-1 Dimensions v1.2 source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
