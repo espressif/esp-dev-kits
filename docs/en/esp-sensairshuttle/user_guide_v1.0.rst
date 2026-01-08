@@ -53,6 +53,13 @@ Component Overview
 
    ShuttleBoard-BMI270&BMM350 PCB Front View (Click to enlarge)
 
+.. figure:: ../../_static/esp-sensairshuttle/esp-sensairshuttle-lcd.png
+   :alt: ESP-SensairShuttle LCD Screen Photo (Click to enlarge)
+   :scale: 60%
+   :figclass: align-center
+
+   ESP-SensairShuttle LCD Screen Photo (Click to enlarge)
+
 The main components on the front PCB are introduced in clockwise order below.
 
 .. list-table::
@@ -72,7 +79,7 @@ The main components on the front PCB are introduced in clockwise order below.
    * - ESP32-C5-WROOM-1-N16R8
      - Main control module, integrated with 16 MB Flash and 8 MB PSRAM, featuring dual-band Wi-Fi 6 (802.11ax) at 2.4 & 5 GHz, Bluetooth® 5 (LE), Zigbee, and Thread (802.15.4) wireless communication capabilities.
    * - LCD Connector
-     - Used to connect LCD screen with a resolution of 284 x 240.
+     - Used to connect LCD screen with a resolution of 240(H) x 284(V).
    * - Boot Button
      - Used to manually enter download mode, can also be used as a regular function button.
    * - Power Indicator LED
@@ -89,6 +96,8 @@ The main components on the front PCB are introduced in clockwise order below.
      - Bosch BMI270 inertial measurement unit that can detect three-axis acceleration and three-axis angular velocity, supporting I2C and SPI protocol communication.
    * - BMM350 Sensor
      - Bosch BMM350 magnetometer that can detect three-axis magnetic field strength, supporting I2C protocol communication.
+   * - LCD Screen
+     - Matching LCD screen, model ST7789P3, size 1.83 inches, resolution 240(H) x 284(V), using 4-line SPI interface communication. The screen is connected to the mainboard through the LCD connector, and supports power control via GPIO5 (PWR_CTRL).
 
 .. figure:: ../../_static/esp-sensairshuttle/esp-sensairshuttle-mainboard-back.png
    :alt: SensairShuttle-Mainboard PCB Back View (Click to enlarge)
@@ -215,8 +224,15 @@ LCD Interface
 
    LCD Interface Circuit Diagram (Click to enlarge)
 
-The X1 interface is the LCD screen interface in use. The screen model used on this development board is `ST7789P3 <https://dl.espressif.com/AE/esp-dev-kits/1.83-inch-LCD-P183B001-V4-CTP.pdf>`_,
-LCD: 1.83", 240(H)x284(V), ST7789P3, 4-line SPI Interface. ``PWR_CTRL`` (GPIO5) can be used to control the screen power.
+The X1 interface is the LCD screen interface in use. The matching LCD screen specifications for this development board are as follows:
+
+- **Screen Size**: 1.83 inches
+- **Resolution**: 240(H) x 284(V)
+- **Driver Chip**: ST7789P3
+- **Communication Interface**: 4-line SPI Interface
+- **Power Control**: Supports controlling screen power on/off via ``PWR_CTRL`` (GPIO5)
+
+For more detailed information, please refer to the `Display Specification`_.
 
 Power Switch Circuit
 -------------------------
