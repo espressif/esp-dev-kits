@@ -24,6 +24,17 @@
 
 static char *TAG = "app_main";
 
+static void ui_task(void *arg)
+{
+    ESP_LOGI(TAG, "UI task start");
+
+    ui_main();   // 原来阻塞的位置，安全了
+
+    ESP_LOGI(TAG, "UI task finished");
+    vTaskDelete(NULL);
+}
+
+
 void app_main(void)
 {
     ESP_LOGI(TAG, "system start");
@@ -54,7 +65,10 @@ void app_main(void)
     app_network_start();
 
     ESP_LOGI(TAG, "Display LVGL demo");
-    ui_main();
+    // ui_main();
+    /* UI task */
+    xTaskCreate(ui_task, "ui_task", 8 * 1024, NULL, 5, NULL);
+
 
     sys_param_t *sys_set = settings_get_parameter();
     while (true == sys_set->need_hint) {
