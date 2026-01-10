@@ -48,6 +48,7 @@ static const char *TAG = "app_weather";
 #define LOCATION_SHANGHAI               "101020100"
 #define LOCATION_BEIJING                "101010100"
 #define LOCATION_SHENZHEN               "101280601"
+#define LOCATION_XIAN                   "101110101"
 
 #define _OPTION_                        "location=101020100&gzip=n&lang=zh"
 #define _OPTION_MULTI                   "location=%s&lang=en"
@@ -193,6 +194,9 @@ esp_err_t app_weather_request(location_num_t location)
     case LOCATION_NUM_SHENZHEN:
         cityID = LOCATION_SHENZHEN;
         break;
+    case LOCATION_NUM_XIAN:
+        cityID = LOCATION_XIAN;
+        break;
     default:
         cityID = LOCATION_SHANGHAI;
         break;
@@ -299,6 +303,7 @@ esp_err_t app_weather_get_current_info(weather_info_t *info, location_num_t loca
     CHECK(info, "Parsing NULL of info", ESP_ERR_INVALID_ARG);
     if (weather_info[location]) {
         memcpy(info, weather_info[location], sizeof(weather_info_t));
+        ESP_LOGI(TAG, "111city_id111: [%d], 111Temp111 : [%d]", location, info->temp);
         return ESP_OK;
     }
 

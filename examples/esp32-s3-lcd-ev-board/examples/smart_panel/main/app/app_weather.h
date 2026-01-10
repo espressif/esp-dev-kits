@@ -30,6 +30,7 @@ typedef enum {
     LOCATION_NUM_SHANGHAI,
     LOCATION_NUM_BEIJING,
     LOCATION_NUM_SHENZHEN,
+    LOCATION_NUM_XIAN,
     LOCATION_NUM_MAX,
 } location_num_t;
 

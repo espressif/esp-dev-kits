@@ -63,7 +63,7 @@ void ui_clock_init(void *data)
 {
     (void)data;
 
-    app_weather_get_current_info(&weather_info, LOCATION_NUM_SHANGHAI);
+    app_weather_get_current_info(&weather_info, LOCATION_NUM_XIAN);
 
     /* Weather page */
     page_weather = lv_obj_create(lv_scr_act(), NULL);
@@ -196,7 +196,7 @@ void ui_clock_init(void *data)
     lv_label_set_recolor(label_location, true);
     lv_obj_set_style_local_text_font(label_location, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_28);
     lv_obj_set_style_local_text_color(label_location, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_color_primary());
-    lv_label_set_text(label_location, "Shanghai, China" "#f6ae3d " LV_SYMBOL_EXTRA_MAP_MARKER_ALT "#");
+    lv_label_set_text(label_location, "Xi'an, China" "#f6ae3d " LV_SYMBOL_EXTRA_MAP_MARKER_ALT "#");
     lv_obj_align(label_location, label_date, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 5);
 
     /* Set time zone and create a task to update time */
@@ -415,7 +415,7 @@ void ui_clock_update(void)
     static char temp_text[8];
     static char humid_text[8];
 
-    app_weather_get_current_info(&weather_info, LOCATION_NUM_SHANGHAI);
+    app_weather_get_current_info(&weather_info, LOCATION_NUM_XIAN);
     // app_weather_get_air_info(&air_info);
 
     if (ui_state_dis == ui_clock_state) {
