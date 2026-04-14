@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- * SPDX-License-Identifier: Unlicense OR CC0-1.0
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 #include <stdbool.h>
@@ -73,6 +73,7 @@ static sr_data_t *g_sr_data = NULL;
 #define NEED_DELETE BIT0
 #define FEED_DELETED BIT1
 #define DETECT_DELETED BIT2
+#define MULTINET_CMD_TIMEOUT_MS   (6000)
 
 /**
  * @brief all default commands
@@ -238,7 +239,7 @@ static void audio_detect_task(void *arg)
                 }
 
                 int sr_command_id = mn_result->command_id[0];
-                ESP_LOGI(TAG, "Deteted command : %d", sr_command_id);
+                ESP_LOGI(TAG, "Detected command: %d", sr_command_id);
                 sr_result_t result = {
                     .wakenet_mode = WAKENET_NO_DETECT,
                     .state = mn_state,
@@ -309,12 +310,17 @@ esp_err_t app_sr_set_language(sr_language_t new_lang)
     g_sr_data->cmd_num = 0;
 
     char *wn_name = esp_srmodel_filter(models, ESP_WN_PREFIX, (SR_LANG_EN == g_sr_data->lang ? "hiesp" : "hilexin"));
+    ESP_RETURN_ON_FALSE(wn_name != NULL, ESP_ERR_NOT_FOUND, TAG, "Failed to find wakenet model");
     g_sr_data->afe_handle->set_wakenet(g_sr_data->afe_data, wn_name);
     ESP_LOGI(TAG, "load wakenet:%s", wn_name);
 
     char *mn_name = esp_srmodel_filter(models, ESP_MN_PREFIX, ((SR_LANG_EN == g_sr_data->lang) ? ESP_MN_ENGLISH : ESP_MN_CHINESE));
+    ESP_RETURN_ON_FALSE(mn_name != NULL, ESP_ERR_NOT_FOUND, TAG, "Failed to find multinet model");
     esp_mn_iface_t *multinet = esp_mn_handle_from_name(mn_name);
-    model_iface_data_t *model_data = multinet->create(mn_name, 5760);
+    ESP_RETURN_ON_FALSE(multinet != NULL, ESP_ERR_NOT_FOUND, TAG, "Failed to get multinet interface for %s", mn_name);
+    ESP_LOGI(TAG, "Create multinet model: name=%s timeout_ms=%d", mn_name, MULTINET_CMD_TIMEOUT_MS);
+    model_iface_data_t *model_data = multinet->create(mn_name, MULTINET_CMD_TIMEOUT_MS);
+    ESP_RETURN_ON_FALSE(model_data != NULL, ESP_FAIL, TAG, "Failed to create multinet model: %s", mn_name);
     g_sr_data->multinet = multinet;
     g_sr_data->model_data = model_data;
     ESP_LOGI(TAG, "load multinet:%s,%d,%d", mn_name, sizeof(esp_mn_iface_t), sizeof(esp_mn_iface_t));
@@ -432,7 +438,7 @@ esp_err_t app_sr_stop(void)
     ESP_RETURN_ON_FALSE(NULL != g_sr_data, ESP_ERR_INVALID_STATE, TAG, "SR is not running");
 
     /**
-     * Waiting for all task stoped
+     * Waiting for all task stopped
      * TODO: A task creation failure cannot be handled correctly now
      * */
     xEventGroupSetBits(g_sr_data->event_group, NEED_DELETE);
@@ -492,7 +498,7 @@ esp_err_t app_sr_get_result(sr_result_t *result, TickType_t xTicksToWait)
 esp_err_t app_sr_add_cmd(const sr_cmd_t *cmd)
 {
     ESP_RETURN_ON_FALSE(NULL != g_sr_data, ESP_ERR_INVALID_STATE, TAG, "SR is not running");
-    ESP_RETURN_ON_FALSE(NULL != cmd, ESP_ERR_INVALID_ARG, TAG, "pointer of cmd is invaild");
+    ESP_RETURN_ON_FALSE(NULL != cmd, ESP_ERR_INVALID_ARG, TAG, "pointer of cmd is invalid");
     ESP_RETURN_ON_FALSE(cmd->lang == g_sr_data->lang, ESP_ERR_INVALID_ARG, TAG, "cmd lang error");
     ESP_RETURN_ON_FALSE(ESP_MN_MAX_PHRASE_NUM >= g_sr_data->cmd_num, ESP_ERR_INVALID_STATE, TAG, "cmd is full");
 
@@ -522,7 +528,7 @@ esp_err_t app_sr_add_cmd(const sr_cmd_t *cmd)
 esp_err_t app_sr_modify_cmd(uint32_t id, const sr_cmd_t *cmd)
 {
     ESP_RETURN_ON_FALSE(NULL != g_sr_data, ESP_ERR_INVALID_STATE, TAG, "SR is not running");
-    ESP_RETURN_ON_FALSE(NULL != cmd, ESP_ERR_INVALID_ARG, TAG, "pointer of cmd is invaild");
+    ESP_RETURN_ON_FALSE(NULL != cmd, ESP_ERR_INVALID_ARG, TAG, "pointer of cmd is invalid");
     ESP_RETURN_ON_FALSE(id < g_sr_data->cmd_num, ESP_ERR_INVALID_ARG, TAG, "cmd id out of range");
     ESP_RETURN_ON_FALSE(cmd->lang == g_sr_data->lang, ESP_ERR_INVALID_ARG, TAG, "cmd lang error");
 

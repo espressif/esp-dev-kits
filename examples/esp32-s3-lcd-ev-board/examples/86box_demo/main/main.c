@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2023 Espressif Systems (Shanghai) CO LTD
  *
- * SPDX-License-Identifier: CC0-1.0
+ * SPDX-License-Identifier: Apache-2.0
  */
 
 #include "freertos/FreeRTOS.h"
@@ -10,10 +10,13 @@
 #include "esp_check.h"
 #include "nvs_flash.h"
 #include "nvs.h"
+#include <assert.h>
 
+#include "esp_lv_adapter.h"
 #include "bsp_board_extra.h"
 #include "bsp/esp-bsp.h"
 #include "lv_example_pub.h"
+#include "lvgl_adapter_init.h"
 
 static char *TAG = "app_main";
 
@@ -36,14 +39,16 @@ void app_main(void)
     bsp_extra_codec_init();
     bsp_extra_player_init(BSP_SPIFFS_MOUNT_POINT"/mp3");
 
-    bsp_display_start();
+    lv_display_t *disp = lvgl_adapter_init(NULL);
+    assert(disp != NULL);
+    (void)disp;
 
     ESP_LOGI(TAG, "Display LVGL demo");
-    bsp_display_lock(0);
+    ESP_ERROR_CHECK(esp_lv_adapter_lock(-1));
     lv_style_pre_init();
     lv_create_home(&main_Layer);
     lv_create_clock(&clock_screen_layer, TIME_ENTER_CLOCK_2MIN);
-    bsp_display_unlock();
+    esp_lv_adapter_unlock();
 
 #if LOG_MEM_INFO
     static char buffer[128];    /* Make sure buffer is enough for `sprintf` */

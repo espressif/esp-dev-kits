@@ -1,6 +1,6 @@
 file(GLOB_RECURSE SRCS src/*.c)
 
-set(priv_requires "esp32_s3_lcd_ev_board")
+set(priv_requires "esp32_s3_lcd_ev_board_noglib")
 
 idf_component_register(
     SRCS ${SRCS}
