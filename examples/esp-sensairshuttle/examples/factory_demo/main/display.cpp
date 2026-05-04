@@ -6,6 +6,8 @@
 #include "lvgl.h"
 #include "esp_board_manager.h"
 #include "esp_board_manager_includes.h"
+#include "devices/dev_display_lcd/dev_display_lcd.h"
+#include "devices/dev_lcd_touch_i2c/dev_lcd_touch_i2c.h"
 
 #include "esp_lvgl_port.h"
 #include "esp_lvgl_port_disp.h"
