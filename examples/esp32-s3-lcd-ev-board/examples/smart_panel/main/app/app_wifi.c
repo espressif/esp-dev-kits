@@ -199,6 +199,7 @@ static void wifi_init_sta(void)
                     &instance_got_ip));
 
     wifi_config_t wifi_config;
+    memset(&wifi_config, 0, sizeof(wifi_config_t));
 
     sys_param_t *sys_param = settings_get_parameter();
     memcpy(wifi_config.sta.ssid, sys_param->ssid, sizeof(wifi_config.sta.ssid));
@@ -240,6 +241,7 @@ static void network_task(void *args)
                 app_weather_request(LOCATION_NUM_SHANGHAI);
                 app_weather_request(LOCATION_NUM_BEIJING);
                 app_weather_request(LOCATION_NUM_SHENZHEN);
+                app_weather_request(LOCATION_NUM_XIAN);
                 break;
 
             case NET_EVENT_POWERON_SCAN:

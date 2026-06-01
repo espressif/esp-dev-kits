@@ -63,7 +63,7 @@ void ui_clock_init(void *data)
 {
     (void)data;
 
-    app_weather_get_current_info(&weather_info, LOCATION_NUM_SHANGHAI);
+    app_weather_get_current_info(&weather_info, LOCATION_NUM_XIAN);
 
     /* Weather page */
     page_weather = lv_obj_create(lv_scr_act(), NULL);
@@ -196,7 +196,7 @@ void ui_clock_init(void *data)
     lv_label_set_recolor(label_location, true);
     lv_obj_set_style_local_text_font(label_location, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, &font_en_28);
     lv_obj_set_style_local_text_color(label_location, LV_LABEL_PART_MAIN, LV_STATE_DEFAULT, lv_theme_get_color_primary());
-    lv_label_set_text(label_location, "Shanghai, China" "#f6ae3d " LV_SYMBOL_EXTRA_MAP_MARKER_ALT "#");
+    lv_label_set_text(label_location, "Xi'an, China" "#f6ae3d " LV_SYMBOL_EXTRA_MAP_MARKER_ALT "#");
     lv_obj_align(label_location, label_date, LV_ALIGN_OUT_BOTTOM_LEFT, 0, 5);
 
     /* Set time zone and create a task to update time */
@@ -395,7 +395,8 @@ static void ui_clock_icon_update(void)
     if (icon_code != weather_info.icon_code) {
         icon_code = weather_info.icon_code;
 
-        sprintf(file_path, "S:/Icon/%s.bin", weather_info.icon_code);
+        /* Build filename from numeric icon code (use %03d for 3-digit codes) */
+        snprintf(file_path, sizeof(file_path), "S:/Icon/%03d.bin", (int)weather_info.icon_code);
 
         if (LV_FS_RES_OK == lv_fs_open(&file, file_path, LV_FS_MODE_RD)) {
             lv_fs_close(&file);
@@ -406,7 +407,9 @@ static void ui_clock_icon_update(void)
         ui_laod_resource(file_path, &data_icon_weather);
         lv_img_set_src(img_weather, data_icon_weather);
 
-        free(old_icon_ptr);
+        if (NULL != old_icon_ptr) {
+            free(old_icon_ptr);
+        }
     }
 }
 
@@ -415,7 +418,7 @@ void ui_clock_update(void)
     static char temp_text[8];
     static char humid_text[8];
 
-    app_weather_get_current_info(&weather_info, LOCATION_NUM_SHANGHAI);
+    app_weather_get_current_info(&weather_info, LOCATION_NUM_XIAN);
     // app_weather_get_air_info(&air_info);
 
     if (ui_state_dis == ui_clock_state) {
@@ -435,7 +438,7 @@ void ui_clock_update(void)
     // lv_label_set_text_static(label_air, air_info.level);
     // lv_obj_align(label_air, NULL, LV_ALIGN_CENTER, 80, 0);
 
-    // ui_clock_icon_update();
+    ui_clock_icon_update();
 }
 
 void ui_clock_update_date(void)
