@@ -74,7 +74,8 @@ ESP32P4_DOCS = ['*.rst',
                 'esp32-p4-function-ev-board/*.rst',
                 'esp32-p4-eye/*.rst',
                 'esp32-p4x-function-ev-board/*.rst',
-                'esp32-p4x-eye/*.rst'
+                'esp32-p4x-eye/*.rst',
+                'esp32-p4x-c5-function-ev-board/*.rst'
                 ]
 ESP32C5_DOCS = ['*.rst',
                 'index/esp32c5-index.inc',

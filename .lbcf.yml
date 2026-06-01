@@ -2709,3 +2709,54 @@ documents:
       scheduled_release_date:
       document_status: active
       document_classification: public
+########################################
+# 105 ESP32-P4X-C5-Function-EV-Board User Guide
+########################################
+    - document_name: ESP32-P4X-C5-Function-EV-Board User Guide
+      doc_id: 10789
+      translation_docid: 10787
+      chip_series: ESP32-P4
+      product_name:
+        - ESP32-P4X-C5-Function-EV-Board
+      product_name_old_website:
+        - ESP32-P4X-C5-Function-EV-Board
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2026-08-06
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32p4/esp32-p4x-c5-function-ev-board/user_guide.html
+      document_summary: This user guide will help you get started with ESP32-P4X-C5-Function-EV-Board and provide more in-depth information.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+
+########################################
+# 106 ESP32-P4X-C5-Function-EV-Board 用户指南
+########################################
+    - document_name: ESP32-P4X-C5-Function-EV-Board 用户指南
+      doc_id: 10787
+      translation_docid: 10789
+      chip_series: ESP32-P4
+      product_name:
+        - ESP32-P4X-C5-Function-EV-Board
+      product_name_old_website:
+        - ESP32-P4X-C5-Function-EV-Board
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2026-08-06
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32p4/esp32-p4x-c5-function-ev-board/user_guide.html
+      document_summary: 本指南将帮助您快速上手 ESP32-P4X-C5-Function-EV-Board，并提供该款开发板的详细信息。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
