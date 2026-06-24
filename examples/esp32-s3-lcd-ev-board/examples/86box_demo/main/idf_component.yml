@@ -5,5 +5,5 @@ dependencies:
     version: ">=5.5.0"
 
   espressif/esp32_s3_lcd_ev_board_noglib: "4.1.0"
-  espressif/esp_lvgl_adapter: "0.4.*"
+  espressif/esp_lvgl_adapter: "0.6.3"
   lvgl/lvgl: "==8.4.0"

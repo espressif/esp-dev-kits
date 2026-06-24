@@ -4,7 +4,7 @@ cmake_minimum_required(VERSION 3.5)
 
 include($ENV{IDF_PATH}/tools/cmake/project.cmake)
 
-
+idf_build_set_property(BSP_EXTRA_BOARD_COMPONENT "esp32_s3_lcd_ev_board_noglib")
 set(EXTRA_COMPONENT_DIRS
     ../../components
     )
