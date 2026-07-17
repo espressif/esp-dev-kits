@@ -474,6 +474,13 @@ void AppSettings::updateUiByNvsParam(void)
 
 esp_err_t AppSettings::initWifi()
 {
+    static bool s_wifi_initialized = false;
+
+    if (s_wifi_initialized) {
+        ESP_LOGI(TAG, "Wi-Fi already initialized, skipping");
+        return ESP_OK;
+    }
+
     s_wifi_event_group = xEventGroupCreate();
     xEventGroupClearBits(s_wifi_event_group, WIFI_EVENT_CONNECTED);
     xEventGroupClearBits(s_wifi_event_group, WIFI_EVENT_INIT_DONE);
@@ -484,8 +491,15 @@ esp_err_t AppSettings::initWifi()
 
     ESP_ERROR_CHECK(esp_netif_init());
     ESP_ERROR_CHECK(esp_event_loop_create_default());
-    esp_netif_t *sta_netif = esp_netif_create_default_wifi_sta();
+
+    /* Create WiFi STA netif manually without default event handlers to avoid
+     * duplicate WIFI_EVENT_STA_START handling with esp_hosted (which posts
+     * the event twice — once locally and once from the slave RPC callback). */
+    esp_netif_config_t netif_cfg = ESP_NETIF_DEFAULT_WIFI_STA();
+    esp_netif_t *sta_netif = esp_netif_new(&netif_cfg);
     assert(sta_netif);
+    ESP_ERROR_CHECK(esp_netif_attach_wifi_station(sta_netif));
+
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
     ESP_ERROR_CHECK(esp_wifi_init(&cfg));
 
@@ -498,6 +512,12 @@ esp_err_t AppSettings::initWifi()
 
     ESP_ERROR_CHECK(esp_wifi_set_mode(WIFI_MODE_STA));
     ESP_ERROR_CHECK(esp_wifi_start());
+
+    /* Manually start the netif once (instead of relying on the default
+     * WIFI_EVENT_STA_START handler which fires twice with esp_hosted). */
+    esp_netif_action_start(sta_netif, NULL, 0, NULL);
+
+    s_wifi_initialized = true;
 
     return ESP_OK;
 }
@@ -528,7 +548,6 @@ void AppSettings::scanWifiAndUpdateUi(void)
     uint16_t ap_count = 0;
     memset(ap_info, 0, sizeof(ap_info));
 
-    esp_wifi_start();
     esp_wifi_scan_start(NULL, true);
     ESP_ERROR_CHECK(esp_wifi_scan_get_ap_num(&ap_count));
     ESP_ERROR_CHECK(esp_wifi_scan_get_ap_records(&number, ap_info));
@@ -742,7 +761,6 @@ void AppSettings::wifiConnectTask(void *arg)
     memcpy(wifi_config.sta.ssid, st_wifi_ssid, sizeof(wifi_config.sta.ssid));
     memcpy(wifi_config.sta.password, st_wifi_password, sizeof(wifi_config.sta.password));
 
-    ESP_ERROR_CHECK(esp_wifi_start());
     ESP_ERROR_CHECK(esp_wifi_set_config(WIFI_IF_STA, &wifi_config) );
 
     ESP_LOGI(TAG, "SSID:%s, password:%s.", wifi_config.sta.ssid, wifi_config.sta.password);
