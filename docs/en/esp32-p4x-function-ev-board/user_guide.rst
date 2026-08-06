@@ -59,7 +59,7 @@ Description of Components
 
     ESP32-P4X-Function-EV-Board - back (click to enlarge)
 
-The key components of the board are described from front view to back view, starting from the J1, in a clockwise direction.
+The key components on the front and back of the board are described below, starting from J1 and proceeding clockwise.
 
 .. list-table::
    :widths: 10 20 70
@@ -79,7 +79,7 @@ The key components of the board are described from front view to back view, star
      - This module serves as the Wi-Fi and Bluetooth communication module for the board.
    * - 4
      - Microphone
-     - Onboard microphone connected to the interface of Audio Codec Chip.
+     - Onboard microphone connected to the Audio Codec Chip.
    * - 5
      - Reset Button
      - Resets the board.
@@ -120,7 +120,7 @@ The key components of the board are described from front view to back view, star
      - Description
    * - 15
      - USB Full-speed Port
-     - USB Type-C port that supports USB 2.0 Full-speed data rate. It can be used as the power supply interface for the development board and as a communication interface.
+     - USB Type-C port that supports USB 2.0 Full-speed data rate. It can be used to power the board and serve as a communication interface.
    * - 16
      - USB Serial/JTAG Port
      - USB Type-C port that supports USB 2.0 Full-speed data rate. It can be used to flash firmware to the ESP32-P4 chip, communicate with the chip via the USB protocol, and perform JTAG debugging.
@@ -155,11 +155,13 @@ The key components of the board are described from front view to back view, star
      - MIPI DSI Connector
      - The FPC connector 1.0K-GT-15PB is used for connecting displays. For details, please refer to 1.0K-GT-15PB Specification in Related Documents. FPC specifications: 1.0 mm pitch, 0.7 mm pin width, 0.3 mm thickness, 15 pins.
    * - 27
-     - SPI flash
+     - SPI flash [1]_
      - The 16 MB flash is connected to the chip via the SPI interface.
    * - 28
      - MicroSD Card Slot
      - The development board supports a MicroSD card in 4-bit mode and can store or play audio files from the MicroSD card.
+
+.. [1] By default, the onboard SPI flash connected to the ESP32-P4 chip operates at a maximum clock frequency of 80 MHz and does not support the auto suspend feature. If you have a requirement for a higher flash clock frequency of 120 MHz or if you need the flash auto suspend feature, please `contact us <https://www.espressif.com/en/contact-us/sales-questions>`_.
 
 .. note::
 
@@ -380,12 +382,12 @@ If the USB cable used for debugging cannot provide enough current, you can conne
 Header Block
 -------------
 
-The tables below provide the **Name** and **Function** of the pin header J1 of the board. The pin header names are shown in Figure :ref:`user-guide-esp32-p4x-function-ev-board-front`. The numbering is the same as in the schematic of `ESP32-P4X-Function-EV-Board Reference Design`_.
+The table below provides the **Name** and **Function** of the pin header J1 of the board. The pin header names are shown in Figure :ref:`user-guide-esp32-p4x-function-ev-board-front`. The numbering is the same as in the schematic of `ESP32-P4X-Function-EV-Board Reference Design`_.
 
 J1
 ^^^
 ===  =======  ==========  ==========================================
-No.  Name     Type [1]_   Function
+No.  Name     Type [2]_   Function
 ===  =======  ==========  ==========================================
 1    3V3      P           3.3 V power supply
 2    5V       P           5 V power supply
@@ -408,8 +410,8 @@ No.  Name     Type [1]_   Function
 19   3        I/O/T       GPIO3
 20   GND      GND         Ground
 21   2        I/O/T       GPIO2
-22   NC(1)    I/O/T       GPIO1 [2]_
-23   NC(0)    I/O/T       GPIO0 [2]_
+22   NC(1)    I/O/T       GPIO1 [3]_
+23   NC(0)    I/O/T       GPIO0 [3]_
 24   36       I/O/T       GPIO36
 25   GND      GND         Ground
 26   32       I/O/T       GPIO32
@@ -426,12 +428,12 @@ No.  Name     Type [1]_   Function
 37   47       I/O/T       GPIO47
 38   27       I/O/T       GPIO27
 39   GND      GND         Ground
-40   NC(45)   I/O/T       GPIO45 [3]_
+40   NC(45)   I/O/T       GPIO45 [4]_
 ===  =======  ==========  ==========================================
 
-.. [1] P: Power supply; I: Input; O: Output; T: High impedance.
-.. [2] GPIO0 and GPIO1 can be enabled by disabling the XTAL_32K function, which can be achieved by moving R61 and R59 to R199 and R197, respectively.
-.. [3] GPIO45 can be enabled by disabling the SD_PWRn function, which can be achieved by moving R231 to R100.
+.. [2] P: Power supply; I: Input; O: Output; T: High impedance.
+.. [3] GPIO0 and GPIO1 can be enabled by disabling the XTAL_32K function, which can be achieved by moving R61 and R59 to R199 and R197, respectively.
+.. [4] GPIO45 can be enabled by disabling the SD_PWRn function, which can be achieved by moving R231 to R100.
 
 Hardware Revision Details
 =========================
@@ -456,6 +458,8 @@ Related Documents
 * `LCD Adapter Board PCB Layout`_ (PDF)
 * `Camera Adapter Board Schematic`_ (PDF)
 * `Camera Adapter Board PCB Layout`_ (PDF)
+* `LCD Adapter Board Reference Design`_ (ZIP)
+* `Camera Adapter Board Reference Design`_ (ZIP)
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
 
@@ -471,9 +475,10 @@ For further design documentation for the board, please contact us at `sales@espr
 .. _Camera Adapter Board Schematic: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-camera-subboard-schematics.pdf
 .. _Camera Adapter Board PCB Layout: https://dl.espressif.com/dl/schematics/esp32-p4-function-ev-board-camera-subboard-pcb-layout.pdf
 .. _Chip Revision Identification: https://docs.espressif.com/projects/esp-chip-errata/en/latest/esp32p4/01-chip-identification/index.html#
+.. _LCD Adapter Board Reference Design: https://dl.espressif.com/schematics/LCD Adapter Board Reference Design.zip
+.. _Camera Adapter Board Reference Design: https://dl.espressif.com/schematics/Camera Adapter Board Reference Design.zip
 
 Disclaimer and Copyright Notice
 ===============================
 
 See :doc:`Disclaimer and Copyright Notice <../disclaimer-and-copyright>`.
-
