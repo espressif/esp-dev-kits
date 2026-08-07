@@ -6,7 +6,7 @@ ESP-Prog-2
 
 This user guide helps you get started with ESP-Prog-2, and provides a detailed introduction to its features and capabilities.
 
-ESP-Prog-2 is a development and debugging tool released by Espressif. It supports function such as automatic firmware downloading, serial communication, and JTAG online debugging. Automatic downloading and serial communication are compatible with ESP8266, ESP32, ESP32-S2, ESP32-S3, and ESP32-C3, while JTAG online debugging is supported on ESP32, ESP32-S2, ESP32-S3, and ESP32-C3.
+ESP-Prog-2 is a development and debugging tool released by Espressif. It supports functions such as automatic firmware downloading, serial communication, and JTAG online debugging. Automatic downloading and serial communication are compatible with all Espressif chips. JTAG online debugging is supported on all ESP32-series chips that provide a JTAG interface.
 
 ESP-Prog-2 is simple in design and easy to use—only one USB cable is needed to connect it to a computer. The computer automatically recognizes two ports, one for downloading and the other for JTAG debugging, based on the port numbers.
 
