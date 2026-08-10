@@ -7,7 +7,7 @@ ESP-Prog
 
 This user guide will help you get started with ESP-Prog and will also provide more in-depth information.
 
-ESP-Prog is one of Espressif’s development and debugging tools, with functions including automatic firmware downloading, serial communication, and JTAG debugging. ESP-Prog's automatic firmware downloading and serial communication functions are supported on ESP8266, ESP32, ESP32-S2, ESP32-S3, and ESP32-C3, while the JTAG debugging is supported only on ESP32, ESP32-S2, ESP32-S3, and ESP32-C3.
+ESP-Prog is one of Espressif’s development and debugging tools, with functions including automatic firmware downloading, serial communication, and JTAG debugging. ESP-Prog's automatic firmware downloading and serial communication functions are supported on all Espressif chips, while JTAG debugging is supported on all chips that provide JTAG interface.
 
 ESP-Prog can be easily connected to a PC with the use of only one USB cable. Then, the PC can identify the board's Program and JTAG interfaces (functions) by their port numbers.
 
