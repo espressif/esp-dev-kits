@@ -135,7 +135,7 @@ The key components on the front and back of the board are described below, start
      - Power On/Off Switch. Toggling toward the ON sign powers the board on (5 V), toggling away from the ON sign powers the board off.
    * - 20
      - Switch
-     - TPS2051C is a USB power switch that provides a 500 mA output current limit.
+     - TPS2051C is a USB power switch. When the USB 2.0 Type-A port is used for ESP32-P4 as a USB host to connect external USB devices, power must be supplied to those devices. TPS2051C limits the external supply current to within 500 mA, complying with the USB specification and preventing external devices from drawing excessive current. It also protects the development board from damage caused by short circuits or overloads on external devices.
    * - 21
      - MIPI CSI Connector
      - The FPC connector 1.0K-GT-15PB is used for connecting external camera modules to enable image transmission. For details, please refer to 1.0K-GT-15PB specification in Related Documents. FPC specifications: 1.0 mm pitch, 0.7 mm pin width, 0.3 mm thickness, 15 pins.
