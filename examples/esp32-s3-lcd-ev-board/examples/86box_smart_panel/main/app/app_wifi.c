@@ -363,7 +363,7 @@ static void network_task(void *args)
 
 bool app_wifi_lock(uint32_t timeout_ms)
 {
-    assert(scan_info_result.wifi_mux && "bsp_display_start must be called first");
+    assert(scan_info_result.wifi_mux && "Display init must be called first");
 
     const TickType_t timeout_ticks = (timeout_ms == 0) ? portMAX_DELAY : pdMS_TO_TICKS(timeout_ms);
     return xSemaphoreTakeRecursive(scan_info_result.wifi_mux, timeout_ticks) == pdTRUE;
@@ -371,7 +371,7 @@ bool app_wifi_lock(uint32_t timeout_ms)
 
 void app_wifi_unlock(void)
 {
-    assert(scan_info_result.wifi_mux && "bsp_display_start must be called first");
+    assert(scan_info_result.wifi_mux && "Display init must be called first");
     xSemaphoreGiveRecursive(scan_info_result.wifi_mux);
 }
 

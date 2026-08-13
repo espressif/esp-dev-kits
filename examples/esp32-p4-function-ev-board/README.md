@@ -24,3 +24,4 @@ Experience more examples instantly with the ESP-LaunchPad.
 
 **Note:**
 * Firmware files with the `p4x_` prefix are for ESP32-P4X boards. Firmware files with the `p4_` prefix are for the original ESP32-P4 boards.
+* The recommended IDF version for compiling these examples is **ESP-IDF release/v5.5**. These examples will **not** be updated to support IDF v6.0 or later. If you need to use them with IDF v6.0+, please refer to the components and examples provided in [esp-iot-solution](https://github.com/espressif/esp-iot-solution).

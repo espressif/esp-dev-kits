@@ -1,0 +1,10 @@
+menu "LVGL Demos Example"
+
+    config EXAMPLE_LVGL_DEMOS_PARTIAL_MODE
+        bool "Use adapter partial mode"
+        default y
+        help
+            Enable esp_lvgl_adapter RGB partial tearing mode for this example.
+            This mode is intended to be the default display configuration.
+
+endmenu

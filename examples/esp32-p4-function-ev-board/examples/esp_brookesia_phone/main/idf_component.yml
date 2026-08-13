@@ -16,5 +16,5 @@ dependencies:
     public: true
 
   espressif/esp_lvgl_adapter:
-    version: "0.3.*"
+    version: "0.5.*"
     public: true
