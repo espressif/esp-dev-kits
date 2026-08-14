@@ -6,7 +6,7 @@ ESP32-S31-Korvo-1 V1.1
 
 本指南将帮助您快速上手 ESP32-S31-Korvo-1 V1.1，并提供该款开发板的详细信息。
 
-ESP32-S31-Korvo-1 V1.1 是一款面向智能音频与人机交互 (HMI) 应用的多媒体开发板，搭载 ESP32-S31-WROOM-3 模组，配备双麦克风阵列、扬声器输出和 microSD 卡槽，支持语音识别与语音唤醒，并可连接 4.3 英寸 LCD 子板和 DVP 摄像头。
+ESP32-S31-Korvo-1 V1.1 是一款面向智能音频与人机交互 (HMI) 应用的多媒体开发板，搭载 ESP32-S31-WROOM-3 模组，配备双麦克风阵列、扬声器输出、microSD 卡槽和板载 DVP 摄像头，支持语音识别与语音唤醒，并配套 4.3 英寸 LCD 子板 (ESP32-S3-LCD-EV-Board-SUB3)。
 
 
 .. figure:: ../../_static/esp32-s31-korvo-1/esp32-s31-korvo-1-isometric.png
@@ -16,6 +16,9 @@ ESP32-S31-Korvo-1 V1.1 是一款面向智能音频与人机交互 (HMI) 应用�
     :figclass: align-center
 
     ESP32-S31-Korvo-1 V1.1（板载 ESP32-S31-WROOM-3 模组）
+
+
+ESP32-S31-Korvo-1 V1.1 主板可与 LCD 子板 ESP32-S3-LCD-EV-Board-SUB3 搭配使用。本文档主要介绍 ESP32-S31-Korvo-1 V1.1 主板，更多关于 LCD 子板的信息，请参阅 `ESP32-S3-LCD-EV-Board 用户指南 <https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html>`__。
 
 
 本指南包括如下内容：
@@ -106,7 +109,7 @@ ESP32-S31-Korvo-1 V1.1 是一款面向智能音频与人机交互 (HMI) 应用�
      - 该输出端口用于连接左声道扬声器。最高输出功率可驱动 4 Ω、3 W 扬声器，引脚间距为 2.00 mm (0.08”)。
    * - 18
      - RGB LED
-     - 可寻址 RGB 发光二极管，由 GPIO8 驱动。
+     - 可寻址 RGB 发光二极管，由 GPIO37 驱动。
 
 .. list-table::
    :widths: 10 20 70
@@ -132,30 +135,19 @@ ESP32-S31-Korvo-1 V1.1 是一款面向智能音频与人机交互 (HMI) 应用�
      - 本开发板支持 4-bit 模式的 microSD 卡，可以存储或播放 microSD 卡中的音频文件。支持 SDIO 3.0 协议。
    * - 24
      - 3.3 V to 2.8 V LDO（3.3 V 转 2.8 V LDO）
-     - 电源转换器，输入 3.3 V，输出 2.8 V，为外接摄像头模组供电。
+     - 电源转换器，输入 3.3 V，输出 2.8 V，为摄像头模组供电。
    * - 25
      - 3.3 V to 1.5 V LDO（3.3 V 转 1.5 V LDO）
-     - 电源转换器，输入 3.3 V，输出 1.5 V，为外接摄像头模组供电。
+     - 电源转换器，输入 3.3 V，输出 1.5 V，为摄像头模组供电。
    * - 26
      - Camera Connector（摄像头连接器）
-     - 通过连接器外接摄像头模组至开发板，实现图像传输。
+     - 板载摄像头模组连接器，用于图像传输。
    * - 27
      - Reset Button（Reset 键）
      - 复位按键。
    * - 28
      - Boot Button（Boot 键）
      - 下载按键。按住 Boot 键的同时按一下 Reset 键进入“固件下载”模式，通过串口下载固件。
-
-
-开发板配件
--------------------
-
-.. _esp32-s31-korvo-1-accessories:
-
-ESP32-S31-Korvo-1 V1.1 的包装内可能附带下列可选配件；主板与配件亦支持单独选购，包括：
-
-- LCD 子板：ESP32-S3-LCD-EV-Board-SUB3
-- OV3660 摄像头模组
 
 
 开始开发应用
@@ -167,6 +159,7 @@ ESP32-S31-Korvo-1 V1.1 的包装内可能附带下列可选配件；主板与配
 ^^^^^^^^
 
 - ESP32-S31-Korvo-1 V1.1
+- LCD 子板：ESP32-S3-LCD-EV-Board-SUB3
 - 一个或两个扬声器
 - 两条 USB 2.0 数据线（标准 A 型转 Type-C 型）
 - 电脑（Windows、Linux 或 macOS）
@@ -185,10 +178,11 @@ ESP32-S31-Korvo-1 V1.1 的包装内可能附带下列可选配件；主板与配
 硬件设置
 ^^^^^^^^
 
-1. 连接扬声器至 **扬声器输出** 端口。
-2. 插入 USB 数据线，分别连接 PC 与开发板的两个 USB 端口。
-3. 打开 **电源开关**。
-4. 此时，红色电源指示灯应亮起。
+1. 将 LCD 子板连接至 **LCD 子板连接器**。
+2. 连接扬声器至 **扬声器输出** 端口。
+3. 插入 USB 数据线，分别连接 PC 与开发板的两个 USB 端口。
+4. 打开 **电源开关**。
+5. 此时，红色电源指示灯应亮起。
 
 
 .. _esp32-s31-korvo-1-software-setup:
@@ -197,6 +191,8 @@ ESP32-S31-Korvo-1 V1.1 的包装内可能附带下列可选配件；主板与配
 ^^^^^^^^
 
 请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32s31/get-started/index.html>`__ 小节查看如何快速设置开发环境，将应用程序烧录至您的开发板。
+
+如需验证板载外设，也可烧录 :project:`出厂示例 <examples/esp32-s31-korvo/examples/factory_demo>`。
 
 .. 注解::
 
@@ -222,6 +218,12 @@ ESP32-S31-Korvo-1 V1.1 的包装内可能附带下列可选配件；主板与配
 
 内含组件和包装
 ---------------
+
+包装内含：
+
+- ESP32-S31-Korvo-1 V1.1 主板（含已安装的摄像头模组）
+- LCD 子板：ESP32-S3-LCD-EV-Board-SUB3
+
 
 零售订单
 ^^^^^^^^
@@ -329,699 +331,244 @@ microSD 卡与 SPI NAND flash 功能复用 ESP32-S31-WROOM-3 模组的 GPIO20 ~ 
 管脚分配列表
 ------------
 
-下表为 ESP32-S31-WROOM-3 模组的管脚分配列表（用于控制开发板的特定组件或功能）。
+下表按外设分组，列出 ESP32-S31-WROOM-3 模组连接至板载外设的信号及其对应 GPIO。
 
-.. container:: wide-table-scroll
+.. list-table:: ESP32-S31-WROOM-3 管脚分配
+   :header-rows: 1
+   :widths: 22 20 16 42
 
-   .. list-table:: ESP32-S31-WROOM-3 管脚分配
-      :header-rows: 1
-      :widths: 9 9 9 9 9 9 9 9 9 9 9
-
-      * - 管脚 [#one]_
-        - 名称
-        - SDMMC
-        - SPI NAND
-        - I2S
-        - I2C
-        - RGB LCD
-        - BOOTMODE
-        - UART0
-        - Other
-        - DVP camera
-
-      * - 6
-        - GPIO2
-        - 
-        - 
-        - I2S_MCLK
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 7
-        - GPIO3
-        - 
-        - 
-        - I2S_SCLK
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 8
-        - GPIO0
-        - 
-        - 
-        - 
-        - I2C_SDA
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 9
-        - GPIO1
-        - 
-        - 
-        - 
-        - I2C_SCL
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 10
-        - GPIO4
-        - 
-        - 
-        - I2S_LRCLK
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 11
-        - GPIO5
-        - 
-        - 
-        - I2S_DSIN
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 12
-        - GPIO6
-        - 
-        - 
-        - I2S_SDOUT
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 13
-        - GPIO7
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - PA_CTRL
-        - 
-
-      * - 14
-        - GPIO8
-        - 
-        - 
-        - 
-        - 
-        - DB0(B3)
-        - 
-        - 
-        - 
-        - 
-
-      * - 15
-        - GPIO9
-        - 
-        - 
-        - 
-        - 
-        - DB1(B4)
-        - 
-        - 
-        - 
-        - 
-
-      * - 16
-        - GPIO10
-        - 
-        - 
-        - 
-        - 
-        - DB2(B5)
-        - 
-        - 
-        - 
-        - 
-
-      * - 17
-        - GPIO11
-        - 
-        - 
-        - 
-        - 
-        - DB3(B6)
-        - 
-        - 
-        - 
-        - 
-
-      * - 18
-        - GPIO12
-        - 
-        - 
-        - 
-        - 
-        - DB4(B7)
-        - 
-        - 
-        - 
-        - 
-
-      * - 19
-        - GPIO13
-        - 
-        - 
-        - 
-        - 
-        - DB5(G2)
-        - 
-        - 
-        - 
-        - 
-
-      * - 20
-        - GPIO14
-        - 
-        - 
-        - 
-        - 
-        - DB6(G3)
-        - 
-        - 
-        - 
-        - 
-
-      * - 21
-        - GPIO15
-        - 
-        - 
-        - 
-        - 
-        - DB7(G4)
-        - 
-        - 
-        - 
-        - 
-
-      * - 22
-        - GPIO16
-        - 
-        - 
-        - 
-        - 
-        - DB8(G5)
-        - 
-        - 
-        - 
-        - 
-
-      * - 23
-        - GPIO17
-        - 
-        - 
-        - 
-        - 
-        - DB9(G6)
-        - 
-        - 
-        - 
-        - 
-
-      * - 24
-        - GPIO18
-        - 
-        - 
-        - 
-        - 
-        - DB10(G7)
-        - 
-        - 
-        - 
-        - 
-
-      * - 25
-        - GPIO19
-        - 
-        - 
-        - 
-        - 
-        - DB11(R3)
-        - 
-        - 
-        - 
-        - 
-
-      * - 27
-        - GPIO20
-        - SDIO_DATA0
-        - SPI2_CLK(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 28
-        - GPIO21
-        - SDIO_DATA1
-        - SPI2_D(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 29
-        - GPIO22
-        - SDIO_DATA2
-        - SPI2_Q(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 30
-        - GPIO23
-        - SDIO_DATA3
-        - SPI2_CS(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 31
-        - GPIO24
-        - SDIO_CLK
-        - SPI2_HOLD(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 32
-        - GPIO25
-        - SDIO_CMD
-        - SPI2_WP(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 40
-        - USB_DP
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - USB2.0_DP
-        - 
-
-      * - 41
-        - USB_DM
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - USB2.0_DM
-        - 
-
-      * - 42
-        - GPIO33
-        - 
-        - 
-        - 
-        - 
-        - DB12(R4)
-        - 
-        - 
-        - 
-        - 
-
-      * - 43
-        - GPIO34
-        - 
-        - 
-        - 
-        - 
-        - DB13(R5)
-        - 
-        - 
-        - 
-        - 
-
-      * - 44
-        - GPIO35
-        - 
-        - 
-        - 
-        - 
-        - DB14(R6)
-        - 
-        - 
-        - 
-        - 
-
-      * - 45
-        - GPIO36
-        - 
-        - 
-        - 
-        - 
-        - DB15(R7)
-        - 
-        - 
-        - 
-        - 
-
-      * - 46
-        - GPIO37
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - WS2812_CTRL
-        - 
-
-      * - 49
-        - GPIO38
-        - 
-        - 
-        - 
-        - 
-        - LCD_CS
-        - Boot Mode 0
-        - 
-        - 
-        - GM_FK
-
-      * - 50
-        - GPIO39
-        - 
-        - 
-        - 
-        - 
-        - 
-        - Boot Mode 1
-        - 
-        - SD_CTRL
-        - 
-
-      * - 51
-        - GPIO40
-        - 
-        - 
-        - 
-        - 
-        - LCD_PCLK
-        - Boot Mode 2
-        - 
-        - 
-        - 
-
-      * - 52
-        - GPIO42
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - ADC BUTTON
-        - 
-
-      * - 53
-        - GPIO43
-        - 
-        - 
-        - 
-        - 
-        - LCD_H_EN
-        - 
-        - 
-        - 
-        - 
-
-      * - 54
-        - GPIO44
-        - 
-        - 
-        - 
-        - 
-        - LCD_H_SYNC
-        - 
-        - 
-        - 
-        - 
-
-      * - 55
-        - GPIO45
-        - 
-        - 
-        - 
-        - 
-        - LCD_V_SYNC
-        - 
-        - 
-        - 
-        - 
-
-      * - 56
-        - GPIO46
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D0
-
-      * - 57
-        - GPIO47
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D1
-
-      * - 58
-        - GPIO48
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D2
-
-      * - 59
-        - GPIO49
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D3
-
-      * - 60
-        - GPIO50
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D4
-
-      * - 61
-        - GPIO51
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D5
-
-      * - 62
-        - GPIO52
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D6
-
-      * - 63
-        - GPIO53
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D7
-
-      * - 64
-        - GPIO54
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_PCLK
-
-      * - 65
-        - GPIO55
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_XCLK
-
-      * - 66
-        - GPIO56
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_V_SYNC
-
-      * - 67
-        - GPIO57
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_H_SYNC
-
-      * - 68
-        - GPIO58
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - U0TXD
-        - 
-        - 
-
-      * - 69
-        - GPIO59
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - U0RXD
-        - 
-        - 
-
-      * - 70
-        - GPIO60
-        - 
-        - 
-        - 
-        - 
-        - LCD_MOSI
-        - Boot Mode 3
-        - 
-        - 
-        - 
-
-      * - 71
-        - GPIO61
-        - 
-        - 
-        - 
-        - 
-        - LCD_SCK
-        - Boot Mode 4
-        - 
-        - 
-        - 
-
-.. [#one] 管脚 - ESP32-S31-WROOM-3 模组管脚号，不含 GND 和供电管脚。
+   * - 外设
+     - 信号
+     - GPIO
+     - 说明
+   * - 音频 I2S
+     - I2S_MCLK
+     - GPIO2
+     - 主时钟
+   * -
+     - I2S_SCLK
+     - GPIO3
+     - 串行时钟
+   * -
+     - I2S_LRCLK
+     - GPIO4
+     - 帧时钟（左右声道选择）
+   * -
+     - I2S_SDOUT
+     - GPIO5
+     - 音频输出数据线（DAC 播放）
+   * -
+     - I2S_DSIN
+     - GPIO6
+     - 音频输入数据线（ADC 录音）
+   * - 音频 I2C
+     - I2C_SDA
+     - GPIO0
+     - ES8389 的 I2C 数据线
+   * -
+     - I2C_SCL
+     - GPIO1
+     - ES8389 的 I2C 时钟线
+   * - 系统
+     - PA_CTRL
+     - GPIO7
+     - 左右声道功放使能控制
+   * -
+     - WS2812_CTRL
+     - GPIO37
+     - 可寻址 RGB LED 控制
+   * -
+     - ADC BUTTON
+     - GPIO42
+     - 功能按键（PLAY/SET/VOL-/VOL+）电阻分压 ADC 检测
+   * - UART0
+     - U0TXD
+     - GPIO58
+     - UART0 发送（USB 转 UART 桥接器）
+   * -
+     - U0RXD
+     - GPIO59
+     - UART0 接收（USB 转 UART 桥接器）
+   * - microSD / SPI NAND
+     - SDIO_DATA0
+     - GPIO20
+     - 默认 microSD；切换为 SPI NAND 时为 SPI2_CLK
+   * -
+     - SDIO_DATA1
+     - GPIO21
+     - 默认 microSD；切换为 SPI NAND 时为 SPI2_D
+   * -
+     - SDIO_DATA2
+     - GPIO22
+     - 默认 microSD；切换为 SPI NAND 时为 SPI2_Q
+   * -
+     - SDIO_DATA3
+     - GPIO23
+     - 默认 microSD；切换为 SPI NAND 时为 SPI2_CS
+   * -
+     - SDIO_CLK
+     - GPIO24
+     - 默认 microSD；切换为 SPI NAND 时为 SPI2_HOLD
+   * -
+     - SDIO_CMD
+     - GPIO25
+     - 默认 microSD；切换为 SPI NAND 时为 SPI2_WP
+   * -
+     - SD_CTRL
+     - GPIO39
+     - microSD 电源/开关控制；同时为 Boot Mode 1
+   * - USB 2.0
+     - USB2.0_DP
+     - USB_DP
+     - USB 2.0 D+
+   * -
+     - USB2.0_DM
+     - USB_DM
+     - USB 2.0 D-
+   * - RGB LCD
+     - DB0 (B3)
+     - GPIO8
+     - LCD 数据位 0
+   * -
+     - DB1 (B4)
+     - GPIO9
+     - LCD 数据位 1
+   * -
+     - DB2 (B5)
+     - GPIO10
+     - LCD 数据位 2
+   * -
+     - DB3 (B6)
+     - GPIO11
+     - LCD 数据位 3
+   * -
+     - DB4 (B7)
+     - GPIO12
+     - LCD 数据位 4
+   * -
+     - DB5 (G2)
+     - GPIO13
+     - LCD 数据位 5
+   * -
+     - DB6 (G3)
+     - GPIO14
+     - LCD 数据位 6
+   * -
+     - DB7 (G4)
+     - GPIO15
+     - LCD 数据位 7
+   * -
+     - DB8 (G5)
+     - GPIO16
+     - LCD 数据位 8
+   * -
+     - DB9 (G6)
+     - GPIO17
+     - LCD 数据位 9
+   * -
+     - DB10 (G7)
+     - GPIO18
+     - LCD 数据位 10
+   * -
+     - DB11 (R3)
+     - GPIO19
+     - LCD 数据位 11
+   * -
+     - DB12 (R4)
+     - GPIO33
+     - LCD 数据位 12
+   * -
+     - DB13 (R5)
+     - GPIO34
+     - LCD 数据位 13
+   * -
+     - DB14 (R6)
+     - GPIO35
+     - LCD 数据位 14
+   * -
+     - DB15 (R7)
+     - GPIO36
+     - LCD 数据位 15
+   * -
+     - LCD_CS
+     - GPIO38
+     - LCD 片选；同时为 Boot Mode 0 和 GM_FK
+   * -
+     - LCD_PCLK
+     - GPIO40
+     - LCD 像素时钟；同时为 Boot Mode 2
+   * -
+     - LCD_H_EN
+     - GPIO43
+     - LCD 数据使能
+   * -
+     - LCD_H_SYNC
+     - GPIO44
+     - LCD 行同步
+   * -
+     - LCD_V_SYNC
+     - GPIO45
+     - LCD 场同步
+   * -
+     - LCD_MOSI
+     - GPIO60
+     - LCD SPI MOSI；同时为 Boot Mode 3
+   * -
+     - LCD_SCK
+     - GPIO61
+     - LCD SPI 时钟；同时为 Boot Mode 4
+   * - DVP 摄像头
+     - CAM_D0
+     - GPIO46
+     - 摄像头数据位 0
+   * -
+     - CAM_D1
+     - GPIO47
+     - 摄像头数据位 1
+   * -
+     - CAM_D2
+     - GPIO48
+     - 摄像头数据位 2
+   * -
+     - CAM_D3
+     - GPIO49
+     - 摄像头数据位 3
+   * -
+     - CAM_D4
+     - GPIO50
+     - 摄像头数据位 4
+   * -
+     - CAM_D5
+     - GPIO51
+     - 摄像头数据位 5
+   * -
+     - CAM_D6
+     - GPIO52
+     - 摄像头数据位 6
+   * -
+     - CAM_D7
+     - GPIO53
+     - 摄像头数据位 7
+   * -
+     - CAM_PCLK
+     - GPIO54
+     - 摄像头像素时钟
+   * -
+     - CAM_XCLK
+     - GPIO55
+     - 摄像头主时钟
+   * -
+     - CAM_V_SYNC
+     - GPIO56
+     - 摄像头场同步
+   * -
+     - CAM_H_SYNC
+     - GPIO57
+     - 摄像头行同步
+   * -
+     - GM_FK
+     - GPIO38
+     - 摄像头 GM_FK；与 LCD_CS、Boot Mode 0 共用
 
 
 硬件设置选项
@@ -1033,7 +580,7 @@ microSD 卡与 SPI NAND flash 功能复用 ESP32-S31-WROOM-3 模组的 GPIO20 ~ 
 可以通过两种方式使 ESP 开发板进入下载模式：
 
 - 手动按下 Boot 和 RST 键，然后先松开 RST，再松开 Boot 键。
-- 由软件自动执行下载。软件利用串口的 DTR 和 RTS 信号来控制 ESP 开发板的 EN、IO0 管脚的状态。详情请参见 `ESP32-S31-Korvo-1 V1.1 原理图`_ (PDF)。
+- 由软件自动执行下载。软件利用串口的 DTR 和 RTS 信号来控制 ESP 开发板的 EN、GPIO61 管脚的状态。详情请参见 `ESP32-S31-Korvo-1 V1.1 原理图`_ (PDF)。
 
 
 硬件版本
@@ -1063,6 +610,7 @@ microSD 卡与 SPI NAND flash 功能复用 ESP32-S31-WROOM-3 模组的 GPIO20 ~ 
 - `ESP32-S31-Korvo-1 V1.1 尺寸图`_ (PDF)
 - `ESP32-S31-Korvo-1 V1.1 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
 - `ESP32-S31-Korvo-1 V1.1 3D 打印外壳文件`_ (STL & STEP) - 可下载 3D 打印外壳文件
+- `ESP32-S31-Korvo-1 参考设计`_ (ZIP)
 
 
 .. _ESP32-S31 技术规格书: https://documentation.espressif.com/esp32-s31_datasheet_cn.pdf
@@ -1072,6 +620,7 @@ microSD 卡与 SPI NAND flash 功能复用 ESP32-S31-WROOM-3 模组的 GPIO20 ~ 
 .. _ESP32-S31-Korvo-1 V1.1 尺寸图: https://dl.espressif.com/schematics/esp32-s31-korvo-1-dimensions.pdf
 .. _ESP32-S31-Korvo-1 V1.1 尺寸图源文件: https://dl.espressif.com/schematics/esp32-s31-korvo-1-dimensions.dxf
 .. _ESP32-S31-Korvo-1 V1.1 3D 打印外壳文件: https://github.com/espressif/esp-dev-kits/tree/master/examples/esp32-s31-korvo
+.. _ESP32-S31-Korvo-1 参考设计: https://documentation.espressif.com/ESP32-S31-Korvo-1_Reference_Design_CN.zip
 
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。

@@ -323,6 +323,7 @@ J2
 - `ESP32-S31-Function-CoreBoard-1 PCB 布局图`_ (PDF)
 - `ESP32-S31-Function-CoreBoard-1 尺寸图`_ (PDF)
 - `ESP32-S31-Function-CoreBoard-1 尺寸图源文件`_ (DXF) - 可使用 `Autodesk Viewer <https://viewer.autodesk.com/>`_ 查看
+- `ESP32-S31-Function-CoreBoard-1 参考设计`_ (ZIP)
 
 
 .. _ESP32-S31 技术规格书: https://documentation.espressif.com/esp32-s31_datasheet_cn.pdf
@@ -331,6 +332,7 @@ J2
 .. _ESP32-S31-Function-CoreBoard-1 PCB 布局图: https://dl.espressif.com/schematics/esp32-s31-function-coreboard-1-pcb-layout.pdf
 .. _ESP32-S31-Function-CoreBoard-1 尺寸图: https://dl.espressif.com/schematics/esp32-s31-function-coreboard-1-dimensions.pdf
 .. _ESP32-S31-Function-CoreBoard-1 尺寸图源文件: https://dl.espressif.com/schematics/esp32-s31-function-coreboard-1-dimensions.dxf
+.. _ESP32-S31-Function-CoreBoard-1 参考设计: https://documentation.espressif.com/ESP32-S31-Function-CoreBoard-1_Reference_Design_CN.zip
 
 
 有关本开发板的更多设计文档，请联系我们的商务部门 `sales@espressif.com <sales@espressif.com>`_。

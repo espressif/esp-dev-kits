@@ -6,7 +6,7 @@ ESP32-S31-Korvo-1 V1.1
 
 This user guide will help you get started with ESP32-S31-Korvo-1 V1.1 and provides detailed information about this development board.
 
-The ESP32-S31-Korvo-1 V1.1 is a multimedia development board based on the ESP32-S31-WROOM-3 module for smart audio and HMI applications. It features a dual-microphone array, speaker output, and a microSD card slot; supports speech recognition and voice wake-up; and can connect to a 4.3-inch LCD subboard and DVP camera.
+The ESP32-S31-Korvo-1 V1.1 is a multimedia development board based on the ESP32-S31-WROOM-3 module for smart audio and HMI applications. It features a dual-microphone array, speaker output, a microSD card slot, and an onboard DVP camera; supports speech recognition and voice wake-up; and comes with a 4.3-inch LCD subboard (ESP32-S3-LCD-EV-Board-SUB3).
 
 
 .. figure:: ../../_static/esp32-s31-korvo-1/esp32-s31-korvo-1-isometric.png
@@ -16,6 +16,9 @@ The ESP32-S31-Korvo-1 V1.1 is a multimedia development board based on the ESP32-
     :figclass: align-center
 
     ESP32-S31-Korvo-1 V1.1 (with ESP32-S31-WROOM-3 module on board)
+
+
+The ESP32-S31-Korvo-1 V1.1 main board can work with the LCD subboard ESP32-S3-LCD-EV-Board-SUB3. This document mainly introduces the ESP32-S31-Korvo-1 V1.1 main board. For more information about the LCD subboard, please refer to the `ESP32-S3-LCD-EV-Board User Guide <https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s3/esp32-s3-lcd-ev-board/user_guide.html>`__.
 
 
 The document consists of the following major sections:
@@ -106,7 +109,7 @@ The following list describes the key components on the board in a clockwise dire
      - Left-channel speaker output; can drive a 4 Ω, 3 W speaker. The pin spacing is 2.00 mm (0.08").
    * - 18
      - RGB LED
-     - Addressable RGB LED driven by GPIO8.
+     - Addressable RGB LED driven by GPIO37.
 
 .. list-table::
    :widths: 10 20 70
@@ -132,30 +135,19 @@ The following list describes the key components on the board in a clockwise dire
      - Supports 4-bit microSD for audio storage and playback. SDIO 3.0 capable.
    * - 24
      - 3.3 V to 2.8 V LDO
-     - Converts 3.3 V to 2.8 V for the external camera module.
+     - Converts 3.3 V to 2.8 V for the camera module.
    * - 25
      - 3.3 V to 1.5 V LDO
-     - Converts 3.3 V to 1.5 V for the external camera module.
+     - Converts 3.3 V to 1.5 V for the camera module.
    * - 26
      - Camera Connector
-     - Connector for an external camera module for image transfer.
+     - Connector for the onboard camera module for image transfer.
    * - 27
      - Reset Button
      - System reset.
    * - 28
      - Boot Button
      - Firmware download: hold Boot, press and release Reset to enter download mode; flash over the serial port.
-
-
-Development Board Accessories
--------------------------------
-
-.. _esp32-s31-korvo-1-accessories:
-
-The ESP32-S31-Korvo-1 V1.1 package may include the following optional accessories. The main board and accessories can also be purchased separately. Available accessories include:
-
-- LCD subboard: ESP32-S3-LCD-EV-Board-SUB3
-- OV3660 camera module
 
 
 Start Application Development
@@ -167,6 +159,7 @@ Required Hardware
 ^^^^^^^^^^^^^^^^^
 
 - ESP32-S31-Korvo-1 V1.1
+- LCD subboard: ESP32-S3-LCD-EV-Board-SUB3
 - One or two speakers
 - Two USB 2.0 cables (Standard-A to Type-C)
 - Computer running Windows, Linux, or macOS
@@ -185,10 +178,11 @@ Optional Hardware
 Hardware Setup
 ^^^^^^^^^^^^^^
 
-1. Connect one or two speakers to the **speaker output** port(s).
-2. Plug in two USB cables from the PC to both USB ports on the board.
-3. Turn on the **power switch**.
-4. The red power LED should light.
+1. Connect the LCD subboard to the **LCD Connector**.
+2. Connect one or two speakers to the **speaker output** port(s).
+3. Plug in two USB cables from the PC to both USB ports on the board.
+4. Turn on the **power switch**.
+5. The red power LED should light.
 
 
 .. _esp32-s31-korvo-1-software-setup:
@@ -197,6 +191,8 @@ Software Setup
 ^^^^^^^^^^^^^^
 
 Please proceed to `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32s31/get-started/index.html>`__, which will help you set up the development environment quickly and then flash an application onto your board.
+
+To validate the board peripherals, you can also flash the :project:`factory demo <examples/esp32-s31-korvo/examples/factory_demo>`.
 
 .. note::
 
@@ -222,6 +218,12 @@ In addition to ESP-IDF, this board supports the following frameworks and options
 
 Contents and Packaging
 ----------------------
+
+The package contains:
+
+- ESP32-S31-Korvo-1 V1.1 main board (with the camera module installed)
+- LCD subboard: ESP32-S3-LCD-EV-Board-SUB3
+
 
 Retail Orders
 ^^^^^^^^^^^^^
@@ -329,699 +331,244 @@ The microSD card and SPI NAND flash functions share GPIO20–GPIO25 on the ESP32
 Pin Assignment Table
 ----------------------
 
-The table below lists ESP32-S31-WROOM-3 module pin assignments to onboard functions.
+The table below lists the ESP32-S31-WROOM-3 module signals routed to onboard peripherals, grouped by peripheral.
 
-.. container:: wide-table-scroll
+.. list-table:: ESP32-S31-WROOM-3 pin assignment
+   :header-rows: 1
+   :widths: 22 20 16 42
 
-   .. list-table:: ESP32-S31-WROOM-3 pin assignment
-      :header-rows: 1
-      :widths: 9 9 9 9 9 9 9 9 9 9 9
-
-      * - Pin [#one]_
-        - Name
-        - SDMMC
-        - SPI NAND
-        - I2S
-        - I2C
-        - RGB LCD
-        - BOOTMODE
-        - UART0
-        - Other
-        - DVP camera
-
-      * - 6
-        - GPIO2
-        - 
-        - 
-        - I2S_MCLK
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 7
-        - GPIO3
-        - 
-        - 
-        - I2S_SCLK
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 8
-        - GPIO0
-        - 
-        - 
-        - 
-        - I2C_SDA
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 9
-        - GPIO1
-        - 
-        - 
-        - 
-        - I2C_SCL
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 10
-        - GPIO4
-        - 
-        - 
-        - I2S_LRCLK
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 11
-        - GPIO5
-        - 
-        - 
-        - I2S_DSIN
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 12
-        - GPIO6
-        - 
-        - 
-        - I2S_SDOUT
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 13
-        - GPIO7
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - PA_CTRL
-        - 
-
-      * - 14
-        - GPIO8
-        - 
-        - 
-        - 
-        - 
-        - DB0(B3)
-        - 
-        - 
-        - 
-        - 
-
-      * - 15
-        - GPIO9
-        - 
-        - 
-        - 
-        - 
-        - DB1(B4)
-        - 
-        - 
-        - 
-        - 
-
-      * - 16
-        - GPIO10
-        - 
-        - 
-        - 
-        - 
-        - DB2(B5)
-        - 
-        - 
-        - 
-        - 
-
-      * - 17
-        - GPIO11
-        - 
-        - 
-        - 
-        - 
-        - DB3(B6)
-        - 
-        - 
-        - 
-        - 
-
-      * - 18
-        - GPIO12
-        - 
-        - 
-        - 
-        - 
-        - DB4(B7)
-        - 
-        - 
-        - 
-        - 
-
-      * - 19
-        - GPIO13
-        - 
-        - 
-        - 
-        - 
-        - DB5(G2)
-        - 
-        - 
-        - 
-        - 
-
-      * - 20
-        - GPIO14
-        - 
-        - 
-        - 
-        - 
-        - DB6(G3)
-        - 
-        - 
-        - 
-        - 
-
-      * - 21
-        - GPIO15
-        - 
-        - 
-        - 
-        - 
-        - DB7(G4)
-        - 
-        - 
-        - 
-        - 
-
-      * - 22
-        - GPIO16
-        - 
-        - 
-        - 
-        - 
-        - DB8(G5)
-        - 
-        - 
-        - 
-        - 
-
-      * - 23
-        - GPIO17
-        - 
-        - 
-        - 
-        - 
-        - DB9(G6)
-        - 
-        - 
-        - 
-        - 
-
-      * - 24
-        - GPIO18
-        - 
-        - 
-        - 
-        - 
-        - DB10(G7)
-        - 
-        - 
-        - 
-        - 
-
-      * - 25
-        - GPIO19
-        - 
-        - 
-        - 
-        - 
-        - DB11(R3)
-        - 
-        - 
-        - 
-        - 
-
-      * - 27
-        - GPIO20
-        - SDIO_DATA0
-        - SPI2_CLK(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 28
-        - GPIO21
-        - SDIO_DATA1
-        - SPI2_D(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 29
-        - GPIO22
-        - SDIO_DATA2
-        - SPI2_Q(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 30
-        - GPIO23
-        - SDIO_DATA3
-        - SPI2_CS(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 31
-        - GPIO24
-        - SDIO_CLK
-        - SPI2_HOLD(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 32
-        - GPIO25
-        - SDIO_CMD
-        - SPI2_WP(NC)
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-
-      * - 40
-        - USB_DP
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - USB2.0_DP
-        - 
-
-      * - 41
-        - USB_DM
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - USB2.0_DM
-        - 
-
-      * - 42
-        - GPIO33
-        - 
-        - 
-        - 
-        - 
-        - DB12(R4)
-        - 
-        - 
-        - 
-        - 
-
-      * - 43
-        - GPIO34
-        - 
-        - 
-        - 
-        - 
-        - DB13(R5)
-        - 
-        - 
-        - 
-        - 
-
-      * - 44
-        - GPIO35
-        - 
-        - 
-        - 
-        - 
-        - DB14(R6)
-        - 
-        - 
-        - 
-        - 
-
-      * - 45
-        - GPIO36
-        - 
-        - 
-        - 
-        - 
-        - DB15(R7)
-        - 
-        - 
-        - 
-        - 
-
-      * - 46
-        - GPIO37
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - WS2812_CTRL
-        - 
-
-      * - 49
-        - GPIO38
-        - 
-        - 
-        - 
-        - 
-        - LCD_CS
-        - Boot Mode 0
-        - 
-        - 
-        - GM_FK
-
-      * - 50
-        - GPIO39
-        - 
-        - 
-        - 
-        - 
-        - 
-        - Boot Mode 1
-        - 
-        - SD_CTRL
-        - 
-
-      * - 51
-        - GPIO40
-        - 
-        - 
-        - 
-        - 
-        - LCD_PCLK
-        - Boot Mode 2
-        - 
-        - 
-        - 
-
-      * - 52
-        - GPIO42
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - ADC BUTTON
-        - 
-
-      * - 53
-        - GPIO43
-        - 
-        - 
-        - 
-        - 
-        - LCD_H_EN
-        - 
-        - 
-        - 
-        - 
-
-      * - 54
-        - GPIO44
-        - 
-        - 
-        - 
-        - 
-        - LCD_H_SYNC
-        - 
-        - 
-        - 
-        - 
-
-      * - 55
-        - GPIO45
-        - 
-        - 
-        - 
-        - 
-        - LCD_V_SYNC
-        - 
-        - 
-        - 
-        - 
-
-      * - 56
-        - GPIO46
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D0
-
-      * - 57
-        - GPIO47
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D1
-
-      * - 58
-        - GPIO48
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D2
-
-      * - 59
-        - GPIO49
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D3
-
-      * - 60
-        - GPIO50
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D4
-
-      * - 61
-        - GPIO51
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D5
-
-      * - 62
-        - GPIO52
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D6
-
-      * - 63
-        - GPIO53
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_D7
-
-      * - 64
-        - GPIO54
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_PCLK
-
-      * - 65
-        - GPIO55
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_XCLK
-
-      * - 66
-        - GPIO56
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_V_SYNC
-
-      * - 67
-        - GPIO57
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - CAM_H_SYNC
-
-      * - 68
-        - GPIO58
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - U0TXD
-        - 
-        - 
-
-      * - 69
-        - GPIO59
-        - 
-        - 
-        - 
-        - 
-        - 
-        - 
-        - U0RXD
-        - 
-        - 
-
-      * - 70
-        - GPIO60
-        - 
-        - 
-        - 
-        - 
-        - LCD_MOSI
-        - Boot Mode 3
-        - 
-        - 
-        - 
-
-      * - 71
-        - GPIO61
-        - 
-        - 
-        - 
-        - 
-        - LCD_SCK
-        - Boot Mode 4
-        - 
-        - 
-        - 
-
-.. [#one] Pin index on the ESP32-S31-WROOM-3 module (first column), excluding GND and power pins.
+   * - Peripheral
+     - Signal
+     - GPIO
+     - Description
+   * - Audio I2S
+     - I2S_MCLK
+     - GPIO2
+     - Master clock
+   * -
+     - I2S_SCLK
+     - GPIO3
+     - Serial clock
+   * -
+     - I2S_LRCLK
+     - GPIO4
+     - Frame clock (left/right channel select)
+   * -
+     - I2S_SDOUT
+     - GPIO5
+     - Audio output data line (DAC playback)
+   * -
+     - I2S_DSIN
+     - GPIO6
+     - Audio input data line (ADC recording)
+   * - Audio I2C
+     - I2C_SDA
+     - GPIO0
+     - I2C data line for ES8389
+   * -
+     - I2C_SCL
+     - GPIO1
+     - I2C clock line for ES8389
+   * - System
+     - PA_CTRL
+     - GPIO7
+     - Enable control for left/right audio PA chips
+   * -
+     - WS2812_CTRL
+     - GPIO37
+     - Addressable RGB LED control
+   * -
+     - ADC BUTTON
+     - GPIO42
+     - Function buttons (PLAY/SET/VOL-/VOL+) via resistor divider ADC
+   * - UART0
+     - U0TXD
+     - GPIO58
+     - UART0 transmit (USB-to-UART bridge)
+   * -
+     - U0RXD
+     - GPIO59
+     - UART0 receive (USB-to-UART bridge)
+   * - microSD / SPI NAND
+     - SDIO_DATA0
+     - GPIO20
+     - Default microSD; SPI2_CLK when switched to SPI NAND
+   * -
+     - SDIO_DATA1
+     - GPIO21
+     - Default microSD; SPI2_D when switched to SPI NAND
+   * -
+     - SDIO_DATA2
+     - GPIO22
+     - Default microSD; SPI2_Q when switched to SPI NAND
+   * -
+     - SDIO_DATA3
+     - GPIO23
+     - Default microSD; SPI2_CS when switched to SPI NAND
+   * -
+     - SDIO_CLK
+     - GPIO24
+     - Default microSD; SPI2_HOLD when switched to SPI NAND
+   * -
+     - SDIO_CMD
+     - GPIO25
+     - Default microSD; SPI2_WP when switched to SPI NAND
+   * -
+     - SD_CTRL
+     - GPIO39
+     - microSD power/switch control; also Boot Mode 1
+   * - USB 2.0
+     - USB2.0_DP
+     - USB_DP
+     - USB 2.0 D+
+   * -
+     - USB2.0_DM
+     - USB_DM
+     - USB 2.0 D-
+   * - RGB LCD
+     - DB0 (B3)
+     - GPIO8
+     - LCD data bit 0
+   * -
+     - DB1 (B4)
+     - GPIO9
+     - LCD data bit 1
+   * -
+     - DB2 (B5)
+     - GPIO10
+     - LCD data bit 2
+   * -
+     - DB3 (B6)
+     - GPIO11
+     - LCD data bit 3
+   * -
+     - DB4 (B7)
+     - GPIO12
+     - LCD data bit 4
+   * -
+     - DB5 (G2)
+     - GPIO13
+     - LCD data bit 5
+   * -
+     - DB6 (G3)
+     - GPIO14
+     - LCD data bit 6
+   * -
+     - DB7 (G4)
+     - GPIO15
+     - LCD data bit 7
+   * -
+     - DB8 (G5)
+     - GPIO16
+     - LCD data bit 8
+   * -
+     - DB9 (G6)
+     - GPIO17
+     - LCD data bit 9
+   * -
+     - DB10 (G7)
+     - GPIO18
+     - LCD data bit 10
+   * -
+     - DB11 (R3)
+     - GPIO19
+     - LCD data bit 11
+   * -
+     - DB12 (R4)
+     - GPIO33
+     - LCD data bit 12
+   * -
+     - DB13 (R5)
+     - GPIO34
+     - LCD data bit 13
+   * -
+     - DB14 (R6)
+     - GPIO35
+     - LCD data bit 14
+   * -
+     - DB15 (R7)
+     - GPIO36
+     - LCD data bit 15
+   * -
+     - LCD_CS
+     - GPIO38
+     - LCD chip select; also Boot Mode 0 and GM_FK
+   * -
+     - LCD_PCLK
+     - GPIO40
+     - LCD pixel clock; also Boot Mode 2
+   * -
+     - LCD_H_EN
+     - GPIO43
+     - LCD data enable
+   * -
+     - LCD_H_SYNC
+     - GPIO44
+     - LCD horizontal sync
+   * -
+     - LCD_V_SYNC
+     - GPIO45
+     - LCD vertical sync
+   * -
+     - LCD_MOSI
+     - GPIO60
+     - LCD SPI MOSI; also Boot Mode 3
+   * -
+     - LCD_SCK
+     - GPIO61
+     - LCD SPI clock; also Boot Mode 4
+   * - DVP camera
+     - CAM_D0
+     - GPIO46
+     - Camera data bit 0
+   * -
+     - CAM_D1
+     - GPIO47
+     - Camera data bit 1
+   * -
+     - CAM_D2
+     - GPIO48
+     - Camera data bit 2
+   * -
+     - CAM_D3
+     - GPIO49
+     - Camera data bit 3
+   * -
+     - CAM_D4
+     - GPIO50
+     - Camera data bit 4
+   * -
+     - CAM_D5
+     - GPIO51
+     - Camera data bit 5
+   * -
+     - CAM_D6
+     - GPIO52
+     - Camera data bit 6
+   * -
+     - CAM_D7
+     - GPIO53
+     - Camera data bit 7
+   * -
+     - CAM_PCLK
+     - GPIO54
+     - Camera pixel clock
+   * -
+     - CAM_XCLK
+     - GPIO55
+     - Camera master clock
+   * -
+     - CAM_V_SYNC
+     - GPIO56
+     - Camera vertical sync
+   * -
+     - CAM_H_SYNC
+     - GPIO57
+     - Camera horizontal sync
+   * -
+     - GM_FK
+     - GPIO38
+     - Camera GM_FK; shared with LCD_CS and Boot Mode 0
 
 
 Hardware Setup Options
@@ -1033,7 +580,7 @@ Automatic Download
 There are two ways to put the ESP development board into download mode:
 
 - Manually press the Boot and RST buttons, then release RST first and Boot afterwards.
-- Let software perform automatic download using the serial port DTR and RTS signals to control EN and IO0. For details, see the `ESP32-S31-Korvo-1 V1.1 schematic`_ (PDF).
+- Let software perform automatic download using the serial port DTR and RTS signals to control EN and GPIO61. For details, see the `ESP32-S31-Korvo-1 V1.1 schematic`_ (PDF).
 
 
 Hardware Revision Details
@@ -1063,6 +610,7 @@ Related Documents
 - `ESP32-S31-Korvo-1 V1.1 dimensions`_ (PDF)
 - `ESP32-S31-Korvo-1 V1.1 dimensions source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
 - `ESP32-S31-Korvo-1 V1.1 3D Printed Case Files`_ (STL & STEP) - 3D printable case files are available here
+- `ESP32-S31-Korvo-1 Reference Design`_ (ZIP)
 
 .. _ESP32-S31 Datasheet: https://documentation.espressif.com/esp32-s31_datasheet_en.pdf
 .. _ESP32-S31-WROOM-3 Datasheet: https://documentation.espressif.com/esp32-s31-wroom-3_datasheet_en.pdf
@@ -1071,6 +619,7 @@ Related Documents
 .. _ESP32-S31-Korvo-1 V1.1 dimensions: https://dl.espressif.com/schematics/esp32-s31-korvo-1-dimensions.pdf
 .. _ESP32-S31-Korvo-1 V1.1 dimensions source file: https://dl.espressif.com/schematics/esp32-s31-korvo-1-dimensions.dxf
 .. _ESP32-S31-Korvo-1 V1.1 3D Printed Case Files: https://github.com/espressif/esp-dev-kits/tree/master/examples/esp32-s31-korvo
+.. _ESP32-S31-Korvo-1 Reference Design: https://documentation.espressif.com/ESP32-S31-Korvo-1_Reference_Design_EN.zip
 
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
