@@ -323,6 +323,7 @@ Related Documents
 - `ESP32-S31-Function-CoreBoard-1 PCB layout`_ (PDF)
 - `ESP32-S31-Function-CoreBoard-1 dimensions`_ (PDF)
 - `ESP32-S31-Function-CoreBoard-1 dimensions source file`_ (DXF) - You can view it with `Autodesk Viewer <https://viewer.autodesk.com/>`_ online
+- `ESP32-S31-Function-CoreBoard-1 Reference Design`_ (ZIP)
 
 
 .. _ESP32-S31 Datasheet: https://documentation.espressif.com/esp32-s31_datasheet_en.pdf
@@ -331,6 +332,7 @@ Related Documents
 .. _ESP32-S31-Function-CoreBoard-1 PCB layout: https://dl.espressif.com/schematics/esp32-s31-function-coreboard-1-pcb-layout.pdf
 .. _ESP32-S31-Function-CoreBoard-1 dimensions: https://dl.espressif.com/schematics/esp32-s31-function-coreboard-1-dimensions.pdf
 .. _ESP32-S31-Function-CoreBoard-1 dimensions source file: https://dl.espressif.com/schematics/esp32-s31-function-coreboard-1-dimensions.dxf
+.. _ESP32-S31-Function-CoreBoard-1 Reference Design: https://documentation.espressif.com/ESP32-S31-Function-CoreBoard-1_Reference_Design_EN.zip
 
 
 For further design documentation for the board, please contact us at `sales@espressif.com <sales@espressif.com>`_.
