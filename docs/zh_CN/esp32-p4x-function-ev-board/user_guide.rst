@@ -100,7 +100,7 @@ ESP32-P4X-Function-EV-Board 是一款基于 ESP32-P4 芯片的多媒体开发板
      - 启动模式控制按键，保持按住 **BOOT 键** 的同时按一下 **Reset 键**，ESP-P4 将重新启动并进入“固件下载”模式，这时可以通过 USB 串口/JTAG 接口下载固件到板载 SPI flash 中。
    * - 11
      - Ethernet PHY IC
-     - 以太网 PHY 芯片，与 ESP32-P4 EMAC RMII 接口和 RJ45 以太网模块端口连接。
+     - 以太网 PHY 芯片 IP101GR，与 ESP32-P4 EMAC RMII 接口和 RJ45 以太网模块端口连接。
    * - 12
      - Buck Converter（降压转换器）
      - 用于 3.3 V 电源的降压型 DC-DC 转换器。

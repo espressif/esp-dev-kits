@@ -120,7 +120,7 @@ The key components on the front and back of the board are described below, start
      - The boot mode control button. Press the **Reset Button** while holding down the **BOOT Button** to reset ESP32-P4 and enter firmware download mode. Firmware can then be downloaded to onboard SPI flash via the USB Serial/JTAG Port.
    * - 11
      - Ethernet PHY IC
-     - Ethernet PHY chip connected to the ESP32-P4 EMAC RMII interface and RJ45 Ethernet Port.
+     - Ethernet PHY chip IP101GR connected to the ESP32-P4 EMAC RMII interface and RJ45 Ethernet Port.
    * - 12
      - Buck Converter
      - A buck DC-DC converter for the 3.3 V power supply.
