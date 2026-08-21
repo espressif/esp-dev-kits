@@ -108,6 +108,7 @@ ESP32S31_DOCS = ['*.rst',
                  'index/esp32s31-index.inc',
                  'esp32-s31-function-coreboard-1/*.rst',
                  'esp32-s31-korvo-1/*.rst',
+                 'esp-mosaico/*.rst',
                  ]
 OTHER_DOCS = ['*.rst',
               'index/other-index.inc',

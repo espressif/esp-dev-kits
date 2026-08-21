@@ -19,7 +19,7 @@ syntax_version: v0.62
 # ESP32-C61: 2 documents, including ESP32-C61-DevKitC-1. But the documents are not posted to CDP or official website.
 # ESP32-H2: 2 documents, including ESP32-H2-DevKitM-1. All ESP32-H2 user guides in this esp-dev-kits repo are posted to CDP.
 # ESP32-P4: 10 documents, including 4 boards: ESP32-P4-Function-EV-Board, ESP32-P4X-Function-EV-Board, ESP32-P4-EYE and ESP32-P4X-EYE.
-# ESP32-S31: 4 documents, including 2 boards: ESP32-S31-Function-CoreBoard-1 and ESP32-S31-Korvo-1.
+# ESP32-S31: 6 documents, including 3 boards: ESP32-S31-Function-CoreBoard-1, ESP32-S31-Korvo-1 and ESP-Mosaico.
 # Other boards: 8 documents, including ESP-Prog, ESP-Module-Prog-1, ESP-Module-Prog-1R, ESP-Module-Prog-SUB-02, and ESP-Module-Prog-SUB-01&04
 documents:
 ########################################
@@ -117,6 +117,56 @@ documents:
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s31/esp32-s31-korvo-1/index.html
       document_summary: 本指南将帮助您快速上手 ESP32-S31-Korvo-1 V1.1，并提供该款开发板的详细信息。
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# ESP-Mosaico V1.0 User Guide
+########################################
+    - document_name: ESP-Mosaico V1.0 User Guide
+      doc_id:
+      translation_docid:
+      chip_series: ESP32-S31
+      product_name:
+        - ESP-Mosaico
+      product_name_old_website:
+        - ESP32-S31
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2026-08-21
+      language: en
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s31/esp-mosaico/index.html
+      document_summary: This user guide will help you get started with ESP-Mosaico and provides detailed information about this development board.
+      notify_subscribers: true
+      visibility_on_website: show
+      scheduled_release_date:
+      document_status: active
+      document_classification: public
+########################################
+# ESP-Mosaico V1.0 用户指南
+########################################
+    - document_name: ESP-Mosaico V1.0 用户指南
+      doc_id:
+      translation_docid:
+      chip_series: ESP32-S31
+      product_name:
+        - ESP-Mosaico
+      product_name_old_website:
+        - ESP32-S31
+      soc_series_base_filter: all
+      document_type: guide
+      document_type_old_website: guide
+      version: latest
+      revision_date: 2026-08-21
+      language: cn
+      document_storage: docs
+      document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s31/esp-mosaico/index.html
+      document_summary: 本指南将帮助您快速上手 ESP-Mosaico，并提供该款开发板的详细信息。
       notify_subscribers: true
       visibility_on_website: show
       scheduled_release_date:
