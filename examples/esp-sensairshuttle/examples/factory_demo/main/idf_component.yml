@@ -27,4 +27,8 @@ dependencies:
   espressif/esp_lvgl_port:
     public: true
     version: ^2
+
+  espressif/esp_lcd_touch:
+    public: true
+    version: ^1
   
