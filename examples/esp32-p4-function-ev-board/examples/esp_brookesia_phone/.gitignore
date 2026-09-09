@@ -1,0 +1,12 @@
+# Local ESP-IDF build outputs for this example.
+# Covers the default build/ directory and custom build dirs
+# created with -B (e.g. build_jd9366 for the JD9366 panel port).
+build/
+build_*/
+
+# Generated / machine-local files (also ignored repo-wide; kept here so the
+# example directory stays clean when copied out of the repository).
+sdkconfig
+sdkconfig.old
+dependencies.lock
+managed_components/

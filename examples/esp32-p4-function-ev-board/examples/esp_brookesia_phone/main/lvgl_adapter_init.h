@@ -9,18 +9,13 @@
 extern "C" {
 #endif
 
-#include "bsp/config.h"
-#include "bsp/display.h"
 #include "lvgl.h"
-#include "esp_lv_adapter_display.h"
 
-#if (BSP_CONFIG_NO_GRAPHIC_LIB == 1)
-typedef struct {
-    bsp_display_config_t hw_cfg;    /*!< Display HW configuration */
-} bsp_display_cfg_t;
-#endif
-
-lv_display_t *lvgl_adapter_init(const bsp_display_cfg_t *cfg);
+/* Brings up the selected 800x1280 MIPI-DSI panel (JD9366 / ILI9881C, see
+ * menuconfig "LCD Panel Selection"), then registers it with the LVGL
+ * adapter. Backlight (GPIO47) is turned on inside. Returns the LVGL
+ * display, or NULL on failure. */
+lv_disp_t *lvgl_adapter_init(void);
 
 #ifdef __cplusplus
 }
