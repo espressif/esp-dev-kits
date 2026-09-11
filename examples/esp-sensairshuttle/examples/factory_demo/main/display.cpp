@@ -36,7 +36,7 @@ static bool init_lvgl_port();
 
 static dev_display_lcd_handles_t *lcd_handles = nullptr;
 static dev_display_lcd_config_t *lcd_cfg = nullptr;
-static dev_lcd_touch_i2c_handles_t *touch_handles = nullptr;
+static dev_lcd_touch_handles_t *touch_handles = nullptr;
 
 static lv_disp_t *lvgl_disp = nullptr;
 
@@ -120,7 +120,7 @@ static bool init_devices()
         esp_board_manager_get_device_handle("lcd_touch", &dev_touch_handle), false, "Get touch device handle failed"
     );
     ESP_UTILS_CHECK_NULL_RETURN(dev_touch_handle, false, "Touch device handle is NULL");
-    touch_handles = (dev_lcd_touch_i2c_handles_t *)dev_touch_handle;
+    touch_handles = (dev_lcd_touch_handles_t *)dev_touch_handle;
 
     return true;
 }
