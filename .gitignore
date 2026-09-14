@@ -86,6 +86,8 @@ flake8_output.txt
 build
 build_esp*/
 build_linux*/
+# custom build dirs passed via -B (e.g. build_jd9366)
+build_*/
 size_info.txt
 
 # lock files for examples and components
