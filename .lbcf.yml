@@ -123,9 +123,9 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# ESP-Mosaico V1.0 User Guide
+# ESP-Mosaico User Guide
 ########################################
-    - document_name: ESP-Mosaico V1.0 User Guide
+    - document_name: ESP-Mosaico User Guide
       doc_id: 11109
       translation_docid: 11107
       chip_series: ESP32-S31
@@ -137,7 +137,7 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2026-08-21
+      revision_date: 2026-09-30
       language: en
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32s31/esp-mosaico/index.html
@@ -148,9 +148,9 @@ documents:
       document_status: active
       document_classification: public
 ########################################
-# ESP-Mosaico V1.0 用户指南
+# ESP-Mosaico 用户指南
 ########################################
-    - document_name: ESP-Mosaico V1.0 用户指南
+    - document_name: ESP-Mosaico 用户指南
       doc_id: 11107
       translation_docid: 11109
       chip_series: ESP32-S31
@@ -162,7 +162,7 @@ documents:
       document_type: guide
       document_type_old_website: guide
       version: latest
-      revision_date: 2026-08-21
+      revision_date: 2026-09-30
       language: cn
       document_storage: docs
       document_link: https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32s31/esp-mosaico/index.html

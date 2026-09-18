@@ -1,14 +1,14 @@
 ===================
-ESP-Mosaico V1.2
+ESP-Mosaico V1.0
 ===================
 
 :link_to_translation:`zh_CN:[中文]`
 
-Older version: :doc:`ESP-Mosaico V1.0 <user_guide_v1.0>`
+Latest version: :doc:`ESP-Mosaico V1.2 <user_guide>`
 
 .. note::
 
-  This document covers CoreBoard **V1.2** hardware. Please check the silkscreen version on the mainboard to confirm your board revision. See `Hardware Revision Details`_ for differences from V1.0.
+  This document covers CoreBoard **V1.0** hardware. Please check the silkscreen version on the mainboard to confirm your board revision.
 
   The camera module is supported in the **left slot only** (``H2``). Do not insert it into the right slot. For installation and usage instructions, see the :doc:`Camera Module User Guide <user_guide_camera>`.
 
@@ -20,7 +20,7 @@ The main controller is Espressif ESP32-S31, supporting 2.4 GHz Wi-Fi 6 (IEEE 802
 
 For audio, ESP-Mosaico integrates ES8311 and NS4150B Class-D PA. The power system supports USB Type-C 5 V and a 3.7 V / 65 mAh Li-ion battery, with TP4057 charging, BQ27220 fuel gauge, and SAM8108 power-switch control. Both the Type-C port and the left/right module interfaces support power input and output. A USB 2.0 High-Speed OTG port supports power, debug, and communication, and the board also reserves UART expansion capability and left/right module interfaces.
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-isometric.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-isometric.png
    :alt: ESP-Mosaico Appearance (Click to enlarge)
    :width: 60%
    :figclass: align-center
@@ -35,7 +35,7 @@ The document consists of the following major sections:
 - `Related Documents`_: Links to related documentation.
 - `Disclaimer and Copyright Notice`_: Link to the disclaimer and copyright notice.
 
-.. _Getting-started_esp-mosaico-v1.2_en:
+.. _Getting-started_esp-mosaico-v1.0_en:
 
 Getting Started
 ===============
@@ -50,21 +50,21 @@ ESP-Mosaico consists of a CoreBoard and a BaseBoard. The front views and their m
 Front
 ^^^^^
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-front.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-front.png
    :alt: ESP-Mosaico Front (Click to enlarge)
    :width: 60%
    :figclass: align-center
 
    ESP-Mosaico Front (Click to enlarge)
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-coreboard-front.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-coreboard-front.png
    :alt: ESP-Mosaico CoreBoard Front (Click to enlarge)
    :width: 80%
    :figclass: align-center
 
    ESP-Mosaico CoreBoard Front (Click to enlarge)
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-baseboard-front.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-baseboard-front.png
    :alt: ESP-Mosaico BaseBoard Front (Click to enlarge)
    :width: 80%
    :figclass: align-center
@@ -90,93 +90,96 @@ The following describes the main components on the front PCB in clockwise order.
      - KH-3216-A35 Ceramic Antenna
      - 2.4 GHz chip ceramic antenna for Wi-Fi and Bluetooth RF.
    * - 3
-     - TLV62569
-     - Buck (DCDC) converter that converts the input supply to the system 3.3 V rail for the display.
+     - Orange LED
+     - Programmable mono status LED on GPIO3, active-low.
    * - 4
+     - TLV62569
+     - Buck (DCDC) converter that converts the input supply to the system 3.3 V rail.
+   * - 5
      - BMM150
      - 3-axis magnetometer (BMM150 #2), I2C address 0x11.
-   * - 5
+   * - 6
      - SY7088
      - Boost (BOOST) converter for rails higher than the battery voltage.
-   * - 6
+   * - 7
      - Display Connector
      - Connects the 480 × 480, 2.16-inch QSPI touch display (CO5300 driver + CST9220 touch).
-   * - 7
+   * - 8
      - TP4057
      - Li-ion battery charger for the onboard battery.
-   * - 8
+   * - 9
      - BQ27220
      - Fuel gauge at I2C address 0x55 for voltage, current, state of charge (SOC), and related status.
-   * - 9
+   * - 10
+     - 3V3 Power LED
+     - Lights when the 3.3 V rail is present after power-on; turns off when the device is powered off.
+   * - 11
      - HUSB320
      - USB Type-C interface controller that handles CC detection and controls the USB power direction.
-   * - 10
+   * - 12
      - Charge LED
      - Charge status indicator: red while charging, green when fully charged.
-   * - 11
+   * - 13
      - SAM8108
      - Power on/off controller used with the POWER button.
-   * - 12
+   * - 14
      - HE9073A33
      - LDO providing a dedicated supply to the audio codec to reduce noise.
-   * - 13
+   * - 15
      - NS4150B
      - Low-EMI, filterless 3 W mono Class-D amplifier for the speaker.
-   * - 14
+   * - 16
      - ES8311
      - Low-power mono audio codec, I2C address 0x19, connected to the SoC over I2S.
-   * - 15
+   * - 17
      - BMM150
      - 3-axis magnetometer (BMM150 #3), I2C address 0x12.
-   * - 16
+   * - 18
      - BMI270
      - 6-axis IMU (accelerometer + gyroscope), I2C address 0x69.
-   * - 17
-     - GD5F1GM7UEYIGR
-     - 1 Gbit (128 MB) SPI NAND flash for large-capacity asset storage.
-   * - 18
+   * - 19
      - GD25Q128EWIGR
      - 16 MB (128 Mbit) SPI NOR flash for program and data storage.
+   * - 20
+     - GD5F1GM7UEYIGR
+     - 1 Gbit (128 MB) SPI NAND flash for large-capacity asset storage.
    * -
      - :strong:`BaseBoard`
-     - Base board integrating the speaker, battery, external 3.3 V buck, and left/right 2 × 10P module headers, mated to the CoreBoard through a board-to-board connector.
-   * - 19
+     - Base board integrating the speaker, battery, and left/right 2 × 10P module headers, mated to the CoreBoard through a board-to-board connector.
+   * - 21
      - Speaker
      - Onboard speaker driven by the NS4150B amplifier.
-   * - 20
+   * - 22
      - BTB Connector
      - 60-pin 0.5 mm board-to-board connector linking the CoreBoard and BaseBoard.
-   * - 21
-     - Expansion Header
-     - 2 × 10P dual-row, 2.54 mm pitch header on the right side of the figure, exposing GPIOs and power for expansion.
-   * - 22
+   * - 23
+     - Expansion Header 1
+     - 2 × 10P dual-row, 2.54 mm pitch header exposing GPIOs and power for expansion.
+   * - 24
      - Battery
      - 3.7 V / 65 mAh Li-ion battery for portable power.
-   * - 23
-     - TLV62569
-     - Buck (DCDC) converter that generates the external 3.3 V rail, isolated from the internal MCU supply.
-   * - 24
-     - Expansion Header
-     - The other header, on the left side of the figure, exposing the remaining GPIOs and power.
+   * - 25
+     - Expansion Header 2
+     - Additional header exposing the remaining GPIOs and power.
 
 Back
 ^^^^
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-back.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-back.png
    :alt: ESP-Mosaico Back (Click to enlarge)
    :width: 80%
    :figclass: align-center
 
    ESP-Mosaico Back (Click to enlarge)
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-coreboard-back.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-coreboard-back.png
    :alt: ESP-Mosaico CoreBoard Back (Click to enlarge)
    :width: 80%
    :figclass: align-center
 
    ESP-Mosaico CoreBoard Back (Click to enlarge)
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-baseboard-back.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-baseboard-back.png
    :alt: ESP-Mosaico BaseBoard Back (Click to enlarge)
    :width: 55%
    :figclass: align-center
@@ -218,10 +221,13 @@ The following describes the main components on the back PCB in clockwise order.
      - Application button (AI button) on GPIO7, active-low.
    * -
      - :strong:`BaseBoard`
-     - Base board back side, providing the back expansion pads.
+     - Base board back side, providing debug pads and back expansion power pads.
    * - 8
+     - Debug Pads
+     - Test points exposing GND / TX / RX / BOOT / EN / 3V3 debug signals.
+   * - 9
      - Back Expansion Pads
-     - One row of pads silkscreened GND, BOOT, RST, RX, TX, 5V, and GND. They can be used for debug, and the 5V pad can also supply the device.
+     - Back-side expansion pads exposing I2C and power interfaces for supplying the device.
 
 Start Application Development
 -----------------------------
@@ -282,7 +288,7 @@ Espressif provides a board support package (BSP) for ESP-Mosaico to simplify ini
   - Use ``monitor --no-reset`` when attaching without restarting the application.
   - Related options: ``CONFIG_BSP_USB_CONSOLE``, ``CONFIG_BSP_USB_CONSOLE_AUTO_INIT``, ``CONFIG_BSP_USB_AUTO_DOWNLOAD``.
 
-.. _Hardware-reference_esp-mosaico-v1.2_en:
+.. _Hardware-reference_esp-mosaico-v1.0_en:
 
 Hardware Reference
 ==================
@@ -292,7 +298,7 @@ Block Diagram
 
 The main components and connections of ESP-Mosaico are shown below.
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-sch-function-block_v1.2.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-sch-function-block_v0.3.png
    :alt: ESP-Mosaico Block Diagram (Click to enlarge)
    :width: 90%
    :figclass: align-center
@@ -333,14 +339,14 @@ The Type-C port connects to ESP32-S31 USB 2.0 High-Speed OTG for power, debug, a
 DCDC 3.3 V Circuit
 ------------------
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-DCDC-3V3.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.0-DCDC-3V3.png
    :alt: DCDC 3.3 V Schematic (Click to enlarge)
    :scale: 45%
    :figclass: align-center
 
    DCDC 3.3 V Schematic (Click to enlarge)
 
-TLV62569 steps ``VDD`` down to ``MCU_3V3``, which is then switched to ``VCC_3V3`` by the ``VCC_PW`` load switch.
+TLV62569 steps ``VDD`` down to ``MCU_3V3``, which is then switched to ``VCC_3V3`` by the ``VCC_PW`` load switch. ``U7`` is the 3.3 V power LED.
 
 Power-control GPIOs defined by the BSP:
 
@@ -353,7 +359,10 @@ Power-control GPIOs defined by the BSP:
      - Description
    * - VCC_3V3 / VCC_PW
      - GPIO60
-     - Display supply and 3.3 V / 5 V output control, **active-low**.
+     - System 3.3 V rail control, **active-low**; BSP applies a soft-start ramp when enabling.
+   * - CODEC_3V3
+     - GPIO56
+     - Codec power control, **active-high**.
    * - POWER_SWITCH
      - GPIO57
      - Whole-device power-off request; kept high-Z during normal BSP operation, driven open-drain low to request shutdown.
@@ -399,20 +408,12 @@ The following table lists the main pin assignments used by the ESP-Mosaico BSP, 
         - Description
       * - I2C / Sensors
         - I2C0_SDA
-        - GPIO56
-        - Internal I2C0: touch, ES8311, BMI270, BMM150, BQ27220
+        - GPIO0
+        - Shared I2C for touch, ES8311, BMI270, BMM150, BQ27220, and module EEPROM
       * -
         - I2C0_SCL
-        - GPIO3
-        - Internal I2C0 clock
-      * -
-        - I2C1_SDA
-        - GPIO0
-        - External I2C1: module EEPROM and expansion devices
-      * -
-        - I2C1_SCL
         - GPIO1
-        - External I2C1 clock
+        - Shared I2C clock
       * -
         - SENSOR_INT
         - GPIO2
@@ -422,6 +423,10 @@ The following table lists the main pin assignments used by the ESP-Mosaico BSP, 
         - GPIO6
         - Touch interrupt
       * - HMI
+        - STATUS_LED
+        - GPIO3
+        - Orange status LED, software-controlled, active-low
+      * -
         - AI_BUTTON
         - GPIO7
         - Application button, active-low
@@ -443,7 +448,7 @@ The following table lists the main pin assignments used by the ESP-Mosaico BSP, 
         - CO5300 QSPI DATA0
       * -
         - LCD_RST
-        - GPIO44
+        - GPIO42
         - LCD reset
       * -
         - LCD_TE
@@ -451,7 +456,7 @@ The following table lists the main pin assignments used by the ESP-Mosaico BSP, 
         - LCD_TE anti-tearing sync
       * -
         - LCD_SCL
-        - GPIO42
+        - GPIO44
         - QSPI clock
       * -
         - LCD_CS
@@ -485,6 +490,10 @@ The following table lists the main pin assignments used by the ESP-Mosaico BSP, 
         - I2S_MCLK
         - GPIO54
         - Audio master clock
+      * -
+        - CODEC_PW
+        - GPIO56
+        - Codec 3.3 V power control
       * - Power
         - POWER_SWITCH
         - GPIO57
@@ -492,7 +501,7 @@ The following table lists the main pin assignments used by the ESP-Mosaico BSP, 
       * -
         - VCC_3V3_CTRL
         - GPIO60
-        - Display supply and 3.3 V / 5 V output control, **active-low**
+        - System 3.3 V power control
       * - NAND Flash
         - NAND_CLK
         - GPIO20
@@ -521,13 +530,7 @@ The following table lists the main pin assignments used by the ESP-Mosaico BSP, 
 I2C Device Addresses
 --------------------
 
-V1.2 splits onboard devices and expansion modules onto two I2C buses:
-
-- **I2C0 (internal)**: ``I2C0_SDA`` = GPIO56, ``I2C0_SCL`` = GPIO3, connecting touch, audio codec, IMU, magnetometers, and the fuel gauge.
-- **I2C1 (external)**: ``I2C1_SDA`` = GPIO0, ``I2C1_SCL`` = GPIO1, connecting module EEPROM and other external devices.
-
-Internal I2C0 (7-bit addresses)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The 7-bit addresses on the shared I2C bus (``I2C0_SDA`` / ``I2C0_SCL``) are listed below. Onboard devices are on the CoreBoard / BaseBoard. **Module EEPROMs are on the attached modules, not on the mainboard**, and appear only when a module with EEPROM is plugged into the corresponding slot.
 
 .. list-table::
    :widths: 20 40 40
@@ -545,6 +548,12 @@ Internal I2C0 (7-bit addresses)
    * - 0x19
      - ES8311
      - Onboard audio codec
+   * - 0x50
+     - Module EEPROM (Left)
+     - On the left module, not the mainboard; selected when GPIO14 is driven low
+   * - 0x51
+     - Module EEPROM (Right)
+     - On the right module, not the mainboard; selected when GPIO39 is driven high
    * - 0x55
      - BQ27220
      - Onboard fuel gauge
@@ -554,25 +563,6 @@ Internal I2C0 (7-bit addresses)
    * - 0x69
      - BMI270
      - Onboard 6-axis IMU
-
-External I2C1 (7-bit addresses)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-**Module EEPROMs are on the attached modules, not on the mainboard**, and appear only when a module with EEPROM is plugged into the corresponding slot.
-
-.. list-table::
-   :widths: 20 40 40
-   :header-rows: 1
-
-   * - I2C Address
-     - Device
-     - Description
-   * - 0x50
-     - Module EEPROM (Left)
-     - On the left module, not the mainboard; selected when GPIO14 is driven low
-   * - 0x51
-     - Module EEPROM (Right)
-     - On the right module, not the mainboard; selected when GPIO39 is driven high
 
 LCD Interface
 -------------
@@ -677,10 +667,10 @@ Pins are listed clockwise around the connector, starting from Pin1 (odd-numbered
      - 5 V output (controlled by GPIO60)
    * - 16
      - GPIO0
-     - SDA (external I2C1)
+     - SDA (shared onboard I2C)
    * - 14
      - GPIO1
-     - SCL (external I2C1)
+     - SCL (shared onboard I2C)
    * - 12
      - GPIO4
      - DAC
@@ -757,10 +747,10 @@ Pins are listed clockwise around the connector, starting from Pin1 (odd-numbered
      - 5 V output (controlled by GPIO60)
    * - 16
      - GPIO0
-     - SDA (external I2C1)
+     - SDA (shared onboard I2C)
    * - 14
      - GPIO1
-     - SCL (external I2C1)
+     - SCL (shared onboard I2C)
    * - 12
      - GPIO5
      - DAC
@@ -791,24 +781,16 @@ Pins are listed clockwise around the connector, starting from Pin1 (odd-numbered
 Hardware Revision Details
 ==========================
 
-- **V1.2** (this document): Major changes compared with V1.0 are as follows.
+- **V1.0** (this document): Initial hardware. Onboard devices and expansion modules share one I2C bus. The board has a programmable orange LED. The codec power domain can be controlled independently by GPIO. ``LCD_RST`` is GPIO42 and ``LCD_SCL`` is GPIO44.
+- **V1.2**: ``LCD_RST`` and ``LCD_SCL`` are swapped; the programmable LED and 3.3 V power LED are removed; independent codec power-domain control is removed; internal I2C0 and external I2C1 are split; the external 3.3 V rail uses a dedicated DCDC. See :doc:`user_guide`.
 
-  - Display interface: ``LCD_RST`` and ``LCD_SCL`` are swapped (V1.2: ``LCD_RST`` = GPIO44, ``LCD_SCL`` = GPIO42).
-  - The programmable orange LED (formerly GPIO3) is removed.
-  - The 3.3 V power LED is removed.
-  - Independent codec power-domain control (formerly GPIO56) is removed.
-  - Onboard devices and expansion modules use two I2C buses: internal I2C0 (SDA = GPIO56, SCL = GPIO3); external I2C1 remains SDA = GPIO0, SCL = GPIO1.
-  - The external 3.3 V rail is generated by a dedicated DCDC, so expansion modules do not affect the internal MCU supply.
-
-- **V1.0**: See :doc:`user_guide_v1.0`.
-
-.. _Related-documents_esp-mosaico-v1.2_en:
+.. _Related-documents_esp-mosaico-v1.0_en:
 
 Related Documents
 =================
 
--  `ESP-Mosaico CoreBoard V1.2 Schematic`_ (PDF)
--  `ESP-Mosaico BaseBoard V1.2 Schematic`_ (PDF)
+-  `ESP-Mosaico CoreBoard V1.0 Schematic`_ (PDF)
+-  `ESP-Mosaico BaseBoard V1.0 Schematic`_ (PDF)
 -  `2.16-inch 480 × 480 QSPI AMOLED Display Datasheet`_ (PDF)
 -  `ESP32-S31 Series Datasheet`_ (HTML)
 -  :doc:`Camera Module User Guide <user_guide_camera>`
@@ -817,8 +799,8 @@ Related Documents
 -  `ESP-Mosaico Firmware Update`_ (HTML)
 -  `ESP-Claw`_ (HTML)
 
-.. _ESP-Mosaico CoreBoard V1.2 Schematic: https://dl.espressif.com/AE/Mosaico/SCH_SCH_ESP-Mosaico_CoreBoard_V1_2_1_2026-09-24.pdf
-.. _ESP-Mosaico BaseBoard V1.2 Schematic: https://dl.espressif.com/AE/Mosaico/SCH_SCH_ESP-Mosaico_BaseBoard_A_V1_2_1_2026-09-24.pdf
+.. _ESP-Mosaico CoreBoard V1.0 Schematic: https://dl.espressif.com/AE/SCH_SCH_ESP-Mosaico_CoreBoard_V1_0_2026-08-18.pdf
+.. _ESP-Mosaico BaseBoard V1.0 Schematic: https://dl.espressif.com/AE/Mosaico/SCH_SCH_ESP-Mosaico_BaseBoard_A_V1_0_2026-09-20.pdf
 .. _2.16-inch 480 × 480 QSPI AMOLED Display Datasheet: https://dl.espressif.com/AE/H0216F002AMT004-1%20V1%E8%A7%84%E6%A0%BC%E4%B9%A62.16%E5%AF%B8%20480X480%20QSPI%20MIPI%20%20AMOLED.pdf
 .. _ESP32-S31 Series Datasheet: https://documentation.espressif.com/esp32-s31_datasheet_en.html
 .. _ESP-Mosaico User Guide: https://mosaico.espressif.com/guide/
