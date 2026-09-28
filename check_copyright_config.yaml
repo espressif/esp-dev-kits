@@ -48,6 +48,4 @@ ignore:  # You can also select ignoring files here
     - gui_music/
     - examples/esp-dualkey/components/qrcode/src/qrcodegen.h
     - examples/esp-dualkey/components/qrcode/src/qrcodegen.c
-    - examples/esp-sensairshuttle/examples/factory_demo/common_components/brookesia_app_compass/BMM350_SensorAPI/
-    - examples/esp-sensairshuttle/examples/factory_demo/common_components/brookesia_app_temperature/BME690_SensorAPI/
     - examples/esp-sensairshuttle/examples/factory_demo/common_components/brookesia_app_temperature/bsec_IAQ/

@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2025-2026 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -16,15 +16,8 @@ extern "C" {
 bool compass_back(void);
 bool compass_set_correct(bool correct);
 
-// NVS storage functions
-bool compass_save_calibration_to_nvs(void);
-bool compass_load_calibration_from_nvs(void);
-bool compass_clear_calibration_from_nvs(void);
-bool compass_is_calibrated(void);
-
-// Async NVS functions (recommended for UI thread)
+// Save reset calibration without blocking the UI thread.
 void compass_save_calibration_to_nvs_async(void);
-void compass_load_calibration_from_nvs_async(void);
 
 #ifdef __cplusplus
 }

@@ -1,26 +1,30 @@
 /*
- * SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2025-2026 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
-#include "BMM350_SensorAPI/bmm350_defs.h"
-#include "BMM350_SensorAPI/bmm350.h"
-#include "BMM350_SensorAPI/examples/common/common.h"
 #include "driver/gpio.h"
 #include "esp_brookesia_app_compass.hpp"
+#include "compass_board_frame.hpp"
+#include "compass_calibration.hpp"
+#include "compass_axis_alignment.hpp"
+#include "compass_nine_axis_storage.hpp"
 #include "esp_err.h"
 #include "esp_lib_utils.h"
 #include "esp_log.h"
 #include "esp_timer.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/task.h"
-#include "math.h"
 #include "nvs_flash.h"
 #include "nvs.h"
 #include "ui/ui.h"
-#include "brookesia/system_core/gui/lvgl/lock.hpp"
 #include "esp_board_manager.h"
+#include <array>
+#include <cmath>
 #include <cstdint>
+#include <cstring>
+#include <memory>
+#include <new>
 
 static const char *TAG = "CompassApp";
 
@@ -29,35 +33,45 @@ using namespace esp_brookesia::gui;
 
 #define APP_NAME "Compass"
 
-#ifndef M_PI
-#define M_PI 3.1415926f
-#endif
+#define SAMPLE_RATE_MS 10 // Poll interval; fusion uses measured sample timestamps.
+#define SENSOR_STALE_TIMEOUT_US (3LL * 1000000)
 
 #define I2C_MASTER_SDO_IO GPIO_NUM_9
-#define I2C_MASTER_NUM I2C_NUM_0
-#define I2C_MASTER_FREQ_HZ (100 * 1000)
-#define SAMPLE_RATE_MS 10 // 10ms sampling interval
 
-#define COMPLEMENTARY_FILTER_ALPHA 0.9f
-#define HEADING_FILTER_ALPHA 0.85f  // Low-pass filter for heading smoothing (0.85 = 85% previous, 15% new)
+static void configure_imu_sdo_from_board(void)
+{
+    gpio_config_t io_conf = {
+        .pin_bit_mask = (1ULL << I2C_MASTER_SDO_IO),
+        .mode = GPIO_MODE_OUTPUT,
+        .pull_up_en = GPIO_PULLUP_DISABLE,
+        .pull_down_en = GPIO_PULLDOWN_DISABLE,
+        .intr_type = GPIO_INTR_DISABLE,
+    };
+    esp_err_t ret = gpio_config(&io_conf);
+    if (ret != ESP_OK) {
+        ESP_LOGW(TAG, "IMU SDO GPIO%d config failed: %s", (int)I2C_MASTER_SDO_IO, esp_err_to_name(ret));
+        return;
+    }
+    gpio_set_level(I2C_MASTER_SDO_IO, 0);
+    ESP_LOGI(TAG, "IMU SDO GPIO%d pulled low for address select", (int)I2C_MASTER_SDO_IO);
+}
 
 // NVS storage configuration
-#define NVS_NAMESPACE "compass_cal"
-#define NVS_KEY_HARD_IRON "hard_iron"
-#define NVS_KEY_SOFT_IRON "soft_iron"
-#define NVS_KEY_CALIBRATED "calibrated"
+/* v3/v4 magnetic-only records remain untouched; v5 stores all nine-axis stages. */
+#define NVS_NAMESPACE "compass_cal_v5"
+#define NVS_KEY_MODEL "model"
 
 LV_IMG_DECLARE(img_app_compass);
 
 namespace esp_brookesia::apps {
 
-constexpr systems::base::App::Config CORE_DATA = {
+constexpr esp_brookesia::systems::base::App::Config CORE_DATA = {
     .name = APP_NAME,
-    .launcher_icon = gui::StyleImage::IMAGE(&img_app_compass),
-    .screen_size = gui::StyleSize::RECT_PERCENT(100, 100),
+    .launcher_icon = esp_brookesia::gui::StyleImage::IMAGE(&img_app_compass),
+    .screen_size = esp_brookesia::gui::StyleSize::RECT_PERCENT(100, 100),
     .flags = {
         .enable_default_screen = 1,
-        .enable_recycle_resource = 0,
+        .enable_recycle_resource = 1,
         .enable_resize_visual_area = 1,
     },
 };
@@ -68,15 +82,35 @@ constexpr App::Config APP_DATA = {
     },
 };
 
+namespace {
+
+using CalibrationRecord = compass_nine_axis_storage::Record;
+
+bool usableCalibrationModel(const compass_calibration::Result &model)
+{
+    return compass_calibration::isValidModel(model) && std::isfinite(model.fit_error) &&
+           model.fit_error >= 0.0f && model.fit_error <= 0.03001f;
+}
+
+} // namespace
+
+struct Compass::MagneticCalibration {
+    compass_calibration::SampleBuffer magnetic;
+    std::array<compass_heading::Vec3, compass_calibration::SampleBuffer::capacity> up{};
+    int64_t started_us = 0;
+    unsigned observed_axes = 0;
+    uint32_t generation = 0;
+};
+
 Compass::Compass()
     : App(CORE_DATA, APP_DATA)
     , bmi_handle_(nullptr)
     , i2c_bus_(nullptr)
     , bmi2_dev_(nullptr)
-    , mag_cal_{{0, 0, 0}, {{1, 0, 0}, {0, 1, 0}, {0, 0, 1}}, false}
-, current_heading_(0.0f)
-, current_mag_data_{0}
-, bmm_running_(false)
+    , mag_(nullptr)
+    , mag_cal_{}
+    , current_heading_(0.0f)
+    , bmm_running_(false)
 {
     ESP_LOGI(TAG, "Compass app constructor");
 }
@@ -98,17 +132,17 @@ Compass *Compass::requestInstance()
 
 void Compass::setCorrect(bool correct)
 {
+    std::lock_guard<std::mutex> guard(calibration_mutex_);
     mag_cal_.calibrated = correct;
+    if (!correct) {
+        imu_cal_ = {};
+        ++calibration_generation_;
+    }
 }
 
 void Compass::externalBack()
 {
     back();
-}
-
-bool Compass::isCalibrated() const
-{
-    return mag_cal_.calibrated;
 }
 
 bool Compass::init()
@@ -117,11 +151,10 @@ bool Compass::init()
 
     // Initialize NVS
     esp_err_t ret = nvs_flash_init();
-    if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-        ESP_ERROR_CHECK(nvs_flash_erase());
-        ret = nvs_flash_init();
+    if (ret != ESP_OK) {
+        ESP_LOGW(TAG, "Calibration storage unavailable: %s; keeping session-only calibration", esp_err_to_name(ret));
+        return true;
     }
-    ESP_ERROR_CHECK(ret);
 
     // Load calibration data from NVS
     if (loadCalibrationFromNVS()) {
@@ -137,44 +170,24 @@ bool Compass::deinit()
 {
     ESP_LOGI(TAG, "Deinitializing Compass app");
 
-    destroyCompassUI();
-    bmm_running_ = false;
-    if (bmm_data_thread.joinable()) {
-        bmm_data_thread.join();
-    }
-
-    if (update_compass_thread.joinable()) {
-        update_compass_thread.join();
-    }
-    deinitSensors();
-
-    return true;
+    return close();
 }
 
 bool Compass::run()
 {
     ESP_LOGI(TAG, "Running Compass app");
 
-    if (!initSensors()) {
-        ESP_LOGE(TAG, "Failed to initialize sensors");
-        is_initialized_ = false;
-        is_app_running_ = false;
-    } else {
-        is_initialized_ = true;
-        is_app_running_ = true;
-    }
-
+    is_initialized_ = startSensorTask();
     createCompassUI();
-
-    if (!is_initialized_) {
-        return true;
+    ui_timer_ = lv_timer_create([](lv_timer_t *timer) {
+        static_cast<Compass *>(lv_timer_get_user_data(timer))->updateUI();
+    }, 50, this);
+    if (ui_timer_ == nullptr) {
+        ESP_LOGE(TAG, "Failed to create compass UI timer");
+        close();
+        return false;
     }
-
-    // Start sensor reading task
-    bmm_running_ = true;
-    bmm_data_thread = boost::thread(&Compass::bmmDataThread, this);
-    update_compass_thread = boost::thread(&Compass::updateCompassThread, this);
-
+    updateUI();
     return true;
 }
 
@@ -189,20 +202,11 @@ bool Compass::resume()
 {
     ESP_LOGI(TAG, "Compass app resume");
 
-    if (!initSensors()) {
-        ESP_LOGE(TAG, "Failed to initialize sensors");
-        is_initialized_ = false;
-        is_app_running_ = false;
-        {
-            LvLockGuard gui_guard;
-            lv_disp_load_scr(ui_CompassTipScreen);
-        }
-    } else {
-        is_initialized_ = true;
-        is_app_running_ = true;
-        // lv_disp_load_scr(ui_CompassScreen);
+    is_initialized_ = startSensorTask();
+    if (ui_timer_) {
+        lv_timer_resume(ui_timer_);
     }
-
+    updateUI();
     return true;
 }
 
@@ -210,98 +214,138 @@ bool Compass::pause()
 {
     ESP_LOGI(TAG, "Compass app pause");
 
-    is_app_running_ = false;
-    if (!deinitSensors()) {
-        ESP_LOGE(TAG, "Failed to deinitialize sensors");
-        return true;
-    } else {
-        is_initialized_ = true;
+    if (ui_timer_) {
+        lv_timer_pause(ui_timer_);
     }
-
+    stopSensorTask();
+    if (!deinitSensors()) {
+        ESP_LOGE(TAG, "Failed to deinitialize Compass sensors");
+    }
+    is_initialized_ = false;
     return true;
 }
 
 bool Compass::close()
 {
     ESP_LOGI(TAG, "Closing Compass app");
-    bmm_running_ = false;
-    if (bmm_data_thread.joinable()) {
-        bmm_data_thread.join();
+    if (ui_timer_) {
+        lv_timer_delete(ui_timer_);
+        ui_timer_ = nullptr;
     }
-    if (update_compass_thread.joinable()) {
-        update_compass_thread.join();
+    stopSensorTask();
+    if (nvs_thread_.joinable()) {
+        nvs_thread_.join();
     }
+    if (!deinitSensors()) {
+        ESP_LOGE(TAG, "Failed to deinitialize Compass sensors");
+    }
+    is_initialized_ = false;
+    // Screens stay alive until the framework finishes unloading the active one.
+    return true;
+}
+
+bool Compass::cleanResource()
+{
+    // The framework owns all screens recorded during run() and deletes them
+    // immediately after this callback. Clear aliases without deleting twice.
+    ui_CompassCorrectScreen = nullptr;
+    ui_CorrectImage = nullptr;
+    ui_CorrectTips = nullptr;
+    ui_CompassScreen = nullptr;
+    ui_Pointer = nullptr;
+    ui_ProgressBar = nullptr;
+    ui_CalibrationTip = nullptr;
+    ui_CompassTipScreen = nullptr;
+    ui_CompassTipText = nullptr;
     return true;
 }
 
 void Compass::createCompassUI()
 {
-    ESP_LOGI(TAG, "Creating compass UI");
     compass_ui_init(is_initialized_);
-    ESP_LOGI(TAG, "Compass UI created successfully");
 }
 
-void Compass::destroyCompassUI()
+bool Compass::startSensorTask()
 {
-    compass_ui_destroy();
-    ESP_LOGI(TAG, "Compass UI destroyed");
+    stopSensorTask();
+    if (!initSensors()) {
+        deinitSensors();
+        ui_state_ = UiState::SensorError;
+        return false;
+    }
+    ui_state_ = UiState::Preparing;
+    fusion_.reset();
+    north_reference_.reset();
+    gyro_stationary_.reset();
+    heading_is_north_ = false;
+    current_heading_ = 0;
+    last_valid_sample_us_ = 0;
+    last_fresh_sample_us_ = esp_timer_get_time();
+    last_magnetic_sample_us_ = 0;
+    last_magnetic_accept_us_ = 0;
+    next_magnetic_fit_us_ = 0;
+    bmm_running_ = true;
+    try {
+        // Ellipsoid fitting and sensor logging need more than the default 3 KB.
+        // Keep the extra stack local to this worker, not all application threads.
+        boost::thread::attributes attributes;
+        attributes.set_stack_size(8192);
+        bmm_data_thread = boost::thread(attributes, [this]() {
+            bmmDataThread();
+        });
+    } catch (const boost::thread_resource_error &error) {
+        ESP_LOGE(TAG, "Failed to start sensor task: %s", error.what());
+        bmm_running_ = false;
+        deinitSensors();
+        ui_state_ = UiState::SensorError;
+        return false;
+    }
+    return true;
+}
+
+void Compass::stopSensorTask()
+{
+    {
+        std::lock_guard<std::mutex> guard(calibration_mutex_);
+        bmm_running_ = false;
+        ++calibration_generation_;
+    }
+    // The worker never takes the GUI lock, so joining from a GUI event is safe.
+    if (bmm_data_thread.joinable()) {
+        bmm_data_thread.join();
+    }
+    if (calibration_thread_.joinable()) {
+        calibration_thread_.join();
+    }
+    magnetic_fit_running_ = false;
+    magnetic_samples_.reset();
 }
 
 bool Compass::initSensors()
 {
-    ESP_LOGI(TAG, "Initializing BMM350 sensors...");
+    ESP_LOGI(TAG, "Initializing BMI270 + BMM350 sensors...");
 
     vTaskDelay(10 / portTICK_PERIOD_MS);
-
-    /* Configure SDO pin */
-    gpio_config_t io_conf = {
-        .pin_bit_mask = (1ULL << I2C_MASTER_SDO_IO),
-        .mode = GPIO_MODE_OUTPUT,
-        .pull_up_en = GPIO_PULLUP_DISABLE,
-        .pull_down_en = GPIO_PULLDOWN_DISABLE,
-        .intr_type = GPIO_INTR_DISABLE,
-    };
-    esp_err_t ret = gpio_config(&io_conf);
-    if (ret != ESP_OK) {
-        ESP_LOGE(TAG, "SDO pin configuration failed: %s", esp_err_to_name(ret));
-    }
-    gpio_set_level(I2C_MASTER_SDO_IO, 0);
-
+    configure_imu_sdo_from_board();
     vTaskDelay(10 / portTICK_PERIOD_MS);
 
-    // Get I2C pin configuration from Board Manager
-    i2c_master_bus_config_t *i2c_config = nullptr;
-    ret = esp_board_manager_get_periph_config("i2c_master", (void **)&i2c_config);
-    if (ret != ESP_OK || i2c_config == nullptr) {
-        ESP_LOGE(TAG, "Failed to get I2C peripheral config from Board Manager: %s", esp_err_to_name(ret));
+    esp_err_t ret = esp_board_manager_get_periph_handle("i2c_master", (void **)&i2c_bus_);
+    if (ret != ESP_OK || i2c_bus_ == nullptr) {
+        ESP_LOGE(TAG, "Failed to get I2C master bus from Board Manager: %s", esp_err_to_name(ret));
         return false;
     }
-
-    gpio_num_t sda_pin = i2c_config->sda_io_num;
-    gpio_num_t scl_pin = i2c_config->scl_io_num;
-
-    const i2c_config_t i2c_conf = {
-        .mode = I2C_MODE_MASTER,
-        .sda_io_num = sda_pin,
-        .scl_io_num = scl_pin,
-        .sda_pullup_en = GPIO_PULLUP_ENABLE,
-        .scl_pullup_en = GPIO_PULLUP_ENABLE,
-        .master = {.clk_speed = 400000},
-        .clk_flags = 0,
-    };
-
-    i2c_bus_ = i2c_bus_create(I2C_NUM_0, &i2c_conf);
-    if (!i2c_bus_) {
-        ESP_LOGE(TAG, "I2C bus create failed");
-        return false;
-    }
-    ESP_LOGI(TAG, "I2C bus handle: %p", i2c_bus_);
+    ESP_LOGI(TAG, "I2C master bus handle: %p", i2c_bus_);
 
     vTaskDelay(10 / portTICK_PERIOD_MS);
 
-    ret = bmi270_sensor_create(i2c_bus_, &bmi_handle_, bmi270_config_file, BMI2_GYRO_CROSS_SENS_ENABLE | BMI2_CRT_RTOSK_ENABLE);
+    ret = bmi270_sensor_create_from_master_bus(i2c_bus_, &bmi_handle_, bmi270_config_file, 0);
     if (ret != ESP_OK || bmi_handle_ == NULL) {
-        ESP_LOGE(TAG, "BMI270 creation failed");
+        ESP_LOGE(TAG, "BMI270 creation failed: %s", esp_err_to_name(ret));
+        bmi2_dev_ = (struct bmi2_dev *)bmi_handle_;
+        if (bmi_handle_ != nullptr) {
+            ESP_LOGW(TAG, "BMI270 handle retained for cleanup retry");
+        }
+        return false;
     }
 
     bmi2_dev_ = (struct bmi2_dev *)bmi_handle_;
@@ -332,7 +376,8 @@ bool Compass::initSensors()
             return false;
         }
     } else {
-        ESP_LOGW(TAG, "BMI270 get sensor config failed: %d", rslt);
+        ESP_LOGE(TAG, "BMI270 get sensor config failed: %d", rslt);
+        return false;
     }
 
     uint8_t sens_list[2] = {BMI2_ACCEL, BMI2_GYRO};
@@ -343,867 +388,527 @@ bool Compass::initSensors()
     }
     ESP_LOGI(TAG, "BMI270 sensors enabled");
 
-    static uint8_t s_bmm350_addr = 0x14;
-
-    if (bmm350_interface_init(&s_bmm350, i2c_bus_) != BMM350_OK) {
-        ESP_LOGE(TAG, "BMM350 interface init failed");
-        return false;
+    if (!initMagnetometer()) {
+        ESP_LOGW(TAG, "Magnetometer unavailable; keeping IMU relative direction available");
     }
 
-    /* Try 0x14 first (ADSEL=GND). If it fails, try 0x15 (ADSEL=VDD). */
-    const uint8_t addr_candidates[] = { 0x14, 0x15 };
-    int8_t bmm350_rslt = BMM350_E_DEV_NOT_FOUND;
-
-    for (size_t i = 0; i < sizeof(addr_candidates); ++i) {
-        uint8_t addr = addr_candidates[i];
-        /* Consistent with official example: intf_ptr passes address pointer, read/write are bmm350_i2c_read/write */
-        s_bmm350_addr = addr;
-        s_bmm350.read = bmm350_i2c_read;
-        s_bmm350.write = bmm350_i2c_write;
-        s_bmm350.delay_us = bmm350_delay;
-        s_bmm350.intf_ptr = (void *)&s_bmm350_addr;
-
-        /* Initialize BMM350 (reads CHIP_ID internally) */
-        bmm350_rslt = bmm350_init(&s_bmm350);
-        ESP_LOGI(TAG, "Init at 0x%02X -> rslt=%d, chip_id=0x%02X (expect 0x33)", addr, bmm350_rslt, s_bmm350.chip_id);
-
-        /* Some boards may return -16(BMM350_E_PMU_CMD_VALUE) after power-on, but chip_id is already correct as 0x33.
-         * In this case, perform a soft reset and continue. */
-        if (s_bmm350.chip_id == BMM350_CHIP_ID) {
-            if (bmm350_rslt != BMM350_OK) {
-                (void)bmm350_soft_reset(&s_bmm350);
-                bmm350_delay(BMM350_SOFT_RESET_DELAY + 10000, &s_bmm350); /* Extra delay for stability */
-            }
-
-            /* Wait for PMU busy to clear */
-            struct bmm350_pmu_cmd_status_0 pmu0 = { 0 };
-            for (int t = 0; t < 10; ++t) {
-                (void)bmm350_get_pmu_cmd_status_0(&pmu0, &s_bmm350);
-                if (pmu0.pmu_cmd_busy == 0) {
-                    break;
-                }
-                bmm350_delay(5000, &s_bmm350);
-            }
-
-            uint8_t err_reg = 0;
-            (void)bmm350_get_regs(BMM350_REG_ERR_REG, &err_reg, 1, &s_bmm350);
-            ESP_LOGI(TAG, "PMU_ST0.busy=%u, ERR_REG=0x%02X", pmu0.pmu_cmd_busy, err_reg);
-
-            /* Configure ODR/averaging, enable XYZ axes, and enter NORMAL mode */
-            (void)bmm350_set_odr_performance(BMM350_DATA_RATE_100HZ, BMM350_AVERAGING_4, &s_bmm350);
-            (void)bmm350_enable_axes(BMM350_X_EN, BMM350_Y_EN, BMM350_Z_EN, &s_bmm350);
-            (void)bmm350_set_powermode(BMM350_NORMAL_MODE, &s_bmm350);
-            ESP_LOGI(TAG, "BMM350 configured successfully");
-            return true;
-        }
+    vTaskDelay(pdMS_TO_TICKS(20));
+    struct bmi2_sens_data sensor_snapshot = {};
+    float magnetic_snapshot[3] = {};
+    const int8_t imu_snapshot_result = bmi2_get_sensor_data(&sensor_snapshot, bmi2_dev_);
+    const bool magnetic_snapshot_ok = readMagnetometer(magnetic_snapshot);
+    if (imu_snapshot_result == BMI2_OK && magnetic_snapshot_ok) {
+        ESP_LOGI(
+            TAG,
+            "Sensor snapshot: accel=[%d,%d,%d], gyro=[%d,%d,%d], mag=[%.2f,%.2f,%.2f]",
+            sensor_snapshot.acc.x, sensor_snapshot.acc.y, sensor_snapshot.acc.z,
+            sensor_snapshot.gyr.x, sensor_snapshot.gyr.y, sensor_snapshot.gyr.z,
+            magnetic_snapshot[0], magnetic_snapshot[1], magnetic_snapshot[2]
+        );
+    } else {
+        ESP_LOGW(
+            TAG, "Sensor snapshot unavailable: bmi270=%d, magnetometer=%s",
+            imu_snapshot_result, magnetic_snapshot_ok ? "ready" : "read_failed"
+        );
     }
 
     return true;
+}
+
+bool Compass::initMagnetometer()
+{
+    esp_err_t ret = compass_mag_delete(&mag_);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Failed to clean up previous magnetometer: %s", esp_err_to_name(ret));
+        return false;
+    }
+
+    compass_mag_config_t mag_cfg = {
+        .i2c_bus = i2c_bus_,
+        .chip = "bmm350",
+        .i2c_addr = 0,
+        .frequency_hz = 0,
+    };
+
+    ret = compass_mag_create(&mag_cfg, &mag_);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "Magnetometer (%s) init failed: %s", mag_cfg.chip, esp_err_to_name(ret));
+        return false;
+    }
+
+    ESP_LOGI(TAG, "Magnetometer backend ready: %s", compass_mag_chip_name(mag_));
+    return true;
+}
+
+bool Compass::readMagnetometer(float data[3])
+{
+    if (mag_ == nullptr || data == nullptr) {
+        return false;
+    }
+    return compass_mag_read(mag_, data) == ESP_OK;
 }
 
 bool Compass::deinitSensors()
 {
     ESP_LOGI(TAG, "Deinitializing sensors...");
 
+    bool success = true;
+    esp_err_t ret = compass_mag_delete(&mag_);
+    if (ret != ESP_OK) {
+        ESP_LOGE(TAG, "BMM350 deletion failed: %s", esp_err_to_name(ret));
+        success = false;
+    }
+
     if (bmi_handle_) {
-        bmi270_sensor_del(&bmi_handle_);
-        bmi_handle_ = nullptr;
+        ret = bmi270_sensor_del(&bmi_handle_);
+        if (ret == ESP_OK) {
+            bmi2_dev_ = nullptr;
+        } else {
+            ESP_LOGE(TAG, "BMI270 deletion failed: %s", esp_err_to_name(ret));
+            success = false;
+        }
     }
 
-    bmm350_coines_deinit();
-
-    return true;
+    return success;
 }
 
-bool Compass::isCalibrationSufficient(
-    float mag_min[3], float mag_max[3],
-    float pitch_min, float pitch_max,
-    float roll_min, float roll_max,
-    uint8_t octant_coverage,
-    int sample_count)
+bool Compass::calibrationActive() const
 {
-    if (sample_count < 300) {
-        return false;
-    }
-
-    float pitch_range = pitch_max - pitch_min;
-    float roll_range = roll_max - roll_min;
-    bool attitude_ok = (pitch_range > 90.0f && roll_range > 120.0f);
-
-    if (!attitude_ok) {
-        return false;
-    }
-
-    float mag_range[3];
-    for (int i = 0; i < 3; i++) {
-        mag_range[i] = mag_max[i] - mag_min[i];
-    }
-    float avg_range = (mag_range[0] + mag_range[1] + mag_range[2]) / 3.0f;
-    float min_range = fminf(fminf(mag_range[0], mag_range[1]), mag_range[2]);
-
-    bool mag_ok = (min_range > avg_range * 0.5f && avg_range > 50.0f);
-
-    if (!mag_ok) {
-        ESP_LOGW(TAG, "Magnetic range insufficient: X=%.1f, Y=%.1f, Z=%.1f (avg=%.1f)",
-                 mag_range[0], mag_range[1], mag_range[2], avg_range);
-        return false;
-    }
-
-    int covered_octants = __builtin_popcount(octant_coverage);
-    bool octant_ok = (covered_octants >= 4);
-
-    if (!octant_ok) {
-        ESP_LOGW(TAG, "Octant coverage low: %d/8 (minimum 4 required)", covered_octants);
-    }
-
-    float max_range = fmaxf(fmaxf(mag_range[0], mag_range[1]), mag_range[2]);
-    float ellipsoid_ratio = min_range / max_range;
-
-    if (ellipsoid_ratio < 0.25f) {
-        ESP_LOGW(TAG, "Ellipsoid too flat: ratio=%.2f (need >0.25)", ellipsoid_ratio);
-        return false;
-    }
-
-    if (!octant_ok && ellipsoid_ratio < 0.6f) {
-        ESP_LOGW(TAG, "Both octant coverage and ellipsoid quality are insufficient");
-        return false;
-    }
-
-    ESP_LOGI(TAG, "  Samples: %d, Pitch: %.1f°, Roll: %.1f°",
-             sample_count, pitch_range, roll_range);
-    ESP_LOGI(TAG, "  Octants: %d/8, Ellipsoid: %.2f, Mag ranges: [%.1f, %.1f, %.1f]",
-             covered_octants, ellipsoid_ratio, mag_range[0], mag_range[1], mag_range[2]);
-
-    return true;
+    return bmm_running_;
 }
 
-void Compass::calibrateMagnetometer()
+bool Compass::calibrateGyroscope()
 {
-    if (mag_cal_.calibrated) {
-        return;
+    compass_imu_calibration::Model model;
+    {
+        std::lock_guard<std::mutex> guard(calibration_mutex_);
+        model = imu_cal_;
     }
-
-    ESP_LOGI(TAG, "=== Magnetometer Calibration Started ===");
-    ESP_LOGI(TAG, "Please rotate the device in all directions (figure-8 pattern)");
-
-    float mag_min[3] = {10000, 10000, 10000};
-    float mag_max[3] = {-10000, -10000, -10000};
-    float pitch_min = 10000.0f;
-    float pitch_max = -10000.0f;
-    float roll_min = 10000.0f;
-    float roll_max = -10000.0f;
-    uint8_t octant_coverage = 0;
-    int sample_count = 0;
-
-    uint32_t last_progress_time = 0;
-
-    const int INITIAL_SAMPLES = 100;
-    float mag_center[3] = {0, 0, 0};
-    bool center_initialized = false;
-
-    while (bmm_running_) {
-        struct bmm350_mag_temp_data mag_data = {0};
-        int8_t rs = bmm350_get_compensated_mag_xyz_temp_data(&mag_data, &s_bmm350);
-
-        if (rs == BMM350_OK) {
-            float mag_x = (float)mag_data.x;
-            float mag_y = (float)mag_data.y;
-            float mag_z = (float)mag_data.z;
-
-            if (mag_x < mag_min[0]) {
-                mag_min[0] = mag_x;
-            }
-            if (mag_y < mag_min[1]) {
-                mag_min[1] = mag_y;
-            }
-            if (mag_z < mag_min[2]) {
-                mag_min[2] = mag_z;
-            }
-            if (mag_x > mag_max[0]) {
-                mag_max[0] = mag_x;
-            }
-            if (mag_y > mag_max[1]) {
-                mag_max[1] = mag_y;
-            }
-            if (mag_z > mag_max[2]) {
-                mag_max[2] = mag_z;
-            }
-
-            sample_count++;
-
-            if (sample_count >= INITIAL_SAMPLES && !center_initialized) {
-                mag_center[0] = (mag_max[0] + mag_min[0]) / 2.0f;
-                mag_center[1] = (mag_max[1] + mag_min[1]) / 2.0f;
-                mag_center[2] = (mag_max[2] + mag_min[2]) / 2.0f;
-                center_initialized = true;
-                ESP_LOGI(TAG, "Magnetic field center estimated: [%.1f, %.1f, %.1f]",
-                         mag_center[0], mag_center[1], mag_center[2]);
-            }
-
-            if (center_initialized) {
-                mag_center[0] = (mag_max[0] + mag_min[0]) / 2.0f;
-                mag_center[1] = (mag_max[1] + mag_min[1]) / 2.0f;
-                mag_center[2] = (mag_max[2] + mag_min[2]) / 2.0f;
-
-                uint8_t octant = 0;
-                if (mag_x > mag_center[0]) {
-                    octant |= (1 << 0);
-                }
-                if (mag_y > mag_center[1]) {
-                    octant |= (1 << 1);
-                }
-                if (mag_z > mag_center[2]) {
-                    octant |= (1 << 2);
-                }
-
-                octant_coverage |= (1 << octant);
-            }
-
-            struct bmi2_sens_data sensor_data = {0};
-            int8_t rslt = bmi2_get_sensor_data(&sensor_data, bmi2_dev_);
-            if (rslt == BMI2_OK) {
-                /* Parse accelerometer data */
-                float acc_x_mg = (float)sensor_data.acc.x / 16384.0f;
-                float acc_y_mg = -(float)sensor_data.acc.y / 16384.0f;
-                float acc_z_mg = -(float)sensor_data.acc.z / 16384.0f;
-
-                /* Parse gyroscope data */
-                float gyro_x_dps = (float)sensor_data.gyr.x / 16.4f;
-                float gyro_y_dps = -(float)sensor_data.gyr.y / 16.4f;
-                float gyro_z_dps = -(float)sensor_data.gyr.z / 16.4f;
-
-                /* Update complementary filter with new sensor data */
-                update_complementary_filter(acc_x_mg, acc_y_mg, acc_z_mg, gyro_x_dps,
-                                            gyro_y_dps, gyro_z_dps, comp_filter.dt);
-
-                if (comp_filter.euler.pitch < pitch_min) {
-                    pitch_min = comp_filter.euler.pitch;
-                }
-                if (comp_filter.euler.pitch > pitch_max) {
-                    pitch_max = comp_filter.euler.pitch;
-                }
-                if (comp_filter.euler.roll < roll_min) {
-                    roll_min = comp_filter.euler.roll;
-                }
-                if (comp_filter.euler.roll > roll_max) {
-                    roll_max = comp_filter.euler.roll;
-                }
-            }
-
-            uint32_t now = esp_timer_get_time() / 1000000;
-            if (now - last_progress_time >= 1) {
-                int covered = __builtin_popcount(octant_coverage);
-                float pitch_range = pitch_max - pitch_min;
-                float roll_range = roll_max - roll_min;
-                float mag_ranges[3] = {
-                    mag_max[0] - mag_min[0],
-                    mag_max[1] - mag_min[1],
-                    mag_max[2] - mag_min[2]
-                };
-
-                ESP_LOGI(TAG, "Progress: Samples=%d, Octants=%d/8, Pitch=%.1f°, Roll=%.1f°",
-                         sample_count, covered, pitch_range, roll_range);
-                ESP_LOGI(TAG, "  Mag ranges: X=%.1f, Y=%.1f, Z=%.1f",
-                         mag_ranges[0], mag_ranges[1], mag_ranges[2]);
-
-                if (pitch_range < 90.0f) {
-                    ESP_LOGI(TAG, "  → Rotate device forward/backward more");
-                    lv_async_call([](void *user_data) {
-                        Compass *self = static_cast<Compass *>(user_data);
-                        if (!self->bmm_running_) {
-                            return;
-                        }
-                        lv_label_set_text(
-                            ui_CorrectTips,
-                            "Calibrating...\nRotate device\nforward/backward more");
-                    }, this);
-                } else if (roll_range < 120.0f) {
-                    ESP_LOGI(TAG, "  → Rotate device left/right more");
-                    lv_async_call([](void *user_data) {
-                        Compass *self = static_cast<Compass *>(user_data);
-                        if (!self->bmm_running_) {
-                            return;
-                        }
-                        lv_label_set_text(
-                            ui_CorrectTips,
-                            "Calibrating...\nRotate device\nleft/right more");
-                    }, this);
-                } else if (covered < 6) {
-                    ESP_LOGI(TAG, "  → Move device in figure-8 pattern");
-                    lv_async_call([](void *user_data) {
-                        Compass *self = static_cast<Compass *>(user_data);
-                        if (!self->bmm_running_) {
-                            return;
-                        }
-                        lv_label_set_text(
-                            ui_CorrectTips,
-                            "Calibrating...\nMove device in\nfigure-8 pattern");
-                    }, this);
-                } else if (sample_count < 500) {
-                    lv_async_call([](void *user_data) {
-                        Compass *self = static_cast<Compass *>(user_data);
-                        if (!self->bmm_running_) {
-                            return;
-                        }
-                        lv_label_set_text(
-                            ui_CorrectTips,
-                            "Calibrating...\nKeep moving device\nin figure-8 pattern");
-                    }, this);
-                }
-
-                last_progress_time = now;
-            }
-
-            if (sample_count > 500 &&
-                    isCalibrationSufficient(mag_min, mag_max, pitch_min, pitch_max,
-                                            roll_min, roll_max, octant_coverage,
-                                            sample_count)) {
+    compass_imu_calibration::StationaryWindow stationary;
+    ui_state_ = UiState::GyroCalibration;
+    int64_t start = esp_timer_get_time(), previous = 0;
+    bool gyro_ready = false;
+    while (calibrationActive() && esp_timer_get_time() - start < 10000000) {
+        bmi2_sens_data imu = {};
+        const int64_t now = esp_timer_get_time();
+        if (bmi2_get_sensor_data(&imu, bmi2_dev_) == BMI2_OK &&
+                (imu.status & BMI2_DRDY_ACC_MASK) && (imu.status & BMI2_DRDY_GYR_MASK)) {
+            const float dt = previous ? (now - previous) / 1000000.0f : .01f;
+            previous = now;
+            stationary.add({imu.acc.x / 8192.0f, imu.acc.y / 8192.0f, imu.acc.z / 8192.0f},
+            {imu.gyr.x / 16.4f, imu.gyr.y / 16.4f, imu.gyr.z / 16.4f}, dt);
+            if (stationary.ready(2)) {
+                model.gyro_bias = stationary.gyroMean();
+                model.gyro_valid = true;
+                gyro_ready = compass_imu_calibration::valid(model);
                 break;
             }
         }
-
-        vTaskDelay(pdMS_TO_TICKS(10));
+        vTaskDelay(pdMS_TO_TICKS(SAMPLE_RATE_MS));
     }
+    if (!gyro_ready || !calibrationActive()) {
+        ESP_LOGW(TAG, "Gyro calibration deferred; keeping the previous/factory bias");
+        return false;
+    }
+    {
+        std::lock_guard<std::mutex> guard(calibration_mutex_);
+        imu_cal_ = model;
+    }
+    saveCalibrationToNVS();
+    ESP_LOGI(TAG, "Gyro bias accepted: [%.4f, %.4f, %.4f] dps",
+             model.gyro_bias.x, model.gyro_bias.y, model.gyro_bias.z);
+    return true;
+}
 
-    if (!bmm_running_) {
-        mag_cal_.calibrated = false;
+void Compass::collectMagneticCalibration(const float raw[3], compass_heading::Vec3 up,
+                                         compass_heading::Vec3 gyro, int64_t now)
+{
+    uint32_t generation;
+    {
+        std::lock_guard<std::mutex> guard(calibration_mutex_);
+        if (!bmm_running_ || !imu_cal_.gyro_valid || mag_cal_.calibrated) {
+            return;
+        }
+        generation = calibration_generation_;
+    }
+    const float a2 = compass_heading::dot(up, up);
+    const float gyro2 = compass_heading::dot(gyro, gyro);
+    // Ignore an idle board so the reservoir is not filled with one pose, and
+    // ignore fast flicks that distort the magnetometer while moving.
+    constexpr float kMinGyroDps = 6.0f;
+    constexpr float kMaxGyroDps = 80.0f;
+    if (a2 < .85f * .85f || a2 > 1.15f * 1.15f || gyro2 < kMinGyroDps * kMinGyroDps ||
+            gyro2 > kMaxGyroDps * kMaxGyroDps) {
         return;
     }
-
-    // Calculate hard iron offset
-    mag_cal_.hard_iron[0] = (mag_max[0] + mag_min[0]) / 2.0f;
-    mag_cal_.hard_iron[1] = (mag_max[1] + mag_min[1]) / 2.0f;
-    mag_cal_.hard_iron[2] = (mag_max[2] + mag_min[2]) / 2.0f;
-
-    // Calculate soft iron correction
-    float avg_delta[3];
-    avg_delta[0] = (mag_max[0] - mag_min[0]) / 2.0f;
-    avg_delta[1] = (mag_max[1] - mag_min[1]) / 2.0f;
-    avg_delta[2] = (mag_max[2] - mag_min[2]) / 2.0f;
-    float avg_radius = (avg_delta[0] + avg_delta[1] + avg_delta[2]) / 3.0f;
-
-    if (avg_radius > 0) {
-        mag_cal_.soft_iron[0][0] = avg_radius / avg_delta[0];
-        mag_cal_.soft_iron[1][1] = avg_radius / avg_delta[1];
-        mag_cal_.soft_iron[2][2] = avg_radius / avg_delta[2];
+    if (!magnetic_samples_ || magnetic_samples_->generation != generation) {
+        magnetic_samples_.reset(new (std::nothrow) MagneticCalibration());
+        if (!magnetic_samples_) {
+            return;
+        }
+        magnetic_samples_->started_us = now;
+        magnetic_samples_->generation = generation;
     }
-
-    mag_cal_.calibrated = true;
-
-    // Save calibration data to NVS
-    if (saveCalibrationToNVS()) {
-        ESP_LOGI(TAG, "Calibration data saved to NVS successfully");
-    } else {
-        ESP_LOGE(TAG, "Failed to save calibration data to NVS");
+    auto &samples = *magnetic_samples_;
+    if (samples.magnetic.add(raw[0], raw[1], raw[2])) {
+        const auto index = samples.magnetic.lastStoredIndex();
+        if (index < samples.magnetic.capacity) {
+            samples.up[index] = up;
+        }
+        const float axes[] = {fabsf(up.x), fabsf(up.y), fabsf(up.z)};
+        unsigned axis = 0;
+        for (unsigned i = 1; i < 3; ++i) {
+            if (axes[i] > axes[axis]) {
+                axis = i;
+            }
+        }
+        samples.observed_axes |= 1U << axis;
     }
-
-    ESP_LOGI(TAG, "=== Calibration Complete! ===");
-    ESP_LOGI(TAG, "Hard Iron: X=%.2f, Y=%.2f, Z=%.2f",
-             mag_cal_.hard_iron[0], mag_cal_.hard_iron[1], mag_cal_.hard_iron[2]);
-    ESP_LOGI(TAG, "Soft Iron: X=%.3f, Y=%.3f, Z=%.3f",
-             mag_cal_.soft_iron[0][0], mag_cal_.soft_iron[1][1], mag_cal_.soft_iron[2][2]);
-}
-
-euler_angles_t Compass::calculate_euler_from_accel(float acc_x, float acc_y, float acc_z)
-{
-    euler_angles_t angles;
-
-    angles.pitch = atan2(-acc_x, sqrt(acc_y * acc_y + acc_z * acc_z)) * 180.0f / M_PI;
-
-    angles.roll = atan2(acc_y, acc_z) * 180.0f / M_PI;
-
-    angles.yaw = 0.0f;
-
-    return angles;
-}
-
-void Compass::applyMagCalibration(const float mag_raw[3], float mag_calibrated[3])
-{
-    if (!mag_cal_.calibrated) {
-        mag_calibrated[0] = mag_raw[0];
-        mag_calibrated[1] = mag_raw[1];
-        mag_calibrated[2] = mag_raw[2];
+    // No modal workflow or progress bar. Natural movement can supply the data.
+    // Only try after observing all three dominant axes, never for an idle board.
+    if (samples.observed_axes != 7 || samples.magnetic.size() < 320 ||
+            now - samples.started_us < 20000000 || now < next_magnetic_fit_us_ || magnetic_fit_running_) {
         return;
     }
-
-    // Apply hard iron correction
-    float mag_hi_corrected[3];
-    mag_hi_corrected[0] = mag_raw[0] - mag_cal_.hard_iron[0];
-    mag_hi_corrected[1] = mag_raw[1] - mag_cal_.hard_iron[1];
-    mag_hi_corrected[2] = mag_raw[2] - mag_cal_.hard_iron[2];
-
-    // Apply soft iron correction
-    mag_calibrated[0] = mag_cal_.soft_iron[0][0] * mag_hi_corrected[0] +
-                        mag_cal_.soft_iron[0][1] * mag_hi_corrected[1] +
-                        mag_cal_.soft_iron[0][2] * mag_hi_corrected[2];
-    mag_calibrated[1] = mag_cal_.soft_iron[1][0] * mag_hi_corrected[0] +
-                        mag_cal_.soft_iron[1][1] * mag_hi_corrected[1] +
-                        mag_cal_.soft_iron[1][2] * mag_hi_corrected[2];
-    mag_calibrated[2] = mag_cal_.soft_iron[2][0] * mag_hi_corrected[0] +
-                        mag_cal_.soft_iron[2][1] * mag_hi_corrected[1] +
-                        mag_cal_.soft_iron[2][2] * mag_hi_corrected[2];
-}
-
-void Compass::update_complementary_filter(float acc_x, float acc_y, float acc_z,
-                                          float gyro_x, float gyro_y, float gyro_z,
-                                          float dt)
-{
-    comp_filter.euler_accel = calculate_euler_from_accel(acc_x, acc_y, acc_z);
-
-    if (!comp_filter.initialized) {
-        comp_filter.euler = comp_filter.euler_accel;
-        comp_filter.euler_gyro = comp_filter.euler_accel;
-        comp_filter.initialized = true;
-        return;
+    next_magnetic_fit_us_ = now + 5000000;
+    if (calibration_thread_.joinable()) {
+        calibration_thread_.join();
     }
-
-    comp_filter.euler_gyro.pitch += gyro_y * dt;
-    comp_filter.euler_gyro.roll += gyro_x * dt;
-    comp_filter.euler_gyro.yaw += gyro_z * dt;
-
-    if (comp_filter.euler_gyro.pitch > 180.0f) {
-        comp_filter.euler_gyro.pitch -= 360.0f;
+    try {
+        auto *copy = new (std::nothrow) MagneticCalibration(samples);
+        if (!copy) {
+            return;
+        }
+        std::shared_ptr<MagneticCalibration> job(copy);
+        const uint32_t job_generation = job->generation;
+        boost::thread::attributes attributes;
+        attributes.set_stack_size(8192);
+        magnetic_fit_running_ = true;
+        calibration_thread_ = boost::thread(attributes, [this, job, job_generation]() {
+            // Fit below the sensor/UI priority so it cannot block gyro tracking.
+            vTaskPrioritySet(nullptr, 1);
+            compass_calibration::Result result;
+            const auto status = compass_calibration::fit(job->magnetic, result);
+            compass_axis_alignment::Result agreement;
+            const bool valid = status == compass_calibration::Status::Ok &&
+                               usableCalibrationModel(result) &&
+                               compass_axis_alignment::check(job->magnetic, job->up, result, compass_board_frame::mag_map, agreement);
+            bool published = false;
+            if (valid) {
+                std::lock_guard<std::mutex> guard(calibration_mutex_);
+                if (bmm_running_ && calibration_generation_ == job_generation && !mag_cal_.calibrated) {
+                    memcpy(mag_cal_.hard_iron, result.offset, sizeof(mag_cal_.hard_iron));
+                    memcpy(mag_cal_.soft_iron, result.matrix, sizeof(mag_cal_.soft_iron));
+                    mag_cal_.field_norm = result.field_norm;
+                    mag_cal_.fit_error = result.fit_error;
+                    mag_cal_.axes[0] = compass_board_frame::mag_map.x;
+                    mag_cal_.axes[1] = compass_board_frame::mag_map.y;
+                    mag_cal_.axes[2] = compass_board_frame::mag_map.z;
+                    mag_cal_.axis_error = agreement.deviation;
+                    mag_cal_.calibrated = true;
+                    published = true;
+                }
+            }
+            if (published) {
+                saveCalibrationToNVS();
+                ESP_LOGI(TAG, "Background magnetic calibration accepted: rms=%.4f agreement=%.4f",
+                         result.fit_error, agreement.deviation);
+            } else if (bmm_running_ && calibration_generation_ == job_generation) {
+                ESP_LOGI(TAG, "Background magnetic calibration deferred: fit=%d; relative tracking continues",
+                         static_cast<int>(status));
+            }
+            magnetic_fit_running_ = false;
+        });
+    } catch (const boost::thread_resource_error &error) {
+        magnetic_fit_running_ = false;
+        ESP_LOGW(TAG, "Background calibration task unavailable: %s", error.what());
+    } catch (const std::bad_alloc &) {
+        magnetic_fit_running_ = false;
+        ESP_LOGW(TAG, "Background calibration allocation unavailable");
     }
-    if (comp_filter.euler_gyro.pitch < -180.0f) {
-        comp_filter.euler_gyro.pitch += 360.0f;
-    }
-    if (comp_filter.euler_gyro.roll > 180.0f) {
-        comp_filter.euler_gyro.roll -= 360.0f;
-    }
-    if (comp_filter.euler_gyro.roll < -180.0f) {
-        comp_filter.euler_gyro.roll += 360.0f;
-    }
-    if (comp_filter.euler_gyro.yaw > 180.0f) {
-        comp_filter.euler_gyro.yaw -= 360.0f;
-    }
-    if (comp_filter.euler_gyro.yaw < -180.0f) {
-        comp_filter.euler_gyro.yaw += 360.0f;
-    }
-
-    float alpha = COMPLEMENTARY_FILTER_ALPHA;
-    comp_filter.euler.pitch = alpha * (comp_filter.euler.pitch + gyro_y * dt) +
-                              (1.0f - alpha) * comp_filter.euler_accel.pitch;
-    comp_filter.euler.roll = alpha * (comp_filter.euler.roll + gyro_x * dt) +
-                             (1.0f - alpha) * comp_filter.euler_accel.roll;
-    comp_filter.euler.yaw = comp_filter.euler_gyro.yaw;
-
-    if (comp_filter.euler.pitch > 180.0f) {
-        comp_filter.euler.pitch -= 360.0f;
-    }
-    if (comp_filter.euler.pitch < -180.0f) {
-        comp_filter.euler.pitch += 360.0f;
-    }
-    if (comp_filter.euler.roll > 180.0f) {
-        comp_filter.euler.roll -= 360.0f;
-    }
-    if (comp_filter.euler.roll < -180.0f) {
-        comp_filter.euler.roll += 360.0f;
-    }
-    if (comp_filter.euler.yaw > 180.0f) {
-        comp_filter.euler.yaw -= 360.0f;
-    }
-    if (comp_filter.euler.yaw < -180.0f) {
-        comp_filter.euler.yaw += 360.0f;
-    }
-}
-
-void Compass::apply_tilt_compensation(float mag_x, float mag_y, float mag_z, float pitch,
-                                      float roll, float *mag_x_corrected,
-                                      float *mag_y_corrected, float *mag_z_corrected)
-{
-    float pitch_rad = pitch * M_PI / 180.0f;
-    float roll_rad = roll * M_PI / 180.0f;
-
-    float cos_pitch = cosf(pitch_rad);
-    float sin_pitch = sinf(pitch_rad);
-    float cos_roll = cosf(roll_rad);
-    float sin_roll = sinf(roll_rad);
-
-    *mag_x_corrected = mag_x * cos_pitch + mag_y * sin_roll * sin_pitch +
-                       mag_z * cos_roll * sin_pitch;
-
-    *mag_y_corrected = mag_y * cos_roll - mag_z * sin_roll;
-
-    *mag_z_corrected = -mag_x * sin_pitch + mag_y * sin_roll * cos_pitch +
-                       mag_z * cos_roll * cos_pitch;
 }
 
 void Compass::updateSensorData()
 {
-    struct bmi2_sens_data sensor_data = {0};
-    /* Read BMI270 accelerometer and gyroscope data */
-    int8_t rslt = bmi2_get_sensor_data(&sensor_data, bmi2_dev_);
-    if (rslt == BMI2_OK) {
-        /* Parse accelerometer data */
-        float acc_x_mg = (float)sensor_data.acc.x / 16384.0f;
-        float acc_y_mg = -(float)sensor_data.acc.y / 16384.0f;
-        float acc_z_mg = -(float)sensor_data.acc.z / 16384.0f;
-
-        /* Parse gyroscope data */
-        float gyro_x_dps = (float)sensor_data.gyr.x / 16.4f;
-        float gyro_y_dps = -(float)sensor_data.gyr.y / 16.4f;
-        float gyro_z_dps = -(float)sensor_data.gyr.z / 16.4f;
-
-        /* Update complementary filter with new sensor data */
-        update_complementary_filter(acc_x_mg, acc_y_mg, acc_z_mg,
-                                    gyro_x_dps, gyro_y_dps, gyro_z_dps,
-                                    comp_filter.dt);
-    } else {
-        ESP_LOGE(TAG, "BMI270 get sensor data failed: %d", rslt);
+    // IMU propagation is independent of the slower 20 Hz magnetic data-ready.
+    bmi2_sens_data imu = {};
+    const int64_t now = esp_timer_get_time();
+    if (bmi2_get_sensor_data(&imu, bmi2_dev_) != BMI2_OK ||
+            !(imu.status & BMI2_DRDY_ACC_MASK) || !(imu.status & BMI2_DRDY_GYR_MASK)) {
+        if (now - last_fresh_sample_us_ > 200000) {
+            heading_is_north_ = false;
+        }
+        if (now - last_fresh_sample_us_ > SENSOR_STALE_TIMEOUT_US) {
+            ui_state_ = UiState::SensorError;
+        }
+        return;
     }
-
-    struct bmm350_mag_temp_data mag_data = {0};
-    /* Read BMM350 magnetometer data */
-    int8_t mag_rslt = bmm350_get_compensated_mag_xyz_temp_data(&mag_data, &s_bmm350);
-    if (mag_rslt == BMM350_OK) {
-        float mag_raw[3] = {(float)mag_data.x, (float)mag_data.y, (float)mag_data.z};
-        float mag_calibrated[3];
-
-        applyMagCalibration(mag_raw, mag_calibrated);
-
-        float mag_x = mag_calibrated[0];
-        float mag_y = mag_calibrated[1];
-        float mag_z = mag_calibrated[2];
-
-        // float mag_strength = sqrtf(mag_x * mag_x + mag_y * mag_y + mag_z * mag_z);
-
-        float uncorrected_heading = atan2f(mag_y, mag_x) * 180.0f / M_PI;
-        if (mag_z < 0) {
-            uncorrected_heading += 180.0f;
-        }
-        while (uncorrected_heading < 0.0f) {
-            uncorrected_heading += 360.0f;
-        }
-        while (uncorrected_heading > 360.0f) {
-            uncorrected_heading -= 360.0f;
-        }
-
-        float pitch = comp_filter.euler.pitch;
-        float roll = comp_filter.euler.roll;
-
-        float mag_x_corrected, mag_y_corrected, mag_z_corrected;
-        apply_tilt_compensation(mag_x, mag_y, mag_z, pitch, roll,
-                                &mag_x_corrected, &mag_y_corrected,
-                                &mag_z_corrected);
-
-        float corrected_heading =
-            atan2f(mag_y_corrected, mag_x_corrected) * 180.0f / M_PI;
-
-        // Normalize to 0-360 range
-        while (corrected_heading < 0.0f) {
-            corrected_heading += 360.0f;
-        }
-        while (corrected_heading >= 360.0f) {
-            corrected_heading -= 360.0f;
-        }
-
-        // Smooth angle transitions to avoid sudden 180-degree flips
-        // Handle wrap-around when crossing 0/360 boundary using shortest path
-        float previous_heading = current_heading_.load(std::memory_order_relaxed);
-        float heading_diff = corrected_heading - previous_heading;
-
-        // Calculate shortest path angle difference (handles 0/360 wrap-around)
-        // This prevents 180-degree flips when crossing the boundary
-        float shortest_diff = heading_diff;
-        if (heading_diff > 180.0f) {
-            shortest_diff = heading_diff - 360.0f;
-        } else if (heading_diff < -180.0f) {
-            shortest_diff = heading_diff + 360.0f;
-        }
-
-        // Apply low-pass filter to the angle difference to smooth changes and reduce noise
-        // This helps reduce offset at specific angles while maintaining responsiveness
-        // Filter the difference rather than the angle itself to handle wrap-around correctly
-        static float filtered_diff_prev = 0.0f;
-        float filtered_diff = HEADING_FILTER_ALPHA * filtered_diff_prev +
-                              (1.0f - HEADING_FILTER_ALPHA) * shortest_diff;
-        filtered_diff_prev = filtered_diff;
-
-        // Update heading using filtered difference
-        float final_heading = previous_heading + filtered_diff;
-
-        // Normalize final heading to 0-360 range
-        while (final_heading < 0.0f) {
-            final_heading += 360.0f;
-        }
-        while (final_heading >= 360.0f) {
-            final_heading -= 360.0f;
-        }
-
-        current_heading_.store(final_heading, std::memory_order_relaxed);
-
-        /* print the raw and corrected data */
-        // ESP_LOGI(TAG, "Uncorrected Heading: %7.2f°-> Corrected Heading: %7.2f°, Difference: %7.2f°",
-        //      uncorrected_heading, corrected_heading, uncorrected_heading - corrected_heading);
+    const float dt = last_valid_sample_us_ ? (now - last_valid_sample_us_) / 1000000.0f : .01f;
+    last_valid_sample_us_ = now;
+    last_fresh_sample_us_ = now;
+    compass_imu_calibration::Model imu_model;
+    mag_calibration_t magnetic_model;
+    {
+        std::lock_guard<std::mutex> guard(calibration_mutex_);
+        imu_model = imu_cal_;
+        magnetic_model = mag_cal_;
     }
-
+    const compass_heading::Vec3 raw_acc{imu.acc.x / 8192.0f, imu.acc.y / 8192.0f, imu.acc.z / 8192.0f};
+    const compass_heading::Vec3 raw_gyro{imu.gyr.x / 16.4f, imu.gyr.y / 16.4f, imu.gyr.z / 16.4f};
+    if (!imu_model.gyro_valid) {
+        gyro_stationary_.add(raw_acc, raw_gyro, dt);
+        if (gyro_stationary_.ready(2)) {
+            imu_model.gyro_bias = gyro_stationary_.gyroMean();
+            imu_model.gyro_valid = true;
+            if (compass_imu_calibration::valid(imu_model)) {
+                {
+                    std::lock_guard<std::mutex> guard(calibration_mutex_);
+                    imu_cal_ = imu_model;
+                }
+                saveCalibrationToNVS();
+                ESP_LOGI(TAG, "Gyro bias accepted: [%.4f, %.4f, %.4f] dps",
+                         imu_model.gyro_bias.x, imu_model.gyro_bias.y, imu_model.gyro_bias.z);
+            } else {
+                imu_model.gyro_valid = false;
+                gyro_stationary_.reset();
+            }
+        }
+    }
+    const auto acceleration = compass_board_frame::accel_map.apply(
+                                  compass_imu_calibration::acceleration(imu_model, raw_acc));
+    const auto gyro = compass_board_frame::accel_map.apply(
+                          compass_imu_calibration::gyroscope(imu_model, raw_gyro));
+    if (!fusion_.update(gyro, acceleration, dt)) {
+        north_reference_.reset();
+        heading_is_north_ = false;
+        ui_state_ = UiState::Motion;
+        return;
+    }
+    float raw[3] = {};
+    if (readMagnetometer(raw)) {
+        const float mag_dt = last_magnetic_sample_us_ ?
+                             (now - last_magnetic_sample_us_) / 1000000.0f : .05f;
+        last_magnetic_sample_us_ = now;
+        if (magnetic_model.calibrated) {
+            const bool had_magnetic_reference = fusion_.northReferenced();
+            float heading_before = 0;
+            const bool heading_before_valid = fusion_.heading(heading_before);
+            const float centered[] = {raw[0] - magnetic_model.hard_iron[0], raw[1] - magnetic_model.hard_iron[1],
+                                      raw[2] - magnetic_model.hard_iron[2]
+                                     };
+            float corrected[3] = {};
+            for (int r = 0; r < 3; ++r) {
+                for (int c = 0; c < 3; ++c) {
+                    corrected[r] += magnetic_model.soft_iron[r][c] * centered[c];
+                }
+            }
+            const compass_heading::Vec3 field{corrected[0], corrected[1], corrected[2]};
+            const float norm = std::sqrt(compass_heading::dot(field, field));
+            if (std::isfinite(norm) && std::fabs(norm - magnetic_model.field_norm) <
+                    magnetic_model.field_norm * .25f + 3 &&
+                    fusion_.correctMagnetic(compass_board_frame::mag_map.apply(field), mag_dt)) {
+                if (!had_magnetic_reference && heading_before_valid) {
+                    float heading_after;
+                    if (fusion_.heading(heading_after)) {
+                        north_reference_.preserveCorrection(heading_before, heading_after);
+                    }
+                }
+                last_magnetic_accept_us_ = now;
+            }
+        } else if (imu_model.gyro_valid) {
+            collectMagneticCalibration(raw, acceleration, gyro, now);
+        }
+    }
+    float heading;
+    if (!fusion_.heading(heading)) {
+        heading_is_north_ = false;
+        ui_state_ = UiState::UnobservablePose;
+        return;
+    }
+    const bool magnetic_reliable = fusion_.northReferenced() && now - last_magnetic_accept_us_ < 300000;
+    float displayed_heading;
+    if (!north_reference_.update(heading, dt, magnetic_reliable, displayed_heading)) {
+        return;
+    }
+    const bool aligned = magnetic_reliable && north_reference_.aligned();
+    if (aligned && !heading_is_north_) {
+        ESP_LOGI(TAG, "Magnetic north reference established");
+    }
+    heading_is_north_ = aligned;
+    current_heading_.store(displayed_heading, std::memory_order_relaxed);
+    ui_state_ = UiState::Ready;
 }
 
 void Compass::bmmDataThread()
 {
-    ESP_LOGI(TAG, "Sensor read task started");
-
-    if (!mag_cal_.calibrated) {
-        // Perform magnetometer calibration
-        ESP_LOGI(TAG, "Starting magnetometer calibration...");
-        ESP_LOGI(TAG, "Please rotate the device slowly in ALL directions (figure-8 pattern)");
-
-        LvLockGuard gui_guard;
-
-        lv_disp_load_scr(ui_CompassCorrectScreen);
-        vTaskDelay(pdMS_TO_TICKS(2000)); // Give user time to prepare
-        calibrateMagnetometer();
-    }
-
+    ESP_LOGI(TAG, "Compass fusion task started");
+    bool need_gyro;
     {
-        LvLockGuard gui_guard;
-        lv_disp_load_scr(ui_CompassScreen);
+        std::lock_guard<std::mutex> guard(calibration_mutex_);
+        need_gyro = !imu_cal_.gyro_valid;
     }
-
-    comp_filter.dt = SAMPLE_RATE_MS / 1000.0f; // 10ms = 0.01s
-    comp_filter.initialized = false;
-
+    if (need_gyro) {
+        calibrateGyroscope();
+    }
+    gyro_stationary_.reset();
+    fusion_.reset();
+    north_reference_.reset();
+    heading_is_north_ = false;
+    last_valid_sample_us_ = 0;
+    last_magnetic_sample_us_ = 0;
+    last_magnetic_accept_us_ = 0;
     while (bmm_running_) {
-        if (!is_app_running_) {
-            vTaskDelay(pdMS_TO_TICKS(100));
-            continue;
-        }
         updateSensorData();
         vTaskDelay(pdMS_TO_TICKS(SAMPLE_RATE_MS));
     }
-
-    ESP_LOGI(TAG, "Sensor read task stopped");
+    ESP_LOGI(TAG, "Compass fusion task stopped");
 }
 
 void Compass::updateCompassDisplay()
 {
-    int16_t rotation = -(int16_t)(current_heading_.load(std::memory_order_relaxed) * 10);
+    const int16_t rotation = static_cast<int16_t>(
+                                 compass_heading::pointer_angle_deg(current_heading_.load(std::memory_order_relaxed)) * 10.0f);
     lv_image_set_rotation(ui_Pointer, rotation);
+    // Keep the original pointer fully visible; calibration quality remains internal.
+    lv_obj_set_style_opa(ui_Pointer, LV_OPA_COVER, 0);
 }
 
-void Compass::updateCompassThread()
+void Compass::updateUI()
 {
-    ESP_LOGI(TAG, "Compass update thread started");
-
-    while (bmm_running_) {
-        if (!is_app_running_) {
-            vTaskDelay(pdMS_TO_TICKS(100));
-            continue;
+    // Keep the original three screens, background, pointer and long-press ring.
+    const UiState state = ui_state_.load();
+    const bool tracking = state == UiState::Ready || state == UiState::UnobservablePose ||
+                          state == UiState::Motion;
+    lv_obj_t *screen = tracking ? ui_CompassScreen : ui_CompassCorrectScreen;
+    const char *text = "Keep the board still\nfor two seconds";
+    if (state == UiState::SensorError) {
+        screen = ui_CompassTipScreen;
+        if (ui_CompassTipText) {
+            lv_label_set_text(ui_CompassTipText, "Compass sensor unavailable.");
         }
-        if (bmm_running_) {
-            lv_async_call([](void *user_data) {
-                Compass *self = static_cast<Compass *>(user_data);
-                if (!self->bmm_running_) {
-                    return;
-                }
-                self->updateCompassDisplay();
-            }, this);
-        }
-        vTaskDelay(pdMS_TO_TICKS(50));
+    } else if (!tracking && ui_CorrectTips) {
+        lv_label_set_text(ui_CorrectTips, text);
     }
-
-    ESP_LOGI(TAG, "Compass update thread stopped");
+    if (!tracking && ui_Pointer) {
+        lv_obj_add_flag(ui_Pointer, LV_OBJ_FLAG_HIDDEN);
+    }
+    if (screen && lv_screen_active() != screen) {
+        if (tracking) {
+            if (ui_ProgressBar) {
+                lv_arc_set_value(ui_ProgressBar, 0);
+            }
+            if (ui_CalibrationTip) {
+                lv_obj_add_flag(ui_CalibrationTip, LV_OBJ_FLAG_HIDDEN);
+            }
+            if (ui_Pointer) {
+                lv_obj_remove_flag(ui_Pointer, LV_OBJ_FLAG_HIDDEN);
+            }
+        }
+        lv_screen_load(screen);
+    }
+    if (tracking && ui_Pointer) {
+        updateCompassDisplay();
+    }
 }
 
-// NVS storage methods implementation
+// Versioned, single-blob calibration storage. All keys belong to v5 only.
 bool Compass::saveCalibrationToNVS()
 {
-    ESP_LOGI(TAG, "Starting NVS save operation...");
-
-    nvs_handle_t nvs_handle;
-    esp_err_t err;
-
-    // Check if NVS is initialized
-    ESP_LOGI(TAG, "Opening NVS handle for namespace: %s", NVS_NAMESPACE);
-
-    // Open NVS handle
-    err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &nvs_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Error opening NVS handle: %s (0x%x)", esp_err_to_name(err), err);
-
-        // Try to initialize NVS if it's not initialized
-        if (err == ESP_ERR_NVS_NOT_INITIALIZED) {
-            ESP_LOGI(TAG, "NVS not initialized, attempting to initialize...");
-            err = nvs_flash_init();
-            if (err == ESP_ERR_NVS_NO_FREE_PAGES || err == ESP_ERR_NVS_NEW_VERSION_FOUND) {
-                ESP_LOGI(TAG, "Erasing NVS flash and reinitializing...");
-                ESP_ERROR_CHECK(nvs_flash_erase());
-                err = nvs_flash_init();
-            }
-            ESP_ERROR_CHECK(err);
-
-            // Try opening NVS again
-            err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &nvs_handle);
-            if (err != ESP_OK) {
-                ESP_LOGE(TAG, "Error opening NVS handle after init: %s (0x%x)", esp_err_to_name(err), err);
-                return false;
-            }
-        } else {
-            return false;
-        }
+    // Serialize snapshot + write so a late background save cannot undo reset.
+    std::lock_guard<std::mutex> storage_guard(nvs_mutex_);
+    mag_calibration_t magnetic;
+    compass_imu_calibration::Model imu;
+    {
+        std::lock_guard<std::mutex> guard(calibration_mutex_);
+        magnetic = mag_cal_;
+        imu = imu_cal_;
     }
-
-    ESP_LOGI(TAG, "NVS handle opened successfully");
-
-    // Save hard iron calibration
-    ESP_LOGI(TAG, "Saving hard iron calibration data...");
-    err = nvs_set_blob(nvs_handle, NVS_KEY_HARD_IRON, mag_cal_.hard_iron, sizeof(mag_cal_.hard_iron));
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Error saving hard iron calibration: %s (0x%x)", esp_err_to_name(err), err);
-        nvs_close(nvs_handle);
+    CalibrationRecord record;
+    record.flags = (imu.gyro_valid ? 1U : 0U) | (imu.accel_valid ? 2U : 0U) |
+                   (magnetic.calibrated ? 4U : 0U);
+    record.gyro_bias[0] = imu.gyro_bias.x; record.gyro_bias[1] = imu.gyro_bias.y; record.gyro_bias[2] = imu.gyro_bias.z;
+    record.accel_bias[0] = imu.accel_bias.x; record.accel_bias[1] = imu.accel_bias.y; record.accel_bias[2] = imu.accel_bias.z;
+    record.accel_scale[0] = imu.accel_scale.x; record.accel_scale[1] = imu.accel_scale.y; record.accel_scale[2] = imu.accel_scale.z;
+    if (magnetic.calibrated) {
+        memcpy(record.offset, magnetic.hard_iron, sizeof(record.offset));
+        memcpy(record.matrix, magnetic.soft_iron, sizeof(record.matrix));
+        memcpy(record.axes, magnetic.axes, sizeof(record.axes));
+        record.field_norm = magnetic.field_norm;
+        record.fit_error = magnetic.fit_error;
+        record.axis_error = magnetic.axis_error;
+    }
+    if (!compass_nine_axis_storage::valid(record)) {
+        ESP_LOGW(TAG, "Refusing invalid nine-axis calibration record");
         return false;
     }
-    ESP_LOGI(TAG, "Hard iron calibration saved successfully");
-
-    // Save soft iron calibration
-    ESP_LOGI(TAG, "Saving soft iron calibration data...");
-    err = nvs_set_blob(nvs_handle, NVS_KEY_SOFT_IRON, mag_cal_.soft_iron, sizeof(mag_cal_.soft_iron));
+    nvs_handle_t handle;
+    esp_err_t err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &handle);
     if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Error saving soft iron calibration: %s (0x%x)", esp_err_to_name(err), err);
-        nvs_close(nvs_handle);
         return false;
     }
-    ESP_LOGI(TAG, "Soft iron calibration saved successfully");
-
-    // Save calibration status
-    ESP_LOGI(TAG, "Saving calibration status...");
-    err = nvs_set_u8(nvs_handle, NVS_KEY_CALIBRATED, mag_cal_.calibrated ? 1 : 0);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Error saving calibration status: %s (0x%x)", esp_err_to_name(err), err);
-        nvs_close(nvs_handle);
-        return false;
+    err = nvs_set_blob(handle, NVS_KEY_MODEL, &record, sizeof(record));
+    if (err == ESP_OK) {
+        err = nvs_commit(handle);
     }
-    ESP_LOGI(TAG, "Calibration status saved successfully");
-
-    // Commit changes
-    ESP_LOGI(TAG, "Committing NVS changes...");
-    err = nvs_commit(nvs_handle);
+    nvs_close(handle);
     if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Error committing NVS changes: %s (0x%x)", esp_err_to_name(err), err);
-        nvs_close(nvs_handle);
-        return false;
+        ESP_LOGW(TAG, "Nine-axis calibration save failed: %s", esp_err_to_name(err));
     }
-    ESP_LOGI(TAG, "NVS changes committed successfully");
-
-    nvs_close(nvs_handle);
-    ESP_LOGI(TAG, "Calibration data saved to NVS successfully");
-    return true;
+    return err == ESP_OK;
 }
 
 bool Compass::loadCalibrationFromNVS()
 {
-    nvs_handle_t nvs_handle;
-    esp_err_t err;
-
-    // Open NVS handle
-    err = nvs_open(NVS_NAMESPACE, NVS_READONLY, &nvs_handle);
-    if (err != ESP_OK) {
-        if (err == ESP_ERR_NVS_NOT_FOUND) {
-            ESP_LOGI(TAG, "NVS namespace not found, using default calibration");
-        } else {
-            ESP_LOGE(TAG, "Error opening NVS handle: %s", esp_err_to_name(err));
-        }
+    std::lock_guard<std::mutex> storage_guard(nvs_mutex_);
+    nvs_handle_t handle;
+    if (nvs_open(NVS_NAMESPACE, NVS_READONLY, &handle) != ESP_OK) {
         return false;
     }
-
-    // Load hard iron calibration
-    size_t hard_iron_size = sizeof(mag_cal_.hard_iron);
-    err = nvs_get_blob(nvs_handle, NVS_KEY_HARD_IRON, mag_cal_.hard_iron, &hard_iron_size);
-    if (err != ESP_OK) {
-        ESP_LOGW(TAG, "Error loading hard iron calibration: %s", esp_err_to_name(err));
-        nvs_close(nvs_handle);
+    CalibrationRecord record;
+    size_t size = sizeof(record);
+    const esp_err_t err = nvs_get_blob(handle, NVS_KEY_MODEL, &record, &size);
+    nvs_close(handle);
+    if (err != ESP_OK || size != sizeof(record) || !compass_nine_axis_storage::valid(record)) {
+        ESP_LOGW(TAG, "No valid v5 nine-axis calibration");
         return false;
     }
-
-    // Load soft iron calibration
-    size_t soft_iron_size = sizeof(mag_cal_.soft_iron);
-    err = nvs_get_blob(nvs_handle, NVS_KEY_SOFT_IRON, mag_cal_.soft_iron, &soft_iron_size);
-    if (err != ESP_OK) {
-        ESP_LOGW(TAG, "Error loading soft iron calibration: %s", esp_err_to_name(err));
-        nvs_close(nvs_handle);
-        return false;
+    mag_calibration_t magnetic;
+    if (record.flags & 4) {
+        memcpy(magnetic.hard_iron, record.offset, sizeof(magnetic.hard_iron));
+        memcpy(magnetic.soft_iron, record.matrix, sizeof(magnetic.soft_iron));
+        memcpy(magnetic.axes, record.axes, sizeof(magnetic.axes));
+        magnetic.field_norm = record.field_norm;
+        magnetic.fit_error = record.fit_error;
+        magnetic.axis_error = record.axis_error;
+        magnetic.calibrated = true;
     }
-
-    // Load calibration status
-    uint8_t calibrated = 0;
-    err = nvs_get_u8(nvs_handle, NVS_KEY_CALIBRATED, &calibrated);
-    if (err != ESP_OK) {
-        ESP_LOGW(TAG, "Error loading calibration status: %s", esp_err_to_name(err));
-        nvs_close(nvs_handle);
-        return false;
+    {
+        std::lock_guard<std::mutex> guard(calibration_mutex_);
+        imu_cal_ = compass_nine_axis_storage::imuModel(record);
+        mag_cal_ = magnetic;
+        ++calibration_generation_;
     }
-
-    mag_cal_.calibrated = (calibrated != 0);
-
-    nvs_close(nvs_handle);
-
-    ESP_LOGI(TAG, "Calibration data loaded from NVS:");
-    ESP_LOGI(TAG, "  Hard Iron: X=%.2f, Y=%.2f, Z=%.2f",
-             mag_cal_.hard_iron[0], mag_cal_.hard_iron[1], mag_cal_.hard_iron[2]);
-    ESP_LOGI(TAG, "  Soft Iron: X=%.3f, Y=%.3f, Z=%.3f",
-             mag_cal_.soft_iron[0][0], mag_cal_.soft_iron[1][1], mag_cal_.soft_iron[2][2]);
-    ESP_LOGI(TAG, "  Calibrated: %s", mag_cal_.calibrated ? "Yes" : "No");
-
+    ESP_LOGI(TAG, "Loaded v5 calibration: gyro=%d accel=%d mag+axes=%d",
+             bool(record.flags & 1), bool(record.flags & 2), bool(record.flags & 4));
     return true;
-}
-
-void Compass::clearCalibrationFromNVS()
-{
-    nvs_handle_t nvs_handle;
-    esp_err_t err;
-
-    // Open NVS handle
-    err = nvs_open(NVS_NAMESPACE, NVS_READWRITE, &nvs_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Error opening NVS handle: %s", esp_err_to_name(err));
-        return;
-    }
-
-    // Erase all calibration keys
-    nvs_erase_key(nvs_handle, NVS_KEY_HARD_IRON);
-    nvs_erase_key(nvs_handle, NVS_KEY_SOFT_IRON);
-    nvs_erase_key(nvs_handle, NVS_KEY_CALIBRATED);
-
-    // Commit changes
-    err = nvs_commit(nvs_handle);
-    if (err != ESP_OK) {
-        ESP_LOGE(TAG, "Error committing NVS changes: %s", esp_err_to_name(err));
-    } else {
-        ESP_LOGI(TAG, "Calibration data cleared from NVS");
-    }
-
-    nvs_close(nvs_handle);
 }
 
 // Async NVS operations
 void Compass::saveCalibrationToNVSAsync()
 {
     ESP_LOGI(TAG, "Starting async NVS save operation...");
-
-    // Create a task to handle NVS operations in background
-    xTaskCreate([](void *param) {
-        Compass *compass = static_cast<Compass *>(param);
-        if (compass) {
-            bool result = compass->saveCalibrationToNVS();
+    if (nvs_thread_.joinable()) {
+        nvs_thread_.join();
+    }
+    try {
+        nvs_thread_ = boost::thread([this]() {
+            bool result = saveCalibrationToNVS();
             ESP_LOGI(TAG, "Async NVS save completed with result: %s", result ? "success" : "failed");
-        }
-        vTaskDelete(NULL);
-    }, "nvs_save_task", 4096, this, 5, NULL);
-}
-
-void Compass::loadCalibrationFromNVSAsync()
-{
-    ESP_LOGI(TAG, "Starting async NVS load operation...");
-
-    // Create a task to handle NVS operations in background
-    xTaskCreate([](void *param) {
-        Compass *compass = static_cast<Compass *>(param);
-        if (compass) {
-            bool result = compass->loadCalibrationFromNVS();
-            ESP_LOGI(TAG, "Async NVS load completed with result: %s", result ? "success" : "failed");
-        }
-        vTaskDelete(NULL);
-    }, "nvs_load_task", 4096, this, 5, NULL);
+        });
+    } catch (const boost::thread_resource_error &error) {
+        ESP_LOGE(TAG, "Failed to start NVS save task: %s", error.what());
+        saveCalibrationToNVS();
+    }
 }
 
 ESP_UTILS_REGISTER_PLUGIN_WITH_CONSTRUCTOR(systems::base::App, Compass, "Compass", []()

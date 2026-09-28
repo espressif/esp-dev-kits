@@ -1,0 +1,21 @@
+## IDF Component Manager Manifest File
+dependencies:
+  idf: ">=5.5"
+
+  espressif/esp_board_manager:
+    version: "~0.7.3~1"
+
+  espressif/esp_boards:
+    version: "0.6.2"
+
+  espressif/cjson:
+    version: "^1.7.19"
+    rules:
+      - if: "idf_version >=6.0"
+
+  espressif/i2c_bus: "^1.5.0"
+  espressif/bmm350: "^1.1.0"
+  espressif/bmi270_sensor: "^0.4.0"
+
+  espressif/led_strip: "^3.0.0"
+  espressif/mdns: "*"

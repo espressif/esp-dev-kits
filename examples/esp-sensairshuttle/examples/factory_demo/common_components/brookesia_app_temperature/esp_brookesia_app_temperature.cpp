@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2025-2026 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -7,7 +7,7 @@
 #include "bme69x.h"
 #include "bsec_datatypes.h"
 #include "bsec_interface.h"
-#include "common.h"
+#include "bme690_common.h"
 #include "esp_brookesia_app_temperature.hpp"
 #include "esp_err.h"
 #include "esp_lib_utils.h"
@@ -98,15 +98,12 @@ bool Temperature::deinit()
 {
     ESP_LOGI(TAG, "Deinitializing Temperature app");
 
-    destroyTemperatureUI();
-    deinitSensors();
-
     _bme_running = false;
     if (_bme_thread.joinable()) {
         _bme_thread.join();
     }
-    i2c_del_master_bus(i2c_bus_);
-    i2c_bus_ = nullptr;
+    deinitSensors();
+    destroyTemperatureUI();
     return true;
 }
 
@@ -187,16 +184,6 @@ esp_err_t Temperature::init_hardware()
     }
     gpio_set_level((gpio_num_t)BME690_SDO_PIN, 0);
 
-    ret = i2c_master_get_bus_handle(I2C_MASTER_NUM, &i2c_bus_);
-    if (ret != ESP_OK) {
-        return ret;
-    }
-    ESP_LOGI(TAG, "I2C bus handle: %p", i2c_bus_);
-    if (i2c_bus_) {
-        ESP_LOGI(TAG, "I2C bus get success");
-        return ESP_OK;
-    }
-
     /* SDO low -> 0x76 */
 
     // Get I2C pin configuration from Board Manager
@@ -210,19 +197,19 @@ esp_err_t Temperature::init_hardware()
     gpio_num_t sda_pin = i2c_config->sda_io_num;
     gpio_num_t scl_pin = i2c_config->scl_io_num;
 
-    i2c_master_bus_config_t i2c_bus_config = {
-        .i2c_port = I2C_MASTER_NUM,
+    const i2c_config_t i2c_bus_config = {
+        .mode = I2C_MODE_MASTER,
         .sda_io_num = sda_pin,
         .scl_io_num = scl_pin,
-        .clk_source = I2C_CLK_SRC_DEFAULT,
-        .glitch_ignore_cnt = 7,
-        .flags = {
-            .enable_internal_pullup = true
-        }
+        .sda_pullup_en = GPIO_PULLUP_ENABLE,
+        .scl_pullup_en = GPIO_PULLUP_ENABLE,
+        .master = {.clk_speed = 100000},
+        .clk_flags = 0,
     };
-    ret = i2c_new_master_bus(&i2c_bus_config, &i2c_bus_);
-    if (ret != ESP_OK) {
-        return ret;
+    i2c_bus_ = i2c_bus_create(I2C_MASTER_NUM, &i2c_bus_config);
+    if (i2c_bus_ == nullptr) {
+        ESP_LOGE(TAG, "I2C bus create failed");
+        return ESP_FAIL;
     }
     ESP_LOGI(TAG, "I2C bus initialized - SCL: GPIO%d, SDA: GPIO%d", scl_pin, sda_pin);
     return ESP_OK;
@@ -359,9 +346,10 @@ bsec_library_return_t Temperature::init_bsec(void)
 bool Temperature::deinitSensors()
 {
     ESP_LOGI(TAG, "Deinitializing sensors...");
-    bme69x_coines_deinit();
-    i2c_del_master_bus(i2c_bus_);
-    i2c_bus_ = nullptr;
+    bme69x_interface_deinit();
+    if (i2c_bus_ != nullptr) {
+        i2c_bus_delete(&i2c_bus_);
+    }
     return true;
 }
 
@@ -588,7 +576,7 @@ void Temperature::bmeDataThread()
 const char *Temperature::getIAQLevel(float iaq_value)
 {
     if (iaq_value <= 50) {
-        return "Excellent";
+        return "Clean";
     } else if (iaq_value <= 100) {
         return "Good";
     } else if (iaq_value <= 150) {
@@ -605,7 +593,7 @@ const char *Temperature::getIAQLevel(float iaq_value)
 lv_color_t Temperature::getIAQColor(float iaq_value)
 {
     if (iaq_value <= 50) {
-        return lv_color_hex(0x00C853);      // Green - Excellent
+        return lv_color_hex(0x00C853);      // Green - Clean
     } else if (iaq_value <= 100) {
         return lv_color_hex(0x64DD17);       // Light green - Good
     } else if (iaq_value <= 150) {
@@ -622,10 +610,54 @@ lv_color_t Temperature::getIAQColor(float iaq_value)
 void Temperature::updateTemperatureDisplay()
 {
     char s[32];
+    auto get_monitor_status_color = [](int level) -> lv_color_t {
+        switch (level) {
+        case 1:
+            return lv_color_hex(0x2FCB35);
+        case 2:
+            return lv_color_hex(0xF2E72A);
+        case 3:
+            return lv_color_hex(0xF26D21);
+        default:
+            return lv_color_hex(0xE51F2A);
+        }
+    };
+
+    auto set_status = [&](lv_obj_t *label, const char *text, int level) {
+        lv_label_set_text(label, text);
+        lv_obj_set_style_text_color(label, get_monitor_status_color(level),
+                                    (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);
+    };
+
+    auto align_unit = [](lv_obj_t *unit, lv_obj_t *value) {
+        lv_obj_align_to(unit, value, LV_ALIGN_OUT_RIGHT_BOTTOM, 2, -2);
+    };
+
+    if (!ui_TemperatureNumber || !ui_HumidityNumber || !ui_PressureText || !ui_AirQualityNumber) {
+        return;
+    }
 
     // Update temperature display
     snprintf(s, sizeof(s), "%.2f", bsec_temperature);
     lv_label_set_text(ui_TemperatureNumber, s);
+    align_unit(ui_TemperatureSignal, ui_TemperatureNumber);
+
+    int temperature_x100 = (int)lroundf(bsec_temperature * 100.0f);
+    if (temperature_x100 >= 1800 && temperature_x100 <= 2600) {
+        set_status(ui_TemperatureStatus, "Mild", 1);
+    } else if (temperature_x100 >= 1000 && temperature_x100 < 1800) {
+        set_status(ui_TemperatureStatus, "Cool", 2);
+    } else if (temperature_x100 > 2600 && temperature_x100 <= 3300) {
+        set_status(ui_TemperatureStatus, "Warm", 2);
+    } else if (temperature_x100 >= 0 && temperature_x100 < 1000) {
+        set_status(ui_TemperatureStatus, "Cold", 3);
+    } else if (temperature_x100 > 3300 && temperature_x100 <= 4000) {
+        set_status(ui_TemperatureStatus, "Hot", 3);
+    } else if (temperature_x100 < 0) {
+        set_status(ui_TemperatureStatus, "Freeze", 4);
+    } else {
+        set_status(ui_TemperatureStatus, "Heat", 4);
+    }
 
     // Update humidity display with sliding average (last 5 values)
     // Add current humidity to history
@@ -645,66 +677,63 @@ void Temperature::updateTemperatureDisplay()
     // Display with 2 decimal places (percentage sign is separate label)
     snprintf(s, sizeof(s), "%.2f", humidity_avg);
     lv_label_set_text(ui_HumidityNumber, s);
+    align_unit(ui_HumidityUnit, ui_HumidityNumber);
 
-    // Update humidity evaluation with ASCII characters and color based on comfort range
-    const char *face_char;
-    lv_color_t color;
-    if (humidity_avg >= 30.0f && humidity_avg <= 60.0f) {
-        // Comfortable range: 30-60%
-        face_char = "^_^";
-        color = lv_color_hex(0x4CAF50);  // Green
-    } else if ((humidity_avg >= 20.0f && humidity_avg < 30.0f) ||
-               (humidity_avg > 60.0f && humidity_avg <= 70.0f)) {
-        // Moderate range: 20-30% or 60-70%
-        face_char = "0_0";
-        color = lv_color_hex(0xFFD600);  // Yellow
+    int humidity_x100 = (int)lroundf(humidity_avg * 100.0f);
+    if (humidity_x100 >= 3000 && humidity_x100 <= 6000) {
+        set_status(ui_HumidityEvaluation, "Normal", 1);
+    } else if (humidity_x100 >= 2000 && humidity_x100 < 3000) {
+        set_status(ui_HumidityEvaluation, "Dry", 2);
+    } else if (humidity_x100 > 6000 && humidity_x100 <= 7500) {
+        set_status(ui_HumidityEvaluation, "Humid", 2);
+    } else if (humidity_x100 >= 1000 && humidity_x100 < 2000) {
+        set_status(ui_HumidityEvaluation, "V.Dry", 3);
+    } else if (humidity_x100 > 7500 && humidity_x100 <= 8500) {
+        set_status(ui_HumidityEvaluation, "Humid", 3);
     } else {
-        // Uncomfortable range: <20% or >70%
-        face_char = "T_T";
-        color = lv_color_hex(0xFF6D00);  // Orange
+        set_status(ui_HumidityEvaluation, "Extreme", 4);
     }
-    lv_label_set_text(ui_HumidityEvaluation, face_char);
-    lv_obj_set_style_text_color(ui_HumidityEvaluation, color, LV_PART_MAIN | LV_STATE_DEFAULT);
 
     // Update pressure display - convert to hPa
     float pressure_hpa = bsec_pressure / 100.0f;
     snprintf(s, sizeof(s), "%.1f", pressure_hpa);
     lv_label_set_text(ui_PressureText, s);
+    align_unit(ui_PressureUnit, ui_PressureText);
 
-    // Calculate difference from standard atmospheric pressure (1013.25 hPa)
-    const float standard_pressure_hpa = 1013.25f;
-    float pressure_diff_from_standard = pressure_hpa - standard_pressure_hpa;
-
-    // Update pressure trend with weather-related text (without arrow)
-    char trend_text[32];
-    if (pressure_diff_from_standard > 5.0f) {
-        snprintf(trend_text, sizeof(trend_text), "Maybe Sunny");
-        lv_obj_set_style_text_color(ui_PressureTrend, lv_color_hex(0x4CAF50), (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);
-    } else if (pressure_diff_from_standard < -5.0f) {
-        snprintf(trend_text, sizeof(trend_text), "Maybe Rainy");
-        lv_obj_set_style_text_color(ui_PressureTrend, lv_color_hex(0xF44336), (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);
+    int pressure_x10 = (int)lroundf(pressure_hpa * 10.0f);
+    if (pressure_x10 >= 10100 && pressure_x10 <= 10200) {
+        set_status(ui_PressureTrend, "Stable", 1);
+    } else if ((pressure_x10 >= 10000 && pressure_x10 < 10100) ||
+               (pressure_x10 > 10200 && pressure_x10 <= 10300)) {
+        set_status(ui_PressureTrend, "Shift", 2);
+    } else if ((pressure_x10 >= 9900 && pressure_x10 < 10000) ||
+               (pressure_x10 > 10300 && pressure_x10 <= 10450)) {
+        set_status(ui_PressureTrend, "Unstable", 3);
     } else {
-        snprintf(trend_text, sizeof(trend_text), "Good");
-        lv_obj_set_style_text_color(ui_PressureTrend, lv_color_hex(0x757575), (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);
+        set_status(ui_PressureTrend, "Severe", 4);
     }
-    lv_label_set_text(ui_PressureTrend, trend_text);
 
     previous_pressure = bsec_pressure;
 
     // Update air quality display - CO2 concentration
     snprintf(s, sizeof(s), "%.0f", co2_equivalent);
     lv_label_set_text(ui_AirQualityNumber, s);
+    align_unit(ui_AirQualitySignal, ui_AirQualityNumber);
 
-    // Update IAQ level text
-    const char *iaq_level = getIAQLevel(iaq);
-    lv_label_set_text(ui_AirQualityLevel, iaq_level);
-
-    // Apply color coding - only number changes color, CO2 and unit stay black
-    lv_color_t iaq_color = getIAQColor(iaq);
-    lv_obj_set_style_text_color(ui_AirQualityCO2, lv_color_hex(0x000000), (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);  // Fixed black
-    lv_obj_set_style_text_color(ui_AirQualityNumber, iaq_color, (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);  // Dynamic color
-    lv_obj_set_style_text_color(ui_AirQualityLevel, iaq_color, (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);  // Dynamic color
-    lv_obj_set_style_text_color(ui_AirQualitySignal, lv_color_hex(0x000000), (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);  // Fixed black
+    int co2 = (int)lroundf(co2_equivalent);
+    if (co2 < 600) {
+        set_status(ui_AirQualityLevel, "Clean", 1);
+    } else if (co2 < 1000) {
+        set_status(ui_AirQualityLevel, "Good", 2);
+    } else if (co2 < 1500) {
+        set_status(ui_AirQualityLevel, "Fair", 3);
+    } else {
+        set_status(ui_AirQualityLevel, "Poor", 4);
+    }
+    lv_obj_set_style_text_color(ui_AirQualityCO2, lv_color_hex(0x888888),
+                                (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);
+    lv_obj_set_style_text_color(ui_AirQualitySignal, lv_color_hex(0x000000),
+                                (int)LV_PART_MAIN | (int)LV_STATE_DEFAULT);
 }
 
 int64_t Temperature::get_timestamp_us()

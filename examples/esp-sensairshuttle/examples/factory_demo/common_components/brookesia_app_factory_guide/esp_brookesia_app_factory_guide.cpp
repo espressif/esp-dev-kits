@@ -11,7 +11,7 @@
 #include "esp_brookesia_app_factory_guide.hpp"
 
 #define APP_NAME        "Factory Guide"
-#define APP_VERSION     "1.0.2"
+#define APP_VERSION     "1.1.0"
 #define SCREEN_SIZE     (240)
 
 #define IMAGE_SIZE      (150)

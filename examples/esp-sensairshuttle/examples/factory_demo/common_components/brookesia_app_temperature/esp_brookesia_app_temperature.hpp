@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2025-2026 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -13,10 +13,10 @@
 #include "brookesia/system_phone/app.hpp"
 #include "bsec_datatypes.h"
 #include "bsec_interface.h"
-#include "common.h"
+#include "bme690_common.h"
 #include "driver/gpio.h"
-#include "driver/i2c_master.h"
 #include "esp_err.h"
+#include "i2c_bus.h"
 #include "lvgl.h"
 namespace esp_brookesia::apps {
 
@@ -46,7 +46,7 @@ private:
     Temperature();
 
     bool is_initialized_ = false;
-    i2c_master_bus_handle_t i2c_bus_ = nullptr;
+    i2c_bus_handle_t i2c_bus_ = nullptr;
     struct bme69x_dev bme_;
     struct bme69x_data data;
     boost::thread _bme_thread;

@@ -4,7 +4,10 @@
 
 ## Overview
 
-This example demonstrates a full-featured system running on the ESP32-SensairShuttle development board, powered by the ESP-Brookesia framework. It showcases an app-based UI management system with multiple demo applications, including compass, temperature & air quality monitoring, gesture recognition, and more.
+Maintained Factory Demo for ESP-SensairShuttle in `esp-dev-kits`: compass,
+environment, gesture detect, 2048, and factory guide. Updates focus on bug
+fixes, hardware support, and ESP-IDF compatibility. Use it to restore the
+factory image after trying other firmware.
 
 ## Hardware Requirements
 
@@ -25,15 +28,21 @@ Default I2C pins (can be configured in board YAML):
 ## Software Requirements
 
 ### ESP-IDF Version
-- ESP-IDF release/v5.5 and all bugfix releases
+- Supported ESP-IDF branches: release/v5.5 and release/v6.0. Build-verified on esp32c5 with **v5.5.4** and **v6.0.1**.
 
 ### Dependencies
+- Local `brookesia_*` components: in-tree Brookesia 0.7 snapshot. Not interchangeable with Registry `espressif/brookesia_system_core` 0.8.
 - `esp_board_manager` - Hardware abstraction layer
 - `esp_lvgl_port` - LVGL integration
-- `bmm350_sensorapi` - Magnetometer driver
+- `espressif/bme690` - Environmental sensor driver
+- `espressif/bmi270_sensor` - IMU driver
+- `espressif/bmm350` - Magnetometer driver
 - Boost Thread Library - Multi-threading support
 
 ## Getting Started
+
+Check the board revision and sensor daughterboards in the
+[board user guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c5/esp-sensairshuttle/index.html).
 
 ### 1. Enter the example directory
 
@@ -43,25 +52,41 @@ cd examples/esp-sensairshuttle/examples/factory_demo
 
 ### 2. Set up ESP-IDF Environment
 
-Follow the [ESP-IDF Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/get-started/index.html) to set up the development environment.
+Follow the [ESP-IDF Getting Started Guide](https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/get-started/index.html).
+Use a version listed above. On Linux or macOS:
 
 ```bash
 . $HOME/esp/esp-idf/export.sh
 ```
 
+On Windows, use the ESP-IDF terminal for that version.
+
 ### 3. Configure Board (Important)
 
-#### Ubuntu
+The example uses ESP Board Manager `~0.7.3~1`, the `esp_boards` package `0.6.2`, and the upstream
+`esp_boards/esp_sensairshuttle` definition. The overlay in
+`boards/esp_sensairshuttle` retains the tested landscape layout
+and touch mapping, while sensor applications own their driver initialization.
+
+Run `set-target esp32c5` to select the chip and download the Registry dependencies
+before generating the board configuration. Regenerate after changing the board
+package or overlay. ESP-IDF 5.5 requires the extension path below;
+ESP-IDF 6.0 also discovers component extensions automatically.
+
+#### Linux / macOS
 
 ```bash
-# Generate board configuration
-idf.py gen-bmgr-config -c ./boards -b esp_SensairShuttle
+idf.py set-target esp32c5
+export IDF_EXTRA_ACTIONS_PATH="$PWD/managed_components/espressif__esp_board_manager"
+idf.py bmgr -c ./boards -b esp_sensairshuttle
 ```
 
 #### Windows
 
 ```bat
-idf.py gen-bmgr-config -c .\boards -b esp_SensairShuttle
+idf.py set-target esp32c5
+set IDF_EXTRA_ACTIONS_PATH=%CD%\managed_components\espressif__esp_board_manager
+idf.py bmgr -c .\boards -b esp_sensairshuttle
 ```
 
 ### 4. Build and Flash
@@ -173,16 +198,15 @@ factory_demo/
 │   ├── idf_component.yml         # Dependency configuration
 │   └── CMakeLists.txt            # Build configuration
 ├── common_components/            # Common components
-│   ├── brookesia_app_compass/    # Compass application
-│   ├── brookesia_app_gesture_detect/  # Gesture detection application
-│   ├── brookesia_app_temperature/     # Temperature & air quality application
-│   ├── brookesia_app_game_2048/      # 2048 game application
-│   ├── brookesia_app_factory_guide/  # Factory guide application
-│   ├── brookesia_system_core/        # System core component
-│   └── brookesia_system_phone/       # Phone system component
-├── boards/                       # Board configurations
-│   └── esp_SensairShuttle/       # SensairShuttle board configuration
-├── docs/                         # Documentation
+│   ├── brookesia_app_compass/           # Compass application
+│   ├── brookesia_app_gesture_detect/    # Gesture detection application
+│   ├── brookesia_app_temperature/       # Temperature & air quality application
+│   ├── brookesia_app_game_2048/         # 2048 game application
+│   ├── brookesia_app_factory_guide/     # Factory guide application
+│   ├── brookesia_system_core/          # In-tree Brookesia 0.7 core
+│   └── brookesia_system_phone/         # In-tree Brookesia 0.7 phone system
+├── boards/                       # Application-specific BMGR overlays
+│   └── esp_sensairshuttle/       # Landscape UI and device pruning
 └── CMakeLists.txt                # Project build configuration
 ```
 
@@ -276,15 +300,15 @@ Suggestions:
 
 ## Contributing
 
-Contributions are welcome! Please feel free to submit pull requests or open issues.
+For bug reports, include the board revision, firmware commit, ESP-IDF version,
+connected sensors, and serial logs.
 
 ## License
 
-This project is licensed under the Apache License 2.0. See LICENSE file for details.
+Apache License 2.0. See [LICENSE](../../LICENSE).
 
 ## Technical Support
 
 - **Forum**: [esp32.com](https://esp32.com/viewforum.php?f=35)
 - **GitHub Issues**: [esp-dev-kits/issues](https://github.com/espressif/esp-dev-kits/issues)
-- **Documentation**: [ESP-Brookesia Documentation](https://docs.espressif.com/)
-
+- **Documentation**: [ESP-SensairShuttle User Guide](https://docs.espressif.com/projects/esp-dev-kits/en/latest/esp32c5/esp-sensairshuttle/index.html)

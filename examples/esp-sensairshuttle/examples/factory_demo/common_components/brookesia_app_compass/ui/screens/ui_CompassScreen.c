@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2025-2026 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -21,6 +21,16 @@ void ui_event_CompassScreen(lv_event_t *e)
 {
     lv_event_code_t event_code = lv_event_get_code(e);
 
+    if (event_code == LV_EVENT_PRESS_LOST || event_code == LV_EVENT_SCREEN_UNLOAD_START) {
+        // A warning or navigation can unload this screen before RELEASED.
+        // Cancel the pending recalibration so a later release cannot commit it.
+        lv_arc_set_value(ui_ProgressBar, 0);
+        lv_obj_add_flag(ui_CalibrationTip, LV_OBJ_FLAG_HIDDEN);
+        if (event_code == LV_EVENT_PRESS_LOST) {
+            lv_obj_clear_flag(ui_Pointer, LV_OBJ_FLAG_HIDDEN);
+        }
+        return;
+    }
     if (event_code == LV_EVENT_LONG_PRESSED) {
         // Reset progress bar when long press starts (in case of previous incomplete calibration)
         lv_arc_set_value(ui_ProgressBar, 0);

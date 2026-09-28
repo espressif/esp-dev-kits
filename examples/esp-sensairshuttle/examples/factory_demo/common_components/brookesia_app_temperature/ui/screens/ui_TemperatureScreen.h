@@ -19,10 +19,13 @@ extern "C" {
 extern void ui_TemperatureScreen_screen_init(void);
 extern void ui_TemperatureScreen_screen_destroy(void);
 extern lv_obj_t *ui_TemperatureScreen;
+extern lv_obj_t *ui_TimeLabel;
+extern lv_obj_t *ui_BatteryLabel;
 extern lv_obj_t *ui_Temperature;
 extern lv_obj_t *ui_TemperatureLabel;
 extern lv_obj_t *ui_TemperatureNumber;
 extern lv_obj_t *ui_TemperatureSignal;
+extern lv_obj_t *ui_TemperatureStatus;
 extern lv_obj_t *ui_Thermometer;
 extern lv_obj_t *ui_Fire;
 extern lv_obj_t *ui_Humidity;

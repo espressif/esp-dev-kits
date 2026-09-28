@@ -1,0 +1,31 @@
+# Reuse the upstream board. Skip unused display/codec; MagEDC owns BMI270.
+# LED count is the MagEDC ring; PA GPIO stays with Board Manager.
+devices:
+  - name: lcd_power_ctrl
+    gen_skip: true
+  - name: display_lcd
+    gen_skip: true
+  - name: lcd_touch
+    gen_skip: true
+  - name: audio_dac
+    gen_skip: true
+  - name: audio_adc
+    gen_skip: true
+  - name: boot_button
+    gen_skip: true
+  - name: led_strip
+    config:
+      max_leds: 28
+  - name: bmi270_sensor
+    gen_skip: true
+peripherals:
+  - name: adc_audio_in
+    gen_skip: true
+  - name: i2s_audio_out
+    gen_skip: true
+  - name: spi_display
+    gen_skip: true
+  - name: gpio_lcd_power
+    gen_skip: true
+  - name: gpio_boot_button
+    gen_skip: true

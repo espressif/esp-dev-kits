@@ -1,7 +1,7 @@
 ## IDF Component Manager Manifest File
 dependencies:
   brookesia_system_core:
-    version: "*"
+    version: "0.7.0"
     override_path: "../../../brookesia_system_core"
 
   espressif/esp-lib-utils:

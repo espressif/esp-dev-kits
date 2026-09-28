@@ -1,2 +1,0 @@
-config BOARD_ESP_SENSAIRSHUTTLE
-    bool "esp_SensairHalo Development Board"

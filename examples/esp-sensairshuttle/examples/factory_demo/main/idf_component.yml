@@ -3,28 +3,42 @@ dependencies:
   idf: ">=5.5"
 
   espressif/esp_board_manager:
-    version: ^0.5
+    version: "~0.7.3~1"
+
+  espressif/esp_boards:
+    version: "0.6.2"
+
+  espressif/bmi270_sensor: "^0.4.0"
+
+  espressif/bmm350: "^1.1.0"
 
   espressif/i2c_bus:
-    version: ^1.0.0
+    version: "^1.5.0"
     public: true
 
   brookesia_app_compass:
     override_path: "../common_components/brookesia_app_compass"
-  
+
   brookesia_app_temperature:
     override_path: "../common_components/brookesia_app_temperature"
 
   brookesia_app_game_2048:
     override_path: "../common_components/brookesia_app_game_2048"
 
-  brookesia/brookesia_app_factory_guide:
+  brookesia_app_factory_guide:
     override_path: "../common_components/brookesia_app_factory_guide"
 
   brookesia_app_gesture_detect:
     override_path: "../common_components/brookesia_app_gesture_detect"
 
+  brookesia_system_core:
+    version: "0.7.0"
+    override_path: "../common_components/brookesia_system_core"
+
+  brookesia_system_phone:
+    version: "0.7.0"
+    override_path: "../common_components/brookesia_system_phone"
+
   espressif/esp_lvgl_port:
     public: true
     version: ^2
-  

@@ -1,0 +1,7 @@
+# Name,   Type, SubType, Offset,  Size, Flags
+# 8MB Flash · 双 OTA 分区，支持网页上传完整固件（含内置标定）
+nvs,      data, nvs,     ,        0x6000,
+otadata,  data, ota,     ,        0x2000,
+phy_init, data, phy,     ,        0x1000,
+ota_0,    app,  ota_0,   ,        3M,
+ota_1,    app,  ota_1,   ,        3M,
