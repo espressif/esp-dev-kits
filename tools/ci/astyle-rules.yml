@@ -23,8 +23,6 @@ not_formatted_permanent:
   # - Generated files
   check: false
   include:
-    - "examples/esp-sensairshuttle/examples/factory_demo/common_components/brookesia_app_compass/BMM350_SensorAPI/**/*"
-    - "examples/esp-sensairshuttle/examples/factory_demo/common_components/brookesia_app_temperature/BME690_SensorAPI/**/*"
     - "examples/esp-sensairshuttle/examples/factory_demo/common_components/brookesia_app_temperature/bsec_IAQ/**/*"
     - "examples/esp-sensairshuttle/examples/factory_demo/common_components/brookesia_system_core/src/assets/**/*"
     - "examples/esp-sensairshuttle/examples/factory_demo/common_components/brookesia_system_phone/src/assets/**/*"

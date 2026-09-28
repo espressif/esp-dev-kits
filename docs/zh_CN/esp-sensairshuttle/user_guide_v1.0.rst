@@ -104,7 +104,7 @@ ESP-SensairShuttle 主控采用乐鑫 **ESP32-C5-WROOM-1-N16R8** 模组，具有
    * - BMM350 传感器
      - BMM350 是博世推出的一款地磁传感器，可检测三轴地磁场强度，支持 I2C 协议通信。I2C 地址由 ADSEL 引脚决定：ADSEL 接地时为 **0x14**，ADSEL 接 VDDIO 时为 **0x15**。本子板 ADSEL 接地，地址为 **0x14**。
    * - LCD Screen（LCD 屏幕）
-     - 配套 LCD 屏幕，型号为 ST7789P3，尺寸为 1.83 英寸，分辨率为 240(H) x 284(V)，采用 4-line SPI 接口通信。屏幕通过 LCD 连接器与主板连接，支持通过 ``PWR_CTRL`` (GPIO5) 控制屏幕电源开关。
+     - 显示屏模组 P183B001-V4-CTP，1.83 英寸，240(H) x 284(V)，4-line SPI。IC 与驱动对照见 `LCD 接口`_。
 
 .. figure:: ../../_static/esp-sensairshuttle/esp-sensairshuttle-mainboard-back.png
    :alt: SensairShuttle-Mainboard PCB 背面图（点击放大）
@@ -223,7 +223,6 @@ Shuttle Board 连接器引脚
 
 如需尝试应用示例或开发自定义应用，请参照 `开始开发应用`_ 小节中的步骤进行操作。
 
-
 开始开发应用
 ------------
 
@@ -330,15 +329,23 @@ LCD 接口
 
    LCD 接口电路图（点击放大）
 
-X1 接口为正式使用的 LCD 屏幕接口。该开发板配套的 LCD 屏幕规格如下：
+X1 为 LCD 屏幕接口。屏幕电源由 ``PWR_CTRL`` (GPIO5) 控制。详细规格见 `显示屏规格书`_。
 
-- **屏幕尺寸**：1.83 英寸
-- **分辨率**：240(H) x 284(V)
-- **驱动芯片**：ST7789P3
-- **通信接口**：4-line SPI Interface
-- **电源控制**：支持通过 ``PWR_CTRL`` (GPIO5) 控制屏幕电源开关
+.. list-table:: 屏幕 IC 与 Factory Demo 驱动
+   :header-rows: 1
+   :widths: 20 25 55
 
-更多详细信息请参考 `显示屏规格书`_。
+   * - 功能
+     - 实物 IC
+     - 驱动（YAML ``chip``）
+   * - 显示
+     - ST7789P3
+     - ``ili9341`` (`esp_lcd_ili9341 <https://components.espressif.com/components/espressif/esp_lcd_ili9341>`__)
+   * - 触摸
+     - CST816T
+     - ``cst816s`` (`esp_lcd_touch_cst816s <https://components.espressif.com/components/espressif/esp_lcd_touch_cst816s>`__)
+
+板定义和屏幕初始化统一维护在 `ESP Board Manager <https://github.com/espressif/esp-board-manager/tree/main/esp_boards/esp_sensairshuttle>`_。ST7789P3 屏幕使用 ``ili9341`` 驱动，通过 ``vendor_config`` 传入自定义初始化命令。Factory Demo 在应用专用的 :project:`BMGR amend 配置 <examples/esp-sensairshuttle/examples/factory_demo/boards/esp_sensairshuttle>` 中保留横屏布局。所需 Registry 依赖和配置步骤见示例 README。
 
 开关机电路
 ----------
@@ -424,4 +431,3 @@ I2C/RGB/外置引脚接口
 ==================
 
 请参阅 :doc:`免责声明和版权公告 <../disclaimer-and-copyright>`。
-

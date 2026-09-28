@@ -8,7 +8,7 @@ idf_component_register(
     INCLUDE_DIRS 
         ${PROJ_SRC}
     WHOLE_ARCHIVE
-    REQUIRES espressif__i2c_bus espressif__esp_board_manager
+    REQUIRES espressif__esp_board_manager
 )
 
 set_source_files_properties(

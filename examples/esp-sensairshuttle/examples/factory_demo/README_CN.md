@@ -4,7 +4,9 @@
 
 ## 概述
 
-本示例演示了在 ESP32-SensairShuttle 开发板上运行的全功能系统，由 ESP-Brookesia 框架驱动。展示了基于应用程序的 UI 管理系统和多个演示应用，包括指南针、温度与空气质量监测、手势识别等功能。
+`esp-dev-kits` 中正式维护的 ESP-SensairShuttle Factory Demo，包含指南针、环境、
+手势检测、2048 和出厂指南。更新以问题修复、硬件适配和 ESP-IDF 兼容为主。
+体验其他固件后，可用本工程恢复出厂镜像。
 
 ## 硬件要求
 
@@ -25,15 +27,21 @@
 ## 软件要求
 
 ### ESP-IDF 版本
-- ESP-IDF release/v5.5 and all bugfix releases
+- 支持 ESP-IDF release/v5.5 与 release/v6.0。已在 esp32c5 上用 **v5.5.4** 和 **v6.0.1** 完成编译验证。
 
 ### 依赖组件
+- 本地 `brookesia_*` 组件：树内 Brookesia 0.7 快照，与 Registry `espressif/brookesia_system_core` 0.8 不可互换。
 - `esp_board_manager` - 硬件抽象层
 - `esp_lvgl_port` - LVGL 集成
-- `bmm350_sensorapi` - 磁力计驱动
+- `espressif/bme690` - 环境传感器驱动
+- `espressif/bmi270_sensor` - IMU 驱动
+- `espressif/bmm350` - 磁力计驱动
 - Boost 线程库 - 多线程支持
 
 ## 快速开始
+
+先按 [开发板用户指南](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c5/esp-sensairshuttle/index.html)
+确认主板版本和所需传感器子板。
 
 ### 1. 进入示例目录
 
@@ -44,23 +52,36 @@ cd examples/esp-sensairshuttle/examples/factory_demo
 ### 2. 设置 ESP-IDF 环境
 
 按照 [ESP-IDF 入门指南](https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c5/get-started/index.html) 设置开发环境。
+请使用上文列出的版本。Linux 或 macOS：
 
 ```bash
 . $HOME/esp/esp-idf/export.sh
 ```
 
+Windows 请在对应版本的 ESP-IDF 终端中执行后续命令。
+
 ### 3. 生成开发板配置（重要）
 
-#### Ubuntu 系统
+示例使用 ESP Board Manager `~0.7.3~1`、`esp_boards` 板包 `0.6.2` 和上游
+`esp_boards/esp_sensairshuttle` 板定义。
+应用 amend 保留已验收的横屏布局和触摸映射，传感器应用自行初始化驱动。
+
+先运行 `set-target esp32c5` 选择芯片并下载 Registry 依赖，再生成板配置。
+切换板包或修改 amend 后请重新生成。ESP-IDF 5.5 通过下面的路径加载命令扩展，
+ESP-IDF 6.0 也支持自动发现组件扩展。
 
 ```bash
-idf.py gen-bmgr-config -c ./boards -b esp_SensairShuttle
+# Linux / macOS
+idf.py set-target esp32c5
+export IDF_EXTRA_ACTIONS_PATH="$PWD/managed_components/espressif__esp_board_manager"
+idf.py bmgr -c ./boards -b esp_sensairshuttle
 ```
 
-#### Windows 系统
-
 ```bat
-idf.py gen-bmgr-config -c .\boards -b esp_SensairShuttle
+REM Windows
+idf.py set-target esp32c5
+set IDF_EXTRA_ACTIONS_PATH=%CD%\managed_components\espressif__esp_board_manager
+idf.py bmgr -c .\boards -b esp_sensairshuttle
 ```
 
 ### 4. 编译和烧录
@@ -172,16 +193,15 @@ factory_demo/
 │   ├── idf_component.yml         # 依赖项配置
 │   └── CMakeLists.txt            # 构建配置
 ├── common_components/            # 公共组件
-│   ├── brookesia_app_compass/    # 指南针应用
-│   ├── brookesia_app_gesture_detect/  # 手势检测应用
-│   ├── brookesia_app_temperature/     # 温度与空气质量应用
-│   ├── brookesia_app_game_2048/      # 2048 游戏应用
-│   ├── brookesia_app_factory_guide/  # 工厂指南应用
-│   ├── brookesia_system_core/        # 系统核心组件
-│   └── brookesia_system_phone/       # 手机系统组件
-├── boards/                       # 开发板配置
-│   └── esp_SensairShuttle/       # SensairShuttle 开发板配置
-├── docs/                         # 文档
+│   ├── brookesia_app_compass/           # 指南针应用
+│   ├── brookesia_app_gesture_detect/    # 手势检测应用
+│   ├── brookesia_app_temperature/       # 温度与空气质量应用
+│   ├── brookesia_app_game_2048/         # 2048 游戏应用
+│   ├── brookesia_app_factory_guide/     # 工厂指南应用
+│   ├── brookesia_system_core/          # 树内 Brookesia 0.7 核心组件
+│   └── brookesia_system_phone/         # 树内 Brookesia 0.7 Phone 系统
+├── boards/                       # 应用专用 BMGR amend 配置
+│   └── esp_sensairshuttle/       # SensairShuttle 开发板配置
 └── CMakeLists.txt                # 项目构建配置
 ```
 
@@ -276,15 +296,14 @@ factory_demo/
 
 ## 贡献
 
-欢迎贡献！请随时提交 pull request 或开启 issue。
+报告问题时，请提供主板版本、固件提交、ESP-IDF 版本、已连接传感器和串口日志。
 
 ## 许可证
 
-本项目采用 Apache License 2.0 许可。详见 LICENSE 文件。
+Apache License 2.0，见 [LICENSE](../../LICENSE)。
 
 ## 技术支持
 
 - **论坛**: [esp32.com](https://esp32.com/viewforum.php?f=35)
 - **GitHub Issues**: [esp-dev-kits/issues](https://github.com/espressif/esp-dev-kits/issues)
-- **文档**: [ESP-Brookesia 文档](https://docs.espressif.com/)
-
+- **文档**: [ESP-SensairShuttle 用户指南](https://docs.espressif.com/projects/esp-dev-kits/zh_CN/latest/esp32c5/esp-sensairshuttle/index.html)

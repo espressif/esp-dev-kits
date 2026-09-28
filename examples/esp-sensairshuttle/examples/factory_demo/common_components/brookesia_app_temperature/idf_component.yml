@@ -1,14 +1,18 @@
 version: 0.6.0
 dependencies:
   brookesia_system_core:
-    path: "../brookesia_system_core"
+    version: "0.7.0"
+    override_path: "../brookesia_system_core"
     public: true
-  
-  espressif/brookesia_system_phone:
-    version: "0.7.*"
-    path: "../brookesia_system_phone"
+
+  brookesia_system_phone:
+    version: "0.7.0"
+    override_path: "../brookesia_system_phone"
     public: true
   
   espressif/i2c_bus:
     public: true
-    version: ^1.0.0
+    version: ^1.5.0
+  espressif/bme690:
+    version: "^1.0.0"
+    public: true

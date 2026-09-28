@@ -22,15 +22,6 @@ extern "C" {
 #include "screens/ui_TemperatureScreen.h"
 #include "screens/ui_TemperatureTipScreen.h"
 
-///////////////////// VARIABLES ////////////////////
-
-// IMAGES AND IMAGE SETS
-LV_IMG_DECLARE(ui_img_temp_png);    // assets/Temp.png
-LV_IMG_DECLARE(ui_img_fire_png);    // assets/Fire.png
-LV_IMG_DECLARE(ui_img_water_png);    // assets/water.png
-LV_IMG_DECLARE(ui_img_pressure_png);    // assets/Pressure.png
-LV_IMG_DECLARE(ui_img_leaf_png);    // assets/Leaf.png
-
 // UI INIT
 void Temperature_ui_init(bool is_initialized);
 void Temperature_ui_destroy(void);

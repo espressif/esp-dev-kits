@@ -1,5 +1,5 @@
 /*
- * SPDX-FileCopyrightText: 2025 Espressif Systems (Shanghai) CO LTD
+ * SPDX-FileCopyrightText: 2025-2026 Espressif Systems (Shanghai) CO LTD
  *
  * SPDX-License-Identifier: Apache-2.0
  */
@@ -9,12 +9,14 @@
 #include "bmi270_api.h"
 #include "boost/thread.hpp"
 #include "brookesia/system_phone/app.hpp"
+#include "driver/i2c_master.h"
 #include "freertos/FreeRTOS.h"
 #include "freertos/idf_additions.h"
 #include "freertos/task.h"
 #include "freertos/queue.h"
-#include "i2c_bus.h"
 #include "ui/ui_app.h"
+#include <atomic>
+#include <mutex>
 namespace esp_brookesia::apps {
 
 typedef enum {
@@ -57,8 +59,8 @@ private:
     inline static GestureDetect *_instance = nullptr;
     GestureDetect();
 
-    bool is_app_running_ = false;
-    bool is_initialized_ = false;
+    std::atomic<bool> is_app_running_{false};
+    std::atomic<bool> is_initialized_{false};
     gesture_t pending_gesture_ = GESTURE_NONE;
     TickType_t last_shake_time_ = 0;
     TickType_t last_left_gesture_time_ = 0;
@@ -66,7 +68,8 @@ private:
     char gesture_detail_text_[64] = {0};
 
     bmi270_handle_t bmi_handle_ = nullptr;
-    i2c_bus_handle_t i2c_bus_ = nullptr;
+    i2c_master_bus_handle_t i2c_bus_ = nullptr;
+    std::mutex sensor_mutex_;
 
     boost::thread gesture_detect_thread_;
     boost::thread gesture_detect_event_thread_;
@@ -76,6 +79,8 @@ private:
     int8_t set_feature_interrupt(bmi270_handle_t bmi_handle);
     bool initSensors();
     bool deinitSensors();
+    bool deinitSensorsLocked();
+    int8_t readSensorRegs(uint8_t reg_addr, uint8_t *data, uint16_t length);
     void gestureDetectThread();
     void gestureDetectEventThread();
 };

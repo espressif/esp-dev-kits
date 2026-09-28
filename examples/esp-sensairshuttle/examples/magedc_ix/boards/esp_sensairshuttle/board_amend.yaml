@@ -1,0 +1,4 @@
+version: "1.0"
+description: "Headless MagEDC with application-owned sensors, audio and LEDs"
+apply:
+  - magedc_ix.yaml

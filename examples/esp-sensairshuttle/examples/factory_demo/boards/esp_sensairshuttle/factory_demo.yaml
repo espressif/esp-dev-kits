@@ -1,0 +1,37 @@
+# Reuse the upstream board; keep the tested landscape layout for this UI.
+devices:
+  - name: display_lcd
+    config:
+      x_max: 284
+      y_max: 240
+      swap_xy: true
+      mirror_x: true
+      mirror_y: false
+      invert_color: false
+  - name: lcd_touch
+    config:
+      touch_config:
+        flags:
+          swap_xy: true
+          mirror_x: true
+          mirror_y: true
+  # These devices are unused, or initialized by the sensor applications.
+  - name: speaker_power_ctrl
+    gen_skip: true
+  - name: audio_dac
+    gen_skip: true
+  - name: audio_adc
+    gen_skip: true
+  - name: boot_button
+    gen_skip: true
+  - name: led_strip
+    gen_skip: true
+  - name: bmi270_sensor
+    gen_skip: true
+peripherals:
+  - name: adc_audio_in
+    gen_skip: true
+  - name: i2s_audio_out
+    gen_skip: true
+  - name: gpio_boot_button
+    gen_skip: true

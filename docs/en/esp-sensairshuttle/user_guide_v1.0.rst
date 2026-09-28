@@ -104,7 +104,7 @@ The main components on the front PCB are introduced in clockwise order below.
    * - BMM350 Sensor
      - BMM350 is a Bosch magnetometer that measures three-axis magnetic field strength over I2C. The I2C address is set by ADSEL: **0x14** when ADSEL is tied to GND, and **0x15** when ADSEL is tied to VDDIO. On this daughterboard ADSEL is grounded, so the address is **0x14**.
    * - LCD Screen
-     - Matching LCD screen, model ST7789P3, size 1.83 inches, resolution 240(H) x 284(V), using 4-line SPI interface communication. The screen is connected to the mainboard through the LCD connector, and supports power control via ``PWR_CTRL`` (GPIO5).
+     - Display module P183B001-V4-CTP, 1.83-inch, 240(H) x 284(V), 4-line SPI. See `LCD Interface`_ for the IC and driver mapping.
 
 .. figure:: ../../_static/esp-sensairshuttle/esp-sensairshuttle-mainboard-back.png
    :alt: SensairShuttle-Mainboard PCB Back View (Click to enlarge)
@@ -329,15 +329,23 @@ LCD Interface
 
    LCD Interface Circuit Diagram (Click to enlarge)
 
-The X1 interface is the LCD screen interface in use. The matching LCD screen specifications for this development board are as follows:
+X1 is the LCD connector. Display power is controlled by ``PWR_CTRL`` (GPIO5). See the `Display Specification`_ for details.
 
-- **Screen Size**: 1.83 inches
-- **Resolution**: 240(H) x 284(V)
-- **Driver Chip**: ST7789P3
-- **Communication Interface**: 4-line SPI Interface
-- **Power Control**: Supports controlling screen power on/off via ``PWR_CTRL`` (GPIO5)
+.. list-table:: Display ICs and Factory Demo drivers
+   :header-rows: 1
+   :widths: 20 25 55
 
-For more detailed information, please refer to the `Display Specification`_.
+   * - Function
+     - Physical IC
+     - Driver (YAML ``chip``)
+   * - Display
+     - ST7789P3
+     - ``ili9341`` (`esp_lcd_ili9341 <https://components.espressif.com/components/espressif/esp_lcd_ili9341>`__)
+   * - Touch
+     - CST816T
+     - ``cst816s`` (`esp_lcd_touch_cst816s <https://components.espressif.com/components/espressif/esp_lcd_touch_cst816s>`__)
+
+The board definition and panel initialization are maintained in `ESP Board Manager <https://github.com/espressif/esp-board-manager/tree/main/esp_boards/esp_sensairshuttle>`_. The ST7789P3 panel uses the ``ili9341`` driver to supply custom initialization commands through ``vendor_config``. Factory Demo keeps its landscape layout in an application-specific :project:`BMGR amend overlay <examples/esp-sensairshuttle/examples/factory_demo/boards/esp_sensairshuttle>`. See the example README for the required Registry dependencies and configuration steps.
 
 Power Switch Circuit
 -------------------------
@@ -423,4 +431,3 @@ Disclaimer and Copyright Notice
 ===============================
 
 See :doc:`Disclaimer and Copyright Notice <../disclaimer-and-copyright>`.
-

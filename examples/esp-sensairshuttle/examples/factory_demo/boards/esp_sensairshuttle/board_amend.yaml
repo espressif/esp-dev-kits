@@ -1,0 +1,4 @@
+version: "1.0"
+description: "Factory Demo landscape display and application-owned sensors"
+apply:
+  - factory_demo.yaml

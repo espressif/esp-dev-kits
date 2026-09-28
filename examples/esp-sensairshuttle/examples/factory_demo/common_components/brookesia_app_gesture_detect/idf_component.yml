@@ -1,14 +1,15 @@
 version: 0.6.0
 dependencies:
   brookesia_system_core:
-    path: "../brookesia_system_core"
-    public: true
-  
-  espressif/brookesia_system_phone:
-    version: "0.7.*"
-    path: "../brookesia_system_phone"
+    version: "0.7.0"
+    override_path: "../brookesia_system_core"
     public: true
 
-  espressif/bmi270_sensor: 
-    version: '*'
+  brookesia_system_phone:
+    version: "0.7.0"
+    override_path: "../brookesia_system_phone"
+    public: true
+
+  espressif/bmi270_sensor:
+    version: "^0.4.0"
     public: true

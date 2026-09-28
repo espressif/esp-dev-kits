@@ -7,7 +7,6 @@
 #include "esp_log.h"
 #include "ui/ui.h"
 #include "ui/ui_app.h"
-#include "i2c_bus.h"
 #include "bmi270_api.h"
 #include "driver/gpio.h"
 #include "esp_lib_utils.h"
@@ -24,8 +23,6 @@ using namespace esp_brookesia::systems::phone;
 
 #define I2C_MASTER_SDO_IO GPIO_NUM_9
 #define I2C_INT_IO GPIO_NUM_28
-#define I2C_MASTER_NUM I2C_NUM_0
-#define I2C_MASTER_FREQ_HZ (100 * 1000)
 
 LV_IMG_DECLARE(img_app_gesture_detect);
 
@@ -119,9 +116,8 @@ bool GestureDetect::pause()
     is_app_running_ = false;
     if (!deinitSensors()) {
         ESP_LOGE(TAG, "Failed to deinitialize sensors");
-    } else {
-        is_initialized_ = true;
     }
+    is_initialized_ = false;
 
     return true;
 }
@@ -218,6 +214,10 @@ int8_t GestureDetect::set_feature_interrupt(bmi270_handle_t bmi2_dev)
 
 bool GestureDetect::initSensors()
 {
+    std::lock_guard<std::mutex> guard(sensor_mutex_);
+    if (!deinitSensorsLocked()) {
+        return false;
+    }
 
     gpio_config_t io_conf = {
         .pin_bit_mask = (1ULL << I2C_MASTER_SDO_IO),
@@ -232,38 +232,15 @@ bool GestureDetect::initSensors()
     }
     gpio_set_level(I2C_MASTER_SDO_IO, 0);
 
-    // Get I2C pin configuration from Board Manager
-    i2c_master_bus_config_t *i2c_config = nullptr;
-    ret = esp_board_manager_get_periph_config("i2c_master", (void **)&i2c_config);
-    if (ret != ESP_OK || i2c_config == nullptr) {
-        ESP_LOGE(TAG, "Failed to get I2C peripheral config from Board Manager: %s", esp_err_to_name(ret));
+    ret = esp_board_manager_get_periph_handle("i2c_master", (void **)&i2c_bus_);
+    if (ret != ESP_OK || i2c_bus_ == nullptr) {
+        ESP_LOGE(TAG, "Failed to get I2C master bus from Board Manager: %s", esp_err_to_name(ret));
         return false;
     }
 
-    gpio_num_t sda_pin = i2c_config->sda_io_num;
-    gpio_num_t scl_pin = i2c_config->scl_io_num;
-
-    const i2c_config_t i2c_bus_conf = {
-        .mode = I2C_MODE_MASTER,
-        .sda_io_num = sda_pin,
-        .scl_io_num = scl_pin,
-        .sda_pullup_en = GPIO_PULLUP_ENABLE,
-        .scl_pullup_en = GPIO_PULLUP_ENABLE,
-        .master = {
-            .clk_speed = I2C_MASTER_FREQ_HZ
-        },
-    };
-
-    i2c_bus_ = i2c_bus_create(I2C_NUM_0, &i2c_bus_conf);
-
-    if (!i2c_bus_) {
-        ESP_LOGE(TAG, "I2C bus create failed");
-        return false;
-    }
-
-    ret = bmi270_sensor_create(i2c_bus_, &bmi_handle_, bmi270_toy_config_file, 0);
+    ret = bmi270_sensor_create_from_master_bus(i2c_bus_, &bmi_handle_, bmi270_toy_config_file, 0);
     if (ret != ESP_OK || bmi_handle_ == NULL) {
-        ESP_LOGE(TAG, "BMI270 TOY create failed");
+        ESP_LOGE(TAG, "BMI270 TOY create failed: %s", esp_err_to_name(ret));
         return false;
     }
 
@@ -273,42 +250,49 @@ bool GestureDetect::initSensors()
     rslt = bmi2_set_adv_power_save(BMI2_DISABLE, bmi_handle_);
     if (rslt != BMI2_OK) {
         ESP_LOGE(TAG, "BMI270 set adv power save failed: %d", rslt);
+        deinitSensorsLocked();
         return false;
     }
 
     rslt = set_accel_gyro_config(bmi_handle_);
     if (rslt != BMI2_OK) {
         ESP_LOGE(TAG, "BMI270 set accel gyro config failed: %d", rslt);
+        deinitSensorsLocked();
         return false;
     }
 
     rslt = set_feature_interrupt(bmi_handle_);
     if (rslt != BMI2_OK) {
         ESP_LOGE(TAG, "BMI270 set feature interrupt failed: %d", rslt);
+        deinitSensorsLocked();
         return false;
     }
 
     rslt = bmi2_sensor_enable(sens_list, 2, bmi_handle_);
     if (rslt != BMI2_OK) {
         ESP_LOGE(TAG, "BMI270 enable sensors failed: %d", rslt);
+        deinitSensorsLocked();
         return false;
     }
 
     rslt = bmi270_enable_toy_motion(bmi_handle_, BMI2_ENABLE);
     if (rslt != BMI2_OK) {
         ESP_LOGE(TAG, "BMI270 enable toy motion failed: %d", rslt);
+        deinitSensorsLocked();
         return false;
     }
 
     rslt = bmi270_enable_toy_shake(bmi_handle_, BMI2_ENABLE);
     if (rslt != BMI2_OK) {
         ESP_LOGE(TAG, "BMI270 enable toy shake failed: %d", rslt);
+        deinitSensorsLocked();
         return false;
     }
 
     rslt = bmi270_enable_toy_rolling(bmi_handle_, BMI2_ENABLE);
     if (rslt != BMI2_OK) {
         ESP_LOGE(TAG, "BMI270 enable toy rolling failed: %d", rslt);
+        deinitSensorsLocked();
         return false;
     }
     ESP_LOGI(TAG, "BMI270 roll feature enabled");
@@ -317,11 +301,29 @@ bool GestureDetect::initSensors()
 
 bool GestureDetect::deinitSensors()
 {
+    std::lock_guard<std::mutex> guard(sensor_mutex_);
+    return deinitSensorsLocked();
+}
+
+bool GestureDetect::deinitSensorsLocked()
+{
     if (bmi_handle_) {
-        bmi270_sensor_del(&bmi_handle_);
-        bmi_handle_ = nullptr;
+        esp_err_t ret = bmi270_sensor_del(&bmi_handle_);
+        if (ret != ESP_OK) {
+            ESP_LOGE(TAG, "BMI270 deletion failed: %s", esp_err_to_name(ret));
+            return false;
+        }
     }
     return true;
+}
+
+int8_t GestureDetect::readSensorRegs(uint8_t reg_addr, uint8_t *data, uint16_t length)
+{
+    std::lock_guard<std::mutex> guard(sensor_mutex_);
+    if (!is_app_running_ || !is_initialized_ || bmi_handle_ == nullptr) {
+        return BMI2_E_NULL_PTR;
+    }
+    return bmi2_get_regs(reg_addr, data, length, bmi_handle_);
 }
 
 void GestureDetect::gestureDetectThread()
@@ -378,7 +380,7 @@ void GestureDetect::gestureDetectEventThread()
         int8_t rslt = BMI2_E_NULL_PTR;
         const int max_retries = 3;
         for (int retry = 0; retry < max_retries; retry++) {
-            rslt = bmi2_get_regs(BMI2_INT_STATUS_0_ADDR, &int_status, 1, bmi_handle_);
+            rslt = readSensorRegs(BMI2_INT_STATUS_0_ADDR, &int_status, 1);
             if (rslt == BMI2_OK) {
                 consecutive_i2c_failures_ = 0;
                 break;
@@ -388,6 +390,9 @@ void GestureDetect::gestureDetectEventThread()
             }
         }
         if (rslt != BMI2_OK) {
+            if (!is_app_running_) {
+                continue;
+            }
             consecutive_i2c_failures_++;
             const uint32_t MAX_CONSECUTIVE_FAILURES = 20;
             if (consecutive_i2c_failures_ >= MAX_CONSECUTIVE_FAILURES) {
@@ -421,7 +426,7 @@ void GestureDetect::gestureDetectEventThread()
 
         if (int_status & BMI270_TOY_INT_SHAKE_MASK) {
             uint8_t data;
-            rslt = bmi2_get_regs(0x1f, &data, 1, bmi_handle_);
+            rslt = readSensorRegs(0x1f, &data, 1);
 
             if (rslt == BMI2_OK) {
                 if (data & 0x80) {
@@ -492,7 +497,7 @@ void GestureDetect::gestureDetectEventThread()
             }
 
             uint8_t data;
-            rslt = bmi2_get_regs(0x1e, &data, 1, bmi_handle_);
+            rslt = readSensorRegs(0x1e, &data, 1);
             if (rslt == BMI2_OK) {
                 uint8_t raw_gesture_type = (data & 0x1c) >> 2;
                 if (raw_gesture_type == 0x01 || raw_gesture_type == 0x02) {
@@ -507,7 +512,7 @@ void GestureDetect::gestureDetectEventThread()
             }
         } else if (int_status & BMI270_TOY_INT_GI_INS1_ROLLING_MASK) {
             uint8_t data;
-            rslt = bmi2_get_regs(0x1e, &data, 1, bmi_handle_);
+            rslt = readSensorRegs(0x1e, &data, 1);
             if (rslt == BMI2_OK) {
                 data = data >> 5;
                 switch (data) {

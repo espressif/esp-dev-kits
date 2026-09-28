@@ -3,15 +3,20 @@ set(PROJ_SRC ${CMAKE_CURRENT_LIST_DIR})
 file(GLOB_RECURSE PROJ_SRCS_C ${PROJ_SRC}/*.c)
 file(GLOB_RECURSE PROJ_SRCS_CPP ${PROJ_SRC}/*.cpp)
 
+list(REMOVE_ITEM PROJ_SRCS_C
+    ${PROJ_SRC}/ui/images/environment_bg.c
+)
+list(APPEND PROJ_SRCS_C
+    ${PROJ_SRC}/ui/images/environment_bg.c
+)
+
 idf_component_register(
     SRCS  ${PROJ_SRCS_C} ${PROJ_SRCS_CPP}
-    INCLUDE_DIRS 
+    INCLUDE_DIRS
         ${PROJ_SRC}
-        ${PROJ_SRC}/BME690_SensorAPI
-        ${PROJ_SRC}/BME690_SensorAPI/examples/common
         ${PROJ_SRC}/bsec_IAQ/inc
     WHOLE_ARCHIVE
-    REQUIRES driver esp_common espressif__esp_board_manager
+    REQUIRES driver esp_common espressif__esp_board_manager bme690
 )
 
 set_source_files_properties(

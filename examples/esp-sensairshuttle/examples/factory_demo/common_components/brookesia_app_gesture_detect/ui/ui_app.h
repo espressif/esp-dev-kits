@@ -1,7 +1,7 @@
 /*
  * SPDX-FileCopyrightText: 2026 Espressif Systems (Shanghai) CO LTD
  *
- * SPDX-License-Identifier: CC0-1.0
+ * SPDX-License-Identifier: Apache-2.0
  */
 #ifndef GESTURE_DETECT_UI_APP_H
 #define GESTURE_DETECT_UI_APP_H
