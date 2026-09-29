@@ -11,6 +11,10 @@ examples/esp32-p4-function-ev-board:
   enable:
     - if: IDF_TARGET == "esp32p4"
 
+examples/esp32-p4-eye:
+  enable:
+    - if: IDF_TARGET == "esp32p4"
+
 examples/esp32-s2-hmi-devkit-1:
   enable:
     - if: IDF_TARGET == "esp32s2"
@@ -34,3 +38,7 @@ examples/esp32-s3-usb-bridge:
 examples/esp32-s3-usb-otg:
   enable:
     - if: IDF_TARGET == "esp32s3"
+
+examples/esp32-s31-korvo:
+  enable:
+    - if: IDF_TARGET == "esp32s31"

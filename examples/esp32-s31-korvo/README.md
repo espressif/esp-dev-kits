@@ -10,6 +10,8 @@ The following examples are recommended to be developed with the ESP-IDF **master
 
 * [Factory Demo](./examples/factory_demo/)
 
+The factory demo and other published examples can be flashed through the [ESP Launchpad](https://espressif.github.io/esp-launchpad/?flashConfigURL=https://espressif2022.github.io/ESP32-P4-Function-EV-Board/launchpad.toml).
+
 ## 3D Printed Case
 
 The following 3D model files can be used to print a four-part case for the ESP32-S31-Korvo-1. Please note that all 3D-printed parts may have slight variations in dimensions and fit due to printer settings, materials, and manufacturing tolerances. Actual results may vary.
@@ -28,4 +30,3 @@ See [3D Printed Case](./3d-printed-case) folder for STEP files.
 |ESP32-S31-Korvo-1 - Case 3D printed on [Bambu Lab P1S](https://bambulab.com/en/p1)|
 
 </center>
-
