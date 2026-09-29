@@ -28,6 +28,10 @@ IGNORE_WARNINGS = [
     r'managed_components/lvgl__lvgl/src/extra/libs/png/lv_png.c',
     r'managed_components/lvgl__lvgl/src/extra/libs/png/lv_png.c',
     r'managed_components/espressif__esp_lvgl_port/src/lvgl8/esp_lvgl_port_touch.c:.*esp_lcd_touch_get_coordinates.*is deprecated',
+    r'managed_components/espressif__esp-dl/.*:.*(MALLOC_CAP_TCM|esp_ptr_in_tcm).*deprecated',
+    r'managed_components/espressif__esp-dl/.*dl_image_jpeg.cpp:.*missing initializer for member.*pixel_reverse',
+    r'managed_components/espressif__esp_video/.*esp_video_init.c:.*check_cam_dev_clock.*defined but not used',
+    r'managed_components/espressif__esp_video/.*esp_video_isp_device.c:.*(ISP_AWB_SAMPLE_POINT_BEFORE_CCM|ISP_AE_SAMPLE_POINT_AFTER_GAMMA|ISP_AE_SAMPLE_POINT_AFTER_DEMOSAIC).*deprecated',
 ]
 
 def _get_idf_version():
