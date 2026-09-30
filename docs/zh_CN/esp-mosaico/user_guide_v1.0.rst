@@ -1,14 +1,14 @@
 ===================
-ESP-Mosaico V1.2
+ESP-Mosaico V1.0
 ===================
 
 :link_to_translation:`en:[English]`
 
-更早版本：:doc:`ESP-Mosaico V1.0 <user_guide_v1.0>`
+最新版本：:doc:`ESP-Mosaico V1.2 <user_guide>`
 
 .. note::
 
-  本文档对应 CoreBoard **V1.2** 硬件。请查看主板上的丝印版本号，以确认您的开发板版本。相对 V1.0 的硬件差异见 `硬件版本`_。
+  本文档对应 CoreBoard **V1.0** 硬件。请查看主板上的丝印版本号，以确认您的开发板版本。
 
   摄像头模块 **仅支持左侧插槽** （``H2``），请勿插入右侧插槽。安装与使用说明请参阅 :doc:`摄像头模块用户指南 <user_guide_camera>`。
 
@@ -20,7 +20,7 @@ ESP-Mosaico 主控采用乐鑫 ESP32-S31，支持 2.4 GHz Wi-Fi 6（IEEE 802.11b
 
 音频方面，ESP-Mosaico 集成 ES8311 编解码芯片、NS4150B D 类功放。电源系统兼容 USB Type-C 5 V 供电与 3.7 V / 65 mAh 锂电池供电，板载 TP4057 充电、BQ27220 电量计与 SAM8108 开关机控制；Type-C 接口与左右模块接口均支持电源输入与输出。此外，板载 USB 2.0 High-Speed OTG 接口可用于供电、调试与通信，并预留 UART 扩展能力与左右模块接口。
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-isometric.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-isometric.png
    :alt: ESP-Mosaico 整机外观（点击放大）
    :width: 60%
    :figclass: align-center
@@ -35,7 +35,7 @@ ESP-Mosaico 主控采用乐鑫 ESP32-S31，支持 2.4 GHz Wi-Fi 6（IEEE 802.11b
 - `相关文档`_：列出了相关文档的链接。
 - `免责声明和版权公告`_: 链接到免责声明和版权公告。
 
-.. _Getting-started_esp-mosaico-v1.2:
+.. _Getting-started_esp-mosaico-v1.0:
 
 入门指南
 ========
@@ -50,21 +50,21 @@ ESP-Mosaico 由 CoreBoard（核心板）和 BaseBoard（底板）组成。下文
 正面
 ^^^^
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-front.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-front.png
    :alt: ESP-Mosaico 整机正面（点击放大）
    :width: 60%
    :figclass: align-center
 
    ESP-Mosaico 整机正面（点击放大）
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-coreboard-front.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-coreboard-front.png
    :alt: ESP-Mosaico CoreBoard 正面（点击放大）
    :width: 80%
    :figclass: align-center
 
    ESP-Mosaico CoreBoard 正面（点击放大）
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-baseboard-front.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-baseboard-front.png
    :alt: ESP-Mosaico BaseBoard 正面（点击放大）
    :width: 80%
    :figclass: align-center
@@ -90,93 +90,96 @@ ESP-Mosaico 由 CoreBoard（核心板）和 BaseBoard（底板）组成。下文
      - KH-3216-A35 Ceramic Antenna（陶瓷天线）
      - 2.4 GHz 贴片陶瓷天线，用于 Wi-Fi 与 Bluetooth 射频收发。
    * - 3
-     - TLV62569
-     - 降压 (DCDC) 转换芯片，将输入电源转换为系统 3.3 V，供屏幕使用。
+     - Orange LED（橙色 LED）
+     - 程序可控单色状态灯，连接 GPIO3，低电平点亮。
    * - 4
+     - TLV62569
+     - 降压 (DCDC) 转换芯片，将输入电源转换为系统 3.3 V。
+   * - 5
      - BMM150
      - 三轴地磁传感器（BMM150 #2），I2C 地址 0x11。
-   * - 5
+   * - 6
      - SY7088
      - 升压 (BOOST) 转换芯片，为需高于电池电压的电路供电。
-   * - 6
+   * - 7
      - Display Connector（显示屏连接座）
      - 用于连接 480 × 480、2.16 寸 QSPI 触摸屏（CO5300 驱动 + CST9220 触摸）。
-   * - 7
+   * - 8
      - TP4057
      - 锂电池充电管理芯片，为板载锂电池充电。
-   * - 8
+   * - 9
      - BQ27220
      - 电池电量计，I2C 地址 0x55，用于电压、电流、电量 (SOC) 等状态检测。
-   * - 9
+   * - 10
+     - 3V3 Power LED（3.3 V 电源指示灯）
+     - 开机后，3.3 V 供电正常时点亮；关机时熄灭。
+   * - 11
      - HUSB320
      - USB Type-C 接口控制器，负责 CC 逻辑检测，并据此控制 USB 供电方向。
-   * - 10
+   * - 12
      - Charge LED（充电指示灯）
      - 充电状态指示：红灯表示充电中，绿灯表示已充满。
-   * - 11
+   * - 13
      - SAM8108
      - 开关机控制芯片，配合 POWER 按键实现整机开关控制。
-   * - 12
+   * - 14
      - HE9073A33
      - 低压差稳压器 (LDO)，为音频 codec 提供独立供电以降低噪声。
-   * - 13
+   * - 15
      - NS4150B
      - 低 EMI、无需滤波器的 3 W 单声道 D 类功放，用于驱动扬声器。
-   * - 14
+   * - 16
      - ES8311
      - 低功耗单声道音频编解码芯片，I2C 地址 0x19，通过 I2S 与主控传输音频数据。
-   * - 15
+   * - 17
      - BMM150
      - 三轴地磁传感器（BMM150 #3），I2C 地址 0x12。
-   * - 16
+   * - 18
      - BMI270
      - 六轴 IMU（加速度计 + 陀螺仪），I2C 地址 0x69。
-   * - 17
-     - GD5F1GM7UEYIGR
-     - 1 Gbit（128 MB）SPI NAND flash，用于大容量资源存储。
-   * - 18
+   * - 19
      - GD25Q128EWIGR
      - 16 MB (128 Mbit) SPI NOR flash，用于程序与数据存储。
+   * - 20
+     - GD5F1GM7UEYIGR
+     - 1 Gbit（128 MB）SPI NAND flash，用于大容量资源存储。
    * -
      - :strong:`BaseBoard（底板）`
-     - 底板，集成扬声器、电池、对外 3.3 V 降压电路与左右 2 × 10P 模块接口，通过板对板连接座与核心板对接。
-   * - 19
+     - 底板，集成扬声器、电池与左右 2 × 10P 模块接口，通过板对板连接座与核心板对接。
+   * - 21
      - Speaker（喇叭）
      - 板载扬声器，由 NS4150B 功放驱动。
-   * - 20
+   * - 22
      - BTB Connector（主副板连接座）
      - 60 针 0.5 mm 板对板连接座，用于连接 CoreBoard 与 BaseBoard。
-   * - 21
-     - Expansion Header（外扩排针）
-     - 图中右侧 2 × 10P、2.54 mm 双排扩展排针，引出 GPIO 与电源，用于功能扩展。
-   * - 22
+   * - 23
+     - Expansion Header 1（外扩排针 1）
+     - 2 × 10P、2.54 mm 双排扩展排针，引出 GPIO 与电源，用于功能扩展。
+   * - 24
      - Battery（电池）
      - 3.7 V / 65 mAh 锂电池，为整机提供便携供电。
-   * - 23
-     - TLV62569
-     - 降压 (DCDC) 转换芯片，产生对外 3.3 V，与内部 MCU 供电隔离。
-   * - 24
-     - Expansion Header（外扩排针）
-     - 图中左侧另一组扩展排针，引出剩余 GPIO 与电源。
+   * - 25
+     - Expansion Header 2（外扩排针 2）
+     - 另一组扩展排针，引出剩余 GPIO 与电源。
 
 背面
 ^^^^
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-back.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-back.png
    :alt: ESP-Mosaico 整机背面（点击放大）
    :width: 80%
    :figclass: align-center
 
    ESP-Mosaico 整机背面（点击放大）
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-coreboard-back.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-coreboard-back.png
    :alt: ESP-Mosaico CoreBoard 背面（点击放大）
    :width: 80%
    :figclass: align-center
 
    ESP-Mosaico CoreBoard 背面（点击放大）
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-baseboard-back.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-baseboard-back.png
    :alt: ESP-Mosaico BaseBoard 背面（点击放大）
    :width: 55%
    :figclass: align-center
@@ -215,13 +218,16 @@ ESP-Mosaico 由 CoreBoard（核心板）和 BaseBoard（底板）组成。下文
      - 单击切换整机开关机状态（POWER 按键）。
    * - 7
      - Function Button（功能按键）
-     - 应用按键 （AI 按键），连接 GPIO7，低电平有效。
+     - 应用按键，连接 GPIO7，低电平有效。
    * -
      - :strong:`BaseBoard（底板）`
-     - 底板背面，提供背扩触点。
+     - 底板背面，提供调试触点与背扩供电触点。
    * - 8
+     - Debug Pads（调试触点）
+     - 引出 GND / TX / RX / BOOT / EN / 3V3 等调试信号的测试点。
+   * - 9
      - Back Expansion Pads（背扩触点）
-     - 背面一排触点，丝印为 GND、BOOT、RST、RX、TX、5V、GND，可用于调试，也可经 5V 触点为设备供电。
+     - 背面扩展触点，引出 I2C 与供电接口，可用于给设备供电。
 
 开始开发应用
 ------------
@@ -282,7 +288,7 @@ ESP-Mosaico 由 CoreBoard（核心板）和 BaseBoard（底板）组成。下文
   - 若仅附加监视器而不希望复位应用，可使用 ``monitor --no-reset``。
   - 相关配置项：``CONFIG_BSP_USB_CONSOLE``、 ``CONFIG_BSP_USB_CONSOLE_AUTO_INIT``、 ``CONFIG_BSP_USB_AUTO_DOWNLOAD``。
 
-.. _Hardware-reference_esp-mosaico-v1.2:
+.. _Hardware-reference_esp-mosaico-v1.0:
 
 硬件参考
 ========
@@ -292,7 +298,7 @@ ESP-Mosaico 由 CoreBoard（核心板）和 BaseBoard（底板）组成。下文
 
 ESP-Mosaico 的主要组件和连接方式如下图所示。
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-sch-function-block_v1.2.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-sch-function-block_v0.3.png
    :alt: ESP-Mosaico 功能框图（点击放大）
    :width: 90%
    :figclass: align-center
@@ -333,14 +339,14 @@ Type-C 接口连接 ESP32-S31 USB 2.0 High-Speed OTG，用于供电、调试与�
 DCDC 3.3 V 电路
 ---------------
 
-.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.2-DCDC-3V3.png
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-v1.0-DCDC-3V3.png
    :alt: DCDC 3.3 V 电路图（点击放大）
    :scale: 45%
    :figclass: align-center
 
    DCDC 3.3 V 电路图（点击放大）
 
-板载 TLV62569 将 ``VDD`` 降压为 ``MCU_3V3``，再经 ``VCC_PW`` 控制的负载开关输出 ``VCC_3V3``。
+板载 TLV62569 将 ``VDD`` 降压为 ``MCU_3V3``，再经 ``VCC_PW`` 控制的负载开关输出 ``VCC_3V3``。图中 ``U7`` 为 3.3 V 电源指示灯。
 
 电源控制相关 GPIO（BSP 定义）：
 
@@ -353,7 +359,10 @@ DCDC 3.3 V 电路
      - 说明
    * - VCC_3V3 / VCC_PW
      - GPIO60
-     - 屏幕供电及 3.3 V / 5 V 输出控制，**低电平有效**；
+     - 系统 3.3 V 轨控制，**低电平有效**；开启时 BSP 默认做软启动斜坡。
+   * - CODEC_3V3
+     - GPIO56
+     - Codec 电源控制，**高电平有效**。
    * - POWER_SWITCH
      - GPIO57
      - 请求整机关机；BSP 正常运行时保持高阻，关机时以开漏方式拉低。
@@ -399,20 +408,12 @@ MCU 与管脚分配
         - 说明
       * - I2C / 传感器
         - I2C0_SDA
-        - GPIO56
-        - 对内 I2C0：触摸、ES8311、BMI270、BMM150、BQ27220
+        - GPIO0
+        - 共享 I2C：触摸、ES8311、BMI270、BMM150、BQ27220、模块 EEPROM
       * -
         - I2C0_SCL
-        - GPIO3
-        - 对内 I2C0 时钟
-      * -
-        - I2C1_SDA
-        - GPIO0
-        - 对外 I2C1：模块 EEPROM 及外扩设备
-      * -
-        - I2C1_SCL
         - GPIO1
-        - 对外 I2C1 时钟
+        - 共享 I2C 时钟
       * -
         - SENSOR_INT
         - GPIO2
@@ -422,6 +423,10 @@ MCU 与管脚分配
         - GPIO6
         - 触摸中断
       * - 人机交互
+        - STATUS_LED
+        - GPIO3
+        - 橙色状态灯，程序可控，低电平点亮
+      * -
         - AI_BUTTON
         - GPIO7
         - 应用按键，低电平有效
@@ -443,7 +448,7 @@ MCU 与管脚分配
         - CO5300 QSPI DATA0
       * -
         - LCD_RST
-        - GPIO44
+        - GPIO42
         - LCD 复位
       * -
         - LCD_TE
@@ -451,7 +456,7 @@ MCU 与管脚分配
         - LCD_TE 防撕裂同步
       * -
         - LCD_SCL
-        - GPIO42
+        - GPIO44
         - QSPI 时钟
       * -
         - LCD_CS
@@ -485,6 +490,10 @@ MCU 与管脚分配
         - I2S_MCLK
         - GPIO54
         - 音频主时钟
+      * -
+        - CODEC_PW
+        - GPIO56
+        - Codec 3.3 V 电源控制
       * - 电源
         - POWER_SWITCH
         - GPIO57
@@ -492,7 +501,7 @@ MCU 与管脚分配
       * -
         - VCC_3V3_CTRL
         - GPIO60
-        - 屏幕供电及 3.3 V / 5 V 输出控制，**低电平有效**；
+        - 系统 3.3 V 电源控制
       * - NAND Flash
         - NAND_CLK
         - GPIO20
@@ -521,13 +530,7 @@ MCU 与管脚分配
 I2C 设备地址
 ------------
 
-V1.2 将板载器件与外扩模块拆分到两路 I2C：
-
-- **I2C0（对内）** ：``I2C0_SDA`` = GPIO56，``I2C0_SCL`` = GPIO3，连接触摸、音频编解码、IMU、磁力计与电量计。
-- **I2C1（对外）** ：``I2C1_SDA`` = GPIO0，``I2C1_SCL`` = GPIO1，连接模块 EEPROM 等外接设备。
-
-对内 I2C0（7-bit 地址）
-^^^^^^^^^^^^^^^^^^^^^^^^^^
+共享 I2C 总线（``I2C0_SDA`` / ``I2C0_SCL``）上的 7-bit 地址如下。其中板载器件位于 CoreBoard / BaseBoard；**模块 EEPROM 位于外接模块上，不在主板上**，仅在对应模块插槽接入带 EEPROM 的模块时出现。
 
 .. list-table::
    :widths: 20 40 40
@@ -545,6 +548,12 @@ V1.2 将板载器件与外扩模块拆分到两路 I2C：
    * - 0x19
      - ES8311
      - 板载音频编解码芯片
+   * - 0x50
+     - 模块 EEPROM（Left）
+     - 位于左侧模块上，不在主板；由 GPIO14 低电平选通
+   * - 0x51
+     - 模块 EEPROM（Right）
+     - 位于右侧模块上，不在主板；由 GPIO39 高电平选通
    * - 0x55
      - BQ27220
      - 板载电池电量计
@@ -554,25 +563,6 @@ V1.2 将板载器件与外扩模块拆分到两路 I2C：
    * - 0x69
      - BMI270
      - 板载六轴 IMU
-
-对外 I2C1（7-bit 地址）
-^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-其中 **模块 EEPROM 位于外接模块上，不在主板上**，仅在对应模块插槽接入带 EEPROM 的模块时出现。
-
-.. list-table::
-   :widths: 20 40 40
-   :header-rows: 1
-
-   * - I2C 地址
-     - 器件
-     - 说明
-   * - 0x50
-     - 模块 EEPROM（Left）
-     - 位于左侧模块上，不在主板；由 GPIO14 低电平选通
-   * - 0x51
-     - 模块 EEPROM（Right）
-     - 位于右侧模块上，不在主板；由 GPIO39 高电平选通
 
 LCD 接口
 --------
@@ -677,10 +667,10 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
      - 5 V 输出（由 GPIO60 控制）
    * - 16
      - GPIO0
-     - SDA（对外 I2C1）
+     - SDA（板载共享 I2C）
    * - 14
      - GPIO1
-     - SCL（对外 I2C1）
+     - SCL（板载共享 I2C）
    * - 12
      - GPIO4
      - DAC
@@ -757,10 +747,10 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
      - 5 V 输出（由 GPIO60 控制）
    * - 16
      - GPIO0
-     - SDA（对外 I2C1）
+     - SDA（板载共享 I2C）
    * - 14
      - GPIO1
-     - SCL（对外 I2C1）
+     - SCL（板载共享 I2C）
    * - 12
      - GPIO5
      - DAC
@@ -791,24 +781,16 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
 硬件版本
 ========
 
-- **V1.2** （本文档）：相对 V1.0 的主要变更如下。
+- **V1.0** （本文档）：初版硬件。板载器件与外扩模块共用一路 I2C；板载程序可控橙色 LED；Codec 电源域可由 GPIO 独立控制；屏幕 ``LCD_RST`` 为 GPIO42、``LCD_SCL`` 为 GPIO44。
+- **V1.2**：屏幕 ``LCD_RST`` 与 ``LCD_SCL`` 互换；取消程序可控 LED 与 3.3 V 电源指示灯；取消 Codec 电源域独立控制；对内 I2C0 与对外 I2C1 拆分；对外 3.3 V 改由独立 DCDC 供电。请参阅 :doc:`user_guide`。
 
-  - 屏幕接口：``LCD_RST`` 与 ``LCD_SCL`` 互换（V1.2：``LCD_RST`` = GPIO44，``LCD_SCL`` = GPIO42）。
-  - 取消程序可控橙色 LED（原 GPIO3）。
-  - 取消 3.3 V 电源指示灯。
-  - 取消 Codec 电源域独立控制（原 GPIO56）。
-  - 板载器件与外扩模块分属两路 I2C：对内 I2C0（SDA = GPIO56，SCL = GPIO3）；对外 I2C1 仍为 SDA = GPIO0、SCL = GPIO1。
-  - 对外 3.3 V 由独立 DCDC 产生，避免外接模块影响内部 MCU 供电。
-
-- **V1.0**：请参阅 :doc:`user_guide_v1.0`。
-
-.. _Related-documents_esp-mosaico-v1.2:
+.. _Related-documents_esp-mosaico-v1.0:
 
 相关文档
 ========
-
--  `ESP-Mosaico CoreBoard V1.2 原理图`_ (PDF)
--  `ESP-Mosaico BaseBoard V1.2 原理图`_ (PDF)
+  
+-  `ESP-Mosaico CoreBoard V1.0 原理图`_ (PDF)
+-  `ESP-Mosaico BaseBoard V1.0 原理图`_ (PDF)
 -  `2.16 寸 480 × 480 QSPI AMOLED 屏幕规格书`_ (PDF)
 -  `ESP32-S31 系列芯片技术规格书`_ (HTML)
 -  :doc:`摄像头模块用户指南 <user_guide_camera>`
@@ -817,8 +799,8 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
 -  `ESP-Mosaico 固件更新`_ (HTML)
 -  `ESP-Claw`_ (HTML)
 
-.. _ESP-Mosaico CoreBoard V1.2 原理图: https://dl.espressif.com/AE/Mosaico/SCH_SCH_ESP-Mosaico_CoreBoard_V1_2_1_2026-09-24.pdf
-.. _ESP-Mosaico BaseBoard V1.2 原理图: https://dl.espressif.com/AE/Mosaico/SCH_SCH_ESP-Mosaico_BaseBoard_A_V1_2_1_2026-09-24.pdf
+.. _ESP-Mosaico CoreBoard V1.0 原理图: https://dl.espressif.com/AE/SCH_SCH_ESP-Mosaico_CoreBoard_V1_0_2026-08-18.pdf
+.. _ESP-Mosaico BaseBoard V1.0 原理图: https://dl.espressif.com/AE/Mosaico/SCH_SCH_ESP-Mosaico_BaseBoard_A_V1_0_2026-09-20.pdf
 .. _2.16 寸 480 × 480 QSPI AMOLED 屏幕规格书: https://dl.espressif.com/AE/H0216F002AMT004-1%20V1%E8%A7%84%E6%A0%BC%E4%B9%A62.16%E5%AF%B8%20480X480%20QSPI%20MIPI%20%20AMOLED.pdf
 .. _ESP32-S31 系列芯片技术规格书: https://documentation.espressif.com/esp32-s31_datasheet_cn.html
 .. _ESP-Mosaico 使用指南: https://mosaico.espressif.com/zh/guide/

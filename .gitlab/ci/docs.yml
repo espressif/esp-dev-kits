@@ -104,6 +104,11 @@ variables:
               echo "  - Exception: matched esp-vocat or esp-dualkey → esp32s3"
               [[ -z "${PER_FILE_CHECKED["esp32s3"]}" ]] && MATCHED_TARGETS+=("esp32s3") && PER_FILE_CHECKED["esp32s3"]=1
           fi
+          if [[ "$file" == *"esp-mosaico"* ]]; then
+              echo "  - Exception: matched esp-mosaico → esp32s31"
+              [[ -z "${PER_FILE_CHECKED["esp32s31"]}" ]] && MATCHED_TARGETS+=("esp32s31") && PER_FILE_CHECKED["esp32s31"]=1
+              matched_specific=true
+          fi
           if [[ "$file" == *"esp-sensairshuttle"* ]]; then
               echo "  - Exception: matched esp-sensairshuttle → esp32c5"
               [[ -z "${PER_FILE_CHECKED["esp32c5"]}" ]] && MATCHED_TARGETS+=("esp32c5") && PER_FILE_CHECKED["esp32c5"]=1
