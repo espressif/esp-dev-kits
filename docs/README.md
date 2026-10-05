@@ -4,7 +4,7 @@ This folder contains source files of **ESP-IDF documentation** available in [Eng
 
 The sources do not render well in GitHub and some information is not visible at all.
 
-Use actual documentation generated within about 20 minutes on each commit:
+You can view the generated documentation, which is updated approximately 20 minutes after each commit:
 
 # Hosted Documentation
 
