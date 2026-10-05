@@ -5,3 +5,34 @@ menu "Example Configurations"
         help 
             Enabling this option will initialize the SD card, so the SD card needs to be inserted into the slot. Additionally, if using the Video Player example, an MJPEG format video must be saved on the SD card.
 endmenu
+
+menu "LCD Panel Selection"
+
+choice LCD_PANEL_SELECTION
+    prompt "LCD panel model"
+    default LCD_PANEL_JD9366
+    help
+        Selects between the two supported 800x1280 MIPI-DSI panels. Both are
+        2-lane portrait RGB565 modules, so the LVGL/UI layer is untouched by
+        this choice.
+
+config LCD_PANEL_JD9366
+    bool "JD9366 (2-lane @1000 Mbps, DPI 80 MHz)"
+    help
+        800x1280 panel driven through the local esp_lcd_jd9366 component.
+        The panel answers DCS ACK normally, so the IDF default behaviour is
+        kept.
+
+config LCD_PANEL_ILI9881C
+    bool "ILI9881C / MX101BA2140-48C (2-lane @800 Mbps, DPI 72 MHz)"
+    help
+        800x1280 BOE panel driven through the local esp_lcd_ili9881c
+        component. Two module quirks are handled in code:
+        - it never answers DCS ACK, so ack_rqst_en is disabled after the
+          DBI IO is created (otherwise the first DCS write deadlocks);
+        - its vendor init sequence pins COLMOD=RGB565, so LV_COLOR_DEPTH
+          must stay 16 (enforced at compile time).
+
+endchoice
+
+endmenu
