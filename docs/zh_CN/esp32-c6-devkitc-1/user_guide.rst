@@ -52,7 +52,7 @@ ESP32-C6-DevKitC-1 是一款入门级开发板，使用带有 8 MB SPI flash 的
 
    * - 主要组件
      - 介绍
-   * - ESP32-C6-WROOM-1 或 ESP32-C6-WROOM-1
+   * - ESP32-C6-WROOM-1 或 ESP32-C6-WROOM-1U
      - ESP32-C6-WROOM-1 和 ESP32-C6-WROOM-1U 是通用型模组，支持  2.4 GHz Wi-Fi 6、蓝牙 5 及 IEEE 802.15.4（Zigbee 3.0 和 Thread 1.3）。模组内置 ESP32-C6 芯片，配置 8 MB SPI flash。ESP32-C6-WROOM-1 采用板载 PCB 天线，ESP32-C6-WROOM-1U 采用外部天线连接器。更多信息，请参考 `ESP32-C6-WROOM-1 技术规格书`_。
    * - Pin Header（排针）
      - 所有可用 GPIO 管脚（除 flash 的 SPI 总线）均已引出至开发板的排针。
