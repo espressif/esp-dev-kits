@@ -126,7 +126,7 @@ The key components of the board are described in a counter-clockwise direction.
    * - USB-to-UART Bridge Controller
      - CP2102N, the single-chip USB-to-UART bridge controller, provides up to 3 Mbps connection for software download and debugging.
    * - Audio Codec Chip
-     - `ES8311 <http://www.everest-semi.com/pdf/ES8311%20PB.pdf>`_ is a low-power mono audio codec that includes a single-channel ADC and DAC, low noise pre-amplifier, headphone driver, digital audio, analog mixing, and gain function. It connects to the ESP32-S3-WROOM-1 module via I2S and I2C buses to process audio through hardware instead of the audio application.
+     - `ES8311 <https://dl.espressif.com/dl/schematics/Audio_ES8311.pdf>`_ is a low-power mono audio codec that includes a single-channel ADC and DAC, low noise pre-amplifier, headphone driver, digital audio, analog mixing, and gain function. It connects to the ESP32-S3-WROOM-1 module via I2S and I2C buses to process audio through hardware instead of the audio application.
    * - Audio Amplifier
      - NS4150 is a low EMI, 3 W mono class D audio amplifier used to drive speakers by amplifying the audio signal from the audio codec chip.
    * - Speaker Connector
