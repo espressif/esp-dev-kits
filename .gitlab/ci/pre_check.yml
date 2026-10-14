@@ -14,8 +14,40 @@
 check_readme_links:
   extends: .pre_check_docs_runner
   allow_failure: true
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - when: on_success
   script:
     - python ${CI_PROJECT_DIR}/tools/ci/check_readme_links.py
+
+check_ordering_info:
+  extends: .pre_check_docs_runner
+  allow_failure: false
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
+    - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
+  script:
+    - |
+      if [ -n "$CI_MERGE_REQUEST_DIFF_BASE_SHA" ]; then
+        git fetch --depth=1 origin "$CI_MERGE_REQUEST_DIFF_BASE_SHA" || true
+        python ${CI_PROJECT_DIR}/tools/ordering_info/ordering_info.py check --since "$CI_MERGE_REQUEST_DIFF_BASE_SHA"
+      elif [ -n "$CI_COMMIT_BEFORE_SHA" ] && [ "$CI_COMMIT_BEFORE_SHA" != "0000000000000000000000000000000000000000" ]; then
+        git fetch --depth=1 origin "$CI_COMMIT_BEFORE_SHA" || true
+        python ${CI_PROJECT_DIR}/tools/ordering_info/ordering_info.py check --since "$CI_COMMIT_BEFORE_SHA"
+      else
+        python ${CI_PROJECT_DIR}/tools/ordering_info/ordering_info.py check
+      fi
+
+refresh_ordering_info:
+  extends: .pre_check_docs_runner
+  allow_failure: false
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule" && $ORDERING_INFO_REFRESH == "1"
+  script:
+    - bash ${CI_PROJECT_DIR}/tools/ordering_info/ci_refresh.sh
 
 check_doc_links:
   extends: .pre_check_docs_build
@@ -24,6 +56,8 @@ check_doc_links:
     DOCLANG: "en zh_CN"
   allow_failure: true
   rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
     - if: $CI_PIPELINE_SOURCE == 'merge_request_event'
     - if: $CI_COMMIT_BRANCH == $CI_DEFAULT_BRANCH
   script:
@@ -37,6 +71,10 @@ check_doc_links:
 check_lang_links:
   extends: .pre_check_docs_build
   allow_failure: false
+  rules:
+    - if: $CI_PIPELINE_SOURCE == "schedule"
+      when: never
+    - when: on_success
   script:
     - build-docs -l $DOCLANG lang-linkcheck
   parallel:

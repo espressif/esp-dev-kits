@@ -1,0 +1,45 @@
+{
+  "api_url": "https://products.espressif.com/api/user/devkits",
+
+  "_comment_name_overrides": "Maps a docs folder name to the 'name' field used by the product API. Only needed when normalized matching (lowercase, alphanumerics only) fails.",
+  "name_overrides": {},
+
+  "_comment_exclude_folders": "Docs folders that never get an ordering information table, on top of the EOL boards listed in docs/en/eol/eol-boards.rst.",
+  "exclude_folders": [],
+
+  "_comment_antenna": "Maps the Chinese antenna value returned by the API to the wording used in the docs.",
+  "antenna": {
+    "PCB 板载天线": {
+      "en": "PCB on-board antenna",
+      "zh_CN": "PCB 板载天线"
+    },
+    "天线接口": {
+      "en": "External antenna connector",
+      "zh_CN": "外部天线连接器"
+    },
+    "3D Antenna": {
+      "en": "3D antenna",
+      "zh_CN": "3D 天线"
+    },
+    "SMA": {
+      "en": "SMA connector",
+      "zh_CN": "SMA 连接器"
+    }
+  },
+
+  "_comment_status": "Suffix appended to the part number. Statuses missing from this map (Mass Production) are not marked.",
+  "status_suffix": {
+    "Sample": {
+      "en": " (Sample)",
+      "zh_CN": "（样品）"
+    },
+    "Replaced": {
+      "en": " (NRND)",
+      "zh_CN": "（NRND）"
+    },
+    "EOL": {
+      "en": " (EOL)",
+      "zh_CN": "（停产）"
+    }
+  }
+}

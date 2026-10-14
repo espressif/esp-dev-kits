@@ -282,6 +282,27 @@ Espressif provides a board support package (BSP) for ESP-Mosaico to simplify ini
   - Use ``monitor --no-reset`` when attaching without restarting the application.
   - Related options: ``CONFIG_BSP_USB_CONSOLE``, ``CONFIG_BSP_USB_CONSOLE_AUTO_INIT``, ``CONFIG_BSP_USB_AUTO_DOWNLOAD``.
 
+Contents and Packaging
+----------------------
+
+.. include:: ordering-info.inc
+
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
+
+Retail Orders
+^^^^^^^^^^^^^
+
+If you order a few samples, each board comes in an individual package in either antistatic bag or any packaging depending on your retailer.
+
+For retail orders, please go to https://www.espressif.com/en/company/contact/buy-a-sample.
+
+Wholesale Orders
+^^^^^^^^^^^^^^^^
+
+If you order in bulk, the boards come in large cardboard boxes.
+
+For wholesale orders, please go to https://www.espressif.com/en/contact-us/sales-questions.
+
 .. _Hardware-reference_esp-mosaico-v1.2_en:
 
 Hardware Reference

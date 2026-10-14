@@ -27,18 +27,6 @@ ESP32-DevKitC V4 是 `乐鑫 <https://espressif.com>`_ 一款基于 ESP32 的小
 
 为了更好地满足不同用户需求，ESP32-DevKitC V4 还支持以下不同配置：
 
-- 可选多款 ESP32 模组
-
-   - `ESP32-WROOM-32E <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_cn.pdf>`_
-   - `ESP32-WROOM-32UE <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_cn.pdf>`_
-   - `ESP32-WROVER-E <https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_cn.pdf>`_
-   - `ESP32-WROVER-IE <https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_cn.pdf>`_
-   - `ESP32-WROOM-32D <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_cn.pdf>`_
-   - `ESP32-WROOM-32U <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_cn.pdf>`_
-   - `ESP32-WROOM-DA <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-da_datasheet_cn.pdf>`_ （停产）
-   - `ESP32-SOLO-1 <https://www.espressif.com/sites/default/files/documentation/esp32-solo-1_datasheet_cn.pdf>`_
-   - `ESP32-WROOM-32 <https://espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_cn.pdf>`_
-
 - 可选排针或排母
 
 详情请见 `乐鑫产品选型工具 <https://products.espressif.com/#/product-selector?names=>`__。
@@ -327,6 +315,28 @@ J3
 ESP32-DevKitC V4 上电前，请首先确认开发板完好无损。
 
 请前往 `ESP-IDF 快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32/get-started/index.html>`__，查看如何快速设置开发环境，将应用程序烧录至您的开发板。
+
+
+内含组件和包装
+--------------
+
+.. include:: ordering-info.inc
+
+如需了解更多可选型号，请访问 `乐鑫产品选型工具 <https://products.espressif.com/zh/product-selector>`__，选择 **开发板** 标签页。如果在本表或乐鑫产品选型工具中未找到所需型号，或有特殊定制需求，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`__。
+
+零售订单
+^^^^^^^^
+
+如购买样品，每个开发板将以防静电袋或零售商选择的其他方式包装。
+
+零售订单请前往 https://www.espressif.com/zh-hans/company/contact/buy-a-sample。
+
+批量订单
+^^^^^^^^
+
+如批量购买，开发板将以大纸板箱包装。
+
+批量订单请前往 https://www.espressif.com/zh-hans/contact-us/sales-questions。
 
 
 相关文档

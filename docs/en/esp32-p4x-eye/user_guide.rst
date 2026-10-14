@@ -177,6 +177,27 @@ Software Setup
 
 To set up your development environment and flash an application example onto your board, please follow the `installation instructions <https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html#installation>`__ in `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32p4/get-started/index.html>`__.
 
+Contents and Packaging
+----------------------
+
+.. include:: ordering-info.inc
+
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
+
+Retail Orders
+^^^^^^^^^^^^^
+
+If you order a few samples, each board comes in an individual package in either antistatic bag or any packaging depending on your retailer.
+
+For retail orders, please go to https://www.espressif.com/en/company/contact/buy-a-sample.
+
+Wholesale Orders
+^^^^^^^^^^^^^^^^
+
+If you order in bulk, the boards come in large cardboard boxes.
+
+For wholesale orders, please go to https://www.espressif.com/en/contact-us/sales-questions.
+
 .. _Hardware-reference_p4x_eye_0:
 
 Hardware Reference

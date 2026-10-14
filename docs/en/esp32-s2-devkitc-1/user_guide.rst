@@ -51,7 +51,7 @@ The key components of the board are described in a clockwise direction.
    * - Key Component
      - Description
    * - On-board module (ESP32-S2-SOLO or ESP32-S2-SOLO-U in the above figure)
-     - ESP32-S2-SOLO series modules with an on-board PCB antenna or a connector for an external antenna. This series of modules have multiple options for flash and PSRAM size. For more information, please refer to :ref:`user-guide-s2-devkitc-1-v1-ordering-info`.
+     - ESP32-S2-SOLO series modules with an on-board PCB antenna or a connector for an external antenna. This series of modules have multiple options for flash and PSRAM size. For more information, please refer to :ref:`ordering-info-esp32-s2-devkitc-1`.
    * - 3.3 V Power On LED
      - Turns on when the USB power is connected to the board.
    * - USB-to-UART Bridge
@@ -105,56 +105,9 @@ Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/l
 Contents and Packaging
 ----------------------
 
-.. _user-guide-s2-devkitc-1-v1-ordering-info:
+.. include:: ordering-info.inc
 
-Ordering Information
-^^^^^^^^^^^^^^^^^^^^
-
-The development board has a variety of variants to choose from, as shown in the table below.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 41 24 9 8 18
-
-   * - Ordering Code
-     - On-board Module
-     - Flash
-     - PSRAM
-     - Antenna
-   * - ESP32-S2-DevKitC-1-N8R2
-     - ESP32-S2-SOLO-2
-
-       (Recommended)
-     - 8 MB
-     - 2 MB
-     - PCB on-board antenna
-   * - ESP32-S2-DevKitC-1U-N8R2
-     - ESP32-S2-SOLO-2U
-
-       (Recommended)
-     - 8 MB
-     - 2 MB
-     - External antenna connector
-   * - ESP32-S2-DevKitC-1 (EOL)
-     - ESP32-S2-SOLO (EOL)
-     - 4 MB
-     - ---
-     - PCB on-board antenna
-   * - ESP32-S2-DevKitC-1U (EOL)
-     - ESP32-S2-SOLO-U (EOL)
-     - 4 MB
-     - ---
-     - External antenna connector
-   * - ESP32-S2-DevKitC-1R (EOL)
-     - ESP32-S2-SOLO (EOL)
-     - 4 MB
-     - 2 MB
-     - PCB on-board antenna
-   * - ESP32-S2-DevKitC-1RU (EOL)
-     - ESP32-S2-SOLO-U (EOL)
-     - 4 MB
-     - 2 MB
-     - External antenna connector
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
 
 Retail Orders
 ^^^^^^^^^^^^^

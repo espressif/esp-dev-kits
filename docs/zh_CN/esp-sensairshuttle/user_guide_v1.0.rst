@@ -280,6 +280,29 @@ USB 连接
 
   开发板使用 USB 端口与电脑通信。大多数操作系统（Windows、Linux、macOS）已预装所需驱动，开发板插入后可自动识别。如无法识别设备或无法建立串口连接，请参考 `如何建立串口连接 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c5/get-started/establish-serial-connection.html>`__ 获取安装驱动的详细步骤。
 
+
+内含组件和包装
+--------------
+
+.. include:: ordering-info.inc
+
+如需了解更多可选型号，请访问 `乐鑫产品选型工具 <https://products.espressif.com/zh/product-selector>`__，选择 **开发板** 标签页。如果在本表或乐鑫产品选型工具中未找到所需型号，或有特殊定制需求，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`__。
+
+零售订单
+~~~~~~~~
+
+如购买样品，每个开发板将以防静电袋或零售商选择的其他方式包装。
+
+零售订单请前往 https://www.espressif.com/zh-hans/company/contact/buy-a-sample。
+
+批量订单
+~~~~~~~~
+
+如批量购买，开发板将以大纸板箱包装。
+
+批量订单请前往 https://www.espressif.com/zh-hans/contact-us/sales-questions。
+
+
 硬件参考
 ========
 

@@ -128,6 +128,10 @@ Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/s
 Contents and Packaging
 ======================
 
+.. include:: ordering-info.inc
+
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
+
 Retail Orders
 -------------
 

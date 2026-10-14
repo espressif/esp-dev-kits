@@ -21,6 +21,12 @@ repos:
   #       args: ['--astyle-version=3.4.7', '--rules=tools/ci/astyle-rules.yml']
   - repo: local
     hooks:
+      - id: update-ordering-info
+        name: Update ordering information for changed board guides
+        entry: python3 tools/ordering_info/ordering_info.py hook
+        language: system
+        files: '^docs/(en|zh_CN)/[^/]+/user_guide.*\.rst$'
+        pass_filenames: true
       - id: check-executables
         name: Check File Permissions
         entry: tools/ci/check_executables.py --action executables

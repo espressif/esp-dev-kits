@@ -51,7 +51,7 @@ ESP32-S2-DevKitC-1 是一款入门级开发板，具备完整的 Wi-Fi 功能。
    * - 主要组件
      - 介绍
    * - 板载模组（上图中为 ESP32-S2-SOLO 或 ESP32-S2-SOLO-U）
-     - ESP32-S2-SOLO 系列模组，可搭载 PCB 板载天线或外部天线连接器，支持多种 flash 和 PSRAM 大小。更多信息，详见 :ref:`user-guide-s2-devkitc-1-v1-ordering-info`。
+     - ESP32-S2-SOLO 系列模组，可搭载 PCB 板载天线或外部天线连接器，支持多种 flash 和 PSRAM 大小。更多信息，详见 :ref:`ordering-info-esp32-s2-devkitc-1`。
    * - 3.3 V Power On LED（3.3 V 电源指示灯）
      - 开发板连接 USB 电源后，该指示灯亮起。
    * - USB-to-UART Bridge（USB 转 UART 桥接器）
@@ -105,64 +105,9 @@ ESP32-S2-DevKitC-1 是一款入门级开发板，具备完整的 Wi-Fi 功能。
 内含组件和包装
 --------------
 
-.. _user-guide-s2-devkitc-1-v1-ordering-info:
+.. include:: ordering-info.inc
 
-订购信息
-^^^^^^^^
-
-该开发板有多种型号可供选择，详见下表。
-
-.. list-table::
-   :header-rows: 1
-   :widths: 35 25 10 10 20
-
-   * - 订购代码
-     - 搭载模组
-     - Flash
-     - PSRAM
-     - 天线
-   * - ESP32-S2-DevKitC-1-N8R2
-     - ESP32-S2-SOLO-2
-
-       （推荐）
-     - 8 MB
-     - 2 MB
-     - PCB 板载天线
-   * - ESP32-S2-DevKitC-1U-N8R2
-     - ESP32-S2-SOLO-2U
-
-       （推荐）
-     - 8 MB
-     - 2 MB
-     - 外部天线连接器
-   * - ESP32-S2-DevKitC-1（停产）
-     - ESP32-S2-SOLO
-
-       （停产）
-     - 4 MB
-     - ---
-     - PCB 板载天线
-   * - ESP32-S2-DevKitC-1U（停产）
-     - ESP32-S2-SOLO-U
-
-       （停产）
-     - 4 MB
-     - ---
-     - 外部天线连接器
-   * - ESP32-S2-DevKitC-1R（停产）
-     - ESP32-S2-SOLO
-
-       （停产）
-     - 4 MB
-     - 2 MB
-     - PCB 板载天线
-   * - ESP32-S2-DevKitC-1RU（停产）
-     - ESP32-S2-SOLO-U
-
-       （停产）
-     - 4 MB
-     - 2 MB
-     - 外部天线连接器
+如需了解更多可选型号，请访问 `乐鑫产品选型工具 <https://products.espressif.com/zh/product-selector>`__，选择 **开发板** 标签页。如果在本表或乐鑫产品选型工具中未找到所需型号，或有特殊定制需求，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`__。
 
 零售订单
 ^^^^^^^^
