@@ -113,40 +113,9 @@ ESP32-S3-DevKitC-1 是一款入门级开发板，搭载 Wi-Fi + Bluetooth® LE �
 内含组件和包装
 ---------------
 
-订购信息
-^^^^^^^^^^^^^^
+.. include:: ordering-info.inc
 
-该开发板有多种型号可供选择，详见下表。
-
-.. list-table::
-   :widths: 28 29 19 17 15
-   :header-rows: 1
-
-   * - 订购代码
-     - 搭载模组
-     - Flash
-     - PSRAM
-     - SPI 电压
-   * - ESP32-S3-DevKitC-1-N8R8
-     - ESP32-S3-WROOM-1-N8R8
-     - 8 MB QD
-     - 8 MB OT
-     - 3.3 V
-   * - ESP32-S3-DevKitC-1-N32R16V
-     - ESP32-S3-WROOM-2-N32R16V
-     - 32 MB OT
-     - 16 MB OT
-     - 1.8 V
-   * - ESP32-S3-DevKitC-1U-N8R8
-     - ESP32-S3-WROOM-1U-N8R8
-     - 8 MB QD
-     - 8 MB OT
-     - 3.3 V
-
-.. note::
-
-  上表中，QD 指代 Quad SPI，OT 指代 Octal SPI。
-
+如需了解更多可选型号，请访问 `乐鑫产品选型工具 <https://products.espressif.com/zh/product-selector>`__，选择 **开发板** 标签页。如果在本表或乐鑫产品选型工具中未找到所需型号，或有特殊定制需求，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`__。
 
 零售订单
 ^^^^^^^^

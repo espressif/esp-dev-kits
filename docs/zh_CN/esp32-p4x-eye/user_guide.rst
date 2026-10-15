@@ -177,6 +177,27 @@ ESP32-P4X-EYE 是一款基于 ESP32-P4 芯片的视觉开发板，主要面向�
 
 请前往 `快速入门 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html>`__ 中 `详细安装步骤 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32p4/get-started/index.html#get-started-how-to-get-esp-idf>`__ 一节查看如何快速设置开发环境。
 
+内含组件和包装
+--------------
+
+.. include:: ordering-info.inc
+
+如需了解更多可选型号，请访问 `乐鑫产品选型工具 <https://products.espressif.com/zh/product-selector>`__，选择 **开发板** 标签页。如果在本表或乐鑫产品选型工具中未找到所需型号，或有特殊定制需求，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`__。
+
+零售订单
+^^^^^^^^
+
+如购买样品，每个开发板将以防静电袋或零售商选择的其他方式包装。
+
+零售订单请前往 https://www.espressif.com/zh-hans/company/contact/buy-a-sample。
+
+批量订单
+^^^^^^^^
+
+如批量购买，开发板将以大纸板箱包装。
+
+批量订单请前往 https://www.espressif.com/zh-hans/contact-us/sales-questions。
+
 .. _Hardware-reference_p4x_eye_1:
 
 硬件参考

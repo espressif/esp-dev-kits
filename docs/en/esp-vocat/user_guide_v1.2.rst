@@ -226,6 +226,27 @@ Espressif provides Board Support Packages (BSPs) for various Espressif boards th
 
 Development board application examples are stored in the `esp-brookesia <https://github.com/espressif/esp-brookesia/tree/release/v0.6/products/speaker>`_ project.
 
+Contents and Packaging
+----------------------
+
+.. include:: ordering-info.inc
+
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
+
+Retail Orders
+^^^^^^^^^^^^^
+
+If you order a few samples, each board comes in an individual package in either antistatic bag or any packaging depending on your retailer.
+
+For retail orders, please go to https://www.espressif.com/en/company/contact/buy-a-sample.
+
+Wholesale Orders
+^^^^^^^^^^^^^^^^
+
+If you order in bulk, the boards come in large cardboard boxes.
+
+For wholesale orders, please go to https://www.espressif.com/en/contact-us/sales-questions.
+
 .. _Hardware-reference_esp-vocat_3:
 
 Hardware Reference

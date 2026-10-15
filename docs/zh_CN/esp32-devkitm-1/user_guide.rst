@@ -50,6 +50,10 @@ ESP32-DevKitM-1 开发板是一款小巧实用的开发板，具备以下特色�
 内含组件和包装
 ---------------
 
+.. include:: ordering-info.inc
+
+如需了解更多可选型号，请访问 `乐鑫产品选型工具 <https://products.espressif.com/zh/product-selector>`__，选择 **开发板** 标签页。如果在本表或乐鑫产品选型工具中未找到所需型号，或有特殊定制需求，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`__。
+
 零售订单
 ^^^^^^^^^^^
 

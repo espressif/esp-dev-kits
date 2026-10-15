@@ -155,6 +155,10 @@ ESP32-S3-USB-OTG 上电前，请首先确认开发板完好无损。
 内容和包装
 ~~~~~~~~~~
 
+.. include:: ordering-info.inc
+
+如需了解更多可选型号，请访问 `乐鑫产品选型工具 <https://products.espressif.com/zh/product-selector>`__，选择 **开发板** 标签页。如果在本表或乐鑫产品选型工具中未找到所需型号，或有特殊定制需求，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`__。
+
 零售订单
 ^^^^^^^^
 

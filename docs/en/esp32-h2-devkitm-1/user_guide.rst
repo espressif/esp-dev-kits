@@ -109,32 +109,9 @@ Refer to the LED blink example <https://github.com/espressif/esp-idf/tree/master
 Contents and Packaging
 ----------------------
 
-Ordering Information
-^^^^^^^^^^^^^^^^^^^^
+.. include:: ordering-info.inc
 
-The development board has a variety of variants to choose from, as shown in the table below.
-
-.. list-table::
-   :header-rows: 1
-   :widths: 41 24 9 8 18
-
-   * - Ordering Code
-     - On-board Module
-     - Flash [B]_
-     - PSRAM
-     - Antenna
-   * - ESP32-H2-DevKitM-1-N4
-     - ESP32-H2-MINI-1
-     - 4 MB
-     - 0 MB
-     - PCB on-board antenna
-   * - ESP32-H2-DevKitM-1U-N4
-     - ESP32-H2-MINI-1U
-     - 4 MB
-     - 0 MB
-     - External antenna connector
-
-.. [B] The flash is integrated in the chip's package.
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
 
 Retail Orders
 ^^^^^^^^^^^^^

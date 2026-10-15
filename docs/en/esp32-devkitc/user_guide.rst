@@ -27,18 +27,6 @@ ESP32-DevKitC V4 is a small-sized ESP32-based development board produced by `Esp
 
 To cover a wide range of user requirements, the following versions of ESP32-DevKitC V4 are available:
 
-- different ESP32 modules
-
-   - `ESP32-WROOM-32E <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf>`_
-   - `ESP32-WROOM-32UE <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32e_esp32-wroom-32ue_datasheet_en.pdf>`_
-   - `ESP32-WROVER-E <https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf>`_
-   - `ESP32-WROVER-IE <https://www.espressif.com/sites/default/files/documentation/esp32-wrover-e_esp32-wrover-ie_datasheet_en.pdf>`_
-   - `ESP32-WROOM-32D <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.pdf>`_
-   - `ESP32-WROOM-32U <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-32d_esp32-wroom-32u_datasheet_en.pdf>`_
-   - `ESP32-WROOM-DA <https://www.espressif.com/sites/default/files/documentation/esp32-wroom-da_datasheet_en.pdf>`_ (End of Life)
-   - `ESP32-SOLO-1 <https://www.espressif.com/sites/default/files/documentation/esp32-solo-1_datasheet_en.pdf>`_
-   - `ESP32-WROOM-32 <https://espressif.com/sites/default/files/documentation/esp32-wroom-32_datasheet_en.pdf>`_
-
 - male or female pin headers
 
 For details please refer to `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`_.
@@ -327,6 +315,28 @@ Start Application Development
 Before powering up your ESP32-DevKitC V4, please make sure that the board is in good condition with no obvious signs of damage.
 
 After that, proceed to `ESP-IDF Get Started <https://docs.espressif.com/projects/esp-idf/en/latest/esp32/get-started/index.html>`__, which will quickly help you set up the development environment then flash an application example onto your board.
+
+
+Contents and Packaging
+----------------------
+
+.. include:: ordering-info.inc
+
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
+
+Retail Orders
+^^^^^^^^^^^^^
+
+If you order a few samples, each board comes in an individual package in either antistatic bag or any packaging depending on your retailer.
+
+For retail orders, please go to https://www.espressif.com/en/company/contact/buy-a-sample.
+
+Wholesale Orders
+^^^^^^^^^^^^^^^^
+
+If you order in bulk, the boards come in large cardboard boxes.
+
+For wholesale orders, please go to https://www.espressif.com/en/contact-us/sales-questions.
 
 
 Related Documents

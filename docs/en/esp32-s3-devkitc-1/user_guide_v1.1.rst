@@ -113,40 +113,9 @@ Please proceed to `Get Started <https://docs.espressif.com/projects/esp-idf/en/l
 Contents and Packaging
 ----------------------
 
-Ordering Information
-^^^^^^^^^^^^^^^^^^^^
+.. include:: ordering-info.inc
 
-The development board has a variety of variants to choose from, as shown in the table below.
-
-.. list-table::
-   :widths: 28 29 19 17 15
-   :header-rows: 1
-
-   * - Ordering Code
-     - Module Integrated
-     - Flash
-     - PSRAM
-     - SPI Voltage
-   * - ESP32-S3-DevKitC-1-N8R8
-     - ESP32-S3-WROOM-1-N8R8
-     - 8 MB QD
-     - 8 MB OT
-     - 3.3 V
-   * - ESP32-S3-DevKitC-1-N32R16V
-     - ESP32-S3-WROOM-2-N32R16V
-     - 32 MB OT
-     - 16 MB OT
-     - 1.8 V
-   * - ESP32-S3-DevKitC-1U-N8R8
-     - ESP32-S3-WROOM-1U-N8R8
-     - 8 MB QD
-     - 8 MB OT
-     - 3.3 V
-
-.. note::
-
-  In the table above, QD stands for Quad SPI and OT stands for Octal SPI.
-
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
 
 Retail Orders
 ^^^^^^^^^^^^^

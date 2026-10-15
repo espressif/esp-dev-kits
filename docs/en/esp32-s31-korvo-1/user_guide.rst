@@ -224,6 +224,9 @@ The package contains:
 - ESP32-S31-Korvo-1 V1.1 main board (with the camera module installed)
 - LCD subboard: ESP32-S3-LCD-EV-Board-SUB3
 
+.. include:: ordering-info.inc
+
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
 
 Retail Orders
 ^^^^^^^^^^^^^

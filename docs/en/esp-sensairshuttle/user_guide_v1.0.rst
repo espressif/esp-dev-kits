@@ -280,6 +280,29 @@ Please visit the `ESP-IDF Getting Started <https://docs.espressif.com/projects/e
 
   The development board uses a USB port to communicate with the computer. Most operating systems (Windows, Linux, macOS) have the required drivers pre-installed, and the development board can be automatically recognized after insertion. If the device cannot be recognized or a serial connection cannot be established, please refer to `Establish Serial Connection <https://docs.espressif.com/projects/esp-idf/en/latest/esp32c5/get-started/establish-serial-connection.html>`__ for detailed steps on installing drivers.
 
+
+Contents and Packaging
+----------------------
+
+.. include:: ordering-info.inc
+
+For more information about available variants, visit the `ESP Product Selector <https://products.espressif.com/#/product-selector?names=>`__ and select the **Development Board** tab. If you cannot find the variant you need in the table or Product Selector, or if you have special customization requirements, contact `Espressif Sales <https://www.espressif.com/en/contact-us/sales-questions>`__.
+
+Retail Orders
+~~~~~~~~~~~~~
+
+If you order a few samples, each board comes in an individual package in either antistatic bag or any packaging depending on your retailer.
+
+For retail orders, please go to https://www.espressif.com/en/company/contact/buy-a-sample.
+
+Wholesale Orders
+~~~~~~~~~~~~~~~~
+
+If you order in bulk, the boards come in large cardboard boxes.
+
+For wholesale orders, please go to https://www.espressif.com/en/contact-us/sales-questions.
+
+
 Hardware Reference
 ==================
 

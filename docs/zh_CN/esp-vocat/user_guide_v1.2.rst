@@ -226,6 +226,27 @@ ESP-VoCat 主控采用乐鑫 ESP32-S3-WROOM-1-N16R16VA 模组，支持 2.4 GHz W
 
 开发板应用示例存放在 `esp-brookesia <https://github.com/espressif/esp-brookesia/tree/release/v0.6/products/speaker>`_ 工程中。
 
+内含组件和包装
+--------------
+
+.. include:: ordering-info.inc
+
+如需了解更多可选型号，请访问 `乐鑫产品选型工具 <https://products.espressif.com/zh/product-selector>`__，选择 **开发板** 标签页。如果在本表或乐鑫产品选型工具中未找到所需型号，或有特殊定制需求，请联系 `乐鑫商务 <https://www.espressif.com/zh-hans/contact-us/sales-questions>`__。
+
+零售订单
+^^^^^^^^
+
+如购买样品，每个开发板将以防静电袋或零售商选择的其他方式包装。
+
+零售订单请前往 https://www.espressif.com/zh-hans/company/contact/buy-a-sample。
+
+批量订单
+^^^^^^^^
+
+如批量购买，开发板将以大纸板箱包装。
+
+批量订单请前往 https://www.espressif.com/zh-hans/contact-us/sales-questions。
+
 .. _Hardware-reference_esp-vocat_2:
 
 硬件参考
