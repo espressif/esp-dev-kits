@@ -324,6 +324,8 @@ Related Documents
 * `ESP32-C3-MINI-1 & ESP32-C3-MINI-1U Datasheet`_ (PDF)
 * `ESP32-C3-DevKit-RUST-2 Schematic`_ (PDF)
 * `ESP32-C3-DevKit-RUST-2 PCB Layout <https://dl.espressif.com/public/esp32-c3-devkit-rust-2-board.pdf>`_ (PDF)
+* `ESP32-C3-DevKit-RUST-2 3D Model (STEP) <https://dl.espressif.com/dl/schematics/esp32-c3-devkit-rust-2.step>`_
+* `ESP32-C3-DevKit-RUST-2 3D Model (STL) <https://dl.espressif.com/dl/schematics/esp32-c3-devkit-rust-2.stl>`_
 * `ESP-IDF Programming Guide <https://docs.espressif.com/projects/esp-idf/en/latest/esp32c3/get-started/index.html>`_
 * `ESP32-C3-DevKit-RUST-2 training <https://developer.espressif.com/workshops/esp-idf-basic/>`_
 

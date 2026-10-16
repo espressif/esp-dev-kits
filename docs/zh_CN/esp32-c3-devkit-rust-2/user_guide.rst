@@ -324,6 +324,8 @@ USB 供电
 * `ESP32-C3-MINI-1 & ESP32-C3-MINI-1U 技术规格书`_ (PDF)
 * `ESP32-C3-DevKit-RUST-2 原理图`_ (PDF)
 * `ESP32-C3-DevKit-RUST-2 PCB 布局图 <https://dl.espressif.com/public/esp32-c3-devkit-rust-2-board.pdf>`_ (PDF)
+* `ESP32-C3-DevKit-RUST-2 3D 模型 (STEP) <https://dl.espressif.com/dl/schematics/esp32-c3-devkit-rust-2.step>`_
+* `ESP32-C3-DevKit-RUST-2 3D 模型 (STL) <https://dl.espressif.com/dl/schematics/esp32-c3-devkit-rust-2.stl>`_
 * `ESP-IDF 编程指南 <https://docs.espressif.com/projects/esp-idf/zh_CN/latest/esp32c3/get-started/index.html>`_
 * `ESP32-C3-DevKit-RUST-2 培训 <https://developer.espressif.com/workshops/esp-idf-basic/>`_
 
