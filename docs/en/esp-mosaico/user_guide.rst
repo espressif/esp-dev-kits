@@ -112,7 +112,7 @@ The following describes the main components on the front PCB in clockwise order.
      - USB Type-C interface controller that handles CC detection and controls the USB power direction.
    * - 10
      - Charge LED
-     - Charge status indicator: red while charging, green when fully charged.
+     - Charge status indicator: orange while charging, white when fully charged.
    * - 11
      - SAM8108
      - Power on/off controller used with the POWER button.
@@ -807,7 +807,7 @@ Pins are listed clockwise around the connector, starting from Pin1 (odd-numbered
 
 .. note::
 
-  When the left camera module claims DVP pins, GPIO14 (EEPROM address-select) is reused as DVP D4 and EEPROM access to that slot is suspended until the camera resource is released. See :doc:`user_guide_camera` and :doc:`user_guide_interact` for the camera module and multi-function interaction subboard.
+  When the left camera module claims DVP pins, GPIO14 (EEPROM address-select) is reused as DVP D4 and EEPROM access to that slot is suspended until the camera resource is released. See :doc:`user_guide_camera` and :doc:`user_guide_interact` for the camera module and multi-function interaction module.
 
 Hardware Revision Details
 ==========================
@@ -815,6 +815,7 @@ Hardware Revision Details
 - **V1.2** (this document): Major changes compared with V1.0 are as follows.
 
   - Display interface: ``LCD_RST`` and ``LCD_SCL`` are swapped (V1.2: ``LCD_RST`` = GPIO44, ``LCD_SCL`` = GPIO42).
+  - The charge LED colors are changed: V1.0 uses red while charging and green when fully charged; V1.2 uses orange while charging and white when fully charged.
   - The programmable orange LED (formerly GPIO3) is removed.
   - The 3.3 V power LED is removed.
   - Independent codec power-domain control (formerly GPIO56) is removed.
@@ -833,7 +834,7 @@ Related Documents
 -  `2.16-inch 480 × 480 QSPI AMOLED Display Datasheet`_ (PDF)
 -  `ESP32-S31 Series Datasheet`_ (HTML)
 -  :doc:`Camera Module User Guide <user_guide_camera>`
--  :doc:`Multi-function Interaction Subboard User Guide <user_guide_interact>`
+-  :doc:`Multi-function Interaction Module User Guide <user_guide_interact>`
 -  `ESP-Mosaico User Guide`_ (HTML)
 -  `ESP-Mosaico Firmware Update`_ (HTML)
 -  `ESP-Claw`_ (HTML)

@@ -4,7 +4,7 @@ ESP-Mosaico Camera Module
 
 :link_to_translation:`zh_CN:[中文]`
 
-This guide describes the hardware versions, interfaces, installation, and software usage of the ESP-Mosaico **Camera Module** (Camera Subboard). The module is available in **V1.2** and **V1.4** versions. Both connect to the left ``2 × 10P`` slot on the CoreBoard / BaseBoard and provide DVP image capture.
+This guide describes the hardware versions, interfaces, installation, and software usage of the ESP-Mosaico **Camera Module** (Camera Module). The module is available in **V1.2** and **V1.4** versions. Both connect to the left ``2 × 10P`` slot on the CoreBoard / BaseBoard and provide DVP image capture.
 
 .. note::
 

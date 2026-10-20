@@ -112,7 +112,7 @@ ESP-Mosaico 由 CoreBoard（核心板）和 BaseBoard（底板）组成。下文
      - USB Type-C 接口控制器，负责 CC 逻辑检测，并据此控制 USB 供电方向。
    * - 10
      - Charge LED（充电指示灯）
-     - 充电状态指示：红灯表示充电中，绿灯表示已充满。
+     - 充电状态指示：橙色表示充电中，白色表示已充满。
    * - 11
      - SAM8108
      - 开关机控制芯片，配合 POWER 按键实现整机开关控制。
@@ -807,7 +807,7 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
 
 .. note::
 
-  左侧摄像头模块占用 DVP 管脚时，会复用 GPIO14（原 EEPROM 地址选择脚）作为 DVP D4，并暂停该插槽的 EEPROM 访问，直到释放摄像头资源。摄像头模块与多功能交互子板的完整说明见 :doc:`user_guide_camera` 与 :doc:`user_guide_interact`。
+  左侧摄像头模块占用 DVP 管脚时，会复用 GPIO14（原 EEPROM 地址选择脚）作为 DVP D4，并暂停该插槽的 EEPROM 访问，直到释放摄像头资源。摄像头模块与多功能交互模块的完整说明见 :doc:`user_guide_camera` 与 :doc:`user_guide_interact`。
 
 硬件版本
 ========
@@ -815,6 +815,7 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
 - **V1.2** （本文档）：相对 V1.0 的主要变更如下。
 
   - 屏幕接口：``LCD_RST`` 与 ``LCD_SCL`` 互换（V1.2：``LCD_RST`` = GPIO44，``LCD_SCL`` = GPIO42）。
+  - 充电指示灯颜色变更：V1.0 充电时亮红灯、充满时亮绿灯；V1.2 充电时亮橙灯、充满时亮白灯。
   - 取消程序可控橙色 LED（原 GPIO3）。
   - 取消 3.3 V 电源指示灯。
   - 取消 Codec 电源域独立控制（原 GPIO56）。
@@ -833,7 +834,7 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
 -  `2.16 寸 480 × 480 QSPI AMOLED 屏幕规格书`_ (PDF)
 -  `ESP32-S31 系列芯片技术规格书`_ (HTML)
 -  :doc:`摄像头模块用户指南 <user_guide_camera>`
--  :doc:`多功能交互子板用户指南 <user_guide_interact>`
+-  :doc:`多功能交互模块用户指南 <user_guide_interact>`
 -  `ESP-Mosaico 使用指南`_ (HTML)
 -  `ESP-Mosaico 固件更新`_ (HTML)
 -  `ESP-Claw`_ (HTML)

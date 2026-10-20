@@ -4,7 +4,7 @@ ESP-Mosaico 摄像头模块
 
 :link_to_translation:`en:[English]`
 
-本指南介绍 ESP-Mosaico **摄像头模块** （Camera Subboard）的硬件版本、硬件接口、安装方式与软件使用要点。摄像头模块提供 **V1.2** 和 **V1.4** 两个版本，均通过 CoreBoard / BaseBoard 左侧 ``2 × 10P`` 模块插槽接入，提供 DVP 图像采集能力。
+本指南介绍 ESP-Mosaico **摄像头模块** （Camera Module）的硬件版本、硬件接口、安装方式与软件使用要点。摄像头模块提供 **V1.2** 和 **V1.4** 两个版本，均通过 CoreBoard / BaseBoard 左侧 ``2 × 10P`` 模块插槽接入，提供 DVP 图像采集能力。
 
 .. note::
 

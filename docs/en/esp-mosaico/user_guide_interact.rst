@@ -1,20 +1,20 @@
-====================================================
-ESP-Mosaico Multi-function Interaction Subboard
-====================================================
+=============================================
+ESP-Mosaico Multi-function Interaction Module
+=============================================
 
 :link_to_translation:`zh_CN:[中文]`
 
-This guide describes the hardware interface, installation, and software usage of the ESP-Mosaico **Multi-function Interaction Subboard**. The board connects to the left or right ``2 × 10P`` module slot and provides ambient-light sensing, PIR motion detection, IR transmit, RGB LEDs, and key / touch input.
+This guide describes the hardware interface, installation, and software usage of the ESP-Mosaico **Multi-function Interaction Module**. The module connects to the left or right ``2 × 10P`` module slot and provides ambient-light sensing, PIR motion detection, IR transmit, RGB LEDs, and key / touch input.
 
 .. note::
 
-  The interaction subboard can be inserted into the left slot (``H2``, EEPROM 0x50) or the right slot (``H1``, EEPROM 0x51). The right slot is mounted 180° relative to the left slot. For the mainboard revision, see :doc:`user_guide` or :doc:`user_guide_v1.0`.
+  The interaction module can be inserted into the left slot (``H2``, EEPROM 0x50) or the right slot (``H1``, EEPROM 0x51). The right slot is mounted 180° relative to the left slot. For the mainboard revision, see :doc:`user_guide` or :doc:`user_guide_v1.0`.
 
-The board integrates a GL5506 photoresistor, an AS312 PIR sensor, an IR LED driven by an AO3400A, six WS2812 LEDs (four at the top and two beneath the buttons), and two pads that can be used as mechanical keys or capacitive-touch channels. An AT24C02 EEPROM identifies the board. The board type is 0x16.
+The module integrates a GL5506 photoresistor, an AS312 PIR sensor, an IR LED driven by an AO3400A, six WS2812 LEDs (four at the top and two beneath the buttons), and two pads that can be used as mechanical keys or capacitive-touch channels. An AT24C02 EEPROM identifies the module. The board type is 0x16.
 
 This document consists of the following major sections:
 
-- `Getting Started`_: Installation, power, and how to use the board.
+- `Getting Started`_: Installation, power, and how to use the module.
 - `Hardware Reference`_: Left/right pin map and peripheral notes.
 - `Hardware Revision Details`_: Hardware revision history (if any).
 - `Related Documents`_: Links to related documentation.
@@ -34,11 +34,11 @@ Front
 ^^^^^
 
 .. figure:: ../../_static/esp-mosaico/esp-mosaico-interact-front.png
-   :alt: Interaction subboard front (Click to enlarge)
+   :alt: Interaction module front (Click to enlarge)
    :width: 80%
    :figclass: align-center
 
-   Interaction subboard front (Click to enlarge)
+   Interaction module front (Click to enlarge)
 
 The following describes the main components on the front by callout number, in clockwise order.
 
@@ -78,11 +78,11 @@ Back
 ^^^^
 
 .. figure:: ../../_static/esp-mosaico/esp-mosaico-interact-back.png
-   :alt: Interaction subboard back (Click to enlarge)
+   :alt: Interaction module back (Click to enlarge)
    :width: 80%
    :figclass: align-center
 
-   Interaction subboard back (Click to enlarge)
+   Interaction module back (Click to enlarge)
 
 The following describes the main components on the back using the callout numbers in the figure.
 
@@ -106,14 +106,14 @@ The following describes the main components on the back using the callout number
      - WS2812
      - Addressable RGB LED on the left side of the figure.
 
-Start Using the Board
----------------------
+Start Using the Module
+----------------------
 
 Required Hardware
 ^^^^^^^^^^^^^^^^^
 
 - ESP-Mosaico (CoreBoard V1.0 or V1.2)
-- ESP-Mosaico Multi-function Interaction Subboard
+- ESP-Mosaico Multi-function Interaction Module
 - USB cable (data-capable)
 - Computer (Windows, Linux, or macOS)
 
@@ -121,20 +121,20 @@ Installation
 ^^^^^^^^^^^^
 
 .. figure:: ../../_static/esp-mosaico/esp-mosaico-interact-connection.png
-   :alt: Interaction subboard mounting orientation (Click to enlarge)
+   :alt: Interaction module mounting orientation (Click to enlarge)
    :width: 80%
    :figclass: align-center
 
-   Interaction subboard mounting orientation (Click to enlarge)
+   Interaction module mounting orientation (Click to enlarge)
 
-1. With the host powered off, or with the external 3.3 V / 5 V outputs disabled, insert the board into the left or right module slot. Rotate the board 180° when using the right slot.
+1. With the host powered off, or with the external 3.3 V / 5 V outputs disabled, insert the module into the left or right module slot. Rotate the module 180° when using the right slot.
 2. Power ESP-Mosaico from Type-C and turn it on. The expansion 3.3 V / 5 V rails are output only when GPIO60 is driven low.
-3. After power-on, the host identifies the interaction subboard from its EEPROM (board type 0x16). A board without this information is not recognized.
+3. After power-on, the host identifies the interaction module from its EEPROM (board type 0x16). A module without this information is not recognized.
 
 How to Use
 ^^^^^^^^^^
 
-Once the board is recognized, the display shows a control for each inserted slot. Switch among ambient light (LDR), motion (PIR), infrared transmit (IR), RGB LEDs (LED), keys (Key), and touch (Touch). The left and right slots can be used at the same time, and their functions are independent.
+Once the module is recognized, the display shows a control for each inserted slot. Switch among ambient light (LDR), motion (PIR), infrared transmit (IR), RGB LEDs (LED), keys (Key), and touch (Touch). The left and right slots can be used at the same time, and their functions are independent.
 
 .. _Hardware-reference_esp-mosaico-interact-en:
 
@@ -165,7 +165,7 @@ Module I2C uses the expansion SDA / SCL pins (GPIO0 / GPIO1). On CoreBoard **V1.
 Left and Right Pin Map
 ----------------------
 
-The following table lists the interaction-subboard signals on both slots.
+The following table lists the interaction-module signals on both slots.
 
 .. list-table::
    :widths: 22 20 20 38
@@ -253,7 +253,7 @@ The IR LED is driven by an AO3400A and sends NEC frames (8-bit address and comma
 WS2812
 ^^^^^^
 
-The board has **6** WS2812 LEDs. Colors can be set individually or together, and the brightness can be limited.
+The module has **6** WS2812 LEDs. Colors can be set individually or together, and the brightness can be limited.
 
 Keys and Touch
 ^^^^^^^^^^^^^^
@@ -266,7 +266,7 @@ Keys and Touch
 Power
 -----
 
-The board is powered from the host ``VCC_3V3`` rail, which is output only when GPIO60 is driven low. On CoreBoard V1.2 the external 3.3 V rail is generated by a dedicated DCDC and is isolated from the internal MCU supply.
+The module is powered from the host ``VCC_3V3`` rail, which is output only when GPIO60 is driven low. On CoreBoard V1.2 the external 3.3 V rail is generated by a dedicated DCDC and is isolated from the internal MCU supply.
 
 Hardware Revision Details
 ==========================
@@ -278,9 +278,9 @@ No previous versions.
 Related Documents
 =================
 
--  `ESP-Mosaico Interaction Subboard Schematic`_ (PDF)
+-  `ESP-Mosaico Interaction Module Schematic`_ (PDF)
 
-.. _ESP-Mosaico Interaction Subboard Schematic: https://dl.espressif.com/AE/Mosaico/SCH_SCH_ESP-Mosaico_Interaction_V1_0_2026-09-24.pdf
+.. _ESP-Mosaico Interaction Module Schematic: https://dl.espressif.com/AE/Mosaico/SCH_SCH_ESP-Mosaico_Interaction_V1_0_2026-09-24.pdf
 
 Disclaimer and Copyright Notice
 ===============================
