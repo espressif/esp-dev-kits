@@ -776,13 +776,13 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
 
 .. note::
 
-  左侧摄像头模块占用 DVP 管脚时，会复用 GPIO14（原 EEPROM 地址选择脚）作为 DVP D4，并暂停该插槽的 EEPROM 访问，直到释放摄像头资源。摄像头模块与多功能交互子板的完整说明见 :doc:`user_guide_camera` 与 :doc:`user_guide_interact`。
+  左侧摄像头模块占用 DVP 管脚时，会复用 GPIO14（原 EEPROM 地址选择脚）作为 DVP D4，并暂停该插槽的 EEPROM 访问，直到释放摄像头资源。摄像头模块与多功能交互模块的完整说明见 :doc:`user_guide_camera` 与 :doc:`user_guide_interact`。
 
 硬件版本
 ========
 
-- **V1.0** （本文档）：初版硬件。板载器件与外扩模块共用一路 I2C；板载程序可控橙色 LED；Codec 电源域可由 GPIO 独立控制；屏幕 ``LCD_RST`` 为 GPIO42、``LCD_SCL`` 为 GPIO44。
-- **V1.2**：屏幕 ``LCD_RST`` 与 ``LCD_SCL`` 互换；取消程序可控 LED 与 3.3 V 电源指示灯；取消 Codec 电源域独立控制；对内 I2C0 与对外 I2C1 拆分；对外 3.3 V 改由独立 DCDC 供电。请参阅 :doc:`user_guide`。
+- **V1.0** （本文档）：初版硬件。板载器件与外扩模块共用一路 I2C；板载程序可控橙色 LED；Codec 电源域可由 GPIO 独立控制；屏幕 ``LCD_RST`` 为 GPIO42、``LCD_SCL`` 为 GPIO44；充电指示灯在充电时亮红灯、充满时亮绿灯。
+- **V1.2**：屏幕 ``LCD_RST`` 与 ``LCD_SCL`` 互换；充电指示灯改为充电时亮橙灯、充满时亮白灯；取消程序可控 LED 与 3.3 V 电源指示灯；取消 Codec 电源域独立控制；对内 I2C0 与对外 I2C1 拆分；对外 3.3 V 改由独立 DCDC 供电。请参阅 :doc:`user_guide`。
 
 .. _Related-documents_esp-mosaico-v1.0:
 
@@ -794,7 +794,7 @@ ESP-Mosaico 提供左右两个模块插槽，BSP 通过 EEPROM 地址选择完�
 -  `2.16 寸 480 × 480 QSPI AMOLED 屏幕规格书`_ (PDF)
 -  `ESP32-S31 系列芯片技术规格书`_ (HTML)
 -  :doc:`摄像头模块用户指南 <user_guide_camera>`
--  :doc:`多功能交互子板用户指南 <user_guide_interact>`
+-  :doc:`多功能交互模块用户指南 <user_guide_interact>`
 -  `ESP-Mosaico 使用指南`_ (HTML)
 -  `ESP-Mosaico 固件更新`_ (HTML)
 -  `ESP-Claw`_ (HTML)

@@ -776,13 +776,13 @@ Pins are listed clockwise around the connector, starting from Pin1 (odd-numbered
 
 .. note::
 
-  When the left camera module claims DVP pins, GPIO14 (EEPROM address-select) is reused as DVP D4 and EEPROM access to that slot is suspended until the camera resource is released. See :doc:`user_guide_camera` and :doc:`user_guide_interact` for the camera module and multi-function interaction subboard.
+  When the left camera module claims DVP pins, GPIO14 (EEPROM address-select) is reused as DVP D4 and EEPROM access to that slot is suspended until the camera resource is released. See :doc:`user_guide_camera` and :doc:`user_guide_interact` for the camera module and multi-function interaction module.
 
 Hardware Revision Details
 ==========================
 
-- **V1.0** (this document): Initial hardware. Onboard devices and expansion modules share one I2C bus. The board has a programmable orange LED. The codec power domain can be controlled independently by GPIO. ``LCD_RST`` is GPIO42 and ``LCD_SCL`` is GPIO44.
-- **V1.2**: ``LCD_RST`` and ``LCD_SCL`` are swapped; the programmable LED and 3.3 V power LED are removed; independent codec power-domain control is removed; internal I2C0 and external I2C1 are split; the external 3.3 V rail uses a dedicated DCDC. See :doc:`user_guide`.
+- **V1.0** (this document): Initial hardware. Onboard devices and expansion modules share one I2C bus. The board has a programmable orange LED. The codec power domain can be controlled independently by GPIO. ``LCD_RST`` is GPIO42 and ``LCD_SCL`` is GPIO44. The charge LED is red while charging and green when fully charged.
+- **V1.2**: ``LCD_RST`` and ``LCD_SCL`` are swapped; the charge LED is orange while charging and white when fully charged; the programmable LED and 3.3 V power LED are removed; independent codec power-domain control is removed; internal I2C0 and external I2C1 are split; the external 3.3 V rail uses a dedicated DCDC. See :doc:`user_guide`.
 
 .. _Related-documents_esp-mosaico-v1.0_en:
 
@@ -794,7 +794,7 @@ Related Documents
 -  `2.16-inch 480 × 480 QSPI AMOLED Display Datasheet`_ (PDF)
 -  `ESP32-S31 Series Datasheet`_ (HTML)
 -  :doc:`Camera Module User Guide <user_guide_camera>`
--  :doc:`Multi-function Interaction Subboard User Guide <user_guide_interact>`
+-  :doc:`Multi-function Interaction Module User Guide <user_guide_interact>`
 -  `ESP-Mosaico User Guide`_ (HTML)
 -  `ESP-Mosaico Firmware Update`_ (HTML)
 -  `ESP-Claw`_ (HTML)
