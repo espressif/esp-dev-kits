@@ -491,7 +491,6 @@ Related Documents
 -  `V1.4 Camera Module (SC101IOT) PCB Schematic <https://dl.espressif.com/ae/mosaico/hardware/SCH_SCH_ESP_Mosaico_SC101IOT_CameraBoard_V1_4A_2026-09-21.pdf>`__ (PDF)
 -  `OV3640 Datasheet <https://dl.espressif.com/ae/mosaico/hardware/OV3640_CSP_1.1.pdf>`__ (PDF)
 -  `OV3640 Camera Module Specification <https://dl.espressif.com/ae/mosaico/hardware/Renheng_OV3640_Camera_Module_21_mm_68_20260724.pdf>`__ (PDF)
--  `SC101IOT Datasheet <https://dl.espressif.com/ae/mosaico/hardware/SC101IoT_Datasheet_V0.5.pdf>`__ (PDF)
 -  `SC101IOT Camera Module Specification (Low-profile Lens) <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO08AI101D4-21-V2.0.pdf>`__ (PDF)
 -  `SC101IOT Camera Module Specification (High-profile Lens) <https://dl.espressif.com/ae/mosaico/hardware/AS-AGT08AI101D4-21%EF%BC%88%E5%85%89%E5%9C%882.4%EF%BC%89.pdf>`__ (PDF)
 

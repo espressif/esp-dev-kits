@@ -491,7 +491,6 @@ I2C 与模块发现
 -  `V1.4 摄像头模块（SC101IOT）PCB 原理图 <https://dl.espressif.com/ae/mosaico/hardware/SCH_SCH_ESP_Mosaico_SC101IOT_CameraBoard_V1_4A_2026-09-21.pdf>`__ (PDF)
 - `OV3640 数据手册 <https://dl.espressif.com/ae/mosaico/hardware/OV3640_CSP_1.1.pdf>`__ (PDF)
 - `OV3640 摄像头模组规格书 <https://dl.espressif.com/ae/mosaico/hardware/Renheng_OV3640_Camera_Module_21_mm_68_20260724.pdf>`__ (PDF)
-- `SC101IOT 数据手册 <https://dl.espressif.com/ae/mosaico/hardware/SC101IoT_Datasheet_V0.5.pdf>`__ (PDF)
 - `SC101IOT 摄像头模组（矮镜头）规格书 <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO08AI101D4-21-V2.0.pdf>`__ (PDF)
 - `SC101IOT 摄像头模组（高镜头）规格书 <https://dl.espressif.com/ae/mosaico/hardware/AS-AGT08AI101D4-21%EF%BC%88%E5%85%89%E5%9C%882.4%EF%BC%89.pdf>`__ (PDF)
 
