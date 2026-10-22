@@ -109,6 +109,8 @@ pack-upload_files:
       - binaries/
     expire_in: 1 week
   rules:
+    - if: '$ORDERING_INFO_REFRESH == "1"'
+      when: never
     - if: $CI_COMMIT_REF_NAME == "master"
   script:
     - pip install rtoml ruamel.yaml --upgrade
@@ -128,6 +130,8 @@ upload-dl-trigger:
       artifacts: false
       optional: false
   rules:
+    - if: '$ORDERING_INFO_REFRESH == "1"'
+      when: never
     - if: $CI_COMMIT_REF_NAME == "master"
   environment:
     name: esp-dev-kits_launchpad
