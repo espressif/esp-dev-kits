@@ -58,24 +58,18 @@ extern "C" void app_main(void)
 
     ESP_ERROR_CHECK(bsp_extra_codec_init());
 
-    bsp_display_cfg_t cfg = {
-        .hw_cfg = {
-            .hdmi_resolution = BSP_HDMI_RES_NONE,
-            .dsi_bus = {
-                .lane_bit_rate_mbps = BSP_LCD_MIPI_DSI_LANE_BITRATE_MBPS,
-            },
-        },
-    };
-    lv_display_t *disp = lvgl_adapter_init(&cfg);
+    /* Display bring-up (panel + backlight) moved into lvgl_adapter_init(),
+     * which bypasses the stock BSP EK79007 path and drives the custom
+     * 800x1280 panels instead (menuconfig: LCD Panel Selection). */
+    lv_disp_t *disp = lvgl_adapter_init();
     assert(disp != nullptr && "Failed to init LVGL adapter");
-    bsp_display_backlight_on();
 
     ESP_ERROR_CHECK(esp_lv_adapter_lock(-1));
 
     ESP_Brookesia_Phone *phone = new ESP_Brookesia_Phone();
     assert(phone != nullptr && "Failed to create phone");
 
-    ESP_Brookesia_PhoneStylesheet_t *phone_stylesheet = new ESP_Brookesia_PhoneStylesheet_t ESP_BROOKESIA_PHONE_1024_600_DARK_STYLESHEET();
+    ESP_Brookesia_PhoneStylesheet_t *phone_stylesheet = new ESP_Brookesia_PhoneStylesheet_t ESP_BROOKESIA_PHONE_800_1280_DARK_STYLESHEET();
     ESP_BROOKESIA_CHECK_NULL_EXIT(phone_stylesheet, "Create phone stylesheet failed");
     ESP_BROOKESIA_CHECK_FALSE_EXIT(phone->addStylesheet(*phone_stylesheet), "Add phone stylesheet failed");
     ESP_BROOKESIA_CHECK_FALSE_EXIT(phone->activateStylesheet(*phone_stylesheet), "Activate phone stylesheet failed");

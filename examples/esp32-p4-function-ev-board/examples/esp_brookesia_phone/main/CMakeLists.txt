@@ -1,6 +1,9 @@
 idf_component_register(
     SRCS main.cpp lvgl_adapter_init.c
-    INCLUDE_DIRS .)
+    INCLUDE_DIRS .
+    # No explicit REQUIRES: main auto-depends on every component (stock
+    # example style), incl. the local panel drivers under components/.
+    )
 
 idf_component_get_property(LVGL_LIB lvgl__lvgl COMPONENT_LIB)
 target_compile_options(
