@@ -132,11 +132,11 @@ The following describes the main components on the front PCB in clockwise order.
      - BMI270
      - 6-axis IMU (accelerometer + gyroscope), I2C address 0x69.
    * - 17
-     - GD5F1GM7UEYIGR
-     - 1 Gbit (128 MB) SPI NAND flash for large-capacity asset storage.
-   * - 18
      - GD25Q128EWIGR
      - 16 MB (128 Mbit) SPI NOR flash for program and data storage.
+   * - 18
+     - GD5F1GM7UEYIGR
+     - 1 Gbit (128 MB) SPI NAND flash for large-capacity asset storage.
    * -
      - :strong:`BaseBoard`
      - Base board integrating the speaker, battery, external 3.3 V buck, and left/right 2 × 10P module headers, mated to the CoreBoard through a board-to-board connector.

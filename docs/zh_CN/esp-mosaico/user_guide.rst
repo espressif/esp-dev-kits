@@ -132,11 +132,11 @@ ESP-Mosaico 由 CoreBoard（核心板）和 BaseBoard（底板）组成。下文
      - BMI270
      - 六轴 IMU（加速度计 + 陀螺仪），I2C 地址 0x69。
    * - 17
-     - GD5F1GM7UEYIGR
-     - 1 Gbit（128 MB）SPI NAND flash，用于大容量资源存储。
-   * - 18
      - GD25Q128EWIGR
      - 16 MB (128 Mbit) SPI NOR flash，用于程序与数据存储。
+   * - 18
+     - GD5F1GM7UEYIGR
+     - 1 Gbit（128 MB）SPI NAND flash，用于大容量资源存储。
    * -
      - :strong:`BaseBoard（底板）`
      - 底板，集成扬声器、电池、对外 3.3 V 降压电路与左右 2 × 10P 模块接口，通过板对板连接座与核心板对接。
