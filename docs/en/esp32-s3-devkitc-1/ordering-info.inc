@@ -22,14 +22,14 @@ The development board has a variety of variants to choose from, as shown in the 
      - 32 MB
      - 16 MB
      - PCB on-board antenna
-   * - ESP32-S3-DevKitC-1-N8R8
-     - ESP32-S3-WROOM-1-N8R8
-     - 8 MB
+   * - ESP32-S3-DevKitC-1-N16R8
+     - ESP32-S3-WROOM-1
+     - 16 MB
      - 8 MB
      - PCB on-board antenna
-   * - ESP32-S3-DevKitC-1U-N8R8
-     - ESP32-S3-WROOM-1U-N8R8
-     - 8 MB
+   * - ESP32-S3-DevKitC-1U-N16R8
+     - ESP32-S3-WROOM-1U
+     - 16 MB
      - 8 MB
      - External antenna connector
    * - ESP32-S3-DevKitC-1-N8 (EOL)
