@@ -22,14 +22,14 @@
      - 32 MB
      - 16 MB
      - PCB 板载天线
-   * - ESP32-S3-DevKitC-1-N8R8
-     - ESP32-S3-WROOM-1-N8R8
-     - 8 MB
+   * - ESP32-S3-DevKitC-1-N16R8
+     - ESP32-S3-WROOM-1
+     - 16 MB
      - 8 MB
      - PCB 板载天线
-   * - ESP32-S3-DevKitC-1U-N8R8
-     - ESP32-S3-WROOM-1U-N8R8
-     - 8 MB
+   * - ESP32-S3-DevKitC-1U-N16R8
+     - ESP32-S3-WROOM-1U
+     - 16 MB
      - 8 MB
      - 外部天线连接器
    * - ESP32-S3-DevKitC-1-N8（停产）
