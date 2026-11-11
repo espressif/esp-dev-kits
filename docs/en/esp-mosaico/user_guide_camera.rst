@@ -252,7 +252,28 @@ The main components on the back are listed below. Positions refer to the orienta
 V1.4 Camera Specifications
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The SC101IOT camera module for V1.4 is available with a low-profile lens or a high-profile lens. Both support manual focus. The optical specifications for each lens are listed below; see the corresponding module specifications in `Related Documents`_ for details.
+The V1.4 SC101IOT camera module is available with three lens versions, all supporting manual focus. Versions 1, 2, and 3 below refer to the lenses; the camera module PCB version is V1.4. Versions 2 and 3 have the same optical specifications but differ in appearance and dimensions.
+
+Identify the lens version by its model marking and the shape of the orange focus ring. Versions 2 and 3 share the same model marking, so use their appearance to distinguish them:
+
+- **Version 1**: Marked ``AS-AGTO8AI101D4-21``. The focus ring has a serrated outer edge for grip and a relatively flat front face, with a small black lens area visible at the center.
+- **Version 2**: Marked ``AS-AGTO8AI101D4-21-V2.0``. The focus ring has a smooth outer edge and a surface that slopes inward toward the center to form a funnel. Its central lens opening is the smallest of the three versions.
+- **Version 3**: Marked ``AS-AGTO8AI101D4-21-V2.0``. The focus ring is a narrow circular ring with the largest central opening of the three versions, exposing a larger area of the recessed black lens hood.
+
+The three lens versions are shown below:
+
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-camera-lens-versions-3d.png
+   :alt: Three Lens Versions, from Left to Right: Version 1, Version 2, and Version 3 (Click to enlarge)
+   :width: 80%
+   :figclass: align-center
+
+   Lens Appearance Comparison: Version 1, Version 2, and Version 3 from Left to Right (Click to enlarge)
+
+.. note::
+
+   Lens height varies slightly with the manual focus adjustment. For the dimensions of each lens version, see the corresponding module specification in `Related Documents`_.
+
+The camera specifications are listed below. For details, see the corresponding module specifications in `Related Documents`_.
 
 .. list-table:: V1.4 Camera Specifications
    :widths: 30 70
@@ -271,19 +292,19 @@ The SC101IOT camera module for V1.4 is available with a low-profile lens or a hi
    * - Pixel Size
      - 2.9 μm
    * - Lens Focal Length
-     - | Low-profile lens: 3.1 mm, manual focus
-       | High-profile lens: 4.3 mm, manual focus
+     - | Version 1: 4.3 mm, manual focus
+       | Versions 2 and 3: 3.1 mm, manual focus
    * - Aperture
-     - | Low-profile lens: F1.8 (±5%)
-       | High-profile lens: F2.4 (±5%)
+     - | Version 1: F2.4 (±5%)
+       | Versions 2 and 3: F1.8 (±5%)
    * - Field of View
-     - | Low-profile lens: diagonal (D): 79°, horizontal (H): 73°, vertical (V): 42°
-       | High-profile lens: diagonal (D): 52°, horizontal (H): 46°, vertical (V): 26°
+     - | Version 1: diagonal (D): 52°, horizontal (H): 46°, vertical (V): 26°
+       | Versions 2 and 3: diagonal (D): 79°, horizontal (H): 73°, vertical (V): 42°
    * - Applications
      - General-purpose image capture
    * - Lens Distortion
-     - | Low-profile lens: <1.0%
-       | High-profile lens: <0.5%
+     - | Version 1: <0.5%
+       | Versions 2 and 3: <1.0%
    * - Default Output Format
      - 1280 × 720 UYVY
    * - Output Resolution and Frame Rate
@@ -491,8 +512,9 @@ Related Documents
 -  `V1.4 Camera Module (SC101IOT) PCB Schematic <https://dl.espressif.com/ae/mosaico/hardware/SCH_SCH_ESP_Mosaico_SC101IOT_CameraBoard_V1_4A_2026-09-21.pdf>`__ (PDF)
 -  `OV3640 Datasheet <https://dl.espressif.com/ae/mosaico/hardware/OV3640_CSP_1.1.pdf>`__ (PDF)
 -  `OV3640 Camera Module Specification <https://dl.espressif.com/ae/mosaico/hardware/Renheng_OV3640_Camera_Module_21_mm_68_20260724.pdf>`__ (PDF)
--  `SC101IOT Camera Module Specification (Low-profile Lens) <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO08AI101D4-21-V2.0.pdf>`__ (PDF)
--  `SC101IOT Camera Module Specification (High-profile Lens) <https://dl.espressif.com/ae/mosaico/hardware/AS-AGT08AI101D4-21%EF%BC%88%E5%85%89%E5%9C%882.4%EF%BC%89.pdf>`__ (PDF)
+-  `SC101IOT Camera Module Specification (Version 1) <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO8AI101D4-21_F2.4.pdf>`__ (PDF)
+-  `SC101IOT Camera Module Specification (Version 2) <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO8AI101D4-21-V2.0.pdf>`__ (PDF)
+-  `SC101IOT Camera Module Specification (Version 3) <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO8AI101D4-21-V2.0-with-lens-cover.pdf>`__ (PDF)
 
 Disclaimer and Copyright Notice
 ===============================
