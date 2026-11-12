@@ -76,7 +76,7 @@
 - 商务问题、技术支持、电路原理图 & PCB 设计审阅、购买样品（线上商店）、成为供应商、意见与建议 |br|
   https://espressif.com/zh-hans/contact-us/sales-questions
 
-.. only:: html
+.. only:: not latex
 
     .. |br| raw:: html
 

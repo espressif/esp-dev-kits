@@ -76,7 +76,7 @@ Contact Us
 - See the tabs Sales Questions, Technical Enquiries, Circuit Schematic & PCB Design Review, Get Samples (Online stores), Become Our Supplier, Comments & Suggestions. |br|
   https://espressif.com/en/contact-us/sales-questions
 
-.. only:: html
+.. only:: not latex
 
     .. |br| raw:: html
 

@@ -32,6 +32,8 @@ IGNORE_WARNINGS = [
     r'managed_components/espressif__esp-dl/.*dl_image_jpeg.cpp:.*missing initializer for member.*pixel_reverse',
     r'managed_components/espressif__esp_video/.*esp_video_init.c:.*check_cam_dev_clock.*defined but not used',
     r'managed_components/espressif__esp_video/.*esp_video_isp_device.c:.*(ISP_AWB_SAMPLE_POINT_BEFORE_CCM|ISP_AE_SAMPLE_POINT_AFTER_GAMMA|ISP_AE_SAMPLE_POINT_AFTER_DEMOSAIC).*deprecated',
+    # SquareLine-generated S31 UI still uses the LVGL 9 flag compatibility APIs.
+    r"examples/esp32-s31-korvo/examples/factory_demo/(?:ui/[^:]+\.c|main/main\.c):\d+:\d+: warning: 'lv_obj_(?:add_flag|remove_flag|has_flag)' is deprecated:.*\[-Wdeprecated-declarations\]",
 ]
 
 def _get_idf_version():
