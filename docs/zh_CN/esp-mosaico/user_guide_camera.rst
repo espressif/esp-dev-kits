@@ -4,7 +4,7 @@ ESP-Mosaico 摄像头模块
 
 :link_to_translation:`en:[English]`
 
-本指南介绍 ESP-Mosaico **摄像头模块** （Camera Module）的硬件版本、硬件接口、安装方式与软件使用要点。摄像头模块提供 **V1.2** 和 **V1.4** 两个版本，均通过 CoreBoard / BaseBoard 左侧 ``2 × 10P`` 模块插槽接入，提供 DVP 图像采集能力。
+本指南介绍 ESP-Mosaico **摄像头模块** (Camera Module) 的硬件版本、硬件接口、安装方式与软件使用要点。摄像头模块提供 **V1.2** 和 **V1.4** 两个版本，均通过 CoreBoard / BaseBoard 左侧 ``2 × 10P`` 模块插槽接入，提供 DVP 图像采集能力。
 
 .. note::
 
@@ -111,7 +111,7 @@ V1.2 PCB 反面组件
      - 位于下方，采用夹板焊接工艺，焊点位于 PCB 正反两面；用于接入 BaseBoard 左侧 ``H2`` 插槽。
    * - 6
      - 摄像头状态指示灯（红色 LED）
-     - 位于左下方，摄像头启动并工作时亮起，进入休眠（sleep）或关闭时熄灭。
+     - 位于左下方，摄像头启动并工作时亮起，进入休眠 (sleep) 或关闭时熄灭。
    * - 7
      - Camera Flash-2（闪光灯 2）
      - 位于左侧，用于补光，与闪光灯 1 共用 GPIO34 控制，电平与开漏输出要求相同。
@@ -238,7 +238,7 @@ V1.4 PCB 反面组件
      - 位于下方，采用夹板焊接工艺，焊点位于 PCB 正反两面；用于接入 BaseBoard 左侧 ``H2`` 插槽。
    * - 5
      - 摄像头状态指示灯（红色 LED）
-     - 位于左下方，摄像头启动并工作时亮起，进入休眠（sleep）或关闭时熄灭。
+     - 位于左下方，摄像头启动并工作时亮起，进入休眠 (sleep) 或关闭时熄灭。
    * - 6
      - Camera Flash-2（闪光灯 2）
      - 位于左侧，用于补光，与闪光灯 1 共用 GPIO34 控制，电平与开漏输出要求相同。
@@ -252,7 +252,28 @@ V1.4 PCB 反面组件
 V1.4 摄像头参数
 ^^^^^^^^^^^^^^^
 
-V1.4 版本的 SC101IOT 摄像头模组提供矮镜头和高镜头两种规格，均支持手动对焦。两种镜头的光学参数分别列于下表，详细信息请参阅 `相关文档`_ 中对应的模组规格书。
+V1.4 版本的 SC101IOT 摄像头模块提供三个镜头版本，均支持手动对焦。下文中的版本 1、2、3 均指镜头版本，摄像头模块的 PCB 版本为 V1.4。其中，版本 2 和版本 3 的光学参数相同，外观和尺寸不同。
+
+可通过型号丝印和橙色对焦环的外观识别镜头版本。版本 2 和版本 3 的型号丝印相同，需进一步通过外观区分：
+
+- **版本 1**：型号丝印为 ``AS-AGTO8AI101D4-21``。对焦环外缘带防滑齿，正面较平，中心露出的黑色镜头区域较小。
+- **版本 2**：型号丝印为 ``AS-AGTO8AI101D4-21-V2.0``。对焦环外缘圆滑，表面向中心内凹，呈漏斗形，中心镜头开口在三个版本中最小。
+- **版本 3**：型号丝印为 ``AS-AGTO8AI101D4-21-V2.0``。对焦环呈窄圆环，中心开口在三个版本中最大，可见较大面积的黑色内凹镜头罩。
+
+三个版本的镜头外观如下图所示：
+
+.. figure:: ../../_static/esp-mosaico/esp-mosaico-camera-lens-versions-3d.png
+   :alt: 三个镜头版本外观示意图，从左至右依次为版本 1、版本 2、版本 3（点击放大）
+   :width: 80%
+   :figclass: align-center
+
+   镜头外观对比：从左至右依次为版本 1、版本 2、版本 3（点击放大）
+
+.. note::
+
+   镜头高度会随手动对焦略有变化。各镜头版本的外形尺寸见 `相关文档`_ 中对应的规格书。
+
+摄像头参数如下，详细信息请参阅 `相关文档`_ 中对应的模块规格书。
 
 .. list-table:: V1.4 版本摄像头参数
    :widths: 30 70
@@ -271,19 +292,19 @@ V1.4 版本的 SC101IOT 摄像头模组提供矮镜头和高镜头两种规格�
    * - 像素尺寸
      - 2.9 μm
    * - 镜头焦距
-     - | 矮镜头：3.1 mm，支持手动对焦
-       | 高镜头：4.3 mm，支持手动对焦
+     - | 版本 1：4.3 mm，支持手动对焦
+       | 版本 2、3：3.1 mm，支持手动对焦
    * - 光圈
-     - | 矮镜头：F1.8（±5%）
-       | 高镜头：F2.4（±5%）
+     - | 版本 1：F2.4 (±5%)
+       | 版本 2、3：F1.8 (±5%)
    * - 视场角
-     - | 矮镜头：对角（D）79°，水平（H）73°，垂直（V）42°
-       | 高镜头：对角（D）52°，水平（H）46°，垂直（V）26°
+     - | 版本 1：对角 (D) 52°，水平 (H) 46°，垂直 (V) 26°
+       | 版本 2、3：对角 (D) 79°，水平 (H) 73°，垂直 (V) 42°
    * - 适用场景
      - 常规视觉采集
    * - 镜头畸变
-     - | 矮镜头：<1.0%
-       | 高镜头：<0.5%
+     - | 版本 1：<0.5%
+       | 版本 2、3：<1.0%
    * - 默认输出格式
      - 1280 × 720 UYVY
    * - 输出分辨率与帧率
@@ -329,10 +350,10 @@ V1.4 版本的 SC101IOT 摄像头模组提供矮镜头和高镜头两种规格�
 --------
 
 1. 确认主机已关机或已关闭对外 3.3 V / 5 V 输出。
-2. 将摄像头模块按照“橘色镜头朝上，闪光灯朝下”方向插入主机 **左侧** 模块插槽（``H2``），详情见 `ESP-Mosaico 使用指南 <https://mosaico.espressif.com/zh/guide/>`__。
+2. 将摄像头模块按照“橘色镜头朝上，闪光灯朝下”方向插入主机 **左侧** 模块插槽 (``H2``)，详情见 `ESP-Mosaico 使用指南 <https://mosaico.espressif.com/zh/guide/>`__。
 3. 通过 Type-C 为 ESP-Mosaico 供电并开机。扩展 3.3 V / 5 V 仅在 GPIO60 置低时输出。
 
-下图展示摄像头模块插接在 ESP-Mosaico 主体左侧模块插槽（``H2``）后的状态。安装时请对齐模块排针与插槽，确保连接牢固。
+下图展示摄像头模块插接在 ESP-Mosaico 主体左侧模块插槽 (``H2``) 后的状态。安装时请对齐模块排针与插槽，确保连接牢固。
 
 .. figure:: ../../_static/esp-mosaico/esp-mosaico-camera-module-installed.png
    :alt: 摄像头模块与 ESP-Mosaico 主体插接示意图（点击放大）
@@ -468,7 +489,7 @@ DVP 与控制管脚
 I2C 与模块发现
 --------------
 
-- 模块 EEPROM：型号与封装见各版本说明，左侧地址 **0x50**，板型 **0x07** （``MOSAICO_BOARD_TYPE_CAMERA``）。
+- 模块 EEPROM：型号与封装见各版本说明，左侧地址 **0x50**，板型 **0x07** (``MOSAICO_BOARD_TYPE_CAMERA``)。
 - Sensor SCCB 与 EEPROM 共用扩展 I2C：SDA = GPIO0，SCL = GPIO1。CoreBoard **V1.2** 上该总线为对外 I2C1；**V1.0** 上与板载器件共享同一路 I2C。
 - 打开摄像头后，GPIO14 改为 DVP D4，左侧插槽 EEPROM 访问暂停，直到 ``mosaico_camera_del()`` / ``bsp_subboard_camera_release()`` 释放资源。
 
@@ -487,12 +508,13 @@ I2C 与模块发现
 相关文档
 ========
 
--  `V1.2 摄像头模块（OV3640）PCB 原理图 <https://dl.espressif.com/ae/mosaico/hardware/SCH_SCH_ESP_Mosaico_OV3640_CameraBoard_V1_2_2026-09-21.pdf>`__ (PDF)
--  `V1.4 摄像头模块（SC101IOT）PCB 原理图 <https://dl.espressif.com/ae/mosaico/hardware/SCH_SCH_ESP_Mosaico_SC101IOT_CameraBoard_V1_4A_2026-09-21.pdf>`__ (PDF)
+-  `V1.2 摄像头模块 (OV3640) PCB 原理图 <https://dl.espressif.com/ae/mosaico/hardware/SCH_SCH_ESP_Mosaico_OV3640_CameraBoard_V1_2_2026-09-21.pdf>`__ (PDF)
+-  `V1.4 摄像头模块 (SC101IOT) PCB 原理图 <https://dl.espressif.com/ae/mosaico/hardware/SCH_SCH_ESP_Mosaico_SC101IOT_CameraBoard_V1_4A_2026-09-21.pdf>`__ (PDF)
 - `OV3640 数据手册 <https://dl.espressif.com/ae/mosaico/hardware/OV3640_CSP_1.1.pdf>`__ (PDF)
-- `OV3640 摄像头模组规格书 <https://dl.espressif.com/ae/mosaico/hardware/Renheng_OV3640_Camera_Module_21_mm_68_20260724.pdf>`__ (PDF)
-- `SC101IOT 摄像头模组（矮镜头）规格书 <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO08AI101D4-21-V2.0.pdf>`__ (PDF)
-- `SC101IOT 摄像头模组（高镜头）规格书 <https://dl.espressif.com/ae/mosaico/hardware/AS-AGT08AI101D4-21%EF%BC%88%E5%85%89%E5%9C%882.4%EF%BC%89.pdf>`__ (PDF)
+- `OV3640 摄像头模块规格书 <https://dl.espressif.com/ae/mosaico/hardware/Renheng_OV3640_Camera_Module_21_mm_68_20260724.pdf>`__ (PDF)
+- `SC101IOT 摄像头模块（版本 1）规格书 <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO8AI101D4-21_F2.4.pdf>`__ (PDF)
+- `SC101IOT 摄像头模块（版本 2）规格书 <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO8AI101D4-21-V2.0.pdf>`__ (PDF)
+- `SC101IOT 摄像头模块（版本 3）规格书 <https://dl.espressif.com/ae/mosaico/hardware/AS-AGTO8AI101D4-21-V2.0-with-lens-cover.pdf>`__ (PDF)
 
 
 免责声明和版权公告
