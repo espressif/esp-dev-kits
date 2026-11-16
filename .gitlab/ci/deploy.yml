@@ -24,6 +24,7 @@ push_master_to_github:
   image: $ESP_IDF_DOC_ENV_IMAGE
   tags:
     - deploy_docs
+    - shiny # see [~>LSI-87282] or ae_group/esp-dev-kits!448
   needs:
     - job: "build_docs_html"
       artifacts: true
@@ -38,7 +39,14 @@ push_master_to_github:
     - pip install -r ${CI_PROJECT_DIR}/docs/requirements.txt
     # Put the output in a logfile that will be used latter to post a comment in the MR
     - mkdir -p logs
-    - deploy-docs | tee logs/doc-url.txt
+    - set -o pipefail
+    # `deploy-docs` will be automatically invoked by `deduplicate_doc_static.py --deploy`
+    - |
+      DEPLOY_ARGS=(--deploy)
+      if [ "$TYPE" = "preview" ]; then
+        DEPLOY_ARGS+=(--allow-empty)
+      fi
+      python -u ${CI_PROJECT_DIR}/tools/ci/deduplicate_doc_static.py "${DEPLOY_ARGS[@]}" | tee logs/doc-url.txt
 
 deploy_docs_preview:
   extends:
@@ -68,6 +76,11 @@ post_links:
   needs:
     - deploy_docs_preview
   script:
+    - |
+      if grep -Fq '[document deployment skipped]' logs/doc-url.txt; then
+        echo "No documentation was built; skipping the MR preview note."
+        exit 0
+      fi
     - pip install -r ${CI_PROJECT_DIR}/docs/deploy-docs-preview.requirements.txt
     - ls -al logs
     - python3 post-mr-note.py $GITLAB_MR_NOTE_TOKEN $CI_PROJECT_PATH $CI_MERGE_REQUEST_IID --url $GITLAB_URL
