@@ -199,15 +199,15 @@ The key components on the front and back of the board are described below, start
 Accessories
 ------------------
 
-Optionally, the following accessories are included in the package:
+The following accessories are included in the package:
 
-- LCD and its accessories (optional)
+- LCD and its accessories
 
   * 7-inch capacitive touch screen with a resolution of 1024 x 600
   * LCD adapter board
   * Accessories bag, including DuPont wires, ribbon cable for LCD, long brass standoffs (20 mm in length), and short brass standoffs (8 mm in length)
 
-- Camera and its accessories (optional)
+- Camera and its accessories
 
   * 2MP camera with MIPI CSI
   * Camera adapter board
