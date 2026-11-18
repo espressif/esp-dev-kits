@@ -27,7 +27,7 @@ if (NOT CONFIG_HUMAN_FACE_DETECT_MODEL_IN_SDCARD)
     add_custom_command(
         OUTPUT ${packed_model}
         COMMENT "Move and Pack models..."
-        COMMAND python ${pack_model_exe} --model_path ${models} --out_file ${packed_model}
+        COMMAND ${PYTHON} ${pack_model_exe} --model_path ${models} --out_file ${packed_model}
         DEPENDS ${models}
         VERBATIM)
 

@@ -543,7 +543,15 @@ esp_err_t AppSettings::initWifi()
     esp_netif_t *sta_netif = esp_netif_create_default_wifi_sta();
     assert(sta_netif);
     wifi_init_config_t cfg = WIFI_INIT_CONFIG_DEFAULT();
-    ESP_ERROR_CHECK(esp_wifi_init(&cfg));
+    /* The board's co-processor chip differs from the one the esp-hosted
+     * host driver was built for; esp_wifi_init() (remote) then fails.
+     * Degrade gracefully - the caller's error path just deletes the scan
+     * task and the UI keeps running without Wi-Fi. */
+    esp_err_t werr = esp_wifi_init(&cfg);
+    if (werr != ESP_OK) {
+        ESP_LOGE(TAG, "esp_wifi_init failed (0x%x), Wi-Fi disabled", werr);
+        return werr;
+    }
 
     esp_event_handler_instance_t instance_any_id;
     ESP_ERROR_CHECK(esp_event_handler_instance_register(WIFI_EVENT,
