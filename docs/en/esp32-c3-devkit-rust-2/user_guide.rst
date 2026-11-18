@@ -237,7 +237,7 @@ I2C Signal Mapping
 ======  =======
 Signal  GPIO
 ======  =======
-SDA     GPIO10
+SDA     GPIO7
 SCL     GPIO8
 ======  =======
 
@@ -248,7 +248,7 @@ Peripherals Connected to GPIOs
 I/O Device   GPIO
 ===========  =======
 WS2812 LED   GPIO2
-LED          GPIO7
+LED          GPIO10
 Button/Boot  GPIO9
 ===========  =======
 
