@@ -40,6 +40,9 @@
 # docs folder, in the alphabetic order
 .patterns-docs: &patterns-docs
   - "docs/**/*"
+  - ".gitlab-ci.yml"
+  - ".gitlab/ci/**/*"
+  - "tools/ci/**/*"
 
 ##############
 # if anchors #
@@ -147,7 +150,6 @@
     - <<: *if-dev-push
       changes: *patterns-esp32_s31_korvo
 
-# For others
 .rules:build:docs:
   rules:
     - <<: *if-protected
@@ -155,17 +157,25 @@
     - <<: *if-dev-push
       changes: *patterns-docs
 
+# Child pipelines have CI_PIPELINE_SOURCE=parent_pipeline. Preserve the
+# parent's source when applying the documentation deployment rules.
+.if-docs-dev-push: &if-docs-dev-push
+  if: '$CI_COMMIT_REF_NAME != "master" && $CI_COMMIT_BRANCH !~ /^release\/v/ && $CI_COMMIT_TAG !~ /^v\d+\.\d+(\.\d+)?($|-)/ && ($DOCS_PARENT_PIPELINE_SOURCE == "push" || $DOCS_PARENT_PIPELINE_SOURCE == "merge_request_event")'
+
 .rules:deploy:docs_preview:
   rules:
     - <<: *if-label-build
-    - <<: *if-dev-push
+    - <<: *if-docs-dev-push
       changes: *patterns-docs
 
 .rules:deploy:docs_production:
   rules:
-    - <<: *if-protected
+    # A release-like name alone does not grant production deployment access.
+    - if: '$CI_COMMIT_REF_PROTECTED == "true" && $DOCS_PARENT_PIPELINE_SOURCE != "schedule" && ($CI_COMMIT_REF_NAME == "master" || $CI_COMMIT_BRANCH =~ /^release\/v/ || $CI_COMMIT_TAG =~ /^v\d+\.\d+(\.\d+)?($|-)/)'
 
 .rules:deploy:post_links:
   rules:
-    - <<: *if-dev-push
+    - if: '$CI_MERGE_REQUEST_IID == null || $CI_MERGE_REQUEST_IID == ""'
+      when: never
+    - <<: *if-docs-dev-push
       changes: *patterns-docs

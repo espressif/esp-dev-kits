@@ -31,7 +31,7 @@
         if [ -n "$CI_MERGE_REQUEST_IID" ]; then
             TRACKING_REF="$CI_PROJECT_URL/-/merge_requests/$CI_MERGE_REQUEST_IID"
         else
-            TRACKING_REF="$CI_PROJECT_URL/-/pipelines/$CI_PIPELINE_ID"
+            TRACKING_REF="$CI_PROJECT_URL/-/pipelines/$DOCS_PARENT_PIPELINE_ID"
         fi
 
         for file in logs/*.yml; do
@@ -53,14 +53,8 @@ publish_to_cdp_qa_with_dmf_files:
     - .publish_to_cdp_template
     - .rules:deploy:docs_preview
   needs:
-    - deploy_docs_preview
-  script:
-    - |
-      if grep -Fq '[document deployment skipped]' logs/doc-url.txt; then
-        echo "No documentation was built; skipping CDP QA publication."
-        exit 0
-      fi
-    - !reference [.publish_to_cdp_template, script]
+    - job: deploy_docs_preview
+      artifacts: true
   variables:
     MR_BASE_URL: " $CI_MERGE_REQUEST_PROJECT_URL/-/merge_requests"
     CDP_API_ENDPOINT: "$CDP_API_ENDPOINT_QA"
@@ -70,6 +64,7 @@ publish_to_cdp_prod_with_dmf_files:
     - .publish_to_cdp_template
     - .rules:deploy:docs_production
   needs:
-    - deploy_docs_production
+    - job: deploy_docs_production
+      artifacts: true
   variables:
     CDP_API_ENDPOINT: "$CDP_API_ENDPOINT_PROD"
