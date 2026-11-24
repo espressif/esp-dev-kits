@@ -45,4 +45,3 @@ include:
   - '.gitlab/ci/docs.yml'
   - '.gitlab/ci/deploy.yml'
   - '.gitlab/ci/rules.yml'
-  - '.gitlab/ci/publish_docs_to_cdp.yml'
